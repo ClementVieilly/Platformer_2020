@@ -22,8 +22,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			protected set
 			{
 				_isGrounded = value;
-				animator.SetBool(settings.IsGroundedParameter, value);
-				animator.SetFloat(settings.VerticalVelocityParam, 0f);
+				/*animator.SetBool(settings.IsGroundedParameter, value);
+				animator.SetFloat(settings.VerticalVelocityParam, 0f);*/
 			}
 		}
 
@@ -71,12 +71,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			RaycastHit2D hitInfos = Physics2D.Raycast(origin, Vector2.down, settings.IsGroundedRaycastDistance + settings.JumpTolerance, settings.GroundLayerMask);
 			IsGrounded = hitInfos.collider != null;
 
-			if (_isGrounded)
+			// Réflexion sur l'orientation des pentes
+			/*if (_isGrounded)
 			{
 				Vector2 tan = hitInfos.normal;
 				tan = new Vector2(tan.y, -tan.x);
-				Debug.DrawRay(transform.position, tan, Color.red);
-			}
+				Debug.DrawRay(transform.position, tan * 2, Color.red);
+			}*/
 
 			rigidBody.velocity = new Vector2(controller.HorizontalAxis * settings.Speed, rigidBody.velocity.y);
 
@@ -88,11 +89,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			else if (!controller.Jump)
 				jumpButtonIsPressed = false;
 
-			animator.SetInteger(settings.HorizontalOrientationParam, rigidBody.velocity.x == 0 ? 0 : (int)Mathf.Sign(rigidBody.velocity.x));
+			/*animator.SetInteger(settings.HorizontalOrientationParam, rigidBody.velocity.x == 0 ? 0 : (int)Mathf.Sign(rigidBody.velocity.x));
 			animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
 
 			if (!_isGrounded)
-				animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
+				animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);*/
 		}
 
 		private void DoActionSpawn()

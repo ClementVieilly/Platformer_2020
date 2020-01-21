@@ -15,7 +15,8 @@ namespace Com.IsartDigital.Platformer.Managers
 		private static InputManager instance;
 		public static InputManager Instance { get { return instance; } }
 
-		[HideInInspector] public AController controller;
+		private AController _controller;
+		public AController Controller { get => _controller; }
 
 		// Delegate gérant l'événement de pause
 		public InputManagerEventHandler OnKeyPausePressed;
@@ -34,11 +35,11 @@ namespace Com.IsartDigital.Platformer.Managers
 #if UNITY_ANDROID && !UNITY_EDITOR
 			controller = new TouchController();
 #else
-			controller = new KeyboardController();
+			_controller = new KeyboardController();
 #endif
 		}
 
-		private void FixedUpdate()
+		private void Update()
 		{
 			if (Input.GetKeyDown(KeyCode.Escape)) OnKeyPausePressed?.Invoke(instance); //Envoi de l'event de pause 
 		}

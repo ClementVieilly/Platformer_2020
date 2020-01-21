@@ -26,17 +26,33 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private float _runSpeed = 5f;
 		[SerializeField] private AnimationCurve _runAccelerationCurve = null;
 		[SerializeField] private AnimationCurve _runDecelerationCurve = null;
+		[SerializeField] private float _fallHorizontalSpeed = 5f;
+		[SerializeField] private float _fallVerticalSpeed = 5f;
+		[SerializeField] private AnimationCurve _inAirAccelerationCurve = null;
+		[SerializeField] private AnimationCurve _inAirDecelerationCurve = null;
 		[SerializeField] private LayerMask _groundLayerMask;
 		[SerializeField] private float _isGroundedRaycastDistance = 0.25f;
 		[SerializeField] private float _jumpTolerance = 0.2f;
-		[SerializeField] private float _jumpForce = 10f;
+		[SerializeField] private float _minJumpForce = 10f;
+		[SerializeField] private float _jumpHoldForce = 1f;
+		[SerializeField] private float _maxJumpTime = 0.5f;
+		[SerializeField] private float _jumpHangThreshold = 0.5f;
+		[SerializeField] private float _jumpHangTime = 0.5f;
 
 		public float RunSpeed => _runSpeed;
 		public AnimationCurve RunAccelerationCurve => _runAccelerationCurve;
 		public AnimationCurve RunDecelerationCurve => _runDecelerationCurve;
+		public float FallHorizontalSpeed => _fallHorizontalSpeed;
+		public float FallVerticalSpeed => _fallVerticalSpeed;
+		public AnimationCurve InAirAccelerationCurve => _inAirAccelerationCurve;
+		public AnimationCurve InAirDecelerationCurve => _inAirDecelerationCurve;
 		public int GroundLayerMask => _groundLayerMask;
 		public float IsGroundedRaycastDistance => _isGroundedRaycastDistance;
 		public float JumpTolerance => _jumpTolerance;
-		public float JumpForce => _jumpForce;
+		public float MinJumpForce => _minJumpForce;
+		public float JumpHoldForce => _jumpHoldForce;
+		public float MaxJumpTime => _maxJumpTime;
+		public float JumpHangThreshold => _jumpHangThreshold;
+		public float JumpHangTime => _jumpHangTime;
 	}
 }

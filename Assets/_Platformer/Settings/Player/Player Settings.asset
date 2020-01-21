@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1e3d7bb53e3f394e8da64ed1d209aba, type: 3}
+  m_Name: Player Settings
+  m_EditorClassIdentifier: 
+  _isGroundedParam: {fileID: 11400000, guid: 9d750235ac985aa4d99f4984267c0cb0, type: 2}
+  _horizontalOrientationParam: {fileID: 11400000, guid: ffb3decaba6f99845855878439abcfc7,
+    type: 2}
+  _horizontalSpeedParam: {fileID: 11400000, guid: 3f540de8444cb4b4b9de6c0089a8d36d,
+    type: 2}
+  _verticalVelocityParam: {fileID: 11400000, guid: 3e760a74bfdd92b4ebc824a2c6a92155,
+    type: 2}
+  _runSpeed: 10
+  _runAccelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0.9192858
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.3327391
+    - serializedVersion: 3
+      time: 0.3
+      value: 1
+      inSlope: 6.812892
+      outSlope: Infinity
+      tangentMode: 97
+      weightedMode: 0
+      inWeight: 0.05525857
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: Infinity
+      outSlope: Infinity
+      tangentMode: 103
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _runDecelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -8.88
+      outSlope: -8.88
+      tangentMode: 0
+      weightedMode: 2
+      inWeight: 0
+      outWeight: 0.0490196
+    - serializedVersion: 3
+      time: 0.4
+      value: 0
+      inSlope: -0.32661733
+      outSlope: Infinity
+      tangentMode: 97
+      weightedMode: 0
+      inWeight: 0.33691186
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.5759997
+      outSlope: -0.5759997
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.98039275
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _isGroundedRaycastDistance: 0.25
+  _jumpTolerance: 0.2
+  _jumpForce: 10

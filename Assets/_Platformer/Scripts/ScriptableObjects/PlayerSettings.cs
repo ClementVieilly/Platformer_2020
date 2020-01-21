@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.ScriptableObjects
 {
-	[CreateAssetMenu(menuName = "Bryan Adventure/Player Settings")]
+	[CreateAssetMenu(menuName = "Platformer/Player Settings")]
 	public class PlayerSettings : ScriptableObject
 	{
 		[Header("Animator Parameters")]
@@ -23,12 +23,17 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public int VerticalVelocityParam => _verticalVelocityParam.ParameterID;
 
 		[Space, Header("Physics")]
-		[SerializeField] private float _speed = 5f;
+		[SerializeField] private float _runSpeed = 5f;
+		[SerializeField] private AnimationCurve _runAccelerationCurve = null;
+		[SerializeField] private AnimationCurve _runDecelerationCurve = null;
 		[SerializeField] private LayerMask _groundLayerMask;
 		[SerializeField] private float _isGroundedRaycastDistance = 0.25f;
 		[SerializeField] private float _jumpTolerance = 0.2f;
 		[SerializeField] private float _jumpForce = 10f;
-		public float Speed => _speed;
+
+		public float RunSpeed => _runSpeed;
+		public AnimationCurve RunAccelerationCurve => _runAccelerationCurve;
+		public AnimationCurve RunDecelerationCurve => _runDecelerationCurve;
 		public int GroundLayerMask => _groundLayerMask;
 		public float IsGroundedRaycastDistance => _isGroundedRaycastDistance;
 		public float JumpTolerance => _jumpTolerance;

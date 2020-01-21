@@ -5,15 +5,9 @@
 
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer.Interfaces {
-	public class IMobile : MonoBehaviour {
-	
-		private void Start () {
-			
-		}
-		
-		private void Update () {
-			
-		}
+namespace Com.IsartDigital.Platformer.Interfaces
+{
+	public interface IMobile
+	{
 	}
 }

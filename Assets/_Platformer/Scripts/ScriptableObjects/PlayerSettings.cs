@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.ScriptableObjects
 {
-	[CreateAssetMenu(menuName = "Bryan Adventure/Player Settings")]
+	[CreateAssetMenu(menuName = "Platformer/Player Settings")]
 	public class PlayerSettings : ScriptableObject
 	{
 		[Header("Animator Parameters")]

@@ -27,6 +27,15 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			}
 		}
 
+		#region horizontal move
+		private float horizontalAxis = 0f;
+		private float previousDirection = 0f;
+		private float horizontalMoveElapsedTime = 0f;
+		// Vitesse au moment de commencer la décélération
+		private float topSpeed = 0f;
+		#endregion
+
+		private float jump = 0f;
 		private bool jumpButtonIsPressed = false;
 
 		private Rigidbody2D rigidBody = null;
@@ -49,6 +58,29 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			SetModeSpawn();
 		}
 
+		private void Update()
+		{
+			CheckInputs();
+		}
+
+		private void CheckInputs()
+		{
+			horizontalMoveElapsedTime += Time.deltaTime;
+
+			if (horizontalAxis != controller.HorizontalAxis)
+			{
+				horizontalMoveElapsedTime = 0f;
+				if (controller.HorizontalAxis == 0f)
+					topSpeed = Mathf.Abs(rigidBody.velocity.x);
+			}
+
+			if (horizontalAxis != 0f)
+				previousDirection = horizontalAxis;
+			
+			horizontalAxis = controller.HorizontalAxis;
+			jump = controller.Jump;
+		}
+
 		private void FixedUpdate()
 		{
 			DoAction();
@@ -64,15 +96,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			DoAction = DoActionSpawn;
 		}
 
+		private void SetModeAir()
+		{
+			DoAction = DoActionInAir;
+		}
+
 		private void DoActionNormal()
 		{
-			Vector3 origin = rigidBody.position + Vector2.up * settings.IsGroundedRaycastDistance;
-
-			Debug.DrawRay(origin, Vector2.down * (settings.IsGroundedRaycastDistance + settings.JumpTolerance), Color.blue);
-
-			RaycastHit2D hitInfos = Physics2D.Raycast(origin, Vector2.down, settings.IsGroundedRaycastDistance + settings.JumpTolerance, settings.GroundLayerMask);
-			IsGrounded = hitInfos.collider != null;
-
 			// Réflexion sur l'orientation des pentes
 			/*if (_isGrounded)
 			{
@@ -81,16 +111,20 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 				Debug.DrawRay(transform.position, tan * 2, Color.red);
 			}*/
 
-			rigidBody.velocity = new Vector2(controller.HorizontalAxis * settings.Speed, rigidBody.velocity.y);
+			MoveHorizontalOnGround();
 
-			if (controller.Jump != 0f && !jumpButtonIsPressed && _isGrounded)
+			ComputeIsGrounded();
+
+			if (jump != 0f && !jumpButtonIsPressed && _isGrounded)
 			{
+				SetModeAir();
 				jumpButtonIsPressed = true;
-				rigidBody.AddForce(Vector2.up * settings.JumpForce, ForceMode2D.Impulse);
+				rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.JumpForce);
 			}
-			else if (controller.Jump == 0f)
+			else if (jump == 0f)
 				jumpButtonIsPressed = false;
 
+			// Updating Animator
 			/*animator.SetInteger(settings.HorizontalOrientationParam, rigidBody.velocity.x == 0 ? 0 : (int)Mathf.Sign(rigidBody.velocity.x));
 			animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
 
@@ -98,10 +132,71 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 				animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);*/
 		}
 
+		private void ComputeIsGrounded()
+		{
+			Vector3 origin = rigidBody.position + Vector2.up * settings.IsGroundedRaycastDistance;
+
+			Debug.DrawRay(origin, Vector2.down * (settings.IsGroundedRaycastDistance + settings.JumpTolerance), Color.blue);
+
+			RaycastHit2D hitInfos = Physics2D.Raycast(origin, Vector2.down, settings.IsGroundedRaycastDistance + settings.JumpTolerance, settings.GroundLayerMask);
+			IsGrounded = hitInfos.collider != null;
+		}
+
+		private void MoveHorizontalOnGround()
+		{
+			float ratio;
+			float horizontalMove;
+
+			if (horizontalAxis != 0f)
+			{
+				ratio = settings.RunAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
+				horizontalMove = Mathf.Lerp(0f, settings.RunSpeed, ratio);
+			}
+			else
+			{
+				ratio = settings.RunDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
+				horizontalMove = Mathf.Lerp(0f, topSpeed, ratio);
+			}
+
+			rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
+		}
+
 		private void DoActionSpawn()
 		{
 			//if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Player_Spawn"))
 				SetModeNormal();
+		}
+
+		private void DoActionInAir()
+		{
+			ComputeIsGrounded();
+
+			if (_isGrounded)
+			{
+				SetModeNormal();
+				return;
+			}
+
+			MoveHorizontalInAir();
+		}
+
+		private void MoveHorizontalInAir()
+		{
+			float ratio;
+			float horizontalMove;
+
+			if (horizontalAxis != 0f)
+			{
+				ratio = settings.RunAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
+				horizontalMove = Mathf.Lerp(0f, settings.RunSpeed, ratio);
+			}
+			else
+			{
+				ratio = settings.RunDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
+				horizontalMove = Mathf.Lerp(0f, topSpeed, ratio);
+			}
+
+			rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
 		}
 	}
 }

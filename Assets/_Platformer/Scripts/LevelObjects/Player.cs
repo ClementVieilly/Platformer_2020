@@ -118,8 +118,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			if (jump != 0f && !jumpButtonIsPressed && _isGrounded)
 			{
 				SetModeAir();
-				jumpButtonIsPressed = true;
-				rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.JumpForce);
+				//jumpButtonIsPressed = true;
+				//rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.JumpForce);
+				//rigidBody.position += new Vector2(0, settings.JumpForce * Time.fixedDeltaTime);
+				rigidBody.AddForce(new Vector2(rigidBody.velocity.x, settings.JumpForce));
+				
 			}
 			else if (jump == 0f)
 				jumpButtonIsPressed = false;

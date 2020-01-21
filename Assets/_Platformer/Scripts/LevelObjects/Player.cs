@@ -36,7 +36,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 		#endregion
 
 		private float jump = 0f;
+		private float jumpElapsedTime = 0f;
 		private float hangElapsedTime = 0f;
+		private bool startHang = false;
 		private bool hasHanged = false;
 		private float gravity = 0f;
 		private bool jumpButtonIsPressed = false;
@@ -123,10 +125,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			if (jump != 0f && !jumpButtonIsPressed && _isGrounded)
 			{
 				SetModeAir();
+				startHang = true;
 				hasHanged = false;
+				jumpElapsedTime = 0f;
 				hangElapsedTime = 0f;
 				jumpButtonIsPressed = true;
-				rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.JumpForce);
+				rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
 			}
 			else if (jump == 0f)
 				jumpButtonIsPressed = false;
@@ -192,15 +196,29 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
 			MoveHorizontalInAir();
 
-			// Gère le hang time du jump
-			if (!hasHanged && Mathf.Abs(rigidBody.velocity.y) <= settings.JumpHangThreshold)
+			// Gère l'appui long sur le jump
+			if (jump != 0f && jumpElapsedTime < settings.MaxJumpTime)
 			{
+				rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y + settings.JumpHoldForce);
+				jumpElapsedTime += Time.fixedDeltaTime;
+			}
+			else if (!hasHanged && (jump == 0f || jumpElapsedTime >= settings.MaxJumpTime))
+			{
+				jumpElapsedTime = settings.MaxJumpTime;
+				startHang = true;
+			}
+
+			// Gère le hang time du jump
+			if (!hasHanged && startHang && Mathf.Abs(rigidBody.velocity.y) <= settings.JumpHangThreshold)
+			{
+				Debug.Log("Start Hang");
 				hasHanged = true;
 				rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0f);
 				rigidBody.gravityScale = 0f;
 			}
 
-			hangElapsedTime += Time.fixedDeltaTime;
+			if (hasHanged)
+				hangElapsedTime += Time.fixedDeltaTime;
 
 			if (hangElapsedTime >= settings.JumpHangTime)
 				rigidBody.gravityScale = gravity;

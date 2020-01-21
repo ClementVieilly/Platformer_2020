@@ -3,45 +3,49 @@
 /// Date : 21/01/2020 10:35
 ///-----------------------------------------------------------------
 
-using Com.IsartDigital.Platformer.LevelObjects.Controllers;
+using Com.IsartDigital.Platformer.Controllers;
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer.Managers {
-	public class InputManager : MonoBehaviour {
+namespace Com.IsartDigital.Platformer.Managers
+{
+	public delegate void InputManagerEventHandler(InputManager inputManager);
+
+	public class InputManager : MonoBehaviour
+	{
 		private static InputManager instance;
 		public static InputManager Instance { get { return instance; } }
 
-        [HideInInspector] public AController controller;
+		private AController _controller;
+		public AController Controller { get => _controller; }
 
-        //delegate gérant l'événement de pause
-        public delegate void OnKeyPause();
-        public OnKeyPause OnKeyPausePressed; 
+		// Delegate gérant l'événement de pause
+		public InputManagerEventHandler OnKeyPausePressed;
 
-		private void Awake(){
-			if (instance){
+		private void Awake()
+		{
+			if (instance)
+			{
 				Destroy(gameObject);
 				return;
 			}
-			
+
 			instance = this;
 
-            //défini le controller en fonction du device
-            #if UNITY_ANDROID && !UNITY_EDITOR
-			            controller = new TouchController();
-            #else
-                        controller = new KeyboardController();
-            #endif
+			// Définit le controller en fonction du device
+#if UNITY_ANDROID && !UNITY_EDITOR
+			controller = new TouchController();
+#else
+			_controller = new KeyboardController();
+#endif
+		}
 
-        }
+		private void Update()
+		{
+			if (Input.GetKeyDown(KeyCode.Escape)) OnKeyPausePressed?.Invoke(instance); //Envoi de l'event de pause 
+		}
 
-        private void FixedUpdate()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape)) OnKeyPausePressed?.Invoke(); //envoie de l'event de pause 
-        }
-
-
-
-        private void OnDestroy(){
+		private void OnDestroy()
+		{
 			if (this == instance) instance = null;
 		}
 	}

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1e3d7bb53e3f394e8da64ed1d209aba, type: 3}
+  m_Name: Player Settings
+  m_EditorClassIdentifier: 
+  _isGroundedParam: {fileID: 11400000, guid: 9d750235ac985aa4d99f4984267c0cb0, type: 2}
+  _horizontalOrientationParam: {fileID: 11400000, guid: ffb3decaba6f99845855878439abcfc7,
+    type: 2}
+  _horizontalSpeedParam: {fileID: 11400000, guid: 3f540de8444cb4b4b9de6c0089a8d36d,
+    type: 2}
+  _verticalVelocityParam: {fileID: 11400000, guid: 3e760a74bfdd92b4ebc824a2c6a92155,
+    type: 2}
+  _speed: 5
+  _groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _isGroundedRaycastDistance: 0.25
+  _jumpTolerance: 0.2
+  _jumpForce: 10

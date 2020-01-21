@@ -211,7 +211,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			// Gère le hang time du jump
 			if (!hasHanged && startHang && Mathf.Abs(rigidBody.velocity.y) <= settings.JumpHangThreshold)
 			{
-				Debug.Log("Start Hang");
 				hasHanged = true;
 				rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0f);
 				rigidBody.gravityScale = 0f;

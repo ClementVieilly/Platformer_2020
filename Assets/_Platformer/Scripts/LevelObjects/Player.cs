@@ -36,6 +36,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 		#endregion
 
 		private float jump = 0f;
+		private float hangElapsedTime = 0f;
+		private bool hasHanged = false;
+		private float gravity = 0f;
 		private bool jumpButtonIsPressed = false;
 
 		private Rigidbody2D rigidBody = null;
@@ -52,6 +55,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 		{
 			rigidBody = GetComponent<Rigidbody2D>();
 			animator = GetComponent<Animator>();
+
+			gravity = rigidBody.gravityScale;
 
 			controller.Init();
 
@@ -118,11 +123,19 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			if (jump != 0f && !jumpButtonIsPressed && _isGrounded)
 			{
 				SetModeAir();
+				hasHanged = false;
+				hangElapsedTime = 0f;
 				jumpButtonIsPressed = true;
 				rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.JumpForce);
 			}
 			else if (jump == 0f)
 				jumpButtonIsPressed = false;
+
+			if (!_isGrounded)
+			{
+				SetModeAir();
+				hasHanged = true;
+			}
 
 			// Updating Animator
 			/*animator.SetInteger(settings.HorizontalOrientationParam, rigidBody.velocity.x == 0 ? 0 : (int)Mathf.Sign(rigidBody.velocity.x));
@@ -178,6 +191,22 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			}
 
 			MoveHorizontalInAir();
+
+			// Gère le hang time du jump
+			if (!hasHanged && Mathf.Abs(rigidBody.velocity.y) <= settings.JumpHangThreshold)
+			{
+				hasHanged = true;
+				rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0f);
+				rigidBody.gravityScale = 0f;
+			}
+
+			hangElapsedTime += Time.fixedDeltaTime;
+
+			if (hangElapsedTime >= settings.JumpHangTime)
+				rigidBody.gravityScale = gravity;
+
+			if (rigidBody.velocity.y <= -settings.FallVerticalSpeed)
+				rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallVerticalSpeed);
 		}
 
 		private void MoveHorizontalInAir()
@@ -187,12 +216,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
 			if (horizontalAxis != 0f)
 			{
-				ratio = settings.RunAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
-				horizontalMove = Mathf.Lerp(0f, settings.RunSpeed, ratio);
+				ratio = settings.InAirAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
+				horizontalMove = Mathf.Lerp(0f, settings.FallHorizontalSpeed, ratio);
 			}
 			else
 			{
-				ratio = settings.RunDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
+				ratio = settings.InAirDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
 				horizontalMove = Mathf.Lerp(0f, topSpeed, ratio);
 			}
 

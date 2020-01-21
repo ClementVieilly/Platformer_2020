@@ -44,6 +44,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			rigidBody = GetComponent<Rigidbody2D>();
 			animator = GetComponent<Animator>();
 
+			controller.Init();
+
 			SetModeSpawn();
 		}
 
@@ -81,12 +83,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
 			rigidBody.velocity = new Vector2(controller.HorizontalAxis * settings.Speed, rigidBody.velocity.y);
 
-			if (controller.Jump && !jumpButtonIsPressed && _isGrounded)
+			if (controller.Jump != 0f && !jumpButtonIsPressed && _isGrounded)
 			{
 				jumpButtonIsPressed = true;
 				rigidBody.AddForce(Vector2.up * settings.JumpForce, ForceMode2D.Impulse);
 			}
-			else if (!controller.Jump)
+			else if (controller.Jump == 0f)
 				jumpButtonIsPressed = false;
 
 			/*animator.SetInteger(settings.HorizontalOrientationParam, rigidBody.velocity.x == 0 ? 0 : (int)Mathf.Sign(rigidBody.velocity.x));

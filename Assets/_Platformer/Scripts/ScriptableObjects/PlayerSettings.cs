@@ -30,29 +30,37 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private float _fallVerticalSpeed = 5f;
 		[SerializeField] private AnimationCurve _inAirAccelerationCurve = null;
 		[SerializeField] private AnimationCurve _inAirDecelerationCurve = null;
-		[SerializeField] private LayerMask _groundLayerMask;
+
+
+        [SerializeField] private LayerMask _groundLayerMask;
 		[SerializeField] private float _isGroundedRaycastDistance = 0.25f;
+		[SerializeField] private float _isOnWallRaycastDistance = 0.40f;
 		[SerializeField] private float _jumpTolerance = 0.2f;
 		[SerializeField] private float _minJumpForce = 10f;
 		[SerializeField] private float _jumpHoldForce = 1f;
 		[SerializeField] private float _maxJumpTime = 0.5f;
 		[SerializeField] private float _jumpHangThreshold = 0.5f;
 		[SerializeField] private float _jumpHangTime = 0.5f;
+        [SerializeField] private float _planeVerticalSpeed = 1f;
+        [SerializeField] private float _planeHorizontalSpeed = 1f;
 
-		public float RunSpeed => _runSpeed;
+        public float RunSpeed => _runSpeed;
 		public AnimationCurve RunAccelerationCurve => _runAccelerationCurve;
 		public AnimationCurve RunDecelerationCurve => _runDecelerationCurve;
 		public float FallHorizontalSpeed => _fallHorizontalSpeed;
 		public float FallVerticalSpeed => _fallVerticalSpeed;
 		public AnimationCurve InAirAccelerationCurve => _inAirAccelerationCurve;
 		public AnimationCurve InAirDecelerationCurve => _inAirDecelerationCurve;
-		public int GroundLayerMask => _groundLayerMask;
+        public int GroundLayerMask => _groundLayerMask;
 		public float IsGroundedRaycastDistance => _isGroundedRaycastDistance;
+		public float IsOnWallRayCastDistance => _isOnWallRaycastDistance;
 		public float JumpTolerance => _jumpTolerance;
 		public float MinJumpForce => _minJumpForce;
 		public float JumpHoldForce => _jumpHoldForce;
 		public float MaxJumpTime => _maxJumpTime;
 		public float JumpHangThreshold => _jumpHangThreshold;
 		public float JumpHangTime => _jumpHangTime;
-	}
+        public float PlaneVerticalSpeed => _planeVerticalSpeed;
+        public float PlaneHorizontalSpeed => _planeHorizontalSpeed;
+    }
 }

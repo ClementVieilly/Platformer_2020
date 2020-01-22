@@ -39,10 +39,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 		private bool startHang = false;
 		private bool hasHanged = false;
 		private float gravity = 0f;
-		private bool jumpButtonIsPressed = false;
+		private bool jumpButtonHasPressed = false;
 
 		//Paramètres feature Planer
-		private float plane = 0f;
+		private bool firstJumpPress = true;
 		private bool planeStarted = false;
 
 		private Rigidbody2D rigidBody = null;
@@ -127,18 +127,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 
 			ComputeIsGrounded();
 
-			if (jump != 0f && !jumpButtonIsPressed && _isGrounded)
+			if (jump != 0f && !jumpButtonHasPressed && _isGrounded)
 			{
 				SetModeAir();
 				startHang = true;
 				hasHanged = false;
 				jumpElapsedTime = 0f;
 				hangElapsedTime = 0f;
-				jumpButtonIsPressed = true;
+				jumpButtonHasPressed = true;
 				rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
 			}
 			else if (jump == 0f)
-				jumpButtonIsPressed = false;
+				jumpButtonHasPressed = false;
 
 			if (!_isGrounded)
 			{
@@ -227,10 +227,31 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 			if (hangElapsedTime >= settings.JumpHangTime)
 				rigidBody.gravityScale = gravity;
 
-			if (rigidBody.velocity.y <= -settings.FallVerticalSpeed)
-				rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallVerticalSpeed);
+			//Coder ici pour régler la feature planer
+			if (jump == 0f && jumpButtonHasPressed)
+			{
+				Debug.Log(planeStarted);
+				firstJumpPress = false;
+			}
+			if (!firstJumpPress) planeStarted = jump != 0f ? true : false;
 
+			float fallValue;
+			if (planeStarted)
+			{
+				fallValue = -settings.PlaneVerticalSpeed;
+			}
+			else
+			{
+				fallValue = -settings.FallVerticalSpeed;
+			}
+			//fallValue = planeStarted ? -settings.PlaneVerticalSpeed : -settings.FallVerticalSpeed;
 
+			if (rigidBody.velocity.y <= fallValue)
+				rigidBody.velocity = new Vector2(rigidBody.velocity.x, fallValue);
+
+			//Chute standard
+			//if (rigidBody.velocity.y <= -settings.FallVerticalSpeed)
+			//	rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallVerticalSpeed);
 		}
 
 		private void MoveHorizontalInAir()

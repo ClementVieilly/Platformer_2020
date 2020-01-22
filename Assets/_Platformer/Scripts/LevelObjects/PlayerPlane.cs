@@ -44,11 +44,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 		//Paramètres feature Planer
 		private bool firstJumpPress = true;
 		private bool planeStarted = false;
+		private float planeElapsedTime;
 
 		private Rigidbody2D rigidBody = null;
 		private Animator animator = null;
 
 		private Action DoAction = null;
+
 
 		override public void Init()
 		{
@@ -138,7 +140,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 				rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
 			}
 			else if (jump == 0f)
+			{
 				jumpButtonHasPressed = false;
+				firstJumpPress = true;
+			}
+				
 
 			if (!_isGrounded)
 			{
@@ -228,22 +234,25 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 				rigidBody.gravityScale = gravity;
 
 			//Coder ici pour régler la feature planer
-			if (jump == 0f && jumpButtonHasPressed)
-			{
-				Debug.Log(planeStarted);
-				firstJumpPress = false;
-			}
+			if (jump == 0f) firstJumpPress = false;
 			if (!firstJumpPress) planeStarted = jump != 0f ? true : false;
 
+			float ratio;
+			ratio = settings.PlaneAccelerationCurve.Evaluate(planeElapsedTime);
 			float fallValue;
+
 			if (planeStarted)
 			{
+				planeElapsedTime += Time.fixedDeltaTime;
 				fallValue = -settings.PlaneVerticalSpeed;
+				fallValue = -Mathf.Lerp(0f, settings.PlaneVerticalSpeed, ratio); ;
 			}
 			else
 			{
+				planeElapsedTime = 0;
 				fallValue = -settings.FallVerticalSpeed;
 			}
+
 			//fallValue = planeStarted ? -settings.PlaneVerticalSpeed : -settings.FallVerticalSpeed;
 
 			if (rigidBody.velocity.y <= fallValue)

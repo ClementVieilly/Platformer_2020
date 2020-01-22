@@ -1,5 +1,5 @@
 ///-----------------------------------------------------------------
-/// Author : Maximilien SADI KORICHENE
+/// Author : Joël VOIGNIER
 /// Date : 21/01/2020 12:07
 ///-----------------------------------------------------------------
 
@@ -126,6 +126,21 @@ namespace Com.IsartDigital.Platformer.Controllers
 		}
 
 		/// <summary>
+		/// Removes the TouchInfo from touches List at index position and rectifies Touch indexes of others TouchInfo
+		/// </summary>
+		private void RemoveTouchInfoAt(int index)
+		{
+			TouchInfo touchInfo;
+			for (int i = touches.Count - 1; i >= 0; i--)
+			{
+				touchInfo = touches[i];
+				if (i > index) touchInfo.touchIndex--;
+			}
+
+			touches.RemoveAt(index);
+		}
+
+		/// <summary>
 		/// Update touches already contained in touches List<TouchInfo>
 		/// </summary>
 		private void UpdateTouches()
@@ -142,7 +157,7 @@ namespace Com.IsartDigital.Platformer.Controllers
 				else
 				{
 					if (Input.GetTouch(touchInfo.touchIndex).phase == TouchPhase.Ended)
-						touches.RemoveAt(i);
+						RemoveTouchInfoAt(i);
 				}
 			}
 		}
@@ -169,7 +184,7 @@ namespace Com.IsartDigital.Platformer.Controllers
 			else if (touch.phase == TouchPhase.Ended)
 			{
 				_horizontalAxis = 0f;
-				touches.RemoveAt(index);
+				RemoveTouchInfoAt(index);
 			}
 		}
 
@@ -195,7 +210,7 @@ namespace Com.IsartDigital.Platformer.Controllers
 			else if (touch.phase == TouchPhase.Ended)
 			{
 				_jump = false;
-				touches.RemoveAt(index);
+				RemoveTouchInfoAt(index);
 			}
 		}
 	}

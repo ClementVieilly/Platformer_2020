@@ -52,7 +52,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private float timerFallToPlane;
         private float delayWallJump = 0.5f;
         
-        private float jump = 0f;
+        private bool jump = false;
 
         private float jumpElapsedTime = 0f;
         private float hangElapsedTime = 0f;
@@ -152,7 +152,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             CheckIsGrounded();
 
-            if(jump != 0f && !jumpButtonHasPressed && _isGrounded)
+            if(jump && !jumpButtonHasPressed && _isGrounded)
             {
                 SetModeAir();
                 startHang = true;
@@ -162,11 +162,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 jumpButtonHasPressed = true;
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
             }
-            else if(jump == 0f)
+            else if(!jump)
             {
                 jumpButtonHasPressed = false;
                 firstJumpPress = true;
-
             }
 
 
@@ -234,7 +233,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsOnWall();
             if(_isOnWall)
             {
-                if(jump != 0f && !jumpButtonHasPressed)
+                if(jump && !jumpButtonHasPressed)
                 {
                     jumpButtonHasPressed = true;
                     firstJumpPress = true;
@@ -244,7 +243,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     previousDirection = -facingRightWall;
                     rigidBody.velocity = new Vector2(20 * previousDirection, settings.MinJumpForce);
                 }
-                else if(jump == 0f)
+                else if(!jump)
                 {
                     jumpButtonHasPressed = false;
                     firstJumpPress = false;
@@ -252,12 +251,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
 
             // Gère l'appui long sur le jump
-            if(jump != 0f && jumpElapsedTime < settings.MaxJumpTime)
+            if(jump && jumpElapsedTime < settings.MaxJumpTime)
             {
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y + settings.JumpHoldForce);
                 jumpElapsedTime += Time.fixedDeltaTime;
             }
-            else if(!hasHanged && (jump == 0f || jumpElapsedTime >= settings.MaxJumpTime))
+            else if(!hasHanged && (!jump || jumpElapsedTime >= settings.MaxJumpTime))
             {
                 jumpElapsedTime = settings.MaxJumpTime;
                 startHang = true;
@@ -278,8 +277,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.gravityScale = gravity;
 
             float fallValue;
-            if(jump == 0f) firstJumpPress = false;
-            if(!firstJumpPress) planeStarted = jump != 0f ? true : false;
+            if(!jump) firstJumpPress = false;
+            if(!firstJumpPress) planeStarted = jump ? true : false;
 
             if(planeStarted)
             {

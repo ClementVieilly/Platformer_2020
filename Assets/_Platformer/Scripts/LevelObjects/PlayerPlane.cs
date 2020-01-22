@@ -267,11 +267,14 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 		{
 			float ratio;
 			float horizontalMove;
+			float horizontalSpeed;
 
 			if (horizontalAxis != 0f)
 			{
+				horizontalSpeed = planeStarted ? settings.PlaneHorizontalSpeed : settings.FallHorizontalSpeed;
+
 				ratio = settings.InAirAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
-				horizontalMove = Mathf.Lerp(0f, settings.FallHorizontalSpeed, ratio);
+				horizontalMove = Mathf.Lerp(0f, horizontalSpeed, ratio);
 			}
 			else
 			{

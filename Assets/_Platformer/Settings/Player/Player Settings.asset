@@ -164,3 +164,29 @@ MonoBehaviour:
   _maxJumpTime: 0.2
   _jumpHangThreshold: 0.5
   _jumpHangTime: 0.05
+  _planeVerticalSpeed: 20
+  _planeHorizontalSpeed: 13
+  _planeAccelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1.0006881
+      inSlope: -8.743747
+      outSlope: -8.743747
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.0586372
+    - serializedVersion: 3
+      time: 0.24898559
+      value: 0.09728205
+      inSlope: -0.19211115
+      outSlope: -0.19211115
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.10294391
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

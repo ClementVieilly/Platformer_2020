@@ -178,7 +178,11 @@ namespace Com.IsartDigital.Platformer.Controllers
 				// If the touch leaves right side of the screen it's considered as aborted
 				// so a new touch can be registered
 				if (mainCamera.ScreenToViewportPoint(touch.position).x <= 0.5f)
+				{
+					_jump = false;
+					Debug.Log("//// ABORTED");
 					touchInfo.side = Side.ABORTED;
+				}
 			}
 			else if (touch.phase == TouchPhase.Ended)
 			{

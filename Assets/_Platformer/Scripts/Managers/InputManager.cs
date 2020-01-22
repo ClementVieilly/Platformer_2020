@@ -33,7 +33,8 @@ namespace Com.IsartDigital.Platformer.Managers
 
 			// Définit le controller en fonction du device
 #if UNITY_ANDROID && !UNITY_EDITOR
-			controller = new TouchController();
+			_controller = new TouchController();
+			_controller.Init();
 #else
 			_controller = new KeyboardController();
 #endif
@@ -41,7 +42,27 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private void Update()
 		{
+#if UNITY_ANDROID && !UNITY_EDITOR
+			UpdateAndroidInputs();
+#else
+			UpdateKeyboardInputs();
+#endif
+		}
+
+		/// <summary>
+		/// Update keyboard inputs for PC Standalone and WebGL 
+		/// </summary>
+		private void UpdateKeyboardInputs()
+		{
 			if (Input.GetKeyDown(KeyCode.Escape)) OnKeyPausePressed?.Invoke(instance); //Envoi de l'event de pause 
+		}
+
+		/// <summary>
+		/// Update touch inputs for Android
+		/// </summary>
+		private void UpdateAndroidInputs()
+		{
+			_controller.Update();
 		}
 
 		private void OnDestroy()

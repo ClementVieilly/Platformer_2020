@@ -10,6 +10,6 @@ namespace Com.IsartDigital.Platformer.Controllers
 	public class KeyboardController : AController
 	{
 		public override float HorizontalAxis { get => Input.GetAxis(horizontalAxisName); }
-		public override float Jump { get => Input.GetAxis(jumpAxisName); }
+		public override bool Jump { get => Input.GetButton(jumpAxisName); }
 	}
 }

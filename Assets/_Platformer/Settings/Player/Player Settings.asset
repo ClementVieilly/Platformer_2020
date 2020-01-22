@@ -154,10 +154,50 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _inWallJumpAccelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2.374482
+      outSlope: 2.374482
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.42349726
+    - serializedVersion: 3
+      time: 0.1
+      value: 1
+      inSlope: 77.49087
+      outSlope: Infinity
+      tangentMode: 97
+      weightedMode: 1
+      inWeight: 0.1256831
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _inWallJumpDecelerationCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
   _isGroundedRaycastDistance: 0.25
+  _isOnWallRaycastDistance: 0.4
   _jumpTolerance: 0.2
   _minJumpForce: 18
   _jumpHoldForce: 1

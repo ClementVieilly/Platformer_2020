@@ -3,7 +3,6 @@
 /// Date : 21/01/2020 12:07
 ///-----------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,21 +26,18 @@ namespace Com.IsartDigital.Platformer.Controllers
 		/// <summary>
 		/// Struct to register touch info between frames
 		/// </summary>
-		private struct TouchInfo
+		private class TouchInfo
 		{
 			public int touchIndex;
 
-			public Vector2 position;
-			public Vector2 direction;
+			public Vector2 position = Vector2.zero;
+			public Vector2 direction = Vector2.zero;
 
-			public Side side;
+			public Side side = Side.ABORTED;
 
 			public TouchInfo(int index)
 			{
-				this.touchIndex = index;
-
-				position = direction = Vector2.zero;
-				side = Side.ABORTED;
+				touchIndex = index;
 			}
 		}
 
@@ -50,6 +46,8 @@ namespace Com.IsartDigital.Platformer.Controllers
 
 		public override float HorizontalAxis { get => _horizontalAxis; }
 		public override bool Jump { get => _jump; }
+
+		private const float HORIZONTAL_THRESHOLD = 10f;
 
 		private Camera mainCamera = null;
 
@@ -155,6 +153,9 @@ namespace Com.IsartDigital.Platformer.Controllers
 				touchInfo.direction = touch.position - touchInfo.position;
 				touchInfo.position = touch.position;
 
+				if (Mathf.Abs(touchInfo.direction.x) < HORIZONTAL_THRESHOLD)
+					return;
+
 				_horizontalAxis = touchInfo.direction.x < 0f ? -1f : 1f;
 			}
 			else if (touch.phase == TouchPhase.Ended)
@@ -180,7 +181,6 @@ namespace Com.IsartDigital.Platformer.Controllers
 				if (mainCamera.ScreenToViewportPoint(touch.position).x <= 0.5f)
 				{
 					_jump = false;
-					Debug.Log("//// ABORTED");
 					touchInfo.side = Side.ABORTED;
 				}
 			}

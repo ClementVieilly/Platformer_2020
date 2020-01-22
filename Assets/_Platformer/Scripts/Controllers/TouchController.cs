@@ -66,7 +66,15 @@ namespace Com.IsartDigital.Platformer.Controllers
 		/// </summary>
 		public override void Update()
 		{
-			if (Input.touchCount == 0) return;
+			if (Input.touchCount == 0)
+			{
+				if (touches.Count != 0) touches.Clear();
+
+				_horizontalAxis = 0f;
+				_jump = false;
+
+				return;
+			}
 
 			RegisterTouches();
 

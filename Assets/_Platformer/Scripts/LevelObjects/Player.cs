@@ -60,9 +60,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
 			gravity = rigidBody.gravityScale;
 
-			controller.Init();
-
 			SetModeSpawn();
+		}
+
+		private void Start()
+		{
+			controller.Init();
 		}
 
 		private void Update()

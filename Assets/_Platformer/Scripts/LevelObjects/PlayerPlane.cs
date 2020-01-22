@@ -45,6 +45,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 		private bool firstJumpPress = true;
 		private bool planeStarted = false;
 		private float planeElapsedTime;
+		private float timerFallToPlane;
 
 		private Rigidbody2D rigidBody = null;
 		private Animator animator = null;
@@ -233,19 +234,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 			if (hangElapsedTime >= settings.JumpHangTime)
 				rigidBody.gravityScale = gravity;
 
-			//Coder ici pour régler la feature planer
-			if (jump == 0f) firstJumpPress = false;
-			if (!firstJumpPress) planeStarted = jump != 0f ? true : false;
-
-			float ratio;
-			ratio = settings.PlaneAccelerationCurve.Evaluate(planeElapsedTime);
+			//Feature Plane
 			float fallValue;
 
+			if (jump == 0f) firstJumpPress = false;
+			if (!firstJumpPress) planeStarted = jump != 0f ? true : false;
+			
 			if (planeStarted)
 			{
 				planeElapsedTime += Time.fixedDeltaTime;
 				fallValue = -settings.PlaneVerticalSpeed;
-				fallValue = -Mathf.Lerp(0f, settings.PlaneVerticalSpeed, ratio); ;
 			}
 			else
 			{
@@ -253,12 +251,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 				fallValue = -settings.FallVerticalSpeed;
 			}
 
-			//fallValue = planeStarted ? -settings.PlaneVerticalSpeed : -settings.FallVerticalSpeed;
-
+			//Chute du Player
 			if (rigidBody.velocity.y <= fallValue)
 				rigidBody.velocity = new Vector2(rigidBody.velocity.x, fallValue);
 
-			//Chute standard
+			//Chute standard du player
 			//if (rigidBody.velocity.y <= -settings.FallVerticalSpeed)
 			//	rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallVerticalSpeed);
 		}
@@ -268,9 +265,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 			float ratio;
 			float horizontalMove;
 			float horizontalSpeed;
-
 			if (horizontalAxis != 0f)
 			{
+				//Move horizontal si Chute ou Plane
 				horizontalSpeed = planeStarted ? settings.PlaneHorizontalSpeed : settings.FallHorizontalSpeed;
 
 				ratio = settings.InAirAccelerationCurve.Evaluate(horizontalMoveElapsedTime);

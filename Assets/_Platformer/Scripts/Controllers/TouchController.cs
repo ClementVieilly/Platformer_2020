@@ -3,12 +3,48 @@
 /// Date : 21/01/2020 12:07
 ///-----------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Controllers
 {
 	public class TouchController : AController
 	{
+		/// <summary>
+		/// Side on the viewport of the touch
+		/// </summary>
+		private enum Side
+		{
+			/// <summary>
+			/// Touch right side was aborted
+			/// </summary>
+			ABORTED,
+			LEFT,
+			RIGHT
+		}
+
+		/// <summary>
+		/// Struct to register touch info between frames
+		/// </summary>
+		private struct TouchInfo
+		{
+			public int touchIndex;
+
+			public Vector2 position;
+			public Vector2 direction;
+
+			public Side side;
+
+			public TouchInfo(int index)
+			{
+				this.touchIndex = index;
+
+				position = direction = Vector2.zero;
+				side = Side.ABORTED;
+			}
+		}
+
 		private float _horizontalAxis = 0f;
 		private bool _jump = false;
 
@@ -17,9 +53,7 @@ namespace Com.IsartDigital.Platformer.Controllers
 
 		private Camera mainCamera = null;
 
-		private Vector2 startPosition = Vector2.zero;
-		private Vector2 position = Vector2.zero;
-		private Vector2 direction = Vector2.zero;
+		private List<TouchInfo> touches = new List<TouchInfo>();
 
 		/// <summary>
 		/// Initialize controller
@@ -36,25 +70,122 @@ namespace Com.IsartDigital.Platformer.Controllers
 		{
 			if (Input.touchCount == 0) return;
 
-			Touch touch = Input.GetTouch(0);
+			RegisterTouches();
 
-			if (touch.phase == TouchPhase.Began)
+			UpdateTouches();
+		}
+
+		/// <summary>
+		/// Register new touches in touches List<TouchInfo>
+		/// </summary>
+		private void RegisterTouches()
+		{
+			Touch touch;
+			TouchInfo touchInfo;
+			for (int i = Input.touchCount - 1; i >= 0; i--)
 			{
-				direction = position = touch.position;
-				startPosition = mainCamera.ScreenToViewportPoint(position);
-				Debug.Log("//////////////////////// start position is : " + startPosition);
+				touch = Input.GetTouch(i);
+				if (touch.phase == TouchPhase.Began)
+				{
+					touchInfo = new TouchInfo(i);
+					touchInfo.direction = touchInfo.position = touch.position;
+					touchInfo.side = mainCamera.ScreenToViewportPoint(touch.position).x <= 0.5f ? Side.LEFT : Side.RIGHT;
+
+					// Check if this side touch is already registered, if not adds it to touches List
+					if (!CheckSideIsAlreadyRegistered(touchInfo.side))
+					{
+						// If touch is right side set _jump to true
+						if (touchInfo.side == Side.RIGHT) _jump = true;
+						touches.Add(touchInfo);
+					}
+				}
 			}
-			else if (touch.phase == TouchPhase.Moved)
-			{
-				direction = touch.position - position;
-				position = touch.position;
+		}
 
-				_horizontalAxis = direction.x < 0f ? -1f : 1f;
+		/// <summary>
+		/// Returns true if a touch same side than "side" is already registered
+		/// </summary>
+		/// <returns></returns>
+		private bool CheckSideIsAlreadyRegistered(Side side)
+		{
+			for (int i = touches.Count - 1; i >= 0; i--)
+			{
+				if (touches[i].side == side)
+					return true;
+				else
+					continue;
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Update touches already contained in touches List<TouchInfo>
+		/// </summary>
+		private void UpdateTouches()
+		{
+			TouchInfo touchInfo;
+			for (int i = touches.Count - 1; i >= 0; i--)
+			{
+				touchInfo = touches[i];
+
+				if (touchInfo.side == Side.LEFT)
+					UpdateLeftTouch(i);
+				else if (touchInfo.side == Side.RIGHT)
+					UpdateRightTouch(i);
+				else
+				{
+					if (Input.GetTouch(touchInfo.touchIndex).phase == TouchPhase.Ended)
+						touches.RemoveAt(i);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Update left side touch corresponding to the horizontal axis
+		/// </summary>
+		/// <param name="index">index in the touches List</param>
+		private void UpdateLeftTouch(int index)
+		{
+			TouchInfo touchInfo = touches[index];
+			Touch touch = Input.GetTouch(touchInfo.touchIndex);
+
+			if (touch.phase == TouchPhase.Moved)
+			{
+				touchInfo.direction = touch.position - touchInfo.position;
+				touchInfo.position = touch.position;
+
+				_horizontalAxis = touchInfo.direction.x < 0f ? -1f : 1f;
 			}
 			else if (touch.phase == TouchPhase.Ended)
 			{
 				_horizontalAxis = 0f;
+				touches.RemoveAt(index);
+			}
+		}
+
+		/// <summary>
+		/// Update right side touch corresponding to the jump axis
+		/// </summary>
+		/// <param name="index">index in the touches List</param>
+		private void UpdateRightTouch(int index)
+		{
+			TouchInfo touchInfo = touches[index];
+			Touch touch = Input.GetTouch(touchInfo.touchIndex);
+
+			if (touch.phase == TouchPhase.Moved)
+			{
+				// If the touch leaves right side of the screen it's considered as aborted
+				// so a new touch can be registered
+				if (mainCamera.ScreenToViewportPoint(touch.position).x <= 0.5f)
+					touchInfo.side = Side.ABORTED;
+			}
+			else if (touch.phase == TouchPhase.Ended)
+			{
+				_jump = false;
+				touches.RemoveAt(index);
 			}
 		}
 	}
 }
+ 

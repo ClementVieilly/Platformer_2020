@@ -19,7 +19,7 @@ MonoBehaviour:
     type: 2}
   _verticalVelocityParam: {fileID: 11400000, guid: 3e760a74bfdd92b4ebc824a2c6a92155,
     type: 2}
-  _runSpeed: 12
+  _runSpeed: 20
   _runAccelerationCurve:
     serializedVersion: 2
     m_Curve:
@@ -33,13 +33,13 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.3327391
     - serializedVersion: 3
-      time: 0.3
+      time: 0.5
       value: 1
-      inSlope: 6.812892
+      inSlope: 3.0132315
       outSlope: Infinity
       tangentMode: 97
       weightedMode: 0
-      inWeight: 0.05525857
+      inWeight: 0.051912546
       outWeight: 0
     - serializedVersion: 3
       time: 1
@@ -59,20 +59,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -10.296
-      outSlope: -10.296
+      inSlope: -15.242254
+      outSlope: -15.242254
       tangentMode: 0
       weightedMode: 2
       inWeight: 0
-      outWeight: 0.04456327
+      outWeight: 0.050091073
     - serializedVersion: 3
       time: 0.3
       value: 0
-      inSlope: -0.38823524
+      inSlope: -0.44964302
       outSlope: Infinity
       tangentMode: 97
       weightedMode: 0
-      inWeight: 0.5454546
+      inWeight: 0.2622951
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
@@ -86,7 +86,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _fallHorizontalSpeed: 7
+  _fallHorizontalSpeed: 15
   _fallVerticalSpeed: 25
   _inAirAccelerationCurve:
     serializedVersion: 2
@@ -154,45 +154,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _inWallJumpAccelerationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2.374482
-      outSlope: 2.374482
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.42349726
-    - serializedVersion: 3
-      time: 0.1
-      value: 1
-      inSlope: 77.49087
-      outSlope: Infinity
-      tangentMode: 97
-      weightedMode: 1
-      inWeight: 0.1256831
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _inWallJumpDecelerationCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -205,4 +166,4 @@ MonoBehaviour:
   _jumpHangThreshold: 0.5
   _jumpHangTime: 0.05
   _planeVerticalSpeed: 2
-  _planeHorizontalSpeed: 13.5
+  _planeHorizontalSpeed: 17

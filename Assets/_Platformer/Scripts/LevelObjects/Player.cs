@@ -13,6 +13,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
     public class Player : ALevelObject
     {
         [SerializeField] private PlayerController controller = null;
+        private Vector2 _lastCheckpointPos; 
+
         [SerializeField] private PlayerSettings settings = null;
 
         private bool _isGrounded = true;
@@ -39,29 +41,36 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
         }
 
+        public Vector3 LastCheckpointPos { get => _lastCheckpointPos; set => _lastCheckpointPos = value; }
+
         private float horizontalAxis = 0f;
 
         private float previousDirection = 0f;
         private float horizontalMoveElapsedTime = 0f;
         // Vitesse au moment de commencer la décélération
         private float topSpeed = 0f;
+        
         private float facingRightWall = 1; 
         private bool firstJumpPress = true;
         private bool planeStarted = false;
-        private float planeElapsedTime;
+        private float planeElapsedTime; //  ?? 
         private float timerFallToPlane;
-        private float delayWallJump = 0.5f;
         
         private bool jump = false;
 
+        // ElapsedTime des différents états
         private float jumpElapsedTime = 0f;
         private float hangElapsedTime = 0f;
         private float wallJumpElaspedTime = 0f;
+
         private bool startHang = false;
         private bool hasHanged = false;
         private float gravity = 0f;
         private bool jumpButtonHasPressed = false;
+        //Wall Jump 
         private bool wasOnWall = false;
+        private float delayWallJump = 0.5f;
+
 
         private Rigidbody2D rigidBody = null;
         private Animator animator = null;
@@ -79,7 +88,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             animator = GetComponent<Animator>();
 
             gravity = rigidBody.gravityScale;
-
+            
+             
+            _lastCheckpointPos = transform.position; 
             SetModeSpawn();
         }
 
@@ -287,6 +298,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
             else
             {
+                //A quoi sert le planeElapseTime? Demander a Alex ! 
                 planeElapsedTime = 0;
                 fallValue = -settings.FallVerticalSpeed;
             }
@@ -374,6 +386,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
 
             rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
+        }
+
+        public void hit()
+        {
+            Debug.Log("Je viens de prendre un dégat");
+            
+            transform.position = _lastCheckpointPos;
+            //Seul cas ou le joueur a une vie 
+            // pv --
+            // if(pv == 0) transform.position = _lastPos.position;
         }
     }
 }

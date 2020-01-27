@@ -416,13 +416,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
         }
 
-        public void Die()
-        {
-            Debug.Log("Je viens de prendre un café");
-            OnDie?.Invoke(this); 
-            transform.position = _lastCheckpointPos;
-            //Pour l'instant Player s'occupe de se faire respawn lui même 
-            //Faire en sorte que le LM s'abonne a l'event onDie du player et respawn a la position recup sur le chekcpoint
-        }
+        //public void Die()
+        //{
+        //    Debug.Log("Je viens de prendre un café");
+        //    OnDie?.Invoke(this); 
+        //    transform.position = _lastCheckpointPos;
+        //    //Pour l'instant Player s'occupe de se faire respawn lui même 
+        //    //Faire en sorte que le LM s'abonne a l'event onDie du player et respawn a la position recup sur le chekcpoint
+        //}
     }
 }

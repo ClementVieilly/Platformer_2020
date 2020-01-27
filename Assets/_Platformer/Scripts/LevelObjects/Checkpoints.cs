@@ -23,6 +23,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 
             if(collidedObject.CompareTag(playerTag))
             {
+                if (OnCollision != null)OnCollision();
                 collidedObject.GetComponent<Player>().LastCheckpointPos = transform.position;
                 transform.GetComponent<BoxCollider2D>().enabled = false; 
             }

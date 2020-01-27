@@ -5,6 +5,7 @@
 
 using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Managers {
@@ -35,7 +36,6 @@ namespace Com.IsartDigital.Platformer.Managers {
                 lifeCollectible.Collected -= OnLifeCollectible;
             }
         }
-
 
     }
 }

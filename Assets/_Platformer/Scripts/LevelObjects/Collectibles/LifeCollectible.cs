@@ -27,8 +27,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
 		{
 			base.EffectOnCollision();
 
-			if (collidedObject.CompareTag(playerTag))Collected(collidedObject,WinLife);
+			if (Collected != null && collidedObject.CompareTag(playerTag))Collected(collidedObject,WinLife);
 			Destroy(gameObject);
+		}
+
+		private void OnDestroy()
+		{
+			//_list.Remove(this);
 		}
 
 	}

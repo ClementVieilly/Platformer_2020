@@ -11,30 +11,21 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 	public class Checkpoints : ACollisionableObject {
 
         public event CheckpointEvent OnCollision;
-        private static List<Checkpoints> _list = new List<Checkpoints>();
-        public static List<Checkpoints> List => _list;
 
-        private void Awake()
-        {
-            _list.Add(this);
-        }
+        [SerializeField] private bool _isSuperCheckpoint = false;
+        public bool IsSuperCheckpoint => _isSuperCheckpoint;
 
         protected override void EffectOnCollision()
         {
             base.EffectOnCollision();
 
-            //OnCollision();
+            if (OnCollision != null) OnCollision();
 
             if(collidedObject.CompareTag(playerTag))
             {
                 collidedObject.GetComponent<Player>().LastCheckpointPos = transform.position;
                 transform.GetComponent<BoxCollider2D>().enabled = false; 
             }
-        }
-
-        private void OnDestroy()
-        {
-            //_list.Remove(this);
         }
     }
 }

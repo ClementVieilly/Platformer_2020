@@ -261,7 +261,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void InitLife()
 		{
 			_life = settings.StartLife;
-			Debug.Log("my life : " + _life);
 		}
 
 		private void CheckRestingLife()

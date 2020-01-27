@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 847135550868757037}
   - component: {fileID: 5930779157554321086}
   m_Layer: 0
-  m_Name: UIManager 1
+  m_Name: UIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,4 +46,8 @@ MonoBehaviour:
   hudPrefab: {fileID: 8339976059704383059, guid: 85c4b1f11c6ab0944a69ae695142990a,
     type: 3}
   pausePrefab: {fileID: 869265862570046649, guid: ef082ad29501d32408f57934aeaf8e7b,
+    type: 3}
+  titleCardPrefab: {fileID: 909096394945364427, guid: 84236df50c5e2ca4ea288fdfb58b8798,
+    type: 3}
+  creditPrefab: {fileID: 8495064733868246699, guid: 21536222317840447948de29a7207a3f,
     type: 3}

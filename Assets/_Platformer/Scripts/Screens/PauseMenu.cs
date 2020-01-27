@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Com.IsartDigital.Platformer.Screens {
-	public class PauseMenu : MonoBehaviour {
+	public class PauseMenu : AScreen {
 
         public delegate void PauseMenuEventHandler(PauseMenu pauseMenu);//delegate appelé quand on clique sur le bouton correspondant
         public PauseMenuEventHandler OnResumeClicked;
@@ -36,7 +36,7 @@ namespace Com.IsartDigital.Platformer.Screens {
                 else if (buttons[i].CompareTag(buttonRetryTag)) retryButton = buttons[i];
                 else homeButton = buttons[i];
 
-                buttons[i].GetComponent<PauseMenuButton>().OnPauseMenuButtonClicked += PauseMenu_OnButtonClicked;
+                buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked += PauseMenu_OnButtonClicked;
 
             }
 
@@ -47,6 +47,11 @@ namespace Com.IsartDigital.Platformer.Screens {
             if (sender.CompareTag(buttonResumeTag)) OnResumeClicked?.Invoke(this);
             else if (sender.CompareTag(buttonRetryTag)) OnRetryClicked?.Invoke(this);
             else OnHomeClicked?.Invoke(this);
+
+            foreach (Button button in buttons)
+            {
+                button.GetComponent<MenuButton>().OnMenuButtonClicked -= PauseMenu_OnButtonClicked;
+            }
         }
 
 

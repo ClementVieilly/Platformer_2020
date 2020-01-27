@@ -28,6 +28,7 @@ namespace Com.IsartDigital.Platformer.Screens {
         private void Hud_OnButtonPauseClicked()
         {
             OnButtonPausePressed?.Invoke(this);
+
         }
 
         private void OnDestroy()

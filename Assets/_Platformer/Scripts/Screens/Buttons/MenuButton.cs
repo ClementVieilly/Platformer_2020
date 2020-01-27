@@ -8,10 +8,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Com.IsartDigital.Platformer.Screens.Buttons {
-	public class PauseMenuButton : MonoBehaviour {
+	public class MenuButton : MonoBehaviour {
 
-        public delegate void PauseMenuButtonEventHandler(Button button);
-        public PauseMenuButtonEventHandler OnPauseMenuButtonClicked;
+        public delegate void MenuButtonEventHandler(Button button);
+        public MenuButtonEventHandler OnMenuButtonClicked;
 
         private Button button;
 
@@ -23,7 +23,7 @@ namespace Com.IsartDigital.Platformer.Screens.Buttons {
 
         private void PauseMenuButton_OnClick()
         {
-            OnPauseMenuButtonClicked?.Invoke(button);
+            OnMenuButtonClicked?.Invoke(button);
         }
 
         private void OnDestroy()

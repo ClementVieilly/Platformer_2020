@@ -207,6 +207,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             Debug.DrawRay(origin, Vector2.down * (settings.IsGroundedRaycastDistance + settings.JumpTolerance), Color.blue);
 
             RaycastHit2D hitInfos = Physics2D.Raycast(origin, Vector2.down, settings.IsGroundedRaycastDistance + settings.JumpTolerance, settings.GroundLayerMask);
+            //RaycastHit2D hitInfos = Physics2D.Linecast();
             IsGrounded = hitInfos.collider != null;
         }
 
@@ -264,7 +265,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             // Gère l'appui long sur le jump
             if(jump && jumpElapsedTime < settings.MaxJumpTime)
             {
-
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y + settings.JumpHoldForce);
                 jumpElapsedTime += Time.fixedDeltaTime;
             }
@@ -303,6 +303,19 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void DoActionPlane()
         {
+            CheckIsGrounded();
+            if(_isGrounded)
+            {
+                SetModeNormal();
+                return; 
+            }
+
+            if(!jump)
+            {
+                SetModeAir();
+                return;
+            }
+
             if(!jumpButtonHasPressed) jumpButtonHasPressed = true; 
 
             MoveHorizontalPlane(); 
@@ -310,8 +323,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             //Planage vertical
             if(rigidBody.velocity.y <= settings.PlaneVerticalSpeed)
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.PlaneVerticalSpeed);
-
-            if(!jump) SetModeAir();
         }
 
         private void CheckIsOnWall()
@@ -399,7 +410,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if(horizontalAxis != 0f)
             {
                 horizontalSpeed = settings.PlaneHorizontalSpeed; 
-                ratio = settings.InAirAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
+                ratio = settings.PlaneAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
 
                 horizontalMove = Mathf.Lerp(horizontalAxis == facingRightWall ? 0f : topSpeed /*super wall jump 2*/, horizontalSpeed, ratio);
 
@@ -407,7 +418,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
             else
             {
-                ratio = settings.InAirDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
+                ratio = settings.PlaneDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, topSpeed, ratio);
 
                 wasOnWall = false;

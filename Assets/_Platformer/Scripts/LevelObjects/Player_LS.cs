@@ -1,14 +1,16 @@
 ///-----------------------------------------------------------------
-/// Author : Alexandre RAUMEL
-/// Date : 22/01/2020 10:17
+/// Author : Joël VOIGNIER
+/// Date : 21/01/2020 10:38
 ///-----------------------------------------------------------------
 
 using Com.IsartDigital.Platformer.ScriptableObjects;
 using System;
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer.LevelObjects {
-	public class PlayerPlane : ALevelObject
+namespace Com.IsartDigital.Platformer.LevelObjects
+{
+	[RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
+	public class Player_LS : ALevelObject
 	{
 		[SerializeField] private PlayerController controller = null;
 		[SerializeField] private PlayerSettings settings = null;
@@ -29,7 +31,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 		private float horizontalAxis = 0f;
 		private float previousDirection = 0f;
 		private float horizontalMoveElapsedTime = 0f;
-		// Vitesse au moment de commencer la dÃ©cÃ©lÃ©ration
+		// Vitesse au moment de commencer la décélération
 		private float topSpeed = 0f;
 		#endregion
 
@@ -39,21 +41,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 		private bool startHang = false;
 		private bool hasHanged = false;
 		private float gravity = 0f;
-		private bool jumpButtonHasPressed = false;
-
-		//ParamÃ¨tres feature Planer
-		private bool firstJumpPress = true;
-		private bool planeStarted = false;
-		private float planeElapsedTime;
-		private float timerFallToPlane;
+		private bool jumpButtonIsPressed = false;
 
 		private Rigidbody2D rigidBody = null;
 		private Animator animator = null;
 
 		private Action DoAction = null;
 
+		#region Life
+		private int life;
+        #endregion
 
-		override public void Init()
+        override public void Init()
 		{
 			throw new NotImplementedException();
 		}
@@ -71,6 +70,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 		private void Start()
 		{
 			controller.Init();
+			InitLife();
 		}
 
 		private void Update()
@@ -118,7 +118,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 
 		private void DoActionNormal()
 		{
-			// RÃ©flexion sur l'orientation des pentes
+			// Réflexion sur l'orientation des pentes
 			/*if (_isGrounded)
 			{
 				Vector2 tan = hitInfos.normal;
@@ -130,22 +130,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 
 			ComputeIsGrounded();
 
-			if (jump != 0f && !jumpButtonHasPressed && _isGrounded)
+			if (jump != 0f && !jumpButtonIsPressed && _isGrounded)
 			{
 				SetModeAir();
 				startHang = true;
 				hasHanged = false;
 				jumpElapsedTime = 0f;
 				hangElapsedTime = 0f;
-				jumpButtonHasPressed = true;
+				jumpButtonIsPressed = true;
 				rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
 			}
 			else if (jump == 0f)
-			{
-				jumpButtonHasPressed = false;
-				firstJumpPress = true;
-			}
-				
+				jumpButtonIsPressed = false;
 
 			if (!_isGrounded)
 			{
@@ -208,7 +204,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 
 			MoveHorizontalInAir();
 
-			// GÃ¨re l'appui long sur le jump
+			// Gère l'appui long sur le jump
 			if (jump != 0f && jumpElapsedTime < settings.MaxJumpTime)
 			{
 				rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y + settings.JumpHoldForce);
@@ -220,7 +216,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 				startHang = true;
 			}
 
-			// GÃ¨re le hang time du jump
+			// Gère le hang time du jump
 			if (!hasHanged && startHang && Mathf.Abs(rigidBody.velocity.y) <= settings.JumpHangThreshold)
 			{
 				hasHanged = true;
@@ -234,44 +230,19 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 			if (hangElapsedTime >= settings.JumpHangTime)
 				rigidBody.gravityScale = gravity;
 
-			//Feature Plane
-			float fallValue;
-
-			if (jump == 0f) firstJumpPress = false;
-			if (!firstJumpPress) planeStarted = jump != 0f ? true : false;
-			
-			if (planeStarted)
-			{
-				planeElapsedTime += Time.fixedDeltaTime;
-				fallValue = -settings.PlaneVerticalSpeed;
-			}
-			else
-			{
-				planeElapsedTime = 0;
-				fallValue = -settings.FallVerticalSpeed;
-			}
-
-			//Chute du Player
-			if (rigidBody.velocity.y <= fallValue)
-				rigidBody.velocity = new Vector2(rigidBody.velocity.x, fallValue);
-
-			//Chute standard du player
-			//if (rigidBody.velocity.y <= -settings.FallVerticalSpeed)
-			//	rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallVerticalSpeed);
+			if (rigidBody.velocity.y <= -settings.FallVerticalSpeed)
+				rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallVerticalSpeed);
 		}
 
 		private void MoveHorizontalInAir()
 		{
 			float ratio;
 			float horizontalMove;
-			float horizontalSpeed;
+
 			if (horizontalAxis != 0f)
 			{
-				//Move horizontal si Chute ou Plane
-				horizontalSpeed = planeStarted ? settings.PlaneHorizontalSpeed : settings.FallHorizontalSpeed;
-
 				ratio = settings.InAirAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
-				horizontalMove = Mathf.Lerp(0f, horizontalSpeed, ratio);
+				horizontalMove = Mathf.Lerp(0f, settings.FallHorizontalSpeed, ratio);
 			}
 			else
 			{
@@ -281,5 +252,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 
 			rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
 		}
+
+		private void InitLife()
+		{
+			life = settings.StartLife;
+			Debug.Log("my life : " + life);
+		}
+
 	}
 }

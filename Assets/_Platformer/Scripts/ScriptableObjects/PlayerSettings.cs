@@ -40,6 +40,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private float _jumpHangTime = 0.5f;
 		[SerializeField] private float _planeVerticalSpeed = 1f;
 		[SerializeField] private float _planeHorizontalSpeed = 1f;
+		[SerializeField] private int _startLife = 3;
 
 		public float RunSpeed => _runSpeed;
 		public AnimationCurve RunAccelerationCurve => _runAccelerationCurve;
@@ -58,5 +59,6 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public float JumpHangTime => _jumpHangTime;
 		public float PlaneVerticalSpeed => _planeVerticalSpeed;
 		public float PlaneHorizontalSpeed => _planeHorizontalSpeed;
+		public int StartLife => _startLife;
 	}
 }

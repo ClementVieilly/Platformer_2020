@@ -86,7 +86,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _fallHorizontalSpeed: 15
+  _fallHorizontalSpeed: 9
   _fallVerticalSpeed: 25
   _fallOnWallVerticalSpeed: 5
   _inAirAccelerationCurve:
@@ -156,7 +156,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _planeVerticalSpeed: 2
-  _planeHorizontalSpeed: 17
+  _planeHorizontalSpeed: 12
   _planeAccelerationCurve:
     serializedVersion: 2
     m_Curve:
@@ -196,21 +196,21 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -4.1763177
+      outSlope: -4.1763177
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.09415876
     - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: -0
-      outSlope: -2.8236248
-      tangentMode: 5
+      time: 0.2972854
+      value: 0
+      inSlope: -0.13004166
+      outSlope: Infinity
+      tangentMode: 97
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.07650268
+      inWeight: 0.21966167
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 0

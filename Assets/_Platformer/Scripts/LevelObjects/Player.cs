@@ -74,7 +74,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private bool jumpButtonHasPressed = false;
         //Wall Jump 
         private bool wasOnWall = false;
-        private float delayWallJump = 0.5f;
 		private bool isFacingWallJump = false;
 
         private Rigidbody2D rigidBody = null;
@@ -372,7 +371,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
 				previousDirection = -facingRightWall;
 
-				if (wallJumpElaspedTime >= delayWallJump)
+				if (wallJumpElaspedTime >= settings.DelayWallJump)
                 {
 					isFacingWallJump = false;
 					topSpeedWallJump = 0f;
@@ -400,7 +399,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
 				topSpeedWallJump = horizontalMove;
 
-				if (wallJumpElaspedTime >= delayWallJump)
+				if (wallJumpElaspedTime >= settings.DelayWallJump)
 				{
 					isFacingWallJump = false;
 					topSpeed = 0f;

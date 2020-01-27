@@ -16,7 +16,10 @@ namespace Com.IsartDigital.Platformer.Managers {
 
         private void Start()
         {
-            LifeCollectible.Collected += OnLifeCollectible;
+            foreach (LifeCollectible lifeCollectible in LifeCollectible.List)
+            {
+                 lifeCollectible.Collected += OnLifeCollectible;
+            }
         }
 
         private void OnLifeCollectible(Collider2D collider,int value)
@@ -26,7 +29,11 @@ namespace Com.IsartDigital.Platformer.Managers {
 
         private void OnDestroy()
         {
-            LifeCollectible.Collected -= OnLifeCollectible;
+
+            foreach (var lifeCollectible in LifeCollectible.List)
+            {
+                lifeCollectible.Collected -= OnLifeCollectible;
+            }
         }
 
 

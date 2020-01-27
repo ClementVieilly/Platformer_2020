@@ -16,9 +16,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
 		[SerializeField] private int WinLife = 1;
 		private static List<LifeCollectible> _list = new List<LifeCollectible>();
 		public static List<LifeCollectible> List => _list;
-		public static event LifeCollectibleEvent Collected;
+		public event LifeCollectibleEvent Collected;
 
-		private void Start()
+		private void Awake()
 		{
 			_list.Add(this);
 		}
@@ -31,9 +31,5 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
 			Destroy(gameObject);
 		}
 
-		private void OnDestroy()
-		{
-			_list.Remove(this);
-		}
 	}
 }

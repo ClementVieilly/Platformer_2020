@@ -7,13 +7,9 @@ using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Managers {
 	public class LevelManager : MonoBehaviour {
-	
-		private void Start () {
-			
-		}
-		
-		private void Update () {
-			
-		}
-	}
+
+       // private Vector2 _lastCheckpointPos; Envoyé par CheckPoint Manager 
+
+
+    }
 }

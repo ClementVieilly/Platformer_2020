@@ -10,32 +10,64 @@ using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Managers {
 
-
     public class LevelManager : MonoBehaviour {
 
-        // private Vector2 _lastCheckpointPos; Envoyé par CheckPoint Manager 
+        [SerializeField] Player_LS player;
 
         private void Start()
         {
-            foreach (LifeCollectible lifeCollectible in LifeCollectible.List)
-            {
-                 lifeCollectible.Collected += OnLifeCollectible;
-            }
+            subscribeAllEvents();
         }
 
-        private void OnLifeCollectible(Collider2D collider,int value)
+        private void OnLifeCollectible(int value)
         {
-            collider.GetComponent<Player_LS>().AddLife(value);
+            player.AddLife(value);
+        }
+
+        private void OnKillZone()
+        {
+            if (player.LooseLife())
+            {
+                player.setPosition(CheckpointManager.Instance.LastCheckpointPos);
+            }
+            else {
+                player.setPosition(CheckpointManager.Instance.LastSuperCheckpointPos);
+                CheckpointManager.Instance.ResetColliders();
+            } 
         }
 
         private void OnDestroy()
         {
+            unsubscribeAllEvents();
+        }
 
+        #region Events subscribtions
+        private void subscribeAllEvents()
+        {
+            foreach (LifeCollectible lifeCollectible in LifeCollectible.List)
+            {
+                lifeCollectible.Collected += OnLifeCollectible;
+            }
+
+            foreach (KillZone killzone in KillZone.List)
+            {
+                killzone.OnCollision += OnKillZone;
+            }
+        }
+
+        private void unsubscribeAllEvents()
+        {
             foreach (var lifeCollectible in LifeCollectible.List)
             {
                 lifeCollectible.Collected -= OnLifeCollectible;
             }
+
+            foreach (KillZone killzone in KillZone.List)
+            {
+                killzone.OnCollision -= OnKillZone;
+            }
         }
+        #endregion
 
     }
 }

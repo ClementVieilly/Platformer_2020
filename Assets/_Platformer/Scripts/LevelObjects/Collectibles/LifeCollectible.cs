@@ -9,13 +9,15 @@ using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
 
-	public delegate void LifeCollectibleEvent(Collider2D collider, int healValue);
+	public delegate void LifeCollectibleEvent(int healValue);
 
 	public class LifeCollectible : ACollectible {
 
 		[SerializeField] private int WinLife = 1;
+
 		private static List<LifeCollectible> _list = new List<LifeCollectible>();
 		public static List<LifeCollectible> List => _list;
+
 		public event LifeCollectibleEvent Collected;
 
 		private void Awake()
@@ -27,13 +29,14 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
 		{
 			base.EffectOnCollision();
 
-			if (Collected != null && collidedObject.CompareTag(playerTag))Collected(collidedObject,WinLife);
+			Collected?.Invoke(WinLife);
 			Destroy(gameObject);
 		}
 
 		private void OnDestroy()
 		{
-			//_list.Remove(this);
+			_list.Remove(this);
+			Collected = null;
 		}
 
 	}

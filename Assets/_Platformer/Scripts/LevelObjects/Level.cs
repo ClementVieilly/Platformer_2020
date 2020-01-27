@@ -10,15 +10,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 	public class Level : MonoBehaviour {
 
 		[SerializeField] private List<Checkpoints> checkpoints = new List<Checkpoints>();
-
-		private void Start () {
-			InitCheckpoints();
-		}
-		
-		private void InitCheckpoints()
-		{
-			Debug.Log("Start Checkpoints");
-			Debug.Log(checkpoints.Count);
-		}
+		public List<Checkpoints> CheckpointsList => checkpoints;
 	}
 }

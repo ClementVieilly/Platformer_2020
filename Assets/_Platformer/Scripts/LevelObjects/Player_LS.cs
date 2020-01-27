@@ -59,7 +59,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			}
 		}
 		private int _life;
-		public event Action<Player_LS> OnDie;
+		public event Action OnDie;
 		#endregion
 
 		private void Awake()
@@ -264,42 +264,26 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			_life = settings.StartLife;
 		}
 
-		private void CheckRestingLife()
+		private bool CheckRestingLife()
 		{
-			if (Life == 0)
-			{
-				//Debug.Log("Is Dead");
-			}
-			else
-			{
-				//Debug.Log("Is Alive");
-			}
-
-			Debug.Log(Life > 0 ? "Is Alive" : "Is Dead");
+			if (Life == 0) Die();
+			return Life > 0;
 		}
 
 		public void AddLife(int EarnedLife = 1)
 		{
-			//Debug.Log("You had : " + Life);
 			Life += EarnedLife;
-			Debug.Log("You have now : " + Life);
 		}
 
-		public void LooseLife(int LoseLife = 1)
+		public bool LooseLife(int LoseLife = 1)
 		{
-			Debug.Log("You had : " + Life);
 			Life -= LoseLife;
-			Debug.Log("You have now : " + Life);
+			return CheckRestingLife();
 		}
 
 		public void Die()
 		{
-			Debug.Log("Je viens de prendre un café");
-			OnDie?.Invoke(this);
-			//OnDie?.Invoke(this);
-			//transform.position = _lastCheckpointPos;
-			//Pour l'instant Player s'occupe de se faire respawn lui même 
-			//Faire en sorte que le LM s'abonne a l'event onDie du player et respawn a la position recup sur le chekcpoint
+			OnDie?.Invoke();
 		}
 
 		public void setPosition(Vector2 position)

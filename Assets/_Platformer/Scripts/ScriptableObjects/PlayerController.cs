@@ -15,7 +15,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		private AController controller = null;
 
 		public float HorizontalAxis { get => controller.HorizontalAxis; }
-		public float Jump { get => controller.Jump; }
+		public float Jump { get => controller.Jump ? 1f : 0f; }
 
 		public void Init()
 		{

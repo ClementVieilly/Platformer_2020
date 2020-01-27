@@ -3,6 +3,7 @@
 /// Date : 21/01/2020 12:05
 ///-----------------------------------------------------------------
 
+using System;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Controllers
@@ -13,6 +14,22 @@ namespace Com.IsartDigital.Platformer.Controllers
 		[SerializeField] protected string jumpAxisName = "Jump";
 
 		public abstract float HorizontalAxis { get; }
-		public abstract float Jump { get; }
+		public abstract bool Jump { get; }
+
+		/// <summary>
+		/// Initialize controller
+		/// </summary>
+		public virtual void Init()
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// Update controller inputs
+		/// </summary>
+		public virtual void Update()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

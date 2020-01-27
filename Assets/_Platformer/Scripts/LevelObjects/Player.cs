@@ -51,9 +51,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private float horizontalMoveElapsedTime = 0f;
         // Vitesse au moment de commencer la décélération
         private float topSpeed = 0f;
-        private float topSpeedlol = 0f;
-        
-        private float facingRightWall = 1; 
+        // Vitesse au moment de la décélération après un wall jump
+        private float topSpeedWallJump = 0f;
+
+		private float facingRightWall = 1; 
         private bool planeStarted = false;
         private float planeElapsedTime; //  ?? 
         private float timerFallToPlane;
@@ -371,7 +372,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
 				if (wallJumpElaspedTime >= delayWallJump)
                 {
-					topSpeedlol = 0f;
+					topSpeedWallJump = 0f;
                     topSpeed = 0f;
 					wasOnWall = false;
                     wallJumpElaspedTime = 0;
@@ -382,7 +383,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
 				Debug.Log("k3");
                 ratio = settings.InAirAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
-                horizontalMove = Mathf.Lerp(horizontalAxis == facingRightWall ? 0f : topSpeedlol, settings.FallHorizontalSpeed, ratio);
+                horizontalMove = Mathf.Lerp(horizontalAxis == facingRightWall ? 0f : topSpeedWallJump, settings.FallHorizontalSpeed, ratio);
 
                 wasOnWall = false;
             }
@@ -392,9 +393,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 ratio = settings.InAirDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, topSpeed, ratio);
 
-				topSpeedlol = horizontalMove;
+				topSpeedWallJump = horizontalMove;
 
-                wasOnWall = false;
+				if (wasOnWall)
+				{
+					topSpeed = rigidBody.velocity.x;
+					wasOnWall = false;
+				}
             }
 
             rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);

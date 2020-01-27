@@ -49,7 +49,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 		private Action DoAction = null;
 
 		#region Life
-		private int life;
+		public int Life 
+		{ 
+			get {return _life; }
+			set 
+			{ 
+				_life = value;
+				CheckRestingLife();
+			}
+		}
+		private int _life;
         #endregion
 
         override public void Init()
@@ -253,11 +262,40 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
 		}
 
-		private void InitLife()
+        #region LifeMethods
+        private void InitLife()
 		{
-			life = settings.StartLife;
-			Debug.Log("my life : " + life);
+			_life = settings.StartLife;
+			Debug.Log("my life : " + _life);
 		}
+
+		private void CheckRestingLife()
+		{
+			if (Life == 0)
+			{
+				Debug.Log("Is Dead");
+			}
+			else
+			{
+				Debug.Log("Is Alive");
+			}
+			//Life == 0 ? Debug.Log("Is Alive") : Debug.Log("Is Dead");
+		}
+
+		public void AddLife(int EarnedLife = 1)
+		{
+			Debug.Log("You had : " + Life);
+			Life += EarnedLife;
+			Debug.Log("You have now : " + Life);
+		}
+
+		public void LooseLife(int LoseLife = 1)
+		{
+			Debug.Log("You had : " + Life);
+			Life -= LoseLife;
+			Debug.Log("You have now : " + Life);
+		}
+		#endregion
 
 	}
 }

@@ -7,12 +7,12 @@ using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
 	public class LifeColelctible : ACollectible {
-	
-		private void Start () {
-			
-		}
-		
-		private void Update () {
+
+		[SerializeField] private int WinLife = 1;
+
+		private void OnTriggerEnter2D(Collider2D collision)
+		{
+			Debug.Log("life +" + WinLife);
 			
 		}
 

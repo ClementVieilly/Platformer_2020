@@ -11,7 +11,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 
         protected override void EffectOnCollision()
         {
-            if(collidedObject.CompareTag(playerTag)) collidedObject.GetComponent<Player>().hit();
+            if(collidedObject.CompareTag(playerTag)) collidedObject.GetComponent<Player>().Die();
             base.EffectOnCollision();
         }
     }

@@ -7,7 +7,7 @@ using System;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects {
-    [RequireComponent(typeof(BoxCollider2D))]
+    [RequireComponent(typeof(Collider2D))]
 
    abstract public class ACollisionableObject : MonoBehaviour {
         protected Collider2D collidedObject;

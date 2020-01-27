@@ -41,6 +41,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private float _isOnWallRaycastDistance = 0.40f;
 		[SerializeField] private float _jumpTolerance = 0.2f;
 		[SerializeField] private float _minJumpForce = 10f;
+		[SerializeField] private float _wallJumpHorizontalForce = 30f;
 		[SerializeField] private float _jumpHoldForce = 1f;
 		[SerializeField] private float _maxJumpTime = 0.5f;
 		[SerializeField] private float _jumpHangThreshold = 0.5f;
@@ -64,6 +65,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public float IsOnWallRayCastDistance => _isOnWallRaycastDistance;
 		public float JumpTolerance => _jumpTolerance;
 		public float MinJumpForce => _minJumpForce;
+		public float WallJumpHorizontalForce => _wallJumpHorizontalForce;
 		public float JumpHoldForce => _jumpHoldForce;
 		public float MaxJumpTime => _maxJumpTime;
 		public float JumpHangThreshold => _jumpHangThreshold;

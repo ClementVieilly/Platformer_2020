@@ -88,6 +88,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _fallHorizontalSpeed: 15
   _fallVerticalSpeed: 25
+  _fallOnWallVerticalSpeed: 5
   _inAirAccelerationCurve:
     serializedVersion: 2
     m_Curve:
@@ -160,14 +161,23 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.0013656616
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 0.46404046
+      outSlope: 0.46404046
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.17279279
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 3.4587219
+      outSlope: 0
+      tangentMode: 65
+      weightedMode: 0
+      inWeight: 0.087924376
+      outWeight: 0.08314355
     - serializedVersion: 3
       time: 1
       value: 1
@@ -193,13 +203,22 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: -0
+      outSlope: -2.8236248
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.07650268
+    - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -0.0118588125
-      outSlope: -0.0118588125
+      inSlope: 0.12647587
+      outSlope: 0.12647587
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.13611287
+      inWeight: 0.26502728
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -211,6 +230,7 @@ MonoBehaviour:
   _isOnWallRaycastDistance: 0.4
   _jumpTolerance: 0.2
   _minJumpForce: 18
+  _wallJumpHorizontalForce: 30
   _jumpHoldForce: 1
   _maxJumpTime: 0.2
   _jumpHangThreshold: 0.5

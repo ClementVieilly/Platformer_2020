@@ -53,7 +53,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private float topSpeed = 0f;
         
         private float facingRightWall = 1; 
-        private bool firstJumpPress = true;
         private bool planeStarted = false;
         private float planeElapsedTime; //  ?? 
         private float timerFallToPlane;
@@ -151,13 +150,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             stateTag.name = "Plane"; 
             DoAction = DoActionPlane; 
         }
-
-        /* private void SetModeWallJump() 
-         {
-             DoAction = DoActionWallJump; 
-         }*/
-
-
 
         private void DoActionNormal()
         {
@@ -297,23 +289,26 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if(jump && !jumpButtonHasPressed) SetModePlane();  
 
             //Chute du Player
-            if(rigidBody.velocity.y <= - settings.FallVerticalSpeed)
+            if(_isOnWall && rigidBody.velocity.y <= -settings.FallOnWallVerticalSpeed)
+                rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallOnWallVerticalSpeed);
+            else if(rigidBody.velocity.y <= - settings.FallVerticalSpeed)
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.FallVerticalSpeed);
         }
 
         private void DoActionPlane()
         {
+            CheckIsOnWall();
+            if(_isOnWall || !jump)
+            {
+                SetModeAir();
+                return;
+            }
+
             CheckIsGrounded();
             if(_isGrounded)
             {
                 SetModeNormal();
                 return; 
-            }
-
-            if(!jump)
-            {
-                SetModeAir();
-                return;
             }
 
             if(!jumpButtonHasPressed) jumpButtonHasPressed = true; 

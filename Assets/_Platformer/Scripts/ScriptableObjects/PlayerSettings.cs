@@ -28,6 +28,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private AnimationCurve _runDecelerationCurve = null;
 		[SerializeField] private float _fallHorizontalSpeed = 5f;
 		[SerializeField] private float _fallVerticalSpeed = 5f;
+		[SerializeField] private float _fallOnWallVerticalSpeed = 10f;
 		[SerializeField] private AnimationCurve _inAirAccelerationCurve = null;
 		[SerializeField] private AnimationCurve _inAirDecelerationCurve = null;
         [SerializeField] private float _planeVerticalSpeed = 1f;
@@ -53,6 +54,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public AnimationCurve RunDecelerationCurve => _runDecelerationCurve;
 		public float FallHorizontalSpeed => _fallHorizontalSpeed;
 		public float FallVerticalSpeed => _fallVerticalSpeed;
+		public float FallOnWallVerticalSpeed => _fallOnWallVerticalSpeed;
 		public AnimationCurve InAirAccelerationCurve => _inAirAccelerationCurve;
 		public AnimationCurve InAirDecelerationCurve => _inAirDecelerationCurve;
         public float PlaneVerticalSpeed => _planeVerticalSpeed;

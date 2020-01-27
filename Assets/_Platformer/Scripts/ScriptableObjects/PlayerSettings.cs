@@ -45,10 +45,12 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private float _maxJumpTime = 0.5f;
 		[SerializeField] private float _jumpHangThreshold = 0.5f;
 		[SerializeField] private float _jumpHangTime = 0.5f;
-        
-        
 
-        public float RunSpeed => _runSpeed;
+		[SerializeField] private int _startLife = 3;
+
+
+
+		public float RunSpeed => _runSpeed;
 		public AnimationCurve RunAccelerationCurve => _runAccelerationCurve;
 		public AnimationCurve RunDecelerationCurve => _runDecelerationCurve;
 		public float FallHorizontalSpeed => _fallHorizontalSpeed;
@@ -68,5 +70,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public float MaxJumpTime => _maxJumpTime;
 		public float JumpHangThreshold => _jumpHangThreshold;
 		public float JumpHangTime => _jumpHangTime;
-    }
+		public int StartLife => _startLife;
+
+	}
 }

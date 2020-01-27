@@ -35,7 +35,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 		private float topSpeed = 0f;
 		#endregion
 
-		private float jump = 0f;
+		private bool jump;
 		private float jumpElapsedTime = 0f;
 		private float hangElapsedTime = 0f;
 		private bool startHang = false;
@@ -60,11 +60,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 		}
 		private int _life;
         #endregion
-
-        override public void Init()
-		{
-			throw new NotImplementedException();
-		}
 
 		private void Awake()
 		{
@@ -139,7 +134,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
 			ComputeIsGrounded();
 
-			if (jump != 0f && !jumpButtonIsPressed && _isGrounded)
+			if (jump && !jumpButtonIsPressed && _isGrounded)
 			{
 				SetModeAir();
 				startHang = true;
@@ -149,7 +144,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 				jumpButtonIsPressed = true;
 				rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
 			}
-			else if (jump == 0f)
+			else if (!jump)
 				jumpButtonIsPressed = false;
 
 			if (!_isGrounded)
@@ -214,12 +209,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			MoveHorizontalInAir();
 
 			// Gère l'appui long sur le jump
-			if (jump != 0f && jumpElapsedTime < settings.MaxJumpTime)
+			if (jump && jumpElapsedTime < settings.MaxJumpTime)
 			{
 				rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y + settings.JumpHoldForce);
 				jumpElapsedTime += Time.fixedDeltaTime;
 			}
-			else if (!hasHanged && (jump == 0f || jumpElapsedTime >= settings.MaxJumpTime))
+			else if (!hasHanged && (!jump || jumpElapsedTime >= settings.MaxJumpTime))
 			{
 				jumpElapsedTime = settings.MaxJumpTime;
 				startHang = true;
@@ -273,18 +268,19 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 		{
 			if (Life == 0)
 			{
-				Debug.Log("Is Dead");
+				//Debug.Log("Is Dead");
 			}
 			else
 			{
-				Debug.Log("Is Alive");
+				//Debug.Log("Is Alive");
 			}
-			//Life == 0 ? Debug.Log("Is Alive") : Debug.Log("Is Dead");
+
+			Debug.Log(Life > 0 ? "Is Alive" : "Is Dead");
 		}
 
 		public void AddLife(int EarnedLife = 1)
 		{
-			Debug.Log("You had : " + Life);
+			//Debug.Log("You had : " + Life);
 			Life += EarnedLife;
 			Debug.Log("You have now : " + Life);
 		}

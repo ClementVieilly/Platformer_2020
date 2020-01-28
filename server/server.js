@@ -115,5 +115,5 @@ app.use(function(err, req, res, next) {
 const port = process.env.PORT || 8000;
 app.listen(port, function (err) {
   if (err) console.error(err);
-  else console.log("Listening to http://localhost:8000");
+  else console.log("Listening to https://platformer-sequoia.herokuapp.com/:" + port);
 });

@@ -21,7 +21,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [Header("Juiciness")]
         [SerializeField] private ParticleSystem runDefaultPS;
         [SerializeField] private ParticleSystem jumpDefaultPS;
-        [SerializeField] private ParticleSystem fallOnGroundDefaultPS;
+        [SerializeField] private ParticleSystem LandingDefaultPS;
         #endregion
 
         #region Life
@@ -259,7 +259,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if(_isGrounded)
             {
                 SetModeNormal();
-                //fallOnGroundDefaultPS.Play();
+                LandingDefaultPS.Play();
                 return;
             }
 
@@ -334,6 +334,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if(_isGrounded)
             {
                 SetModeNormal();
+                LandingDefaultPS.Play();
                 return; 
             }
 

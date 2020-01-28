@@ -1,0 +1,78 @@
+///-----------------------------------------------------------------
+/// Author : Maximilien SADI KORICHENE
+/// Date : 27/01/2020 12:10
+///-----------------------------------------------------------------
+
+using System;
+using Com.IsartDigital.Platformer.Screens.Buttons;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Com.IsartDigital.Platformer.Screens {
+	public class TitleCard : AScreen {
+
+        public delegate void TitleCardEventHandler(TitleCard title);//Delegates appelés au clic sur les différents boutons du TitleCard
+
+        public TitleCardEventHandler OnLeaderBoardClicked;
+        public TitleCardEventHandler OnSoundTriggerClicked;
+        public TitleCardEventHandler OnLocalisationClicked;
+        public TitleCardEventHandler OnCreditsClicked;
+        public TitleCardEventHandler OnGameStart;
+
+        private Button[] buttons;//Tableau des différents boutons contenus dans le TitleCard
+
+        //variables contenant les références aux bons boutons (lisibilité du code)
+        private Button leaderBoardButton;
+        private Button soundTriggerButton;
+        private Button localisationButton;
+        private Button creditsButton;
+
+        [SerializeField] private string buttonLeaderBoardTag = "LeaderBoard";
+        [SerializeField] private string buttonSoundTriggerTag = "SoundTrigger";
+        [SerializeField] private string buttonLocalisationTag = "Localisation";
+        [SerializeField] private string buttonCreditsTag = "Credits";
+
+
+        private void Awake()
+        {
+            buttons = GetComponentsInChildren<Button>();
+
+            for (int i = 0; i < buttons.Length; i++)//Assigne les bonnes références de chaque boutons grâce à leurs tags
+            {
+                if (buttons[i].CompareTag(buttonLeaderBoardTag)) leaderBoardButton = buttons[i];
+                else if (buttons[i].CompareTag(buttonSoundTriggerTag)) soundTriggerButton = buttons[i];
+                else if (buttons[i].CompareTag(buttonLocalisationTag)) localisationButton = buttons[i];
+                else creditsButton = buttons[i];
+
+                buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked += TitleCard_OnMenuButtonClicked;
+            }
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter)) OnGameStart?.Invoke(this);
+        }
+
+        private void TitleCard_OnMenuButtonClicked(Button sender)
+        {
+            if (sender.CompareTag(buttonLeaderBoardTag))
+            {
+                OnLeaderBoardClicked?.Invoke(this);
+                foreach (Button button in buttons)
+                {
+                    button.GetComponent<MenuButton>().OnMenuButtonClicked -= TitleCard_OnMenuButtonClicked;
+                }
+            }
+            else if (sender.CompareTag(buttonSoundTriggerTag)) OnSoundTriggerClicked?.Invoke(this);
+            else if (sender.CompareTag(buttonLocalisationTag)) OnLocalisationClicked?.Invoke(this);
+            else
+            {
+                OnCreditsClicked?.Invoke(this);
+                foreach (Button button in buttons)
+                {
+                    button.GetComponent<MenuButton>().OnMenuButtonClicked -= TitleCard_OnMenuButtonClicked;
+                }
+            }
+        }
+    }
+}

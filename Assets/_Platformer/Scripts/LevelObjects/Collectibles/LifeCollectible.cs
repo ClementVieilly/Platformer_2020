@@ -28,7 +28,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
         protected override void EffectOfTheCollectible()
         {
             OnCollected?.Invoke(WinLife);
-            
         }
 
         private void OnDestroy()

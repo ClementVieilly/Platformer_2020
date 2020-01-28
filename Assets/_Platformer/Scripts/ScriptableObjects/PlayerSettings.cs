@@ -48,6 +48,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private float _jumpHangThreshold = 0.5f;
 		[SerializeField] private float _jumpHangTime = 0.5f;
 		[SerializeField] private float _delayWallJump = 0.5f;
+		[SerializeField] private int _startLife = 3;
         
         
 
@@ -74,5 +75,6 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public float JumpHangThreshold => _jumpHangThreshold;
 		public float JumpHangTime => _jumpHangTime;
 		public float DelayWallJump => _delayWallJump;
+		public int StartLife => _startLife;
     }
 }

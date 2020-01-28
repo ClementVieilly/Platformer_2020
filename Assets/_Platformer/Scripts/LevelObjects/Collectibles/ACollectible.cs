@@ -6,7 +6,7 @@
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
-	public class ACollectible : MonoBehaviour {
+	public class ACollectible : ACollisionableObject {
 	
 		private void Start () {
 			

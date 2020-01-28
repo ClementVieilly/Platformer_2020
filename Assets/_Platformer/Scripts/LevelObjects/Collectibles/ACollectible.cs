@@ -6,14 +6,13 @@
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
-	public class ACollectible : ACollisionableObject {
-	
-		private void Start () {
-			
-		}
-		
-		private void Update () {
-			
-		}
-	}
+	abstract public class ACollectible : ACollisionableObject {
+
+        abstract protected void EffectOfTheCollectible(); 
+        
+        protected override void EffectOnCollision()
+        {
+            EffectOfTheCollectible(); 
+        }
+    }
 }

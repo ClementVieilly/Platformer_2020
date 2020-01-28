@@ -25,15 +25,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
 			_list.Add(this);
 		}
 
-		protected override void EffectOnCollision()
-		{
-			base.EffectOnCollision();
+        protected override void EffectOfTheCollectible()
+        {
+            Collected?.Invoke(WinLife);
+            Destroy(gameObject);
+        }
 
-			Collected?.Invoke(WinLife);
-			Destroy(gameObject);
-		}
-
-		private void OnDestroy()
+        private void OnDestroy()
 		{
 			_list.Remove(this);
 			Collected = null;

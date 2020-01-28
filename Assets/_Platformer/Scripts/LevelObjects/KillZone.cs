@@ -20,8 +20,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
         }
         protected override void EffectOnCollision()
         {
-            base.EffectOnCollision();
-
             OnCollision?.Invoke();
         }
 

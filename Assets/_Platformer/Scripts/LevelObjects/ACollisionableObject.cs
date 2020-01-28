@@ -18,9 +18,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
             EffectOnCollision();
         }
 
-       virtual protected void EffectOnCollision()
-        {
-            //Debug.Log("Je viens de collisioner avec : " + collidedObject.name);
-        }
+        abstract protected void EffectOnCollision(); 
     }
 }

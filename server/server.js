@@ -112,7 +112,8 @@ app.use(function(err, req, res, next) {
   res.status(500).send(err.stack);
 });
 
-app.listen(8000, function (err) {
+const port = process.env.PORT || 8000;
+app.listen(port, function (err) {
   if (err) console.error(err);
   else console.log("Listening to http://localhost:8000");
 });

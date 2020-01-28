@@ -2,14 +2,13 @@ const express = require("express");
 const ObjectId = require("mongoose").Types.ObjectId;
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const mysql = require('mysql2');
 const app = express();
 
 const jsonMiddleware = express.json();
 app.use(jsonMiddleware);
 
-// Le secret avec lequel les JWT sont signés ne doit PAS être
-// lisible dans le code, il faut le fournir au serveur en variable
-// d’environnement.
+// Le secret avec lequel les JWT sont signés
 const secret = process.env.JWT_SECRET;
 
 // Ce middleware vérifie qu’un JWT valide est présent dans le header Authorization
@@ -19,18 +18,34 @@ const jwtMiddleware = require("express-jwt")({
 }).unless({ path: ["/users/signup", "/users/signin"] });
 app.use(jwtMiddleware);
 
-const users = {};
+// Crée le pool de connexions à la database
+const pool = mysql.createPool({
+  host: process.env.DATABASE_HOST,
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
+});
 
 // POST /users/signup
 app.post("/users/signup", function (req, res) {
   const username = req.body.username;
 
+  // Vérifie dans la base de données si un compte existe déjà pour cet username.
+  pool.execute(
+    "",
+    [],
+    function (err, results, fields) {
+
+    }
+  );
   // 409 (Conflict), ce code signifie qu’un compte existe déjà pour cet username.
   if (users[username]) return res.sendStatus(409);
 
-  // Le mot de passe du joueur doit être transmis tel quel via HTTPS
-  // et chiffré avec `bcrypt`. Ne stockez JAMAIS vos mots de passe
-  // sans les chiffrer !
+  // Le mot de passe du joueur est transmis tel quel via HTTPS
+  // et chiffré avec `bcrypt`.
   bcrypt.hash(req.body.password, 10, function (err, password) {
     if (err) return next(err);
 
@@ -63,7 +78,7 @@ app.post("/users/signin", function (req, res) {
     if (err) return next(err);
 
     // 401 (Unauthorized), ce code signifie que le client n’a pas les
-    // authorisations nécessaires pour cette requête (le mot de passe ne correspond pas).
+    // autorisations nécessaires pour cette requête (le mot de passe ne correspond pas).
     if (!same) return res.sendStatus(401);
 
     // Une fois l’identité du joueur vérifiée, il faut retourner le

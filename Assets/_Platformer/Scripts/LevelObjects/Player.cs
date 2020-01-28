@@ -15,9 +15,14 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private PlayerController controller = null;
         [SerializeField] private PlayerSettings settings = null;
 
-        [SerializeField] private GameObject stateTag = null; 
-        
-        
+        [SerializeField] private GameObject stateTag = null;
+
+        #region Juiciness
+        [Header("Juiciness")]
+        [SerializeField] private ParticleSystem runDefaultPS;
+        [SerializeField] private ParticleSystem jumpDefaultPS;
+        [SerializeField] private ParticleSystem fallOnGroundDefaultPS;
+        #endregion
 
         #region Life
         public int Life
@@ -191,6 +196,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 hangElapsedTime = 0f;
                 jumpButtonHasPressed = true;
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
+
+                jumpDefaultPS.Play();
             }
             else if(!jump) jumpButtonHasPressed = false;
            
@@ -228,6 +235,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
                 ratio = settings.RunAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, settings.RunSpeed, ratio);
+                runDefaultPS.Play();
             }
             else
             {
@@ -251,6 +259,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if(_isGrounded)
             {
                 SetModeNormal();
+                //fallOnGroundDefaultPS.Play();
                 return;
             }
 

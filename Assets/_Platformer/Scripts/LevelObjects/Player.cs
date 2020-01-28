@@ -17,8 +17,21 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         [SerializeField] private GameObject stateTag = null; 
         
-        public event Action<Player> OnDie;
+        
 
+        #region Life
+        public int Life
+        {
+            get { return _life; }
+            set
+            {
+                _life = value;
+                CheckRestingLife();
+            }
+        }
+        private int _life;
+        public event Action OnDie;
+        #endregion
         private bool _isGrounded = true;
         public bool IsGrounded
         {
@@ -450,13 +463,38 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
         }
 
+        #region LifeMethods
+        private void InitLife()
+        {
+            _life = settings.StartLife;
+        }
+
+        private bool CheckRestingLife()
+        {
+            if(Life == 0) Die();
+            return Life > 0;
+        }
+
+        public void AddLife(int EarnedLife = 1)
+        {
+            Life += EarnedLife;
+        }
+
+        public bool LooseLife(int LoseLife = 1)
+        {
+            Life -= LoseLife;
+            return CheckRestingLife();
+        }
+
         public void Die()
         {
-            Debug.Log("Je viens de prendre un café");
-            OnDie?.Invoke(this);
-            transform.position = _lastCheckpointPos;
-            //Pour l'instant Player s'occupe de se faire respawn lui même 
-            //Faire en sorte que le LM s'abonne a l'event onDie du player et respawn a la position recup sur le chekcpoint
+            OnDie?.Invoke();
         }
+
+        public void setPosition(Vector2 position)
+        {
+            transform.position = position;
+        }
+        #endregion
     }
 }

@@ -12,7 +12,7 @@ namespace Com.IsartDigital.Platformer.Managers {
 
     public class LevelManager : MonoBehaviour {
 
-        [SerializeField] Player_LS player;
+        [SerializeField] Player player;
 
         private void Start()
         {

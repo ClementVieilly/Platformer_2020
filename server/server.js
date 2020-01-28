@@ -36,6 +36,16 @@ app.post("/users/signup", function (req, res) {
   const username = req.body.username;
   let userAlreadyRegistered = false;
 
+  pool.execute(
+    "SELECT * FROM users",
+    [],
+    function (err, results, fields) {
+      if (err) console.log(err);
+
+      if (results.length) console.log(results);
+    }
+  );
+
   // Vérifie dans la base de données si un compte existe déjà pour cet username.
   pool.execute(
     "SELECT * FROM users WHERE username = ?",

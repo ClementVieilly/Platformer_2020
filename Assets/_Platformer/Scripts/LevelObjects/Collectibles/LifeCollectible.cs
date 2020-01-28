@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
 
-	public delegate void LifeCollectibleEvent(int healValue);
+	public delegate void LifeCollectibleEventHandler(int healValue);
 
 	public class LifeCollectible : ACollectible {
 
@@ -18,7 +18,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
 		private static List<LifeCollectible> _list = new List<LifeCollectible>();
 		public static List<LifeCollectible> List => _list;
 
-		public event LifeCollectibleEvent Collected;
+		public event LifeCollectibleEventHandler OnCollected;
 
 		private void Awake()
 		{
@@ -27,14 +27,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
 
         protected override void EffectOfTheCollectible()
         {
-            Collected?.Invoke(WinLife);
-            Destroy(gameObject);
+            OnCollected?.Invoke(WinLife);
         }
 
         private void OnDestroy()
 		{
 			_list.Remove(this);
-			Collected = null;
+			OnCollected = null;
 		}
 
 	}

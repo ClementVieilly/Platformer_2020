@@ -13,17 +13,19 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
         public Action<Checkpoints> OnCollision;
 
         [SerializeField] private bool _isSuperCheckpoint = false;
+        [SerializeField] private bool _isFinalCheckPoint = false;
         public bool IsSuperCheckpoint => _isSuperCheckpoint;
+        public bool IsFinalCheckPoint => _isFinalCheckPoint;
 
         protected override void EffectOnCollision()
         {
             OnCollision?.Invoke(this);
-            gameObject.SetActive(false);
+            GetComponent<Collider2D>().enabled = false; 
         }
 
         public void ResetCollider()
         {
-            gameObject.SetActive(true);
+            GetComponent<Collider2D>().enabled = true;
         }
     }
 }

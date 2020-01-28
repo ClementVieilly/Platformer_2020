@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Managers {
+    public delegate void CheckpointManagerEventHandler(); 
 	public class CheckpointManager : MonoBehaviour {
 
 		//Singleton
@@ -22,6 +23,8 @@ namespace Com.IsartDigital.Platformer.Managers {
 		private Vector2 _lastSuperCheckpointPos;
 		public Vector2 LastSuperCheckpointPos { get => _lastSuperCheckpointPos; set => _lastSuperCheckpointPos = value; }
 
+        //event de Victoire 
+        public static event CheckpointManagerEventHandler OnFinalCheckPointTriggered;
 		private void Start()
 		{
 			if (_instance)
@@ -38,11 +41,12 @@ namespace Com.IsartDigital.Platformer.Managers {
 			}
 		}
 
-		private void setCheckpoint(Checkpoints triggredCheckpoint)
-		{
-			_lastCheckpointPos = triggredCheckpoint.transform.position;
-			if (triggredCheckpoint.IsSuperCheckpoint) _lastSuperCheckpointPos = triggredCheckpoint.transform.position;
-		}
+        private void setCheckpoint(Checkpoints triggredCheckpoint)
+        { 
+            _lastCheckpointPos = triggredCheckpoint.transform.position;
+            if(triggredCheckpoint.IsSuperCheckpoint) _lastSuperCheckpointPos = triggredCheckpoint.transform.position;
+            if(triggredCheckpoint.IsFinalCheckPoint) OnFinalCheckPointTriggered?.Invoke();
+        }
 
 		public void ResetColliders()
 		{

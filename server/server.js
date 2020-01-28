@@ -29,39 +29,58 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
+//const promisePool = pool.promise();
+
 // POST /users/signup
 app.post("/users/signup", function (req, res) {
   const username = req.body.username;
+  let userAlreadyRegistered = false;
 
   // Vérifie dans la base de données si un compte existe déjà pour cet username.
   pool.execute(
-    "",
-    [],
+    "SELECT * FROM users WHERE username = ?",
+    [username],
     function (err, results, fields) {
+      if (err) console.log(err);
 
+      if (results.length) userAlreadyRegistered = true;
     }
   );
+
   // 409 (Conflict), ce code signifie qu’un compte existe déjà pour cet username.
-  if (users[username]) return res.sendStatus(409);
+  if (userAlreadyRegistered)
+  {
+    console.log("This user already exist: " + username);
+    return res.sendStatus(409);
+  }
 
   // Le mot de passe du joueur est transmis tel quel via HTTPS
   // et chiffré avec `bcrypt`.
-  bcrypt.hash(req.body.password, 10, function (err, password) {
+  bcrypt.hash(req.body.password, 21, function (err, password) {
     if (err) return next(err);
 
-    const id = ObjectId();
+    /*const id = ObjectId();
     users[username] = {
       id: id,
       username: username,
       password: password
-    };
+    };*/
 
+    pool.execute(
+      "INSERT INTO users (username, password) values (?, ?)",
+      [username, password],
+      function (err, results, fields) {
+        if (err) console.log(err);
+      }
+    );
+
+    res.send(200);
     // Une fois le compte du joueur créé, il faut lui retourner un
     // token lui permettant d’authentifier ses requêtes suivantes.
-    jwt.sign({ id: id }, secret, function (err, token) {
+    /*jwt.sign({ id: id }, secret, function (err, token) {
       if (err) return next(err);
       res.send(token);
-    });
+    });*/
   });
 });
 
@@ -127,7 +146,7 @@ app.use(function(err, req, res, next) {
   res.status(500).send(err.stack);
 });
 
-const port = process.env.PORT || 8000;
+const port = process.env.DATABASE_PORT || 8000;
 app.listen(port, function (err) {
   if (err) console.error(err);
   else console.log("Listening to https://platformer-sequoia.herokuapp.com/:" + port);

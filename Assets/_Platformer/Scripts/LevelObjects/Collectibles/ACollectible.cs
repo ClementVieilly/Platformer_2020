@@ -12,7 +12,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
         
         protected override void EffectOnCollision()
         {
-            EffectOfTheCollectible(); 
+            EffectOfTheCollectible();
+            Destroy(gameObject); 
         }
     }
 }

@@ -5,6 +5,7 @@
 
 using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,17 +15,18 @@ namespace Com.IsartDigital.Platformer.Managers {
 
         [SerializeField] Player player;
 
+        //private float _score = 0;
         private void Start()
         {
             subscribeAllEvents();
         }
 
-        private void OnLifeCollectible(int value)
+        private void LifeCollectible_OnCollected(int value)
         {
             player.AddLife(value);
         }
 
-        private void OnKillZone()
+        private void KillZone_OnCollision()
         {
             if (player.LooseLife())
             {
@@ -35,6 +37,11 @@ namespace Com.IsartDigital.Platformer.Managers {
                 CheckpointManager.Instance.ResetColliders();
             } 
         }
+        private void lScoreCollectible_OnCollected(float score)
+        {
+            //Hud.Score = score; 
+            // Hud.UpdateScore(); 
+        }
 
         private void OnDestroy()
         {
@@ -44,27 +51,60 @@ namespace Com.IsartDigital.Platformer.Managers {
         #region Events subscribtions
         private void subscribeAllEvents()
         {
-            foreach (LifeCollectible lifeCollectible in LifeCollectible.List)
+           /* foreach (LifeCollectible lifeCollectible in LifeCollectible.List)
             {
                 lifeCollectible.Collected += OnLifeCollectible;
-            }
+            }*/
 
-            foreach (KillZone killzone in KillZone.List)
+            /*foreach (KillZone killzone in KillZone.List)
             {
                 killzone.OnCollision += OnKillZone;
+            }*/
+
+            for(int i = LifeCollectible.List.Count - 1; i >= 0; i--)
+            {
+                LifeCollectible.List[i].OnCollected += LifeCollectible_OnCollected; 
+            }
+
+            
+            for(int i = KillZone.List.Count - 1; i >= 0; i--)
+            {
+                KillZone.List[i].OnCollision += KillZone_OnCollision; 
+            }
+
+            for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
+            {
+                ScoreCollectible.List[i].OnCollected += lScoreCollectible_OnCollected; 
             }
         }
+        #endregion
 
+        #region Events unsubscriptions
         private void unsubscribeAllEvents()
         {
-            foreach (var lifeCollectible in LifeCollectible.List)
+            /* foreach (var lifeCollectible in LifeCollectible.List)
+             {
+                 lifeCollectible.Collected -= OnLifeCollectible;
+             }*/
+
+            /* foreach (KillZone killzone in KillZone.List)
+             {
+                 killzone.OnCollision -= OnKillZone;
+             }*/
+
+            for(int i = LifeCollectible.List.Count - 1; i >= 0; i--)
             {
-                lifeCollectible.Collected -= OnLifeCollectible;
+                LifeCollectible.List[i].OnCollected -= LifeCollectible_OnCollected;
             }
 
-            foreach (KillZone killzone in KillZone.List)
+            for(int i = KillZone.List.Count - 1; i >= 0; i--)
             {
-                killzone.OnCollision -= OnKillZone;
+                KillZone.List[i].OnCollision -= KillZone_OnCollision;
+            }
+
+            for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
+            {
+                ScoreCollectible.List[i].OnCollected -= lScoreCollectible_OnCollected;
             }
         }
         #endregion

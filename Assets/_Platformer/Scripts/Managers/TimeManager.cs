@@ -18,11 +18,6 @@ namespace Com.IsartDigital.Platformer.Managers
         private float _timer = 0; 
 		public bool waiting = false;
 
-        private void Start()
-        {
-            SetModeVoid(); 
-        }
-
         public float Timer { get => _timer; }
         public void StartTimer()
         {
@@ -38,7 +33,6 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             DoAction = DoActionVoid; 
         }
-        
 
         public void SetModeVoid()
         {

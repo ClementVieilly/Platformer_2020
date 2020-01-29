@@ -14,7 +14,7 @@ const secret = process.env.JWT_SECRET;
 const jwtMiddleware = require("express-jwt")({
   secret: secret
 // sauf pour les routes permettant à un joueur de récupérer un JWT.
-}).unless({ path: ["/users/signup", "/users/signin"] });
+}).unless({ path: ["/users/signup", "/users/signin", "/"] });
 app.use(jwtMiddleware);
 
 // Crée le pool de connexions à la database
@@ -86,8 +86,9 @@ app.post("/users/signin", function (req, res, next) {
 });
 
 // Requète inexistante : Afficher erreur 404 au lieu d'une page HTML dans la console Unity
-app.use(function(req, res, next) {
-    res.sendStatus(404);
+app.use(function(err, req, res, next) {
+  console.log(err);
+  res.sendStatus(404);
 });
 
 // Erreur interne du server : Afficher la stack d'erreur au lieu d'une page HTML dans la console Unity

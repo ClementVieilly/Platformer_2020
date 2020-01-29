@@ -96,7 +96,7 @@ app.use(function(err, req, res, next) {
   res.status(500).send(err.stack);
 });
 
-const port = process.env.LISTENING_PORT || 8000;
+const port = process.env.PORT || 8000;
 app.listen(port, function (err) {
   if (err) console.error(err);
   else console.log("Listening to " + process.env.DATABASE_HOST + ":" + port);

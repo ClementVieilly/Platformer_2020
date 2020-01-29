@@ -88,7 +88,7 @@ app.post("/users/signin", function (req, res, next) {
 // Requète inexistante : Afficher erreur 404 au lieu d'une page HTML dans la console Unity
 app.use(function(err, req, res, next) {
   console.log(err);
-  res.sendStatus(404);
+  res.Status(404).send("404 : Page not found");
 });
 
 // Erreur interne du server : Afficher la stack d'erreur au lieu d'une page HTML dans la console Unity

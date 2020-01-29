@@ -29,55 +29,58 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
-//const promisePool = pool.promise();
-
 // POST /users/signup
-app.post("/users/signup", function (req, res, next) {
+app.post("/users/signup", async function (req, res, next) {
   const username = req.body.username;
 
-  // Vérifie dans la base de données si un compte existe déjà pour cet username.
-  pool.execute(
-    "SELECT * FROM users WHERE username = ?",
-    [username],
-    function (err, results, fields) {
-      if (err)
-        return next(err);
+  // Prend une connexion de la pool embalée dans une promesse
+  const promisePool = await pool.promise();
 
-      if (results && results.length)
-      {
-        const msg = "This user already exist: " + username;
-        console.log(msg);
-        return res.status(409).send(msg);
-      }
+  try {
+    // Vérifie dans la base de données si un compte existe déjà pour cet username.
+    const [results, fields] = await promisePool.execute(
+      "SELECT * FROM users WHERE username = ?", [username]
+    );
 
-      // Le mot de passe du joueur est transmis tel quel via HTTPS
-      // et chiffré avec `bcrypt`.
-      bcrypt.hash(req.body.password, 10, function (err, password) {
-        if (err) return next(err);
-
-        pool.execute(
-          "INSERT INTO users (username, password) VALUES (?, ?)",
-          [username, password],
-          function (err, results, fields) {
-            if (err) return next(err);
-
-            pool.execute(
-              "SELECT user_id FROM users WHERE username = ?",
-              [username],
-              function (err, results, fields) { 
-                // Une fois le compte du joueur créé, il faut lui retourner un
-                // token lui permettant d’authentifier ses requêtes suivantes.
-                jwt.sign({ id: results[0].user_id }, secret, function (err, token) {
-                  if (err) return next(err);
-                  res.send(token);
-                });
-              }
-            );
-          }
-        );
-      });
+    if (results && results.length)
+    {
+      const msg = "This user already exist: " + username;
+      console.log(msg);
+      return res.status(409).send(msg);
     }
-  );
+
+    res.sendStatus(200);
+/*
+    // Le mot de passe du joueur est transmis tel quel via HTTPS
+    // et chiffré avec `bcrypt`.
+    bcrypt.hash(req.body.password, 10, function (err, password) {
+      if (err) return next(err);
+
+      pool.execute(
+        "INSERT INTO users (username, password) VALUES (?, ?)",
+        [username, password],
+        function (err, results, fields) {
+          if (err) return next(err);
+
+          pool.execute(
+            "SELECT user_id FROM users WHERE username = ?",
+            [username],
+            function (err, results, fields) { 
+              // Une fois le compte du joueur créé, il faut lui retourner un
+              // token lui permettant d’authentifier ses requêtes suivantes.
+              jwt.sign({ id: results[0].user_id }, secret, function (err, token) {
+                if (err) return next(err);
+                res.status(200).send(token);
+              });
+            }
+          );
+        }
+      );
+    });*/
+  }
+  catch (err) {
+    return next(err);
+  }
 });
 
 // POST /users/signin

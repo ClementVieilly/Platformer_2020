@@ -22,6 +22,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private ParticleSystem runDefaultPS;
         [SerializeField] private ParticleSystem jumpDefaultPS;
         [SerializeField] private ParticleSystem LandingDefaultPS;
+        [SerializeField] private ParticleSystem WallJumpDefaultPS;
         #endregion
 
         #region Life
@@ -270,6 +271,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
                 if(jump && !jumpButtonHasPressed)
                 {
+                    WallJumpDefaultPS.Play();
                     jumpButtonHasPressed = true;
                     wasOnWall = true;
                     horizontalMoveElapsedTime = 0f;

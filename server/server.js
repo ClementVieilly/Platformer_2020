@@ -38,7 +38,7 @@ app.post("/users/signup", async function (req, res, next) {
 
   try {
     // Vérifie dans la base de données si un compte existe déjà pour cet username.
-    const [results, fields] = await promisePool.execute(
+    let [results, fields] = await promisePool.execute(
       "SELECT * FROM users WHERE username = ?", [username]
     );
 
@@ -49,34 +49,25 @@ app.post("/users/signup", async function (req, res, next) {
       return res.status(409).send(msg);
     }
 
-    res.sendStatus(200);
-/*
     // Le mot de passe du joueur est transmis tel quel via HTTPS
     // et chiffré avec `bcrypt`.
-    bcrypt.hash(req.body.password, 10, function (err, password) {
+    const encrypted = await bcrypt.hash(req.body.password, 10);
+
+    // On crée le compte du joueur.
+    await promisePool.execute(
+      "INSERT INTO users (username, password) VALUES (?, ?)", [username, encrypted]
+    );
+
+    [results, fields] = await promisePool.execute(
+      "SELECT user_id FROM users WHERE username = ?", [username]
+    );
+
+    // Une fois le compte du joueur créé, il faut lui retourner un
+    // token lui permettant d’authentifier ses requêtes suivantes.
+    jwt.sign({ id: results[0].user_id }, secret, function (err, token) {
       if (err) return next(err);
-
-      pool.execute(
-        "INSERT INTO users (username, password) VALUES (?, ?)",
-        [username, password],
-        function (err, results, fields) {
-          if (err) return next(err);
-
-          pool.execute(
-            "SELECT user_id FROM users WHERE username = ?",
-            [username],
-            function (err, results, fields) { 
-              // Une fois le compte du joueur créé, il faut lui retourner un
-              // token lui permettant d’authentifier ses requêtes suivantes.
-              jwt.sign({ id: results[0].user_id }, secret, function (err, token) {
-                if (err) return next(err);
-                res.status(200).send(token);
-              });
-            }
-          );
-        }
-      );
-    });*/
+      res.status(200).send(token);
+    });
   }
   catch (err) {
     return next(err);
@@ -84,8 +75,30 @@ app.post("/users/signup", async function (req, res, next) {
 });
 
 // POST /users/signin
-app.post("/users/signin", function (req, res, next) {
-  res.sendStatus(200);
+app.post("/users/signin", async function (req, res, next) {
+  const promisePool = await pool.promise();
+
+  try {
+    const [results, fields] = await promisePool.execute(
+      "SELECT * FROM users WHERE username = ?", [req.body.username]
+    );
+
+    // Si le mot de passe
+    if (bcrypt.compare(req.body.password, results[0].password))
+    {
+      jwt.sign({ id: results[0].user_id }, secret, function (err, token) {
+        if (err) return next(err);
+        res.status(200).send(token);
+      });
+    }
+    // 401 (Unauthorized), ce code signifie que le client n’a pas les
+    // authorisations nécessaires pour cette requête (le mot de passe ne correspond pas).
+    else
+      res.sendStatus(401);
+  }
+  catch {
+    return next(err);
+  }
 });
 
 // Requète inexistante : Afficher erreur 404 au lieu d'une page HTML dans la console Unity

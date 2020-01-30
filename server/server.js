@@ -83,9 +83,10 @@ app.post("/users/signin", async function (req, res, next) {
       "SELECT * FROM users WHERE username = ?", [req.body.username]
     );
 
-    // Si le mot de passe
-    if (bcrypt.compare(req.body.password, results[0].password))
+    if (await bcrypt.compare(req.body.password, results[0].password))
     {
+      // Une fois l’identité du joueur vérifiée, il faut retourner le
+      // token lui permettant d’authentifier ses requêtes suivantes.
       jwt.sign({ id: results[0].user_id }, secret, function (err, token) {
         if (err) return next(err);
         res.status(200).send(token);

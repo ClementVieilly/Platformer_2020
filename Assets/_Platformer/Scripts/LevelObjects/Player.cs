@@ -57,7 +57,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         }
 
         private bool isOnPente = false;
-        private Vector2 penteVelocity; 
+        private Vector2 penteVelocity;
+
+        private float elapsedTimerBeforeSetModeAir = 0f;
+        private bool canJump = false;
 
         private Vector2 _lastCheckpointPos;
 
@@ -161,6 +164,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void SetModeAir()
         {
+            elapsedTimerBeforeSetModeAir = 0;
             stateTag.name = "Air"; 
             DoAction = DoActionInAir;
         }
@@ -176,32 +180,27 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             // Réflexion sur l'orientation des pentes
             if (_isGrounded)
 			{
-                rigidBody.gravityScale = 0f;
                 Vector2 tan = hitInfos.normal; 
                 Vector2 test = hitInfos.normal;
 				tan = new Vector2(tan.y, -tan.x);
-                penteVelocity = tan; 
-                test.x = 0; 
+                test.x = 0f;
+                penteVelocity = tan;
                 float angle = Vector2.Angle(tan, test);
-                Debug.Log(angle); 
-                if(angle > 90f && angle < 110f || angle < 90f && angle > 70f)
+                canJump = true; 
+                if(angle > settings.AngleMinPente && angle < settings.AngleMaxPente)
                 {
-                    
-                    rigidBody.velocity = Vector2.zero;
-                    isOnPente = true; 
+                    rigidBody.gravityScale = 0f;
+                    isOnPente = true;
                 }
-
-                if(angle == 90) isOnPente = false; 
-                
+                else rigidBody.gravityScale = gravity;
 			}
 
             MoveHorizontalOnGround();
-            
 
             CheckIsGrounded();
 
             //Détéection du jump
-            if(jump && !jumpButtonHasPressed && _isGrounded)
+            if(jump && !jumpButtonHasPressed && canJump)
             {
                 rigidBody.gravityScale = gravity; 
                 SetModeAir();
@@ -216,8 +215,15 @@ namespace Com.IsartDigital.Platformer.LevelObjects
            
             if(!_isGrounded)
             {
-                SetModeAir();
-                hasHanged = true;
+                elapsedTimerBeforeSetModeAir += Time.deltaTime; 
+
+                if(elapsedTimerBeforeSetModeAir > settings.CoyoteTime)
+                {
+                    SetModeAir();
+                    hasHanged = true;
+                    canJump = false; 
+                }
+                
             }
             
             // Updating Animator
@@ -257,7 +263,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
             if(isOnPente)
             {
-                rigidBody.velocity = penteVelocity * horizontalMove * previousDirection; 
+                rigidBody.velocity = penteVelocity.normalized * horizontalMove * previousDirection; 
             }
             else rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
         }

@@ -14,7 +14,7 @@ const secret = process.env.JWT_SECRET;
 const jwtMiddleware = require("express-jwt")({
   secret: secret
 // sauf pour les routes permettant à un joueur de récupérer un JWT.
-}).unless({ path: ["/users/signup", "/users/signin"] });
+}).unless({ path: ["/users/signup", "/users/signin", "/scores/:levelId"] });
 app.use(jwtMiddleware);
 
 // Crée le pool de connexions à la database
@@ -102,9 +102,9 @@ app.post("/users/signin", async function (req, res, next) {
   }
 });
 
-// Route servant à récupérer un score pour un utilisateur et un level donnés
-// GET /users/:userId/:levelId
-app.get("/users/:userId/:levelId", async function (req, res, next) {
+// Route servant à enregistrer un score pour un utilisateur et un level donnés
+// POST /scores/:userId/:levelId
+app.post("/scores/:userId/:levelId", async function (req, res, next) {
   const promisePool = await pool.promise();
 
   try {
@@ -113,20 +113,60 @@ app.get("/users/:userId/:levelId", async function (req, res, next) {
       "USING(user_id) WHERE user_id = ? AND level_id = ?", [req.params.userId, req.params.levelId]
     );
 
-    if (results && results.length) {
-      res.send(results).status(200);
+    if (results && results.length) // Modifie la rangée si elle existe
+    {
+      await promisePool.execute(
+        "UPDATE score " +
+          "SET completion_time = ?, nb_score = ?, nb_lives = ? " +
+          "WHERE user_id = ? AND level_id = ?",
+        [req.body.completion_time, req.body.nb_score, req.body.nb_lives,
+          req.params.userId, req.params.levelId]
+      );
+
+      res.send("Score updated.").status(200);
     }
-    else // Requête fonctionelle mais vide
-      res.sendStatus(200);
+    else // Sinon crée la rangée
+    {
+      await promisePool.execute(
+        "INSERT INTO score " +
+          "(user_id, level_id, completion_time, nb_score, nb_lives) " +
+          "VALUES (?, ?, ?, ?, ?)",
+        [req.params.userId, req.params.levelId,
+          req.body.completion_time, req.body.nb_score, req.body.nb_lives]
+      );
+
+      res.send("Score regitered.").status(200);
+    }
   }
   catch(err) {
     return next(err);
   }
 });
 
-// Route servant à récupérer tous les scores pour un level en particulier
-// GET /users/:userId/:levelId
-app.get("/users/:userId/:levelId", async function (req, res, next) {
+// Route servant à récupérer tous les scores pour un level en particulier (non protégée par token)
+// GET /scores/:levelId
+app.get("/scores/:levelId", async function (req, res, next) {
+  const promisePool = await pool.promise();
+
+  try {
+    const [results] = await promisePool.execute(
+      "SELECT score.*, users.username FROM users INNER JOIN score " +
+      "USING(user_id) WHERE level_id = ?", [req.params.levelId]
+    );
+
+    if (results && results.length)
+      res.send(results).status(200);
+    else // Requête fonctionelle mais vide
+      res.send("Pas de scores pour ce level.").Status(200);
+  }
+  catch(err) {
+    return next(err);
+  }
+});
+
+// Route servant à récupérer un score pour un utilisateur et un level donnés
+// GET /scores/:userId/:levelId
+app.get("/scores/:userId/:levelId", async function (req, res, next) {
   const promisePool = await pool.promise();
 
   try {
@@ -135,11 +175,10 @@ app.get("/users/:userId/:levelId", async function (req, res, next) {
       "USING(user_id) WHERE user_id = ? AND level_id = ?", [req.params.userId, req.params.levelId]
     );
 
-    if (results && results.length) {
+    if (results && results.length)
       res.send(results).status(200);
-    }
     else // Requête fonctionelle mais vide
-      res.sendStatus(200);
+      res.send("Pas de scores pour cet utilisateur sur level.").Status(200);
   }
   catch(err) {
     return next(err);

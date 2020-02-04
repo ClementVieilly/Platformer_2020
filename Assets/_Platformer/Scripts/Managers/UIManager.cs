@@ -164,10 +164,12 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             Scene currentScene = SceneManager.GetActiveScene();
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene,LoadSceneMode.Additive);
-            GameObject loader = CreateLoadingScreen();
+            //GameObject loader = CreateLoadingScreen();
 
             while (!asyncLoad.isDone)
             {
+                float progress = Mathf.Clamp01(asyncLoad.progress / .9f);
+                Debug.Log(progress);
                 yield return null;
             }
             //SceneManager.MoveGameObjectToScene(this.gameObject, SceneManager.GetSceneByName(nextScene));

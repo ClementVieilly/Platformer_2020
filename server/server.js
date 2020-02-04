@@ -84,7 +84,7 @@ app.post("/users/signin", async function (req, res, next) {
     );
 
     if (!results || !results.length)
-      res.send("User not registered.").status(401);
+      res.send("User not registered.").status(400);
 
     if (await bcrypt.compare(req.body.password, results[0].password))
     {

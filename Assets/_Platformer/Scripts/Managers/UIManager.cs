@@ -20,6 +20,7 @@ namespace Com.IsartDigital.Platformer.Managers
         [SerializeField] private GameObject titleCardPrefab;
         [SerializeField] private GameObject creditPrefab;
         [SerializeField] private GameObject levelSelectorPrefab;
+        [SerializeField] private GameObject loadingScreenPrefab;
 
         [Header("Level names")]
         [SerializeField] private string menu;
@@ -37,6 +38,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private void Awake()
         {
             CreateTitleCard();
+            DontDestroyOnLoad(this.gameObject);
         }
 
         private void CreatePauseMenu() //Crée une instance de Menu Pause et écoute ses événements
@@ -92,6 +94,12 @@ namespace Com.IsartDigital.Platformer.Managers
             allScreens.Add(currentCredits);
         }
 
+        private GameObject CreateLoadingScreen()
+        {
+            GameObject loadingScreen;
+            return loadingScreen = Instantiate(loadingScreenPrefab);
+        }
+
         private void CloseScreen(AScreen screen)
         {
             if (screen != null)
@@ -140,7 +148,6 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             CloseAllScreens();
             CreateTitleCard();
-
         }
 
         private void LoadLevel(string levelName)
@@ -151,16 +158,19 @@ namespace Com.IsartDigital.Platformer.Managers
             StartCoroutine(LoadAsyncToNextScene(levelName, CreateHud));
         }
 
+        //Coroutines de chargement de scenes asynchrone 
+        #region Loading Coroutines
         IEnumerator LoadAsyncToNextScene(string nextScene, Action methodToLaunch)
         {
             Scene currentScene = SceneManager.GetActiveScene();
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene,LoadSceneMode.Additive);
+            GameObject loader = CreateLoadingScreen();
 
             while (!asyncLoad.isDone)
             {
                 yield return null;
             }
-            SceneManager.MoveGameObjectToScene(this.gameObject, SceneManager.GetSceneByName(nextScene));
+            //SceneManager.MoveGameObjectToScene(this.gameObject, SceneManager.GetSceneByName(nextScene));
             StartCoroutine(UnloadAsyncOfCurrentScene(currentScene, methodToLaunch));
         }
 
@@ -175,6 +185,7 @@ namespace Com.IsartDigital.Platformer.Managers
             }
             action();
         }
+        #endregion
 
         //Evenements du TitleCard
         private void TitleCard_OnGameStart(TitleCard title)

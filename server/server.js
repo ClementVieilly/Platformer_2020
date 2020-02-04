@@ -13,7 +13,7 @@ const secret = process.env.JWT_SECRET;
 // Ce middleware vérifie qu’un JWT valide est présent dans le header Authorization
 const jwtMiddleware = require("express-jwt")({
   secret: secret
-// sauf pour les routes permettant à un joueur de récupérer un JWT.
+// sauf pour les routes générales
 }).unless({ path: ["/users/signup", "/users/signin", "/scores/:levelId"] });
 app.use(jwtMiddleware);
 
@@ -82,6 +82,9 @@ app.post("/users/signin", async function (req, res, next) {
     const [results, fields] = await promisePool.execute(
       "SELECT * FROM users WHERE username = ?", [req.body.username]
     );
+
+    if (!results || !results.length)
+      res.send("User not registered.").status(401);
 
     if (await bcrypt.compare(req.body.password, results[0].password))
     {
@@ -178,7 +181,7 @@ app.get("/scores/:userId/:levelId", async function (req, res, next) {
     if (results && results.length)
       res.send(results).status(200);
     else // Requête fonctionelle mais vide
-      res.send("Pas de scores pour cet utilisateur sur level.").Status(200);
+      res.send("Pas de scores pour cet utilisateur sur ce level.").Status(200);
   }
   catch(err) {
     return next(err);

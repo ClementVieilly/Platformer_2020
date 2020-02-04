@@ -19,12 +19,12 @@ namespace Com.IsartDigital.Platformer.Managers
 		[SerializeField] private Text passwordTextField = null;
 
 		[SerializeField] private Button logButton = null;
+		[SerializeField] private Button testButton = null;
 
 		private string jsonWebToken = null;
 
 		private bool isPreviousRequestOver = false;
 		private bool isPreviousRequestSucces = false;
-		private bool mustTestNext = false;
 
 		private Coroutine tryToLogCoroutine = null;
 		private Coroutine currentSubCoroutine = null;
@@ -42,6 +42,21 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 		}
 
+		[Serializable]
+		private class ScoreJSON
+		{
+			public float completionTime = 0f;
+			public int nbScore = 0;
+			public int nbLives = 0;
+
+			public ScoreJSON(float completionTime, int nbScore, int nbLives)
+			{
+				this.completionTime = completionTime;
+				this.nbScore = nbScore;
+				this.nbLives = nbLives;
+			}
+		}
+
 		[SerializeField] private WebClientUnityEvent _onLogged;
 
 		public event UnityAction<WebClient> OnLogged
@@ -53,7 +68,17 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void Start()
 		{
 			OnLogged += StopMyCoroutines;
-			AddOnLogListener();
+			OnLogged += AddOnLogButtonListener;
+			AddOnLogButtonListener(null);
+
+			testButton.onClick.AddListener(OnTestButton);
+		}
+
+		private void OnTestButton()
+		{
+			//StartCoroutine(GetAllScoresForLevelCoroutine(1));
+			//StartCoroutine(GetPlayerScoreForLevelCoroutine(1));
+			StartCoroutine(RegisterPlayerScoreForLevelCoroutine(1));
 		}
 
 		/// <summary>
@@ -65,17 +90,17 @@ namespace Com.IsartDigital.Platformer.Managers
 			StopCoroutine(currentSubCoroutine);
 		}
 
-		private void AddOnLogListener()
+		private void AddOnLogButtonListener(WebClient webClient)
 		{
-			logButton.onClick.AddListener(OnLog);
+			logButton.onClick.AddListener(OnLogButtonClicked);
 		}
 
 		private void RemoveOnLogListener()
 		{
-			logButton.onClick.RemoveListener(OnLog);
+			logButton.onClick.RemoveListener(OnLogButtonClicked);
 		}
 
-		private void OnLog()
+		private void OnLogButtonClicked()
 		{
 			if (usernameTextField.text.Length == 0 || passwordTextField.text.Length == 0)
 			{
@@ -83,14 +108,14 @@ namespace Com.IsartDigital.Platformer.Managers
 				return;
 			}
 
-			tryToLogCoroutine = StartCoroutine(TryToLog());
+			tryToLogCoroutine = StartCoroutine(TryToLogCoroutine());
 		}
 
-		private IEnumerator TryToLog()
+		private IEnumerator TryToLogCoroutine()
 		{
 			RemoveOnLogListener();
 
-			currentSubCoroutine = StartCoroutine(Signin());
+			currentSubCoroutine = StartCoroutine(SigninCoroutine());
 
 			while (!isPreviousRequestOver)
 				yield return null;
@@ -101,7 +126,7 @@ namespace Com.IsartDigital.Platformer.Managers
 				yield break;
 			}
 
-			currentSubCoroutine = StartCoroutine(Signup());
+			currentSubCoroutine = StartCoroutine(SignupCoroutine());
 
 			while (!isPreviousRequestOver)
 				yield return null;
@@ -113,12 +138,12 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 
 			Debug.Log("User already exists. You should either enter the good password or choose a different username.");
-			AddOnLogListener();
+			AddOnLogButtonListener(null);
 			currentSubCoroutine = null;
 			tryToLogCoroutine = null;
 		}
 
-		private IEnumerator Signup()
+		private IEnumerator SignupCoroutine()
 		{
 			isPreviousRequestSucces = false;
 			isPreviousRequestOver = false;
@@ -146,9 +171,8 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 		}
 
-		private IEnumerator Signin()
+		private IEnumerator SigninCoroutine()
 		{
-			mustTestNext = true;
 			isPreviousRequestSucces = false;
 			isPreviousRequestOver = false;
 			string url = "https://platformer-sequoia.herokuapp.com/users/signin";
@@ -175,9 +199,33 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 		}
 
-		/*private IEnumerator Me()
+		private IEnumerator RegisterPlayerScoreForLevelCoroutine(int level)
 		{
-			string url = "http://localhost:8000/users/me";
+			isPreviousRequestSucces = false;
+			isPreviousRequestOver = false;
+			string url = "https://platformer-sequoia.herokuapp.com/scores/" + 4 + "/" + 1;
+
+			ScoreJSON score = new ScoreJSON(100f, 1, 1);
+			string json = JsonUtility.ToJson(score);
+
+			using (UnityWebRequest request = PostJson(url, json))
+			{
+				request.SetRequestHeader("Authorization", "Bearer " + jsonWebToken ?? "");
+
+				yield return request.SendWebRequest();
+
+				if (request.isNetworkError)
+					Debug.Log("NetworkError: " + request.error);
+				else if (request.isHttpError)
+					Debug.Log("HttpError: " + request.error + ": " + request.downloadHandler.text);
+				else
+					Debug.Log(request.downloadHandler.text);
+			}
+		}
+
+		private IEnumerator GetAllScoresForLevelCoroutine(int level)
+		{
+			string url = "https://platformer-sequoia.herokuapp.com/scores/" + level;
 
 			using (UnityWebRequest request = UnityWebRequest.Get(url))
 			{
@@ -192,7 +240,26 @@ namespace Com.IsartDigital.Platformer.Managers
 				else
 					Debug.Log(request.downloadHandler.text);
 			}
-		}*/
+		}
+
+		private IEnumerator GetPlayerScoreForLevelCoroutine(int level)
+		{
+			string url = "https://platformer-sequoia.herokuapp.com/scores/" + 4 + "/" + level;
+
+			using (UnityWebRequest request = UnityWebRequest.Get(url))
+			{
+				request.SetRequestHeader("Authorization", "Bearer " + jsonWebToken ?? "");
+
+				yield return request.SendWebRequest();
+
+				if (request.isNetworkError)
+					Debug.Log("NetworkError: " + request.error);
+				else if (request.isHttpError)
+					Debug.Log("HttpError: " + request.error + ": " + request.downloadHandler.text);
+				else
+					Debug.Log(request.downloadHandler.text);
+			}
+		}
 
 		private UnityWebRequest PostJson(string url, string json)
 		{

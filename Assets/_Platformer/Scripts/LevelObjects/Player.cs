@@ -15,9 +15,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private PlayerController controller = null;
         [SerializeField] private PlayerSettings settings = null;
 
-        [SerializeField] private GameObject stateTag = null; 
-        
-        
+        [SerializeField] private GameObject stateTag = null;
+
+        private RaycastHit2D hitInfos; 
 
         #region Life
         public int Life
@@ -55,6 +55,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 				animator.SetFloat(settings., 0f);  ? */
             }
         }
+
+        private bool isOnPente = false;
+        private Vector2 penteVelocity; 
+
         private Vector2 _lastCheckpointPos;
 
         public Vector2 LastCheckpointPos { get => _lastCheckpointPos; set => _lastCheckpointPos = value; }
@@ -170,20 +174,36 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionNormal()
         {
             // Réflexion sur l'orientation des pentes
-            /*if (_isGrounded)
+            if (_isGrounded)
 			{
-				Vector2 tan = hitInfos.normal;
+                rigidBody.gravityScale = 0f;
+                Vector2 tan = hitInfos.normal; 
+                Vector2 test = hitInfos.normal;
 				tan = new Vector2(tan.y, -tan.x);
-				Debug.DrawRay(transform.position, tan * 2, Color.red);
-			}*/
+                penteVelocity = tan; 
+                test.x = 0; 
+                float angle = Vector2.Angle(tan, test);
+                Debug.Log(angle); 
+                if(angle > 90f && angle < 110f || angle < 90f && angle > 70f)
+                {
+                    
+                    rigidBody.velocity = Vector2.zero;
+                    isOnPente = true; 
+                }
+
+                if(angle == 90) isOnPente = false; 
+                
+			}
 
             MoveHorizontalOnGround();
+            
 
             CheckIsGrounded();
 
             //Détéection du jump
             if(jump && !jumpButtonHasPressed && _isGrounded)
             {
+                rigidBody.gravityScale = gravity; 
                 SetModeAir();
                 startHang = true;
                 hasHanged = false;
@@ -214,9 +234,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             Debug.DrawRay(origin, Vector2.down * (settings.IsGroundedRaycastDistance + settings.JumpTolerance), Color.blue);
 
-            RaycastHit2D hitInfos = Physics2D.Raycast(origin, Vector2.down, settings.IsGroundedRaycastDistance + settings.JumpTolerance, settings.GroundLayerMask);
+            hitInfos = Physics2D.Raycast(origin, Vector2.down, settings.IsGroundedRaycastDistance + settings.JumpTolerance, settings.GroundLayerMask);
             //RaycastHit2D hitInfos = Physics2D.Linecast();
             IsGrounded = hitInfos.collider != null;
+            
         }
 
         private void MoveHorizontalOnGround()
@@ -234,8 +255,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 ratio = settings.RunDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, topSpeed, ratio);
             }
-
-            rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
+            if(isOnPente)
+            {
+                rigidBody.velocity = penteVelocity * horizontalMove * previousDirection; 
+            }
+            else rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
         }
 
         private void DoActionSpawn()

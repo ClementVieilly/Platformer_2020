@@ -41,6 +41,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 
         [SerializeField] private LayerMask _groundLayerMask;
 		[SerializeField] private float _isGroundedRaycastDistance = 0.25f;
+		[SerializeField] private float _isGroundedLineCastDistance = 0.25f;
 		[SerializeField] private float _isOnWallRaycastDistance = 0.40f;
 		[SerializeField] private float _jumpTolerance = 0.2f;
 		[SerializeField] private float _minJumpForce = 10f;
@@ -71,6 +72,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public AnimationCurve PlaneDecelerationCurve => _planeDecelerationCurve;
         public int GroundLayerMask => _groundLayerMask;
 		public float IsGroundedRaycastDistance => _isGroundedRaycastDistance;
+		public float IsGroundedLineCastDistance => _isGroundedLineCastDistance;
 		public float IsOnWallRayCastDistance => _isOnWallRaycastDistance;
 		public float JumpTolerance => _jumpTolerance;
 		public float MinJumpForce => _minJumpForce;

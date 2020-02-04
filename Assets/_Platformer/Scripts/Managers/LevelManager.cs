@@ -22,6 +22,7 @@ namespace Com.IsartDigital.Platformer.Managers {
             subscribeAllEvents();
             timeManager = GetComponent<TimeManager>();
             timeManager.StartTimer(); 
+
         }
 
         private void LifeCollectible_OnCollected(int value)

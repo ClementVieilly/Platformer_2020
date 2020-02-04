@@ -27,18 +27,33 @@ namespace Com.IsartDigital.Platformer.Managers
         [SerializeField] private string level1;
         [SerializeField] private string level2;
 
-        private Hud currentHud;//correspond au hud actuel utilisé (PC ou mobile)
-        private PauseMenu currentPauseMenu;//correspond au menu pause actuel utilisé 
-        private TitleCard currentTitleCard;//correspond au titlecard actuel
-        private Credits currentCredits;//correspond à la page de crédits actuelle utilisée
-        private LevelSelector currentLevelSelector;//correspond au levelSelector actuel utilisé
+        private Hud currentHud;             //correspond au hud actuel utilisé (PC ou mobile)
+        private PauseMenu currentPauseMenu; //correspond au menu pause actuel utilisé 
+        private TitleCard currentTitleCard; //correspond au titlecard actuel
+        private Credits currentCredits;     //correspond à la page de crédits actuelle utilisée
+        private LevelSelector currentLevelSelector; //correspond au levelSelector actuel utilisé
 
         private List<AScreen> allScreens = new List<AScreen>();
 
+        private static UIManager _instance;
+        //public static UIManager Instance => _instance;
+
         private void Awake()
         {
+            if (_instance)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            _instance = this;
+
             CreateTitleCard();
             DontDestroyOnLoad(this.gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            if (this == _instance) _instance = null;
         }
 
         private void CreatePauseMenu() //Crée une instance de Menu Pause et écoute ses événements
@@ -164,11 +179,12 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             Scene currentScene = SceneManager.GetActiveScene();
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene,LoadSceneMode.Additive);
-            //GameObject loader = CreateLoadingScreen();
+            LoadingScreen loader = CreateLoadingScreen().GetComponent<LoadingScreen>();
 
             while (!asyncLoad.isDone)
             {
                 float progress = Mathf.Clamp01(asyncLoad.progress / .9f);
+                loader.LoadingBar.value = progress;
                 Debug.Log(progress);
                 yield return null;
             }

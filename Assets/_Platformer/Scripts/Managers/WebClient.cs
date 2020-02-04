@@ -100,8 +100,6 @@ namespace Com.IsartDigital.Platformer.Managers
 				_onLogged?.Invoke(this);
 				yield break;
 			}
-			else if (!mustTestNext)
-				yield break;
 
 			currentSubCoroutine = StartCoroutine(Signup());
 
@@ -114,6 +112,7 @@ namespace Com.IsartDigital.Platformer.Managers
 				yield break;
 			}
 
+			Debug.Log("User already exists. You should either enter the good password or choose a different username.");
 			AddOnLogListener();
 			currentSubCoroutine = null;
 			tryToLogCoroutine = null;

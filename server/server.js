@@ -84,7 +84,8 @@ app.post("/users/signin", async function (req, res, next) {
     );
 
     if (!results || !results.length)
-      res.send("User not registered.").status(400);
+      // 400 (Bad Request), ici l'utilisateur spécifié n'existe pas. 
+      return res.status(400).send("User not registered.");
 
     if (await bcrypt.compare(req.body.password, results[0].password))
     {
@@ -100,7 +101,7 @@ app.post("/users/signin", async function (req, res, next) {
     else
       res.sendStatus(401);
   }
-  catch {
+  catch(err) {
     return next(err);
   }
 });
@@ -126,7 +127,7 @@ app.post("/scores/:userId/:levelId", async function (req, res, next) {
           req.params.userId, req.params.levelId]
       );
 
-      res.send("Score updated.").status(200);
+      res.status(200).send("Score updated.");
     }
     else // Sinon crée la rangée
     {
@@ -138,7 +139,7 @@ app.post("/scores/:userId/:levelId", async function (req, res, next) {
           req.body.completion_time, req.body.nb_score, req.body.nb_lives]
       );
 
-      res.send("Score regitered.").status(200);
+      res.status(200).send("Score registered.");
     }
   }
   catch(err) {
@@ -158,9 +159,9 @@ app.get("/scores/:levelId", async function (req, res, next) {
     );
 
     if (results && results.length)
-      res.send(results).status(200);
+      res.status(200).send(results);
     else // Requête fonctionelle mais vide
-      res.send("Pas de scores pour ce level.").Status(200);
+      res.status(200).send("Pas de scores pour ce level.");
   }
   catch(err) {
     return next(err);
@@ -179,9 +180,9 @@ app.get("/scores/:userId/:levelId", async function (req, res, next) {
     );
 
     if (results && results.length)
-      res.send(results).status(200);
+      res.status(200).send(results);
     else // Requête fonctionelle mais vide
-      res.send("Pas de scores pour cet utilisateur sur ce level.").Status(200);
+      res.status(200).send("Pas de scores pour cet utilisateur sur ce level.");
   }
   catch(err) {
     return next(err);

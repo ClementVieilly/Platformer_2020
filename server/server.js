@@ -38,7 +38,7 @@ app.post("/users/signup", async function (req, res, next) {
 
   try {
     // Vérifie dans la base de données si un compte existe déjà pour cet username.
-    let [results, fields] = await promisePool.execute(
+    let [results] = await promisePool.execute(
       "SELECT * FROM users WHERE username = ?", [username]
     );
 
@@ -58,7 +58,7 @@ app.post("/users/signup", async function (req, res, next) {
       "INSERT INTO users (username, password) VALUES (?, ?)", [username, encrypted]
     );
 
-    [results, fields] = await promisePool.execute(
+    [results] = await promisePool.execute(
       "SELECT user_id FROM users WHERE username = ?", [username]
     );
 
@@ -93,11 +93,55 @@ app.post("/users/signin", async function (req, res, next) {
       });
     }
     // 401 (Unauthorized), ce code signifie que le client n’a pas les
-    // authorisations nécessaires pour cette requête (le mot de passe ne correspond pas).
+    // autorisations nécessaires pour cette requête (le mot de passe ne correspond pas).
     else
       res.sendStatus(401);
   }
   catch {
+    return next(err);
+  }
+});
+
+// Route servant à récupérer un score pour un utilisateur et un level donnés
+// GET /users/:userId/:levelId
+app.get("/users/:userId/:levelId", async function (req, res, next) {
+  const promisePool = await pool.promise();
+
+  try {
+    const [results] = await promisePool.execute(
+      "SELECT score.*, users.username FROM users INNER JOIN score " +
+      "USING(user_id) WHERE user_id = ? AND level_id = ?", [req.params.userId, req.params.levelId]
+    );
+
+    if (results && results.length) {
+      res.send(results).status(200);
+    }
+    else // Requête fonctionelle mais vide
+      res.sendStatus(200);
+  }
+  catch(err) {
+    return next(err);
+  }
+});
+
+// Route servant à récupérer tous les scores pour un level en particulier
+// GET /users/:userId/:levelId
+app.get("/users/:userId/:levelId", async function (req, res, next) {
+  const promisePool = await pool.promise();
+
+  try {
+    const [results] = await promisePool.execute(
+      "SELECT score.*, users.username FROM users INNER JOIN score " +
+      "USING(user_id) WHERE user_id = ? AND level_id = ?", [req.params.userId, req.params.levelId]
+    );
+
+    if (results && results.length) {
+      res.send(results).status(200);
+    }
+    else // Requête fonctionelle mais vide
+      res.sendStatus(200);
+  }
+  catch(err) {
     return next(err);
   }
 });

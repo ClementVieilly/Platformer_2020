@@ -14,7 +14,7 @@ namespace Com.IsartDigital.Platformer.Managers
 {
     public class UIManager : MonoBehaviour
     {
-
+        [Header("Tiles")]
         [SerializeField] private GameObject hudPrefab;
         [SerializeField] private GameObject pausePrefab;
         [SerializeField] private GameObject titleCardPrefab;
@@ -68,6 +68,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
             allScreens.Add(currentHud);
         }
+
         private void CreateTitleCard()
         {
             currentTitleCard = Instantiate(titleCardPrefab).GetComponent<TitleCard>();
@@ -81,6 +82,7 @@ namespace Com.IsartDigital.Platformer.Managers
             allScreens.Add(currentTitleCard);
 
         }
+
         private void CreateCredits()
         {
             currentCredits = Instantiate(creditPrefab).GetComponent<Credits>();
@@ -133,10 +135,12 @@ namespace Com.IsartDigital.Platformer.Managers
                 CloseScreen(allScreens[i]);
             }
         }
+
         private void ReturnToTitleCard()
         {
             CloseAllScreens();
             CreateTitleCard();
+
         }
 
         private void LoadLevel(string levelName)
@@ -144,10 +148,10 @@ namespace Com.IsartDigital.Platformer.Managers
             CloseAllScreens();
             Debug.Log("load " + levelName);
 
-            StartCoroutine(LoadAsyncToLevel(levelName, CreateHud));
+            StartCoroutine(LoadAsyncToNextScene(levelName, CreateHud));
         }
 
-        IEnumerator LoadAsyncToLevel(string nextScene, Action action)
+        IEnumerator LoadAsyncToNextScene(string nextScene, Action methodToLaunch)
         {
             Scene currentScene = SceneManager.GetActiveScene();
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene,LoadSceneMode.Additive);
@@ -157,9 +161,18 @@ namespace Com.IsartDigital.Platformer.Managers
                 yield return null;
             }
             SceneManager.MoveGameObjectToScene(this.gameObject, SceneManager.GetSceneByName(nextScene));
+            StartCoroutine(UnloadAsyncOfCurrentScene(currentScene, methodToLaunch));
+        }
 
-            //Faire une nouvelle coroutine pour le déchargement de la scenbe precedente
-            SceneManager.UnloadScene(currentScene);
+        IEnumerator UnloadAsyncOfCurrentScene(Scene scene, Action action)
+        {
+            Scene currentScene = scene;
+            AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(currentScene);
+
+            while (!asyncUnload.isDone)
+            {
+                yield return null;
+            }
             action();
         }
 
@@ -232,7 +245,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private void PauseMenu_OnHomeClicked(PauseMenu pauseMenu)
         {
             CloseAllScreens();
-            StartCoroutine(LoadAsyncToLevel(menu, CreateTitleCard));
+            StartCoroutine(LoadAsyncToNextScene(menu, CreateTitleCard));
         }
     }
 }

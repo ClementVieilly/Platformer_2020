@@ -229,8 +229,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _isGroundedRaycastDistance: 0.25
-  _isGroundedLineCastDistance: 0.3
-  _isOnWallRaycastDistance: 0.7
+  _isGroundedLineCastDistance: 0.25
+  _isOnWallRaycastDistance: 0.31
+  _isOnWallLineCastDistance: 0.6
   _jumpTolerance: 0.2
   _minJumpForce: 18
   _wallJumpHorizontalForce: 30

@@ -43,6 +43,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private float _isGroundedRaycastDistance = 0.25f;
 		[SerializeField] private float _isGroundedLineCastDistance = 0.25f;
 		[SerializeField] private float _isOnWallRaycastDistance = 0.40f;
+		[SerializeField] private float _isOnWallLineCastDistance = 0.40f;
 		[SerializeField] private float _jumpTolerance = 0.2f;
 		[SerializeField] private float _minJumpForce = 10f;
 		[SerializeField] private float _wallJumpHorizontalForce = 30f;
@@ -74,6 +75,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public float IsGroundedRaycastDistance => _isGroundedRaycastDistance;
 		public float IsGroundedLineCastDistance => _isGroundedLineCastDistance;
 		public float IsOnWallRayCastDistance => _isOnWallRaycastDistance;
+		public float IsOnWallLineCastDistance => _isOnWallLineCastDistance;
 		public float JumpTolerance => _jumpTolerance;
 		public float MinJumpForce => _minJumpForce;
 		public float WallJumpHorizontalForce => _wallJumpHorizontalForce;

@@ -178,9 +178,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void DoActionNormal()
         {
-           
             // Réflexion sur l'orientation des pentes
-            if(hitInfos.collider)
+            if (IsGrounded && hitInfos.collider)
             {
                 Vector2 tan = hitInfosNormal.normal;
                 Vector2 test = hitInfosNormal.normal;
@@ -194,7 +193,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     rigidBody.gravityScale = 0f;
                     isSlinding = false;
                 }
-                else rigidBody.gravityScale = gravity;
+                else
+                {
+                    isSlinding = true; 
+                    rigidBody.gravityScale = gravity;
+                }
             }
 
             MoveHorizontalOnGround();
@@ -242,15 +245,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             Vector2 lineCastStart = new Vector2(rigidBody.position.x - settings.IsGroundedLineCastDistance, rigidBody.position.y - settings.JumpTolerance); 
             Vector2 lineCastEnd = new Vector2(rigidBody.position.x + settings.IsGroundedLineCastDistance, rigidBody.position.y - settings.JumpTolerance); 
-            Debug.DrawRay(origin, Vector2.down - new Vector2(0,settings.IsGroundedRaycastDistance + settings.JumpTolerance), Color.blue);
 
+            //RayCast vertical pour recup sa normal pour calculer les pentes
             hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.IsGroundedRaycastDistance + settings.JumpTolerance, settings.GroundLayerMask);
+            Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.IsGroundedRaycastDistance + settings.JumpTolerance), Color.blue);
 
-            Debug.DrawLine(lineCastStart, lineCastEnd, Color.red); 
+            //LineCast horizontal aux pieds
             hitInfos = Physics2D.Linecast(lineCastStart,lineCastEnd,settings.GroundLayerMask);
+            Debug.DrawLine(lineCastStart, lineCastEnd, Color.red);
 
             IsGrounded = hitInfos.collider != null;
-            
         }
 
         private void MoveHorizontalOnGround()
@@ -305,6 +309,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     topSpeed = settings.WallJumpHorizontalForce;
 					previousDirection = -facingRightWall;
                     rigidBody.velocity = new Vector2(settings.WallJumpHorizontalForce * previousDirection, settings.MinJumpForce);
+                    Debug.Log(rigidBody.velocity); 
                 }
             }
 
@@ -376,39 +381,30 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void CheckIsOnWall()
         {
-            //Vector3 originRight = rigidBody.position + Vector2.right * settings.IsGroundedRaycastDistance;
-            //Vector3 originLeft = rigidBody.position + Vector2.left * settings.IsGroundedRaycastDistance;
+            //LineCast verticaux pour tester la collision au mur
+            Vector2 originLeftStart = new Vector2(rigidBody.position.x - settings.IsOnWallLineCastDistance, rigidBody.position.y + settings.IsGroundedLineCastDistance); 
+            Vector2 originLeftEnd = new Vector2(rigidBody.position.x - settings.IsOnWallLineCastDistance, rigidBody.position.y - settings.IsGroundedLineCastDistance);
 
-            Vector2 originLeftStart = new Vector2(rigidBody.position.x + settings.IsOnWallRayCastDistance, rigidBody.position.y + settings.IsGroundedLineCastDistance); 
-            Vector2 originLeftEnd = new Vector2(rigidBody.position.x + settings.IsOnWallRayCastDistance, rigidBody.position.y - settings.IsGroundedLineCastDistance);
-
-            Vector2 originRightStart = new Vector2(rigidBody.position.x - settings.IsOnWallRayCastDistance, rigidBody.position.y + settings.IsGroundedLineCastDistance);
-            Vector2 originRightEnd = new Vector2(rigidBody.position.x - settings.IsOnWallRayCastDistance, rigidBody.position.y - settings.IsGroundedLineCastDistance);
-
+            Vector2 originRightStart = new Vector2(rigidBody.position.x + settings.IsOnWallLineCastDistance, rigidBody.position.y + settings.IsGroundedLineCastDistance);
+            Vector2 originRightEnd = new Vector2(rigidBody.position.x + settings.IsOnWallLineCastDistance, rigidBody.position.y - settings.IsGroundedLineCastDistance);
 
             Debug.DrawLine(originLeftStart, originLeftEnd, Color.red);
             Debug.DrawLine(originRightStart, originRightEnd, Color.yellow);
-            //Debug.DrawRay(originLeft, Vector2.left * (settings.IsOnWallRayCastDistance + settings.JumpTolerance), Color.yellow);
 
-          // RaycastHit2D hitInfosRightRaycast = Physics2D.Raycast(originRight, Vector2.right, settings.IsOnWallRayCastDistance + settings.JumpTolerance, settings.GroundLayerMask);
-          // RaycastHit2D hitInfosLeftRaycast = Physics2D.Raycast(originLeft, Vector2.left, settings.IsOnWallRayCastDistance + settings.JumpTolerance, settings.GroundLayerMask);
+            RaycastHit2D hitInfosLeftLineCast = Physics2D.Linecast(originLeftEnd, originLeftStart, settings.GroundLayerMask); 
+            RaycastHit2D hitInfosRightLineCast = Physics2D.Linecast(originRightStart, originRightEnd, settings.GroundLayerMask); 
 
-            RaycastHit2D hitInfosLeftineCast = Physics2D.Linecast(originLeftEnd, originLeftStart, settings.GroundLayerMask); 
-            RaycastHit2D hitInfosRighLineCast = Physics2D.Linecast(originRightStart, originRightEnd, settings.GroundLayerMask); 
-
-            if(hitInfosLeftineCast.collider != null)
+            if(hitInfosLeftLineCast.collider != null)
             {
                 IsOnWall = true;
                 facingRightWall = -1;
             }
-            else if(hitInfosRighLineCast.collider != null)
+            else if(hitInfosRightLineCast.collider != null)
             {
                 IsOnWall = true;
                 facingRightWall = 1; 
             }
             else IsOnWall = false;
-
-            Debug.Log("isOnWall   " + IsOnWall); 
         }
 
         private void MoveHorizontalInAir()

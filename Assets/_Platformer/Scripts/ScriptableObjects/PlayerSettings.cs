@@ -53,9 +53,13 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private float _jumpHangTime = 0.5f;
 		[SerializeField] private float _delayWallJump = 0.5f;
 		[SerializeField] private int _startLife = 3;
-        [SerializeField] private float _coyoteTime = 0.2f; 
-        
-        
+        [SerializeField] private float _coyoteTime = 0f;
+        [SerializeField] private float _halfPlayerHeight = 0.5f;
+        [SerializeField] private float _linecastCornerPosY = 2;
+        [SerializeField] private Vector2 _impulsionInCorner; 
+
+
+
 
         public float RunSpeed => _runSpeed;
         public float AngleMinPente => _angleMinPente;
@@ -86,5 +90,8 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public float DelayWallJump => _delayWallJump;
 		public int StartLife => _startLife;
 		public float CoyoteTime => _coyoteTime;
+		public float HalfPlayerHeight => _halfPlayerHeight;
+		public float LinecastCornerPosY => _linecastCornerPosY;
+		public Vector2 ImpulsionInCorner => _impulsionInCorner;
     }
 }

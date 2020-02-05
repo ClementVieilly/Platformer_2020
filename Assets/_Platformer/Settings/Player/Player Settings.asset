@@ -231,14 +231,16 @@ MonoBehaviour:
   _isGroundedRaycastDistance: 0.25
   _isGroundedLineCastDistance: 0.25
   _isOnWallRaycastDistance: 0.31
-  _isOnWallLineCastDistance: 0.6
+  _isOnWallLineCastDistance: 0.75
   _jumpTolerance: 0.2
   _minJumpForce: 18
-  _wallJumpHorizontalForce: 30
+  _wallJumpHorizontalForce: 20
   _jumpHoldForce: 1
   _maxJumpTime: 0.2
   _jumpHangThreshold: 0.5
   _jumpHangTime: 0.05
   _delayWallJump: 0.5
   _startLife: 3
-  _coyoteTime: 0.2
+  _coyoteTime: 0.08
+  _halfPlayerHeight: 0.5
+  _impulsionInCorner: {x: 8, y: 0.5}

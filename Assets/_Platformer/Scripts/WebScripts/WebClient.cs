@@ -45,15 +45,15 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		[Serializable]
 		private class ScoreObject
 		{
-			public int completion_Time = 0;
-			public int nb_Score = 0;
-			public int nb_Lives = 0;
+			public int completion_time = 0;
+			public int nb_score = 0;
+			public int nb_lives = 0;
 
 			public ScoreObject(int completionTime, int nbScore, int nbLives)
 			{
-				completion_Time = completionTime;
-				nb_Score = nbScore;
-				nb_Lives = nbLives;
+				completion_time = completionTime;
+				nb_score = nbScore;
+				nb_lives = nbLives;
 			}
 		}
 

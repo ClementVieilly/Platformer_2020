@@ -13,20 +13,24 @@ namespace Com.IsartDigital.Platformer.Managers {
 
     public class LevelManager : MonoBehaviour {
 
-        [SerializeField] Player player = null;
-        [SerializeField] Level currentLevel = null;
-
+        [SerializeField] private Player player;
+        private TimeManager timeManager;
+        //private float _score = 0;
+        private float finalTimer = 0; //Temps du levelComplete
         private void Start()
         {
             subscribeAllEvents();
+            timeManager = GetComponent<TimeManager>();
+            timeManager.StartTimer(); 
+
         }
 
-        private void OnLifeCollectible(int value)
+        private void LifeCollectible_OnCollected(int value)
         {
             player.AddLife(value);
         }
 
-        private void OnKillZone()
+        private void KillZone_OnCollision()
         {
             if (player.LooseLife())
             {
@@ -37,17 +41,10 @@ namespace Com.IsartDigital.Platformer.Managers {
                 CheckpointManager.Instance.ResetColliders();
             } 
         }
-
-        private void OnWin()
+        private void lScoreCollectible_OnCollected(float score)
         {
-            UIManager.Instance.CreateWinScreen();
-            player.gameObject.SetActive(false);
-        }
-
-        private void OnLose()
-        {
-            UIManager.Instance.CreateLoseScreen();
-            player.gameObject.SetActive(false);
+            //Hud.Score = score; 
+            // Hud.UpdateScore(); 
         }
 
         private void OnDestroy()
@@ -58,35 +55,63 @@ namespace Com.IsartDigital.Platformer.Managers {
         #region Events subscribtions
         private void subscribeAllEvents()
         {
-            foreach (LifeCollectible lifeCollectible in LifeCollectible.List)
+            for(int i = LifeCollectible.List.Count - 1; i >= 0; i--)
             {
-                lifeCollectible.Collected += OnLifeCollectible;
+                LifeCollectible.List[i].OnCollected += LifeCollectible_OnCollected; 
             }
 
-            foreach (KillZone killzone in KillZone.List)
+            for(int i = KillZone.List.Count - 1; i >= 0; i--)
             {
-                killzone.OnCollision += OnKillZone;
+                KillZone.List[i].OnCollision += KillZone_OnCollision; 
             }
 
-            //currentLevel.LvlWinFlag.OnCollision += OnWin;
-            
-            player.OnDie += OnLose;
+            for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
+            {
+                ScoreCollectible.List[i].OnCollected += lScoreCollectible_OnCollected; 
+            }
+
+            CheckpointManager.OnFinalCheckPointTriggered += CheckpointManager_OnFinalCheckPointTriggered;
+            player.OnDie += Player_OnDie; 
         }
 
+        private void Player_OnDie()
+        {
+            finalTimer = timeManager.Timer; 
+            timeManager.SetModeVoid(); 
+        }
 
+        private void CheckpointManager_OnFinalCheckPointTriggered()
+        {
+            Win();
+            CheckpointManager.OnFinalCheckPointTriggered -= CheckpointManager_OnFinalCheckPointTriggered;
+
+        }
+
+        private void Win()
+        {
+            finalTimer = timeManager.Timer;
+            timeManager.SetModeVoid(); 
+            unsubscribeAllEvents();
+        }
+        #endregion
+
+        #region Events unsubscriptions
         private void unsubscribeAllEvents()
         {
-            foreach (var lifeCollectible in LifeCollectible.List)
+            for(int i = LifeCollectible.List.Count - 1; i >= 0; i--)
             {
-                lifeCollectible.Collected -= OnLifeCollectible;
+                LifeCollectible.List[i].OnCollected -= LifeCollectible_OnCollected;
             }
 
-            foreach (KillZone killzone in KillZone.List)
+            for(int i = KillZone.List.Count - 1; i >= 0; i--)
             {
-                killzone.OnCollision -= OnKillZone;
+                KillZone.List[i].OnCollision -= KillZone_OnCollision;
             }
-            //currentLevel.LvlWinFlag.OnCollision -= OnWin;
-            player.OnDie -= OnLose;
+
+            for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
+            {
+                ScoreCollectible.List[i].OnCollected -= lScoreCollectible_OnCollected;
+            }
         }
         #endregion
 

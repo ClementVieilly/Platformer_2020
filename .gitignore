@@ -48,3 +48,7 @@ FMOD/**.unsaved
 FMOD/**.cache
 FMOD/**.restore
 run.bat
+
+#Node modules and environement variables for node.js
+server/node_modules/
+server/.env

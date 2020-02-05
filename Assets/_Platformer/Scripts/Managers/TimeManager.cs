@@ -3,6 +3,7 @@
 /// Date : 21/01/2020 10:37
 ///-----------------------------------------------------------------
 
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,11 +11,35 @@ namespace Com.IsartDigital.Platformer.Managers
 {
 	public class TimeManager : MonoBehaviour
 	{
-		[SerializeField] private float slowDownFactor = .05f;
+        private Action DoAction = null; 
 
+		[SerializeField] private float slowDownFactor = .05f;
+        private float elapsedTime = 0;  
+        private float _timer = 0; 
 		public bool waiting = false;
 
-		public void SlowTime()
+        public float Timer { get => _timer; }
+        public void StartTimer()
+        {
+            SetModeTimer(); 
+        }
+
+        public void SetModeTimer()
+        {
+            DoAction = DoActionTimer; 
+        }
+
+        private void SetModePause()
+        {
+            DoAction = DoActionVoid; 
+        }
+
+        public void SetModeVoid()
+        {
+            _timer = 0; 
+            DoAction = DoActionVoid;
+        }
+        public void SlowTime()
 		{
 			Time.timeScale = slowDownFactor;
 			Time.fixedDeltaTime = Time.timeScale * .02f;
@@ -42,5 +67,26 @@ namespace Com.IsartDigital.Platformer.Managers
 			Time.timeScale = 1;
 			waiting = false;
 		}
-	}
+
+        private void Update()
+        {
+            DoAction(); 
+        }
+
+        private void DoActionVoid()
+        {
+
+        }
+
+        private void DoActionTimer()
+        {
+            elapsedTime += Time.deltaTime;
+            if(elapsedTime >= 1)
+            {
+                _timer++;
+                Debug.Log(_timer);
+                elapsedTime = 0; 
+            }
+        }
+    }
 }

@@ -78,7 +78,6 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		{
 			//StartCoroutine(GetAllScoresForLevelCoroutine(1));
 			//StartCoroutine(GetPlayerScoreForLevelCoroutine(1));
-			StartCoroutine(RegisterPlayerScoreForLevelCoroutine(1));
 		}
 
 		/// <summary>
@@ -95,7 +94,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			logButton.onClick.AddListener(OnLogButtonClicked);
 		}
 
-		private void RemoveOnLogListener()
+		private void RemoveOnLogButtonListener()
 		{
 			logButton.onClick.RemoveListener(OnLogButtonClicked);
 		}
@@ -113,7 +112,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 		private IEnumerator TryToLogCoroutine()
 		{
-			RemoveOnLogListener();
+			RemoveOnLogButtonListener();
 
 			currentSubCoroutine = StartCoroutine(SigninCoroutine());
 
@@ -199,11 +198,11 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			}
 		}
 
-		private IEnumerator RegisterPlayerScoreForLevelCoroutine(int level)
+		private IEnumerator RegisterPlayerScoreForLevelCoroutine(int userId, int level)
 		{
 			isPreviousRequestSucces = false;
 			isPreviousRequestOver = false;
-			string url = "https://platformer-sequoia.herokuapp.com/scores/" + 7 + "/" + level;
+			string url = "https://platformer-sequoia.herokuapp.com/scores/" + userId + "/" + level;
 
 			ScoreObject score = new ScoreObject(100, 1, 1);
 			string json = JsonUtility.ToJson(score);
@@ -247,9 +246,9 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			}
 		}
 
-		private IEnumerator GetPlayerScoreForLevelCoroutine(int level)
+		private IEnumerator GetPlayerScoreForLevelCoroutine(int userId, int level)
 		{
-			string url = "https://platformer-sequoia.herokuapp.com/scores/" + 4 + "/" + level;
+			string url = "https://platformer-sequoia.herokuapp.com/scores/" + userId + "/" + level;
 
 			using (UnityWebRequest request = UnityWebRequest.Get(url))
 			{

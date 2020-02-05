@@ -6,7 +6,8 @@
 using System;
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer.WebScripts {
+namespace Com.IsartDigital.Platformer.WebScripts
+{
 	//Classe qui permet de gérer les json qui sont des array
 	public class JsonHelper
 	{

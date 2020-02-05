@@ -135,6 +135,8 @@ app.post("/scores/:userId/:levelId", async function (req, res, next) {
     else // Sinon crée la rangée
     {
         console.log("création de la rangée");
+        console.log("propriétés : " + req.params.userId + req.params.levelId +
+          req.body.completion_time + req.body.nb_score + req.body.nb_lives);
 
       await promisePool.execute(
         "INSERT INTO score " +

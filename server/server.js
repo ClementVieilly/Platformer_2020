@@ -117,8 +117,11 @@ app.post("/scores/:userId/:levelId", async function (req, res, next) {
       "USING(user_id) WHERE user_id = ? AND level_id = ?", [req.params.userId, req.params.levelId]
     );
 
+    console.log("c'est ici que ça se passe");
+
     if (results && results.length) // Modifie la rangée si elle existe
     {
+        console.log("modification de la rangée");
       await promisePool.execute(
         "UPDATE score " +
           "SET completion_time = ?, nb_score = ?, nb_lives = ? " +
@@ -131,6 +134,8 @@ app.post("/scores/:userId/:levelId", async function (req, res, next) {
     }
     else // Sinon crée la rangée
     {
+        console.log("création de la rangée");
+
       await promisePool.execute(
         "INSERT INTO score " +
           "(user_id, level_id, completion_time, nb_score, nb_lives) " +

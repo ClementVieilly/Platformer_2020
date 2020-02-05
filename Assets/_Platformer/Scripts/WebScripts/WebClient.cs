@@ -11,7 +11,7 @@ using UnityEngine.Events;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-namespace Com.IsartDigital.Platformer.Managers
+namespace Com.IsartDigital.Platformer.WebScripts
 {
 	public class WebClient : MonoBehaviour
 	{
@@ -43,13 +43,13 @@ namespace Com.IsartDigital.Platformer.Managers
 		}
 
 		[Serializable]
-		private class ScoreJSON
+		private class ScoreObject
 		{
-			public float completionTime = 0f;
+			public int completionTime = 0;
 			public int nbScore = 0;
 			public int nbLives = 0;
 
-			public ScoreJSON(float completionTime, int nbScore, int nbLives)
+			public ScoreObject(int completionTime, int nbScore, int nbLives)
 			{
 				this.completionTime = completionTime;
 				this.nbScore = nbScore;
@@ -166,7 +166,7 @@ namespace Com.IsartDigital.Platformer.Managers
 					jsonWebToken = request.downloadHandler.text;
 					Debug.Log("User registered !");
 				}
-				
+
 				isPreviousRequestOver = true;
 			}
 		}
@@ -203,9 +203,9 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			isPreviousRequestSucces = false;
 			isPreviousRequestOver = false;
-			string url = "https://platformer-sequoia.herokuapp.com/scores/" + 4 + "/" + 1;
+			string url = "https://platformer-sequoia.herokuapp.com/scores/" + 7 + "/" + level;
 
-			ScoreJSON score = new ScoreJSON(100f, 1, 1);
+			ScoreObject score = new ScoreObject(100, 1, 1);
 			string json = JsonUtility.ToJson(score);
 
 			using (UnityWebRequest request = PostJson(url, json))
@@ -219,7 +219,12 @@ namespace Com.IsartDigital.Platformer.Managers
 				else if (request.isHttpError)
 					Debug.Log("HttpError: " + request.error + ": " + request.downloadHandler.text);
 				else
+				{
+					isPreviousRequestSucces = true;
 					Debug.Log(request.downloadHandler.text);
+				}
+
+				isPreviousRequestOver = true;
 			}
 		}
 

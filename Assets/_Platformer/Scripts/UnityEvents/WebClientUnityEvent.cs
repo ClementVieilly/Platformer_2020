@@ -3,7 +3,7 @@
 /// Date : 04/02/2020 17:31
 ///-----------------------------------------------------------------
 
-using Com.IsartDigital.Platformer.Managers;
+using Com.IsartDigital.Platformer.WebScripts;
 using System;
 using UnityEngine.Events;
 

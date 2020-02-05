@@ -119,6 +119,9 @@ namespace Com.IsartDigital.Platformer.Managers
         public void CreateWinScreen()
         {
             currentWinScreen = Instantiate(winScreenPrefab).GetComponent<WinScreen>();
+
+            currentWinScreen.OnMenuClicked += WinScreen_OnMenuClicked;
+            currentWinScreen.OnLevelSelectorClicked += WinScreen_OnLevelSelectorClicked;
         }
 
         private void CloseScreen(AScreen screen)
@@ -152,6 +155,10 @@ namespace Com.IsartDigital.Platformer.Managers
                     currentLevelSelector.OnLevel2Clicked -= LevelSelector_OnLevel2ButtonClicked;
                     currentLevelSelector.OnBackToTitleClicked -= LevelSelector_OnBackToTitleClicked;
                 }
+                else if (screen == currentWinScreen)
+                {
+                    currentWinScreen.UnsubscribeEvents();
+                }
                 Destroy(screen.gameObject);
                 allScreens.RemoveAt(allScreens.IndexOf(screen));
             }
@@ -174,8 +181,6 @@ namespace Com.IsartDigital.Platformer.Managers
         private void LoadLevel(string levelName)
         {
             CloseAllScreens();
-            Debug.Log("load " + levelName);
-
             StartCoroutine(LoadAsyncToNextScene(levelName, CreateHud));
         }
 
@@ -189,9 +194,10 @@ namespace Com.IsartDigital.Platformer.Managers
 
             while (!asyncLoad.isDone)
             {
-                float progress = Mathf.Clamp01(asyncLoad.progress / .9f);
+                ////Barre de chargement
+                //float progress = Mathf.Clamp01(asyncLoad.progress / .9f);
                 //loader.LoadingBar.value = progress;
-                Debug.Log(progress);
+                //Debug.Log(progress);
                 yield return null;
             }
             //SceneManager.MoveGameObjectToScene(this.gameObject, SceneManager.GetSceneByName(nextScene));
@@ -278,6 +284,19 @@ namespace Com.IsartDigital.Platformer.Managers
             Debug.Log("Retry level");
         }
         private void PauseMenu_OnHomeClicked(PauseMenu pauseMenu)
+        {
+            CloseAllScreens();
+            StartCoroutine(LoadAsyncToNextScene(menu, CreateTitleCard));
+        }
+
+        //Evenements du WinScreen
+        private void WinScreen_OnMenuClicked(WinScreen winScreen)
+        {
+            CloseAllScreens();
+            StartCoroutine(LoadAsyncToNextScene(menu, CreateTitleCard));
+        }
+
+        private void WinScreen_OnLevelSelectorClicked(WinScreen winScreen)
         {
             CloseAllScreens();
             StartCoroutine(LoadAsyncToNextScene(menu, CreateTitleCard));

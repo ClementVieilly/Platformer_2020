@@ -41,7 +41,7 @@ namespace Com.IsartDigital.Platformer.Managers {
         private void OnWin()
         {
             UIManager.Instance.CreateWinScreen();
-            player.Die();
+            player.gameObject.SetActive(false);
         }
 
         private void OnDestroy()

@@ -35,7 +35,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 CheckRestingLife();
             }
         }
-        private int _life;
+        private int _life = 1;
         public event Action OnDie;
         #endregion
         private bool _isGrounded = true;
@@ -484,6 +484,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private bool CheckRestingLife()
         {
             if(Life == 0) Die();
+            Debug.Log(Life);
             return Life > 0;
         }
 
@@ -494,6 +495,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         public bool LooseLife(int LoseLife = 1)
         {
+            
             Life -= LoseLife;
             return CheckRestingLife();
         }

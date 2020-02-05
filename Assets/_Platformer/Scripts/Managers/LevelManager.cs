@@ -44,6 +44,12 @@ namespace Com.IsartDigital.Platformer.Managers {
             player.gameObject.SetActive(false);
         }
 
+        private void OnLose()
+        {
+            UIManager.Instance.CreateLoseScreen();
+            player.gameObject.SetActive(false);
+        }
+
         private void OnDestroy()
         {
             unsubscribeAllEvents();
@@ -62,7 +68,9 @@ namespace Com.IsartDigital.Platformer.Managers {
                 killzone.OnCollision += OnKillZone;
             }
 
-            currentLevel.LvlWinFlag.OnCollision += OnWin;
+            //currentLevel.LvlWinFlag.OnCollision += OnWin;
+            
+            player.OnDie += OnLose;
         }
 
 
@@ -77,6 +85,8 @@ namespace Com.IsartDigital.Platformer.Managers {
             {
                 killzone.OnCollision -= OnKillZone;
             }
+            //currentLevel.LvlWinFlag.OnCollision -= OnWin;
+            player.OnDie -= OnLose;
         }
         #endregion
 

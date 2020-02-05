@@ -22,6 +22,7 @@ namespace Com.IsartDigital.Platformer.Managers
         [SerializeField] private GameObject levelSelectorPrefab;
         [SerializeField] private GameObject loadingScreenPrefab;
         [SerializeField] private GameObject winScreenPrefab;
+        [SerializeField] private GameObject loseScreenPrefab;
 
         [Header("Level names")]
         [SerializeField] private string menu;
@@ -34,6 +35,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private Credits currentCredits;     //correspond à la page de crédits actuelle utilisée
         private LevelSelector currentLevelSelector; //correspond au levelSelector actuel utilisé
         private WinScreen currentWinScreen; //correspond au winScreen actuel utilisé
+        private LoseScreen currentLoseScreen; //correspond au winScreen actuel utilisé
 
         private List<AScreen> allScreens = new List<AScreen>();
 
@@ -122,6 +124,18 @@ namespace Com.IsartDigital.Platformer.Managers
 
             currentWinScreen.OnMenuClicked += WinScreen_OnMenuClicked;
             currentWinScreen.OnLevelSelectorClicked += WinScreen_OnLevelSelectorClicked;
+
+            allScreens.Add(currentWinScreen);
+        }
+
+        public void CreateLoseScreen()
+        {
+            currentLoseScreen = Instantiate(loseScreenPrefab).GetComponent<LoseScreen>();
+
+            currentLoseScreen.OnRetryClicked += LoseScreen_OnRetryClicked;
+            currentLoseScreen.OnLevelSelectorClicked += LoseScreen_OnLevelSelector;
+
+            allScreens.Add(currentLoseScreen);
         }
 
         private void CloseScreen(AScreen screen)
@@ -158,6 +172,10 @@ namespace Com.IsartDigital.Platformer.Managers
                 else if (screen == currentWinScreen)
                 {
                     currentWinScreen.UnsubscribeEvents();
+                }
+                else if (screen == currentLoseScreen) 
+                {
+                    currentLoseScreen.UnsubscribeEvents();
                 }
                 Destroy(screen.gameObject);
                 allScreens.RemoveAt(allScreens.IndexOf(screen));
@@ -299,7 +317,19 @@ namespace Com.IsartDigital.Platformer.Managers
         private void WinScreen_OnLevelSelectorClicked(WinScreen winScreen)
         {
             CloseAllScreens();
-            StartCoroutine(LoadAsyncToNextScene(menu, CreateTitleCard));
+            StartCoroutine(LoadAsyncToNextScene(menu, CreateLevelSelector));
+        }
+
+        //Evenements du LoseScreen
+        private void LoseScreen_OnRetryClicked(LoseScreen loseScreen)
+        {
+            Debug.Log("Retry from UIManager");
+        }
+
+        private void LoseScreen_OnLevelSelector(LoseScreen loseScreen)
+        {
+            CloseAllScreens();
+            StartCoroutine(LoadAsyncToNextScene(menu, CreateLevelSelector));
         }
     }
 }

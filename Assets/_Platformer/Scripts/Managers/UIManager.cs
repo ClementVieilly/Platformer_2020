@@ -23,6 +23,9 @@ namespace Com.IsartDigital.Platformer.Managers
         [SerializeField] private GameObject loadingScreenPrefab;
         [SerializeField] private GameObject winScreenPrefab;
         [SerializeField] private GameObject loseScreenPrefab;
+        [SerializeField] private GameObject loginScreenPrefab;
+        [SerializeField] private GameObject leaderboardPrefab;
+        [SerializeField] private GameObject confirmScreenPrefab;
 
         [Header("Level names")]
         [SerializeField] private string menu;
@@ -36,7 +39,9 @@ namespace Com.IsartDigital.Platformer.Managers
         private LevelSelector currentLevelSelector; //correspond au levelSelector actuel utilisé
         private WinScreen currentWinScreen; //correspond au winScreen actuel utilisé
         private LoseScreen currentLoseScreen; //correspond au winScreen actuel utilisé
-
+        private LoginScreen currentLoginScreen; //correspond au loginScreen actuel utilisé
+        private Leaderboard currentLeaderboard; //correspond au leaderboard actuel utilisé
+        private ConfirmScreen currentConfirmScreen; //correspond au leaderboard actuel utilisé
         private List<AScreen> allScreens = new List<AScreen>();
 
         private static UIManager _instance;
@@ -218,7 +223,6 @@ namespace Com.IsartDigital.Platformer.Managers
                 //Debug.Log(progress);
                 yield return null;
             }
-            //SceneManager.MoveGameObjectToScene(this.gameObject, SceneManager.GetSceneByName(nextScene));
             StartCoroutine(UnloadAsyncOfCurrentScene(currentScene, methodToLaunch));
         }
 

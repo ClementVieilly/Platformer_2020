@@ -1337,6 +1337,7 @@ GameObject:
   - component: {fileID: 1112657990589443443}
   - component: {fileID: 5421757688560944908}
   - component: {fileID: 6068403177999256969}
+  - component: {fileID: -7046602612676940858}
   m_Layer: 5
   m_Name: Leaderboard
   m_TagString: Untagged
@@ -1427,6 +1428,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &-7046602612676940858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3589825324189781998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1635f2f22ed98b41baa68328697fdb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3887290112281056624
 GameObject:
   m_ObjectHideFlags: 0

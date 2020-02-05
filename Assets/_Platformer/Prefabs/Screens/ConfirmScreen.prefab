@@ -441,6 +441,7 @@ GameObject:
   - component: {fileID: 1708156884381924267}
   - component: {fileID: 1708156884381924260}
   - component: {fileID: 1708156884381924261}
+  - component: {fileID: -5450669356325457970}
   m_Layer: 5
   m_Name: ConfirmScreen
   m_TagString: Untagged
@@ -529,6 +530,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &-5450669356325457970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708156884381924262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34bfd538d250f824ca79bac81cf46b83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1708156884683340173
 GameObject:
   m_ObjectHideFlags: 0

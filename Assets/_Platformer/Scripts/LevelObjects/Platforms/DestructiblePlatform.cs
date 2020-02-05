@@ -6,14 +6,29 @@
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
-	public class DestructiblePlatform : MonoBehaviour {
-	
-		private void Start () {
-			
-		}
-		
-		private void Update () {
-			
-		}
-	}
+	public class DestructiblePlatform : Platform {
+
+        private bool startCount = false;
+        [SerializeField] private float duration;
+        [SerializeField] private Collider2D triggeredCollider;
+        private float elapsedTime;
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            startCount = true;
+            Debug.Log("je suis dessus"); 
+        }
+
+        private void Update()
+        {
+            if (startCount)
+            {
+                elapsedTime += Time.deltaTime;
+
+                if(elapsedTime > duration) triggeredCollider.enabled = false;
+            }
+        }
+
+
+    }
 }

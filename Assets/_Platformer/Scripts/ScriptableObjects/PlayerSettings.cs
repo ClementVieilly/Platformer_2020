@@ -28,8 +28,13 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private AnimationCurve _runDecelerationCurve = null;
 		[SerializeField] private float _fallHorizontalSpeed = 5f;
 		[SerializeField] private float _fallVerticalSpeed = 5f;
+		[SerializeField] private float _fallOnWallVerticalSpeed = 10f;
 		[SerializeField] private AnimationCurve _inAirAccelerationCurve = null;
 		[SerializeField] private AnimationCurve _inAirDecelerationCurve = null;
+        [SerializeField] private float _planeVerticalSpeed = 1f;
+        [SerializeField] private float _planeHorizontalSpeed = 1f;
+        [SerializeField] private AnimationCurve _planeAccelerationCurve = null;
+		[SerializeField] private AnimationCurve _planeDecelerationCurve = null;
 
 
         [SerializeField] private LayerMask _groundLayerMask;
@@ -37,30 +42,39 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private float _isOnWallRaycastDistance = 0.40f;
 		[SerializeField] private float _jumpTolerance = 0.2f;
 		[SerializeField] private float _minJumpForce = 10f;
+		[SerializeField] private float _wallJumpHorizontalForce = 30f;
 		[SerializeField] private float _jumpHoldForce = 1f;
 		[SerializeField] private float _maxJumpTime = 0.5f;
 		[SerializeField] private float _jumpHangThreshold = 0.5f;
 		[SerializeField] private float _jumpHangTime = 0.5f;
-        [SerializeField] private float _planeVerticalSpeed = 1f;
-        [SerializeField] private float _planeHorizontalSpeed = 1f;
+		[SerializeField] private float _delayWallJump = 0.5f;
+		[SerializeField] private int _startLife = 3;
+        
+        
 
         public float RunSpeed => _runSpeed;
 		public AnimationCurve RunAccelerationCurve => _runAccelerationCurve;
 		public AnimationCurve RunDecelerationCurve => _runDecelerationCurve;
 		public float FallHorizontalSpeed => _fallHorizontalSpeed;
 		public float FallVerticalSpeed => _fallVerticalSpeed;
+		public float FallOnWallVerticalSpeed => _fallOnWallVerticalSpeed;
 		public AnimationCurve InAirAccelerationCurve => _inAirAccelerationCurve;
 		public AnimationCurve InAirDecelerationCurve => _inAirDecelerationCurve;
+        public float PlaneVerticalSpeed => _planeVerticalSpeed;
+        public float PlaneHorizontalSpeed => _planeHorizontalSpeed;
+        public AnimationCurve PlaneAccelerationCurve => _planeAccelerationCurve;
+		public AnimationCurve PlaneDecelerationCurve => _planeDecelerationCurve;
         public int GroundLayerMask => _groundLayerMask;
 		public float IsGroundedRaycastDistance => _isGroundedRaycastDistance;
 		public float IsOnWallRayCastDistance => _isOnWallRaycastDistance;
 		public float JumpTolerance => _jumpTolerance;
 		public float MinJumpForce => _minJumpForce;
+		public float WallJumpHorizontalForce => _wallJumpHorizontalForce;
 		public float JumpHoldForce => _jumpHoldForce;
 		public float MaxJumpTime => _maxJumpTime;
 		public float JumpHangThreshold => _jumpHangThreshold;
 		public float JumpHangTime => _jumpHangTime;
-        public float PlaneVerticalSpeed => _planeVerticalSpeed;
-        public float PlaneHorizontalSpeed => _planeHorizontalSpeed;
+		public float DelayWallJump => _delayWallJump;
+		public int StartLife => _startLife;
     }
 }

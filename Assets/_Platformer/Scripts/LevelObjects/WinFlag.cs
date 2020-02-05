@@ -10,8 +10,6 @@ public class WinFlag : ACollisionableObject
 
     protected override void EffectOnCollision()
     {
-        base.EffectOnCollision();
-
         OnCollision?.Invoke();
     }
 }

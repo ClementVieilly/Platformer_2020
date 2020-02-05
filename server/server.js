@@ -10,7 +10,7 @@ app.use(jsonMiddleware);
 // Le secret avec lequel les JWT sont signés
 const secret = process.env.JWT_SECRET;
 
-const regex = [/\/scores\/\d+/, /\/users\/signup/, /\/users\/signin/];
+const regex = [/\/scores\/(?!(\d+\/\d+))/, /\/users\/signup/, /\/users\/signin/];
 // Ce middleware vérifie qu’un JWT valide est présent dans le header Authorization
 const jwtMiddleware = require("express-jwt")({
   secret: secret

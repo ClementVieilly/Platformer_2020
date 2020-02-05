@@ -7,13 +7,10 @@ using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Managers {
 	public class GameManager : MonoBehaviour {
-	
-		private void Start () {
-			
-		}
-		
-		private void Update () {
-			
+
+		private void Awake()
+		{
+			DontDestroyOnLoad(this.gameObject);
 		}
 	}
 }

@@ -5,6 +5,7 @@
 
 using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Com.IsartDigital.Platformer.Managers {
     public class LevelManager : MonoBehaviour {
 
         [SerializeField] Player player = null;
+        [SerializeField] Level currentLevel = null;
 
         private void Start()
         {
@@ -36,6 +38,12 @@ namespace Com.IsartDigital.Platformer.Managers {
             } 
         }
 
+        private void OnWin()
+        {
+            UIManager.Instance.CreateWinScreen();
+            player.Die();
+        }
+
         private void OnDestroy()
         {
             unsubscribeAllEvents();
@@ -53,7 +61,10 @@ namespace Com.IsartDigital.Platformer.Managers {
             {
                 killzone.OnCollision += OnKillZone;
             }
+
+            currentLevel.LvlWinFlag.OnCollision += OnWin;
         }
+
 
         private void unsubscribeAllEvents()
         {

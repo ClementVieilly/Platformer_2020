@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4052202147592485519}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 154.49107, y: 136.52959, z: -32.201866}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 96654514638729020}
   m_Father: {fileID: 0}
@@ -55,6 +55,8 @@ MonoBehaviour:
   levelSelectorPrefab: {fileID: 1969987864742525575, guid: 5ee21629705e3694091fcb24a4f50a5d,
     type: 3}
   loadingScreenPrefab: {fileID: 9158602760552692121, guid: 03498d2d7afd60b49a3ed08c6be9efe8,
+    type: 3}
+  winScreenPrefab: {fileID: 4124453987301739395, guid: a55d716e468a8294aa6f56b3880a05e9,
     type: 3}
   menu: 
   level1: 

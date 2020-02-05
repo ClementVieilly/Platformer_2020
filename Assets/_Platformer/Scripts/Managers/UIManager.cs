@@ -21,6 +21,7 @@ namespace Com.IsartDigital.Platformer.Managers
         [SerializeField] private GameObject creditPrefab;
         [SerializeField] private GameObject levelSelectorPrefab;
         [SerializeField] private GameObject loadingScreenPrefab;
+        [SerializeField] private GameObject winScreenPrefab;
 
         [Header("Level names")]
         [SerializeField] private string menu;
@@ -32,11 +33,12 @@ namespace Com.IsartDigital.Platformer.Managers
         private TitleCard currentTitleCard; //correspond au titlecard actuel
         private Credits currentCredits;     //correspond à la page de crédits actuelle utilisée
         private LevelSelector currentLevelSelector; //correspond au levelSelector actuel utilisé
+        private WinScreen currentWinScreen; //correspond au winScreen actuel utilisé
 
         private List<AScreen> allScreens = new List<AScreen>();
 
         private static UIManager _instance;
-        //public static UIManager Instance => _instance;
+        public static UIManager Instance => _instance;
 
         private void Awake()
         {
@@ -97,7 +99,6 @@ namespace Com.IsartDigital.Platformer.Managers
             currentTitleCard.OnGameStart += TitleCard_OnGameStart;
 
             allScreens.Add(currentTitleCard);
-
         }
 
         private void CreateCredits()
@@ -113,6 +114,11 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             GameObject loadingScreen;
             return loadingScreen = Instantiate(loadingScreenPrefab);
+        }
+
+        public void CreateWinScreen()
+        {
+            currentWinScreen = Instantiate(winScreenPrefab).GetComponent<WinScreen>();
         }
 
         private void CloseScreen(AScreen screen)
@@ -173,18 +179,18 @@ namespace Com.IsartDigital.Platformer.Managers
             StartCoroutine(LoadAsyncToNextScene(levelName, CreateHud));
         }
 
-        //Coroutines de chargement de scenes asynchrone 
+        //Coroutines de chargement asynchrone de scenes  
         #region Loading Coroutines
         IEnumerator LoadAsyncToNextScene(string nextScene, Action methodToLaunch)
         {
             Scene currentScene = SceneManager.GetActiveScene();
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene,LoadSceneMode.Additive);
-            LoadingScreen loader = CreateLoadingScreen().GetComponent<LoadingScreen>();
+            //LoadingScreen loader = CreateLoadingScreen().GetComponent<LoadingScreen>();
 
             while (!asyncLoad.isDone)
             {
                 float progress = Mathf.Clamp01(asyncLoad.progress / .9f);
-                loader.LoadingBar.value = progress;
+                //loader.LoadingBar.value = progress;
                 Debug.Log(progress);
                 yield return null;
             }

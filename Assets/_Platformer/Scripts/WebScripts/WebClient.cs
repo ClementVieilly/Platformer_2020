@@ -19,15 +19,18 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		[SerializeField] private Text passwordTextField = null;
 
 		[SerializeField] private Button logButton = null;
-		[SerializeField] private Button testButton = null;
 
-		private string jsonWebToken = null;
+		private string _jsonWebToken = null;
+		public string JsonWebToken { get => _jsonWebToken; }
 
 		private bool isPreviousRequestOver = false;
 		private bool isPreviousRequestSucces = false;
 
 		private Coroutine tryToLogCoroutine = null;
 		private Coroutine currentSubCoroutine = null;
+
+		private ScoreObject[] _scores = null;
+		public ScoreObject[] Scores { get => _scores; }
 
 		[Serializable]
 		private class Credentials
@@ -43,8 +46,9 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		}
 
 		[Serializable]
-		private class ScoreObject
+		public class ScoreObject
 		{
+			public string username = "default";
 			public int completion_time = 0;
 			public int nb_score = 0;
 			public int nb_lives = 0;
@@ -58,6 +62,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		}
 
 		[SerializeField] private WebClientUnityEvent _onLogged;
+		[SerializeField] private WebClientUnityEvent _onScoreGet;
 
 		public event UnityAction<WebClient> OnLogged
 		{
@@ -65,19 +70,17 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			remove { _onLogged.RemoveListener(value); }
 		}
 
+		public event UnityAction<WebClient> OnScoreGet
+		{
+			add { _onScoreGet.AddListener(value); }
+			remove { _onScoreGet.RemoveListener(value); }
+		}
+
 		private void Start()
 		{
 			OnLogged += StopMyCoroutines;
 			OnLogged += AddOnLogButtonListener;
 			AddOnLogButtonListener(null);
-
-			testButton.onClick.AddListener(OnTestButton);
-		}
-
-		private void OnTestButton()
-		{
-			//StartCoroutine(GetAllScoresForLevelCoroutine(1));
-			//StartCoroutine(GetPlayerScoreForLevelCoroutine(1));
 		}
 
 		/// <summary>
@@ -108,6 +111,16 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			}
 
 			tryToLogCoroutine = StartCoroutine(TryToLogCoroutine());
+		}
+
+		public void OnButtonAllScores()
+		{
+			StartCoroutine(GetAllScoresForLevelCoroutine(1));
+		}
+
+		public void OnButtonOneScore()
+		{
+			StartCoroutine(GetPlayerScoreForLevelCoroutine(7, 2));
 		}
 
 		private IEnumerator TryToLogCoroutine()
@@ -162,7 +175,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				else
 				{
 					isPreviousRequestSucces = true;
-					jsonWebToken = request.downloadHandler.text;
+					_jsonWebToken = request.downloadHandler.text;
 					Debug.Log("User registered !");
 				}
 
@@ -190,7 +203,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				else
 				{
 					isPreviousRequestSucces = true;
-					jsonWebToken = request.downloadHandler.text;
+					_jsonWebToken = request.downloadHandler.text;
 					Debug.Log("Welcome back !");
 				}
 
@@ -209,7 +222,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 			using (UnityWebRequest request = PostJson(url, json))
 			{
-				request.SetRequestHeader("Authorization", "Bearer " + jsonWebToken ?? "");
+				request.SetRequestHeader("Authorization", "Bearer " + _jsonWebToken ?? "");
 
 				yield return request.SendWebRequest();
 
@@ -229,11 +242,13 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 		private IEnumerator GetAllScoresForLevelCoroutine(int level)
 		{
+			isPreviousRequestSucces = false;
+			isPreviousRequestOver = false;
 			string url = "https://platformer-sequoia.herokuapp.com/scores/" + level;
 
 			using (UnityWebRequest request = UnityWebRequest.Get(url))
 			{
-				request.SetRequestHeader("Authorization", "Bearer " + jsonWebToken ?? "");
+				request.SetRequestHeader("Authorization", "Bearer " + _jsonWebToken ?? "");
 
 				yield return request.SendWebRequest();
 
@@ -242,17 +257,25 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				else if (request.isHttpError)
 					Debug.Log("HttpError: " + request.error + ": " + request.downloadHandler.text);
 				else
-					Debug.Log(request.downloadHandler.text);
+				{
+					isPreviousRequestSucces = true;
+					_scores = JsonHelper.GetJsonArray<ScoreObject>(request.downloadHandler.text);
+					_onScoreGet?.Invoke(this);
+				}
+
+				isPreviousRequestOver = true;
 			}
 		}
 
 		private IEnumerator GetPlayerScoreForLevelCoroutine(int userId, int level)
 		{
+			isPreviousRequestSucces = false;
+			isPreviousRequestOver = false;
 			string url = "https://platformer-sequoia.herokuapp.com/scores/" + userId + "/" + level;
 
 			using (UnityWebRequest request = UnityWebRequest.Get(url))
 			{
-				request.SetRequestHeader("Authorization", "Bearer " + jsonWebToken ?? "");
+				request.SetRequestHeader("Authorization", "Bearer " + _jsonWebToken ?? "");
 
 				yield return request.SendWebRequest();
 
@@ -261,7 +284,13 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				else if (request.isHttpError)
 					Debug.Log("HttpError: " + request.error + ": " + request.downloadHandler.text);
 				else
-					Debug.Log(request.downloadHandler.text);
+				{
+					isPreviousRequestSucces = true;
+					_scores = JsonHelper.GetJsonArray<ScoreObject>(request.downloadHandler.text);
+					_onScoreGet?.Invoke(this);
+				}
+
+				isPreviousRequestOver = true;
 			}
 		}
 

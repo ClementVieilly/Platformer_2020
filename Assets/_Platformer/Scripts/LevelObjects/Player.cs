@@ -16,7 +16,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private PlayerController controller = null;
         [SerializeField] private PlayerSettings settings = null;
 
-        //Pos des Linecast !
+        [Header("Pos des Linecast")]
         [SerializeField] private Transform wallLinecastRightStartPos = null; 
         [SerializeField] private Transform wallLinecastRightEndPos = null;
         [SerializeField] private Transform wallLinecastLeftStartPos = null;
@@ -28,6 +28,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private Transform groundLinecastStartPos = null;
         [SerializeField] private Transform groundLinecastEndPos = null;
 
+        [Header("Particle Systems")]
+        [SerializeField] private ParticleSystem runningPS;
+        [SerializeField] private ParticleSystem jumpingPS;
+        [SerializeField] private ParticleSystem landingPS;
+        [SerializeField] private ParticleSystem wallJumpPS;
 
         [SerializeField] private GameObject stateTag = null;
 
@@ -174,6 +179,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             stateTag.name = "Normal"; 
             DoAction = DoActionNormal;
+
+            landingPS.Play();
+
+
         }
 
         private void SetModeSpawn()
@@ -226,7 +235,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             //Détéection du jump
             if(jump && !jumpButtonHasPressed && canJump)
             {
-                
                 rigidBody.gravityScale = gravity; 
                 SetModeAir();
                 startHang = true;
@@ -235,6 +243,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 hangElapsedTime = 0f;
                 jumpButtonHasPressed = true;
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
+
+                jumpingPS.Play();
             }
             else if(!jump) jumpButtonHasPressed = false;
 
@@ -285,6 +295,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
                 ratio = settings.RunAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, settings.RunSpeed, ratio);
+
+                runningPS.Play();
             }
             else
             {
@@ -306,7 +318,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void DoActionInAir()
         {
-            CheckIsOnWall();
             CheckIsGrounded();
 
             if(_isGrounded)
@@ -316,7 +327,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
 
             MoveHorizontalInAir();
-
+            CheckIsOnWall();
             //Gère le cas ou le joueur est sur un coin de plateforme et lui donne un impulsion pour qu'il soit sur la plateforme
             if(isOnCorner && !wasInCorner)
             {
@@ -327,11 +338,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 }
                 Debug.Log("je suis au corner mgl");
             }
-
+           
             if(_isOnWall)
             {
                 if(jump && !jumpButtonHasPressed)
                 {
+                    wallJumpPS.Play();
+
                     jumpButtonHasPressed = true;
                     wasOnWall = true;
                     horizontalMoveElapsedTime = 0f;

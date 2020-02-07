@@ -77,7 +77,10 @@ namespace Com.IsartDigital.Platformer.Managers {
         private void Player_OnDie()
         {
             finalTimer = timeManager.Timer; 
-            timeManager.SetModeVoid(); 
+            timeManager.SetModeVoid();
+
+            UIManager.Instance.CreateLoseScreen();
+            player.gameObject.SetActive(false);
         }
 
         private void CheckpointManager_OnFinalCheckPointTriggered()
@@ -92,6 +95,9 @@ namespace Com.IsartDigital.Platformer.Managers {
             finalTimer = timeManager.Timer;
             timeManager.SetModeVoid(); 
             unsubscribeAllEvents();
+
+            UIManager.Instance.CreateWinScreen();
+            player.gameObject.SetActive(false);
         }
         #endregion
 

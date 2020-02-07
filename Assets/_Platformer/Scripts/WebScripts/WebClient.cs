@@ -258,6 +258,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 					Debug.Log("HttpError: " + request.error + ": " + request.downloadHandler.text);
 				else
 				{
+					Debug.Log(request.downloadHandler.text);
 					isPreviousRequestSucces = true;
 					_scores = JsonHelper.GetJsonArray<ScoreObject>(request.downloadHandler.text);
 					_onScoreGet?.Invoke(this);
@@ -285,6 +286,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 					Debug.Log("HttpError: " + request.error + ": " + request.downloadHandler.text);
 				else
 				{
+					Debug.Log(request.downloadHandler.text);
 					isPreviousRequestSucces = true;
 					_scores = JsonHelper.GetJsonArray<ScoreObject>(request.downloadHandler.text);
 					_onScoreGet?.Invoke(this);

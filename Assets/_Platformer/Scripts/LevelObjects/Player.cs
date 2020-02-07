@@ -17,6 +17,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         [SerializeField] private GameObject stateTag = null;
 
+        [Header("Particle Systems")]
+        [SerializeField] private ParticleSystem runningPS;
+        [SerializeField] private ParticleSystem jumpingPS;
+        [SerializeField] private ParticleSystem landingPS;
+        [SerializeField] private ParticleSystem wallJumpPS;
+
         private RaycastHit2D hitInfos; 
         private RaycastHit2D hitInfosNormal; 
 
@@ -155,7 +161,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void SetModeNormal()
         {
-            stateTag.name = "Normal"; 
+            stateTag.name = "Normal";
+
+            landingPS.Play();
+
             DoAction = DoActionNormal;
         }
 
@@ -182,7 +191,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             // Réflexion sur l'orientation des pentes
             if (IsGrounded && hitInfos.collider)
             {
-                Vector2 tan = hitInfosNormal.normal;
+                                Vector2 tan = hitInfosNormal.normal;
                 tan = new Vector2(tan.y, -tan.x);
                 penteVelocity = tan;
                 float angle = Vector2.Angle(tan, Vector3.up);
@@ -215,6 +224,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 hangElapsedTime = 0f;
                 jumpButtonHasPressed = true;
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
+
+                jumpingPS.Play();
             }
             else if(!jump) jumpButtonHasPressed = false;
 
@@ -264,6 +275,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             if(horizontalAxis != 0f)
             {
+                runningPS.Play();
+
                 ratio = settings.RunAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, settings.RunSpeed, ratio);
             }
@@ -302,6 +315,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
                 if(jump && !jumpButtonHasPressed)
                 {
+                    wallJumpPS.Play();
+
                     jumpButtonHasPressed = true;
                     wasOnWall = true;
                     horizontalMoveElapsedTime = 0f;
@@ -371,6 +386,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsGrounded();
             if(_isGrounded)
             {
+                landingPS.Play();
+
                 SetModeNormal();
                 return; 
             }

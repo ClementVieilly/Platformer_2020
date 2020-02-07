@@ -57,9 +57,6 @@ namespace Com.IsartDigital.Platformer.Screens {
 
             btnPause = GetComponentInChildren<Button>();
             btnPause.onClick.AddListener(Hud_OnButtonPauseClicked);
-
-            Score = 0;
-            Life = 0;
         }
 
         private void UpdateText(Text changingText, float value)

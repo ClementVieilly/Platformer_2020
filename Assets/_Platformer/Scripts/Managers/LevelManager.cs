@@ -7,6 +7,7 @@ using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
 using Com.IsartDigital.Platformer.Screens;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,10 +23,19 @@ namespace Com.IsartDigital.Platformer.Managers {
         private float finalTimer = 0; //Temps du levelComplete
         private void Start()
         {
-            subscribeAllEvents();
+            SubscribeAllEvents();
             timeManager = GetComponent<TimeManager>();
             timeManager.StartTimer();
+            StartCoroutine(InitHud());
         }
+
+        IEnumerator InitHud()
+        {
+            while (Hud.Instance == null) yield return null;
+            Hud.Instance.Score = score;
+            Hud.Instance.Life = player.Life;
+        }
+
 
         private void LifeCollectible_OnCollected(int value)
         {
@@ -44,6 +54,7 @@ namespace Com.IsartDigital.Platformer.Managers {
             if (player.LooseLife())
             {
                 player.setPosition(CheckpointManager.Instance.LastCheckpointPos);
+                Hud.Instance.Life = player.Life;
             }
             else 
             {
@@ -54,11 +65,11 @@ namespace Com.IsartDigital.Platformer.Managers {
 
         private void OnDestroy()
         {
-            unsubscribeAllEvents();
+            UnsubscribeAllEvents();
         }
 
         #region Events subscribtions
-        private void subscribeAllEvents()
+        private void SubscribeAllEvents()
         {
             for(int i = LifeCollectible.List.Count - 1; i >= 0; i--)
             {
@@ -99,7 +110,7 @@ namespace Com.IsartDigital.Platformer.Managers {
         {
             finalTimer = timeManager.Timer;
             timeManager.SetModeVoid(); 
-            unsubscribeAllEvents();
+            UnsubscribeAllEvents();
 
             UIManager.Instance.CreateWinScreen();
             player.gameObject.SetActive(false);
@@ -107,7 +118,7 @@ namespace Com.IsartDigital.Platformer.Managers {
         #endregion
 
         #region Events unsubscriptions
-        private void unsubscribeAllEvents()
+        private void UnsubscribeAllEvents()
         {
             for(int i = LifeCollectible.List.Count - 1; i >= 0; i--)
             {

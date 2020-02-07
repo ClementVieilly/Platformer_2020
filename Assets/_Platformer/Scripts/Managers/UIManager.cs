@@ -42,6 +42,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private LoginScreen currentLoginScreen; //correspond au loginScreen actuel utilisé
         private Leaderboard currentLeaderboard; //correspond au leaderboard actuel utilisé
         private ConfirmScreen currentConfirmScreen; //correspond au leaderboard actuel utilisé
+
         private List<AScreen> allScreens = new List<AScreen>();
 
         private static UIManager _instance;
@@ -119,8 +120,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private GameObject CreateLoadingScreen()
         {
-            GameObject loadingScreen;
-            return loadingScreen = Instantiate(loadingScreenPrefab);
+            return  Instantiate(loadingScreenPrefab);
         }
 
         public void CreateWinScreen()

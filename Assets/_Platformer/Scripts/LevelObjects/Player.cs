@@ -36,7 +36,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 CheckRestingLife();
             }
         }
-        private int _life;
+        private int _life = 3;
         public event Action OnDie;
         #endregion
         private bool _isGrounded = true;

@@ -223,16 +223,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _angleMinPente: 70
-  _angleMaxPente: 110
+  _angleMinPente: 50
+  _angleMaxPente: 150
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  _isGroundedRaycastDistance: 0.25
-  _isGroundedLineCastDistance: 0.25
-  _isOnWallRaycastDistance: 0.31
-  _isOnWallLineCastDistance: 0.75
-  _jumpTolerance: 0.2
+  _isGroundedRaycastDistance: 0.1
+  _jumpTolerance: 0.54
   _minJumpForce: 18
   _wallJumpHorizontalForce: 20
   _jumpHoldForce: 1
@@ -242,5 +239,4 @@ MonoBehaviour:
   _delayWallJump: 0.5
   _startLife: 3
   _coyoteTime: 0.08
-  _halfPlayerHeight: 0.5
-  _impulsionInCorner: {x: 8, y: 0.5}
+  _impulsionInCorner: {x: 0.8, y: 1.5}

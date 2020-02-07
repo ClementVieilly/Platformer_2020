@@ -5,6 +5,7 @@
 
 using Com.IsartDigital.Platformer.ScriptableObjects;
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects
@@ -15,13 +16,20 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private PlayerController controller = null;
         [SerializeField] private PlayerSettings settings = null;
 
-        [SerializeField] private GameObject stateTag = null;
+        //Pos des Linecast !
+        [SerializeField] private Transform wallLinecastRightStartPos = null; 
+        [SerializeField] private Transform wallLinecastRightEndPos = null;
+        [SerializeField] private Transform wallLinecastLeftStartPos = null;
+        [SerializeField] private Transform wallLinecastLeftEndPos = null;
+        [SerializeField] private Transform cornerLinecastRightStartPos = null;
+        [SerializeField] private Transform cornerLinecastRightEndPos = null;
+        [SerializeField] private Transform cornerLinecastLeftStartPos = null;
+        [SerializeField] private Transform cornerLinecastLeftEndPos = null;
+        [SerializeField] private Transform groundLinecastStartPos = null;
+        [SerializeField] private Transform groundLinecastEndPos = null;
 
-        [Header("Particle Systems")]
-        [SerializeField] private ParticleSystem runningPS;
-        [SerializeField] private ParticleSystem jumpingPS;
-        [SerializeField] private ParticleSystem landingPS;
-        [SerializeField] private ParticleSystem wallJumpPS;
+
+        [SerializeField] private GameObject stateTag = null;
 
         private RaycastHit2D hitInfos; 
         private RaycastHit2D hitInfosNormal; 
@@ -67,6 +75,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private Vector2 penteVelocity;
 
         private bool isOnCorner = false;
+        private bool wasInCorner = false;
 
         private float elapsedTimerBeforeSetModeAir = 0f;
         private bool canJump = false;
@@ -96,11 +105,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private float jumpElapsedTime = 0f;
         private float hangElapsedTime = 0f;
         private float wallJumpElaspedTime = 0f;
-
+        
+        //Jump
         private bool startHang = false;
         private bool hasHanged = false;
         private float gravity = 0f;
         private bool jumpButtonHasPressed = false;
+
         //Wall Jump 
         private bool wasOnWall = false;
 		private bool isFacingWallJump = false;
@@ -161,10 +172,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void SetModeNormal()
         {
-            stateTag.name = "Normal";
-
-            landingPS.Play();
-
+            stateTag.name = "Normal"; 
             DoAction = DoActionNormal;
         }
 
@@ -189,25 +197,27 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionNormal()
         {
             // Réflexion sur l'orientation des pentes
-            if (IsGrounded && hitInfos.collider)
+            if(IsGrounded && hitInfos.collider)
             {
-                                Vector2 tan = hitInfosNormal.normal;
+                canJump = true;
+                Vector2 tan = hitInfosNormal.normal;
                 tan = new Vector2(tan.y, -tan.x);
                 penteVelocity = tan;
-                float angle = Vector2.Angle(tan, Vector3.up);
-                canJump = true;
-
-                if (angle > settings.AngleMinPente && angle < settings.AngleMaxPente)
+                float anglePente = Vector2.Angle(tan, Vector3.up);
+                if(anglePente > settings.AngleMinPente && anglePente < settings.AngleMaxPente || anglePente > 150)
                 {
                     rigidBody.gravityScale = 0f;
                     isSlinding = false;
                 }
                 else
                 {
-                    isSlinding = true; 
+                    isSlinding = true;
                     rigidBody.gravityScale = gravity;
                 }
             }
+            
+
+            
 
             MoveHorizontalOnGround();
 
@@ -216,6 +226,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             //Détéection du jump
             if(jump && !jumpButtonHasPressed && canJump)
             {
+                
                 rigidBody.gravityScale = gravity; 
                 SetModeAir();
                 startHang = true;
@@ -224,8 +235,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 hangElapsedTime = 0f;
                 jumpButtonHasPressed = true;
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
-
-                jumpingPS.Play();
             }
             else if(!jump) jumpButtonHasPressed = false;
 
@@ -254,17 +263,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             Vector3 origin = rigidBody.position + Vector2.up * settings.IsGroundedRaycastDistance;
 
-            Vector2 lineCastStart = new Vector2(rigidBody.position.x - settings.IsGroundedLineCastDistance, rigidBody.position.y - settings.JumpTolerance); 
-            Vector2 lineCastEnd = new Vector2(rigidBody.position.x + settings.IsGroundedLineCastDistance, rigidBody.position.y - settings.JumpTolerance); 
+            /*Vector2 lineCastStart = new Vector2(rigidBody.position.x - settings.IsGroundedLineCastDistance, rigidBody.position.y - settings.JumpTolerance); 
+            Vector2 lineCastEnd = new Vector2(rigidBody.position.x + settings.IsGroundedLineCastDistance, rigidBody.position.y - settings.JumpTolerance); */
 
             //RayCast vertical pour recup sa normal pour calculer les pentes
-            hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.IsGroundedRaycastDistance + settings.JumpTolerance, settings.GroundLayerMask);
-            Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.IsGroundedRaycastDistance + settings.JumpTolerance), Color.blue);
+            hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.JumpTolerance, settings.GroundLayerMask);
+            Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.JumpTolerance), Color.blue);
 
             //LineCast horizontal aux pieds
-            hitInfos = Physics2D.Linecast(lineCastStart,lineCastEnd,settings.GroundLayerMask);
-            Debug.DrawLine(lineCastStart, lineCastEnd, Color.red);
-
+            hitInfos = Physics2D.Linecast(groundLinecastStartPos.position,groundLinecastEndPos.position,settings.GroundLayerMask);
+            Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
             IsGrounded = hitInfos.collider != null;
         }
 
@@ -275,8 +283,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             if(horizontalAxis != 0f)
             {
-                runningPS.Play();
-
                 ratio = settings.RunAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, settings.RunSpeed, ratio);
             }
@@ -289,7 +295,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
                 rigidBody.velocity = penteVelocity.normalized * horizontalMove * previousDirection; 
             }
-            else rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
+            else rigidBody.velocity = new Vector2(previousDirection, rigidBody.velocity.y);
         }
 
         private void DoActionSpawn()
@@ -300,6 +306,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void DoActionInAir()
         {
+            CheckIsOnWall();
             CheckIsGrounded();
 
             if(_isGrounded)
@@ -310,13 +317,21 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             MoveHorizontalInAir();
 
-            CheckIsOnWall();
+            //Gère le cas ou le joueur est sur un coin de plateforme et lui donne un impulsion pour qu'il soit sur la plateforme
+            if(isOnCorner && !wasInCorner)
+            {
+                wasInCorner = true;
+                if(wasInCorner)
+                {
+                    StartCoroutine(TestCoroutine(rigidBody.position + new Vector2(settings.ImpulsionInCorner.x * previousDirection, settings.ImpulsionInCorner.y)));
+                }
+                Debug.Log("je suis au corner mgl");
+            }
+
             if(_isOnWall)
             {
                 if(jump && !jumpButtonHasPressed)
                 {
-                    wallJumpPS.Play();
-
                     jumpButtonHasPressed = true;
                     wasOnWall = true;
                     horizontalMoveElapsedTime = 0f;
@@ -326,13 +341,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     rigidBody.velocity = new Vector2(settings.WallJumpHorizontalForce * previousDirection, settings.MinJumpForce);
                 }
             }
-
-            //Gère le cas ou le joueur est sur un coin de plateforme et lui donne un impulsion pour qu'il soit sur la plateforme
-            if(isOnCorner)
-            {
-                rigidBody.velocity += new Vector2(settings.ImpulsionInCorner.x * previousDirection, settings.ImpulsionInCorner.y);
-            }
-
             // Gère l'appui long sur le jump
             if(jump && jumpElapsedTime < settings.MaxJumpTime)
             {
@@ -386,8 +394,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsGrounded();
             if(_isGrounded)
             {
-                landingPS.Play();
-
                 SetModeNormal();
                 return; 
             }
@@ -403,29 +409,17 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void CheckIsOnWall()
         {
-            //Points de départ et d'arrivée des LinesCast 
-            Vector2 leftStart = new Vector2(rigidBody.position.x - settings.IsOnWallLineCastDistance, rigidBody.position.y + settings.HalfPlayerHeight); 
-            Vector2 leftEnd = new Vector2(rigidBody.position.x - settings.IsOnWallLineCastDistance, rigidBody.position.y - settings.HalfPlayerHeight);
-
-            Vector2 rightStart = new Vector2(rigidBody.position.x + settings.IsOnWallLineCastDistance, rigidBody.position.y + settings.HalfPlayerHeight);
-            Vector2 rightEnd = new Vector2(rigidBody.position.x + settings.IsOnWallLineCastDistance, rigidBody.position.y - settings.HalfPlayerHeight);
-
-            Vector2 leftStartCorner = new Vector2(rigidBody.position.x - settings.IsOnWallLineCastDistance, rigidBody.position.y + settings.LinecastCornerPosY); 
-            Vector2 leftEndCorner = new Vector2(rigidBody.position.x - settings.IsOnWallLineCastDistance, rigidBody.position.y + settings.LinecastCornerPosY/2);
-
-            Vector2 rightStartCorner = new Vector2(rigidBody.position.x + settings.IsOnWallLineCastDistance, rigidBody.position.y + settings.LinecastCornerPosY );
-            Vector2 rightEndCorner = new Vector2(rigidBody.position.x + settings.IsOnWallLineCastDistance, rigidBody.position.y + settings.LinecastCornerPosY /2);
-
-            Debug.DrawLine(rightStart, rightEnd, Color.yellow);
-            Debug.DrawLine(leftStart, leftEnd, Color.red);
-            Debug.DrawLine(rightStartCorner, rightEndCorner, Color.white);
-            Debug.DrawLine(leftStartCorner, leftEndCorner, Color.black);
-
             //LineCast verticaux pour tester la collision au mur
-            RaycastHit2D hitInfosLeft = Physics2D.Linecast(leftEnd, leftStart, settings.GroundLayerMask); 
-            RaycastHit2D hitInfosRight = Physics2D.Linecast(rightStart, rightEnd, settings.GroundLayerMask); 
-            RaycastHit2D hitInfosCornerRight = Physics2D.Linecast(rightStartCorner, rightEndCorner, settings.GroundLayerMask); 
-            RaycastHit2D hitInfosCornerLeft = Physics2D.Linecast(leftStartCorner, leftEndCorner, settings.GroundLayerMask); 
+            RaycastHit2D hitInfosLeft = Physics2D.Linecast(wallLinecastLeftStartPos.position, wallLinecastLeftEndPos.position, settings.GroundLayerMask); 
+            RaycastHit2D hitInfosRight = Physics2D.Linecast(wallLinecastRightStartPos.position, wallLinecastRightEndPos.position, settings.GroundLayerMask);
+            Debug.DrawLine(wallLinecastRightStartPos.position, wallLinecastRightEndPos.position, Color.white);
+            Debug.DrawLine(wallLinecastLeftStartPos.position, wallLinecastLeftEndPos.position, Color.black);
+
+            //LineCast verticaux pour tester la collision au corner
+               RaycastHit2D hitInfosCornerRight = Physics2D.Linecast(cornerLinecastRightStartPos.position, cornerLinecastRightEndPos.position, settings.GroundLayerMask); 
+               RaycastHit2D hitInfosCornerLeft = Physics2D.Linecast(cornerLinecastLeftStartPos.position, cornerLinecastLeftEndPos.position, settings.GroundLayerMask);
+               Debug.DrawLine(cornerLinecastRightStartPos.position, cornerLinecastRightEndPos.position, Color.yellow);
+               Debug.DrawLine(cornerLinecastLeftStartPos.position, cornerLinecastLeftEndPos.position, Color.red);
 
             if(hitInfosLeft.collider != null)
             {
@@ -439,10 +433,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
             else IsOnWall = false;
 
-            if(hitInfosRight.collider && !hitInfosCornerRight.collider) isOnCorner = true; 
+            if(hitInfosRight.collider && !hitInfosCornerRight.collider) isOnCorner = true;
             else if(hitInfosLeft.collider && !hitInfosCornerLeft.collider) isOnCorner = true;
             else isOnCorner = false; 
-            
         }
 
         private void MoveHorizontalInAir()
@@ -544,6 +537,20 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
 
             rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
+        }
+
+        //Coroutine qui replace le player qd on arrive a un corner
+        private IEnumerator TestCoroutine(Vector2 target)
+        {
+            while(isOnCorner)
+            {
+                
+                //rigidBody.position = Vector2.MoveTowards(rigidBody.position, target, 1f); Tp le player a une pos 
+                rigidBody.velocity += new Vector2(settings.ImpulsionInCorner.x * previousDirection, settings.ImpulsionInCorner.y); 
+                yield return null; 
+            }
+            wasInCorner = false;
+            StopAllCoroutines(); 
         }
 
         #region LifeMethods

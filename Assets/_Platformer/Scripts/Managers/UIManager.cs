@@ -213,6 +213,8 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             Scene currentScene = SceneManager.GetActiveScene();
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene,LoadSceneMode.Additive);
+
+            ////Creation ecran de chargement
             //LoadingScreen loader = CreateLoadingScreen().GetComponent<LoadingScreen>();
 
             while (!asyncLoad.isDone)

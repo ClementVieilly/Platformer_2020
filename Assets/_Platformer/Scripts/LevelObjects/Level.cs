@@ -11,5 +11,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 
 		[SerializeField] private List<Checkpoints> checkpoints = new List<Checkpoints>();
 		public List<Checkpoints> CheckpointsList => checkpoints;
+
 	}
 }

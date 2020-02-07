@@ -37,8 +37,6 @@ namespace Com.IsartDigital.Platformer.Screens {
                 else if (buttons[i].CompareTag(buttonLevel2Tag)) level2Button = buttons[i];
                 else backToTitleButton = buttons[i];
 
-                Debug.Log(buttons[i].tag);
-
                 buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked += LevelSelector_OnButtonClicked;
 
             }

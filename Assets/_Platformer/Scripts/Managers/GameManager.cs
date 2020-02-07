@@ -7,13 +7,25 @@ using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Managers {
 	public class GameManager : MonoBehaviour {
-	
-		private void Start () {
-			
+
+		private static GameManager _instance;
+		//public static GameManager Instance => _instance;
+
+		private void Awake()
+		{
+			if (_instance)
+			{
+				Destroy(gameObject);
+				return;
+			}
+			_instance = this;
+
+			DontDestroyOnLoad(this.gameObject);
 		}
-		
-		private void Update () {
-			
+
+		private void OnDestroy()
+		{
+			if (this == _instance) _instance = null;
 		}
 	}
 }

@@ -124,6 +124,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private bool wasOnWall = false;
 		private bool isFacingWallJump = false;
 
+		//Animations
+		private Vector3 scaleLeft = new Vector3(0.5f, 0.5f, 1f);
+		private Vector3 scaleRight = new Vector3(-0.5f, 0.5f, 1f);
+
         private Rigidbody2D rigidBody = null;
         private Animator animator = null;
 
@@ -264,7 +268,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
 
             // Updating Animator
-			transform.localScale = previousDirection >= 0 ? new Vector3(-1f, 1f, 1f) : Vector3.one;
+			transform.localScale = previousDirection >= 0 ? scaleRight : scaleLeft;
 			animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
 
 			if (!_isGrounded)
@@ -394,7 +398,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.FallVerticalSpeed);
 
 			// Updating Animator
-			transform.localScale = previousDirection >= 0 ? new Vector3(-1f, 1f, 1f) : Vector3.one;
+			transform.localScale = previousDirection >= 0 ? scaleRight : scaleLeft;
 			animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
 
 			animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
@@ -425,7 +429,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.PlaneVerticalSpeed);
 
 			// Updating Animator
-			transform.localScale = previousDirection >= 0 ? new Vector3(-1f, 1f, 1f) : Vector3.one;
+			transform.localScale = previousDirection >= 0 ? scaleRight : scaleLeft;
 			animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
 
 			animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
@@ -440,21 +444,21 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             Debug.DrawLine(wallLinecastLeftStartPos.position, wallLinecastLeftEndPos.position, Color.black);
 
             //LineCast verticaux pour tester la collision au corner
-               RaycastHit2D hitInfosCornerRight = Physics2D.Linecast(cornerLinecastRightStartPos.position, cornerLinecastRightEndPos.position, settings.GroundLayerMask); 
-               RaycastHit2D hitInfosCornerLeft = Physics2D.Linecast(cornerLinecastLeftStartPos.position, cornerLinecastLeftEndPos.position, settings.GroundLayerMask);
-               Debug.DrawLine(cornerLinecastRightStartPos.position, cornerLinecastRightEndPos.position, Color.yellow);
-               Debug.DrawLine(cornerLinecastLeftStartPos.position, cornerLinecastLeftEndPos.position, Color.red);
+            RaycastHit2D hitInfosCornerRight = Physics2D.Linecast(cornerLinecastRightStartPos.position, cornerLinecastRightEndPos.position, settings.GroundLayerMask); 
+            RaycastHit2D hitInfosCornerLeft = Physics2D.Linecast(cornerLinecastLeftStartPos.position, cornerLinecastLeftEndPos.position, settings.GroundLayerMask);
+            Debug.DrawLine(cornerLinecastRightStartPos.position, cornerLinecastRightEndPos.position, Color.yellow);
+            Debug.DrawLine(cornerLinecastLeftStartPos.position, cornerLinecastLeftEndPos.position, Color.red);
 
             if(hitInfosLeft.collider != null)
             {
                 IsOnWall = true;
-                facingRightWall = -1;
+				facingRightWall = transform.localScale == scaleLeft ? -1 : 1;
             }
             else if(hitInfosRight.collider != null)
             {
                 IsOnWall = true;
-                facingRightWall = 1; 
-            }
+				facingRightWall = transform.localScale == scaleLeft ? 1 : -1;
+			}
             else IsOnWall = false;
 
             if(hitInfosRight.collider && !hitInfosCornerRight.collider) isOnCorner = true;

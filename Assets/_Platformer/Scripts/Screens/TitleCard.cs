@@ -26,11 +26,13 @@ namespace Com.IsartDigital.Platformer.Screens {
         private Button soundTriggerButton;
         private Button localisationButton;
         private Button creditsButton;
+        private Button playButton;
 
         [SerializeField] private string buttonLeaderBoardTag = "LeaderBoard";
         [SerializeField] private string buttonSoundTriggerTag = "SoundTrigger";
         [SerializeField] private string buttonLocalisationTag = "Localisation";
         [SerializeField] private string buttonCreditsTag = "Credits";
+        [SerializeField] private string buttonPlayTag = "PlayButton";
 
 
         private void Awake()
@@ -42,6 +44,7 @@ namespace Com.IsartDigital.Platformer.Screens {
                 if (buttons[i].CompareTag(buttonLeaderBoardTag)) leaderBoardButton = buttons[i];
                 else if (buttons[i].CompareTag(buttonSoundTriggerTag)) soundTriggerButton = buttons[i];
                 else if (buttons[i].CompareTag(buttonLocalisationTag)) localisationButton = buttons[i];
+                else if (buttons[i].CompareTag(buttonPlayTag)) playButton = buttons[i];
                 else creditsButton = buttons[i];
 
                 buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked += TitleCard_OnMenuButtonClicked;
@@ -50,7 +53,7 @@ namespace Com.IsartDigital.Platformer.Screens {
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter)) OnGameStart?.Invoke(this);
+            //if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter)) OnGameStart?.Invoke(this);
         }
 
         private void TitleCard_OnMenuButtonClicked(Button sender)
@@ -65,6 +68,7 @@ namespace Com.IsartDigital.Platformer.Screens {
             }
             else if (sender.CompareTag(buttonSoundTriggerTag)) OnSoundTriggerClicked?.Invoke(this);
             else if (sender.CompareTag(buttonLocalisationTag)) OnLocalisationClicked?.Invoke(this);
+            else if (sender.CompareTag(buttonPlayTag)) OnGameStart?.Invoke(this);
             else
             {
                 OnCreditsClicked?.Invoke(this);

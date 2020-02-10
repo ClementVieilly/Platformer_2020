@@ -84,7 +84,6 @@ namespace Com.IsartDigital.Platformer.Managers
             if(elapsedTime >= 1)
             {
                 _timer++;
-                Debug.Log(_timer);
                 elapsedTime = 0; 
             }
         }

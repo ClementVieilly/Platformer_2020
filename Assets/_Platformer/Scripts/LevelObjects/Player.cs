@@ -216,9 +216,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 }
             }
             
-
-            
-
             MoveHorizontalOnGround();
 
             CheckIsGrounded();
@@ -235,6 +232,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 hangElapsedTime = 0f;
                 jumpButtonHasPressed = true;
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
+                Debug.Log(rigidBody.velocity.y); 
             }
             else if(!jump) jumpButtonHasPressed = false;
 
@@ -306,15 +304,20 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void DoActionInAir()
         {
+            Debug.Log("-----------------------------------------------------------------");
+            Debug.Log(rigidBody.velocity.y);
             CheckIsOnWall();
-            CheckIsGrounded();
+            if(rigidBody.velocity.y < 0)
+            {
+                CheckIsGrounded();
+            }
 
             if(_isGrounded)
             {
                 SetModeNormal();
                 return;
             }
-
+           
             MoveHorizontalInAir();
 
             //Gère le cas ou le joueur est sur un coin de plateforme et lui donne un impulsion pour qu'il soit sur la plateforme
@@ -325,7 +328,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 {
                     StartCoroutine(TestCoroutine(rigidBody.position + new Vector2(settings.ImpulsionInCorner.x * previousDirection, settings.ImpulsionInCorner.y)));
                 }
-                Debug.Log("je suis au corner mgl");
             }
 
             if(_isOnWall)

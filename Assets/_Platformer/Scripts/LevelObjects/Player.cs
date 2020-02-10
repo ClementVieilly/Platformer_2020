@@ -16,7 +16,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private PlayerController controller = null;
         [SerializeField] private PlayerSettings settings = null;
 
-        [Header("Pos des Linecast")]
+        [Header("Position des Linecast")]
         [SerializeField] private Transform wallLinecastRightStartPos = null; 
         [SerializeField] private Transform wallLinecastRightEndPos = null;
         [SerializeField] private Transform wallLinecastLeftStartPos = null;
@@ -27,6 +27,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private Transform cornerLinecastLeftEndPos = null;
         [SerializeField] private Transform groundLinecastStartPos = null;
         [SerializeField] private Transform groundLinecastEndPos = null;
+        [SerializeField] private Transform slopeRaycastOrigin = null;
 
         [Header("Particle Systems")]
         [SerializeField] private ParticleSystem runningPS;
@@ -34,6 +35,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private ParticleSystem landingPS;
         [SerializeField] private ParticleSystem wallJumpPS;
 
+        [Header("State")]
         [SerializeField] private GameObject stateTag = null;
 
         private RaycastHit2D hitInfos; 
@@ -52,6 +54,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private int _life = 3;
         public event Action OnDie;
         #endregion
+
         private bool _isGrounded = true;
         public bool IsGrounded
         {
@@ -59,8 +62,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             protected set
             {
                 _isGrounded = value;
-                /*animator.SetBool(settings.IsGroundedParameter, value);
-				animator.SetFloat(settings.VerticalVelocityParam, 0f);*/
+                animator.SetBool(settings.IsGroundedParameter, value);
+				animator.SetFloat(settings.VerticalVelocityParam, 0f);
             }
         }
 
@@ -205,8 +208,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void DoActionNormal()
         {
-            // Réflexion sur l'orientation des pentes
-            if(IsGrounded && hitInfos.collider)
+            CheckIsGrounded();
+
+			// Réflexion sur l'orientation des pentes
+			if (IsGrounded && hitInfos.collider)
             {
                 canJump = true;
                 Vector2 tan = hitInfosNormal.normal;
@@ -224,15 +229,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     rigidBody.gravityScale = gravity;
                 }
             }
-            
-
-            
 
             MoveHorizontalOnGround();
 
-            CheckIsGrounded();
-
-            //Détéection du jump
+            //Détection du jump
             if(jump && !jumpButtonHasPressed && canJump)
             {
                 rigidBody.gravityScale = gravity; 
@@ -261,20 +261,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 }
 
             }
+
             // Updating Animator
-            /*animator.SetInteger(settings.HorizontalOrientationParam, rigidBody.velocity.x == 0 ? 0 : (int)Mathf.Sign(rigidBody.velocity.x));
+            animator.SetInteger(settings.HorizontalOrientationParam, rigidBody.velocity.x == 0 ? 0 : (int)Mathf.Sign(rigidBody.velocity.x));
 			animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
 
 			if (!_isGrounded)
-				animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);*/
+				animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
         }
 
         private void CheckIsGrounded()
         {
-            Vector3 origin = rigidBody.position + Vector2.up * settings.IsGroundedRaycastDistance;
-
-            /*Vector2 lineCastStart = new Vector2(rigidBody.position.x - settings.IsGroundedLineCastDistance, rigidBody.position.y - settings.JumpTolerance); 
-            Vector2 lineCastEnd = new Vector2(rigidBody.position.x + settings.IsGroundedLineCastDistance, rigidBody.position.y - settings.JumpTolerance); */
+            Vector3 origin = slopeRaycastOrigin.position + Vector3.up * settings.IsGroundedRaycastDistance;
 
             //RayCast vertical pour recup sa normal pour calculer les pentes
             hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.JumpTolerance, settings.GroundLayerMask);
@@ -393,9 +391,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallOnWallVerticalSpeed);
             else if(rigidBody.velocity.y <= - settings.FallVerticalSpeed)
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.FallVerticalSpeed);
-        }
 
-        private void DoActionPlane()
+			// Updating Animator
+			animator.SetInteger(settings.HorizontalOrientationParam, rigidBody.velocity.x == 0 ? 0 : (int)Mathf.Sign(rigidBody.velocity.x));
+			animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
+		}
+
+		private void DoActionPlane()
         {
             CheckIsOnWall();
             if(_isOnWall || !jump)
@@ -418,7 +420,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             //Planage vertical
             if(rigidBody.velocity.y <= settings.PlaneVerticalSpeed)
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.PlaneVerticalSpeed);
-        }
+
+			// Updating Animator
+			animator.SetInteger(settings.HorizontalOrientationParam, rigidBody.velocity.x == 0 ? 0 : (int)Mathf.Sign(rigidBody.velocity.x));
+			animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
+		}
 
         private void CheckIsOnWall()
         {

@@ -318,7 +318,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 return;
             }
             MoveHorizontalInAir();
-            Debug.Log(isOnCorner); 
+
             //Gère le cas ou le joueur est sur un coin de plateforme et lui donne un impulsion pour qu'il soit sur la plateforme
             if(isOnCorner && !wasInCorner)
             {

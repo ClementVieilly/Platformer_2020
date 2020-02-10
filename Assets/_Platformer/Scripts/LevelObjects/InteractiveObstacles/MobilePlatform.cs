@@ -13,6 +13,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         private float elapsedTime;
         private uint index = 1;
         [SerializeField]private float duration;
+        [SerializeField]private string playerTag = "Player";
 
         [SerializeField] private bool _isStarted = false;
 
@@ -32,6 +33,26 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         {
             startPos = allPoints[0].position;
         }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            Debug.Log("sur une plateforme mobile");
+            if (collision.CompareTag(playerTag))
+            {
+                collision.transform.SetParent(transform);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.CompareTag(playerTag))
+            {
+                collision.transform.SetParent(null);
+            }
+
+        }
+
+
 
         private void Update()
         {

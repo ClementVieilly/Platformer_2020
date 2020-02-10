@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7581267895413152121}
   - component: {fileID: 7581267895413152118}
   - component: {fileID: -6927626972666347312}
-  m_Layer: 0
+  - component: {fileID: 2484867026229071357}
+  m_Layer: 8
   m_Name: MobilePlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7581267895413152119}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 6, z: 0}
+  m_LocalPosition: {x: -15.482408, y: 5.584195, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -147,10 +148,10 @@ MonoBehaviour:
   fillCollider: 0
   pathData:
     _points:
-    - {x: -11.489004, y: -1.4467669}
-    - {x: -11.035179, y: 0.6151576}
-    - {x: -15.816181, y: 0.6907582}
-    - {x: -15.589268, y: -1.5223675}
+    - {x: 1.9934034, y: -1.0309622}
+    - {x: 2.4472284, y: 1.0309622}
+    - {x: -2.3337736, y: 1.1065629}
+    - {x: -2.1068602, y: -1.1065629}
     _pointControls:
     - radius: 1
       controlNext: {x: 0, y: 0}
@@ -184,7 +185,7 @@ MonoBehaviour:
       cutOverrides: 
       scale: 1
   terrainMaterial: {fileID: 0}
-  terrainMaterialInterface: {fileID: 11400000, guid: 735fc580398bf414cb8476b6b3dc3cab,
+  terrainMaterialInterface: {fileID: 11400000, guid: 0b59392ceb4c9244c80ee1850d3ba888,
     type: 2}
   fill: 0
   smoothPath: 0
@@ -225,4 +226,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPoints: []
   duration: 0
+  playerTag: Player
   _isStarted: 0
+--- !u!60 &2484867026229071357
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7581267895413152119}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 2.335222, y: -1.1061957}
+      - {x: 2.789047, y: 0.9557287}
+      - {x: 2.789047, y: 0.9557287}
+      - {x: 2.1151762, y: 1.1040462}
+      - {x: 2.1151762, y: 1.1040462}
+      - {x: 1.6613512, y: -0.95787823}
+    - - {x: -2.7600377, y: 1.5383564}
+      - {x: -2.7117918, y: 1.0678043}
+      - {x: -2.1248689, y: 1.127982}
+      - {x: -2.0786781, y: 0.6774759}
+      - {x: 2.0070693, y: 0.6128692}
+      - {x: 2.1151762, y: 1.1040462}
+      - {x: 2.789047, y: 0.9557287}
+      - {x: 2.8975918, y: 1.4488939}
+    - - {x: -2.7117918, y: 1.0678043}
+      - {x: -2.4848783, y: -1.1453214}
+      - {x: -2.4848783, y: -1.1453214}
+      - {x: -1.8979554, y: -1.0851437}
+      - {x: -1.8979554, y: -1.0851437}
+      - {x: -2.1248689, y: 1.127982}
+    - - {x: 1.88976, y: -1.2157168}
+      - {x: 2.335222, y: -1.1061957}
+      - {x: 1.6613512, y: -0.95787823}
+      - {x: 1.7549675, y: -0.5325388}
+      - {x: -1.9476149, y: -0.60080683}
+      - {x: -1.8979554, y: -1.0851437}
+      - {x: -2.4848783, y: -1.1453214}
+      - {x: -1.9964764, y: -1.2873712}

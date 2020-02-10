@@ -15,7 +15,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
 
         public event ScoreCollectibleEventHandler OnCollected;
 
-        [SerializeField] private float score = 10;
+        [SerializeField] private float score = 1;
 
         private void Awake()
         {

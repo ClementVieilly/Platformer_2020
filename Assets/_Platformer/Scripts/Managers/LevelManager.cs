@@ -5,7 +5,9 @@
 
 using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
+using Com.IsartDigital.Platformer.Screens;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,19 +17,36 @@ namespace Com.IsartDigital.Platformer.Managers {
 
         [SerializeField] private Player player;
         private TimeManager timeManager;
-        //private float _score = 0;
+
+        private float score = 0;
+
         private float finalTimer = 0; //Temps du levelComplete
         private void Start()
         {
-            subscribeAllEvents();
+            SubscribeAllEvents();
             timeManager = GetComponent<TimeManager>();
-            timeManager.StartTimer(); 
-
+            timeManager.StartTimer();
+            StartCoroutine(InitHud());
         }
+
+        IEnumerator InitHud()
+        {
+            while (Hud.Instance == null) yield return null;
+            Hud.Instance.Score = score;
+            Hud.Instance.Life = player.Life;
+        }
+
 
         private void LifeCollectible_OnCollected(int value)
         {
             player.AddLife(value);
+            Hud.Instance.Life = player.Life;
+        }
+
+        private void ScoreCollectible_OnCollected(float addScore)
+        {
+            score += addScore;
+            Hud.Instance.Score = score;
         }
 
         private void KillZone_OnCollision()
@@ -35,25 +54,22 @@ namespace Com.IsartDigital.Platformer.Managers {
             if (player.LooseLife())
             {
                 player.setPosition(CheckpointManager.Instance.LastCheckpointPos);
+                Hud.Instance.Life = player.Life;
             }
-            else {
+            else 
+            {
                 player.setPosition(CheckpointManager.Instance.LastSuperCheckpointPos);
                 CheckpointManager.Instance.ResetColliders();
             } 
         }
-        private void lScoreCollectible_OnCollected(float score)
-        {
-            //Hud.Score = score; 
-            // Hud.UpdateScore(); 
-        }
 
         private void OnDestroy()
         {
-            unsubscribeAllEvents();
+            UnsubscribeAllEvents();
         }
 
         #region Events subscribtions
-        private void subscribeAllEvents()
+        private void SubscribeAllEvents()
         {
             for(int i = LifeCollectible.List.Count - 1; i >= 0; i--)
             {
@@ -67,7 +83,7 @@ namespace Com.IsartDigital.Platformer.Managers {
 
             for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
             {
-                ScoreCollectible.List[i].OnCollected += lScoreCollectible_OnCollected; 
+                ScoreCollectible.List[i].OnCollected += ScoreCollectible_OnCollected; 
             }
 
             CheckpointManager.OnFinalCheckPointTriggered += CheckpointManager_OnFinalCheckPointTriggered;
@@ -94,7 +110,7 @@ namespace Com.IsartDigital.Platformer.Managers {
         {
             finalTimer = timeManager.Timer;
             timeManager.SetModeVoid(); 
-            unsubscribeAllEvents();
+            UnsubscribeAllEvents();
 
             UIManager.Instance.CreateWinScreen();
             player.gameObject.SetActive(false);
@@ -102,7 +118,7 @@ namespace Com.IsartDigital.Platformer.Managers {
         #endregion
 
         #region Events unsubscriptions
-        private void unsubscribeAllEvents()
+        private void UnsubscribeAllEvents()
         {
             for(int i = LifeCollectible.List.Count - 1; i >= 0; i--)
             {
@@ -116,7 +132,7 @@ namespace Com.IsartDigital.Platformer.Managers {
 
             for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
             {
-                ScoreCollectible.List[i].OnCollected -= lScoreCollectible_OnCollected;
+                ScoreCollectible.List[i].OnCollected -= ScoreCollectible_OnCollected;
             }
         }
         #endregion

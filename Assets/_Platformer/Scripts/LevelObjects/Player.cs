@@ -184,11 +184,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             DoAction = DoActionNormal;
 
             landingPS.Play();
+			animator.SetBool(settings.IsPlaningParam, false);
+		}
 
-
-        }
-
-        private void SetModeSpawn()
+		private void SetModeSpawn()
         {
             DoAction = DoActionSpawn;
         }
@@ -198,10 +197,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             elapsedTimerBeforeSetModeAir = 0;
             stateTag.name = "Air"; 
             DoAction = DoActionInAir;
-        }
+			animator.SetBool(settings.IsPlaningParam, false);
+		}
 
-        private void SetModePlane()
+		private void SetModePlane()
         {
+			animator.SetBool(settings.IsPlaningParam, true);
             stateTag.name = "Plane"; 
             DoAction = DoActionPlane; 
         }
@@ -263,7 +264,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
 
             // Updating Animator
-            animator.SetInteger(settings.HorizontalOrientationParam, rigidBody.velocity.x == 0 ? 0 : (int)Mathf.Sign(rigidBody.velocity.x));
+			transform.localScale = previousDirection >= 0 ? new Vector3(-1f, 1f, 1f) : Vector3.one;
 			animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
 
 			if (!_isGrounded)
@@ -393,8 +394,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.FallVerticalSpeed);
 
 			// Updating Animator
-			animator.SetInteger(settings.HorizontalOrientationParam, rigidBody.velocity.x == 0 ? 0 : (int)Mathf.Sign(rigidBody.velocity.x));
+			transform.localScale = previousDirection >= 0 ? new Vector3(-1f, 1f, 1f) : Vector3.one;
 			animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
+
+			animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
 		}
 
 		private void DoActionPlane()
@@ -422,11 +425,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.PlaneVerticalSpeed);
 
 			// Updating Animator
-			animator.SetInteger(settings.HorizontalOrientationParam, rigidBody.velocity.x == 0 ? 0 : (int)Mathf.Sign(rigidBody.velocity.x));
+			transform.localScale = previousDirection >= 0 ? new Vector3(-1f, 1f, 1f) : Vector3.one;
 			animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
+
+			animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
 		}
 
-        private void CheckIsOnWall()
+		private void CheckIsOnWall()
         {
             //LineCast verticaux pour tester la collision au mur
             RaycastHit2D hitInfosLeft = Physics2D.Linecast(wallLinecastLeftStartPos.position, wallLinecastLeftEndPos.position, settings.GroundLayerMask); 

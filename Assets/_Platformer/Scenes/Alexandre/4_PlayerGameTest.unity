@@ -1636,7 +1636,7 @@ PrefabInstance:
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.2800007
+      value: -0.2800007
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
@@ -2745,7 +2745,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1571504811}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 65307590cc3f7ba41b34f36d41cc7227, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2825,8 +2825,8 @@ MonoBehaviour:
   _sortingLayer: Default
   _sortingOrder: 0
   _tint: {r: 1, g: 1, b: 1, a: 1}
-  _clip: {fileID: 11400000, guid: 4c940f51121d5754aa9b02d561bfbee1, type: 2}
-  _sequence: Jump
+  _clip: {fileID: 11400000, guid: b7797aeabce53fa418c99c696295b80f, type: 2}
+  _sequence: IDLE
   _currentFrame: 0
 --- !u!210 &1571504818
 SortingGroup:
@@ -2892,7 +2892,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571504811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27, y: 0, z: 0}
+  m_LocalPosition: {x: 27, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1505433314}

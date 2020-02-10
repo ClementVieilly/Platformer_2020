@@ -94,6 +94,7 @@ namespace Com.IsartDigital.Platformer.Controllers
 				if (touch.phase == TouchPhase.Began)
 				{
 					touchInfo = new TouchInfo(i);
+					Debug.Log(mainCamera);
 					touchInfo.direction = touchInfo.position = touch.position;
 					touchInfo.side = mainCamera.ScreenToViewportPoint(touch.position).x <= 0.5f ? Side.LEFT : Side.RIGHT;
 

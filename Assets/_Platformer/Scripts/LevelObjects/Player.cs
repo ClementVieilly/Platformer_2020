@@ -196,13 +196,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void DoActionNormal()
         {
+            CheckIsGrounded();
+
             // Réflexion sur l'orientation des pentes
-            if(IsGrounded && hitInfos.collider)
+            if(IsGrounded)
             {
                 canJump = true;
                 Vector2 tan = hitInfosNormal.normal;
                 tan = new Vector2(tan.y, -tan.x);
                 penteVelocity = tan;
+                Debug.Log(penteVelocity); 
                 float anglePente = Vector2.Angle(tan, Vector3.up);
                 if(anglePente > settings.AngleMinPente && anglePente < settings.AngleMaxPente || anglePente > 150)
                 {
@@ -218,8 +221,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             
             MoveHorizontalOnGround();
 
-            CheckIsGrounded();
-
             //Détéection du jump
             if(jump && !jumpButtonHasPressed && canJump)
             {
@@ -232,7 +233,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 hangElapsedTime = 0f;
                 jumpButtonHasPressed = true;
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
-                Debug.Log(rigidBody.velocity.y); 
             }
             else if(!jump) jumpButtonHasPressed = false;
 
@@ -264,14 +264,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             /*Vector2 lineCastStart = new Vector2(rigidBody.position.x - settings.IsGroundedLineCastDistance, rigidBody.position.y - settings.JumpTolerance); 
             Vector2 lineCastEnd = new Vector2(rigidBody.position.x + settings.IsGroundedLineCastDistance, rigidBody.position.y - settings.JumpTolerance); */
 
-            //RayCast vertical pour recup sa normal pour calculer les pentes
-            hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.JumpTolerance, settings.GroundLayerMask);
-            Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.JumpTolerance), Color.blue);
-
             //LineCast horizontal aux pieds
-            hitInfos = Physics2D.Linecast(groundLinecastStartPos.position,groundLinecastEndPos.position,settings.GroundLayerMask);
+            hitInfos = Physics2D.Linecast(groundLinecastStartPos.position, groundLinecastEndPos.position, settings.GroundLayerMask);
             Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
             IsGrounded = hitInfos.collider != null;
+            if(IsGrounded)
+            {
+                //RayCast vertical pour recup sa normal pour calculer les pentes
+                hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.JumpTolerance, settings.GroundLayerMask);
+                Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.JumpTolerance), Color.blue);
+
+            }
+
         }
 
         private void MoveHorizontalOnGround()
@@ -291,6 +295,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
             if(!isSlinding)
             {
+                //rigidBody.velocity = new Vector2(penteVelocity.normalized.x * horizontalMove * previousDirection,penteVelocity.normalized.y); 
                 rigidBody.velocity = penteVelocity.normalized * horizontalMove * previousDirection; 
             }
             else rigidBody.velocity = new Vector2(previousDirection, rigidBody.velocity.y);
@@ -304,14 +309,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void DoActionInAir()
         {
-            Debug.Log("-----------------------------------------------------------------");
-            Debug.Log(rigidBody.velocity.y);
             CheckIsOnWall();
-            if(rigidBody.velocity.y < 0)
-            {
-                CheckIsGrounded();
-            }
 
+            CheckIsGrounded();
+            
             if(_isGrounded)
             {
                 SetModeNormal();

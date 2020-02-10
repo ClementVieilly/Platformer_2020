@@ -31,6 +31,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         [SerializeField] private GameObject stateTag = null;
 
+        private string platformTraversableTag = "PlatformTraversable"; 
+
         private RaycastHit2D hitInfos; 
         private RaycastHit2D hitInfosNormal; 
 
@@ -197,18 +199,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionNormal()
         {
             CheckIsGrounded();
-
+            canJump = true;
             // Réflexion sur l'orientation des pentes
             if(IsGrounded)
             {
-                canJump = true;
                 Vector2 tan = hitInfosNormal.normal;
                 tan = new Vector2(tan.y, -tan.x);
-                penteVelocity = tan;
-                Debug.Log(penteVelocity); 
                 float anglePente = Vector2.Angle(tan, Vector3.up);
                 if(anglePente > settings.AngleMinPente && anglePente < settings.AngleMaxPente || anglePente > 150)
                 {
+                    penteVelocity = tan;
                     rigidBody.gravityScale = 0f;
                     isSlinding = false;
                 }
@@ -224,7 +224,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             //Détéection du jump
             if(jump && !jumpButtonHasPressed && canJump)
             {
-                
                 rigidBody.gravityScale = gravity; 
                 SetModeAir();
                 startHang = true;
@@ -233,6 +232,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 hangElapsedTime = 0f;
                 jumpButtonHasPressed = true;
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
+                IsGrounded = false; 
             }
             else if(!jump) jumpButtonHasPressed = false;
 
@@ -259,7 +259,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void CheckIsGrounded()
         {
-            Vector3 origin = rigidBody.position + Vector2.up * settings.IsGroundedRaycastDistance;
+            Vector3 origin = rigidBody.position + Vector2.down * settings.IsGroundedRaycastDistance;
 
             /*Vector2 lineCastStart = new Vector2(rigidBody.position.x - settings.IsGroundedLineCastDistance, rigidBody.position.y - settings.JumpTolerance); 
             Vector2 lineCastEnd = new Vector2(rigidBody.position.x + settings.IsGroundedLineCastDistance, rigidBody.position.y - settings.JumpTolerance); */
@@ -295,7 +295,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
             if(!isSlinding)
             {
-                //rigidBody.velocity = new Vector2(penteVelocity.normalized.x * horizontalMove * previousDirection,penteVelocity.normalized.y); 
+               //rigidBody.velocity = new Vector2(penteVelocity.normalized.x * horizontalMove * previousDirection,rigidBody.velocity.y); 
                 rigidBody.velocity = penteVelocity.normalized * horizontalMove * previousDirection; 
             }
             else rigidBody.velocity = new Vector2(previousDirection, rigidBody.velocity.y);
@@ -310,21 +310,20 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionInAir()
         {
             CheckIsOnWall();
+            if(Mathf.Abs(rigidBody.velocity.y) < 1f) CheckIsGrounded();
 
-            CheckIsGrounded();
-            
             if(_isGrounded)
             {
                 SetModeNormal();
                 return;
             }
-           
             MoveHorizontalInAir();
-
+            Debug.Log(isOnCorner); 
             //Gère le cas ou le joueur est sur un coin de plateforme et lui donne un impulsion pour qu'il soit sur la plateforme
             if(isOnCorner && !wasInCorner)
             {
                 wasInCorner = true;
+                isOnCorner = false; 
                 if(wasInCorner)
                 {
                     StartCoroutine(TestCoroutine(rigidBody.position + new Vector2(settings.ImpulsionInCorner.x * previousDirection, settings.ImpulsionInCorner.y)));
@@ -424,21 +423,19 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                Debug.DrawLine(cornerLinecastRightStartPos.position, cornerLinecastRightEndPos.position, Color.yellow);
                Debug.DrawLine(cornerLinecastLeftStartPos.position, cornerLinecastLeftEndPos.position, Color.red);
 
-            if(hitInfosLeft.collider != null)
+            if(hitInfosLeft.collider && !hitInfosLeft.collider.CompareTag(platformTraversableTag)) 
             {
                 IsOnWall = true;
                 facingRightWall = -1;
+                isOnCorner = hitInfosCornerLeft.collider ? false : true; 
             }
-            else if(hitInfosRight.collider != null)
+            else if(hitInfosRight.collider && !hitInfosRight.collider.CompareTag(platformTraversableTag))
             {
                 IsOnWall = true;
-                facingRightWall = 1; 
+                facingRightWall = 1;
+                isOnCorner = hitInfosCornerRight.collider ? false : true;
             }
             else IsOnWall = false;
-
-            if(hitInfosRight.collider && !hitInfosCornerRight.collider) isOnCorner = true;
-            else if(hitInfosLeft.collider && !hitInfosCornerLeft.collider) isOnCorner = true;
-            else isOnCorner = false; 
         }
 
         private void MoveHorizontalInAir()
@@ -547,10 +544,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             while(isOnCorner)
             {
-                
                 //rigidBody.position = Vector2.MoveTowards(rigidBody.position, target, 1f); Tp le player a une pos 
                 rigidBody.velocity += new Vector2(settings.ImpulsionInCorner.x * previousDirection, settings.ImpulsionInCorner.y); 
-                yield return null; 
+                yield return null;
             }
             wasInCorner = false;
             StopAllCoroutines(); 

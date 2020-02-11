@@ -10,7 +10,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
 
         private bool startCount = false;
         [SerializeField] private float duration;
-        [SerializeField] private Collider2D triggeredCollider;
+        [SerializeField] private PolygonCollider2D triggeredCollider;
         private float elapsedTime;
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -25,7 +25,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
             {
                 elapsedTime += Time.deltaTime;
 
-                if(elapsedTime > duration) triggeredCollider.enabled = false;
+                if (elapsedTime > duration) triggeredCollider.enabled = false;
             }
         }
 

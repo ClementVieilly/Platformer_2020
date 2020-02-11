@@ -40,13 +40,13 @@ namespace Com.IsartDigital.Platformer.Managers {
         private void LifeCollectible_OnCollected(int value)
         {
             player.AddLife(value);
-            Hud.Instance.Life = player.Life;
+            if(Hud.Instance != null) Hud.Instance.Life = player.Life;
         }
 
         private void ScoreCollectible_OnCollected(float addScore)
         {
             score += addScore;
-            Hud.Instance.Score = score;
+            if(Hud.Instance != null) Hud.Instance.Score = score;
         }
 
         private void KillZone_OnCollision()
@@ -112,7 +112,8 @@ namespace Com.IsartDigital.Platformer.Managers {
             timeManager.SetModeVoid(); 
             UnsubscribeAllEvents();
 
-            UIManager.Instance.CreateWinScreen();
+            if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();
+            else Debug.Log("Pas d'UImanager sur la scène");
             player.gameObject.SetActive(false);
         }
         #endregion

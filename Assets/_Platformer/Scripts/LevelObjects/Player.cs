@@ -29,6 +29,14 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private Transform groundLinecastStartPos = null;
         [SerializeField] private Transform groundLinecastEndPos = null;
 
+        [Header("Particle Systems")]
+        [SerializeField] private ParticleSystem walkingPS;
+        [SerializeField] private ParticleSystem jumpingPS;
+        [SerializeField] private ParticleSystem landingPS;
+        [SerializeField] private ParticleSystem wallJumpPSRight;
+        [SerializeField] private ParticleSystem wallJumpPSLeft;
+        [SerializeField] private ParticleSystem planePS;
+
 
         [SerializeField] private GameObject stateTag = null;
 
@@ -177,6 +185,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             stateTag.name = "Normal"; 
             DoAction = DoActionNormal;
+            landingPS.Play(); 
         }
 
         private void SetModeSpawn()
@@ -235,6 +244,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
                 IsGrounded = false;
                 if (transform.parent != null) transform.SetParent(null);
+                jumpingPS.Play(); 
 
             }
             else if(!jump) jumpButtonHasPressed = false;
@@ -300,6 +310,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
                 ratio = settings.RunAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, settings.RunSpeed, ratio);
+
+                walkingPS.Play(); 
             }
             else
             {
@@ -354,6 +366,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     topSpeed = settings.WallJumpHorizontalForce;
 					previousDirection = -facingRightWall;
                     rigidBody.velocity = new Vector2(settings.WallJumpHorizontalForce * previousDirection, settings.MinJumpForce);
+                    ParticleSystem wjParticle = facingRightWall == 1 ? wallJumpPSRight : wallJumpPSLeft;
+                    wjParticle.Play();
                 }
             }
             // Gère l'appui long sur le jump
@@ -420,6 +434,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             //Planage vertical
             if(rigidBody.velocity.y <= settings.PlaneVerticalSpeed)
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.PlaneVerticalSpeed);
+
+            planePS.Play(); 
         }
 
         private void CheckIsOnWall()

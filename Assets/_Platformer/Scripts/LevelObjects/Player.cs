@@ -3,6 +3,7 @@
 /// Date : 21/01/2020 10:38
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.ScriptableObjects;
 using System;
 using System.Collections;
@@ -232,7 +233,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 hangElapsedTime = 0f;
                 jumpButtonHasPressed = true;
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
-                IsGrounded = false; 
+                IsGrounded = false;
+                if (transform.parent != null) transform.SetParent(null);
+
             }
             else if(!jump) jumpButtonHasPressed = false;
 
@@ -268,6 +271,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             hitInfos = Physics2D.Linecast(groundLinecastStartPos.position, groundLinecastEndPos.position, settings.GroundLayerMask);
             Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
             IsGrounded = hitInfos.collider != null;
+
+            if (IsGrounded)
+            {
+                if (hitInfos.collider.GetComponent<MobilePlatform>() != null) transform.SetParent(hitInfos.transform);
+            }
+            else
+            {
+                if(transform.parent != null) transform.SetParent(null);
+            }
+
             if(IsGrounded)
             {
                 //RayCast vertical pour recup sa normal pour calculer les pentes

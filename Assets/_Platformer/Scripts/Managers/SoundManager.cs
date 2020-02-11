@@ -6,6 +6,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.Audio;
+using System.Collections;
+using UnityEditor;
 
 namespace Com.IsartDigital.Platformer.Managers {
 	public class SoundManager : MonoBehaviour {
@@ -37,7 +39,7 @@ namespace Com.IsartDigital.Platformer.Managers {
 			}
 		}
 
-		public void Play(string sound)
+        public void Play(string sound)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
 			if (currentSound == null)
@@ -45,7 +47,9 @@ namespace Com.IsartDigital.Platformer.Managers {
 				Debug.LogWarning("Sound: " + name + " not found!");
 				return;
 			}
-			if(!currentSound.Source.isPlaying) currentSound.Source.Play();
+			currentSound.Source.volume = currentSound.Volume * (1 + UnityEngine.Random.Range(-currentSound.VolumeVariance / 2, currentSound.VolumeVariance / 2));
+			currentSound.Source.pitch = currentSound.Pitch * (1 + UnityEngine.Random.Range(-currentSound.PitchVariance / 2, currentSound.PitchVariance / 2));
+			if (!currentSound.Source.isPlaying) currentSound.Source.Play();
 		}
 
 		public void Stop(string sound)
@@ -58,5 +62,24 @@ namespace Com.IsartDigital.Platformer.Managers {
 			}
 			currentSound.Source.Stop();
 		}
-    }
+
+		#region EditorMethods
+		public void AddSound()
+		{
+			ArrayUtility.Add<Sound>(ref sounds, new Sound());
+		}
+
+		public void RemoveSound(string sound)
+		{
+			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
+
+			ArrayUtility.Remove<Sound>(ref sounds, currentSound);
+		}
+
+		public void RemoveLastSound()
+		{
+			ArrayUtility.RemoveAt<Sound>(ref sounds, sounds.Length-1);
+		}
+		#endregion
+	}
 }

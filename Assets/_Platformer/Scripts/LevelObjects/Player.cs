@@ -59,8 +59,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         }
         private int _life;
 
-        private int _startLife;
-
         public event Action OnDie;
         #endregion
         private bool _isGrounded = true;
@@ -139,8 +137,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         override public void Init()
         {
-            _startLife = Life;
-            Debug.Log(_startLife);
+            Life = settings.StartLife;
+            Debug.Log(Life);
         }
 
         private void Awake()

@@ -16,7 +16,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private PlayerController controller = null;
         [SerializeField] private PlayerSettings settings = null;
 
-        //Pos des Linecast !
+        [Header("Pos des lineCast")]
         [SerializeField] private Transform wallLinecastRightStartPos = null; 
         [SerializeField] private Transform wallLinecastRightEndPos = null;
         [SerializeField] private Transform wallLinecastLeftStartPos = null;
@@ -27,6 +27,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private Transform cornerLinecastLeftEndPos = null;
         [SerializeField] private Transform groundLinecastStartPos = null;
         [SerializeField] private Transform groundLinecastEndPos = null;
+
+        [Header("Particle Systems")]
+        [SerializeField] private ParticleSystem runningPS;
+        [SerializeField] private ParticleSystem jumpingPS;
+        [SerializeField] private ParticleSystem landingPS;
+        [SerializeField] private ParticleSystem wallJumpPSRight;
+        [SerializeField] private ParticleSystem wallJumpPSLeft;
 
 
         [SerializeField] private GameObject stateTag = null;
@@ -176,6 +183,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             stateTag.name = "Normal"; 
             DoAction = DoActionNormal;
+            landingPS.Play();
         }
 
         private void SetModeSpawn()
@@ -232,7 +240,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 hangElapsedTime = 0f;
                 jumpButtonHasPressed = true;
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
-                IsGrounded = false; 
+                IsGrounded = false;
+                jumpingPS.Play();
             }
             else if(!jump) jumpButtonHasPressed = false;
 
@@ -273,7 +282,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 //RayCast vertical pour recup sa normal pour calculer les pentes
                 hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.JumpTolerance, settings.GroundLayerMask);
                 Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.JumpTolerance), Color.blue);
-
             }
 
         }
@@ -287,6 +295,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
                 ratio = settings.RunAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, settings.RunSpeed, ratio);
+                runningPS.Play();
             }
             else
             {
@@ -341,6 +350,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     topSpeed = settings.WallJumpHorizontalForce;
 					previousDirection = -facingRightWall;
                     rigidBody.velocity = new Vector2(settings.WallJumpHorizontalForce * previousDirection, settings.MinJumpForce);
+                    ParticleSystem wjParticules = facingRightWall == -1 ? wallJumpPSRight : wallJumpPSLeft;
+                    wjParticules.Play(); 
                 }
             }
             // Gère l'appui long sur le jump

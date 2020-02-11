@@ -1570,8 +1570,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 10ea967a02cbec0488d94900c6d5a48b, type: 3}
 --- !u!4 &254875358 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5846929073974199064, guid: 10ea967a02cbec0488d94900c6d5a48b,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 254875357}
   m_PrefabAsset: {fileID: 0}
 --- !u!43 &273890437
@@ -2931,6 +2930,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelInfos
       objectReference: {fileID: 0}
+    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
+        type: 3}
+      propertyPath: checkpoints.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
+        type: 3}
+      propertyPath: checkpoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 955170799}
+    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
+        type: 3}
+      propertyPath: checkpoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 426263905}
+    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
+        type: 3}
+      propertyPath: checkpoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 2059147696}
+    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
+        type: 3}
+      propertyPath: checkpoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 1456056196}
+    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
+        type: 3}
+      propertyPath: checkpoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 1435810434}
     - target: {fileID: 6915852076588227888, guid: 217a1201004f2b54d88e7ed2da40e002,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2986,36 +3015,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
-        type: 3}
-      propertyPath: checkpoints.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
-        type: 3}
-      propertyPath: checkpoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 955170799}
-    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
-        type: 3}
-      propertyPath: checkpoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 426263905}
-    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
-        type: 3}
-      propertyPath: checkpoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 2059147696}
-    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
-        type: 3}
-      propertyPath: checkpoints.Array.data[3]
-      value: 
-      objectReference: {fileID: 1456056196}
-    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
-        type: 3}
-      propertyPath: checkpoints.Array.data[4]
-      value: 
-      objectReference: {fileID: 1435810434}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 217a1201004f2b54d88e7ed2da40e002, type: 3}
 --- !u!114 &505425413 stripped
@@ -3719,8 +3718,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 10ea967a02cbec0488d94900c6d5a48b, type: 3}
 --- !u!4 &721364591 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5846929073974199064, guid: 10ea967a02cbec0488d94900c6d5a48b,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 721364590}
   m_PrefabAsset: {fileID: 0}
 --- !u!43 &801400284
@@ -5457,6 +5455,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9088504777661617028, guid: 736c69d2ada4faf41978d42d76cf94a2,
+        type: 3}
+      propertyPath: sounds
+      value: 
+      objectReference: {fileID: 11400000, guid: e4526ec7fb9357d408af38f7e3a4d718,
+        type: 2}
     - target: {fileID: 1256481840967380644, guid: 736c69d2ada4faf41978d42d76cf94a2,
         type: 3}
       propertyPath: m_LocalPosition.x

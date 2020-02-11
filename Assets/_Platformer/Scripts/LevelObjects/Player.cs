@@ -34,6 +34,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private ParticleSystem landingPS;
         [SerializeField] private ParticleSystem wallJumpPSRight;
         [SerializeField] private ParticleSystem wallJumpPSLeft;
+        [SerializeField] private ParticleSystem planePS;
 
 
         [SerializeField] private GameObject stateTag = null;
@@ -418,6 +419,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             //Planage vertical
             if(rigidBody.velocity.y <= settings.PlaneVerticalSpeed)
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.PlaneVerticalSpeed);
+
+            planePS.Play(); 
         }
 
         private void CheckIsOnWall()

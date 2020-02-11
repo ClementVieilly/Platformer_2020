@@ -45,7 +45,7 @@ namespace Com.IsartDigital.Platformer.Managers {
 				Debug.LogWarning("Sound: " + name + " not found!");
 				return;
 			}
-			currentSound.Source.Play();
+			if(!currentSound.Source.isPlaying) currentSound.Source.Play();
 		}
 
 		public void Stop(string sound)
@@ -58,5 +58,5 @@ namespace Com.IsartDigital.Platformer.Managers {
 			}
 			currentSound.Source.Stop();
 		}
-	}
+    }
 }

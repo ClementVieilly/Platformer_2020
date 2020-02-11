@@ -17,7 +17,7 @@ MonoBehaviour:
   _descriptors:
   - _applyTo: 0
     _zOffset: 0.001
-    _yOffset: 0.04
+    _yOffset: 0.03
     _capOffset: 0
     _legacyLeftCap:
       serializedVersion: 2
@@ -28,9 +28,9 @@ MonoBehaviour:
     _leftCaps:
     - serializedVersion: 2
       x: 0.07290039
-      y: 0.020507812
-      width: 0.11718755
-      height: 0.2421875
+      y: 0.045898438
+      width: 0.11621099
+      height: 0.21679688
     _leftCapWeights: []
     _leftCapColliderSize:
     - 1.1
@@ -58,10 +58,10 @@ MonoBehaviour:
       height: 0
     _rightCaps:
     - serializedVersion: 2
-      x: 0.758457
-      y: 0.01328125
-      width: 0.12011719
-      height: 0.24414062
+      x: 0.789707
+      y: 0.23203126
+      width: 0.10644531
+      height: 0.24804685
     _rightCapWeights: []
     _rightCapColliderSize:
     - 0.6
@@ -83,10 +83,10 @@ MonoBehaviour:
     - 0
     _bodies:
     - serializedVersion: 2
-      x: 0.25166017
-      y: 0.12851563
-      width: 0.67216796
-      height: 0.16484377
+      x: 0.2584961
+      y: 0.08554688
+      width: 0.6731445
+      height: 0.18437502
     _bodyWeights: []
     _yOffsetPercent: -0.02
     _colliderOffset: -0.19

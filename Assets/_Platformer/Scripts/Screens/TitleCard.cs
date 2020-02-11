@@ -63,7 +63,7 @@ namespace Com.IsartDigital.Platformer.Screens {
                 OnLeaderBoardClicked?.Invoke(this);
                 foreach (Button button in buttons)
                 {
-                    button.GetComponent<MenuButton>().OnMenuButtonClicked -= TitleCard_OnMenuButtonClicked;
+                    //button.GetComponent<MenuButton>().OnMenuButtonClicked -= TitleCard_OnMenuButtonClicked;
                 }
             }
             else if (sender.CompareTag(buttonSoundTriggerTag)) OnSoundTriggerClicked?.Invoke(this);

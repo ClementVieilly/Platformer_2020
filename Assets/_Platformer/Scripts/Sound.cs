@@ -18,16 +18,21 @@ namespace Com.IsartDigital.Platformer {
 
 		[SerializeField] private AudioClip _clip;
 		public AudioClip Clip => _clip;
-
-		[Range(0f, 1f)]
+		[Space]
+		[Space]
+        #region Volume properties
+        [Range(0f, 1f)]
 		[SerializeField] private float _volume = .75f;
 		public float Volume => _volume;
 
 		[Range(0f, 1f)]
 		[SerializeField] private float _volumeVariance = .1f;
 		public float VolumeVariance => _volumeVariance;
-
-		[Range(.1f, 3f)]
+        #endregion
+		[Space]
+		[Space]
+        #region Pitch properties
+        [Range(.1f, 3f)]
 		[SerializeField] private float _pitch = 1f;
 		public float Pitch => _pitch;
 
@@ -35,10 +40,23 @@ namespace Com.IsartDigital.Platformer {
 		[SerializeField] private float _pitchVariance = .1f;
 		public float PitchVariance => _pitchVariance;
 
-		[SerializeField] private bool _isLoop = false;
-		public bool IsLoop => _isLoop;
+		[Space]
+		[SerializeField] private bool _isPitchedBetweenValues = false;
+		public bool IsPitchedBetweenValues => _isPitchedBetweenValues;
 
-		[SerializeField] private AudioMixerGroup _mixerGroup;
+		[SerializeField] private float _minPitchValue;
+		public float MinPitchValue => _minPitchValue;
+
+		[SerializeField] private float _maxPitchValue;
+		public float MaxPitchValue => _maxPitchValue;
+        #endregion
+		[Space]
+		[Space]
+        #region Loop properties
+        [SerializeField] private bool _isLoop = false;
+		public bool IsLoop => _isLoop;
+        #endregion
+        [SerializeField] private AudioMixerGroup _mixerGroup;
 		public AudioMixerGroup MixerGroup => _mixerGroup;
 
 		private AudioSource _source;

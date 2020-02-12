@@ -3,11 +3,10 @@
 /// Date : 21/01/2020 10:37
 ///-----------------------------------------------------------------
 
-using System;
 using UnityEngine;
 using UnityEngine.Audio;
-using System.Collections;
 using UnityEditor;
+using System;
 
 namespace Com.IsartDigital.Platformer.Managers {
 	public class SoundManager : MonoBehaviour {
@@ -42,19 +41,29 @@ namespace Com.IsartDigital.Platformer.Managers {
         public void Play(string sound)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
+
 			if (currentSound == null)
 			{
 				Debug.LogWarning("Sound: " + name + " not found!");
 				return;
 			}
+			else if (currentSound.Source.isPlaying) 
+			{
+				Debug.LogWarning("Sound: " + name + " is already playing!");
+				return;
+			} 
+
 			currentSound.Source.volume = currentSound.Volume * (1 + UnityEngine.Random.Range(-currentSound.VolumeVariance / 2, currentSound.VolumeVariance / 2));
-			currentSound.Source.pitch = currentSound.Pitch * (1 + UnityEngine.Random.Range(-currentSound.PitchVariance / 2, currentSound.PitchVariance / 2));
-			if (!currentSound.Source.isPlaying) currentSound.Source.Play();
+
+			currentSound.Source.pitch = currentSound.IsPitchedBetweenValues ?
+										UnityEngine.Random.Range(currentSound.MinPitchValue, currentSound.MaxPitchValue) :
+										currentSound.Source.pitch = currentSound.Pitch * (1 + UnityEngine.Random.Range(-currentSound.PitchVariance / 2, currentSound.PitchVariance / 2));
+			currentSound.Source.Play();
 		}
 
 		public void Stop(string sound)
 		{
-			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
+			Sound currentSound = System.Array.Find(sounds, searchedSound => searchedSound.Name == sound);
 			if (currentSound == null)
 			{
 				Debug.LogWarning("Sound: " + name + " not found!");

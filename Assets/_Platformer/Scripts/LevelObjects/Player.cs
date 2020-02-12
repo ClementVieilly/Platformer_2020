@@ -4,6 +4,7 @@
 ///-----------------------------------------------------------------
 
 using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
+using Com.IsartDigital.Platformer.Managers;
 using Com.IsartDigital.Platformer.ScriptableObjects;
 using System;
 using System.Collections;
@@ -16,6 +17,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
     {
         [SerializeField] private PlayerController controller = null;
         [SerializeField] private PlayerSettings settings = null;
+        [SerializeField] private SoundsSettings sounds = null;
 
         //Pos des Linecast !
         [SerializeField] private Transform wallLinecastRightStartPos = null; 
@@ -56,6 +58,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
         }
         private int _life;
+
         public event Action OnDie;
         #endregion
         private bool _isGrounded = true;
@@ -134,7 +137,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         override public void Init()
         {
-            throw new NotImplementedException();
+            Life = settings.StartLife;
+            Debug.Log(Life);
         }
 
         private void Awake()
@@ -151,6 +155,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void Start()
         {
             controller.Init();
+            Init();
         }
 
         private void Update()
@@ -202,6 +207,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void SetModePlane()
         {
+            SoundManager.instance.Play(sounds.PlaneFlap01); 
             stateTag.name = "Plane"; 
             DoAction = DoActionPlane; 
         }
@@ -246,7 +252,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
                 IsGrounded = false;
                 if (transform.parent != null) transform.SetParent(null);
-                jumpingPS.Play(); 
+                jumpingPS.Play();
+                SoundManager.instance.Play(sounds.Jump); 
 
             }
             else if(!jump) jumpButtonHasPressed = false;
@@ -313,7 +320,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 ratio = settings.RunAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, settings.RunSpeed, ratio);
 
-                walkingPS.Play(); 
+                walkingPS.Play();
+                SoundManager.instance.Play(sounds.FootstepsWood); 
             }
             else
             {
@@ -418,6 +426,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsOnWall();
             if(_isOnWall || !jump)
             {
+                SoundManager.instance.Stop(sounds.PlaneWind);
                 SetModeAir();
                 return;
             }
@@ -425,6 +434,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsGrounded();
             if(_isGrounded)
             {
+                SoundManager.instance.Stop(sounds.PlaneWind);
                 SetModeNormal();
                 return; 
             }
@@ -437,7 +447,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if(rigidBody.velocity.y <= settings.PlaneVerticalSpeed)
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.PlaneVerticalSpeed);
 
-            planePS.Play(); 
+            planePS.Play();
+            SoundManager.instance.Play(sounds.PlaneWind); 
         }
 
         private void CheckIsOnWall()

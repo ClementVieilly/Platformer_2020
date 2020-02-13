@@ -11,22 +11,25 @@ using System;
 namespace Com.IsartDigital.Platformer.Managers {
 	public class SoundManager : MonoBehaviour {
 
-		public static SoundManager instance;
+		private static SoundManager _instance;
+		public static SoundManager Instance => _instance;
 
 		public AudioMixerGroup mixerGroup;
 
 		public Sound[] sounds;
 
-		void Awake()
+		private void Awake()
 		{
-			if (instance != null)
+			if (_instance != null && _instance != this)
 			{
 				Destroy(gameObject);
+				return;
 			}
+			else _instance = this;
 
-			instance = this;
-			DontDestroyOnLoad(gameObject);
+			DontDestroyOnLoad(this.gameObject);
 
+			Debug.Log("create sound");
 			for (int i = sounds.Length - 1; i > -1; i--)
 			{
 				Sound sound = sounds[i];
@@ -38,7 +41,7 @@ namespace Com.IsartDigital.Platformer.Managers {
 			}
 		}
 
-        public void Play(string sound)
+		public void Play(string sound)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
 
@@ -49,7 +52,7 @@ namespace Com.IsartDigital.Platformer.Managers {
 			}
 			else if (currentSound.Source.isPlaying) 
 			{
-				Debug.LogWarning("Sound: " + name + " is already playing!");
+				//Debug.LogWarning("Sound: " + name + " is already playing!");
 				return;
 			} 
 

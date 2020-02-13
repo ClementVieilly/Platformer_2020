@@ -48,6 +48,9 @@ namespace Com.IsartDigital.Platformer.Managers
         private static UIManager _instance;
         public static UIManager Instance => _instance;
 
+        public delegate void UIManagerEventHandler();
+        public UIManagerEventHandler OnRetry;
+
         private void Awake()
         {
             if (_instance)
@@ -305,6 +308,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private void PauseMenu_OnRetryClicked(PauseMenu pauseMenu)
         {
             CloseScreen(pauseMenu);
+            OnRetry?.Invoke();
             Debug.Log("Retry level");
         }
         private void PauseMenu_OnHomeClicked(PauseMenu pauseMenu)
@@ -329,7 +333,7 @@ namespace Com.IsartDigital.Platformer.Managers
         //Evenements du LoseScreen
         private void LoseScreen_OnRetryClicked(LoseScreen loseScreen)
         {
-            Debug.Log("Retry from UIManager");
+            Debug.Log("Retry from LoseScreen");
         }
 
         private void LoseScreen_OnLevelSelector(LoseScreen loseScreen)

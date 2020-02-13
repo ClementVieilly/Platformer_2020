@@ -63,6 +63,40 @@ namespace Com.IsartDigital.Platformer.Managers {
             } 
         }
 
+        private void Player_OnDie()
+        {
+            finalTimer = timeManager.Timer;
+            timeManager.SetModeVoid();
+
+            UIManager.Instance.CreateLoseScreen();
+            player.gameObject.SetActive(false);
+        }
+
+        private void CheckpointManager_OnFinalCheckPointTriggered()
+        {
+            Win();
+            CheckpointManager.OnFinalCheckPointTriggered -= CheckpointManager_OnFinalCheckPointTriggered;
+
+        }
+
+        private void Win()
+        {
+            finalTimer = timeManager.Timer;
+            timeManager.SetModeVoid();
+            UnsubscribeAllEvents();
+
+            if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();
+            else Debug.LogError("Pas d'UImanager sur la scène");
+            player.gameObject.SetActive(false);
+        }
+
+        private void Retry()
+        {
+            player.Reset();
+            score = 0;
+            CheckpointManager.Instance.ResetColliders();
+        }
+
         private void OnDestroy()
         {
             UnsubscribeAllEvents();
@@ -87,34 +121,8 @@ namespace Com.IsartDigital.Platformer.Managers {
             }
 
             CheckpointManager.OnFinalCheckPointTriggered += CheckpointManager_OnFinalCheckPointTriggered;
-            player.OnDie += Player_OnDie; 
-        }
-
-        private void Player_OnDie()
-        {
-            finalTimer = timeManager.Timer; 
-            timeManager.SetModeVoid();
-
-            UIManager.Instance.CreateLoseScreen();
-            player.gameObject.SetActive(false);
-        }
-
-        private void CheckpointManager_OnFinalCheckPointTriggered()
-        {
-            Win();
-            CheckpointManager.OnFinalCheckPointTriggered -= CheckpointManager_OnFinalCheckPointTriggered;
-
-        }
-
-        private void Win()
-        {
-            finalTimer = timeManager.Timer;
-            timeManager.SetModeVoid(); 
-            UnsubscribeAllEvents();
-
-            if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();
-            else Debug.Log("Pas d'UImanager sur la scène");
-            player.gameObject.SetActive(false);
+            player.OnDie += Player_OnDie;
+            if (UIManager.Instance != null) UIManager.Instance.OnRetry += Retry;
         }
         #endregion
 

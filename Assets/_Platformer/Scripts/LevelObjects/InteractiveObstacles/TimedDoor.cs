@@ -48,10 +48,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         private IEnumerator OpenDoor()
         {
-
             while ((transform.position != endPos.position) && isOpening)
             {
-
                 transform.position = Vector3.MoveTowards(transform.position , endPos.position, openingSpeed);
 
                 yield return null;

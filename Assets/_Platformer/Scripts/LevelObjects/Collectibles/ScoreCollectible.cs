@@ -25,5 +25,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
         {
             OnCollected?.Invoke(score); 
         }
+        public static void ResetAll()
+        {
+            for (int i = List.Count - 1; i >= 0; i--)
+            {
+                List[i].gameObject.SetActive(true);
+            }
+        }
     }
 }

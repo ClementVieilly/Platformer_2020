@@ -148,7 +148,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             InitLife();
             transform.position = startPosition;
             _lastCheckpointPos = transform.position;
-
         }
 
         private void Awake()

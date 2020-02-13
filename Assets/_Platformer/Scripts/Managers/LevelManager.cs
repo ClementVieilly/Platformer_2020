@@ -95,6 +95,9 @@ namespace Com.IsartDigital.Platformer.Managers {
             player.Reset();
             score = 0;
             CheckpointManager.Instance.ResetColliders();
+
+            LifeCollectible.ResetAll();
+            ScoreCollectible.ResetAll();
         }
 
         private void OnDestroy()

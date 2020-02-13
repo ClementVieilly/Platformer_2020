@@ -926,6 +926,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera with Cinemachine
       objectReference: {fileID: 0}
+    - target: {fileID: 2517164645187699090, guid: 391d519b87d81684e8124eb8e206598d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4571,6 +4576,16 @@ PrefabInstance:
       propertyPath: closingSpeed
       value: 0.02
       objectReference: {fileID: 0}
+    - target: {fileID: 1966107884059546862, guid: f813be0894c08b5479f5b573021164a2,
+        type: 3}
+      propertyPath: endPos
+      value: 
+      objectReference: {fileID: 967703609}
+    - target: {fileID: 1966107884059546862, guid: f813be0894c08b5479f5b573021164a2,
+        type: 3}
+      propertyPath: startPos
+      value: 
+      objectReference: {fileID: 967703610}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f813be0894c08b5479f5b573021164a2, type: 3}
 --- !u!4 &967703607 stripped
@@ -4582,6 +4597,18 @@ Transform:
 --- !u!1 &967703608 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1966107884059546861, guid: f813be0894c08b5479f5b573021164a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 967703606}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &967703609 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1966107884932360748, guid: f813be0894c08b5479f5b573021164a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 967703606}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &967703610 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1966107885136466595, guid: f813be0894c08b5479f5b573021164a2,
     type: 3}
   m_PrefabInstance: {fileID: 967703606}
   m_PrefabAsset: {fileID: 0}

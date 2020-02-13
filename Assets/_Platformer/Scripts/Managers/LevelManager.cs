@@ -34,8 +34,7 @@ namespace Com.IsartDigital.Platformer.Managers {
         IEnumerator InitHud()
         {
             while (Hud.Instance == null) yield return null;
-            Hud.Instance.Score = score;
-            Hud.Instance.Life = player.Life;
+            UpdateHud();
         }
 
 
@@ -96,6 +95,10 @@ namespace Com.IsartDigital.Platformer.Managers {
         {
             player.Reset();
             score = 0;
+            UpdateHud();
+
+            timeManager.SetModeVoid();
+
             CheckpointManager.Instance.ResetColliders();
 
             LifeCollectible.ResetAll();
@@ -103,6 +106,25 @@ namespace Com.IsartDigital.Platformer.Managers {
             DestructiblePlatform.ResetAll();
             MobilePlatform.ResetAllPositions();
             PlatformTrigger.ResetAll();
+            TimedDoor.ResetAll();
+
+            timeManager.StartTimer();
+        }
+
+        private void Resume()
+        {
+            timeManager.SetModeTimer();
+        }
+
+        private void PauseGame()
+        {
+            timeManager.SetModePause();
+        }
+
+        private void UpdateHud()
+        {
+            Hud.Instance.Score = score;
+            Hud.Instance.Life = player.Life;
         }
 
         private void OnDestroy()
@@ -130,7 +152,13 @@ namespace Com.IsartDigital.Platformer.Managers {
 
             CheckpointManager.OnFinalCheckPointTriggered += CheckpointManager_OnFinalCheckPointTriggered;
             player.OnDie += Player_OnDie;
-            if (UIManager.Instance != null) UIManager.Instance.OnRetry += Retry;
+
+            if (UIManager.Instance != null)
+            {
+                UIManager.Instance.OnRetry += Retry;
+                UIManager.Instance.OnResume += Resume;
+                UIManager.Instance.OnPause += PauseGame;
+            }
         }
         #endregion
 
@@ -150,6 +178,16 @@ namespace Com.IsartDigital.Platformer.Managers {
             for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
             {
                 ScoreCollectible.List[i].OnCollected -= ScoreCollectible_OnCollected;
+            }
+
+            CheckpointManager.OnFinalCheckPointTriggered -= CheckpointManager_OnFinalCheckPointTriggered;
+            player.OnDie -= Player_OnDie;
+
+            if (UIManager.Instance != null) 
+            {
+                UIManager.Instance.OnRetry -= Retry;
+                UIManager.Instance.OnResume -= Resume;
+                UIManager.Instance.OnPause -= PauseGame;
             }
         }
         #endregion

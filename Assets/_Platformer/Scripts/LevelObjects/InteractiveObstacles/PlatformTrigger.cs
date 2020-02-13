@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 	public class PlatformTrigger : AInteractiveObstacles {
 
-        private static List<PlatformTrigger> _list;
+        private static List<PlatformTrigger> _list = new List<PlatformTrigger>();
         public static List<PlatformTrigger> List => _list;
 
         [SerializeField] private GameObject mobilePlatformGameObject;

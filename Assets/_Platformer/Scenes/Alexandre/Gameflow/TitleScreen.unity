@@ -210,24 +210,6 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f90c43d4ef6755a4aa109899186b3a56, type: 3}
---- !u!1 &421752798 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2517164645187699090, guid: 391d519b87d81684e8124eb8e206598d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1323580800}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &421752799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 421752798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e910b0a07fd13840b390cd90fa1b5c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &965770535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -435,7 +417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f32ce0eed9d4a574ba57ca6332634227, type: 3}
---- !u!1001 &1323580800
+--- !u!1001 &1998486819
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -445,22 +427,17 @@ PrefabInstance:
     - target: {fileID: 2517164645187699090, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_Name
-      value: Main Camera with Cinemachine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2517164645187699090, guid: 391d519b87d81684e8124eb8e206598d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: Main Camera with Cinemachine (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.000000834465
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.2800007
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
@@ -507,6 +484,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2517164645187699093, guid: 391d519b87d81684e8124eb8e206598d, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 391d519b87d81684e8124eb8e206598d, type: 3}

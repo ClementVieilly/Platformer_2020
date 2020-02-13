@@ -174,7 +174,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void CheckInputs()
         {
-            horizontalMoveElapsedTime += Time.deltaTime;
+            horizontalMoveElapsedTime += 5.deltaTime;
 
             if(horizontalAxis != controller.HorizontalAxis)
             {

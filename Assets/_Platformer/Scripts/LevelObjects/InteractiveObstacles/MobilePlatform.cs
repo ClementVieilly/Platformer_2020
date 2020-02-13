@@ -17,8 +17,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         [SerializeField]private string playerTag = "Player"; 
 
         [SerializeField] private bool _isStarted = false;
-        private static List<MobilePlatform> _list;
-        public static List<MobilePlatform> List => _list;
+        private static List<MobilePlatform> _list = new List<MobilePlatform>();
 
         public bool IsStarted
         {
@@ -82,9 +81,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         public static void ResetAllPositions()
         {
-            for (int i = List.Count - 1; i >= 0; i--)
+            for (int i = _list.Count - 1; i >= 0; i--)
             {
-                List[i].SetStartPosition();
+                _list[i].SetStartPosition();
             }
         }
 

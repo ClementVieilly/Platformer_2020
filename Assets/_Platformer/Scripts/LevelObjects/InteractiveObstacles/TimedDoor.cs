@@ -5,11 +5,14 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
     public class TimedDoor : MonoBehaviour
     {
+        private static List<TimedDoor> _list = new List<TimedDoor>();
+
         private bool isOpening;
         private bool isClosing;
 
@@ -19,6 +22,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         [SerializeField] private Transform startPos;
         [SerializeField] private Transform endPos;
+
+        private void Start()
+        {
+            _list.Add(this);
+        }
+
+        private void OnDestroy()
+        {
+            _list.Remove(this);
+        }
 
         public void Open()
         {
@@ -59,5 +72,17 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
             elapsedTime = 0;
         }
 
+        private void ResetPosition()
+        {
+            transform.position = startPos.position;
+        }
+
+        public static void ResetAll()
+        {
+            for (int i = _list.Count - 1; i >= 0; i--)
+            {
+                _list[i].ResetPosition();
+            }
+        }
     }
 }

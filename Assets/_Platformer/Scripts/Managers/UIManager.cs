@@ -50,6 +50,8 @@ namespace Com.IsartDigital.Platformer.Managers
 
         public delegate void UIManagerEventHandler();
         public UIManagerEventHandler OnRetry;
+        public UIManagerEventHandler OnResume;
+        public UIManagerEventHandler OnPause;
 
         private void Awake()
         {
@@ -218,13 +220,13 @@ namespace Com.IsartDigital.Platformer.Managers
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene,LoadSceneMode.Additive);
 
             ////Creation ecran de chargement
-            //LoadingScreen loader = CreateLoadingScreen().GetComponent<LoadingScreen>();
+            LoadingScreen loader = CreateLoadingScreen().GetComponent<LoadingScreen>();
 
             while (!asyncLoad.isDone)
             {
                 ////Barre de chargement
-                //float progress = Mathf.Clamp01(asyncLoad.progress / .9f);
-                //loader.LoadingBar.value = progress;
+                float progress = Mathf.Clamp01(asyncLoad.progress / .9f);
+                loader.LoadingBar.value = progress;
                 //Debug.Log(progress);
                 yield return null;
             }
@@ -297,12 +299,14 @@ namespace Com.IsartDigital.Platformer.Managers
         private void Hud_OnPauseButtonPressed(Hud hud) //Fonction callback de l'event de click sur le bouton pause du Hud
         {
             CreatePauseMenu();
+            OnPause?.Invoke();
         }
 
         //Evenements du Menu Pause
         private void PauseMenu_OnResumeClicked(PauseMenu pauseMenu)
         {
             CloseScreen(pauseMenu);
+            OnResume?.Invoke();
             Debug.Log("Resume Level");
         }
         private void PauseMenu_OnRetryClicked(PauseMenu pauseMenu)
@@ -333,6 +337,7 @@ namespace Com.IsartDigital.Platformer.Managers
         //Evenements du LoseScreen
         private void LoseScreen_OnRetryClicked(LoseScreen loseScreen)
         {
+            OnRetry?.Invoke();
             Debug.Log("Retry from LoseScreen");
         }
 

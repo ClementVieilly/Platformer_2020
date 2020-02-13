@@ -5,6 +5,8 @@
 
 using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
+using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
+using Com.IsartDigital.Platformer.LevelObjects.Platforms;
 using Com.IsartDigital.Platformer.Screens;
 using System;
 using System.Collections;
@@ -98,6 +100,9 @@ namespace Com.IsartDigital.Platformer.Managers {
 
             LifeCollectible.ResetAll();
             ScoreCollectible.ResetAll();
+            DestructiblePlatform.ResetAll();
+            MobilePlatform.ResetAllPositions();
+            PlatformTrigger.ResetAll();
         }
 
         private void OnDestroy()

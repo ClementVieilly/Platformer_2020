@@ -3,6 +3,7 @@
 /// Date : 27/01/2020 16:48
 ///-----------------------------------------------------------------
 
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
@@ -13,9 +14,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         private float elapsedTime;
         private uint index = 1;
         [SerializeField]private float duration;
-        [SerializeField]private string playerTag = "Player";
+        [SerializeField]private string playerTag = "Player"; 
 
         [SerializeField] private bool _isStarted = false;
+        private static List<MobilePlatform> _list;
+        public static List<MobilePlatform> List => _list;
 
         public bool IsStarted
         {
@@ -31,7 +34,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         private void Start()
         {
-            startPos = allPoints[0].position;
+            _list.Add(this);
+            SetStartPosition();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -49,10 +53,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
             {
                 collision.transform.SetParent(null);
             }
-
         }
-
-
 
         private void Update()
         {
@@ -66,6 +67,24 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
                     else index++;
                     elapsedTime = 0;
                 }
+            }
+        }
+
+        private void SetStartPosition()
+        {
+            startPos = allPoints[0].position;
+        }
+
+        private void OnDestroy()
+        {
+            _list.Remove(this);
+        }
+
+        public static void ResetAllPositions()
+        {
+            for (int i = List.Count - 1; i >= 0; i--)
+            {
+                List[i].SetStartPosition();
             }
         }
 

@@ -1,12 +1,17 @@
+
 ///-----------------------------------------------------------------
 /// Author : Joël VOIGNIER
 /// Date : 21/01/2020 10:37
 ///-----------------------------------------------------------------
 
+using System;
+
+#if UNITY_EDITOR
+	using UnityEditor;
+#endif
+
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEditor;
-using System;
 
 namespace Com.IsartDigital.Platformer.Managers {
 	public class SoundManager : MonoBehaviour {
@@ -75,6 +80,7 @@ namespace Com.IsartDigital.Platformer.Managers {
 			currentSound.Source.Stop();
 		}
 
+#if UNITY_EDITOR
 		#region EditorMethods
 		public void AddSound()
 		{
@@ -93,5 +99,6 @@ namespace Com.IsartDigital.Platformer.Managers {
 			ArrayUtility.RemoveAt<Sound>(ref sounds, sounds.Length-1);
 		}
 		#endregion
+#endif
 	}
 }

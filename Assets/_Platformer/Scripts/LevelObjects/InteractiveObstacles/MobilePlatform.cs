@@ -79,7 +79,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
             _list.Remove(this);
         }
 
-        public static void ResetAllPositions()
+        public static void ResetAll()
         {
             for (int i = _list.Count - 1; i >= 0; i--)
             {

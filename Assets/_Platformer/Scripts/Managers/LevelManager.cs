@@ -104,7 +104,7 @@ namespace Com.IsartDigital.Platformer.Managers {
             LifeCollectible.ResetAll();
             ScoreCollectible.ResetAll();
             DestructiblePlatform.ResetAll();
-            MobilePlatform.ResetAllPositions();
+            MobilePlatform.ResetAll();
             PlatformTrigger.ResetAll();
             TimedDoor.ResetAll();
 
@@ -113,11 +113,15 @@ namespace Com.IsartDigital.Platformer.Managers {
 
         private void Resume()
         {
+            player.SetModeResume();
+            DestructiblePlatform.ResumeAll();
             timeManager.SetModeTimer();
         }
 
         private void PauseGame()
         {
+            player.SetModePause();
+            DestructiblePlatform.PauseAll();
             timeManager.SetModePause();
         }
 

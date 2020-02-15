@@ -136,6 +136,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private Action DoAction = null;
 
+        // Properties for Pause
+        private Action PreviousDoAction = null;
+        private Vector2 pausePos;
+
         override public void Init()
         {
             Life = settings.StartLife;
@@ -148,6 +152,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             InitLife();
             transform.position = startPosition;
             _lastCheckpointPos = transform.position;
+
+            rigidBody.WakeUp();
+            SetModeSpawn();
         }
 
         private void Awake()
@@ -220,6 +227,19 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             SoundManager.Instance.Play(sounds.PlaneFlap01); 
             stateTag.name = "Plane"; 
             DoAction = DoActionPlane; 
+        }
+
+        public void SetModePause()
+        {
+            PreviousDoAction = DoAction;
+            rigidBody.Sleep();
+            DoAction = DoActionVoid; 
+        }
+
+        public void SetModeResume()
+        {
+            rigidBody.WakeUp();
+            DoAction = PreviousDoAction;
         }
 
         private void DoActionNormal()
@@ -601,6 +621,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             wasInCorner = false;
             StopAllCoroutines(); 
         }
+
+        private void DoActionVoid()
+        {
+
+        }
+
         #endregion
 
         #region LifeMethods

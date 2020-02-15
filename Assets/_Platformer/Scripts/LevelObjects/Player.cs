@@ -153,6 +153,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             transform.position = startPosition;
             _lastCheckpointPos = transform.position;
 
+            rigidBody.simulated = true;
             gameObject.SetActive(true);
             rigidBody.WakeUp();
             SetModeSpawn();

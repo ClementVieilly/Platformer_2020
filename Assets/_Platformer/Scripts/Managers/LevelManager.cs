@@ -37,7 +37,6 @@ namespace Com.IsartDigital.Platformer.Managers {
             UpdateHud();
         }
 
-
         private void LifeCollectible_OnCollected(int value)
         {
             player.AddLife(value);

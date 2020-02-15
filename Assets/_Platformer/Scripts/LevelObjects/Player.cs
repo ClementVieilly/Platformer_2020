@@ -233,12 +233,20 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             PreviousDoAction = DoAction;
             rigidBody.Sleep();
+
+            //patch fall from corner
+            rigidBody.simulated = false;
+
             DoAction = DoActionVoid; 
         }
 
         public void SetModeResume()
         {
             rigidBody.WakeUp();
+
+            //patch fall from corner
+            rigidBody.simulated = true;
+
             DoAction = PreviousDoAction;
         }
 

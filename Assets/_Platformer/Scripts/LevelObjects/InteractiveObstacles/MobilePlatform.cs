@@ -3,6 +3,7 @@
 /// Date : 27/01/2020 16:48
 ///-----------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,10 +32,44 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
             }
         }
 
+        private Action DoAction;
+
         private void Start()
         {
             _list.Add(this);
             SetStartPosition();
+            SetModeNormal();
+        }
+
+        private void SetModeVoid() 
+        {
+            DoAction = DoActionVoid;
+        }
+
+        private void SetModeNormal() 
+        {
+            DoAction = DoActionNormal;
+        }
+
+        private void DoActionVoid()
+        {
+
+        }
+
+        private void DoActionNormal()
+        {
+            if (!IsStarted) return;
+
+            elapsedTime += Time.deltaTime;
+            transform.position = Vector2.Lerp(index > 0 ? allPoints[index - 1].position : allPoints[allPoints.Length - 1].position, allPoints[index].position, elapsedTime / duration);
+
+            if (elapsedTime >= duration)
+            {
+                if (index >= allPoints.Length - 1) index = 0;
+                else index++;
+                
+                elapsedTime = 0;
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -56,17 +91,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         private void Update()
         {
-            if (IsStarted)
-            {
-                elapsedTime += Time.deltaTime;
-                transform.position = Vector2.Lerp(index > 0 ? allPoints[index - 1].position : allPoints[allPoints.Length - 1].position, allPoints[index].position, elapsedTime / duration);
-                if (elapsedTime >= duration)
-                {
-                    if (index >= allPoints.Length - 1) index = 0;
-                    else index++;
-                    elapsedTime = 0;
-                }
-            }
+            DoAction();
         }
 
         private void SetStartPosition()
@@ -87,5 +112,20 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
             }
         }
 
+        public static void PauseAll()
+        {
+            for (int i = _list.Count - 1; i >= 0; i--)
+            {
+                _list[i].SetModeVoid();
+            }
+        }
+
+        public static void ResumeAll()
+        {
+            for (int i = _list.Count - 1; i >= 0; i--)
+            {
+                _list[i].SetModeNormal();
+            }
+        }
     }
 }

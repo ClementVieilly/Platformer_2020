@@ -268,9 +268,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 }
                 else
                 {
-                    isSlinding = true;
-                    rigidBody.gravityScale = gravity;
+                   // isSlinding = true;
+                   // rigidBody.gravityScale = gravity;
                 }
+
+                
             }
             
             MoveHorizontalOnGround();
@@ -369,7 +371,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                //rigidBody.velocity = new Vector2(penteVelocity.normalized.x * horizontalMove * previousDirection,rigidBody.velocity.y); 
                 rigidBody.velocity = penteVelocity.normalized * horizontalMove * previousDirection; 
             }
-            else rigidBody.velocity = new Vector2(previousDirection, rigidBody.velocity.y);
+            else rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
         }
 
         private void DoActionSpawn()

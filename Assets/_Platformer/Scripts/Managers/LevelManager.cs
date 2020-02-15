@@ -116,6 +116,7 @@ namespace Com.IsartDigital.Platformer.Managers {
             player.SetModeResume();
             DestructiblePlatform.ResumeAll();
             MobilePlatform.ResumeAll();
+            TimedDoor.ResumeAll();
             timeManager.SetModeTimer();
         }
 
@@ -124,6 +125,7 @@ namespace Com.IsartDigital.Platformer.Managers {
             player.SetModePause();
             DestructiblePlatform.PauseAll();
             MobilePlatform.PauseAll();
+            TimedDoor.PauseAll();
             timeManager.SetModePause();
         }
 

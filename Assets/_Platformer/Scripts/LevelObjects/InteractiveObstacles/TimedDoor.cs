@@ -23,6 +23,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         [SerializeField] private Transform startPos;
         [SerializeField] private Transform endPos;
 
+        private bool isPaused = false;
+
         private void Start()
         {
             _list.Add(this);
@@ -48,8 +50,15 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         private IEnumerator OpenDoor()
         {
+
+
             while ((transform.position != endPos.position) && isOpening)
             {
+                while (isPaused)
+                {
+                    yield return null;
+                }
+
                 transform.position = Vector3.MoveTowards(transform.position , endPos.position, openingSpeed);
 
                 yield return null;
@@ -59,8 +68,15 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         private IEnumerator CloseDoor()
         {
+
+
             while ( (transform.position != startPos.position) && isClosing)
             {
+                while (isPaused)
+                {
+                    yield return null;
+                }
+
                 elapsedTime += Time.deltaTime;
 
                 transform.position = Vector3.MoveTowards(transform.position, startPos.position, closingSpeed);
@@ -80,6 +96,22 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
             for (int i = _list.Count - 1; i >= 0; i--)
             {
                 _list[i].ResetPosition();
+            }
+        }
+
+        public static void PauseAll()
+        {
+            for (int i = _list.Count - 1; i >= 0; i--)
+            {
+                _list[i].isPaused = true;
+            }
+        }
+        
+        public static void ResumeAll()
+        {
+            for (int i = _list.Count - 1; i >= 0; i--)
+            {
+                _list[i].isPaused = false;
             }
         }
     }

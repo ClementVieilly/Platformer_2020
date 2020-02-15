@@ -114,6 +114,7 @@ namespace Com.IsartDigital.Platformer.Managers
             MobilePlatform.ResumeAll();
             TimedDoor.ResumeAll();
             timeManager.SetModeTimer();
+            SoundManager.Instance.ResumeAll();
         }
 
         private void PauseGame()
@@ -123,6 +124,7 @@ namespace Com.IsartDigital.Platformer.Managers
             MobilePlatform.PauseAll();
             TimedDoor.PauseAll();
             timeManager.SetModePause();
+            SoundManager.Instance.PauseAll();
         }
 
         private void UpdateHud()

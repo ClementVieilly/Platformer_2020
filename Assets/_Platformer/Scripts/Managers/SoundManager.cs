@@ -5,6 +5,7 @@
 ///-----------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -23,6 +24,8 @@ namespace Com.IsartDigital.Platformer.Managers
 		public AudioMixerGroup mixerGroup;
 
 		public Sound[] sounds;
+
+		private List<Sound> playedSounds = new List<Sound>();
 
 		private void Awake()
 		{
@@ -59,7 +62,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			{
 				//Debug.LogWarning("Sound: " + name + " is already playing!");
 				return;
-			} 
+			}
 
 			currentSound.Source.volume = currentSound.Volume * (1 + UnityEngine.Random.Range(-currentSound.VolumeVariance / 2, currentSound.VolumeVariance / 2));
 
@@ -79,6 +82,41 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 			currentSound.Source.Stop();
 		}
+
+		public void Pause(string sound)
+		{
+			Sound currentSound = System.Array.Find(sounds, searchedSound => searchedSound.Name == sound);
+			if (currentSound == null)
+			{
+				Debug.LogWarning("Sound: " + name + " not found!");
+				return;
+			}
+			currentSound.Source.Pause();
+		}
+
+		public void PauseAll()
+		{
+			playedSounds.RemoveRange(0, playedSounds.Count);
+			for (int i = sounds.Length - 1; i >= 0; i--)
+			{
+				Sound testedSound = sounds[i];
+				if (testedSound.Source.isPlaying)
+				{
+					playedSounds.Add(testedSound);
+					testedSound.Source.Pause();
+				}
+			}
+		}
+
+		public void ResumeAll()
+		{
+			for (int i = playedSounds.Count - 1; i >= 0; i--)
+			{
+				playedSounds[i].Source.UnPause();
+				playedSounds.Remove(playedSounds[i]);
+			}
+		}
+
 
 #if UNITY_EDITOR
 		#region EditorMethods

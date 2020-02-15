@@ -94,6 +94,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private float elapsedTimerBeforeSetModeAir = 0f;
         private bool canJump = false;
 
+        private Vector2 startPosition;
         private Vector2 _lastCheckpointPos;
 
         public Vector2 LastCheckpointPos { get => _lastCheckpointPos; set => _lastCheckpointPos = value; }
@@ -135,10 +136,26 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private Action DoAction = null;
 
+        // Properties for Pause
+        private Action PreviousDoAction = null;
+        private Vector2 pausePos;
+
         override public void Init()
         {
             Life = settings.StartLife;
-            Debug.Log(Life);
+            _lastCheckpointPos = transform.position;
+            startPosition = transform.position;
+        }
+
+        public void Reset()
+        {
+            InitLife();
+            transform.position = startPosition;
+            _lastCheckpointPos = transform.position;
+
+            gameObject.SetActive(true);
+            rigidBody.WakeUp();
+            SetModeSpawn();
         }
 
         private void Awake()
@@ -148,7 +165,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             gravity = rigidBody.gravityScale;
             
-            _lastCheckpointPos = transform.position; 
+            
             SetModeSpawn();
         }
 
@@ -186,6 +203,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             DoAction();
         }
 
+        #region Player behavior
         private void SetModeNormal()
         {
             stateTag.name = "Normal"; 
@@ -207,9 +225,30 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void SetModePlane()
         {
-            SoundManager.instance.Play(sounds.PlaneFlap01); 
+            SoundManager.Instance.Play(sounds.PlaneFlap01); 
             stateTag.name = "Plane"; 
             DoAction = DoActionPlane; 
+        }
+
+        public void SetModePause()
+        {
+            PreviousDoAction = DoAction;
+            rigidBody.Sleep();
+
+            //patch fall from corner
+            rigidBody.simulated = false;
+
+            DoAction = DoActionVoid; 
+        }
+
+        public void SetModeResume()
+        {
+            rigidBody.WakeUp();
+
+            //patch fall from corner
+            rigidBody.simulated = true;
+
+            DoAction = PreviousDoAction;
         }
 
         private void DoActionNormal()
@@ -253,7 +292,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 IsGrounded = false;
                 if (transform.parent != null) transform.SetParent(null);
                 jumpingPS.Play();
-                SoundManager.instance.Play(sounds.Jump); 
+                SoundManager.Instance.Play(sounds.Jump); 
 
             }
             else if(!jump) jumpButtonHasPressed = false;
@@ -321,7 +360,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 horizontalMove = Mathf.Lerp(0f, settings.RunSpeed, ratio);
 
                 walkingPS.Play();
-                SoundManager.instance.Play(sounds.FootstepsWood); 
+                SoundManager.Instance.Play(sounds.FootstepsWood); 
             }
             else
             {
@@ -426,7 +465,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsOnWall();
             if(_isOnWall || !jump)
             {
-                SoundManager.instance.Stop(sounds.PlaneWind);
+                SoundManager.Instance.Stop(sounds.PlaneWind);
                 SetModeAir();
                 return;
             }
@@ -434,7 +473,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsGrounded();
             if(_isGrounded)
             {
-                SoundManager.instance.Stop(sounds.PlaneWind);
+                SoundManager.Instance.Stop(sounds.PlaneWind);
                 SetModeNormal();
                 return; 
             }
@@ -448,7 +487,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.PlaneVerticalSpeed);
 
             planePS.Play();
-            SoundManager.instance.Play(sounds.PlaneWind); 
+            SoundManager.Instance.Play(sounds.PlaneWind); 
         }
 
         private void CheckIsOnWall()
@@ -594,6 +633,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             StopAllCoroutines(); 
         }
 
+        private void DoActionVoid()
+        {
+
+        }
+
+        #endregion
+
         #region LifeMethods
         private void InitLife()
         {
@@ -614,11 +660,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         public bool LooseLife(int LoseLife = 1)
         {
             Life -= LoseLife;
-            return CheckRestingLife();
+            return Life > 0;
         }
 
         public void Die()
         {
+            gameObject.SetActive(false);
             OnDie?.Invoke();
         }
 

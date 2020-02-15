@@ -1,32 +1,39 @@
+
 ///-----------------------------------------------------------------
 /// Author : Joël VOIGNIER
 /// Date : 21/01/2020 10:37
 ///-----------------------------------------------------------------
 
 using System;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 using UnityEngine;
 using UnityEngine.Audio;
-using System.Collections;
-using UnityEditor;
 
-namespace Com.IsartDigital.Platformer.Managers {
+namespace Com.IsartDigital.Platformer.Managers
+{
 	public class SoundManager : MonoBehaviour {
 
-		public static SoundManager instance;
+		private static SoundManager _instance;
+		public static SoundManager Instance => _instance;
 
 		public AudioMixerGroup mixerGroup;
 
 		public Sound[] sounds;
 
-		void Awake()
+		private void Awake()
 		{
-			if (instance != null)
+			if (_instance != null && _instance != this)
 			{
 				Destroy(gameObject);
+				return;
 			}
+			else _instance = this;
 
-			instance = this;
-			DontDestroyOnLoad(gameObject);
+			DontDestroyOnLoad(this.gameObject);
 
 			for (int i = sounds.Length - 1; i > -1; i--)
 			{
@@ -39,22 +46,32 @@ namespace Com.IsartDigital.Platformer.Managers {
 			}
 		}
 
-        public void Play(string sound)
+		public void Play(string sound)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
+
 			if (currentSound == null)
 			{
 				Debug.LogWarning("Sound: " + name + " not found!");
 				return;
 			}
+			else if (currentSound.Source.isPlaying) 
+			{
+				//Debug.LogWarning("Sound: " + name + " is already playing!");
+				return;
+			} 
+
 			currentSound.Source.volume = currentSound.Volume * (1 + UnityEngine.Random.Range(-currentSound.VolumeVariance / 2, currentSound.VolumeVariance / 2));
-			currentSound.Source.pitch = currentSound.Pitch * (1 + UnityEngine.Random.Range(-currentSound.PitchVariance / 2, currentSound.PitchVariance / 2));
-			if (!currentSound.Source.isPlaying) currentSound.Source.Play();
+
+			currentSound.Source.pitch = currentSound.IsPitchedBetweenValues ?
+										UnityEngine.Random.Range(currentSound.MinPitchValue, currentSound.MaxPitchValue) :
+										currentSound.Source.pitch = currentSound.Pitch * (1 + UnityEngine.Random.Range(-currentSound.PitchVariance / 2, currentSound.PitchVariance / 2));
+			currentSound.Source.Play();
 		}
 
 		public void Stop(string sound)
 		{
-			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
+			Sound currentSound = System.Array.Find(sounds, searchedSound => searchedSound.Name == sound);
 			if (currentSound == null)
 			{
 				Debug.LogWarning("Sound: " + name + " not found!");
@@ -63,6 +80,7 @@ namespace Com.IsartDigital.Platformer.Managers {
 			currentSound.Source.Stop();
 		}
 
+#if UNITY_EDITOR
 		#region EditorMethods
 		public void AddSound()
 		{
@@ -81,5 +99,6 @@ namespace Com.IsartDigital.Platformer.Managers {
 			ArrayUtility.RemoveAt<Sound>(ref sounds, sounds.Length-1);
 		}
 		#endregion
+#endif
 	}
 }

@@ -50,9 +50,9 @@ namespace Com.IsartDigital.Platformer.Managers {
 
 		public void ResetColliders()
 		{
-			foreach (Checkpoints checkpoint in checkpointList)
+			for (int i = checkpointList.Count - 1; i >= 0; i--)
 			{
-				checkpoint.ResetCollider();
+				checkpointList[i].ResetCollider();
 			}
 		}
 

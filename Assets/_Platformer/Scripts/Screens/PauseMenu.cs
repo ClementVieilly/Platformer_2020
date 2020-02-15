@@ -4,12 +4,12 @@
 ///-----------------------------------------------------------------
 
 using Com.IsartDigital.Platformer.Screens.Buttons;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Com.IsartDigital.Platformer.Screens {
-	public class PauseMenu : AScreen {
+namespace Com.IsartDigital.Platformer.Screens
+{
+    public class PauseMenu : AScreen {
 
         public delegate void PauseMenuEventHandler(PauseMenu pauseMenu);//delegate appelé quand on clique sur le bouton correspondant
         public PauseMenuEventHandler OnResumeClicked;
@@ -37,9 +37,7 @@ namespace Com.IsartDigital.Platformer.Screens {
                 else homeButton = buttons[i];
 
                 buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked += PauseMenu_OnButtonClicked;
-
             }
-
         }
 
         private void PauseMenu_OnButtonClicked(Button sender)
@@ -48,12 +46,17 @@ namespace Com.IsartDigital.Platformer.Screens {
             else if (sender.CompareTag(buttonRetryTag)) OnRetryClicked?.Invoke(this);
             else OnHomeClicked?.Invoke(this);
 
-            foreach (Button button in buttons)
+            for (int i = buttons.Length - 1; i >= 0; i--)
             {
-                button.GetComponent<MenuButton>().OnMenuButtonClicked -= PauseMenu_OnButtonClicked;
+                buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked -= PauseMenu_OnButtonClicked;
             }
         }
 
-
+        public override void UnsubscribeEvents()
+        {
+            OnHomeClicked = null;
+            OnResumeClicked = null;
+            OnRetryClicked = null;
+        }
     }
 }

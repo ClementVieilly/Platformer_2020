@@ -1,7 +1,10 @@
+///-----------------------------------------------------------------
+/// Author : Alexandre RAUMEL
+/// Date : 04/02/2020 11:08
+///-----------------------------------------------------------------
+
 using Com.IsartDigital.Platformer.Screens;
 using Com.IsartDigital.Platformer.Screens.Buttons;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,7 +34,7 @@ public class WinScreen : AScreen
         OnLevelSelectorClicked?.Invoke(this);
     }
 
-    public void UnsubscribeEvents()
+    public override void UnsubscribeEvents()
     {
         OnMenuClicked = null;
         OnLevelSelectorClicked = null;

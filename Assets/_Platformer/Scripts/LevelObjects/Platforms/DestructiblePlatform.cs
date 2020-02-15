@@ -18,6 +18,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
         private float elapsedTime;
 
         private Action DoAction;
+        private Action PreviousDoAction;
 
         private void Start()
         {
@@ -77,6 +78,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
         {
             for (int i = List.Count - 1; i >= 0; i--)
             {
+                List[i].PreviousDoAction = List[i].DoAction;
                 List[i].SetModeVoid();
             }
         }
@@ -85,7 +87,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
         {
             for (int i = List.Count - 1; i >= 0; i--)
             {
-                List[i].SetModeNormal();
+                List[i].DoAction = List[i].PreviousDoAction;
             }
         }
     }

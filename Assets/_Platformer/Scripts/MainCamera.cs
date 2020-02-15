@@ -5,7 +5,8 @@
 
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer {
+namespace Com.IsartDigital.Platformer
+{
 	public class MainCamera : MonoBehaviour
 	{
 		private static MainCamera _instance;

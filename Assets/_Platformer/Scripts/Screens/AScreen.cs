@@ -8,6 +8,6 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.Screens {
 	public abstract class AScreen : MonoBehaviour {
 
-
+		abstract public void UnsubscribeEvents();
 	}
 }

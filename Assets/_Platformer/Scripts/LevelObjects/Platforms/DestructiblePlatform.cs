@@ -29,7 +29,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
         private void OnTriggerEnter2D(Collider2D collision)
         {
             SetModeNormal();
-            Debug.Log("je suis dessus"); 
         }
 
         private void Update()

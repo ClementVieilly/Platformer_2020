@@ -1,5 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+///-----------------------------------------------------------------
+/// Author : Alexandre RAUMEL
+/// Date : 04/02/2020 11:16
+///-----------------------------------------------------------------
+
 using UnityEngine;
 
 public class Leaderboard : MonoBehaviour

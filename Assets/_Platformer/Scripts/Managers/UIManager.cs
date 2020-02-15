@@ -3,10 +3,10 @@
 /// Date : 22/01/2020 15:05
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.Screens;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Com.IsartDigital.Platformer.Screens;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -32,6 +32,7 @@ namespace Com.IsartDigital.Platformer.Managers
         [SerializeField] private string level1;
         [SerializeField] private string level2;
 
+        //Screens
         private Hud currentHud;             //correspond au hud actuel utilisé (PC ou mobile)
         private PauseMenu currentPauseMenu; //correspond au menu pause actuel utilisé 
         private TitleCard currentTitleCard; //correspond au titlecard actuel
@@ -43,11 +44,15 @@ namespace Com.IsartDigital.Platformer.Managers
         private Leaderboard currentLeaderboard; //correspond au leaderboard actuel utilisé
         private ConfirmScreen currentConfirmScreen; //correspond au leaderboard actuel utilisé
 
+
+        //List of all screens
         private List<AScreen> allScreens = new List<AScreen>();
 
+        //Singleton
         private static UIManager _instance;
         public static UIManager Instance => _instance;
 
+        //Events
         public delegate void UIManagerEventHandler();
         public UIManagerEventHandler OnRetry;
         public UIManagerEventHandler OnResume;
@@ -60,7 +65,7 @@ namespace Com.IsartDigital.Platformer.Managers
                 Destroy(gameObject);
                 return;
             }
-            _instance = this;
+            else _instance = this;
 
             CreateTitleCard();
             DontDestroyOnLoad(this.gameObject);
@@ -125,7 +130,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private GameObject CreateLoadingScreen()
         {
-            return  Instantiate(loadingScreenPrefab);
+            return Instantiate(loadingScreenPrefab);
         }
 
         public void CreateWinScreen()
@@ -150,46 +155,19 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void CloseScreen(AScreen screen)
         {
-            if (screen != null)
+            if (screen == null) return;
+
+            for (int i = allScreens.Count - 1; i >= 0; i--)
             {
-                if (screen == currentHud)
+                AScreen currentScreen = allScreens[i];
+                if (screen == currentScreen)
                 {
-                    currentHud.OnButtonPausePressed -= Hud_OnPauseButtonPressed;
+                    currentScreen.UnsubscribeEvents();
+                    break;
                 }
-                else if (screen == currentPauseMenu)
-                {
-                    currentPauseMenu.OnHomeClicked -= PauseMenu_OnHomeClicked;
-                    currentPauseMenu.OnResumeClicked -= PauseMenu_OnResumeClicked;
-                    currentPauseMenu.OnRetryClicked -= PauseMenu_OnRetryClicked;
-                }
-                else if (screen == currentTitleCard)
-                {
-                    currentTitleCard.OnCreditsClicked -= TitleCard_OnCreditsClicked;
-                    currentTitleCard.OnLeaderBoardClicked -= TitleCard_OnLeaderBoardClicked;
-                    currentTitleCard.OnLocalisationClicked -= TitleCard_OnLocalisationClicked;
-                    currentTitleCard.OnSoundTriggerClicked -= TitleCard_OnSoundTriggerClicked;
-                }
-                else if (screen == currentCredits)
-                {
-                    currentCredits.OnBackToTitleClicked -= Credits_OnBackToTitleClicked;
-                }
-                else if (screen == currentLevelSelector)
-                {
-                    currentLevelSelector.OnLevel1Clicked -= LevelSelector_OnLevelButtonClicked;
-                    currentLevelSelector.OnLevel2Clicked -= LevelSelector_OnLevel2ButtonClicked;
-                    currentLevelSelector.OnBackToTitleClicked -= LevelSelector_OnBackToTitleClicked;
-                }
-                else if (screen == currentWinScreen)
-                {
-                    currentWinScreen.UnsubscribeEvents();
-                }
-                else if (screen == currentLoseScreen) 
-                {
-                    currentLoseScreen.UnsubscribeEvents();
-                }
-                Destroy(screen.gameObject);
-                allScreens.RemoveAt(allScreens.IndexOf(screen));
             }
+            Destroy(screen.gameObject);
+            allScreens.RemoveAt(allScreens.IndexOf(screen));
         }
 
         private void CloseAllScreens()
@@ -307,13 +285,11 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             CloseScreen(pauseMenu);
             OnResume?.Invoke();
-            Debug.Log("Resume Level");
         }
         private void PauseMenu_OnRetryClicked(PauseMenu pauseMenu)
         {
             CloseScreen(pauseMenu);
             OnRetry?.Invoke();
-            Debug.Log("Retry level");
         }
         private void PauseMenu_OnHomeClicked(PauseMenu pauseMenu)
         {
@@ -337,8 +313,8 @@ namespace Com.IsartDigital.Platformer.Managers
         //Evenements du LoseScreen
         private void LoseScreen_OnRetryClicked(LoseScreen loseScreen)
         {
+            CloseScreen(loseScreen);
             OnRetry?.Invoke();
-            Debug.Log("Retry from LoseScreen");
         }
 
         private void LoseScreen_OnLevelSelector(LoseScreen loseScreen)

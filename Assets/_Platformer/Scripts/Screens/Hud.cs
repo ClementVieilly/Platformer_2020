@@ -3,11 +3,11 @@
 /// Date : 21/01/2020 10:36
 ///-----------------------------------------------------------------
 
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Com.IsartDigital.Platformer.Screens {
+namespace Com.IsartDigital.Platformer.Screens
+{
 
     [RequireComponent(typeof(Button))]
 
@@ -76,8 +76,7 @@ namespace Com.IsartDigital.Platformer.Screens {
             {
                 Destroy(gameObject);
             }
-
-            _instance = this;
+            else _instance = this;
 
             btnPause = GetComponentInChildren<Button>();
             btnPause.onClick.AddListener(Hud_OnButtonPauseClicked);
@@ -86,14 +85,18 @@ namespace Com.IsartDigital.Platformer.Screens {
         private float _timer = 0f;
         private void Update()
         {
-            if (scoreObject.activeSelf)
+            showHud();
+        }
+
+        private void showHud()
+        {
+            if (!scoreObject.activeSelf) return;
+
+            _timer += Time.deltaTime;
+            if (_timer > 3)
             {
-                _timer += Time.deltaTime;
-                if (_timer > 3)
-                {
-                    scoreObject.SetActive(false);
-                    _timer = 0;
-                }
+                scoreObject.SetActive(false);
+                _timer = 0;
             }
         }
 
@@ -112,6 +115,11 @@ namespace Com.IsartDigital.Platformer.Screens {
         {
             btnPause.onClick.RemoveListener(Hud_OnButtonPauseClicked);
             _instance = null;
+        }
+
+        public override void UnsubscribeEvents()
+        {
+            OnButtonPausePressed = null;
         }
     }
 

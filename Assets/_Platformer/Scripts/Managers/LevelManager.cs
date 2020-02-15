@@ -8,12 +8,11 @@ using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
 using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.LevelObjects.Platforms;
 using Com.IsartDigital.Platformer.Screens;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer.Managers {
+namespace Com.IsartDigital.Platformer.Managers
+{
 
     public class LevelManager : MonoBehaviour {
 
@@ -69,14 +68,12 @@ namespace Com.IsartDigital.Platformer.Managers {
             timeManager.SetModeVoid();
 
             UIManager.Instance.CreateLoseScreen();
-            player.gameObject.SetActive(false);
         }
 
         private void CheckpointManager_OnFinalCheckPointTriggered()
         {
             Win();
             CheckpointManager.OnFinalCheckPointTriggered -= CheckpointManager_OnFinalCheckPointTriggered;
-
         }
 
         private void Win()

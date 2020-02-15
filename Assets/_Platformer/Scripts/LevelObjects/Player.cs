@@ -153,6 +153,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             transform.position = startPosition;
             _lastCheckpointPos = transform.position;
 
+            gameObject.SetActive(true);
             rigidBody.WakeUp();
             SetModeSpawn();
         }
@@ -659,11 +660,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         public bool LooseLife(int LoseLife = 1)
         {
             Life -= LoseLife;
-            return CheckRestingLife();
+            return Life > 0;
         }
 
         public void Die()
         {
+            gameObject.SetActive(false);
             OnDie?.Invoke();
         }
 

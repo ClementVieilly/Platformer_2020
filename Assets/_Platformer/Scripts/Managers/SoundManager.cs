@@ -7,13 +7,14 @@
 using System;
 
 #if UNITY_EDITOR
-	using UnityEditor;
+using UnityEditor;
 #endif
 
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace Com.IsartDigital.Platformer.Managers {
+namespace Com.IsartDigital.Platformer.Managers
+{
 	public class SoundManager : MonoBehaviour {
 
 		private static SoundManager _instance;
@@ -34,7 +35,6 @@ namespace Com.IsartDigital.Platformer.Managers {
 
 			DontDestroyOnLoad(this.gameObject);
 
-			Debug.Log("create sound");
 			for (int i = sounds.Length - 1; i > -1; i--)
 			{
 				Sound sound = sounds[i];

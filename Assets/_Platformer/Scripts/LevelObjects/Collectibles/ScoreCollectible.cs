@@ -6,7 +6,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
+namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
+{
     public delegate void ScoreCollectibleEventHandler(float score);
 
     public class ScoreCollectible : ACollectible {

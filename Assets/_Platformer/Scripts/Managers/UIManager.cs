@@ -153,6 +153,8 @@ namespace Com.IsartDigital.Platformer.Managers
 			currentLeaderboard = Instantiate(winLeaderboardPrefab).GetComponent<Leaderboard>();
 
 			currentLeaderboard.OnMenuClicked += Leaderboard_OnMenuClicked;
+			currentLeaderboard.OnBackClicked += Leaderboard_OnBackClicked;
+			currentLeaderboard.OnSkipClicked += Leaderboard_OnSkipClicked;
 
 			allScreens.Add(currentLeaderboard);
 		}
@@ -317,6 +319,17 @@ namespace Com.IsartDigital.Platformer.Managers
 			StartCoroutine(LoadAsyncToNextScene(menu, CreateTitleCard));
 		}
 
+		private void Leaderboard_OnBackClicked(Leaderboard leaderboard)
+		{
+			CloseScreen(currentLeaderboard);
+		}
+
+		private void Leaderboard_OnSkipClicked(Leaderboard leaderboard)
+		{
+			CloseAllScreens();
+			StartCoroutine(LoadAsyncToNextScene(menu, CreateLevelSelector));
+		}
+
 		//Evenements du LoginScreen
 		private void LoginScreen_OnConnectClicked(LoginScreen loginScreen)
 		{
@@ -402,7 +415,6 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private void WinScreen_OnLeaderboardClicked(WinScreen winScreen)
 		{
-			CloseScreen(winScreen);
 			CreateWinLeaderboard();
 		}
 

@@ -3,6 +3,7 @@
 /// Date : 21/01/2020 10:36
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.LevelObjects;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,6 +32,10 @@ namespace Com.IsartDigital.Platformer.Screens
         [SerializeField] private Sprite lifeSprite1;
         [SerializeField] private Sprite lifeSprite2;
         [SerializeField] private Sprite lifeSprite3;
+
+        [Header("controller")]
+        [SerializeField] private Slider moveSlider;
+        [SerializeField] private Button jumpButton;
 
         private Button btnPause;
 
@@ -80,6 +85,9 @@ namespace Com.IsartDigital.Platformer.Screens
 
             btnPause = GetComponentInChildren<Button>();
             btnPause.onClick.AddListener(Hud_OnButtonPauseClicked);
+            Player.OnPlayerMove += UpdateMoveController;
+            Player.OnPlayerJump += UpdateJumpController;
+            Player.OnPlayerEndJump += UpdateJumpController2;
         }
 
         private float _timer = 0f;
@@ -111,9 +119,28 @@ namespace Com.IsartDigital.Platformer.Screens
             OnButtonPausePressed?.Invoke(this);
         }
 
+        private void UpdateMoveController(float horizontalAxis)
+        {
+            moveSlider.value = Mathf.Lerp(moveSlider.value, horizontalAxis,0.1f);
+        }
+
+        private void UpdateJumpController()
+        {
+            Debug.Log("update jump button");
+            jumpButton.image.color = Color.green;
+        }
+        private void UpdateJumpController2()
+        {
+            Debug.Log("update jump button");
+            jumpButton.image.color = Color.white;
+        }
+
         private void OnDestroy()
         {
             btnPause.onClick.RemoveListener(Hud_OnButtonPauseClicked);
+            Player.OnPlayerMove -= UpdateMoveController;
+            Player.OnPlayerJump -= UpdateJumpController;
+            Player.OnPlayerEndJump -= UpdateJumpController2;
             _instance = null;
         }
 

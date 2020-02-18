@@ -12,19 +12,22 @@ public class WinScreen : AScreen
 {
     [SerializeField] private MenuButton menuBtn;
     [SerializeField] private MenuButton levelSelectorBtn;
+    [SerializeField] private MenuButton leaderboardBtn;
 
     public delegate void WinScreenEventHandler(WinScreen winScreen);//Delegates appelés au clic sur les différents boutons du WinScreen
 
     public WinScreenEventHandler OnMenuClicked;
     public WinScreenEventHandler OnLevelSelectorClicked;
+    public WinScreenEventHandler OnLeaderboardClicked;
 
-    private void Awake()
+	private void Awake()
     {
         menuBtn.OnMenuButtonClicked += WinScreen_OnMenuClicked;
         levelSelectorBtn.OnMenuButtonClicked += WinScreen_OnLevelSelectorClicked;
+		leaderboardBtn.OnMenuButtonClicked += WinScreen_OnLeaderboardClicked;
     }
 
-    private void WinScreen_OnMenuClicked(Button sender)
+	private void WinScreen_OnMenuClicked(Button sender)
     {
         OnMenuClicked?.Invoke(this);
     }
@@ -32,9 +35,14 @@ public class WinScreen : AScreen
     private void WinScreen_OnLevelSelectorClicked(Button sender)
     {
         OnLevelSelectorClicked?.Invoke(this);
-    }
+	}
 
-    public override void UnsubscribeEvents()
+	private void WinScreen_OnLeaderboardClicked(Button button)
+	{
+		OnLeaderboardClicked?.Invoke(this);
+	}
+
+	public override void UnsubscribeEvents()
     {
         OnMenuClicked = null;
         OnLevelSelectorClicked = null;
@@ -44,5 +52,6 @@ public class WinScreen : AScreen
     {
         menuBtn.OnMenuButtonClicked = null;
         levelSelectorBtn.OnMenuButtonClicked = null;
+		leaderboardBtn.OnMenuButtonClicked = null;
     }
 }

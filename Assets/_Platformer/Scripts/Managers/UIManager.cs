@@ -24,7 +24,8 @@ namespace Com.IsartDigital.Platformer.Managers
         [SerializeField] private GameObject winScreenPrefab;
         [SerializeField] private GameObject loseScreenPrefab;
         [SerializeField] private GameObject loginScreenPrefab;
-        [SerializeField] private GameObject leaderboardPrefab;
+        [SerializeField] private GameObject titleLeaderboardPrefab;
+        [SerializeField] private GameObject winLeaderboardPrefab;
         [SerializeField] private GameObject confirmScreenPrefab;
 
         [Header("Level names")]
@@ -128,11 +129,20 @@ namespace Com.IsartDigital.Platformer.Managers
             allScreens.Add(currentCredits);
 		}
 
-		public void CreateLeaderboard()
+		public void CreateTitleLeaderboard()
 		{
-			currentLeaderboard = Instantiate(leaderboardPrefab).GetComponent<Leaderboard>();
+			currentLeaderboard = Instantiate(titleLeaderboardPrefab).GetComponent<Leaderboard>();
 
 			currentLeaderboard.OnBackToTitleClicked += Leaderboard_OnBackToTitleClicked;
+
+			allScreens.Add(currentLeaderboard);
+		}
+
+		public void CreateWinLeaderboard()
+		{
+			currentLeaderboard = Instantiate(winLeaderboardPrefab).GetComponent<Leaderboard>();
+
+			currentLeaderboard.OnMenuClicked += Leaderboard_OnMenuClicked;
 
 			allScreens.Add(currentLeaderboard);
 		}
@@ -148,6 +158,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
             currentWinScreen.OnMenuClicked += WinScreen_OnMenuClicked;
             currentWinScreen.OnLevelSelectorClicked += WinScreen_OnLevelSelectorClicked;
+            currentWinScreen.OnLeaderboardClicked += WinScreen_OnLeaderboardClicked;
 
             allScreens.Add(currentWinScreen);
         }
@@ -252,7 +263,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private void TitleCard_OnLeaderBoardClicked(TitleCard title)
         {
             CloseScreen(title);
-            CreateLeaderboard();
+            CreateTitleLeaderboard();
 		}
 
 		private void TitleCard_OnCreditsClicked(TitleCard title)
@@ -265,6 +276,12 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void Leaderboard_OnBackToTitleClicked(Leaderboard leaderboard)
 		{
             ReturnToTitleCard();
+		}
+
+		private void Leaderboard_OnMenuClicked(Leaderboard leaderboard)
+		{
+			CloseAllScreens();
+			StartCoroutine(LoadAsyncToNextScene(menu, CreateTitleCard));
 		}
 
 		//Evenements de la page de crédits
@@ -326,8 +343,14 @@ namespace Com.IsartDigital.Platformer.Managers
             StartCoroutine(LoadAsyncToNextScene(menu, CreateLevelSelector));
         }
 
-        //Evenements du LoseScreen
-        private void LoseScreen_OnRetryClicked(LoseScreen loseScreen)
+		private void WinScreen_OnLeaderboardClicked(WinScreen winScreen)
+		{
+			CloseScreen(winScreen);
+			CreateWinLeaderboard();
+		}
+
+		//Evenements du LoseScreen
+		private void LoseScreen_OnRetryClicked(LoseScreen loseScreen)
         {
             CloseScreen(loseScreen);
             OnRetry?.Invoke();

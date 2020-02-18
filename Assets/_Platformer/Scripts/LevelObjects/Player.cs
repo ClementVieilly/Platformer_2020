@@ -436,8 +436,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionInAir()
         {
             CheckIsOnWall();
-            if(Mathf.Abs(rigidBody.velocity.y) < 1f) CheckIsGrounded();
-
+            //if(Mathf.Abs(rigidBody.velocity.y) < 0.1f) CheckIsGrounded();
+            CheckIsGrounded(); 
             if(_isGrounded)
             {
                 SetModeNormal();
@@ -449,11 +449,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if(isOnCorner && !wasInCorner)
             {
                 wasInCorner = true;
-                isOnCorner = false; 
                 if(wasInCorner)
                 {
                     Debug.Log("oui"); 
-                    StartCoroutine(TestCoroutine());
+                   // StartCoroutine(TestCoroutine());
+                    isOnCorner = false;
                 }
             }
 
@@ -513,6 +513,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.FallVerticalSpeed);
 
             transform.localScale = previousDirection >= 0 ? scaleRight : scaleLeft;
+            animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
+
+            animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
         }
 
 
@@ -685,15 +688,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         //Coroutine qui replace le player qd on arrive a un corner
         private IEnumerator TestCoroutine()
         {
-            Debug.Log("pas dans le while tu connais"); 
             while(isOnCorner)
             {
-                Debug.Log("je suis dedans"); 
                 //rigidBody.position = Vector2.MoveTowards(rigidBody.position, target, 1f); Tp le player a une pos 
-                rigidBody.velocity += new Vector2(settings.ImpulsionInCorner.x * previousDirection, settings.ImpulsionInCorner.y); 
+                rigidBody.velocity += new Vector2(settings.ImpulsionInCorner.x * previousDirection, settings.ImpulsionInCorner.y);
+                wasInCorner = false;
                 yield return null;
             }
-            wasInCorner = false;
             StopAllCoroutines(); 
         }
 
@@ -712,7 +713,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private bool CheckRestingLife()
         {
-            if(Life == 0) Die();
+            if(Life == 0)
+            {
+                animator.SetTrigger(settings.Die); 
+                //Die();
+            }
             return Life > 0;
         }
 
@@ -731,6 +736,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             gameObject.SetActive(false);
             OnDie?.Invoke();
+            
         }
 
         public void setPosition(Vector2 position)

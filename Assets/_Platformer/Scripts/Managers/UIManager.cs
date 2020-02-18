@@ -42,7 +42,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private LoseScreen currentLoseScreen; //correspond au winScreen actuel utilisé
         private LoginScreen currentLoginScreen; //correspond au loginScreen actuel utilisé
         private Leaderboard currentLeaderboard; //correspond au leaderboard actuel utilisé
-        private ConfirmScreen currentConfirmScreen; //correspond au leaderboard actuel utilisé
+        private ConfirmScreen currentConfirmScreen; //correspond à l'écran de confirmation actuel utilisé
 
 
         //List of all screens
@@ -126,9 +126,18 @@ namespace Com.IsartDigital.Platformer.Managers
             currentCredits.OnBackToTitleClicked += Credits_OnBackToTitleClicked;
 
             allScreens.Add(currentCredits);
-        }
+		}
 
-        private GameObject CreateLoadingScreen()
+		public void CreateLeaderboard()
+		{
+			currentLeaderboard = Instantiate(leaderboardPrefab).GetComponent<Leaderboard>();
+
+			currentLeaderboard.OnBackToTitleClicked += Leaderboard_OnBackToTitleClicked;
+
+			allScreens.Add(currentLeaderboard);
+		}
+
+		private GameObject CreateLoadingScreen()
         {
             return Instantiate(loadingScreenPrefab);
         }
@@ -153,7 +162,7 @@ namespace Com.IsartDigital.Platformer.Managers
             allScreens.Add(currentLoseScreen);
         }
 
-        private void CloseScreen(AScreen screen)
+		private void CloseScreen(AScreen screen)
         {
             if (screen == null) return;
 
@@ -242,17 +251,24 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void TitleCard_OnLeaderBoardClicked(TitleCard title)
         {
-            Debug.Log("affiche le leaderboard");
-        }
+            CloseScreen(title);
+            CreateLeaderboard();
+		}
 
-        private void TitleCard_OnCreditsClicked(TitleCard title)
+		private void TitleCard_OnCreditsClicked(TitleCard title)
         {
             CloseScreen(title);
             CreateCredits();
-        }
+		}
 
-        //Evenements de la page de crédits
-        private void Credits_OnBackToTitleClicked(Credits credits)
+		//Evenements du Leaderboard
+		private void Leaderboard_OnBackToTitleClicked(Leaderboard leaderboard)
+		{
+            ReturnToTitleCard();
+		}
+
+		//Evenements de la page de crédits
+		private void Credits_OnBackToTitleClicked(Credits credits)
         {
             ReturnToTitleCard();
         }

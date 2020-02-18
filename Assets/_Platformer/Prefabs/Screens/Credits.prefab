@@ -2379,7 +2379,7 @@ GameObject:
   - component: {fileID: -2196026939558037844}
   m_Layer: 5
   m_Name: Credits
-  m_TagString: Untagged
+  m_TagString: Credits
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3089,16 +3089,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8495064732353927951}
     m_Modifications:
-    - target: {fileID: 3251477474756671995, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
-        type: 3}
-      propertyPath: m_Name
-      value: ButtonReturn
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251477474756671995, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
-        type: 3}
-      propertyPath: m_TagString
-      value: BackToTitleCard
-      objectReference: {fileID: 0}
     - target: {fileID: 3251477474756671994, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3213,6 +3203,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3251477474756671995, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
+        type: 3}
+      propertyPath: m_Name
+      value: ButtonReturn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3251477474756671995, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
+        type: 3}
+      propertyPath: m_TagString
+      value: BackToTitleCard
       objectReference: {fileID: 0}
     - target: {fileID: 3251477474632835188, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}

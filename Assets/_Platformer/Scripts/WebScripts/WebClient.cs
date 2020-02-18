@@ -69,7 +69,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		private bool _canTryToLog = true;
 		public bool CanTryToLog { get => _canTryToLog; }
 
-		public WebClientFeedbackEventHandler OnFeedback;
+		public event WebClientFeedbackEventHandler OnFeedback;
 
 		[SerializeField] private WebClientUnityEvent _onLogged;
 		[SerializeField] private WebClientUnityEvent _onScoreGet;
@@ -102,6 +102,11 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		{
 			UIManager.Instance.SetWebClient(this);
 			OnLogged += StopMyCoroutines;
+		}
+
+		public void LevelManager_OnWin(LevelManager levelManager)
+		{
+			throw new NotImplementedException();
 		}
 
 		/// <summary>

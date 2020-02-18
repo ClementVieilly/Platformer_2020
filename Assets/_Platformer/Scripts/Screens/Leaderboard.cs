@@ -11,13 +11,20 @@ using UnityEngine.UI;
 public class Leaderboard : AScreen
 {
     public delegate void LeaderboardEventHandler(Leaderboard leaderboard);
-	public LeaderboardEventHandler OnMenuClicked;
-	public LeaderboardEventHandler OnBackClicked;
-	public LeaderboardEventHandler OnSkipClicked;
+	public event LeaderboardEventHandler OnMenuClicked;
+	public event LeaderboardEventHandler OnBackClicked;
+	public event LeaderboardEventHandler OnSkipClicked;
 
 	[SerializeField] private MenuButton homeButton = null;
 	[SerializeField] private MenuButton backButton = null;
 	[SerializeField] private MenuButton skipButton = null;
+
+	[Space, SerializeField] private uint nbMaxScoreToDisplay = 6;
+	[SerializeField] private GameObject infosZone = null;
+	[SerializeField] private Text level = null;
+	[SerializeField] private GameObject scoreDisplayPrefab = null;
+
+	private uint currentDisplays = 0;
 
 	private void Awake()
 	{
@@ -39,6 +46,10 @@ public class Leaderboard : AScreen
 	private void Leaderboard_OnSkipClicked(Button sender)
 	{
 		OnSkipClicked?.Invoke(this);
+	}
+
+	private void AddScoreDisplay()
+	{
 	}
 
 	public override void UnsubscribeEvents()

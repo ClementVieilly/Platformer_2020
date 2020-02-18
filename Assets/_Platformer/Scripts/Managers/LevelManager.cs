@@ -13,15 +13,18 @@ using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Managers
 {
-
-    public class LevelManager : MonoBehaviour {
+    public class LevelManager : MonoBehaviour
+	{
+		public delegate void LevelManagerEventHandler(LevelManager levelManager);
 
         [SerializeField] private Player player;
         private TimeManager timeManager;
 
         private float score = 0;
-
         private float finalTimer = 0; //Temps du levelComplete
+
+		public event LevelManagerEventHandler OnWin;
+
         private void Start()
         {
             SubscribeAllEvents();
@@ -30,7 +33,7 @@ namespace Com.IsartDigital.Platformer.Managers
             StartCoroutine(InitHud());
         }
 
-        IEnumerator InitHud()
+        private IEnumerator InitHud()
         {
             while (Hud.Instance == null) yield return null;
             UpdateHud();
@@ -85,6 +88,8 @@ namespace Com.IsartDigital.Platformer.Managers
             if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();
             else Debug.LogError("Pas d'UImanager sur la scène");
             player.gameObject.SetActive(false);
+
+			OnWin?.Invoke(this);
         }
 
         private void Retry()
@@ -164,6 +169,7 @@ namespace Com.IsartDigital.Platformer.Managers
                 UIManager.Instance.OnRetry += Retry;
                 UIManager.Instance.OnResume += Resume;
                 UIManager.Instance.OnPause += PauseGame;
+                UIManager.Instance.SuscribeWebClientToOnWin(this);
             }
         }
         #endregion
@@ -195,8 +201,9 @@ namespace Com.IsartDigital.Platformer.Managers
                 UIManager.Instance.OnResume -= Resume;
                 UIManager.Instance.OnPause -= PauseGame;
             }
+
+			OnWin = null;
         }
         #endregion
-
     }
 }

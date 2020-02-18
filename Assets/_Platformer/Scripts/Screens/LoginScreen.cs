@@ -11,8 +11,8 @@ using UnityEngine.UI;
 public class LoginScreen : AScreen
 {
 	public delegate void LoginScreenEventHandler(LoginScreen loginScreen);
-	public LoginScreenEventHandler OnConnectClicked;
-	public LoginScreenEventHandler OnSkipClicked;
+	public event LoginScreenEventHandler OnConnectClicked;
+	public event LoginScreenEventHandler OnSkipClicked;
 
 	[SerializeField] private InputField usernameField = null;
 	[SerializeField] private InputField passwordField = null;

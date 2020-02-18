@@ -11,8 +11,8 @@ using UnityEngine.UI;
 public class ConfirmScreen : AScreen
 {
 	public delegate void ConfirmScreenEventHandler(ConfirmScreen confirmScreen);
-	public ConfirmScreenEventHandler OnBackClicked;
-	public ConfirmScreenEventHandler OnSkipClicked;
+	public event ConfirmScreenEventHandler OnBackClicked;
+	public event ConfirmScreenEventHandler OnSkipClicked;
 
 	[SerializeField] private MenuButton backButton = null;
 	[SerializeField] private MenuButton skipButton = null;

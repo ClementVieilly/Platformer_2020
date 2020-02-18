@@ -85,6 +85,12 @@ namespace Com.IsartDigital.Platformer.Managers
 			this.webClient.OnFeedback += WebClient_OnFeedback;
 		}
 
+		public void SuscribeWebClientToOnWin(LevelManager levelManager)
+		{
+			Debug.Log("Suscribe WebClient to OnWin");
+			levelManager.OnWin += webClient.LevelManager_OnWin;
+		}
+
 		private void WebClient_OnFeedback(string message)
 		{
 			if (!currentLoginScreen) return;

@@ -113,8 +113,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private bool planeStarted = false;
         private float planeElapsedTime; //  ?? 
         private float timerFallToPlane;
-        
-        private bool jump = false;
+
+        private bool _jump = false;
+        private bool jump 
+        {
+            get { return _jump; }
+            set
+            {
+                _jump = value;
+                if (_jump) OnPlayerJump?.Invoke();
+                else OnPlayerEndJump?.Invoke();
+            }
+        }
 
         // ElapsedTime des différents états
         private float jumpElapsedTime = 0f;
@@ -139,6 +149,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         // Properties for Pause
         private Action PreviousDoAction = null;
         private Vector2 pausePos;
+
+        //Event for HUD controller update
+        public delegate void PlayerMoveEventHandler(float horizontalAxis);
+        public static event PlayerMoveEventHandler OnPlayerMove;
+        public static Action OnPlayerJump;
+        public static Action OnPlayerEndJump;
 
         override public void Init()
         {
@@ -196,6 +212,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 previousDirection = horizontalAxis;
 
             horizontalAxis = controller.HorizontalAxis;
+            OnPlayerMove?.Invoke(horizontalAxis);
             jump = controller.Jump;
         }
 

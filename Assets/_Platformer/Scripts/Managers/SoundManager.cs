@@ -1,4 +1,3 @@
-
 ///-----------------------------------------------------------------
 /// Author : Joël VOIGNIER
 /// Date : 21/01/2020 10:37
@@ -116,7 +115,6 @@ namespace Com.IsartDigital.Platformer.Managers
 				playedSounds.Remove(playedSounds[i]);
 			}
 		}
-
 
 #if UNITY_EDITOR
 		#region EditorMethods

@@ -44,4 +44,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixerGroup: {fileID: 0}
-  sounds: []
+  sounds:
+  - _name: Character_Footsteps_Wood
+    _clip: {fileID: 8300000, guid: dc1916206e9d3554d8cf2e854fdfc55e, type: 3}
+    _volume: 0.273
+    _volumeVariance: 0.193
+    _pitch: 0.75
+    _pitchVariance: 0.185
+    _isLoop: 0
+    _mixerGroup: {fileID: 0}
+  - _name: Character_Jump
+    _clip: {fileID: 8300000, guid: 0c7296f571a9e844594071b0688f6e20, type: 3}
+    _volume: 0.273
+    _volumeVariance: 0.193
+    _pitch: 0.75
+    _pitchVariance: 0.185
+    _isLoop: 0
+    _mixerGroup: {fileID: 0}
+  - _name: Character_WallJump
+    _clip: {fileID: 8300000, guid: 0b4ff05e4a09710428df96ecaa9f8960, type: 3}
+    _volume: 0.273
+    _volumeVariance: 0.193
+    _pitch: 0.75
+    _pitchVariance: 0.185
+    _isLoop: 0
+    _mixerGroup: {fileID: 0}
+  - _name: Character_Plane_Wind
+    _clip: {fileID: 8300000, guid: 3ed7324cf12d02f4099cdbbbd2d492df, type: 3}
+    _volume: 0.273
+    _volumeVariance: 0.193
+    _pitch: 0.75
+    _pitchVariance: 0.185
+    _isLoop: 0
+    _mixerGroup: {fileID: 0}
+  - _name: Character_Plane_Flap01
+    _clip: {fileID: 8300000, guid: 0b4ff05e4a09710428df96ecaa9f8960, type: 3}
+    _volume: 0.273
+    _volumeVariance: 0.193
+    _pitch: 0.75
+    _pitchVariance: 0.185
+    _isLoop: 0
+    _mixerGroup: {fileID: 0}

@@ -92,6 +92,11 @@ namespace Com.IsartDigital.Platformer.Managers
 			currentLoginScreen.SendFeedback(message);
 		}
 
+		public void WebClient_OnLogged(WebClient webClient)
+		{
+			CloseScreen(currentLoginScreen);
+		}
+
         private void CreatePauseMenu() //Crée une instance de Menu Pause et écoute ses événements
         {
             currentPauseMenu = Instantiate(pausePrefab).GetComponent<PauseMenu>();

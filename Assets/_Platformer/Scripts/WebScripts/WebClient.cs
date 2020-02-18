@@ -10,7 +10,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 
 namespace Com.IsartDigital.Platformer.WebScripts
 {
@@ -20,8 +19,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 		private static WebClient _instance;
 
-		private string _jsonWebToken = null;
-		public string JsonWebToken { get => _jsonWebToken; }
+		private string jsonWebToken = null;
 
 		private bool isPreviousRequestOver = false;
 		private bool isPreviousRequestSucces = false;
@@ -127,9 +125,10 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		{
 			_canTryToLog = false;
 
+			OnFeedback?.Invoke(string.Empty);
+
 			if (_credentials.username.Length == 0 || _credentials.password.Length == 0)
 			{
-				OnFeedback?.Invoke(string.Empty);
 				yield return new WaitForSeconds(0.5f);
 
 				Debug.LogWarning("WebClient::TryToLogMainCoroutine: username or password input field is empty.");
@@ -139,7 +138,6 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				yield break;
 			}
 
-			OnFeedback?.Invoke(string.Empty);
 			tryToLogCoroutine = StartCoroutine(TryToLogCoroutine());
 		}
 
@@ -208,7 +206,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				else
 				{
 					isPreviousRequestSucces = true;
-					_jsonWebToken = request.downloadHandler.text;
+					jsonWebToken = request.downloadHandler.text;
 					Debug.Log("User registered !");
 				}
 
@@ -236,7 +234,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				else
 				{
 					isPreviousRequestSucces = true;
-					_jsonWebToken = request.downloadHandler.text;
+					jsonWebToken = request.downloadHandler.text;
 					Debug.Log("Welcome back !");
 				}
 
@@ -255,7 +253,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 			using (UnityWebRequest request = PostJson(url, json))
 			{
-				request.SetRequestHeader("Authorization", "Bearer " + _jsonWebToken ?? "");
+				request.SetRequestHeader("Authorization", "Bearer " + jsonWebToken ?? "");
 
 				yield return request.SendWebRequest();
 
@@ -281,7 +279,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 			using (UnityWebRequest request = UnityWebRequest.Get(url))
 			{
-				request.SetRequestHeader("Authorization", "Bearer " + _jsonWebToken ?? "");
+				request.SetRequestHeader("Authorization", "Bearer " + jsonWebToken ?? "");
 
 				yield return request.SendWebRequest();
 
@@ -309,7 +307,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 			using (UnityWebRequest request = UnityWebRequest.Get(url))
 			{
-				request.SetRequestHeader("Authorization", "Bearer " + _jsonWebToken ?? "");
+				request.SetRequestHeader("Authorization", "Bearer " + jsonWebToken ?? "");
 
 				yield return request.SendWebRequest();
 

@@ -30,9 +30,9 @@ namespace Com.IsartDigital.Platformer.Managers
         [SerializeField] private GameObject confirmScreenPrefab;
 
         [Header("Level names")]
-        [SerializeField] private string menu;
-        [SerializeField] private string level1;
-        [SerializeField] private string level2;
+        [SerializeField] private string menu = null;
+        [SerializeField] private string level1 = null;
+        [SerializeField] private string level2 = null;
 
         //Screens
         private Hud currentHud;             //correspond au hud actuel utilisé (PC ou mobile)
@@ -140,7 +140,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			currentLeaderboard = Instantiate(titleLeaderboardPrefab).GetComponent<Leaderboard>();
 
-			currentLeaderboard.OnBackToTitleClicked += Leaderboard_OnBackToTitleClicked;
+			currentLeaderboard.OnMenuClicked += Leaderboard_OnBackToTitleClicked;
 
 			allScreens.Add(currentLeaderboard);
 
@@ -161,7 +161,20 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			currentLoginScreen = Instantiate(loginScreenPrefab).GetComponent<LoginScreen>();
 
+			currentLoginScreen.OnConnectClicked += LoginScreen_OnConnectClicked;
+			currentLoginScreen.OnSkipClicked += LoginScreen_OnSkipClicked;
+
 			allScreens.Add(currentLoginScreen);
+		}
+
+		public void CreateConfirmScreen()
+		{
+			currentConfirmScreen = Instantiate(confirmScreenPrefab).GetComponent<ConfirmScreen>();
+
+			currentConfirmScreen.OnBackClicked += ConfirmScreen_OnBackClicked;
+			currentConfirmScreen.OnSkipClicked += ConfirmScreen_OnSkipClicked;
+
+			allScreens.Add(currentConfirmScreen);
 		}
 
 		private GameObject CreateLoadingScreen()
@@ -265,7 +278,10 @@ namespace Com.IsartDigital.Platformer.Managers
         private void TitleCard_OnGameStart(TitleCard title)
         {
             CloseScreen(title);
-            CreateLevelSelector();
+			CreateLevelSelector();
+
+			if (webClient.wantToLog)
+				CreateLoginScreen();
         }
         private void TitleCard_OnSoundTriggerClicked(TitleCard title)
         {
@@ -299,6 +315,30 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			CloseAllScreens();
 			StartCoroutine(LoadAsyncToNextScene(menu, CreateTitleCard));
+		}
+
+		//Evenements du LoginScreen
+		private void LoginScreen_OnConnectClicked(LoginScreen loginScreen)
+		{
+			throw new NotImplementedException();
+		}
+
+		private void LoginScreen_OnSkipClicked(LoginScreen loginScreen)
+		{
+			CreateConfirmScreen();
+		}
+
+		private void ConfirmScreen_OnSkipClicked(ConfirmScreen confirmScreen)
+		{
+			CloseScreen(currentConfirmScreen);
+			CloseScreen(currentLoginScreen);
+
+			webClient.wantToLog = false;
+		}
+
+		private void ConfirmScreen_OnBackClicked(ConfirmScreen confirmScreenµ)
+		{
+			CloseScreen(currentConfirmScreen);
 		}
 
 		//Evenements de la page de crédits

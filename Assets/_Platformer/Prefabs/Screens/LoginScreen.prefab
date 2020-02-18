@@ -1344,6 +1344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7a66c1c5eafa524b867aeff8c9deec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connectButton: {fileID: 3185367053247111571}
+  skipButton: {fileID: 8448581601954574671}
 --- !u!1 &4595519601806496294
 GameObject:
   m_ObjectHideFlags: 0
@@ -2169,6 +2171,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ec36942461b4e444a938f69b590b87f, type: 3}
+--- !u!114 &8448581601954574671 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2590175086360412900, guid: 2ec36942461b4e444a938f69b590b87f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6254728784674780075}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5de8f6123a6c7b409c4dac2b2fda472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2160693430248600648 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5418131114504980451, guid: 2ec36942461b4e444a938f69b590b87f,

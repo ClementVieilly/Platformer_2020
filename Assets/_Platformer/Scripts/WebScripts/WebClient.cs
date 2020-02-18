@@ -16,6 +16,8 @@ namespace Com.IsartDigital.Platformer.WebScripts
 {
 	public class WebClient : MonoBehaviour
 	{
+		public delegate void WebClientFeedbackEventHandler(string message);
+
 		private static WebClient _instance;
 
 		private string _jsonWebToken = null;
@@ -24,6 +26,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		private bool isPreviousRequestOver = false;
 		private bool isPreviousRequestSucces = false;
 
+		private Coroutine mainCoroutine = null;
 		private Coroutine tryToLogCoroutine = null;
 		private Coroutine currentSubCoroutine = null;
 
@@ -60,20 +63,15 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		}
 
 		private WebCredentials _credentials = null;
-		public WebCredentials Credentials
-		{
-			set
-			{
-				if (_credentials == null)
-					_credentials = value;
-			}
-		}
+		public WebCredentials Credentials { set { _credentials = value; } }
 
 		private bool _isLogged = false;
 		public bool IsLogged { get => _isLogged; }
 		public bool wantToLog = true;
+		private bool _canTryToLog = true;
+		public bool CanTryToLog { get => _canTryToLog; }
 
-		private Button logButton = null;
+		public WebClientFeedbackEventHandler OnFeedback;
 
 		[SerializeField] private WebClientUnityEvent _onLogged;
 		[SerializeField] private WebClientUnityEvent _onScoreGet;
@@ -113,29 +111,35 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		/// </summary>
 		private void StopMyCoroutines(WebClient webClient)
 		{
+			if (mainCoroutine != null) StopCoroutine(mainCoroutine);
 			StopCoroutine(tryToLogCoroutine);
 			StopCoroutine(currentSubCoroutine);
 		}
 
-		public void AddOnLogButtonListener(Button button)
+		public void TryToLog()
 		{
-			logButton = button;
-			logButton.onClick.AddListener(OnLogButtonClicked);
+			Debug.Log("WebClient::TryToLog: " + _credentials.username + "  " + _credentials.password);
+
+			mainCoroutine = StartCoroutine(TryToLogMainCoroutine());
 		}
 
-		private void RemoveOnLogButtonListener()
+		private IEnumerator TryToLogMainCoroutine()
 		{
-			logButton.onClick.RemoveListener(OnLogButtonClicked);
-		}
+			_canTryToLog = false;
 
-		private void OnLogButtonClicked()
-		{
 			if (_credentials.username.Length == 0 || _credentials.password.Length == 0)
 			{
-				Debug.LogWarning("WebClient::OnLog : username or password input field is empty.");
-				return;
+				OnFeedback?.Invoke(string.Empty);
+				yield return new WaitForSeconds(0.5f);
+
+				Debug.LogWarning("WebClient::TryToLogMainCoroutine: username or password input field is empty.");
+
+				_canTryToLog = true;
+				OnFeedback?.Invoke("Username or password input field is empty.");
+				yield break;
 			}
 
+			OnFeedback?.Invoke(string.Empty);
 			tryToLogCoroutine = StartCoroutine(TryToLogCoroutine());
 		}
 
@@ -151,7 +155,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 		private IEnumerator TryToLogCoroutine()
 		{
-			RemoveOnLogButtonListener();
+			_canTryToLog = false;
 
 			currentSubCoroutine = StartCoroutine(SigninCoroutine());
 
@@ -175,10 +179,13 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				yield break;
 			}
 
-			Debug.Log("User already exists. You should either enter the good password or choose a different username.");
-			AddOnLogButtonListener(null);
+			OnFeedback?.Invoke("User already exists. You should either enter the good password or choose a different username.");
+			Debug.Log("WebClient::TryToLogCoroutine: User already exists. You should either enter the good password or choose a different username.");
+
 			currentSubCoroutine = null;
 			tryToLogCoroutine = null;
+
+			_canTryToLog = true;
 		}
 
 		private IEnumerator SignupCoroutine()

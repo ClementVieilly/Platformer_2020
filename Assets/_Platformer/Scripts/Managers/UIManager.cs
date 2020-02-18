@@ -82,6 +82,14 @@ namespace Com.IsartDigital.Platformer.Managers
 		public void SetWebClient(WebClient webClient)
 		{
 			this.webClient = webClient;
+			this.webClient.OnFeedback += WebClient_OnFeedback;
+		}
+
+		private void WebClient_OnFeedback(string message)
+		{
+			if (!currentLoginScreen) return;
+
+			currentLoginScreen.SendFeedback(message);
 		}
 
         private void CreatePauseMenu() //Crée une instance de Menu Pause et écoute ses événements
@@ -333,7 +341,10 @@ namespace Com.IsartDigital.Platformer.Managers
 		//Evenements du LoginScreen
 		private void LoginScreen_OnConnectClicked(LoginScreen loginScreen)
 		{
-			throw new NotImplementedException();
+			if (!webClient.CanTryToLog) return;
+
+			webClient.Credentials = new WebClient.WebCredentials(currentLoginScreen.Username, currentLoginScreen.Password);
+			webClient.TryToLog();
 		}
 
 		private void LoginScreen_OnSkipClicked(LoginScreen loginScreen)

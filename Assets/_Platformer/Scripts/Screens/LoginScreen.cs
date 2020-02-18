@@ -1,6 +1,6 @@
 ///-----------------------------------------------------------------
 /// Author : Joël VOIGNIER
-/// Date : 04/02/2020 11:12
+/// Date : 18/02/2020 11:12
 ///-----------------------------------------------------------------
 
 using Com.IsartDigital.Platformer.Screens;
@@ -14,23 +14,38 @@ public class LoginScreen : AScreen
 	public LoginScreenEventHandler OnConnectClicked;
 	public LoginScreenEventHandler OnSkipClicked;
 
-	[SerializeField] private MenuButton connectButton = null;
+	[SerializeField] private InputField usernameField = null;
+	[SerializeField] private InputField passwordField = null;
+	public string Username { get => usernameField.text; }
+	public string Password { get => passwordField.text; }
+
+	[SerializeField] private Text feedbackText = null;
+
+	[SerializeField] private MenuButton _connectButton = null;
+	public MenuButton ConnectButton { get => _connectButton; }
 	[SerializeField] private MenuButton skipButton = null;
 
 	private void Awake()
 	{
-		connectButton.OnMenuButtonClicked += LoginScreenSkip_Clicked;
+		_connectButton.OnMenuButtonClicked += LoginScreenConnect_Clicked;
 		skipButton.OnMenuButtonClicked += LoginScreenSkip_Clicked;
 	}
 
 	private void LoginScreenConnect_Clicked(Button button)
 	{
+		_connectButton.Button.interactable = false;
 		OnConnectClicked?.Invoke(this);
 	}
 
 	private void LoginScreenSkip_Clicked(Button button)
 	{
 		OnSkipClicked?.Invoke(this);
+	}
+
+	public void SendFeedback(string message)
+	{
+		if (message.Length != 0) _connectButton.Button.interactable = true;
+		feedbackText.text = message;
 	}
 
 	public override void UnsubscribeEvents()

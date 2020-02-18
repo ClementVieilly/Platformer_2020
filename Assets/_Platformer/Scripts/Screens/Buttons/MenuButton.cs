@@ -14,6 +14,7 @@ namespace Com.IsartDigital.Platformer.Screens.Buttons {
         public MenuButtonEventHandler OnMenuButtonClicked;
 
         private Button button;
+		public Button Button { get => button; }
 
         private void Awake()
         {

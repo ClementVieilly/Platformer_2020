@@ -41,6 +41,7 @@ public class Leaderboard : AScreen
 
 	public override void UnsubscribeEvents()
 	{
+		OnMenuClicked = null;
 		OnBackToTitleClicked = null;
 	}
 }

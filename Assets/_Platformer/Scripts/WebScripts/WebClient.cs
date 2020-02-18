@@ -3,6 +3,7 @@
 /// Date : 04/02/2020 16:14
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.Managers;
 using Com.IsartDigital.Platformer.UnityEvents;
 using System;
 using System.Collections;
@@ -68,6 +69,10 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			}
 		}
 
+		private bool _isLogged = false;
+		public bool IsLogged { get => _isLogged; }
+		public bool wantToLog = true;
+
 		private Button logButton = null;
 
 		[SerializeField] private WebClientUnityEvent _onLogged;
@@ -99,6 +104,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 		private void Start()
 		{
+			UIManager.Instance.SetWebClient(this);
 			OnLogged += StopMyCoroutines;
 		}
 

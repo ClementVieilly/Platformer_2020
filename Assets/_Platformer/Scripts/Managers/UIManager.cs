@@ -4,6 +4,7 @@
 ///-----------------------------------------------------------------
 
 using Com.IsartDigital.Platformer.Screens;
+using Com.IsartDigital.Platformer.WebScripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,13 +46,14 @@ namespace Com.IsartDigital.Platformer.Managers
         private Leaderboard currentLeaderboard; //correspond au leaderboard actuel utilisé
         private ConfirmScreen currentConfirmScreen; //correspond à l'écran de confirmation actuel utilisé
 
-
         //List of all screens
         private List<AScreen> allScreens = new List<AScreen>();
 
         //Singleton
         private static UIManager _instance;
         public static UIManager Instance => _instance;
+
+		private WebClient webClient = null;
 
         //Events
         public delegate void UIManagerEventHandler();
@@ -76,6 +78,11 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             if (this == _instance) _instance = null;
         }
+
+		public void SetWebClient(WebClient webClient)
+		{
+			this.webClient = webClient;
+		}
 
         private void CreatePauseMenu() //Crée une instance de Menu Pause et écoute ses événements
         {
@@ -136,6 +143,9 @@ namespace Com.IsartDigital.Platformer.Managers
 			currentLeaderboard.OnBackToTitleClicked += Leaderboard_OnBackToTitleClicked;
 
 			allScreens.Add(currentLeaderboard);
+
+			if (webClient.wantToLog)
+				CreateLoginScreen();
 		}
 
 		public void CreateWinLeaderboard()
@@ -145,6 +155,13 @@ namespace Com.IsartDigital.Platformer.Managers
 			currentLeaderboard.OnMenuClicked += Leaderboard_OnMenuClicked;
 
 			allScreens.Add(currentLeaderboard);
+		}
+
+		public void CreateLoginScreen()
+		{
+			currentLoginScreen = Instantiate(loginScreenPrefab).GetComponent<LoginScreen>();
+
+			allScreens.Add(currentLoginScreen);
 		}
 
 		private GameObject CreateLoadingScreen()

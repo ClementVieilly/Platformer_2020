@@ -1,21 +1,14 @@
 ///-----------------------------------------------------------------
-/// Author : Alexandre RAUMEL
+/// Author : Joël VOIGNIER
 /// Date : 04/02/2020 11:12
 ///-----------------------------------------------------------------
 
-using UnityEngine;
+using Com.IsartDigital.Platformer.Screens;
 
-public class LoginScreen : MonoBehaviour
+public class LoginScreen : AScreen
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public override void UnsubscribeEvents()
+	{
+		throw new System.NotImplementedException();
+	}
 }

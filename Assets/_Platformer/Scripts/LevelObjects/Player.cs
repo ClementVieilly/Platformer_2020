@@ -108,7 +108,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private float timerFallToPlane;
         
         private bool jump = false;
-
         // ElapsedTime des différents états
         private float jumpElapsedTime = 0f;
         private float hangElapsedTime = 0f;
@@ -127,7 +126,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 		//Animations
 		private Vector3 scaleLeft = new Vector3(0.5f, 0.5f, 1f);
 		private Vector3 scaleRight = new Vector3(-0.5f, 0.5f, 1f);
-
+        private float idleElapsedTime = 0;
+        private float animCounter = 0;
+        private bool isPlaying = false;
+        private float timeBetweenIdleAndIdleLong = 5f; 
         private Rigidbody2D rigidBody = null;
         private Animator animator = null;
 
@@ -267,6 +269,28 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             }
 
+            // Code pour que le Idle Long se lance toute les 5sec si le perso est déjà en Idle
+            if (Math.Abs(rigidBody.velocity.x) < 0.1f)
+            {
+                float animDuration = 1.8f * 45;
+
+                if (isPlaying && animCounter < animDuration) animCounter++; 
+                else if (animCounter >= animDuration)
+                {
+                    animCounter = 0;
+                    isPlaying = false; 
+                }
+
+                else idleElapsedTime += Time.deltaTime;
+                if (idleElapsedTime >= timeBetweenIdleAndIdleLong)
+                {
+                    idleElapsedTime = 0; 
+                    animator.SetTrigger(settings.IdleLong);
+                    isPlaying = true;
+                }
+            }
+            else idleElapsedTime = 0; 
+
             // Updating Animator
 			transform.localScale = previousDirection >= 0 ? scaleRight : scaleLeft;
 			animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
@@ -339,11 +363,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 {
                     StartCoroutine(TestCoroutine(rigidBody.position + new Vector2(settings.ImpulsionInCorner.x * previousDirection, settings.ImpulsionInCorner.y)));
                 }
-                Debug.Log("je suis au corner mgl");
             }
-           
             if(_isOnWall)
             {
+                
                 if(jump && !jumpButtonHasPressed)
                 {
                     wallJumpPS.Play();

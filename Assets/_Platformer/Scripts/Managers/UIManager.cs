@@ -69,7 +69,7 @@ namespace Com.IsartDigital.Platformer.Managers
             else _instance = this;
 
             CreateTitleCard();
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
 
         private void OnDestroy()

@@ -15,10 +15,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 {
 	public class WebClient : MonoBehaviour
 	{
-		[SerializeField] private Text usernameTextField = null;
-		[SerializeField] private Text passwordTextField = null;
-
-		[SerializeField] private Button logButton = null;
+		private static WebClient _instance;
 
 		private string _jsonWebToken = null;
 		public string JsonWebToken { get => _jsonWebToken; }
@@ -33,12 +30,12 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		public ScoreObject[] Scores { get => _scores; }
 
 		[Serializable]
-		private class Credentials
+		public class WebCredentials
 		{
 			public string username = null;
 			public string password = null;
 
-			public Credentials(string username, string password)
+			public WebCredentials(string username, string password)
 			{
 				this.username = username;
 				this.password = password;
@@ -61,6 +58,18 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			}
 		}
 
+		private WebCredentials _credentials = null;
+		public WebCredentials Credentials
+		{
+			set
+			{
+				if (_credentials == null)
+					_credentials = value;
+			}
+		}
+
+		private Button logButton = null;
+
 		[SerializeField] private WebClientUnityEvent _onLogged;
 		[SerializeField] private WebClientUnityEvent _onScoreGet;
 
@@ -76,11 +85,21 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			remove { _onScoreGet.RemoveListener(value); }
 		}
 
+		private void Awake()
+		{
+			if (_instance)
+			{
+				Destroy(gameObject);
+				return;
+			}
+			_instance = this;
+
+			DontDestroyOnLoad(gameObject);
+		}
+
 		private void Start()
 		{
 			OnLogged += StopMyCoroutines;
-			OnLogged += AddOnLogButtonListener;
-			AddOnLogButtonListener(null);
 		}
 
 		/// <summary>
@@ -92,8 +111,9 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			StopCoroutine(currentSubCoroutine);
 		}
 
-		private void AddOnLogButtonListener(WebClient webClient)
+		public void AddOnLogButtonListener(Button button)
 		{
+			logButton = button;
 			logButton.onClick.AddListener(OnLogButtonClicked);
 		}
 
@@ -104,7 +124,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 		private void OnLogButtonClicked()
 		{
-			if (usernameTextField.text.Length == 0 || passwordTextField.text.Length == 0)
+			if (_credentials.username.Length == 0 || _credentials.password.Length == 0)
 			{
 				Debug.LogWarning("WebClient::OnLog : username or password input field is empty.");
 				return;
@@ -161,7 +181,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			isPreviousRequestOver = false;
 			string url = "https://platformer-sequoia.herokuapp.com/users/signup";
 
-			Credentials credentials = new Credentials(usernameTextField.text, passwordTextField.text);
+			WebCredentials credentials = new WebCredentials(_credentials.username, _credentials.password);
 			string json = JsonUtility.ToJson(credentials);
 
 			using (UnityWebRequest request = PostJson(url, json))
@@ -189,7 +209,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			isPreviousRequestOver = false;
 			string url = "https://platformer-sequoia.herokuapp.com/users/signin";
 
-			Credentials credentials = new Credentials(usernameTextField.text, passwordTextField.text);
+			WebCredentials credentials = new WebCredentials(_credentials.username, _credentials.password);
 			string json = JsonUtility.ToJson(credentials);
 
 			using (UnityWebRequest request = PostJson(url, json))

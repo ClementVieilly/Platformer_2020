@@ -9,7 +9,6 @@ namespace Com.IsartDigital.Platformer.Managers {
 	public class GameManager : MonoBehaviour {
 
 		private static GameManager _instance;
-		//public static GameManager Instance => _instance;
 
 		private void Awake()
 		{
@@ -20,7 +19,7 @@ namespace Com.IsartDigital.Platformer.Managers {
 			}
 			_instance = this;
 
-			DontDestroyOnLoad(this.gameObject);
+			DontDestroyOnLoad(gameObject);
 		}
 
 		private void OnDestroy()

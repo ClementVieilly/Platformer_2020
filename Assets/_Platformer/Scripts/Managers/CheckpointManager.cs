@@ -45,14 +45,14 @@ namespace Com.IsartDigital.Platformer.Managers {
         { 
             _lastCheckpointPos = triggredCheckpoint.transform.position;
             if(triggredCheckpoint.IsSuperCheckpoint) _lastSuperCheckpointPos = triggredCheckpoint.transform.position;
-            if(triggredCheckpoint.IsFinalCheckPoint) OnFinalCheckPointTriggered?.Invoke();
+			if (triggredCheckpoint.IsFinalCheckPoint)OnFinalCheckPointTriggered?.Invoke();
         }
 
 		public void ResetColliders()
 		{
-			foreach (Checkpoints checkpoint in checkpointList)
+			for (int i = checkpointList.Count - 1; i >= 0; i--)
 			{
-				checkpoint.ResetCollider();
+				checkpointList[i].ResetCollider();
 			}
 		}
 

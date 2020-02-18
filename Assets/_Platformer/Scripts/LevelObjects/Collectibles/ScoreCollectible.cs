@@ -6,7 +6,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
+namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
+{
     public delegate void ScoreCollectibleEventHandler(float score);
 
     public class ScoreCollectible : ACollectible {
@@ -15,7 +16,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
 
         public event ScoreCollectibleEventHandler OnCollected;
 
-        [SerializeField] private float score = 10;
+        [SerializeField] private float score = 1;
 
         private void Awake()
         {
@@ -24,6 +25,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
         protected override void EffectOfTheCollectible()
         {
             OnCollected?.Invoke(score); 
+        }
+        public static void ResetAll()
+        {
+            for (int i = List.Count - 1; i >= 0; i--)
+            {
+                List[i].gameObject.SetActive(true);
+            }
         }
     }
 }

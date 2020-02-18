@@ -3,11 +3,10 @@
 /// Date : 04/02/2020 14:45
 ///-----------------------------------------------------------------
 
-using System;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
+namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles
+{
 
     public class TimedDoorTrigger : AInteractiveObstacles
     {

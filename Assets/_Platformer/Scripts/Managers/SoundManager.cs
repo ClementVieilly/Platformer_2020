@@ -1,19 +1,142 @@
+
 ///-----------------------------------------------------------------
 /// Author : Joël VOIGNIER
 /// Date : 21/01/2020 10:37
 ///-----------------------------------------------------------------
 
-using UnityEngine;
+using System;
+using System.Collections.Generic;
 
-namespace Com.IsartDigital.Platformer.Managers {
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+using UnityEngine;
+using UnityEngine.Audio;
+
+namespace Com.IsartDigital.Platformer.Managers
+{
 	public class SoundManager : MonoBehaviour {
-	
-		private void Start () {
-			
+
+		private static SoundManager _instance;
+		public static SoundManager Instance => _instance;
+
+		public AudioMixerGroup mixerGroup;
+
+		public Sound[] sounds;
+
+		private List<Sound> playedSounds = new List<Sound>();
+
+		private void Awake()
+		{
+			if (_instance != null && _instance != this)
+			{
+				Destroy(gameObject);
+				return;
+			}
+			else _instance = this;
+
+			DontDestroyOnLoad(this.gameObject);
+
+			for (int i = sounds.Length - 1; i > -1; i--)
+			{
+				Sound sound = sounds[i];
+				sound.Source = gameObject.AddComponent<AudioSource>();
+				sound.Source.clip = sounds[i].Clip;
+				sound.Source.loop = sounds[i].IsLoop;
+
+				sound.Source.outputAudioMixerGroup = mixerGroup;
+			}
 		}
-		
-		private void Update () {
-			
+
+		public void Play(string sound)
+		{
+			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
+
+			if (currentSound == null)
+			{
+				Debug.LogWarning("Sound: " + name + " not found!");
+				return;
+			}
+			else if (currentSound.Source.isPlaying) 
+			{
+				//Debug.LogWarning("Sound: " + name + " is already playing!");
+				return;
+			}
+
+			currentSound.Source.volume = currentSound.Volume * (1 + UnityEngine.Random.Range(-currentSound.VolumeVariance / 2, currentSound.VolumeVariance / 2));
+
+			currentSound.Source.pitch = currentSound.IsPitchedBetweenValues ?
+										UnityEngine.Random.Range(currentSound.MinPitchValue, currentSound.MaxPitchValue) :
+										currentSound.Source.pitch = currentSound.Pitch * (1 + UnityEngine.Random.Range(-currentSound.PitchVariance / 2, currentSound.PitchVariance / 2));
+			currentSound.Source.Play();
 		}
+
+		public void Stop(string sound)
+		{
+			Sound currentSound = System.Array.Find(sounds, searchedSound => searchedSound.Name == sound);
+			if (currentSound == null)
+			{
+				Debug.LogWarning("Sound: " + name + " not found!");
+				return;
+			}
+			currentSound.Source.Stop();
+		}
+
+		public void Pause(string sound)
+		{
+			Sound currentSound = System.Array.Find(sounds, searchedSound => searchedSound.Name == sound);
+			if (currentSound == null)
+			{
+				Debug.LogWarning("Sound: " + name + " not found!");
+				return;
+			}
+			currentSound.Source.Pause();
+		}
+
+		public void PauseAll()
+		{
+			playedSounds.RemoveRange(0, playedSounds.Count);
+			for (int i = sounds.Length - 1; i >= 0; i--)
+			{
+				Sound testedSound = sounds[i];
+				if (testedSound.Source.isPlaying)
+				{
+					playedSounds.Add(testedSound);
+					testedSound.Source.Pause();
+				}
+			}
+		}
+
+		public void ResumeAll()
+		{
+			for (int i = playedSounds.Count - 1; i >= 0; i--)
+			{
+				playedSounds[i].Source.UnPause();
+				playedSounds.Remove(playedSounds[i]);
+			}
+		}
+
+
+#if UNITY_EDITOR
+		#region EditorMethods
+		public void AddSound()
+		{
+			ArrayUtility.Add<Sound>(ref sounds, new Sound());
+		}
+
+		public void RemoveSound(string sound)
+		{
+			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
+
+			ArrayUtility.Remove<Sound>(ref sounds, currentSound);
+		}
+
+		public void RemoveLastSound()
+		{
+			ArrayUtility.RemoveAt<Sound>(ref sounds, sounds.Length-1);
+		}
+		#endregion
+#endif
 	}
 }

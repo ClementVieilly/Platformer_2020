@@ -5,29 +5,47 @@
 
 using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
-using System;
-using System.Collections.Generic;
+using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
+using Com.IsartDigital.Platformer.LevelObjects.Platforms;
+using Com.IsartDigital.Platformer.Screens;
+using System.Collections;
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer.Managers {
+namespace Com.IsartDigital.Platformer.Managers
+{
 
     public class LevelManager : MonoBehaviour {
 
         [SerializeField] private Player player;
         private TimeManager timeManager;
-        //private float _score = 0;
+
+        private float score = 0;
+
         private float finalTimer = 0; //Temps du levelComplete
         private void Start()
         {
-            subscribeAllEvents();
+            SubscribeAllEvents();
             timeManager = GetComponent<TimeManager>();
-            timeManager.StartTimer(); 
+            timeManager.StartTimer();
+            StartCoroutine(InitHud());
+        }
 
+        IEnumerator InitHud()
+        {
+            while (Hud.Instance == null) yield return null;
+            UpdateHud();
         }
 
         private void LifeCollectible_OnCollected(int value)
         {
             player.AddLife(value);
+            if(Hud.Instance != null) Hud.Instance.Life = player.Life;
+        }
+
+        private void ScoreCollectible_OnCollected(float addScore)
+        {
+            score += addScore;
+            if(Hud.Instance != null) Hud.Instance.Score = score;
         }
 
         private void KillZone_OnCollision()
@@ -35,25 +53,93 @@ namespace Com.IsartDigital.Platformer.Managers {
             if (player.LooseLife())
             {
                 player.setPosition(CheckpointManager.Instance.LastCheckpointPos);
+                Hud.Instance.Life = player.Life;
             }
-            else {
+            else 
+            {
                 player.setPosition(CheckpointManager.Instance.LastSuperCheckpointPos);
                 CheckpointManager.Instance.ResetColliders();
             } 
         }
-        private void lScoreCollectible_OnCollected(float score)
+
+        private void Player_OnDie()
         {
-            //Hud.Score = score; 
-            // Hud.UpdateScore(); 
+            finalTimer = timeManager.Timer;
+            timeManager.SetModeVoid();
+
+            UIManager.Instance.CreateLoseScreen();
+        }
+
+        private void CheckpointManager_OnFinalCheckPointTriggered()
+        {
+            Win();
+            CheckpointManager.OnFinalCheckPointTriggered -= CheckpointManager_OnFinalCheckPointTriggered;
+        }
+
+        private void Win()
+        {
+            finalTimer = timeManager.Timer;
+            timeManager.SetModeVoid();
+            UnsubscribeAllEvents();
+
+            if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();
+            else Debug.LogError("Pas d'UImanager sur la scène");
+            player.gameObject.SetActive(false);
+        }
+
+        private void Retry()
+        {
+            player.Reset();
+            score = 0;
+            UpdateHud();
+
+            timeManager.SetModeVoid();
+
+            CheckpointManager.Instance.ResetColliders();
+
+            LifeCollectible.ResetAll();
+            ScoreCollectible.ResetAll();
+            DestructiblePlatform.ResetAll();
+            MobilePlatform.ResetAll();
+            PlatformTrigger.ResetAll();
+            TimedDoor.ResetAll();
+
+            timeManager.StartTimer();
+        }
+
+        private void Resume()
+        {
+            player.SetModeResume();
+            DestructiblePlatform.ResumeAll();
+            MobilePlatform.ResumeAll();
+            TimedDoor.ResumeAll();
+            timeManager.SetModeTimer();
+            SoundManager.Instance.ResumeAll();
+        }
+
+        private void PauseGame()
+        {
+            player.SetModePause();
+            DestructiblePlatform.PauseAll();
+            MobilePlatform.PauseAll();
+            TimedDoor.PauseAll();
+            timeManager.SetModePause();
+            SoundManager.Instance.PauseAll();
+        }
+
+        private void UpdateHud()
+        {
+            Hud.Instance.Score = score;
+            Hud.Instance.Life = player.Life;
         }
 
         private void OnDestroy()
         {
-            unsubscribeAllEvents();
+            UnsubscribeAllEvents();
         }
 
         #region Events subscribtions
-        private void subscribeAllEvents()
+        private void SubscribeAllEvents()
         {
             for(int i = LifeCollectible.List.Count - 1; i >= 0; i--)
             {
@@ -67,36 +153,23 @@ namespace Com.IsartDigital.Platformer.Managers {
 
             for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
             {
-                ScoreCollectible.List[i].OnCollected += lScoreCollectible_OnCollected; 
+                ScoreCollectible.List[i].OnCollected += ScoreCollectible_OnCollected; 
             }
 
             CheckpointManager.OnFinalCheckPointTriggered += CheckpointManager_OnFinalCheckPointTriggered;
-            player.OnDie += Player_OnDie; 
-        }
+            player.OnDie += Player_OnDie;
 
-        private void Player_OnDie()
-        {
-            finalTimer = timeManager.Timer; 
-            timeManager.SetModeVoid(); 
-        }
-
-        private void CheckpointManager_OnFinalCheckPointTriggered()
-        {
-            Win();
-            CheckpointManager.OnFinalCheckPointTriggered -= CheckpointManager_OnFinalCheckPointTriggered;
-
-        }
-
-        private void Win()
-        {
-            finalTimer = timeManager.Timer;
-            timeManager.SetModeVoid(); 
-            unsubscribeAllEvents();
+            if (UIManager.Instance != null)
+            {
+                UIManager.Instance.OnRetry += Retry;
+                UIManager.Instance.OnResume += Resume;
+                UIManager.Instance.OnPause += PauseGame;
+            }
         }
         #endregion
 
         #region Events unsubscriptions
-        private void unsubscribeAllEvents()
+        private void UnsubscribeAllEvents()
         {
             for(int i = LifeCollectible.List.Count - 1; i >= 0; i--)
             {
@@ -110,7 +183,17 @@ namespace Com.IsartDigital.Platformer.Managers {
 
             for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
             {
-                ScoreCollectible.List[i].OnCollected -= lScoreCollectible_OnCollected;
+                ScoreCollectible.List[i].OnCollected -= ScoreCollectible_OnCollected;
+            }
+
+            CheckpointManager.OnFinalCheckPointTriggered -= CheckpointManager_OnFinalCheckPointTriggered;
+            player.OnDie -= Player_OnDie;
+
+            if (UIManager.Instance != null) 
+            {
+                UIManager.Instance.OnRetry -= Retry;
+                UIManager.Instance.OnResume -= Resume;
+                UIManager.Instance.OnPause -= PauseGame;
             }
         }
         #endregion

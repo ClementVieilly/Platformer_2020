@@ -3,32 +3,91 @@
 /// Date : 21/01/2020 10:40
 ///-----------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
 	public class DestructiblePlatform : Platform {
 
-        private bool startCount = false;
+        private static List<DestructiblePlatform> _list = new List<DestructiblePlatform>();
+        public static List<DestructiblePlatform> List => _list;
+
         [SerializeField] private float duration;
-        [SerializeField] private Collider2D triggeredCollider;
+        [SerializeField] private GameObject triggeredCollider;
         private float elapsedTime;
+
+        private Action DoAction;
+        private Action PreviousDoAction;
+
+        private void Start()
+        {
+            _list.Add(this);
+            SetModeVoid();
+        }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            startCount = true;
-            Debug.Log("je suis dessus"); 
+            SetModeNormal();
         }
 
         private void Update()
         {
-            if (startCount)
-            {
-                elapsedTime += Time.deltaTime;
+            DoAction();
+        }
 
-                if(elapsedTime > duration) triggeredCollider.enabled = false;
+        private void SetModeVoid()
+        {
+            DoAction = DoActionVoid;
+        }
+        private void SetModeNormal()
+        {
+            DoAction = DoActionNormal;
+        }
+        private void DoActionVoid()
+        {
+
+        }
+        private void DoActionNormal()
+        {
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime >= duration) 
+            {
+                triggeredCollider.SetActive(false);
+                SetModeVoid();
             }
         }
 
+        private void OnDestroy()
+        {
+            _list.Remove(this);
+        }
 
+        public static void ResetAll()
+        {
+            Debug.Log("reset destructible platforms");
+            for (int i = List.Count - 1; i >= 0; i--)
+            {
+                List[i].triggeredCollider.SetActive(true);
+                List[i].elapsedTime = 0;
+            }
+        }
+
+        public static void PauseAll()
+        {
+            for (int i = List.Count - 1; i >= 0; i--)
+            {
+                List[i].PreviousDoAction = List[i].DoAction;
+                List[i].SetModeVoid();
+            }
+        }
+        
+        public static void ResumeAll()
+        {
+            for (int i = List.Count - 1; i >= 0; i--)
+            {
+                List[i].DoAction = List[i].PreviousDoAction;
+            }
+        }
     }
 }

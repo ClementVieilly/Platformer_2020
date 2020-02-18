@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Player Settings
   m_EditorClassIdentifier: 
   _isGroundedParam: {fileID: 11400000, guid: 9d750235ac985aa4d99f4984267c0cb0, type: 2}
-  _horizontalOrientationParam: {fileID: 11400000, guid: ffb3decaba6f99845855878439abcfc7,
-    type: 2}
   _horizontalSpeedParam: {fileID: 11400000, guid: 3f540de8444cb4b4b9de6c0089a8d36d,
     type: 2}
   _verticalVelocityParam: {fileID: 11400000, guid: 3e760a74bfdd92b4ebc824a2c6a92155,
     type: 2}
+  _isPlaningParam: {fileID: 11400000, guid: 577c3878d6b9bed4b9c2092c6791d4c6, type: 2}
   _runSpeed: 20
   _runAccelerationCurve:
     serializedVersion: 2
@@ -228,8 +227,8 @@ MonoBehaviour:
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  _isGroundedRaycastDistance: 0
-  _jumpTolerance: 0.62
+  _isGroundedRaycastDistance: 0.1
+  _jumpTolerance: 0.7
   _minJumpForce: 18
   _wallJumpHorizontalForce: 20
   _jumpHoldForce: 1

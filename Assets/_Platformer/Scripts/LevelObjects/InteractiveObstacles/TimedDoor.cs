@@ -50,8 +50,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles
 
         private IEnumerator OpenDoor()
         {
-
-
             while ((transform.position != endPos.position) && isOpening)
             {
                 while (isPaused)
@@ -68,8 +66,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles
 
         private IEnumerator CloseDoor()
         {
-
-
             while ( (transform.position != startPos.position) && isClosing)
             {
                 while (isPaused)
@@ -96,6 +92,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles
             for (int i = _list.Count - 1; i >= 0; i--)
             {
                 _list[i].ResetPosition();
+                _list[i].isOpening = false;
+                _list[i].isClosing = false;
+                _list[i].isPaused = false;
             }
         }
 

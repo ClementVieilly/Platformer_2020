@@ -253,7 +253,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void SetModePlane()
         {
-           // SoundManager.Instance.Play(sounds.PlaneFlap01); 
+            SoundManager.Instance.Play(sounds.PlaneFlap01);
             stateTag.name = "Plane"; 
             DoAction = DoActionPlane;
             animator.SetBool(settings.IsPlaningParam, true);
@@ -264,7 +264,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             PreviousDoAction = DoAction;
             rigidBody.Sleep();
 
-            //patch fall from corner
             rigidBody.simulated = false;
 
             DoAction = DoActionVoid; 
@@ -274,7 +273,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             rigidBody.WakeUp();
 
-            //patch fall from corner
             rigidBody.simulated = true;
 
             DoAction = PreviousDoAction;
@@ -321,7 +319,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 IsGrounded = false;
                 if (transform.parent != null) transform.SetParent(null);
                 jumpingPS.Play();
-                //SoundManager.Instance.Play(sounds.Jump); 
+                SoundManager.Instance.Play(sounds.Jump);
 
             }
             else if(!jump) jumpButtonHasPressed = false;
@@ -412,7 +410,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 horizontalMove = Mathf.Lerp(0f, settings.RunSpeed, ratio);
 
                 walkingPS.Play();
-                //SoundManager.Instance.Play(sounds.FootstepsWood); 
+                SoundManager.Instance.Play(sounds.FootstepsWood);
             }
             else
             {
@@ -436,14 +434,14 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionInAir()
         {
             CheckIsOnWall();
-            //if(Mathf.Abs(rigidBody.velocity.y) < 0.1f) CheckIsGrounded();
             CheckIsGrounded(); 
-            if(_isGrounded)
+            if (_isGrounded)
             {
+                wasOnWall = false;
+                wallJumpElaspedTime = 0; 
                 SetModeNormal();
                 return;
             }
-            MoveHorizontalInAir();
 
             //Gère le cas ou le joueur est sur un coin de plateforme et lui donne un impulsion pour qu'il soit sur la plateforme
             if(isOnCorner && !wasInCorner)
@@ -451,7 +449,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 wasInCorner = true;
                 if(wasInCorner)
                 {
-                    Debug.Log("oui"); 
                    // StartCoroutine(TestCoroutine());
                     isOnCorner = false;
                 }
@@ -464,14 +461,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     jumpButtonHasPressed = true;
                     wasOnWall = true;
                     horizontalMoveElapsedTime = 0f;
-					isFacingWallJump = false;
+                    isFacingWallJump = false;
                     topSpeed = settings.WallJumpHorizontalForce;
-					previousDirection = -facingRightWall;
-                    rigidBody.velocity = new Vector2(settings.WallJumpHorizontalForce * previousDirection, settings.MinJumpForce);
+                    previousDirection = -facingRightWall;
+                    rigidBody.velocity = new Vector2(settings.WallJumpHorizontalForce * previousDirection, settings.WallJumpVerticalForce);
+                   // rigidBody.velocity = Vector2.Lerp(rigidBody.velocity, new Vector2(settings.WallJumpHorizontalForce * previousDirection, rigidBody.velocity.y), wallJumpElaspedTime / 0.5f);
+                   // Debug.Log(Vector2.Lerp(rigidBody.velocity, new Vector2(settings.WallJumpHorizontalForce * previousDirection, rigidBody.velocity.y), wallJumpElaspedTime));
                     ParticleSystem wjParticle = facingRightWall == 1 ? wallJumpPSRight : wallJumpPSLeft;
                     wjParticle.Play();
                 }
             }
+
+
             // Gère l'appui long sur le jump
             if(jump && jumpElapsedTime < settings.MaxJumpTime)
             {
@@ -516,6 +517,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
 
             animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
+
+            if(wallJumpElaspedTime >= 1.5f)
+            {
+                wasOnWall = false;
+                wallJumpElaspedTime = 0; 
+            }
+            if(wasOnWall)
+            {
+                wallJumpElaspedTime += Time.deltaTime;
+                return; 
+            }
+            else MoveHorizontalInAir(); 
         }
 
 
@@ -524,7 +537,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsOnWall();
             if(_isOnWall || !jump)
             {
-                //SoundManager.Instance.Stop(sounds.PlaneWind);
+                SoundManager.Instance.Stop(sounds.PlaneWind);
                 SetModeAir();
                 return;
             }
@@ -532,7 +545,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsGrounded();
             if(_isGrounded)
             {
-                //SoundManager.Instance.Stop(sounds.PlaneWind);
+                SoundManager.Instance.Stop(sounds.PlaneWind);
                 SetModeNormal();
                 return; 
             }
@@ -550,7 +563,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
 
             planePS.Play();
-            //SoundManager.Instance.Play(sounds.PlaneWind); 
+            SoundManager.Instance.Play(sounds.PlaneWind); 
         }
 
         private void CheckIsOnWall()
@@ -562,10 +575,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             Debug.DrawLine(wallLinecastLeftStartPos.position, wallLinecastLeftEndPos.position, Color.black);
 
             //LineCast verticaux pour tester la collision au corner
-               RaycastHit2D hitInfosCornerRight = Physics2D.Linecast(cornerLinecastRightStartPos.position, cornerLinecastRightEndPos.position, settings.GroundLayerMask); 
-               RaycastHit2D hitInfosCornerLeft = Physics2D.Linecast(cornerLinecastLeftStartPos.position, cornerLinecastLeftEndPos.position, settings.GroundLayerMask);
-               Debug.DrawLine(cornerLinecastRightStartPos.position, cornerLinecastRightEndPos.position, Color.yellow);
-               Debug.DrawLine(cornerLinecastLeftStartPos.position, cornerLinecastLeftEndPos.position, Color.red);
+            RaycastHit2D hitInfosCornerRight = Physics2D.Linecast(cornerLinecastRightStartPos.position, cornerLinecastRightEndPos.position, settings.GroundLayerMask); 
+            RaycastHit2D hitInfosCornerLeft = Physics2D.Linecast(cornerLinecastLeftStartPos.position, cornerLinecastLeftEndPos.position, settings.GroundLayerMask);
+            Debug.DrawLine(cornerLinecastRightStartPos.position, cornerLinecastRightEndPos.position, Color.yellow);
+            Debug.DrawLine(cornerLinecastLeftStartPos.position, cornerLinecastLeftEndPos.position, Color.red);
 
             if(hitInfosLeft.collider != null)
             {
@@ -586,81 +599,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void MoveHorizontalInAir()
         {
-            float ratio;
-            float horizontalMove;
-
-            if (horizontalAxis != 0 && wasOnWall && horizontalAxis != facingRightWall) // On fait le wallJump en maintenant la direction opposée au mur
-			{
-                ratio = settings.InAirDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
-                horizontalMove = Mathf.Lerp(settings.FallHorizontalSpeed, settings.WallJumpHorizontalForce, ratio);
-
-                if(ratio == 0) wasOnWall = false; 
-            }
-            else if (horizontalAxis != 0 && wasOnWall) // On fait le wallJump en maintenant la direction vers le mur
+            if (horizontalAxis != 0f) // On maintiens une direction lors de la chute
             {
-				if (!isFacingWallJump) isFacingWallJump = true;
-				
-                wallJumpElaspedTime += Time.fixedDeltaTime;
-
-				ratio = settings.InAirDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
-				horizontalMove = Mathf.Lerp(0f, topSpeed, ratio);
-
-				previousDirection = -facingRightWall;
-
-				if (wallJumpElaspedTime >= settings.DelayWallJump)
-                {
-					isFacingWallJump = false;
-					topSpeedWallJump = 0f;
-                    topSpeed = 0f;
-					wasOnWall = false;
-                    wallJumpElaspedTime = 0;
-					horizontalMoveElapsedTime = 0f;
-				}
+                rigidBody.velocity = Vector2.Lerp(rigidBody.velocity, new Vector2(22f * previousDirection, rigidBody.velocity.y), horizontalMoveElapsedTime); 
             }
-            else if (horizontalAxis != 0f) // On maintiens une direction lors de la chute
-            {
-                ratio = settings.InAirAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
-                horizontalMove = Mathf.Lerp(horizontalAxis == facingRightWall ? 0f : topSpeedWallJump, settings.FallHorizontalSpeed, ratio);
-
-                wasOnWall = false;
-            }
-			else if (isFacingWallJump) // On relache la direction après un wallJump en maintenant la direction vers le mur
-			{
-                wallJumpElaspedTime += Time.fixedDeltaTime;
-
-				ratio = settings.InAirDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
-				horizontalMove = Mathf.Lerp(0f, topSpeed, ratio);
-
-				previousDirection = -facingRightWall;
-
-				topSpeedWallJump = horizontalMove;
-
-				if (wallJumpElaspedTime >= settings.DelayWallJump)
-				{
-					isFacingWallJump = false;
-					topSpeed = 0f;
-					wasOnWall = false;
-					wallJumpElaspedTime = 0;
-					horizontalMoveElapsedTime = 0f;
-				}
-
-				wasOnWall = false;
-			}
-			else // On ne touche pas la direction
-            {
-                ratio = settings.InAirDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
-                horizontalMove = Mathf.Lerp(0f, topSpeed, ratio);
-
-				topSpeedWallJump = horizontalMove;
-
-				if (wasOnWall)
-				{
-					topSpeed = Math.Abs(rigidBody.velocity.x);
-					wasOnWall = false;
-				}
-            }
-
-			rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
         }
 
         private void MoveHorizontalPlane()

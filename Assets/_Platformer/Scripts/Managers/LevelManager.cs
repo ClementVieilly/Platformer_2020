@@ -56,11 +56,6 @@ namespace Com.IsartDigital.Platformer.Managers
                 player.setPosition(CheckpointManager.Instance.LastCheckpointPos);
                 Hud.Instance.Life = player.Life;
             }
-            else 
-            {
-                player.setPosition(CheckpointManager.Instance.LastSuperCheckpointPos);
-                CheckpointManager.Instance.ResetColliders();
-            } 
         }
 
         private void DeadZone_OnCollision()

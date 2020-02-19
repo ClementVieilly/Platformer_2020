@@ -12,9 +12,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
 
         public Action<Checkpoints> OnCollision;
 
-        [SerializeField] private bool _isSuperCheckpoint = false;
         [SerializeField] private bool _isFinalCheckPoint = false;
-        public bool IsSuperCheckpoint => _isSuperCheckpoint;
         public bool IsFinalCheckPoint => _isFinalCheckPoint;
 
         protected override void EffectOnCollision()

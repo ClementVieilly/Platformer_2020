@@ -42,7 +42,8 @@ namespace Com.IsartDigital.Platformer.Managers
 			{
 				uiManager = UIManager.Instance;
 				uiManager.OnLevelLoaded += UIManager_OnLevelLoaded;
-				uiManager.OnLeaderboardStart += UIManager_OnLeaderboardStart;
+				uiManager.OnLeaderboardStart += UIManager_OnLeaderboardEvent;
+				uiManager.OnLeaderBoardChangeLevel += UIManager_OnLeaderboardEvent;
 				uiManager.SetWebClient(webClient);
 			}
 		}
@@ -65,7 +66,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 		}
 
-		private void UIManager_OnLeaderboardStart(Leaderboard leaderboard)
+		private void UIManager_OnLeaderboardEvent(Leaderboard leaderboard)
 		{
 			StartCoroutine(GetScoresForLevelCoroutine(leaderboard));
 			//Display le chargement
@@ -110,7 +111,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 
 			if (scores[level - 1] != null)
-				leaderboard.UpdateDisplay(scores[level - 1], playerScores[level - 1], webClient.IsLogged, webClient.Credentials.username);
+				leaderboard.UpdateDisplay(scores[level - 1], playerScores[level - 1], webClient.IsLogged, webClient.Credentials != null ? webClient.Credentials.username : "undefined");
 		}
 
 		private void SortScores(int level)

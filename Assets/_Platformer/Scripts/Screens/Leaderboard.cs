@@ -15,11 +15,15 @@ public class Leaderboard : AScreen
 	public event LeaderboardEventHandler OnMenuClicked;
 	public event LeaderboardEventHandler OnBackClicked;
 	public event LeaderboardEventHandler OnSkipClicked;
+	public event LeaderboardEventHandler OnNextClicked;
+	public event LeaderboardEventHandler OnPreviousClicked;
 	public event LeaderboardEventHandler OnStart;
 
 	[SerializeField] private MenuButton homeButton = null;
 	[SerializeField] private MenuButton backButton = null;
 	[SerializeField] private MenuButton skipButton = null;
+	[SerializeField] private MenuButton nextLevel = null;
+	[SerializeField] private MenuButton previousLevel = null;
 
 	[Space, SerializeField] private uint nbMaxScoreToDisplay = 6;
 	private int _levelToDisplay = 1;
@@ -33,6 +37,8 @@ public class Leaderboard : AScreen
 		homeButton.OnMenuButtonClicked += Leaderboard_OnMenuClicked;
 		backButton.OnMenuButtonClicked += Leaderboard_OnBackClicked;
 		skipButton.OnMenuButtonClicked += Leaderboard_OnSkipClicked;
+		if (nextLevel) nextLevel.OnMenuButtonClicked += Leaderboard_OnNextLevel;
+		if (previousLevel) previousLevel.OnMenuButtonClicked += Leaderboard_OnPreviousLevel;
 	}
 
 	public void StartLeaderboard()
@@ -55,10 +61,22 @@ public class Leaderboard : AScreen
 		OnSkipClicked?.Invoke(this);
 	}
 
+	private void Leaderboard_OnNextLevel(Button sender)
+	{
+		OnNextClicked?.Invoke(this);
+	}
+
+	private void Leaderboard_OnPreviousLevel(Button sender)
+	{
+		OnPreviousClicked?.Invoke(this);
+	}
+
 	public void UpdateDisplay(ScoreObject[] scores, ScoreObject playerScore, bool isLogged, string username = "undefined")
 	{
 		bool playerDisplayed = false;
 		ScoreDisplay display;
+
+		ClearDisplay();
 
 		for (int i = 0; i < scores.Length && i < (playerDisplayed ? nbMaxScoreToDisplay - 1 : nbMaxScoreToDisplay); i++)
 		{
@@ -82,6 +100,14 @@ public class Leaderboard : AScreen
 		}
 
 		level.text = "Level " + _levelToDisplay.ToString();
+	}
+
+	private void ClearDisplay()
+	{
+		for (int i = infosZone.transform.childCount - 1; i >= 0; i--)
+			Destroy(infosZone.transform.GetChild(i).gameObject);
+
+		infosZone.transform.DetachChildren();
 	}
 
 	private ScoreDisplay AddScoreDisplay(ScoreObject scoreObject)
@@ -110,5 +136,9 @@ public class Leaderboard : AScreen
 	{
 		OnStart = null;
 		OnMenuClicked = null;
+		OnBackClicked = null;
+		OnNextClicked = null;
+		OnPreviousClicked = null;
+		OnSkipClicked = null;
 	}
 }

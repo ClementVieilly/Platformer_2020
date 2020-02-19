@@ -67,6 +67,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		public delegate void UIManagerLeaderboardEventHandler(Leaderboard leaderboard);
         public event UIManagerLeaderboardEventHandler OnLeaderboardStart;
+        public event UIManagerLeaderboardEventHandler OnLeaderBoardChangeLevel;
 
 		private void Awake()
         {
@@ -167,6 +168,8 @@ namespace Com.IsartDigital.Platformer.Managers
 
 			currentLeaderboard.OnStart += Leaderboard_OnStart;
 			currentLeaderboard.OnMenuClicked += Leaderboard_OnBackToTitleClicked;
+			currentLeaderboard.OnNextClicked += Leaderboard_OnNextClicked;
+			currentLeaderboard.OnPreviousClicked += Leaderboard_OnPreviousClicked;
 
 			allScreens.Add(currentLeaderboard);
 
@@ -379,6 +382,22 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			CloseAllScreens();
 			StartCoroutine(LoadAsyncToNextScene(sceneNames[0], CreateLevelSelector));
+		}
+
+		private void Leaderboard_OnNextClicked(Leaderboard leaderboard)
+		{
+			if (++leaderboard.LevelToDisplay >= sceneNames.Count)
+				leaderboard.LevelToDisplay = 1;
+			
+			OnLeaderBoardChangeLevel?.Invoke(leaderboard);
+		}
+
+		private void Leaderboard_OnPreviousClicked(Leaderboard leaderboard)
+		{
+			if (--leaderboard.LevelToDisplay <= 0)
+				leaderboard.LevelToDisplay = sceneNames.Count - 1;
+
+			OnLeaderBoardChangeLevel?.Invoke(leaderboard);
 		}
 
 		//Evenements du LoginScreen

@@ -90,8 +90,11 @@ namespace Com.IsartDigital.Platformer.Managers
 					yield return null;
 
 				Debug.Log("GameManager::GetScoresForLevelCoroutine: Start sorting scores");
-				scores[level - 1] = (ScoreObject[])webClient.Scores.Clone();
-				SortScores(level - 1);
+				if (webClient.Scores != null)
+				{
+					scores[level - 1] = (ScoreObject[])webClient.Scores.Clone();
+					SortScores(level - 1);
+				}
 			}
 
 			if (webClient.IsLogged && playerScores[level - 1] == null)
@@ -102,10 +105,12 @@ namespace Com.IsartDigital.Platformer.Managers
 				while (!webClient.IsPreviousRequestOver)
 					yield return null;
 
-				playerScores[level - 1] = webClient.Scores[0];
+				if (webClient.Scores != null)
+					playerScores[level - 1] = webClient.Scores[0];
 			}
 
-			leaderboard.UpdateDisplay(scores[level - 1], playerScores[level - 1], webClient.IsLogged);
+			if (scores[level - 1] != null)
+				leaderboard.UpdateDisplay(scores[level - 1], playerScores[level - 1], webClient.IsLogged);
 		}
 
 		private void SortScores(int level)

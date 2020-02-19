@@ -68,7 +68,7 @@ app.post("/users/signup", async function (req, res, next) {
     // On lui préfixe son id par praticité côté client.
     jwt.sign({ id: results[0].user_id }, secret, function (err, token) {
       if (err) return next(err);
-      res.status(200).send(user_id + "/" + token);
+      res.status(200).send(results[0].user_id + "/" + token);
     });
   }
   catch (err) {
@@ -96,7 +96,7 @@ app.post("/users/signin", async function (req, res, next) {
       // On lui préfixe son id par praticité côté client.
       jwt.sign({ id: results[0].user_id }, secret, function (err, token) {
         if (err) return next(err);
-        res.status(200).send(user_id + "/" + token);
+        res.status(200).send(results[0].user_id + "/" + token);
       });
     }
     // 401 (Unauthorized), ce code signifie que le client n’a pas les

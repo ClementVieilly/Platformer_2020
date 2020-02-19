@@ -50,8 +50,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         private void DoActionNormal()
         {
-            Debug.Log("is running");
-
             elapsedTime += Time.deltaTime;
             Vector3 previousPos = transform.position;
 

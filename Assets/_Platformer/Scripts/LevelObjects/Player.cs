@@ -3,6 +3,7 @@
 /// Date : 21/01/2020 10:38
 ///-----------------------------------------------------------------
 
+using Cinemachine;
 using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.Managers;
 using Com.IsartDigital.Platformer.ScriptableObjects;
@@ -41,6 +42,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
 
         [SerializeField] private GameObject stateTag = null;
+
+
 
         private string platformTraversableTag = "PlatformTraversable"; 
 
@@ -164,17 +167,24 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         public static Action OnPlayerJump;
         public static Action OnPlayerEndJump;
 
+        //Cinemachine Virtual Camera
+        [SerializeField] private CinemachineVirtualCamera vCam;
+        private CinemachineFramingTransposer vCamBody;
+        private float lastLookAheadTime;
+        private float lastLookAheadSmoothing;
+
         override public void Init()
         {
             Life = settings.StartLife;
             _lastCheckpointPos = transform.position;
             startPosition = transform.position;
+            vCamBody = vCam.GetCinemachineComponent<CinemachineFramingTransposer>();
         }
 
         public void Reset()
         {
             InitLife();
-            transform.position = startPosition;
+            setPosition(startPosition);
             _lastCheckpointPos = transform.position;
 
             rigidBody.simulated = true;
@@ -368,7 +378,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if(!_isGrounded)
                 animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
         
-    }
+        }
 
         private void CheckIsGrounded()
         {
@@ -453,7 +463,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 isOnCorner = false; 
                 if(wasInCorner)
                 {
-                    Debug.Log("oui"); 
                     StartCoroutine(TestCoroutine());
                 }
             }
@@ -691,7 +700,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         //Coroutine qui replace le player qd on arrive a un corner
         private IEnumerator TestCoroutine()
         {
-            Debug.Log("pas dans le while tu connais"); 
             while(isOnCorner)
             {
                 Debug.Log("je suis dedans"); 
@@ -744,8 +752,35 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         public void setPosition(Vector2 position)
         {
-            transform.position = position;
+            if (this.isActiveAndEnabled)StartCoroutine(ReplacePlayer(position));
         }
+
+        private IEnumerator ReplacePlayer(Vector2 position)
+        {
+            lastLookAheadTime = vCamBody.m_LookaheadTime;
+            lastLookAheadSmoothing = vCamBody.m_LookaheadSmoothing;
+
+            vCamBody.m_LookaheadTime = 0;
+            vCamBody.m_LookaheadSmoothing = 0;
+
+            while ((Vector2)transform.position != position)
+            {
+                transform.position = position;
+                yield return null;
+            }
+
+            while (vCamBody.m_LookaheadTime != lastLookAheadTime)
+            {
+                vCamBody.m_LookaheadTime = Mathf.MoveTowards(vCamBody.m_LookaheadTime, lastLookAheadTime, 0.1f);
+                yield return null;
+            }
+            vCamBody.m_LookaheadSmoothing = lastLookAheadSmoothing;
+
+            Debug.Log("out coroutine");
+            StopAllCoroutines();
+        }
+
+
         #endregion
     }
 }

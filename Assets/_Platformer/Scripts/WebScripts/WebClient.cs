@@ -21,7 +21,8 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 		private string jsonWebToken = null;
 
-		private bool isPreviousRequestOver = false;
+		private bool _isPreviousRequestOver = true;
+		public bool IsPreviousRequestOver { get => _isPreviousRequestOver; }
 		private bool isPreviousRequestSucces = false;
 
 		private Coroutine mainCoroutine = null;
@@ -85,7 +86,6 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 		private void Start()
 		{
-			UIManager.Instance.SetWebClient(this);
 			OnLogged += StopMyCoroutines;
 		}
 
@@ -102,6 +102,16 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			StartCoroutine(RegisterPlayerScoreForLevelCoroutine(levelManager.LevelNumber, scoreObject));
 		}
 
+		public void GetScoresForLevel(int level)
+		{
+			StartCoroutine(GetAllScoresForLevelCoroutine(level));
+		}
+
+		public void GetPlayerScoreForLevel(int level)
+		{
+			StartCoroutine(GetPlayerScoreForLevelCoroutine(level));
+		}
+
 		/// <summary>
 		/// Stop all WebClient coroutines
 		/// </summary>
@@ -110,6 +120,8 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			if (mainCoroutine != null) StopCoroutine(mainCoroutine);
 			StopCoroutine(tryToLogCoroutine);
 			StopCoroutine(currentSubCoroutine);
+
+			_isPreviousRequestOver = true;
 		}
 
 		public void TryToLog()
@@ -143,7 +155,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 			currentSubCoroutine = StartCoroutine(SigninCoroutine());
 
-			while (!isPreviousRequestOver)
+			while (!_isPreviousRequestOver)
 				yield return null;
 
 			if (isPreviousRequestSucces)
@@ -156,7 +168,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 			currentSubCoroutine = StartCoroutine(SignupCoroutine());
 
-			while (!isPreviousRequestOver)
+			while (!_isPreviousRequestOver)
 				yield return null;
 
 			if (isPreviousRequestSucces)
@@ -179,7 +191,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		private IEnumerator SignupCoroutine()
 		{
 			isPreviousRequestSucces = false;
-			isPreviousRequestOver = false;
+			_isPreviousRequestOver = false;
 			string url = "https://platformer-sequoia.herokuapp.com/users/signup";
 
 			WebCredentials credentials = new WebCredentials(_credentials.username, _credentials.password);
@@ -204,14 +216,14 @@ namespace Com.IsartDigital.Platformer.WebScripts
 					Debug.Log("User registered !");
 				}
 
-				isPreviousRequestOver = true;
+				_isPreviousRequestOver = true;
 			}
 		}
 
 		private IEnumerator SigninCoroutine()
 		{
 			isPreviousRequestSucces = false;
-			isPreviousRequestOver = false;
+			_isPreviousRequestOver = false;
 			string url = "https://platformer-sequoia.herokuapp.com/users/signin";
 
 			WebCredentials credentials = new WebCredentials(_credentials.username, _credentials.password);
@@ -236,14 +248,14 @@ namespace Com.IsartDigital.Platformer.WebScripts
 					Debug.Log("Welcome back !");
 				}
 
-				isPreviousRequestOver = true;
+				_isPreviousRequestOver = true;
 			}
 		}
 
 		private IEnumerator RegisterPlayerScoreForLevelCoroutine(int level, ScoreObject scoreObject)
 		{
 			isPreviousRequestSucces = false;
-			isPreviousRequestOver = false;
+			_isPreviousRequestOver = false;
 			string url = "https://platformer-sequoia.herokuapp.com/scores/" + _credentials.id + "/" + level;
 
 			string json = JsonUtility.ToJson(scoreObject);
@@ -264,15 +276,17 @@ namespace Com.IsartDigital.Platformer.WebScripts
 					Debug.Log(request.downloadHandler.text);
 				}
 
-				isPreviousRequestOver = true;
+				_isPreviousRequestOver = true;
 			}
 		}
 
 		private IEnumerator GetAllScoresForLevelCoroutine(int level)
 		{
 			isPreviousRequestSucces = false;
-			isPreviousRequestOver = false;
+			_isPreviousRequestOver = false;
 			string url = "https://platformer-sequoia.herokuapp.com/scores/" + level;
+
+			_scores = null;
 
 			using (UnityWebRequest request = UnityWebRequest.Get(url))
 			{
@@ -286,21 +300,22 @@ namespace Com.IsartDigital.Platformer.WebScripts
 					Debug.Log("HttpError: " + request.error + ": " + request.downloadHandler.text);
 				else
 				{
-					Debug.Log(request.downloadHandler.text);
 					isPreviousRequestSucces = true;
 					_scores = JsonHelper.GetJsonArray<ScoreObject>(request.downloadHandler.text);
 					_onScoreGet?.Invoke(this);
 				}
 
-				isPreviousRequestOver = true;
+				_isPreviousRequestOver = true;
 			}
 		}
 
 		private IEnumerator GetPlayerScoreForLevelCoroutine(int level)
 		{
 			isPreviousRequestSucces = false;
-			isPreviousRequestOver = false;
+			_isPreviousRequestOver = false;
 			string url = "https://platformer-sequoia.herokuapp.com/scores/" + _credentials.id + "/" + level;
+
+			_scores = null;
 
 			using (UnityWebRequest request = UnityWebRequest.Get(url))
 			{
@@ -314,13 +329,13 @@ namespace Com.IsartDigital.Platformer.WebScripts
 					Debug.Log("HttpError: " + request.error + ": " + request.downloadHandler.text);
 				else
 				{
-					Debug.Log(request.downloadHandler.text);
 					isPreviousRequestSucces = true;
+
 					_scores = JsonHelper.GetJsonArray<ScoreObject>(request.downloadHandler.text);
 					_onScoreGet?.Invoke(this);
 				}
 
-				isPreviousRequestOver = true;
+				_isPreviousRequestOver = true;
 			}
 		}
 

@@ -57,11 +57,18 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		//Events
 		public delegate void UIManagerEventHandler();
-        public UIManagerEventHandler OnRetry;
-        public UIManagerEventHandler OnResume;
-        public UIManagerEventHandler OnPause;
+        public event UIManagerEventHandler OnRetry;
+        public event UIManagerEventHandler OnResume;
+        public event UIManagerEventHandler OnPause;
+        public event UIManagerEventHandler OnWin;
 
-        private void Awake()
+		public delegate void UIManagerLevelManagerEventHandler(LevelManager levelManager);
+        public event UIManagerLevelManagerEventHandler OnLevelLoaded;
+
+		public delegate void UIManagerLeaderboardEventHandler(Leaderboard leaderboard);
+        public event UIManagerLeaderboardEventHandler OnLeaderboardStart;
+
+		private void Awake()
         {
             if (_instance)
             {
@@ -100,6 +107,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		public void WebClient_OnLogged(WebClient webClient)
 		{
 			CloseScreen(currentLoginScreen);
+			if (currentLeaderboard) currentLeaderboard.StartLeaderboard();
 		}
 
         private void CreatePauseMenu() //Crée une instance de Menu Pause et écoute ses événements
@@ -157,23 +165,32 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			currentLeaderboard = Instantiate(titleLeaderboardPrefab).GetComponent<Leaderboard>();
 
+			currentLeaderboard.OnStart += Leaderboard_OnStart;
 			currentLeaderboard.OnMenuClicked += Leaderboard_OnBackToTitleClicked;
 
 			allScreens.Add(currentLeaderboard);
 
 			if (webClient.wantToLog)
 				CreateLoginScreen();
+			else
+				currentLeaderboard.StartLeaderboard();
 		}
 
 		public void CreateWinLeaderboard()
 		{
 			currentLeaderboard = Instantiate(winLeaderboardPrefab).GetComponent<Leaderboard>();
+			LevelManager levelManager = FindObjectOfType<LevelManager>();
+			currentLeaderboard.LevelToDisplay = levelManager ? levelManager.LevelNumber : 1;
 
+			currentLeaderboard.OnStart += Leaderboard_OnStart;
 			currentLeaderboard.OnMenuClicked += Leaderboard_OnMenuClicked;
 			currentLeaderboard.OnBackClicked += Leaderboard_OnBackClicked;
 			currentLeaderboard.OnSkipClicked += Leaderboard_OnSkipClicked;
 
 			allScreens.Add(currentLeaderboard);
+
+			if (webClient.IsLogged)
+				currentLeaderboard.StartLeaderboard();
 		}
 
 		public void CreateLoginScreen()
@@ -263,7 +280,9 @@ namespace Com.IsartDigital.Platformer.Managers
 			while (!isPreviousCoroutineEnded)
 				yield return null;
 
-			FindObjectOfType<LevelManager>().SetNumber(level);
+			LevelManager levelManager = FindObjectOfType<LevelManager>();
+			levelManager.SetNumber(level);
+			OnLevelLoaded?.Invoke(levelManager);
         }
 
         IEnumerator LoadAsyncToNextScene(string nextScene, Action methodToLaunch)
@@ -311,6 +330,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			if (webClient.wantToLog)
 				CreateLoginScreen();
         }
+
         private void TitleCard_OnSoundTriggerClicked(TitleCard title)
         {
             Debug.Log("active/désactive le son + change image");
@@ -334,6 +354,11 @@ namespace Com.IsartDigital.Platformer.Managers
 		}
 
 		//Evenements du Leaderboard
+		private void Leaderboard_OnStart(Leaderboard leaderboard)
+		{
+			OnLeaderboardStart?.Invoke(leaderboard);
+		}
+
 		private void Leaderboard_OnBackToTitleClicked(Leaderboard leaderboard)
 		{
             ReturnToTitleCard();
@@ -376,6 +401,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			CloseScreen(currentLoginScreen);
 
 			webClient.wantToLog = false;
+			if (currentLeaderboard) currentLeaderboard.StartLeaderboard();
 		}
 
 		private void ConfirmScreen_OnBackClicked(ConfirmScreen confirmScreenµ)

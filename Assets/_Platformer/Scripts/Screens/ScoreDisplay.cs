@@ -19,5 +19,13 @@ namespace Com.IsartDigital.Platformer.Screens
 		public string Time { set { time.text = value; } }
 		public string Score { set { score.text = value; } }
 		public string Lives { set { lives.text = value; } }
+
+		public void SetTextColor(Color color)
+		{
+			username.color = color;
+			time.color = color;
+			score.color = color;
+			lives.color = color;
+		}
 	}
 }

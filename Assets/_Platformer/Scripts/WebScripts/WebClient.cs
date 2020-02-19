@@ -34,7 +34,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		[Serializable]
 		public class WebCredentials
 		{
-			public int id = int.MinValue;
+			public string id = null;
 			public string username = null;
 			public string password = null;
 
@@ -197,9 +197,9 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				{
 					isPreviousRequestSucces = true;
 
-					string response = request.downloadHandler.text;
-					_credentials.id = int.Parse(response.Split(new char['/'], 2)[0]);
-					jsonWebToken = response.Split(new char['/'], 2)[1];
+					string[] response = request.downloadHandler.text.Split(new char[] { '/' }, 2);
+					_credentials.id = response[0];
+					jsonWebToken = response[1];
 
 					Debug.Log("User registered !");
 				}
@@ -229,9 +229,9 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				{
 					isPreviousRequestSucces = true;
 
-					string response = request.downloadHandler.text;
-					_credentials.id = int.Parse(response.Split(new char['/'], 2)[0]);
-					jsonWebToken = response.Split(new char['/'], 2)[1];
+					string[] response = request.downloadHandler.text.Split(new char[] { '/' }, 2);
+					_credentials.id = response[0];
+					jsonWebToken = response[1];
 
 					Debug.Log("Welcome back !");
 				}
@@ -244,7 +244,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		{
 			isPreviousRequestSucces = false;
 			isPreviousRequestOver = false;
-			string url = "https://platformer-sequoia.herokuapp.com/scores/" + _credentials.username + "/" + level;
+			string url = "https://platformer-sequoia.herokuapp.com/scores/" + _credentials.id + "/" + level;
 
 			string json = JsonUtility.ToJson(scoreObject);
 
@@ -300,7 +300,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		{
 			isPreviousRequestSucces = false;
 			isPreviousRequestOver = false;
-			string url = "https://platformer-sequoia.herokuapp.com/scores/" + _credentials.username + "/" + level;
+			string url = "https://platformer-sequoia.herokuapp.com/scores/" + _credentials.id + "/" + level;
 
 			using (UnityWebRequest request = UnityWebRequest.Get(url))
 			{

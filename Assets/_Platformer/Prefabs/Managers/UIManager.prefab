@@ -68,9 +68,10 @@ MonoBehaviour:
     type: 3}
   confirmScreenPrefab: {fileID: 1708156884381924262, guid: b772027d8ddf01f47a63ffd589156053,
     type: 3}
-  menu: TitleScreen
-  level1: Level1
-  level2: LD Beta
+  sceneNames:
+  - TitleScreen
+  - Level1
+  - LD Beta
 --- !u!1 &7974276177514552796
 GameObject:
   m_ObjectHideFlags: 0

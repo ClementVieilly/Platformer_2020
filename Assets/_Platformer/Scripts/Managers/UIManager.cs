@@ -30,7 +30,7 @@ namespace Com.IsartDigital.Platformer.Managers
         [SerializeField] private GameObject confirmScreenPrefab = null;
 
 		[Header("Level names")]
-		[SerializeField] private List<string> SceneNames = new List<string>();
+		[SerializeField] private List<string> sceneNames = new List<string>();
 
         //Screens
         private Hud currentHud;             //correspond au hud actuel utilisé (PC ou mobile)
@@ -342,7 +342,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void Leaderboard_OnMenuClicked(Leaderboard leaderboard)
 		{
 			CloseAllScreens();
-			StartCoroutine(LoadAsyncToNextScene(SceneNames[0], CreateTitleCard));
+			StartCoroutine(LoadAsyncToNextScene(sceneNames[0], CreateTitleCard));
 		}
 
 		private void Leaderboard_OnBackClicked(Leaderboard leaderboard)
@@ -353,7 +353,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void Leaderboard_OnSkipClicked(Leaderboard leaderboard)
 		{
 			CloseAllScreens();
-			StartCoroutine(LoadAsyncToNextScene(SceneNames[0], CreateLevelSelector));
+			StartCoroutine(LoadAsyncToNextScene(sceneNames[0], CreateLevelSelector));
 		}
 
 		//Evenements du LoginScreen
@@ -392,7 +392,7 @@ namespace Com.IsartDigital.Platformer.Managers
         //Evenements du LevelSelector
         private void LevelSelector_OnLevelButtonClicked(LevelSelector levelSelector, int level)
         {
-            StartCoroutine(LoadLevelCoroutine(SceneNames[level], level));
+            StartCoroutine(LoadLevelCoroutine(sceneNames[level], level));
         }
 
         private void LevelSelector_OnBackToTitleClicked(LevelSelector levelSelector, int level)
@@ -421,20 +421,20 @@ namespace Com.IsartDigital.Platformer.Managers
         private void PauseMenu_OnHomeClicked(PauseMenu pauseMenu)
         {
             CloseAllScreens();
-            StartCoroutine(LoadAsyncToNextScene(SceneNames[0], CreateTitleCard));
+            StartCoroutine(LoadAsyncToNextScene(sceneNames[0], CreateTitleCard));
         }
 
         //Evenements du WinScreen
         private void WinScreen_OnMenuClicked(WinScreen winScreen)
         {
             CloseAllScreens();
-            StartCoroutine(LoadAsyncToNextScene(SceneNames[0], CreateTitleCard));
+            StartCoroutine(LoadAsyncToNextScene(sceneNames[0], CreateTitleCard));
         }
 
         private void WinScreen_OnLevelSelectorClicked(WinScreen winScreen)
         {
             CloseAllScreens();
-            StartCoroutine(LoadAsyncToNextScene(SceneNames[0], CreateLevelSelector));
+            StartCoroutine(LoadAsyncToNextScene(sceneNames[0], CreateLevelSelector));
         }
 
 		private void WinScreen_OnLeaderboardClicked(WinScreen winScreen)
@@ -452,7 +452,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private void LoseScreen_OnLevelSelector(LoseScreen loseScreen)
         {
             CloseAllScreens();
-            StartCoroutine(LoadAsyncToNextScene(SceneNames[0], CreateLevelSelector));
+            StartCoroutine(LoadAsyncToNextScene(sceneNames[0], CreateLevelSelector));
         }
     }
 }

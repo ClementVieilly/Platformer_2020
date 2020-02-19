@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Player Settings
   m_EditorClassIdentifier: 
   _isGroundedParam: {fileID: 11400000, guid: 9d750235ac985aa4d99f4984267c0cb0, type: 2}
-  _horizontalOrientationParam: {fileID: 11400000, guid: ffb3decaba6f99845855878439abcfc7,
-    type: 2}
   _horizontalSpeedParam: {fileID: 11400000, guid: 3f540de8444cb4b4b9de6c0089a8d36d,
     type: 2}
   _verticalVelocityParam: {fileID: 11400000, guid: 3e760a74bfdd92b4ebc824a2c6a92155,
     type: 2}
+  _isPlaningParam: {fileID: 11400000, guid: 577c3878d6b9bed4b9c2092c6791d4c6, type: 2}
+  _isOnWallParam: {fileID: 11400000, guid: 8d99dcc2a6b6d394b9fab51246032c67, type: 2}
+  _idleLong: {fileID: 11400000, guid: b7cc65da8a0ac064db2ae9137b265308, type: 2}
+  _die: {fileID: 11400000, guid: 37d5c614e1eefd8458032d3e48030edc, type: 2}
   _runSpeed: 20
   _runAccelerationCurve:
     serializedVersion: 2
@@ -126,31 +128,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: -10.296
-      outSlope: -10.296
+      time: 0.0013656616
+      value: 0.9972954
+      inSlope: -0.38520476
+      outSlope: -0.38520476
       tangentMode: 0
-      weightedMode: 2
+      weightedMode: 0
       inWeight: 0
-      outWeight: 0.04456327
+      outWeight: 0.049190033
     - serializedVersion: 3
-      time: 0.5
+      time: 5
       value: 0
-      inSlope: -0.38823524
-      outSlope: Infinity
-      tangentMode: 97
+      inSlope: -0.026366213
+      outSlope: -2.917352
+      tangentMode: 1
       weightedMode: 0
-      inWeight: 0.5454546
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -0.5759997
-      outSlope: -0.5759997
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.98039275
+      inWeight: 0.28182554
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -170,7 +163,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.17279279
     - serializedVersion: 3
-      time: 0.5
+      time: 0.7
       value: 1
       inSlope: 3.4587219
       outSlope: 0
@@ -205,11 +198,11 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.2972854
       value: 0
-      inSlope: -0.13004166
+      inSlope: -1.1865633
       outSlope: Infinity
       tangentMode: 97
       weightedMode: 0
-      inWeight: 0.21966167
+      inWeight: 0.1636526
       outWeight: 0
     - serializedVersion: 3
       time: 1
@@ -228,15 +221,16 @@ MonoBehaviour:
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  _isGroundedRaycastDistance: 0
-  _jumpTolerance: 0.62
+  _isGroundedRaycastDistance: 0.1
+  _jumpTolerance: 0.7
   _minJumpForce: 18
-  _wallJumpHorizontalForce: 20
+  _wallJumpHorizontalForce: 17
+  _wallJumpVerticalForce: 20
   _jumpHoldForce: 1
   _maxJumpTime: 0.2
   _jumpHangThreshold: 0.5
   _jumpHangTime: 0.05
   _delayWallJump: 0.5
-  _startLife: 3
+  _startLife: 1
   _coyoteTime: 0.08
-  _impulsionInCorner: {x: 0.5, y: 0.2}
+  _impulsionInCorner: {x: 5, y: 5}

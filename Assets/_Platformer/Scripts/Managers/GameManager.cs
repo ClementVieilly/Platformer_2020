@@ -110,7 +110,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 
 			if (scores[level - 1] != null)
-				leaderboard.UpdateDisplay(scores[level - 1], playerScores[level - 1], webClient.IsLogged);
+				leaderboard.UpdateDisplay(scores[level - 1], playerScores[level - 1], webClient.IsLogged, webClient.Credentials.username);
 		}
 
 		private void SortScores(int level)

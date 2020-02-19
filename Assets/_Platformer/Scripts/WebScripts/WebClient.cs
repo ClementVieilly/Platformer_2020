@@ -43,7 +43,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		}
 
 		private WebCredentials _credentials = null;
-		public WebCredentials Credentials { set { _credentials = value; } }
+		public WebCredentials Credentials { get => _credentials; set => _credentials = value; }
 
 		private bool _isLogged = false;
 		public bool IsLogged { get => _isLogged; }

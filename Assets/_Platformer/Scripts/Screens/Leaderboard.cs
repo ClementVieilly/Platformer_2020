@@ -28,8 +28,6 @@ public class Leaderboard : AScreen
 	[SerializeField] private Text level = null;
 	[SerializeField] private GameObject scoreDisplayPrefab = null;
 
-	private uint currentDisplays = 0;
-
 	private void Awake()
 	{
 		homeButton.OnMenuButtonClicked += Leaderboard_OnMenuClicked;
@@ -57,16 +55,33 @@ public class Leaderboard : AScreen
 		OnSkipClicked?.Invoke(this);
 	}
 
-	public void UpdateDisplay(ScoreObject[] scores, ScoreObject playerScore, bool isLogged)
+	public void UpdateDisplay(ScoreObject[] scores, ScoreObject playerScore, bool isLogged, string username = "undefined")
 	{
+		bool playerDisplayed = false;
 		ScoreDisplay display;
 
-		for (int i = 0; i < scores.Length && i < (isLogged ? nbMaxScoreToDisplay - 1 : nbMaxScoreToDisplay); i++)
+		for (int i = 0; i < scores.Length && i < (playerDisplayed ? nbMaxScoreToDisplay - 1 : nbMaxScoreToDisplay); i++)
 		{
 			display = AddScoreDisplay(scores[i]);
 
-			if (playerScore != null && scores[i].username == playerScore.username) display.SetTextColor(Color.blue);
+			if (playerScore != null && scores[i].username == playerScore.username)
+			{
+				playerDisplayed = true;
+				display.SetTextColor(Color.blue);
+			}
 		}
+
+		if (!playerDisplayed && isLogged)
+		{
+			if (playerScore == null)
+				display = AddUndefinedScoreDisplay(username);
+			else
+				display = AddScoreDisplay(playerScore);
+			
+			display.SetTextColor(Color.blue);
+		}
+
+		level.text = "Level " + _levelToDisplay.ToString();
 	}
 
 	private ScoreDisplay AddScoreDisplay(ScoreObject scoreObject)
@@ -76,6 +91,17 @@ public class Leaderboard : AScreen
 		display.Time = scoreObject.completion_time.ToString();
 		display.Score = scoreObject.nb_score.ToString();
 		display.Lives = scoreObject.nb_lives.ToString();
+
+		return display;
+	}
+
+	private ScoreDisplay AddUndefinedScoreDisplay(string username)
+	{
+		ScoreDisplay display = Instantiate(scoreDisplayPrefab, infosZone.transform).GetComponent<ScoreDisplay>();
+		display.Username = username;
+		display.Time = "?";
+		display.Score = "?";
+		display.Lives = "?";
 
 		return display;
 	}

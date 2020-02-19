@@ -384,7 +384,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             if (IsGrounded)
             {
-                if (hitInfos.collider.GetComponent<MobilePlatform>() != null) transform.SetParent(hitInfos.transform);
+                //if (hitInfos.collider.GetComponent<MobilePlatform>() != null) transform.SetParent(hitInfos.transform);
             }
             else
             {
@@ -436,9 +436,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionInAir()
         {
             CheckIsOnWall();
-            if(Mathf.Abs(rigidBody.velocity.y) < 1f) CheckIsGrounded();
+            //if (Mathf.Abs(rigidBody.velocity.y) < 1f) 
+                CheckIsGrounded();
 
-            if(_isGrounded)
+            if (_isGrounded)
             {
                 SetModeNormal();
                 return;
@@ -513,6 +514,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.FallVerticalSpeed);
 
             transform.localScale = previousDirection >= 0 ? scaleRight : scaleLeft;
+
+            animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
+            animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
+
+
         }
 
 

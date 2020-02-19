@@ -18,6 +18,8 @@ MonoBehaviour:
   _verticalVelocityParam: {fileID: 11400000, guid: 3e760a74bfdd92b4ebc824a2c6a92155,
     type: 2}
   _isPlaningParam: {fileID: 11400000, guid: 577c3878d6b9bed4b9c2092c6791d4c6, type: 2}
+  _isOnWallParam: {fileID: 11400000, guid: 8d99dcc2a6b6d394b9fab51246032c67, type: 2}
+  _idleLong: {fileID: 11400000, guid: b7cc65da8a0ac064db2ae9137b265308, type: 2}
   _runSpeed: 20
   _runAccelerationCurve:
     serializedVersion: 2

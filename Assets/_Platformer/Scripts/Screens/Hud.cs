@@ -126,12 +126,10 @@ namespace Com.IsartDigital.Platformer.Screens
 
         private void UpdateJumpController()
         {
-            Debug.Log("update jump button");
             jumpButton.image.color = Color.green;
         }
         private void UpdateJumpController2()
         {
-            Debug.Log("update jump button");
             jumpButton.image.color = Color.white;
         }
 

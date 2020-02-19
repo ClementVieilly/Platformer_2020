@@ -20,6 +20,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         [SerializeField] private bool _isStarted = false;
         private static List<MobilePlatform> _list = new List<MobilePlatform>();
 
+        private Transform touchedObject = null;
+
         public bool IsStarted
         {
             get
@@ -61,7 +63,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
             if (!IsStarted) return;
 
             elapsedTime += Time.deltaTime;
-            transform.position = Vector2.Lerp(index > 0 ? allPoints[index - 1].position : allPoints[allPoints.Length - 1].position, allPoints[index].position, elapsedTime / duration);
+            Vector3 previousPos = transform.position;
+
+            transform.position = Vector2.Lerp(index > 0 ? 
+                allPoints[index - 1].position : allPoints[allPoints.Length - 1].position, 
+                allPoints[index].position, elapsedTime / duration);
+
+            if (touchedObject != null) touchedObject.position += transform.position - previousPos;
 
             if (elapsedTime >= duration)
             {
@@ -72,24 +80,19 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("sur une plateforme mobile");
-            if (collision.CompareTag(playerTag))
-            {
-                collision.transform.SetParent(transform);
-            }
+            if (collision.collider.CompareTag(playerTag))
+                touchedObject = collision.transform;
         }
 
-        private void OnTriggerExit2D(Collider2D collision)
+        private void OnCollisionExit2D(Collision2D collision)
         {
-            if (collision.CompareTag(playerTag))
-            {
-                collision.transform.SetParent(null);
-            }
+            if (collision.collider.CompareTag(playerTag))
+                touchedObject = null;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             DoAction();
         }

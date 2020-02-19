@@ -90,7 +90,7 @@ namespace Com.IsartDigital.Platformer.Managers
 					yield return null;
 
 				Debug.Log("GameManager::GetScoresForLevelCoroutine: Start sorting scores");
-				scores[level - 1] = webClient.Scores;
+				scores[level - 1] = (ScoreObject[])webClient.Scores.Clone();
 				SortScores(level - 1);
 			}
 
@@ -105,7 +105,6 @@ namespace Com.IsartDigital.Platformer.Managers
 				playerScores[level - 1] = webClient.Scores[0];
 			}
 
-			Debug.Log("HERE");
 			leaderboard.UpdateDisplay(scores[level - 1], playerScores[level - 1], webClient.IsLogged);
 		}
 

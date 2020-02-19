@@ -25,10 +25,6 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		public bool IsPreviousRequestOver { get => _isPreviousRequestOver; }
 		private bool isPreviousRequestSucces = false;
 
-		private Coroutine mainCoroutine = null;
-		private Coroutine tryToLogCoroutine = null;
-		private Coroutine currentSubCoroutine = null;
-
 		private ScoreObject[] _scores = null;
 		public ScoreObject[] Scores { get => _scores; }
 
@@ -84,11 +80,6 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			DontDestroyOnLoad(gameObject);
 		}
 
-		private void Start()
-		{
-			OnLogged += StopMyCoroutines;
-		}
-
 		public void SuscribeToLevelManager(LevelManager levelManager)
 		{
 			levelManager.OnWin += LevelManager_OnWin;
@@ -112,21 +103,9 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			StartCoroutine(GetPlayerScoreForLevelCoroutine(level));
 		}
 
-		/// <summary>
-		/// Stop all WebClient coroutines
-		/// </summary>
-		private void StopMyCoroutines(WebClient webClient)
-		{
-			if (mainCoroutine != null) StopCoroutine(mainCoroutine);
-			StopCoroutine(tryToLogCoroutine);
-			StopCoroutine(currentSubCoroutine);
-
-			_isPreviousRequestOver = true;
-		}
-
 		public void TryToLog()
 		{
-			mainCoroutine = StartCoroutine(TryToLogMainCoroutine());
+			StartCoroutine(TryToLogMainCoroutine());
 		}
 
 		private IEnumerator TryToLogMainCoroutine()
@@ -146,14 +125,14 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				yield break;
 			}
 
-			tryToLogCoroutine = StartCoroutine(TryToLogCoroutine());
+			StartCoroutine(TryToLogCoroutine());
 		}
 
 		private IEnumerator TryToLogCoroutine()
 		{
 			_canTryToLog = false;
 
-			currentSubCoroutine = StartCoroutine(SigninCoroutine());
+			StartCoroutine(SigninCoroutine());
 
 			while (!_isPreviousRequestOver)
 				yield return null;
@@ -166,7 +145,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				yield break;
 			}
 
-			currentSubCoroutine = StartCoroutine(SignupCoroutine());
+			StartCoroutine(SignupCoroutine());
 
 			while (!_isPreviousRequestOver)
 				yield return null;
@@ -181,9 +160,6 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 			OnFeedback?.Invoke("User already exists. You should either enter the good password or choose a different username.");
 			Debug.Log("WebClient::TryToLogCoroutine: User already exists. You should either enter the good password or choose a different username.");
-
-			currentSubCoroutine = null;
-			tryToLogCoroutine = null;
 
 			_canTryToLog = true;
 		}

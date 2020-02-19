@@ -7,6 +7,7 @@ using Com.IsartDigital.Platformer.Managers;
 using Com.IsartDigital.Platformer.UnityEvents;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
@@ -25,8 +26,8 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		public bool IsPreviousRequestOver { get => _isPreviousRequestOver; }
 		private bool isPreviousRequestSucces = false;
 
-		private ScoreObject[] _scores = null;
-		public ScoreObject[] Scores { get => _scores; }
+		private List<ScoreObject> _scores = null;
+		public List<ScoreObject> Scores { get => _scores; }
 
 		[Serializable]
 		public class WebCredentials
@@ -277,7 +278,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				else
 				{
 					isPreviousRequestSucces = true;
-					_scores = JsonHelper.GetJsonArray<ScoreObject>(request.downloadHandler.text);
+					_scores = new List<ScoreObject>(JsonHelper.GetJsonArray<ScoreObject>(request.downloadHandler.text));
 					_onScoreGet?.Invoke(this);
 				}
 
@@ -307,7 +308,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				{
 					isPreviousRequestSucces = true;
 
-					_scores = JsonHelper.GetJsonArray<ScoreObject>(request.downloadHandler.text);
+					_scores = new List<ScoreObject>(JsonHelper.GetJsonArray<ScoreObject>(request.downloadHandler.text));
 					_onScoreGet?.Invoke(this);
 				}
 

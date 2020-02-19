@@ -19,7 +19,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		private WebClient webClient = null;
 		private LevelManager levelManager = null;
 
-		private List<ScoreObject[]> scores = new List<ScoreObject[]>();
+		private List<List<ScoreObject>> scores = new List<List<ScoreObject>>();
 		private List<ScoreObject> playerScores = new List<ScoreObject>();
 
 		private void Awake()
@@ -92,10 +92,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
 				Debug.Log("GameManager::GetScoresForLevelCoroutine: Start sorting scores");
 				if (webClient.Scores != null)
-				{
-					scores[level - 1] = (ScoreObject[])webClient.Scores.Clone();
-					SortScores(level - 1);
-				}
+					scores[level - 1] = new List<ScoreObject>(webClient.Scores);
 			}
 
 			if (webClient.IsLogged && playerScores[level - 1] == null)
@@ -110,16 +107,20 @@ namespace Com.IsartDigital.Platformer.Managers
 					playerScores[level - 1] = webClient.Scores[0];
 			}
 
+			SortScores(level - 1);
+
 			if (scores[level - 1] != null)
-				leaderboard.UpdateDisplay(scores[level - 1], playerScores[level - 1], webClient.IsLogged, webClient.Credentials != null ? webClient.Credentials.username : "undefined");
+				leaderboard.UpdateDisplay(scores[level - 1].ToArray(), playerScores[level - 1], webClient.IsLogged, webClient.Credentials != null ? webClient.Credentials.username : "undefined");
 		}
 
 		private void SortScores(int level)
 		{
 			if (scores[level] == null) return;
 
-			IComparer nullComparer = null;
-			Array.Sort(scores[level], nullComparer);
+			if (playerScores[level] != null)
+				scores[level].Add(playerScores[level]);
+
+			scores[level].Sort();
 		}
 
 		private void CheckScoresSizes(int level)

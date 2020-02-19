@@ -62,6 +62,12 @@ namespace Com.IsartDigital.Platformer.Managers
             } 
         }
 
+        private void DeadZone_OnCollision()
+        {
+            player.Die();
+            Hud.Instance.Life = player.Life;
+        }
+
         private void Player_OnDie()
         {
             finalTimer = timeManager.Timer;
@@ -151,10 +157,16 @@ namespace Com.IsartDigital.Platformer.Managers
                 KillZone.List[i].OnCollision += KillZone_OnCollision; 
             }
 
+            for(int i = DeadZone.List.Count - 1; i >= 0; i--)
+            {
+                DeadZone.List[i].OnCollision += DeadZone_OnCollision; 
+            }
+
             for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
             {
                 ScoreCollectible.List[i].OnCollected += ScoreCollectible_OnCollected; 
             }
+
 
             CheckpointManager.OnFinalCheckPointTriggered += CheckpointManager_OnFinalCheckPointTriggered;
             player.OnDie += Player_OnDie;
@@ -184,6 +196,11 @@ namespace Com.IsartDigital.Platformer.Managers
             for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
             {
                 ScoreCollectible.List[i].OnCollected -= ScoreCollectible_OnCollected;
+            }
+
+            for (int i = DeadZone.List.Count - 1; i >= 0; i--)
+            {
+                DeadZone.List[i].OnCollision -= DeadZone_OnCollision;
             }
 
             CheckpointManager.OnFinalCheckPointTriggered -= CheckpointManager_OnFinalCheckPointTriggered;

@@ -735,6 +735,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         public void Die()
         {
+            //TEMP : gestion cas Dead zone
+            if (_life > 0) _life = 0;
+
             gameObject.SetActive(false);
             OnDie?.Invoke();
         }

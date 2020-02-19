@@ -29,10 +29,8 @@ namespace Com.IsartDigital.Platformer.Managers
         [SerializeField] private GameObject winLeaderboardPrefab = null;
         [SerializeField] private GameObject confirmScreenPrefab = null;
 
-        [Header("Level names")]
-        [SerializeField] private string menu = null;
-        [SerializeField] private string level1 = null;
-        [SerializeField] private string level2 = null;
+		[Header("Level names")]
+		[SerializeField] private List<string> SceneNames = new List<string>();
 
         //Screens
         private Hud currentHud;             //correspond au hud actuel utilisé (PC ou mobile)
@@ -55,8 +53,10 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private WebClient webClient = null;
 
-        //Events
-        public delegate void UIManagerEventHandler();
+		private bool isPreviousCoroutineEnded = false;
+
+		//Events
+		public delegate void UIManagerEventHandler();
         public UIManagerEventHandler OnRetry;
         public UIManagerEventHandler OnResume;
         public UIManagerEventHandler OnPause;
@@ -87,8 +87,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		public void SuscribeWebClientToOnWin(LevelManager levelManager)
 		{
-			Debug.Log("Suscribe WebClient to OnWin");
-			levelManager.OnWin += webClient.LevelManager_OnWin;
+			webClient.SuscribeToLevelManager(levelManager);
 		}
 
 		private void WebClient_OnFeedback(string message)
@@ -118,8 +117,7 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             currentLevelSelector = Instantiate(levelSelectorPrefab).GetComponent<LevelSelector>();
 
-            currentLevelSelector.OnLevel1Clicked += LevelSelector_OnLevelButtonClicked;
-            currentLevelSelector.OnLevel2Clicked += LevelSelector_OnLevel2ButtonClicked;
+            currentLevelSelector.OnLevelClicked += LevelSelector_OnLevelButtonClicked;
             currentLevelSelector.OnBackToTitleClicked += LevelSelector_OnBackToTitleClicked;
 
             allScreens.Add(currentLevelSelector);
@@ -255,16 +253,23 @@ namespace Com.IsartDigital.Platformer.Managers
             CreateTitleCard();
         }
 
-        private void LoadLevel(string levelName)
-        {
+		#region Loading Coroutines
+		//Coroutines de chargement asynchrone de scenes  
+		private IEnumerator LoadLevelCoroutine(string levelName, int level)
+		{
             CloseAllScreens();
             StartCoroutine(LoadAsyncToNextScene(levelName, CreateHud));
+
+			while (!isPreviousCoroutineEnded)
+				yield return null;
+
+			FindObjectOfType<LevelManager>().SetNumber(level);
         }
 
-        //Coroutines de chargement asynchrone de scenes  
-        #region Loading Coroutines
         IEnumerator LoadAsyncToNextScene(string nextScene, Action methodToLaunch)
         {
+			isPreviousCoroutineEnded = false;
+
             Scene currentScene = SceneManager.GetActiveScene();
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene,LoadSceneMode.Additive);
 
@@ -280,6 +285,8 @@ namespace Com.IsartDigital.Platformer.Managers
                 yield return null;
             }
             StartCoroutine(UnloadAsyncOfCurrentScene(currentScene, methodToLaunch));
+
+			isPreviousCoroutineEnded = true;
         }
 
         IEnumerator UnloadAsyncOfCurrentScene(Scene scene, Action action)
@@ -335,7 +342,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void Leaderboard_OnMenuClicked(Leaderboard leaderboard)
 		{
 			CloseAllScreens();
-			StartCoroutine(LoadAsyncToNextScene(menu, CreateTitleCard));
+			StartCoroutine(LoadAsyncToNextScene(SceneNames[0], CreateTitleCard));
 		}
 
 		private void Leaderboard_OnBackClicked(Leaderboard leaderboard)
@@ -346,7 +353,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void Leaderboard_OnSkipClicked(Leaderboard leaderboard)
 		{
 			CloseAllScreens();
-			StartCoroutine(LoadAsyncToNextScene(menu, CreateLevelSelector));
+			StartCoroutine(LoadAsyncToNextScene(SceneNames[0], CreateLevelSelector));
 		}
 
 		//Evenements du LoginScreen
@@ -383,17 +390,12 @@ namespace Com.IsartDigital.Platformer.Managers
         }
 
         //Evenements du LevelSelector
-        private void LevelSelector_OnLevelButtonClicked(LevelSelector levelSelector)
+        private void LevelSelector_OnLevelButtonClicked(LevelSelector levelSelector, int level)
         {
-            LoadLevel(level1);
+            StartCoroutine(LoadLevelCoroutine(SceneNames[level], level));
         }
 
-        private void LevelSelector_OnLevel2ButtonClicked(LevelSelector levelSelector)
-        {
-            LoadLevel(level2);
-        }
-
-        private void LevelSelector_OnBackToTitleClicked(LevelSelector levelSelector)
+        private void LevelSelector_OnBackToTitleClicked(LevelSelector levelSelector, int level)
         {
             ReturnToTitleCard();
         }
@@ -419,20 +421,20 @@ namespace Com.IsartDigital.Platformer.Managers
         private void PauseMenu_OnHomeClicked(PauseMenu pauseMenu)
         {
             CloseAllScreens();
-            StartCoroutine(LoadAsyncToNextScene(menu, CreateTitleCard));
+            StartCoroutine(LoadAsyncToNextScene(SceneNames[0], CreateTitleCard));
         }
 
         //Evenements du WinScreen
         private void WinScreen_OnMenuClicked(WinScreen winScreen)
         {
             CloseAllScreens();
-            StartCoroutine(LoadAsyncToNextScene(menu, CreateTitleCard));
+            StartCoroutine(LoadAsyncToNextScene(SceneNames[0], CreateTitleCard));
         }
 
         private void WinScreen_OnLevelSelectorClicked(WinScreen winScreen)
         {
             CloseAllScreens();
-            StartCoroutine(LoadAsyncToNextScene(menu, CreateLevelSelector));
+            StartCoroutine(LoadAsyncToNextScene(SceneNames[0], CreateLevelSelector));
         }
 
 		private void WinScreen_OnLeaderboardClicked(WinScreen winScreen)
@@ -450,7 +452,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private void LoseScreen_OnLevelSelector(LoseScreen loseScreen)
         {
             CloseAllScreens();
-            StartCoroutine(LoadAsyncToNextScene(menu, CreateLevelSelector));
+            StartCoroutine(LoadAsyncToNextScene(SceneNames[0], CreateLevelSelector));
         }
     }
 }

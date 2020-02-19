@@ -44,22 +44,6 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			}
 		}
 
-		[Serializable]
-		public class ScoreObject
-		{
-			public string username = "default";
-			public int completion_time = 0;
-			public int nb_score = 0;
-			public int nb_lives = 0;
-
-			public ScoreObject(int completionTime, int nbScore, int nbLives)
-			{
-				completion_time = completionTime;
-				nb_score = nbScore;
-				nb_lives = nbLives;
-			}
-		}
-
 		private WebCredentials _credentials = null;
 		public WebCredentials Credentials { set { _credentials = value; } }
 
@@ -104,9 +88,17 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			OnLogged += StopMyCoroutines;
 		}
 
-		public void LevelManager_OnWin(LevelManager levelManager)
+		public void SuscribeToLevelManager(LevelManager levelManager)
 		{
-			throw new NotImplementedException();
+			levelManager.OnWin += LevelManager_OnWin;
+		}
+
+		private void LevelManager_OnWin(LevelManager levelManager)
+		{
+			if (!_isLogged) return;
+
+			ScoreObject scoreObject = new ScoreObject(Mathf.RoundToInt(levelManager.CompletionTime), levelManager.Score, levelManager.Lives);
+			StartCoroutine(RegisterPlayerScoreForLevelCoroutine(levelManager.LevelNumber, scoreObject));
 		}
 
 		/// <summary>
@@ -142,16 +134,6 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			}
 
 			tryToLogCoroutine = StartCoroutine(TryToLogCoroutine());
-		}
-
-		public void OnButtonAllScores()
-		{
-			StartCoroutine(GetAllScoresForLevelCoroutine(1));
-		}
-
-		public void OnButtonOneScore()
-		{
-			StartCoroutine(GetPlayerScoreForLevelCoroutine(7, 2));
 		}
 
 		private IEnumerator TryToLogCoroutine()
@@ -249,14 +231,13 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			}
 		}
 
-		private IEnumerator RegisterPlayerScoreForLevelCoroutine(int userId, int level)
+		private IEnumerator RegisterPlayerScoreForLevelCoroutine(int level, ScoreObject scoreObject)
 		{
 			isPreviousRequestSucces = false;
 			isPreviousRequestOver = false;
-			string url = "https://platformer-sequoia.herokuapp.com/scores/" + userId + "/" + level;
+			string url = "https://platformer-sequoia.herokuapp.com/scores/" + _credentials.username + "/" + level;
 
-			ScoreObject score = new ScoreObject(100, 1, 1);
-			string json = JsonUtility.ToJson(score);
+			string json = JsonUtility.ToJson(scoreObject);
 
 			using (UnityWebRequest request = PostJson(url, json))
 			{
@@ -306,11 +287,11 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			}
 		}
 
-		private IEnumerator GetPlayerScoreForLevelCoroutine(int userId, int level)
+		private IEnumerator GetPlayerScoreForLevelCoroutine(int level)
 		{
 			isPreviousRequestSucces = false;
 			isPreviousRequestOver = false;
-			string url = "https://platformer-sequoia.herokuapp.com/scores/" + userId + "/" + level;
+			string url = "https://platformer-sequoia.herokuapp.com/scores/" + _credentials.username + "/" + level;
 
 			using (UnityWebRequest request = UnityWebRequest.Get(url))
 			{

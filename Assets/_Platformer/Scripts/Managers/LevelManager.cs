@@ -13,15 +13,21 @@ using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Managers
 {
-    public class LevelManager : MonoBehaviour
+	public class LevelManager : MonoBehaviour
 	{
 		public delegate void LevelManagerEventHandler(LevelManager levelManager);
 
-        [SerializeField] private Player player;
-        private TimeManager timeManager;
+		[SerializeField] private Player player;
+		private TimeManager timeManager;
 
-        private float score = 0;
-        private float finalTimer = 0; //Temps du levelComplete
+		private int _levelNumber = 0;
+		public int LevelNumber { get => _levelNumber; }
+
+		private int _score = 0;
+		public int Score { get => _score; }
+		private float _completionTime = 0f;
+		public float CompletionTime { get => _completionTime; }
+		public int Lives { get => player.Life; }
 
 		public event LevelManagerEventHandler OnWin;
 
@@ -32,6 +38,14 @@ namespace Com.IsartDigital.Platformer.Managers
             timeManager.StartTimer();
             StartCoroutine(InitHud());
         }
+
+		/// <summary>
+		/// Set the level number
+		/// </summary>
+		public void SetNumber(int level)
+		{
+			_levelNumber = level;
+		}
 
         private IEnumerator InitHud()
         {
@@ -45,10 +59,10 @@ namespace Com.IsartDigital.Platformer.Managers
             if(Hud.Instance != null) Hud.Instance.Life = player.Life;
         }
 
-        private void ScoreCollectible_OnCollected(float addScore)
+        private void ScoreCollectible_OnCollected(int addScore)
         {
-            score += addScore;
-            if(Hud.Instance != null) Hud.Instance.Score = score;
+            _score += addScore;
+            if(Hud.Instance != null) Hud.Instance.Score = _score;
         }
 
         private void KillZone_OnCollision()
@@ -67,7 +81,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void Player_OnDie()
         {
-            finalTimer = timeManager.Timer;
+            _completionTime = timeManager.Timer;
             timeManager.SetModeVoid();
 
             UIManager.Instance.CreateLoseScreen();
@@ -81,21 +95,22 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void Win()
         {
-            finalTimer = timeManager.Timer;
+			_completionTime = timeManager.Timer;
             timeManager.SetModeVoid();
-            UnsubscribeAllEvents();
-
-            if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();
-            else Debug.LogError("Pas d'UImanager sur la scène");
-            player.gameObject.SetActive(false);
 
 			OnWin?.Invoke(this);
+
+            UnsubscribeAllEvents();
+
+			if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();
+            else Debug.LogError("Pas d'UImanager sur la scène");
+            player.gameObject.SetActive(false);
         }
 
         private void Retry()
         {
             player.Reset();
-            score = 0;
+            _score = 0;
             UpdateHud();
 
             timeManager.SetModeVoid();
@@ -134,7 +149,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void UpdateHud()
         {
-            Hud.Instance.Score = score;
+            Hud.Instance.Score = _score;
             Hud.Instance.Life = player.Life;
         }
 
@@ -166,10 +181,11 @@ namespace Com.IsartDigital.Platformer.Managers
 
             if (UIManager.Instance != null)
             {
-                UIManager.Instance.OnRetry += Retry;
-                UIManager.Instance.OnResume += Resume;
-                UIManager.Instance.OnPause += PauseGame;
-                UIManager.Instance.SuscribeWebClientToOnWin(this);
+				UIManager uiManager = UIManager.Instance;
+				uiManager.OnRetry += Retry;
+                uiManager.OnResume += Resume;
+                uiManager.OnPause += PauseGame;
+				uiManager.SuscribeWebClientToOnWin(this);
             }
         }
         #endregion

@@ -14,23 +14,14 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         private Vector2 startPos;
         private float elapsedTime;
         private uint index = 1;
+        private uint startIndex = 0;
         [SerializeField]private float duration;
         [SerializeField]private string playerTag = "Player"; 
 
         [SerializeField] private bool _isStarted = false;
         private static List<MobilePlatform> _list = new List<MobilePlatform>();
 
-        public bool IsStarted
-        {
-            get
-            {
-                return _isStarted;
-            }
-            set
-            {
-                _isStarted = value;
-            }
-        }
+        private Transform touchedObject = null;
 
         private Action DoAction;
 
@@ -38,15 +29,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         {
             _list.Add(this);
             SetStartPosition();
-            SetModeNormal();
+            SetModeVoid();
+            startIndex = index;
         }
 
-        private void SetModeVoid() 
+        public void SetModeVoid() 
         {
             DoAction = DoActionVoid;
         }
 
-        private void SetModeNormal() 
+        public void SetModeNormal() 
         {
             DoAction = DoActionNormal;
         }
@@ -58,10 +50,14 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         private void DoActionNormal()
         {
-            if (!IsStarted) return;
-
             elapsedTime += Time.deltaTime;
-            transform.position = Vector2.Lerp(index > 0 ? allPoints[index - 1].position : allPoints[allPoints.Length - 1].position, allPoints[index].position, elapsedTime / duration);
+            Vector3 previousPos = transform.position;
+
+            transform.position = Vector2.Lerp(index > 0 ? 
+                allPoints[index - 1].position : allPoints[allPoints.Length - 1].position, 
+                allPoints[index].position, elapsedTime / duration);
+
+            if (touchedObject != null) touchedObject.position += transform.position - previousPos;
 
             if (elapsedTime >= duration)
             {
@@ -72,24 +68,19 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("sur une plateforme mobile");
-            if (collision.CompareTag(playerTag))
-            {
-                collision.transform.SetParent(transform);
-            }
+            if (collision.collider.CompareTag(playerTag))
+                touchedObject = collision.transform;
         }
 
-        private void OnTriggerExit2D(Collider2D collision)
+        private void OnCollisionExit2D(Collision2D collision)
         {
-            if (collision.CompareTag(playerTag))
-            {
-                collision.transform.SetParent(null);
-            }
+            if (collision.collider.CompareTag(playerTag))
+                touchedObject = null;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             DoAction();
         }
@@ -108,7 +99,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         {
             for (int i = _list.Count - 1; i >= 0; i--)
             {
-                _list[i].SetStartPosition();
+                _list[i].transform.position = _list[i].startPos;
+                _list[i].elapsedTime = 0;
+                _list[i].index = _list[i].startIndex;
             }
         }
 

@@ -3,6 +3,7 @@
 /// Date : 21/01/2020 10:38
 ///-----------------------------------------------------------------
 
+using Cinemachine;
 using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.Managers;
 using Com.IsartDigital.Platformer.ScriptableObjects;
@@ -164,17 +165,24 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         public static Action OnPlayerJump;
         public static Action OnPlayerEndJump;
 
+        //Cinemachine Virtual Camera
+        [SerializeField] private CinemachineVirtualCamera vCam;
+        private CinemachineFramingTransposer vCamBody;
+        private float lastLookAheadTime;
+        private float lastLookAheadSmoothing;
+
         override public void Init()
         {
             Life = settings.StartLife;
             _lastCheckpointPos = transform.position;
             startPosition = transform.position;
+            vCamBody = vCam.GetCinemachineComponent<CinemachineFramingTransposer>();
         }
 
         public void Reset()
         {
             InitLife();
-            transform.position = startPosition;
+            setPosition(startPosition);
             _lastCheckpointPos = transform.position;
 
             rigidBody.simulated = true;
@@ -187,9 +195,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             rigidBody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
-
             gravity = rigidBody.gravityScale;
-            
             
             SetModeSpawn();
         }
@@ -299,8 +305,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                    // isSlinding = true;
                    // rigidBody.gravityScale = gravity;
                 }
-
-                
             }
             
             MoveHorizontalOnGround();
@@ -335,7 +339,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     hasHanged = true;
                     canJump = false;
                 }
-
             }
             // Code pour que le Idle Long se lance toute les 5sec si le perso est déjà en Idle
             if(Math.Abs(rigidBody.velocity.x) < 0.1f)
@@ -365,8 +368,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             if(!_isGrounded)
                 animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
-        
-    }
+        }
 
         private void CheckIsGrounded()
         {
@@ -471,7 +473,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     wjParticle.Play();
                 }
             }
-
 
             // Gère l'appui long sur le jump
             if(jump && jumpElapsedTime < settings.MaxJumpTime)
@@ -658,7 +659,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if(Life == 0)
             {
                 animator.SetTrigger(settings.Die); 
-                //Die();
             }
             return Life > 0;
         }
@@ -678,12 +678,36 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             gameObject.SetActive(false);
             OnDie?.Invoke();
-            
         }
 
         public void setPosition(Vector2 position)
         {
-            transform.position = position;
+            if (this.isActiveAndEnabled) StartCoroutine(ReplacePlayer(position));
+        }
+
+        private IEnumerator ReplacePlayer(Vector2 position)
+        {
+            lastLookAheadTime = vCamBody.m_LookaheadTime;
+            lastLookAheadSmoothing = vCamBody.m_LookaheadSmoothing;
+
+            vCamBody.m_LookaheadTime = 0;
+            vCamBody.m_LookaheadSmoothing = 0;
+
+            while ((Vector2)transform.position != position)
+            {
+                transform.position = position;
+                yield return null;
+            }
+
+            while (vCamBody.m_LookaheadTime != lastLookAheadTime)
+            {
+                vCamBody.m_LookaheadTime = Mathf.MoveTowards(vCamBody.m_LookaheadTime, lastLookAheadTime, 0.1f);
+                yield return null;
+            }
+            vCamBody.m_LookaheadSmoothing = lastLookAheadSmoothing;
+
+            Debug.Log("out coroutine");
+            StopAllCoroutines();
         }
         #endregion
     }

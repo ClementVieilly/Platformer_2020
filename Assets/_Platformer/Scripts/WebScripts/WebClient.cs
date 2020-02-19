@@ -34,6 +34,7 @@ namespace Com.IsartDigital.Platformer.WebScripts
 		[Serializable]
 		public class WebCredentials
 		{
+			public int id = int.MinValue;
 			public string username = null;
 			public string password = null;
 
@@ -195,7 +196,11 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				else
 				{
 					isPreviousRequestSucces = true;
-					jsonWebToken = request.downloadHandler.text;
+
+					string response = request.downloadHandler.text;
+					_credentials.id = int.Parse(response.Split(new char['/'], 2)[0]);
+					jsonWebToken = response.Split(new char['/'], 2)[1];
+
 					Debug.Log("User registered !");
 				}
 
@@ -223,7 +228,11 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				else
 				{
 					isPreviousRequestSucces = true;
-					jsonWebToken = request.downloadHandler.text;
+
+					string response = request.downloadHandler.text;
+					_credentials.id = int.Parse(response.Split(new char['/'], 2)[0]);
+					jsonWebToken = response.Split(new char['/'], 2)[1];
+
 					Debug.Log("Welcome back !");
 				}
 

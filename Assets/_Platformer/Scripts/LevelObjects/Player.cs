@@ -166,17 +166,19 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         override public void Init()
         {
-            Life = settings.StartLife;
+            InitLife();
             lastCheckpointPos = transform.position;
+            Debug.Log(lastCheckpointPos);
             startPosition = transform.position;
+            Debug.Log(startPosition);
             vCamBody = vCam.GetCinemachineComponent<CinemachineFramingTransposer>();
         }
 
         public void Reset()
         {
             InitLife();
-            setPosition(startPosition);
-            lastCheckpointPos = transform.position;
+            lastCheckpointPos = startPosition;
+            setPosition(lastCheckpointPos);
 
             rigidBody.simulated = true;
             gameObject.SetActive(true);
@@ -366,11 +368,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             hitInfos = Physics2D.Linecast(groundLinecastStartPos.position, groundLinecastEndPos.position, settings.GroundLayerMask);
             Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
             IsGrounded = hitInfos.collider != null;
-
-            if (IsGrounded)
-                if (hitInfos.collider.GetComponent<MobilePlatform>() != null) transform.SetParent(hitInfos.transform);
-            else
-                if(transform.parent != null) transform.SetParent(null);
             
             if(IsGrounded)
             {
@@ -574,9 +571,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void MoveHorizontalInAir()
         {
+            float horizontalMove;
+            if (IsOnWall && horizontalAxis == facingRightWall) return;
             if (horizontalAxis != 0f) // On maintiens une direction lors de la chute
             {
-                rigidBody.velocity = Vector2.Lerp(rigidBody.velocity, new Vector2(22f * previousDirection, rigidBody.velocity.y), horizontalMoveElapsedTime); 
+                horizontalMove = Mathf.Lerp(rigidBody.velocity.x, 22f * previousDirection, horizontalMoveElapsedTime);
+                rigidBody.velocity = new Vector2(horizontalMove, rigidBody.velocity.y);
             }
         }
 
@@ -650,6 +650,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         public void Die()
         {
+            setPosition(startPosition);
             gameObject.SetActive(false);
             OnDie?.Invoke();
         }
@@ -670,6 +671,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             while ((Vector2)transform.position != position)
             {
                 transform.position = position;
+                rigidBody.Sleep();
                 yield return null;
             }
 
@@ -679,7 +681,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 yield return null;
             }
             vCamBody.m_LookaheadSmoothing = lastLookAheadSmoothing;
-
+            rigidBody.WakeUp();
             StopAllCoroutines();
         }
         #endregion

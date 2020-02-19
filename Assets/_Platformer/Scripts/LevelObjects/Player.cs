@@ -168,9 +168,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             InitLife();
             lastCheckpointPos = transform.position;
-            Debug.Log(lastCheckpointPos);
             startPosition = transform.position;
-            Debug.Log(startPosition);
             vCamBody = vCam.GetCinemachineComponent<CinemachineFramingTransposer>();
         }
 

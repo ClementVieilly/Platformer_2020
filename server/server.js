@@ -192,7 +192,7 @@ app.get("/scores/:userId/:levelId", async function (req, res, next) {
     if (results && results.length)
       res.status(200).send(results);
     else // Requête fonctionelle mais vide
-      res.status(200).send("Pas de scores pour cet utilisateur sur ce level.");
+      res.status(400).send("Pas de scores pour cet utilisateur sur ce level.");
   }
   catch(err) {
     return next(err);

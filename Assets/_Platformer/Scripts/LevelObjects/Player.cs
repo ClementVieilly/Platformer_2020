@@ -779,8 +779,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             Debug.Log("out coroutine");
             StopAllCoroutines();
         }
-
-
         #endregion
     }
 }

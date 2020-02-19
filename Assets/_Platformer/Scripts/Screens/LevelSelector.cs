@@ -24,7 +24,6 @@ namespace Com.IsartDigital.Platformer.Screens
 
         [SerializeField] private string buttonLevel1Tag = "Level1Button";
         [SerializeField] private string buttonLevel2Tag = "Level2Button";
-        [SerializeField] private string buttonBackToTitleTag = "BackToTitleCard";//pas spécialement utile vu le if/else if/ else du Awake()
 
         private void Awake()
         {

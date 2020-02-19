@@ -16,18 +16,18 @@ namespace Com.IsartDigital.Platformer.Managers
     public class UIManager : MonoBehaviour
     {
         [Header("Tiles")]
-        [SerializeField] private GameObject hudPrefab;
-        [SerializeField] private GameObject pausePrefab;
-        [SerializeField] private GameObject titleCardPrefab;
-        [SerializeField] private GameObject creditPrefab;
-        [SerializeField] private GameObject levelSelectorPrefab;
-        [SerializeField] private GameObject loadingScreenPrefab;
-        [SerializeField] private GameObject winScreenPrefab;
-        [SerializeField] private GameObject loseScreenPrefab;
-        [SerializeField] private GameObject loginScreenPrefab;
-        [SerializeField] private GameObject titleLeaderboardPrefab;
-        [SerializeField] private GameObject winLeaderboardPrefab;
-        [SerializeField] private GameObject confirmScreenPrefab;
+        [SerializeField] private GameObject hudPrefab = null;
+        [SerializeField] private GameObject pausePrefab = null;
+        [SerializeField] private GameObject titleCardPrefab = null;
+        [SerializeField] private GameObject creditPrefab = null;
+        [SerializeField] private GameObject levelSelectorPrefab = null;
+        [SerializeField] private GameObject loadingScreenPrefab = null;
+        [SerializeField] private GameObject winScreenPrefab = null;
+        [SerializeField] private GameObject loseScreenPrefab = null;
+        [SerializeField] private GameObject loginScreenPrefab = null;
+        [SerializeField] private GameObject titleLeaderboardPrefab = null;
+        [SerializeField] private GameObject winLeaderboardPrefab = null;
+        [SerializeField] private GameObject confirmScreenPrefab = null;
 
         [Header("Level names")]
         [SerializeField] private string menu = null;

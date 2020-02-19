@@ -10,15 +10,15 @@ using UnityEngine.UI;
 
 public class WinScreen : AScreen
 {
-    [SerializeField] private MenuButton menuBtn;
-    [SerializeField] private MenuButton levelSelectorBtn;
-    [SerializeField] private MenuButton leaderboardBtn;
+    [SerializeField] private MenuButton menuBtn = null;
+    [SerializeField] private MenuButton levelSelectorBtn = null;
+    [SerializeField] private MenuButton leaderboardBtn = null;
 
     public delegate void WinScreenEventHandler(WinScreen winScreen);//Delegates appelés au clic sur les différents boutons du WinScreen
 
-    public WinScreenEventHandler OnMenuClicked;
-    public WinScreenEventHandler OnLevelSelectorClicked;
-    public WinScreenEventHandler OnLeaderboardClicked;
+    public event WinScreenEventHandler OnMenuClicked;
+    public event WinScreenEventHandler OnLevelSelectorClicked;
+    public event WinScreenEventHandler OnLeaderboardClicked;
 
 	private void Awake()
     {

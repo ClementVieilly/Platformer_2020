@@ -71,8 +71,8 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 		public event WebClientFeedbackEventHandler OnFeedback;
 
-		[SerializeField] private WebClientUnityEvent _onLogged;
-		[SerializeField] private WebClientUnityEvent _onScoreGet;
+		[SerializeField] private WebClientUnityEvent _onLogged = null;
+		[SerializeField] private WebClientUnityEvent _onScoreGet = null;
 
 		public event UnityAction<WebClient> OnLogged
 		{

@@ -17,24 +17,24 @@ namespace Com.IsartDigital.Platformer.Screens
         public static Hud Instance => _instance;
 
         public delegate void HudEventHandler(Hud hud);
-        public HudEventHandler OnButtonPausePressed;
+        public event HudEventHandler OnButtonPausePressed;
 
         [Header("Score")]
-        [SerializeField] private Text scoreText;
-        [SerializeField] private GameObject scoreObject;
+        [SerializeField] private Text scoreText = null;
+        [SerializeField] private GameObject scoreObject = null;
 
         [Header("Life")]
-        [SerializeField] private Text lifeText;
-        [SerializeField] private Image lifeImage;
+        [SerializeField] private Text lifeText = null;
+        [SerializeField] private Image lifeImage = null;
 
         [Header("sprite for life")]
-        [SerializeField] private Sprite lifeSprite1;
-        [SerializeField] private Sprite lifeSprite2;
-        [SerializeField] private Sprite lifeSprite3;
+        [SerializeField] private Sprite lifeSprite1 = null;
+        [SerializeField] private Sprite lifeSprite2 = null;
+        [SerializeField] private Sprite lifeSprite3 = null;
 
-        private Button btnPause;
+        private Button btnPause = null;
 
-        private float _score = 0;
+        private float _score = 0f;
         public float Score 
         { 
             get => _score;
@@ -47,7 +47,7 @@ namespace Com.IsartDigital.Platformer.Screens
             } 
         }
 
-        private float _life = 0;
+        private float _life = 0f;
         public float Life
         {
             get => _life;

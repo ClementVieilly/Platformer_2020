@@ -14,6 +14,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         private Vector2 startPos;
         private float elapsedTime;
         private uint index = 1;
+        private uint startIndex = 0;
         [SerializeField]private float duration;
         [SerializeField]private string playerTag = "Player"; 
 
@@ -22,33 +23,22 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         private Transform touchedObject = null;
 
-        public bool IsStarted
-        {
-            get
-            {
-                return _isStarted;
-            }
-            set
-            {
-                _isStarted = value;
-            }
-        }
-
         private Action DoAction;
 
         private void Start()
         {
             _list.Add(this);
             SetStartPosition();
-            SetModeNormal();
+            SetModeVoid();
+            startIndex = index;
         }
 
-        private void SetModeVoid() 
+        public void SetModeVoid() 
         {
             DoAction = DoActionVoid;
         }
 
-        private void SetModeNormal() 
+        public void SetModeNormal() 
         {
             DoAction = DoActionNormal;
         }
@@ -60,7 +50,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         private void DoActionNormal()
         {
-            if (!IsStarted) return;
+            Debug.Log("is running");
 
             elapsedTime += Time.deltaTime;
             Vector3 previousPos = transform.position;
@@ -111,7 +101,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         {
             for (int i = _list.Count - 1; i >= 0; i--)
             {
-                _list[i].SetStartPosition();
+                _list[i].transform.position = _list[i].startPos;
+                _list[i].elapsedTime = 0;
+                _list[i].index = _list[i].startIndex;
             }
         }
 

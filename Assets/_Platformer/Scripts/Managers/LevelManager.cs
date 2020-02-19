@@ -3,6 +3,7 @@
 /// Date : 21/01/2020 10:37
 ///-----------------------------------------------------------------
 
+using Cinemachine;
 using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
 using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
@@ -116,20 +117,20 @@ namespace Com.IsartDigital.Platformer.Managers
         private void Resume()
         {
             player.SetModeResume();
+            timeManager.SetModeTimer();
             DestructiblePlatform.ResumeAll();
             MobilePlatform.ResumeAll();
             TimedDoor.ResumeAll();
-            timeManager.SetModeTimer();
             SoundManager.Instance.ResumeAll();
         }
 
         private void PauseGame()
         {
             player.SetModePause();
+            timeManager.SetModePause();
             DestructiblePlatform.PauseAll();
             MobilePlatform.PauseAll();
             TimedDoor.PauseAll();
-            timeManager.SetModePause();
             SoundManager.Instance.PauseAll();
         }
 

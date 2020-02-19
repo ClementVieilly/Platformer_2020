@@ -8856,24 +8856,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7bec57e02bee04d4da18f34a55bcb1e7, type: 3}
---- !u!114 &1653291156768127094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6925311985485029841}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c2b547e341f3fb47a25e8d6cdd98bb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allPoints:
-  - {fileID: 3751621431964217491}
-  - {fileID: 3751621432411936292}
-  duration: 2
-  playerTag: Player
-  _isStarted: 0
 --- !u!60 &3121470706618774875
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -9275,7 +9257,6 @@ GameObject:
   - component: {fileID: 6925311985485029855}
   - component: {fileID: 6925311985485029840}
   - component: {fileID: 6925311985485029842}
-  - component: {fileID: 1653291156768127094}
   - component: {fileID: 3121470706618774875}
   m_Layer: 8
   m_Name: MobilePlatform

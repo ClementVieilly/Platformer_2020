@@ -121,8 +121,6 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 		public void TryToLog()
 		{
-			Debug.Log("WebClient::TryToLog: " + _credentials.username + "  " + _credentials.password);
-
 			mainCoroutine = StartCoroutine(TryToLogMainCoroutine());
 		}
 
@@ -167,6 +165,8 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 			if (isPreviousRequestSucces)
 			{
+				_isLogged = true;
+				wantToLog = false;
 				_onLogged?.Invoke(this);
 				yield break;
 			}
@@ -178,6 +178,8 @@ namespace Com.IsartDigital.Platformer.WebScripts
 
 			if (isPreviousRequestSucces)
 			{
+				_isLogged = true;
+				wantToLog = false;
 				_onLogged?.Invoke(this);
 				yield break;
 			}

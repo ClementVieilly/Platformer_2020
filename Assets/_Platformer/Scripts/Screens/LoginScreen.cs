@@ -29,6 +29,8 @@ public class LoginScreen : AScreen
 	{
 		_connectButton.OnMenuButtonClicked += LoginScreenConnect_Clicked;
 		skipButton.OnMenuButtonClicked += LoginScreenSkip_Clicked;
+
+		passwordField.contentType = InputField.ContentType.Password;
 	}
 
 	private void LoginScreenConnect_Clicked(Button button)

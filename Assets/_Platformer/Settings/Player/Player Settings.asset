@@ -21,7 +21,7 @@ MonoBehaviour:
   _isOnWallParam: {fileID: 11400000, guid: 8d99dcc2a6b6d394b9fab51246032c67, type: 2}
   _idleLong: {fileID: 11400000, guid: b7cc65da8a0ac064db2ae9137b265308, type: 2}
   _die: {fileID: 11400000, guid: 37d5c614e1eefd8458032d3e48030edc, type: 2}
-  _runSpeed: 20
+  _runSpeed: 19
   _runAccelerationCurve:
     serializedVersion: 2
     m_Curve:
@@ -88,8 +88,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _fallHorizontalSpeed: 22
-  _fallVerticalSpeed: 25
+  _fallHorizontalSpeed: 18.48
+  _fallVerticalSpeed: 20
   _fallOnWallVerticalSpeed: 5
   _inAirAccelerationCurve:
     serializedVersion: 2
@@ -149,7 +149,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _planeVerticalSpeed: 2
-  _planeHorizontalSpeed: 10
+  _planeHorizontalSpeed: 18
   _planeAccelerationCurve:
     serializedVersion: 2
     m_Curve:
@@ -223,14 +223,13 @@ MonoBehaviour:
     m_Bits: 256
   _isGroundedRaycastDistance: 0.1
   _jumpTolerance: 0.7
-  _minJumpForce: 18
-  _wallJumpHorizontalForce: 25
-  _wallJumpVerticalForce: 20
+  _minJumpForce: 17.76
+  _wallJumpHorizontalForce: 17
+  _wallJumpVerticalForce: 23
   _jumpHoldForce: 1
   _maxJumpTime: 0.2
   _jumpHangThreshold: 0.5
   _jumpHangTime: 0.05
-  _delayWallJump: 0.5
   _startLife: 1
   _coyoteTime: 0.08
   _impulsionInCorner: {x: 5, y: 5}

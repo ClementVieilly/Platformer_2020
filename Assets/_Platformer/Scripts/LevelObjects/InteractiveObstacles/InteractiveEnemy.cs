@@ -9,12 +9,11 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
     public class InteractiveEnemy : AInteractiveObstacles
     {
-
         private bool isTriggered = false;
         [SerializeField] private float detectionDuration = 2f;
         private float elapsedTime;
-        [SerializeField] private GameObject interactiveEnemyAttackPrefab;
-        private InteractiveEnemyAttack interactiveEnemyAttack;
+        [SerializeField] private GameObject interactiveEnemyAttackPrefab = null;
+        private InteractiveEnemyAttack interactiveEnemyAttack = null;
 
         protected override void TriggerInteraction()
         {

@@ -10,13 +10,13 @@ using UnityEngine.UI;
 
 public class LoseScreen : AScreen
 {
-    [SerializeField] private MenuButton retryBtn;
-    [SerializeField] private MenuButton levelSelectorBtn;
+    [SerializeField] private MenuButton retryBtn = null;
+    [SerializeField] private MenuButton levelSelectorBtn = null;
 
     public delegate void LoseScreenEventHandler(LoseScreen loseScreen);//Delegates appelés au clic sur les différents boutons du WinScreen
 
-    public LoseScreenEventHandler OnRetryClicked;
-    public LoseScreenEventHandler OnLevelSelectorClicked;
+    public event LoseScreenEventHandler OnRetryClicked;
+    public event LoseScreenEventHandler OnLevelSelectorClicked;
 
     private void Awake()
     {

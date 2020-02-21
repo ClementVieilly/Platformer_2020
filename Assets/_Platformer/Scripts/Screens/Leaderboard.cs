@@ -74,7 +74,7 @@ public class Leaderboard : AScreen
 	public void UpdateDisplay(ScoreObject[] scores, ScoreObject playerScore, bool isLogged, string username = "undefined")
 	{
 		bool playerDisplayed = false;
-		ScoreDisplay display;
+		ScoreDisplay display = null;
 
 		ClearDisplay();
 
@@ -98,16 +98,14 @@ public class Leaderboard : AScreen
 			
 			display.SetTextColor(Color.blue);
 		}
-
-		level.text = "Level " + _levelToDisplay.ToString();
 	}
 
-	private void ClearDisplay()
+	public void ClearDisplay()
 	{
 		for (int i = infosZone.transform.childCount - 1; i >= 0; i--)
 			Destroy(infosZone.transform.GetChild(i).gameObject);
 
-		infosZone.transform.DetachChildren();
+		level.text = "Level " + _levelToDisplay.ToString();
 	}
 
 	private ScoreDisplay AddScoreDisplay(ScoreObject scoreObject)

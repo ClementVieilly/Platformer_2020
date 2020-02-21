@@ -81,17 +81,9 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			DontDestroyOnLoad(gameObject);
 		}
 
-		public void SuscribeToLevelManager(LevelManager levelManager)
+		public void RegisterPlayerScoreForLevel(int level, ScoreObject score)
 		{
-			levelManager.OnWin += LevelManager_OnWin;
-		}
-
-		private void LevelManager_OnWin(LevelManager levelManager)
-		{
-			if (!_isLogged) return;
-
-			ScoreObject scoreObject = new ScoreObject(Mathf.RoundToInt(levelManager.CompletionTime), levelManager.Score, levelManager.Lives);
-			StartCoroutine(RegisterPlayerScoreForLevelCoroutine(levelManager.LevelNumber, scoreObject));
+			StartCoroutine(RegisterPlayerScoreForLevelCoroutine(level, score));
 		}
 
 		public void GetScoresForLevel(int level)

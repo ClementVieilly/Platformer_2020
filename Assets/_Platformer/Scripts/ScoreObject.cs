@@ -22,15 +22,26 @@ namespace Com.IsartDigital.Platformer
 			nb_lives = nbLives;
 		}
 
+		public int TotalScore { get => -completion_time + nb_score + nb_lives; }
+
 		public int CompareTo(object other)
 		{
 			if (other == null) return 1;
 
 			ScoreObject otherScoreObject = (ScoreObject)other;
-			int totalScore = -completion_time + nb_score + nb_lives;
-			int otherTotalScore = -otherScoreObject.completion_time + otherScoreObject.nb_score + otherScoreObject.nb_lives;
-
-			return otherTotalScore.CompareTo(totalScore);
+			return otherScoreObject.TotalScore.CompareTo(TotalScore);
 		}
+
+		public static bool operator <(ScoreObject a, ScoreObject b)
+		{
+			return a.TotalScore < b.TotalScore;
+		}
+
+		public static bool operator >(ScoreObject a, ScoreObject b)
+		{
+			return a.TotalScore > b.TotalScore;
+		}
+
+		public static ScoreObject Worst { get => new ScoreObject(int.MaxValue, int.MinValue, int.MinValue); }
 	}
 }

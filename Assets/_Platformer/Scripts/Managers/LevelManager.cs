@@ -193,7 +193,6 @@ namespace Com.IsartDigital.Platformer.Managers
 				uiManager.OnRetry += Retry;
                 uiManager.OnResume += Resume;
                 uiManager.OnPause += PauseGame;
-				uiManager.SuscribeWebClientToOnWin(this);
             }
         }
         #endregion

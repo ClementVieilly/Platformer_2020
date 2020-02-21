@@ -17,7 +17,6 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private UIManager uiManager = null;
 		private WebClient webClient = null;
-		private LevelManager levelManager = null;
 
 		private List<List<ScoreObject>> scores = new List<List<ScoreObject>>();
 		private List<ScoreObject> playerScores = new List<ScoreObject>();
@@ -50,20 +49,49 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private void UIManager_OnLevelLoaded(LevelManager levelManager)
 		{
-			this.levelManager = levelManager;
 			levelManager.OnWin += LevelManager_OnWin;
 		}
 
 		private void LevelManager_OnWin(LevelManager levelManager)
 		{
+			if (!webClient.IsLogged) return;
+
 			CheckScoresSizes(levelManager.LevelNumber);
 
-			if (playerScores[levelManager.LevelNumber - 1] != null)
+			bool mustRegisterNewScore = false;
+
+			ScoreObject newScore = new ScoreObject(Mathf.RoundToInt(levelManager.CompletionTime), levelManager.Score, levelManager.Lives);
+			if (playerScores[levelManager.LevelNumber - 1] != null && playerScores[levelManager.LevelNumber - 1] < newScore)
 			{
-				playerScores[levelManager.LevelNumber - 1].completion_time = (int)levelManager.CompletionTime;
-				playerScores[levelManager.LevelNumber - 1].completion_time = levelManager.Score;
-				playerScores[levelManager.LevelNumber - 1].completion_time = levelManager.Lives;
+				mustRegisterNewScore = true;
+				playerScores[levelManager.LevelNumber - 1].completion_time = newScore.completion_time;
+				playerScores[levelManager.LevelNumber - 1].nb_score = newScore.nb_score;
+				playerScores[levelManager.LevelNumber - 1].nb_lives = newScore.nb_lives;
 			}
+
+			StartCoroutine(VerifyAndRegisterPlayerScoreCoroutine(mustRegisterNewScore, levelManager.LevelNumber, newScore));
+		}
+
+		private IEnumerator VerifyAndRegisterPlayerScoreCoroutine(bool mustRegisterNewScore, int level, ScoreObject newScore)
+		{
+			if (!mustRegisterNewScore)
+			{
+				Debug.Log("GameManager::VerifyAndRegisterPlayerScoreCoroutine: Start getting playerScore");
+				webClient.GetPlayerScoreForLevel(level);
+
+				while (!webClient.IsPreviousRequestOver)
+					yield return null;
+
+				ScoreObject currentScore = ScoreObject.Worst;
+				if (webClient.Scores != null)
+					currentScore = webClient.Scores[0];
+
+				if (currentScore < newScore)
+					mustRegisterNewScore = true;
+			}
+
+			if (mustRegisterNewScore)
+				webClient.RegisterPlayerScoreForLevel(level, newScore);
 		}
 
 		private void UIManager_OnLeaderboardEvent(Leaderboard leaderboard)
@@ -111,13 +139,15 @@ namespace Com.IsartDigital.Platformer.Managers
 
 			if (scores[level - 1] != null)
 				leaderboard.UpdateDisplay(scores[level - 1].ToArray(), playerScores[level - 1], webClient.IsLogged, webClient.Credentials != null ? webClient.Credentials.username : "undefined");
+			else
+				leaderboard.ClearDisplay();
 		}
 
 		private void SortScores(int level)
 		{
 			if (scores[level] == null) return;
 
-			if (playerScores[level] != null)
+			if (playerScores[level] != null && scores[level].Contains(playerScores[level]))
 				scores[level].Add(playerScores[level]);
 
 			scores[level].Sort();

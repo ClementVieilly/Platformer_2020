@@ -3,6 +3,7 @@
 /// Date : 21/01/2020 10:37
 ///-----------------------------------------------------------------
 
+using Cinemachine;
 using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
 using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
@@ -17,8 +18,8 @@ namespace Com.IsartDigital.Platformer.Managers
 	{
 		public delegate void LevelManagerEventHandler(LevelManager levelManager);
 
-		[SerializeField] private Player player;
-		private TimeManager timeManager;
+		[SerializeField] private Player player = null;
+		private TimeManager timeManager = null;
 
 		private int _levelNumber = 0;
 		public int LevelNumber { get => _levelNumber; }
@@ -72,11 +73,12 @@ namespace Com.IsartDigital.Platformer.Managers
                 player.setPosition(CheckpointManager.Instance.LastCheckpointPos);
                 Hud.Instance.Life = player.Life;
             }
-            else 
-            {
-                player.setPosition(CheckpointManager.Instance.LastSuperCheckpointPos);
-                CheckpointManager.Instance.ResetColliders();
-            } 
+        }
+
+        private void DeadZone_OnCollision()
+        {
+            player.Die();
+            Hud.Instance.Life = player.Life;
         }
 
         private void Player_OnDie()
@@ -130,20 +132,20 @@ namespace Com.IsartDigital.Platformer.Managers
         private void Resume()
         {
             player.SetModeResume();
+            timeManager.SetModeTimer();
             DestructiblePlatform.ResumeAll();
             MobilePlatform.ResumeAll();
             TimedDoor.ResumeAll();
-            timeManager.SetModeTimer();
             SoundManager.Instance.ResumeAll();
         }
 
         private void PauseGame()
         {
             player.SetModePause();
+            timeManager.SetModePause();
             DestructiblePlatform.PauseAll();
             MobilePlatform.PauseAll();
             TimedDoor.PauseAll();
-            timeManager.SetModePause();
             SoundManager.Instance.PauseAll();
         }
 
@@ -171,10 +173,16 @@ namespace Com.IsartDigital.Platformer.Managers
                 KillZone.List[i].OnCollision += KillZone_OnCollision; 
             }
 
+            for(int i = DeadZone.List.Count - 1; i >= 0; i--)
+            {
+                DeadZone.List[i].OnCollision += DeadZone_OnCollision; 
+            }
+
             for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
             {
                 ScoreCollectible.List[i].OnCollected += ScoreCollectible_OnCollected; 
             }
+
 
             CheckpointManager.OnFinalCheckPointTriggered += CheckpointManager_OnFinalCheckPointTriggered;
             player.OnDie += Player_OnDie;
@@ -206,6 +214,11 @@ namespace Com.IsartDigital.Platformer.Managers
             for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
             {
                 ScoreCollectible.List[i].OnCollected -= ScoreCollectible_OnCollected;
+            }
+
+            for (int i = DeadZone.List.Count - 1; i >= 0; i--)
+            {
+                DeadZone.List[i].OnCollision -= DeadZone_OnCollision;
             }
 
             CheckpointManager.OnFinalCheckPointTriggered -= CheckpointManager_OnFinalCheckPointTriggered;

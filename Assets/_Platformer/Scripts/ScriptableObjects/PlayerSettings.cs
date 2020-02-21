@@ -13,14 +13,20 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 	{
 		[Header("Animator Parameters")]
 		[SerializeField] private AnimatorParameter _isGroundedParam = null;
-		[SerializeField] private AnimatorParameter _horizontalOrientationParam = null;
 		[SerializeField] private AnimatorParameter _horizontalSpeedParam = null;
 		[SerializeField] private AnimatorParameter _verticalVelocityParam = null;
+		[SerializeField] private AnimatorParameter _isPlaningParam = null;
+		[SerializeField] private AnimatorParameter _isOnWallParam = null;
+		[SerializeField] private AnimatorParameter _idleLong = null;
+		[SerializeField] private AnimatorParameter _die = null;
 
 		public int IsGroundedParameter => _isGroundedParam.ParameterID;
-		public int HorizontalOrientationParam => _horizontalOrientationParam.ParameterID;
 		public int HorizontalSpeedParam => _horizontalSpeedParam.ParameterID;
 		public int VerticalVelocityParam => _verticalVelocityParam.ParameterID;
+		public int IsPlaningParam => _isPlaningParam.ParameterID;
+		public int IsOnWallParam => _isOnWallParam.ParameterID;
+		public int IdleLong => _idleLong.ParameterID;
+		public int Die => _die.ParameterID;
 
 		[Space, Header("Physics")]
 		[SerializeField] private float _runSpeed = 5f;
@@ -39,7 +45,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private float _angleMaxPente = 110f;
 
 
-        [SerializeField] private LayerMask _groundLayerMask;
+        [SerializeField] private LayerMask _groundLayerMask = 0;
 		[SerializeField] private float _isGroundedRaycastDistance = 0.25f;
 		//[SerializeField] private float _isGroundedLineCastDistance = 0.25f;
 		//[SerializeField] private float _isOnWallRaycastDistance = 0.40f;
@@ -47,6 +53,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private float _jumpTolerance = 0.2f;
 		[SerializeField] private float _minJumpForce = 10f;
 		[SerializeField] private float _wallJumpHorizontalForce = 30f;
+		[SerializeField] private float _wallJumpVerticalForce = 30f;
 		[SerializeField] private float _jumpHoldForce = 1f;
 		[SerializeField] private float _maxJumpTime = 0.5f;
 		[SerializeField] private float _jumpHangThreshold = 0.5f;
@@ -56,10 +63,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
         [SerializeField] private float _coyoteTime = 0f;
         //[SerializeField] private float _halfPlayerHeight = 0.5f;
         //[SerializeField] private float _linecastCornerPosY = 2;
-        [SerializeField] private Vector2 _impulsionInCorner; 
-
-
-
+        [SerializeField] private Vector2 _impulsionInCorner = Vector2.zero;
 
         public float RunSpeed => _runSpeed;
         public float AngleMinPente => _angleMinPente;
@@ -83,6 +87,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public float JumpTolerance => _jumpTolerance;
 		public float MinJumpForce => _minJumpForce;
 		public float WallJumpHorizontalForce => _wallJumpHorizontalForce;
+		public float WallJumpVerticalForce => _wallJumpVerticalForce;
 		public float JumpHoldForce => _jumpHoldForce;
 		public float MaxJumpTime => _maxJumpTime;
 		public float JumpHangThreshold => _jumpHangThreshold;

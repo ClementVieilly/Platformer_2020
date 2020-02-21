@@ -57,17 +57,16 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		//Events
 		public delegate void UIManagerEventHandler();
-        public event UIManagerEventHandler OnRetry;
-        public event UIManagerEventHandler OnResume;
-        public event UIManagerEventHandler OnPause;
-        public event UIManagerEventHandler OnWin;
+        public event UIManagerEventHandler OnRetry = null;
+        public event UIManagerEventHandler OnResume = null;
+        public event UIManagerEventHandler OnPause = null;
 
 		public delegate void UIManagerLevelManagerEventHandler(LevelManager levelManager);
-        public event UIManagerLevelManagerEventHandler OnLevelLoaded;
+        public event UIManagerLevelManagerEventHandler OnLevelLoaded = null;
 
 		public delegate void UIManagerLeaderboardEventHandler(Leaderboard leaderboard);
-        public event UIManagerLeaderboardEventHandler OnLeaderboardStart;
-        public event UIManagerLeaderboardEventHandler OnLeaderBoardChangeLevel;
+        public event UIManagerLeaderboardEventHandler OnLeaderboardStart = null;
+        public event UIManagerLeaderboardEventHandler OnLeaderBoardChangeLevel = null;
 
 		private void Awake()
         {

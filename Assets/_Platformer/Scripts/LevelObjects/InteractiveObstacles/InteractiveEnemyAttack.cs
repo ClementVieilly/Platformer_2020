@@ -38,11 +38,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
                     collision.GetComponent<Player>().setPosition(CheckpointManager.Instance.LastCheckpointPos);
                     Hud.Instance.Life = collision.GetComponent<Player>().Life;
                 }
-                else
-                {
-                    collision.GetComponent<Player>().setPosition(CheckpointManager.Instance.LastSuperCheckpointPos);
-                    CheckpointManager.Instance.ResetColliders();
-                }
             }
         }
 

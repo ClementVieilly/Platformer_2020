@@ -12,8 +12,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         private static List<PlatformTrigger> _list = new List<PlatformTrigger>();
         public static List<PlatformTrigger> List => _list;
 
-        [SerializeField] private GameObject mobilePlatformGameObject;
-        private MobilePlatform mobilePlatform;
+        [SerializeField] private GameObject mobilePlatformGameObject = null;
+        private MobilePlatform mobilePlatform = null;
 
         private void Awake()
         {
@@ -23,7 +23,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         protected override void TriggerInteraction()
         {
-            mobilePlatform.IsStarted = true;
+            mobilePlatform.SetModeNormal(); ;
         }
 
         private void OnDestroy()
@@ -35,7 +35,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         {
             for (int i = List.Count - 1; i >= 0; i--)
             {
-                List[i].mobilePlatform.IsStarted = false;
+                List[i].mobilePlatform.SetModeVoid();
             }
         }
 

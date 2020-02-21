@@ -570,8 +570,14 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if (horizontalAxis != 0f) // On maintiens une direction lors de la chute
             {
                 horizontalMove = Mathf.Lerp(rigidBody.velocity.x, settings.FallHorizontalSpeed * previousDirection,horizontalMoveElapsedTime);
-                rigidBody.velocity = new Vector2(horizontalMove,rigidBody.velocity.y); 
             }
+            else
+            {
+                float ratio = settings.InAirDecelerationCurve.Evaluate(horizontalMoveElapsedTime); 
+                horizontalMove = Mathf.Lerp(0f, rigidBody.velocity.x,ratio);
+            }
+            rigidBody.velocity = new Vector2(horizontalMove, rigidBody.velocity.y);
+
         }
 
         private void MoveHorizontalPlane()

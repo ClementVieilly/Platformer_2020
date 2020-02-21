@@ -37,6 +37,9 @@ public class LoginScreen : AScreen
 	{
 		_connectButton.Button.interactable = false;
 		skipButton.Button.interactable = false;
+		usernameField.interactable = false;
+		passwordField.interactable = false;
+
 		OnConnectClicked?.Invoke(this);
 	}
 
@@ -51,6 +54,8 @@ public class LoginScreen : AScreen
 		{
 			_connectButton.Button.interactable = true;
 			skipButton.Button.interactable = true;
+			usernameField.interactable = true;
+			passwordField.interactable = true;
 		}
 
 		feedbackText.text = message;

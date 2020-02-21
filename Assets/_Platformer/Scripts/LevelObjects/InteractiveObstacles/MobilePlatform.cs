@@ -3,6 +3,8 @@
 /// Date : 27/01/2020 16:48
 ///-----------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
@@ -12,62 +14,111 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         private Vector2 startPos;
         private float elapsedTime;
         private uint index = 1;
+        private uint startIndex = 0;
         [SerializeField]private float duration;
-        [SerializeField]private string playerTag = "Player";
+        [SerializeField]private string playerTag = "Player"; 
 
         [SerializeField] private bool _isStarted = false;
+        private static List<MobilePlatform> _list = new List<MobilePlatform>();
 
-        public bool IsStarted
+        private Transform touchedObject = null;
+
+        private Action DoAction;
+
+        private void Start()
         {
-            get
+            _list.Add(this);
+            SetStartPosition();
+            SetModeVoid();
+            startIndex = index;
+        }
+
+        public void SetModeVoid() 
+        {
+            DoAction = DoActionVoid;
+        }
+
+        public void SetModeNormal() 
+        {
+            DoAction = DoActionNormal;
+        }
+
+        private void DoActionVoid()
+        {
+
+        }
+
+        private void DoActionNormal()
+        {
+            elapsedTime += Time.deltaTime;
+            Vector3 previousPos = transform.position;
+
+            transform.position = Vector2.Lerp(index > 0 ? 
+                allPoints[index - 1].position : allPoints[allPoints.Length - 1].position, 
+                allPoints[index].position, elapsedTime / duration);
+
+            if (touchedObject != null) touchedObject.position += transform.position - previousPos;
+
+            if (elapsedTime >= duration)
             {
-                return _isStarted;
-            }
-            set
-            {
-                _isStarted = value;
+                if (index >= allPoints.Length - 1) index = 0;
+                else index++;
+                
+                elapsedTime = 0;
             }
         }
 
-        private void Start()
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.collider.CompareTag(playerTag))
+                touchedObject = collision.transform;
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if (collision.collider.CompareTag(playerTag))
+                touchedObject = null;
+        }
+
+        private void FixedUpdate()
+        {
+            DoAction();
+        }
+
+        private void SetStartPosition()
         {
             startPos = allPoints[0].position;
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnDestroy()
         {
-            Debug.Log("sur une plateforme mobile");
-            if (collision.CompareTag(playerTag))
+            _list.Remove(this);
+        }
+
+        public static void ResetAll()
+        {
+            for (int i = _list.Count - 1; i >= 0; i--)
             {
-                collision.transform.SetParent(transform);
+                _list[i].transform.position = _list[i].startPos;
+                _list[i].elapsedTime = 0;
+                _list[i].index = _list[i].startIndex;
             }
         }
 
-        private void OnTriggerExit2D(Collider2D collision)
+        public static void PauseAll()
         {
-            if (collision.CompareTag(playerTag))
+            for (int i = _list.Count - 1; i >= 0; i--)
             {
-                collision.transform.SetParent(null);
-            }
-
-        }
-
-
-
-        private void Update()
-        {
-            if (IsStarted)
-            {
-                elapsedTime += Time.deltaTime;
-                transform.position = Vector2.Lerp(index > 0 ? allPoints[index - 1].position : allPoints[allPoints.Length - 1].position, allPoints[index].position, elapsedTime / duration);
-                if (elapsedTime >= duration)
-                {
-                    if (index >= allPoints.Length - 1) index = 0;
-                    else index++;
-                    elapsedTime = 0;
-                }
+                _list[i].SetModeVoid();
             }
         }
 
+        public static void ResumeAll()
+        {
+            for (int i = _list.Count - 1; i >= 0; i--)
+            {
+                _list[i].SetModeNormal();
+            }
+        }
     }
 }

@@ -3,15 +3,17 @@
 /// Date : 21/01/2020 10:37
 ///-----------------------------------------------------------------
 
+using Cinemachine;
 using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
+using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
+using Com.IsartDigital.Platformer.LevelObjects.Platforms;
 using Com.IsartDigital.Platformer.Screens;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer.Managers {
+namespace Com.IsartDigital.Platformer.Managers
+{
 
     public class LevelManager : MonoBehaviour {
 
@@ -32,10 +34,8 @@ namespace Com.IsartDigital.Platformer.Managers {
         IEnumerator InitHud()
         {
             while (Hud.Instance == null) yield return null;
-            Hud.Instance.Score = score;
-            Hud.Instance.Life = player.Life;
+            UpdateHud();
         }
-
 
         private void LifeCollectible_OnCollected(int value)
         {
@@ -56,11 +56,83 @@ namespace Com.IsartDigital.Platformer.Managers {
                 player.setPosition(CheckpointManager.Instance.LastCheckpointPos);
                 Hud.Instance.Life = player.Life;
             }
-            else 
-            {
-                player.setPosition(CheckpointManager.Instance.LastSuperCheckpointPos);
-                CheckpointManager.Instance.ResetColliders();
-            } 
+        }
+
+        private void DeadZone_OnCollision()
+        {
+            player.Die();
+            Hud.Instance.Life = player.Life;
+        }
+
+        private void Player_OnDie()
+        {
+            finalTimer = timeManager.Timer;
+            timeManager.SetModeVoid();
+
+            UIManager.Instance.CreateLoseScreen();
+        }
+
+        private void CheckpointManager_OnFinalCheckPointTriggered()
+        {
+            Win();
+            CheckpointManager.OnFinalCheckPointTriggered -= CheckpointManager_OnFinalCheckPointTriggered;
+        }
+
+        private void Win()
+        {
+            finalTimer = timeManager.Timer;
+            timeManager.SetModeVoid();
+            UnsubscribeAllEvents();
+
+            if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();
+            else Debug.LogError("Pas d'UImanager sur la scène");
+            player.gameObject.SetActive(false);
+        }
+
+        private void Retry()
+        {
+            player.Reset();
+            score = 0;
+            UpdateHud();
+
+            timeManager.SetModeVoid();
+
+            CheckpointManager.Instance.ResetColliders();
+
+            LifeCollectible.ResetAll();
+            ScoreCollectible.ResetAll();
+            DestructiblePlatform.ResetAll();
+            MobilePlatform.ResetAll();
+            PlatformTrigger.ResetAll();
+            TimedDoor.ResetAll();
+
+            timeManager.StartTimer();
+        }
+
+        private void Resume()
+        {
+            player.SetModeResume();
+            timeManager.SetModeTimer();
+            DestructiblePlatform.ResumeAll();
+            MobilePlatform.ResumeAll();
+            TimedDoor.ResumeAll();
+            SoundManager.Instance.ResumeAll();
+        }
+
+        private void PauseGame()
+        {
+            player.SetModePause();
+            timeManager.SetModePause();
+            DestructiblePlatform.PauseAll();
+            MobilePlatform.PauseAll();
+            TimedDoor.PauseAll();
+            SoundManager.Instance.PauseAll();
+        }
+
+        private void UpdateHud()
+        {
+            Hud.Instance.Score = score;
+            Hud.Instance.Life = player.Life;
         }
 
         private void OnDestroy()
@@ -81,40 +153,26 @@ namespace Com.IsartDigital.Platformer.Managers {
                 KillZone.List[i].OnCollision += KillZone_OnCollision; 
             }
 
+            for(int i = DeadZone.List.Count - 1; i >= 0; i--)
+            {
+                DeadZone.List[i].OnCollision += DeadZone_OnCollision; 
+            }
+
             for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
             {
                 ScoreCollectible.List[i].OnCollected += ScoreCollectible_OnCollected; 
             }
 
+
             CheckpointManager.OnFinalCheckPointTriggered += CheckpointManager_OnFinalCheckPointTriggered;
-            player.OnDie += Player_OnDie; 
-        }
+            player.OnDie += Player_OnDie;
 
-        private void Player_OnDie()
-        {
-            finalTimer = timeManager.Timer; 
-            timeManager.SetModeVoid();
-
-            UIManager.Instance.CreateLoseScreen();
-            player.gameObject.SetActive(false);
-        }
-
-        private void CheckpointManager_OnFinalCheckPointTriggered()
-        {
-            Win();
-            CheckpointManager.OnFinalCheckPointTriggered -= CheckpointManager_OnFinalCheckPointTriggered;
-
-        }
-
-        private void Win()
-        {
-            finalTimer = timeManager.Timer;
-            timeManager.SetModeVoid(); 
-            UnsubscribeAllEvents();
-
-            if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();
-            else Debug.Log("Pas d'UImanager sur la scène");
-            player.gameObject.SetActive(false);
+            if (UIManager.Instance != null)
+            {
+                UIManager.Instance.OnRetry += Retry;
+                UIManager.Instance.OnResume += Resume;
+                UIManager.Instance.OnPause += PauseGame;
+            }
         }
         #endregion
 
@@ -134,6 +192,21 @@ namespace Com.IsartDigital.Platformer.Managers {
             for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
             {
                 ScoreCollectible.List[i].OnCollected -= ScoreCollectible_OnCollected;
+            }
+
+            for (int i = DeadZone.List.Count - 1; i >= 0; i--)
+            {
+                DeadZone.List[i].OnCollision -= DeadZone_OnCollision;
+            }
+
+            CheckpointManager.OnFinalCheckPointTriggered -= CheckpointManager_OnFinalCheckPointTriggered;
+            player.OnDie -= Player_OnDie;
+
+            if (UIManager.Instance != null) 
+            {
+                UIManager.Instance.OnRetry -= Retry;
+                UIManager.Instance.OnResume -= Resume;
+                UIManager.Instance.OnPause -= PauseGame;
             }
         }
         #endregion

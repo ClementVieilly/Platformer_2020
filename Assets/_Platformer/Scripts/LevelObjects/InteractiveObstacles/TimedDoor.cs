@@ -16,7 +16,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles
         private bool isOpening;
         private bool isClosing;
 
-        private float elapsedTime = 0f;
         [SerializeField] private float openingSpeed = 3f;
         [SerializeField] private float closingSpeed = 3f;
 
@@ -50,8 +49,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles
 
         private IEnumerator OpenDoor()
         {
-
-
             while ((transform.position != endPos.position) && isOpening)
             {
                 while (isPaused)
@@ -60,16 +57,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles
                 }
 
                 transform.position = Vector3.MoveTowards(transform.position , endPos.position, openingSpeed);
-
                 yield return null;
             }
-            elapsedTime = 0;
         }
 
         private IEnumerator CloseDoor()
         {
-
-
             while ( (transform.position != startPos.position) && isClosing)
             {
                 while (isPaused)
@@ -77,13 +70,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles
                     yield return null;
                 }
 
-                elapsedTime += Time.deltaTime;
-
                 transform.position = Vector3.MoveTowards(transform.position, startPos.position, closingSpeed);
-
                 yield return null;
             }
-            elapsedTime = 0;
         }
 
         private void ResetPosition()
@@ -96,6 +85,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles
             for (int i = _list.Count - 1; i >= 0; i--)
             {
                 _list[i].ResetPosition();
+                _list[i].isOpening = false;
+                _list[i].isClosing = false;
+                _list[i].isPaused = false;
             }
         }
 

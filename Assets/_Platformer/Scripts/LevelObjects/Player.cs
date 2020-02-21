@@ -176,11 +176,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         public void Reset()
         {
             InitLife();
+            Debug.Log("startPosition : " + startPosition);
+            gameObject.SetActive(true);
             setPosition(startPosition);
             lastCheckpointPos = transform.position;
 
             rigidBody.simulated = true;
-            gameObject.SetActive(true);
             rigidBody.WakeUp();
             SetModeSpawn();
         }

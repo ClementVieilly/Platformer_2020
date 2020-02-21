@@ -20,7 +20,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private PlayerSettings settings = null;
         [SerializeField] private SoundsSettings sounds = null;
 
-        //Pos des Linecast !
+        //Pos des Linecast 
         [SerializeField] private Transform wallLinecastRightStartPos = null; 
         [SerializeField] private Transform wallLinecastRightEndPos = null;
         [SerializeField] private Transform wallLinecastLeftStartPos = null;
@@ -86,9 +86,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         }
 
         //Pentes 
-        private bool isSlinding = false;
         private Vector2 penteVelocity;
 
+        //Corner
         private bool isOnCorner = false;
         private bool wasInCorner = false;
 
@@ -149,6 +149,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         // Properties for Pause
         private Action PreviousDoAction = null;
         private Vector2 pausePos;
+        private Vector2 lastVelocity;
 
         //Event for HUD controller update
         public delegate void PlayerMoveEventHandler(float horizontalAxis);
@@ -261,6 +262,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         public void SetModePause()
         {
             PreviousDoAction = DoAction;
+            lastVelocity = rigidBody.velocity;
             rigidBody.Sleep();
             rigidBody.simulated = false;
             DoAction = DoActionVoid; 
@@ -271,6 +273,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             rigidBody.WakeUp();
             rigidBody.simulated = true;
             DoAction = PreviousDoAction;
+            rigidBody.velocity = lastVelocity;
         }
 
         private void DoActionNormal()
@@ -283,17 +286,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 Vector2 tan = hitInfosNormal.normal;
                 tan = new Vector2(tan.y, -tan.x);
                 float anglePente = Vector2.Angle(tan, Vector3.up);
-                if(anglePente > settings.AngleMinPente && anglePente < settings.AngleMaxPente || anglePente > 150)
+                if(anglePente > settings.AngleMinPente && anglePente < settings.AngleMaxPente /*|| anglePente > 150*/)
                 {
                     penteVelocity = tan;
                     rigidBody.gravityScale = 0f;
-                    isSlinding = false;
                 }
-                else
-                {
-                   // isSlinding = true;
-                   // rigidBody.gravityScale = gravity;
-                }
+                
             }
             
             MoveHorizontalOnGround();
@@ -367,11 +365,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
             IsGrounded = hitInfos.collider != null;
 
-            if (IsGrounded)
-                if (hitInfos.collider.GetComponent<MobilePlatform>() != null) transform.SetParent(hitInfos.transform);
-            else
-                if(transform.parent != null) transform.SetParent(null);
-            
             if(IsGrounded)
             {
                 //RayCast vertical pour recup sa normal pour calculer les pentes
@@ -389,7 +382,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
                 ratio = settings.RunAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, settings.RunSpeed, ratio);
-
                 walkingPS.Play();
                 SoundManager.Instance.Play(sounds.FootstepsWood);
             }
@@ -398,9 +390,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 ratio = settings.RunDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, topSpeed, ratio);
             }
-            if (!isSlinding)
+
                 rigidBody.velocity = penteVelocity.normalized * horizontalMove * previousDirection; 
-            else rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
         }
 
         private void DoActionSpawn()
@@ -574,9 +565,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void MoveHorizontalInAir()
         {
+            float horizontalMove;
+            if(IsOnWall && horizontalAxis == facingRightWall ) return; 
             if (horizontalAxis != 0f) // On maintiens une direction lors de la chute
             {
-                rigidBody.velocity = Vector2.Lerp(rigidBody.velocity, new Vector2(22f * previousDirection, rigidBody.velocity.y), horizontalMoveElapsedTime); 
+                horizontalMove = Mathf.Lerp(rigidBody.velocity.x, settings.FallHorizontalSpeed * previousDirection,horizontalMoveElapsedTime);
+                rigidBody.velocity = new Vector2(horizontalMove,rigidBody.velocity.y); 
             }
         }
 

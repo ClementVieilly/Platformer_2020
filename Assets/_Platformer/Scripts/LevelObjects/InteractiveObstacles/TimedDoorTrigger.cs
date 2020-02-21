@@ -7,11 +7,10 @@ using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles
 {
-
     public class TimedDoorTrigger : AInteractiveObstacles
     {
-        [SerializeField] private GameObject doorGameObject;
-        private TimedDoor timedDoor;
+        [SerializeField] private GameObject doorGameObject = null;
+        private TimedDoor timedDoor = null;
 
         private void Awake()
         {

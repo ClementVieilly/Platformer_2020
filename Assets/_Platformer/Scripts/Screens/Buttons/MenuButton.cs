@@ -14,21 +14,22 @@ namespace Com.IsartDigital.Platformer.Screens.Buttons {
         public MenuButtonEventHandler OnMenuButtonClicked;
 
         private Button button;
+		public Button Button { get => button; }
 
         private void Awake()
         {
             button = GetComponent<Button>();
-            button.onClick.AddListener(PauseMenuButton_OnClick);
+            button.onClick.AddListener(MenuButton_OnClick);
         }
 
-        private void PauseMenuButton_OnClick()
+        private void MenuButton_OnClick()
         {
             OnMenuButtonClicked?.Invoke(button);
         }
 
         private void OnDestroy()
         {
-            button.onClick.RemoveListener(PauseMenuButton_OnClick);
+            button.onClick.RemoveListener(MenuButton_OnClick);
         }
     }
 }

@@ -3,66 +3,59 @@
 /// Date : 04/02/2020 16:14
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.Managers;
 using Com.IsartDigital.Platformer.UnityEvents;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 
 namespace Com.IsartDigital.Platformer.WebScripts
 {
 	public class WebClient : MonoBehaviour
 	{
-		[SerializeField] private Text usernameTextField = null;
-		[SerializeField] private Text passwordTextField = null;
+		public delegate void WebClientFeedbackEventHandler(string message);
 
-		[SerializeField] private Button logButton = null;
+		private static WebClient _instance;
 
-		private string _jsonWebToken = null;
-		public string JsonWebToken { get => _jsonWebToken; }
+		private string jsonWebToken = null;
 
-		private bool isPreviousRequestOver = false;
+		private bool _isPreviousRequestOver = true;
+		public bool IsPreviousRequestOver { get => _isPreviousRequestOver; }
 		private bool isPreviousRequestSucces = false;
 
-		private Coroutine tryToLogCoroutine = null;
-		private Coroutine currentSubCoroutine = null;
-
-		private ScoreObject[] _scores = null;
-		public ScoreObject[] Scores { get => _scores; }
+		private List<ScoreObject> _scores = null;
+		public List<ScoreObject> Scores { get => _scores; }
 
 		[Serializable]
-		private class Credentials
+		public class WebCredentials
 		{
+			public string id = null;
 			public string username = null;
 			public string password = null;
 
-			public Credentials(string username, string password)
+			public WebCredentials(string username, string password)
 			{
 				this.username = username;
 				this.password = password;
 			}
 		}
 
-		[Serializable]
-		public class ScoreObject
-		{
-			public string username = "default";
-			public int completion_time = 0;
-			public int nb_score = 0;
-			public int nb_lives = 0;
+		private WebCredentials _credentials = null;
+		public WebCredentials Credentials { get => _credentials; set => _credentials = value; }
 
-			public ScoreObject(int completionTime, int nbScore, int nbLives)
-			{
-				completion_time = completionTime;
-				nb_score = nbScore;
-				nb_lives = nbLives;
-			}
-		}
+		private bool _isLogged = false;
+		public bool IsLogged { get => _isLogged; }
+		public bool wantToLog = true;
+		private bool _canTryToLog = true;
+		public bool CanTryToLog { get => _canTryToLog; }
 
-		[SerializeField] private WebClientUnityEvent _onLogged;
-		[SerializeField] private WebClientUnityEvent _onScoreGet;
+		public event WebClientFeedbackEventHandler OnFeedback;
+
+		[SerializeField] private WebClientUnityEvent _onLogged = null;
+		[SerializeField] private WebClientUnityEvent _onScoreGet = null;
 
 		public event UnityAction<WebClient> OnLogged
 		{
@@ -76,92 +69,101 @@ namespace Com.IsartDigital.Platformer.WebScripts
 			remove { _onScoreGet.RemoveListener(value); }
 		}
 
-		private void Start()
+		private void Awake()
 		{
-			OnLogged += StopMyCoroutines;
-			OnLogged += AddOnLogButtonListener;
-			AddOnLogButtonListener(null);
-		}
-
-		/// <summary>
-		/// Stop all WebClient coroutines
-		/// </summary>
-		private void StopMyCoroutines(WebClient webClient)
-		{
-			StopCoroutine(tryToLogCoroutine);
-			StopCoroutine(currentSubCoroutine);
-		}
-
-		private void AddOnLogButtonListener(WebClient webClient)
-		{
-			logButton.onClick.AddListener(OnLogButtonClicked);
-		}
-
-		private void RemoveOnLogButtonListener()
-		{
-			logButton.onClick.RemoveListener(OnLogButtonClicked);
-		}
-
-		private void OnLogButtonClicked()
-		{
-			if (usernameTextField.text.Length == 0 || passwordTextField.text.Length == 0)
+			if (_instance)
 			{
-				Debug.LogWarning("WebClient::OnLog : username or password input field is empty.");
+				Destroy(gameObject);
 				return;
 			}
+			_instance = this;
 
-			tryToLogCoroutine = StartCoroutine(TryToLogCoroutine());
+			DontDestroyOnLoad(gameObject);
 		}
 
-		public void OnButtonAllScores()
+		public void RegisterPlayerScoreForLevel(int level, ScoreObject score)
 		{
-			StartCoroutine(GetAllScoresForLevelCoroutine(1));
+			StartCoroutine(RegisterPlayerScoreForLevelCoroutine(level, score));
 		}
 
-		public void OnButtonOneScore()
+		public void GetScoresForLevel(int level)
 		{
-			StartCoroutine(GetPlayerScoreForLevelCoroutine(7, 2));
+			StartCoroutine(GetAllScoresForLevelCoroutine(level));
+		}
+
+		public void GetPlayerScoreForLevel(int level)
+		{
+			StartCoroutine(GetPlayerScoreForLevelCoroutine(level));
+		}
+
+		public void TryToLog()
+		{
+			StartCoroutine(TryToLogMainCoroutine());
+		}
+
+		private IEnumerator TryToLogMainCoroutine()
+		{
+			_canTryToLog = false;
+
+			OnFeedback?.Invoke(string.Empty);
+
+			if (_credentials.username.Length == 0 || _credentials.password.Length == 0)
+			{
+				yield return new WaitForSeconds(0.5f);
+
+				Debug.LogWarning("WebClient::TryToLogMainCoroutine: username or password input field is empty.");
+
+				_canTryToLog = true;
+				OnFeedback?.Invoke("Username or password input field is empty.");
+				yield break;
+			}
+
+			StartCoroutine(TryToLogCoroutine());
 		}
 
 		private IEnumerator TryToLogCoroutine()
 		{
-			RemoveOnLogButtonListener();
+			_canTryToLog = false;
 
-			currentSubCoroutine = StartCoroutine(SigninCoroutine());
+			StartCoroutine(SigninCoroutine());
 
-			while (!isPreviousRequestOver)
+			while (!_isPreviousRequestOver)
 				yield return null;
 
 			if (isPreviousRequestSucces)
 			{
+				_isLogged = true;
+				wantToLog = false;
 				_onLogged?.Invoke(this);
 				yield break;
 			}
 
-			currentSubCoroutine = StartCoroutine(SignupCoroutine());
+			StartCoroutine(SignupCoroutine());
 
-			while (!isPreviousRequestOver)
+			while (!_isPreviousRequestOver)
 				yield return null;
 
 			if (isPreviousRequestSucces)
 			{
+				_isLogged = true;
+				wantToLog = false;
 				_onLogged?.Invoke(this);
 				yield break;
 			}
 
-			Debug.Log("User already exists. You should either enter the good password or choose a different username.");
-			AddOnLogButtonListener(null);
-			currentSubCoroutine = null;
-			tryToLogCoroutine = null;
+			OnFeedback?.Invoke("User already exists. You should either enter the good password or choose a different username.");
+			Debug.Log("WebClient::TryToLogCoroutine: User already exists. You should either enter the good password or choose a different username.");
+
+			_canTryToLog = true;
 		}
 
 		private IEnumerator SignupCoroutine()
 		{
 			isPreviousRequestSucces = false;
-			isPreviousRequestOver = false;
+			_isPreviousRequestOver = false;
 			string url = "https://platformer-sequoia.herokuapp.com/users/signup";
 
-			Credentials credentials = new Credentials(usernameTextField.text, passwordTextField.text);
+			WebCredentials credentials = new WebCredentials(_credentials.username, _credentials.password);
 			string json = JsonUtility.ToJson(credentials);
 
 			using (UnityWebRequest request = PostJson(url, json))
@@ -175,21 +177,25 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				else
 				{
 					isPreviousRequestSucces = true;
-					_jsonWebToken = request.downloadHandler.text;
+
+					string[] response = request.downloadHandler.text.Split(new char[] { '/' }, 2);
+					_credentials.id = response[0];
+					jsonWebToken = response[1];
+
 					Debug.Log("User registered !");
 				}
 
-				isPreviousRequestOver = true;
+				_isPreviousRequestOver = true;
 			}
 		}
 
 		private IEnumerator SigninCoroutine()
 		{
 			isPreviousRequestSucces = false;
-			isPreviousRequestOver = false;
+			_isPreviousRequestOver = false;
 			string url = "https://platformer-sequoia.herokuapp.com/users/signin";
 
-			Credentials credentials = new Credentials(usernameTextField.text, passwordTextField.text);
+			WebCredentials credentials = new WebCredentials(_credentials.username, _credentials.password);
 			string json = JsonUtility.ToJson(credentials);
 
 			using (UnityWebRequest request = PostJson(url, json))
@@ -203,26 +209,29 @@ namespace Com.IsartDigital.Platformer.WebScripts
 				else
 				{
 					isPreviousRequestSucces = true;
-					_jsonWebToken = request.downloadHandler.text;
+
+					string[] response = request.downloadHandler.text.Split(new char[] { '/' }, 2);
+					_credentials.id = response[0];
+					jsonWebToken = response[1];
+
 					Debug.Log("Welcome back !");
 				}
 
-				isPreviousRequestOver = true;
+				_isPreviousRequestOver = true;
 			}
 		}
 
-		private IEnumerator RegisterPlayerScoreForLevelCoroutine(int userId, int level)
+		private IEnumerator RegisterPlayerScoreForLevelCoroutine(int level, ScoreObject scoreObject)
 		{
 			isPreviousRequestSucces = false;
-			isPreviousRequestOver = false;
-			string url = "https://platformer-sequoia.herokuapp.com/scores/" + userId + "/" + level;
+			_isPreviousRequestOver = false;
+			string url = "https://platformer-sequoia.herokuapp.com/scores/" + _credentials.id + "/" + level;
 
-			ScoreObject score = new ScoreObject(100, 1, 1);
-			string json = JsonUtility.ToJson(score);
+			string json = JsonUtility.ToJson(scoreObject);
 
 			using (UnityWebRequest request = PostJson(url, json))
 			{
-				request.SetRequestHeader("Authorization", "Bearer " + _jsonWebToken ?? "");
+				request.SetRequestHeader("Authorization", "Bearer " + jsonWebToken ?? "");
 
 				yield return request.SendWebRequest();
 
@@ -236,19 +245,21 @@ namespace Com.IsartDigital.Platformer.WebScripts
 					Debug.Log(request.downloadHandler.text);
 				}
 
-				isPreviousRequestOver = true;
+				_isPreviousRequestOver = true;
 			}
 		}
 
 		private IEnumerator GetAllScoresForLevelCoroutine(int level)
 		{
 			isPreviousRequestSucces = false;
-			isPreviousRequestOver = false;
+			_isPreviousRequestOver = false;
 			string url = "https://platformer-sequoia.herokuapp.com/scores/" + level;
+
+			_scores = null;
 
 			using (UnityWebRequest request = UnityWebRequest.Get(url))
 			{
-				request.SetRequestHeader("Authorization", "Bearer " + _jsonWebToken ?? "");
+				request.SetRequestHeader("Authorization", "Bearer " + jsonWebToken ?? "");
 
 				yield return request.SendWebRequest();
 
@@ -258,25 +269,26 @@ namespace Com.IsartDigital.Platformer.WebScripts
 					Debug.Log("HttpError: " + request.error + ": " + request.downloadHandler.text);
 				else
 				{
-					Debug.Log(request.downloadHandler.text);
 					isPreviousRequestSucces = true;
-					_scores = JsonHelper.GetJsonArray<ScoreObject>(request.downloadHandler.text);
+					_scores = new List<ScoreObject>(JsonHelper.GetJsonArray<ScoreObject>(request.downloadHandler.text));
 					_onScoreGet?.Invoke(this);
 				}
 
-				isPreviousRequestOver = true;
+				_isPreviousRequestOver = true;
 			}
 		}
 
-		private IEnumerator GetPlayerScoreForLevelCoroutine(int userId, int level)
+		private IEnumerator GetPlayerScoreForLevelCoroutine(int level)
 		{
 			isPreviousRequestSucces = false;
-			isPreviousRequestOver = false;
-			string url = "https://platformer-sequoia.herokuapp.com/scores/" + userId + "/" + level;
+			_isPreviousRequestOver = false;
+			string url = "https://platformer-sequoia.herokuapp.com/scores/" + _credentials.id + "/" + level;
+
+			_scores = null;
 
 			using (UnityWebRequest request = UnityWebRequest.Get(url))
 			{
-				request.SetRequestHeader("Authorization", "Bearer " + _jsonWebToken ?? "");
+				request.SetRequestHeader("Authorization", "Bearer " + jsonWebToken ?? "");
 
 				yield return request.SendWebRequest();
 
@@ -286,13 +298,13 @@ namespace Com.IsartDigital.Platformer.WebScripts
 					Debug.Log("HttpError: " + request.error + ": " + request.downloadHandler.text);
 				else
 				{
-					Debug.Log(request.downloadHandler.text);
 					isPreviousRequestSucces = true;
-					_scores = JsonHelper.GetJsonArray<ScoreObject>(request.downloadHandler.text);
+
+					_scores = new List<ScoreObject>(JsonHelper.GetJsonArray<ScoreObject>(request.downloadHandler.text));
 					_onScoreGet?.Invoke(this);
 				}
 
-				isPreviousRequestOver = true;
+				_isPreviousRequestOver = true;
 			}
 		}
 

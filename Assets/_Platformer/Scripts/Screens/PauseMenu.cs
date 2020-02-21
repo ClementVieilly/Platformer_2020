@@ -18,26 +18,15 @@ namespace Com.IsartDigital.Platformer.Screens
 
         private Button[] buttons;//tableau des boutons contenu dans le Menu Pause
 
-        private Button resumeButton;
-        private Button retryButton;
-        private Button homeButton;
-
         [SerializeField] private string buttonResumeTag = "ResumeButton";
         [SerializeField] private string buttonRetryTag = "RetryButton";
-        [SerializeField] private string buttonHomeTag = "HomeButton";//pas spécialement utile vu le if/else if/ else du Awake()
 
         private void Awake()
         {
             buttons = GetComponentsInChildren<Button>();//récupère tous les boutons du Menu Pause
 
-            for (int i = 0; i < buttons.Length; i++)//Assigne les bonnes références de chaque boutons grâce à leurs tags
-            {
-                if (buttons[i].CompareTag(buttonResumeTag)) resumeButton = buttons[i];
-                else if (buttons[i].CompareTag(buttonRetryTag)) retryButton = buttons[i];
-                else homeButton = buttons[i];
-
+            for (int i = 0; i < buttons.Length; i++)// Abonne le menu de pause aux boutons
                 buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked += PauseMenu_OnButtonClicked;
-            }
         }
 
         private void PauseMenu_OnButtonClicked(Button sender)
@@ -47,9 +36,7 @@ namespace Com.IsartDigital.Platformer.Screens
             else OnHomeClicked?.Invoke(this);
 
             for (int i = buttons.Length - 1; i >= 0; i--)
-            {
                 buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked -= PauseMenu_OnButtonClicked;
-            }
         }
 
         public override void UnsubscribeEvents()

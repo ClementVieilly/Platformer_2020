@@ -33,19 +33,17 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private Transform groundLinecastEndPos = null;
 
         [Header("Particle Systems")]
-        [SerializeField] private ParticleSystem walkingPS;
-        [SerializeField] private ParticleSystem jumpingPS;
-        [SerializeField] private ParticleSystem landingPS;
-        [SerializeField] private ParticleSystem wallJumpPSRight;
-        [SerializeField] private ParticleSystem wallJumpPSLeft;
-        [SerializeField] private ParticleSystem planePS;
+        [SerializeField] private ParticleSystem walkingPS = null;
+        [SerializeField] private ParticleSystem jumpingPS = null;
+        [SerializeField] private ParticleSystem landingPS = null;
+        [SerializeField] private ParticleSystem wallJumpPSRight = null;
+        [SerializeField] private ParticleSystem wallJumpPSLeft = null;
+        [SerializeField] private ParticleSystem planePS = null;
 
         [SerializeField] private GameObject stateTag = null;
 
-        private string platformTraversableTag = "PlatformTraversable"; 
-
-        private RaycastHit2D hitInfos; 
-        private RaycastHit2D hitInfosNormal; 
+        private RaycastHit2D hitInfos;
+        private RaycastHit2D hitInfosNormal;
 
         #region Life
         public int Life
@@ -148,8 +146,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         // Properties for Pause
         private Action PreviousDoAction = null;
-        private Vector2 pausePos;
-        private Vector2 lastVelocity;
+        private Vector2 lastVelocity = Vector2.zero;
 
         //Event for HUD controller update
         public delegate void PlayerMoveEventHandler(float horizontalAxis);
@@ -158,10 +155,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         public static Action OnPlayerEndJump;
 
         //Cinemachine Virtual Camera
-        [SerializeField] private CinemachineVirtualCamera vCam;
-        private CinemachineFramingTransposer vCamBody;
-        private float lastLookAheadTime;
-        private float lastLookAheadSmoothing;
+        [SerializeField] private CinemachineVirtualCamera vCam = null;
+        private CinemachineFramingTransposer vCamBody = null;
+        private float lastLookAheadTime = 0f;
+        private float lastLookAheadSmoothing = 0f;
 
         private Action DoAction = null;
 
@@ -176,11 +173,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         public void Reset()
         {
             InitLife();
+            Debug.Log("startPosition : " + startPosition);
+            gameObject.SetActive(true);
             setPosition(startPosition);
             lastCheckpointPos = transform.position;
 
             rigidBody.simulated = true;
-            gameObject.SetActive(true);
             rigidBody.WakeUp();
             SetModeSpawn();
         }

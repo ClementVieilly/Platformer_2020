@@ -44,22 +44,22 @@ namespace Com.IsartDigital.Platformer.Screens
                 else if (buttons[i].CompareTag(buttonSoundTriggerTag)) soundTriggerButton = buttons[i];
                 else if (buttons[i].CompareTag(buttonLocalisationTag)) localisationButton = buttons[i];
                 else if (buttons[i].CompareTag(buttonPlayTag)) playButton = buttons[i];
-                else creditsButton = buttons[i];
+                else if (buttons[i].CompareTag(buttonCreditsTag)) creditsButton = buttons[i];
 
                 buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked += TitleCard_OnMenuButtonClicked;
             }
         }
-
+		
         private void TitleCard_OnMenuButtonClicked(Button sender)
         {
             if (sender.CompareTag(buttonLeaderBoardTag))
             {
                 OnLeaderBoardClicked?.Invoke(this);
-                for (int i = buttons.Length - 1; i >= 0; i--)
+                /*for (int i = buttons.Length - 1; i >= 0; i--)
                 {
                     Debug.Log("unsubscribe for leaderboard");
                     //button.GetComponent<MenuButton>().OnMenuButtonClicked -= TitleCard_OnMenuButtonClicked;
-                }
+                }*/
             }
             else if (sender.CompareTag(buttonSoundTriggerTag)) OnSoundTriggerClicked?.Invoke(this);
             else if (sender.CompareTag(buttonLocalisationTag)) OnLocalisationClicked?.Invoke(this);
@@ -67,11 +67,11 @@ namespace Com.IsartDigital.Platformer.Screens
             else
             {
                 OnCreditsClicked?.Invoke(this);
-
-                for (int i = buttons.Length - 1; i >= 0; i--)
+				
+                /*for (int i = buttons.Length - 1; i >= 0; i--)
                 {
                     buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked -= TitleCard_OnMenuButtonClicked;
-                }
+                }*/
             }
         }
 

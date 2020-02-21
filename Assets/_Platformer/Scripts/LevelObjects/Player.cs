@@ -257,10 +257,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             DoAction = DoActionPlane;
             animator.SetBool(settings.IsPlaningParam, true);
         }
+        private Vector2 lastVelocity;
 
         public void SetModePause()
         {
             PreviousDoAction = DoAction;
+            lastVelocity = rigidBody.velocity;
             rigidBody.Sleep();
             rigidBody.simulated = false;
             DoAction = DoActionVoid; 
@@ -271,6 +273,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             rigidBody.WakeUp();
             rigidBody.simulated = true;
             DoAction = PreviousDoAction;
+            rigidBody.velocity = lastVelocity;
         }
 
         private void DoActionNormal()

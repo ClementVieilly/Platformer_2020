@@ -98,6 +98,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         //Pos au spawn et au respawn
         private Vector2 startPosition;
         private Vector2 lastCheckpointPos;
+        public Vector2 LastCheckpointPos => lastCheckpointPos;
 
         //HorizontalMove
         private float horizontalAxis = 0f;
@@ -259,7 +260,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             DoAction = DoActionPlane;
             animator.SetBool(settings.IsPlaningParam, true);
         }
-        private Vector2 lastVelocity;
 
         public void SetModePause()
         {

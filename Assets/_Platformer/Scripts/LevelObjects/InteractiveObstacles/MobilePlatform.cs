@@ -29,7 +29,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         {
             _list.Add(this);
             SetStartPosition();
-            SetModeVoid();
+            if (_isStarted) SetModeNormal();
+            else SetModeVoid();
             startIndex = index;
         }
 

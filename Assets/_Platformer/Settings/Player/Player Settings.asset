@@ -224,13 +224,13 @@ MonoBehaviour:
   _isGroundedRaycastDistance: 0.1
   _jumpTolerance: 0.7
   _minJumpForce: 18
-  _wallJumpHorizontalForce: 25
-  _wallJumpVerticalForce: 20
+  _wallJumpHorizontalForce: 20
+  _wallJumpVerticalForce: 15
   _jumpHoldForce: 1
   _maxJumpTime: 0.2
   _jumpHangThreshold: 0.5
   _jumpHangTime: 0.05
   _delayWallJump: 0.5
-  _startLife: 1
+  _startLife: 3
   _coyoteTime: 0.08
   _impulsionInCorner: {x: 5, y: 5}

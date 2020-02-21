@@ -425,6 +425,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             if (_isOnWall)
             {
+                wasOnWall = false; 
                 if (jump && !jumpButtonHasPressed)
                 {
                     jumpButtonHasPressed = true;
@@ -433,8 +434,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     topSpeed = settings.WallJumpHorizontalForce;
                     previousDirection = -facingRightWall;
                     rigidBody.velocity = new Vector2(settings.WallJumpHorizontalForce * previousDirection, settings.WallJumpVerticalForce);
-                   // rigidBody.velocity = Vector2.Lerp(rigidBody.velocity, new Vector2(settings.WallJumpHorizontalForce * previousDirection, rigidBody.velocity.y), wallJumpElaspedTime / 0.5f);
-                   // Debug.Log(Vector2.Lerp(rigidBody.velocity, new Vector2(settings.WallJumpHorizontalForce * previousDirection, rigidBody.velocity.y), wallJumpElaspedTime));
                     ParticleSystem wjParticle = facingRightWall == 1 ? wallJumpPSRight : wallJumpPSLeft;
                     wjParticle.Play();
                 }
@@ -485,7 +484,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
 
-            if (wallJumpElaspedTime >= 1.5f)
+            if (wallJumpElaspedTime >= 1f)
             {
                 wasOnWall = false;
                 wallJumpElaspedTime = 0; 
@@ -588,13 +587,14 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if (horizontalAxis != 0f)
             {
                 ratio = settings.PlaneAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
-                horizontalMove = Mathf.Lerp(topSpeed, settings.PlaneHorizontalSpeed, ratio);
-                wasOnWall = false;
+                horizontalMove = Mathf.Lerp(Mathf.Abs(rigidBody.velocity.x),  settings.PlaneHorizontalSpeed  , ratio);
+                //wasOnWall = false;
+
             }
             else
             {
                 ratio = settings.PlaneDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
-                horizontalMove = Mathf.Lerp(0f, topSpeed, ratio);
+                horizontalMove = Mathf.Lerp(0f, rigidBody.velocity.x, ratio);
                 wasOnWall = false;
             }
 

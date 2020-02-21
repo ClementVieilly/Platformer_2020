@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 {
-    public delegate void ScoreCollectibleEventHandler(float score);
+    public delegate void ScoreCollectibleEventHandler(int score);
 
     public class ScoreCollectible : ACollectible {
         private static List<ScoreCollectible> _list = new List<ScoreCollectible>();
@@ -16,7 +16,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 
         public event ScoreCollectibleEventHandler OnCollected;
 
-        [SerializeField] private float score = 1;
+        [SerializeField] private int score = 1;
 
         private void Awake()
         {

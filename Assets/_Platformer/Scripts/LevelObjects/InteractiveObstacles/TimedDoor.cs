@@ -13,14 +13,14 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles
     {
         private static List<TimedDoor> _list = new List<TimedDoor>();
 
-        private bool isOpening;
-        private bool isClosing;
+        private bool isOpening = false;
+        private bool isClosing = false;
 
         [SerializeField] private float openingSpeed = 3f;
         [SerializeField] private float closingSpeed = 3f;
 
-        [SerializeField] private Transform startPos;
-        [SerializeField] private Transform endPos;
+        [SerializeField] private Transform startPos = null;
+        [SerializeField] private Transform endPos = null;
 
         private bool isPaused = false;
 

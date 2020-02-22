@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4608633263920969590}
   - component: {fileID: 3701159127536777740}
   - component: {fileID: 5796760497937289074}
+  - component: {fileID: -3336514472109248382}
   m_Layer: 0
   m_Name: PlaningParticleDefault
   m_TagString: Untagged
@@ -48,7 +49,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -4810,3 +4811,14 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &-3336514472109248382
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5944669047208640220}
+  m_Enabled: 1
+  m_SortingLayerID: 1877034893
+  m_SortingLayer: 2
+  m_SortingOrder: 10

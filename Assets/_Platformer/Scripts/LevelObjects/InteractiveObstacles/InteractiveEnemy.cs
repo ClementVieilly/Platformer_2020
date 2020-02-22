@@ -38,6 +38,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
             if (elapsedTime >= detectionDuration)
             {
                 Attack(collidedObject.transform.position);
+                Debug.Log("Jattak"); 
             }
 
             elapsedTime = 0;

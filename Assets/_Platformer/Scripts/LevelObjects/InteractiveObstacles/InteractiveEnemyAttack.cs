@@ -21,12 +21,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
             targetPosition = targetPos;
             startPosition = startPos;
             transform.position = startPosition;
-            Destroy(gameObject, 2);
         }
 
         private void Update()
         {
            if(targetPosition != null) transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed);
+
+            if(transform.position == targetPosition) Destroy(gameObject); 
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

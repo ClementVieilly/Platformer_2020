@@ -69,7 +69,7 @@ MonoBehaviour:
       height: 0.21191406
     _rightCapWeights: []
     _rightCapColliderSize:
-    - 1
+    - 0.95
     _rightCapColliderType: 02000000
     _rightCapOffset:
     - -0.53
@@ -93,7 +93,7 @@ MonoBehaviour:
       width: 0.65234375
       height: 0.20703125
     _bodyWeights: []
-    _yOffsetPercent: 0
+    _yOffsetPercent: -0.02
     _colliderOffset: 0
     _colliderThickness: 1
     _physicsMaterial2D: {fileID: 0}

@@ -19,6 +19,8 @@ namespace Com.IsartDigital.Platformer.Managers
 		public delegate void LevelManagerEventHandler(LevelManager levelManager);
 
 		[SerializeField] private Player player = null;
+        [SerializeField] private SoundsSettings sounds = null;
+        private string currentLvlMusicName = "empty";
 		private TimeManager timeManager = null;
 
 		private int _levelNumber = 0;
@@ -46,7 +48,11 @@ namespace Com.IsartDigital.Platformer.Managers
 		public void SetNumber(int level)
 		{
 			_levelNumber = level;
-		}
+
+            if (_levelNumber == 1) currentLvlMusicName = sounds.Ambiance_Level_One;
+            else if (_levelNumber == 2) currentLvlMusicName = sounds.Ambiance_Level_Two;
+            SoundManager.Instance.Play(currentLvlMusicName);
+        }
 
         private IEnumerator InitHud()
         {
@@ -128,6 +134,8 @@ namespace Com.IsartDigital.Platformer.Managers
             TimedDoor.ResetAll();
 
             timeManager.StartTimer();
+            SoundManager.Instance.Stop(currentLvlMusicName);
+            SoundManager.Instance.Play(currentLvlMusicName);
         }
 
         private void Resume()

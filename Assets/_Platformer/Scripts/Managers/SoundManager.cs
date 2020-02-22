@@ -87,7 +87,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
 			if (currentSound == null)
 			{
-				Debug.LogWarning("Sound: " + name + " not found!");
+				Debug.LogWarning("Sound: " + sound + " not found!");
 				return;
 			}
 			else if (currentSound.Source.isPlaying) 

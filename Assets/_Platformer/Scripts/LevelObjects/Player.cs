@@ -408,6 +408,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 wasOnWall = false;
                 wallJumpElaspedTime = 0; 
                 SetModeNormal();
+                SoundManager.Instance.Play(sounds.Landing);
                 return;
             }
 
@@ -510,6 +511,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
                 SoundManager.Instance.Stop(sounds.PlaneWind);
                 SetModeNormal();
+                SoundManager.Instance.Play(sounds.Landing);
                 return; 
             }
 

@@ -3020,36 +3020,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelInfos
       objectReference: {fileID: 0}
-    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
-        type: 3}
-      propertyPath: checkpoints.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
-        type: 3}
-      propertyPath: checkpoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 955170799}
-    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
-        type: 3}
-      propertyPath: checkpoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 2059147696}
-    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
-        type: 3}
-      propertyPath: checkpoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 1456056196}
-    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
-        type: 3}
-      propertyPath: checkpoints.Array.data[3]
-      value: 
-      objectReference: {fileID: 1435810434}
-    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
-        type: 3}
-      propertyPath: checkpoints.Array.data[4]
-      value: 
-      objectReference: {fileID: 1435810434}
     - target: {fileID: 6915852076588227888, guid: 217a1201004f2b54d88e7ed2da40e002,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3105,6 +3075,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
+        type: 3}
+      propertyPath: checkpoints.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
+        type: 3}
+      propertyPath: checkpoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 955170799}
+    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
+        type: 3}
+      propertyPath: checkpoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 2059147696}
+    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
+        type: 3}
+      propertyPath: checkpoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1456056196}
+    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
+        type: 3}
+      propertyPath: checkpoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 1435810434}
+    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
+        type: 3}
+      propertyPath: checkpoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 1435810434}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 217a1201004f2b54d88e7ed2da40e002, type: 3}
 --- !u!114 &505425413 stripped
@@ -4795,12 +4795,12 @@ PrefabInstance:
     - target: {fileID: 1966107884932360748, guid: f813be0894c08b5479f5b573021164a2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.3999968
+      value: 4.399994
       objectReference: {fileID: 0}
     - target: {fileID: 1966107884932360748, guid: f813be0894c08b5479f5b573021164a2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.99013996
+      value: 5.85082
       objectReference: {fileID: 0}
     - target: {fileID: 1966107884059546863, guid: f813be0894c08b5479f5b573021164a2,
         type: 3}
@@ -6130,7 +6130,7 @@ PrefabInstance:
     - target: {fileID: 2074140944545821744, guid: 4f96fcb8e8c0bb14e813a4c105451d14,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 212
+      value: 209.86
       objectReference: {fileID: 0}
     - target: {fileID: 2074140944545821744, guid: 4f96fcb8e8c0bb14e813a4c105451d14,
         type: 3}
@@ -9282,7 +9282,6 @@ MonoBehaviour:
   - {fileID: 3751621432411936292}
   duration: 2
   playerTag: Player
-  _isStarted: 0
 --- !u!4 &6925311985485029853
 Transform:
   m_ObjectHideFlags: 0

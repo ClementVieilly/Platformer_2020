@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wall_Catch
+  m_Name: Default
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -31,7 +31,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.06666667
+    m_StopTime: 0
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -53,22 +53,8 @@ AnimationClip:
   m_Events:
   - time: 0
     functionName: set_sequence
-    data: Wall_Catch
+    data: Default
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
-    messageOptions: 0
-  - time: 0.033333335
-    functionName: GotoAndStop
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0.06666667
-    functionName: GotoAndStop
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 2
     messageOptions: 0

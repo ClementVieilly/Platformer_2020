@@ -10,15 +10,14 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 	public class MobilePlatform : MonoBehaviour {
 
-        [SerializeField] private Transform[] allPoints;
-        private Vector2 startPos;
-        private float elapsedTime;
+        [SerializeField] private Transform[] allPoints = null;
+        private Vector2 startPos = Vector2.zero;
+        private float elapsedTime = 0f;
         private uint index = 1;
         private uint startIndex = 0;
-        [SerializeField]private float duration;
-        [SerializeField]private string playerTag = "Player"; 
+        [SerializeField] private float duration = 0f;
+        [SerializeField] private string playerTag = "Player"; 
 
-        [SerializeField] private bool _isStarted = false;
         private static List<MobilePlatform> _list = new List<MobilePlatform>();
 
         private Transform touchedObject = null;

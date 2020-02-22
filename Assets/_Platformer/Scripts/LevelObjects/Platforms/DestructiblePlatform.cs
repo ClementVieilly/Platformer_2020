@@ -13,12 +13,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
         private static List<DestructiblePlatform> _list = new List<DestructiblePlatform>();
         public static List<DestructiblePlatform> List => _list;
 
-        [SerializeField] private float duration;
-        [SerializeField] private GameObject triggeredCollider;
-        private float elapsedTime;
+        [SerializeField] private float duration = 0f;
+        [SerializeField] private GameObject triggeredCollider = null;
+        private float elapsedTime = 0f;
 
-        private Action DoAction;
-        private Action PreviousDoAction;
+        private Action DoAction = null;
+        private Action PreviousDoAction = null;
 
         private void Start()
         {

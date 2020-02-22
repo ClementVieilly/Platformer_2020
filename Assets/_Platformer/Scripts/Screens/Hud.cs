@@ -9,143 +9,140 @@ using UnityEngine.UI;
 
 namespace Com.IsartDigital.Platformer.Screens
 {
+	[RequireComponent(typeof(Button))]
+	public class Hud : AScreen
+	{
+		private static Hud _instance;
+		public static Hud Instance => _instance;
 
-    [RequireComponent(typeof(Button))]
+		public delegate void HudEventHandler(Hud hud);
+		public event HudEventHandler OnButtonPausePressed;
 
-    public class Hud : AScreen {
+		[Header("Score")]
+		[SerializeField] private Text scoreText = null;
+		[SerializeField] private GameObject scoreObject = null;
 
-        private static Hud _instance;
-        public static Hud Instance => _instance;
+		[Header("Life")]
+		[SerializeField] private Text lifeText = null;
+		[SerializeField] private Image lifeImage = null;
 
-        public delegate void HudEventHandler(Hud hud);
-        public HudEventHandler OnButtonPausePressed;
+		[Header("sprite for life")]
+		[SerializeField] private Sprite lifeSprite1 = null;
+		[SerializeField] private Sprite lifeSprite2 = null;
+		[SerializeField] private Sprite lifeSprite3 = null;
 
-        [Header("Score")]
-        [SerializeField] private Text scoreText;
-        [SerializeField] private GameObject scoreObject;
+		[Header("controller")]
+		[SerializeField] private Slider moveSlider = null;
+		[SerializeField] private Button jumpButton = null;
 
-        [Header("Life")]
-        [SerializeField] private Text lifeText;
-        [SerializeField] private Image lifeImage;
+		private Button btnPause;
 
-        [Header("sprite for life")]
-        [SerializeField] private Sprite lifeSprite1;
-        [SerializeField] private Sprite lifeSprite2;
-        [SerializeField] private Sprite lifeSprite3;
+		private float _score = 0f;
+		public float Score
+		{
+			get => _score;
+			set
+			{
+				_score = value;
+				scoreObject.SetActive(true);
+				_timer = 0;
+				UpdateText(scoreText, _score);
+			}
+		}
 
-        [Header("controller")]
-        [SerializeField] private Slider moveSlider;
-        [SerializeField] private Button jumpButton;
+		private float _life = 0f;
+		public float Life
+		{
+			get => _life;
+			set
+			{
+				_life = value;
+				switch (_life)
+				{
+					case 1:
+						lifeImage.sprite = lifeSprite1;
+						break;
+					case 2:
+						lifeImage.sprite = lifeSprite2;
+						break;
+					case 3:
+						lifeImage.sprite = lifeSprite3;
+						break;
+				}
+				UpdateText(lifeText, _life);
+			}
+		}
 
-        private Button btnPause;
+		private float _timer = 0f;
 
-        private float _score = 0;
-        public float Score 
-        { 
-            get => _score;
-            set 
-            { 
-                _score = value;
-                scoreObject.SetActive(true);
-                _timer = 0;
-                UpdateText(scoreText, _score);
-            } 
-        }
+		private void Awake()
+		{
+			if (_instance != null)
+			{
+				Destroy(gameObject);
+			}
+			else _instance = this;
 
-        private float _life = 0;
-        public float Life
-        {
-            get => _life;
-            set
-            {
-                _life = value;
-                switch (_life)
-                {
-                    case 1:
-                        lifeImage.sprite = lifeSprite1;
-                        break;
-                    case 2:
-                        lifeImage.sprite = lifeSprite2;
-                        break;
-                    case 3:
-                        lifeImage.sprite = lifeSprite3;
-                        break;
-                }
-                UpdateText(lifeText, _life);
-            }
-        }
+			btnPause = GetComponentInChildren<Button>();
+			btnPause.onClick.AddListener(Hud_OnButtonPauseClicked);
+			Player.OnPlayerMove += UpdateMoveController;
+			Player.OnPlayerJump += UpdateJumpController;
+			Player.OnPlayerEndJump += UpdateJumpController2;
+		}
 
-        private void Awake()
-        {
-            if (_instance != null)
-            {
-                Destroy(gameObject);
-            }
-            else _instance = this;
+		private void Update()
+		{
+			showHud();
+		}
 
-            btnPause = GetComponentInChildren<Button>();
-            btnPause.onClick.AddListener(Hud_OnButtonPauseClicked);
-            Player.OnPlayerMove += UpdateMoveController;
-            Player.OnPlayerJump += UpdateJumpController;
-            Player.OnPlayerEndJump += UpdateJumpController2;
-        }
+		private void showHud()
+		{
+			if (!scoreObject.activeSelf) return;
 
-        private float _timer = 0f;
-        private void Update()
-        {
-            showHud();
-        }
+			_timer += Time.deltaTime;
+			if (_timer > 3)
+			{
+				scoreObject.SetActive(false);
+				_timer = 0;
+			}
+		}
 
-        private void showHud()
-        {
-            if (!scoreObject.activeSelf) return;
+		private void UpdateText(Text changingText, float value)
+		{
+			changingText.text = value.ToString();
+		}
 
-            _timer += Time.deltaTime;
-            if (_timer > 3)
-            {
-                scoreObject.SetActive(false);
-                _timer = 0;
-            }
-        }
+		private void Hud_OnButtonPauseClicked()
+		{
+			OnButtonPausePressed?.Invoke(this);
+		}
 
-        private void UpdateText(Text changingText, float value)
-        {
-            changingText.text = value.ToString();
-        }
+		private void UpdateMoveController(float horizontalAxis)
+		{
+			moveSlider.value = Mathf.Lerp(moveSlider.value, horizontalAxis, 0.1f);
+		}
 
-        //envoie d'un event lors d'un clic sur le bouton pause
-        private void Hud_OnButtonPauseClicked()
-        {
-            OnButtonPausePressed?.Invoke(this);
-        }
+		private void UpdateJumpController()
+		{
+			jumpButton.image.color = Color.green;
+		}
+		private void UpdateJumpController2()
+		{
+			jumpButton.image.color = Color.white;
+		}
 
-        private void UpdateMoveController(float horizontalAxis)
-        {
-            moveSlider.value = Mathf.Lerp(moveSlider.value, horizontalAxis,0.1f);
-        }
+		private void OnDestroy()
+		{
+			btnPause.onClick.RemoveListener(Hud_OnButtonPauseClicked);
+			Player.OnPlayerMove -= UpdateMoveController;
+			Player.OnPlayerJump -= UpdateJumpController;
+			Player.OnPlayerEndJump -= UpdateJumpController2;
+			_instance = null;
+		}
 
-        private void UpdateJumpController()
-        {
-            jumpButton.image.color = Color.green;
-        }
-        private void UpdateJumpController2()
-        {
-            jumpButton.image.color = Color.white;
-        }
-
-        private void OnDestroy()
-        {
-            btnPause.onClick.RemoveListener(Hud_OnButtonPauseClicked);
-            Player.OnPlayerMove -= UpdateMoveController;
-            Player.OnPlayerJump -= UpdateJumpController;
-            Player.OnPlayerEndJump -= UpdateJumpController2;
-            _instance = null;
-        }
-
-        public override void UnsubscribeEvents()
-        {
-            OnButtonPausePressed = null;
-        }
-    }
-
+		public override void UnsubscribeEvents()
+		{
+			OnButtonPausePressed = null;
+		}
+	}
 }

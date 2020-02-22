@@ -33,19 +33,17 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private Transform groundLinecastEndPos = null;
 
         [Header("Particle Systems")]
-        [SerializeField] private ParticleSystem walkingPS;
-        [SerializeField] private ParticleSystem jumpingPS;
-        [SerializeField] private ParticleSystem landingPS;
-        [SerializeField] private ParticleSystem wallJumpPSRight;
-        [SerializeField] private ParticleSystem wallJumpPSLeft;
-        [SerializeField] private ParticleSystem planePS;
+        [SerializeField] private ParticleSystem walkingPS = null;
+        [SerializeField] private ParticleSystem jumpingPS = null;
+        [SerializeField] private ParticleSystem landingPS = null;
+        [SerializeField] private ParticleSystem wallJumpPSRight = null;
+        [SerializeField] private ParticleSystem wallJumpPSLeft = null;
+        [SerializeField] private ParticleSystem planePS = null;
 
         [SerializeField] private GameObject stateTag = null;
 
-        private string platformTraversableTag = "PlatformTraversable"; 
-
-        private RaycastHit2D hitInfos; 
-        private RaycastHit2D hitInfosNormal; 
+        private RaycastHit2D hitInfos;
+        private RaycastHit2D hitInfosNormal;
 
         #region Life
         public int Life
@@ -149,8 +147,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         // Properties for Pause
         private Action PreviousDoAction = null;
-        private Vector2 pausePos;
-        private Vector2 lastVelocity;
+        private Vector2 lastVelocity = Vector2.zero;
 
         //Event for HUD controller update
         public delegate void PlayerMoveEventHandler(float horizontalAxis);
@@ -159,10 +156,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         public static Action OnPlayerEndJump;
 
         //Cinemachine Virtual Camera
-        [SerializeField] private CinemachineVirtualCamera vCam;
-        private CinemachineFramingTransposer vCamBody;
-        private float lastLookAheadTime;
-        private float lastLookAheadSmoothing;
+        [SerializeField] private CinemachineVirtualCamera vCam = null;
+        private CinemachineFramingTransposer vCamBody = null;
+        private float lastLookAheadTime = 0f;
+        private float lastLookAheadSmoothing = 0f;
 
         private Action DoAction = null;
 
@@ -404,6 +401,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionInAir()
         {
             CheckIsOnWall();
+            //animator.SetBool(settings.IsOnWallParam, IsOnWall); 
+
             CheckIsGrounded(); 
             if (_isGrounded)
             {
@@ -434,8 +433,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     topSpeed = settings.WallJumpHorizontalForce;
                     previousDirection = -facingRightWall;
                     rigidBody.velocity = new Vector2(settings.WallJumpHorizontalForce * previousDirection, settings.WallJumpVerticalForce);
-                   // rigidBody.velocity = Vector2.Lerp(rigidBody.velocity, new Vector2(settings.WallJumpHorizontalForce * previousDirection, rigidBody.velocity.y), wallJumpElaspedTime / 0.5f);
-                   // Debug.Log(Vector2.Lerp(rigidBody.velocity, new Vector2(settings.WallJumpHorizontalForce * previousDirection, rigidBody.velocity.y), wallJumpElaspedTime));
                     ParticleSystem wjParticle = facingRightWall == 1 ? wallJumpPSRight : wallJumpPSLeft;
                     wjParticle.Play();
                 }
@@ -486,7 +483,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
 
-            if (wallJumpElaspedTime >= 1.5f)
+            if (wallJumpElaspedTime >= 1f)
             {
                 wasOnWall = false;
                 wallJumpElaspedTime = 0; 
@@ -589,13 +586,14 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if (horizontalAxis != 0f)
             {
                 ratio = settings.PlaneAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
-                horizontalMove = Mathf.Lerp(topSpeed, settings.PlaneHorizontalSpeed, ratio);
-                wasOnWall = false;
+                horizontalMove = Mathf.Lerp(Mathf.Abs(rigidBody.velocity.x),  settings.PlaneHorizontalSpeed  , ratio);
+                //wasOnWall = false;
+
             }
             else
             {
                 ratio = settings.PlaneDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
-                horizontalMove = Mathf.Lerp(0f, topSpeed, ratio);
+                horizontalMove = Mathf.Lerp(0f, rigidBody.velocity.x, ratio);
                 wasOnWall = false;
             }
 

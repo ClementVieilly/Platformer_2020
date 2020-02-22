@@ -589,7 +589,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 ratio = settings.PlaneAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(Mathf.Abs(rigidBody.velocity.x),  settings.PlaneHorizontalSpeed  , ratio);
                 //wasOnWall = false;
-
             }
             else
             {
@@ -615,10 +614,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             StopAllCoroutines(); 
         }*/
 
-        private void DoActionVoid()
-        {
+		private void SetModeVoid()
+		{
+			DoAction = DoActionVoid;
+		}
 
-        }
+        private void DoActionVoid() {}
 
         #endregion
 
@@ -632,7 +633,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             if(Life == 0)
             {
-                animator.SetTrigger(settings.Die); 
+                animator.SetTrigger(settings.Die);
+				rigidBody.velocity = new Vector2(0f, rigidBody.velocity.y);
+				SetModeVoid();
             }
             return Life > 0;
         }

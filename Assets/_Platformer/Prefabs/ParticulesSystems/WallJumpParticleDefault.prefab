@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2478868065461521978}
   - component: {fileID: 6859247721650823243}
   - component: {fileID: 149582047011550193}
+  - component: {fileID: -4775158162859081202}
   m_Layer: 0
   m_Name: WallJumpParticleDefault
   m_TagString: Untagged
@@ -4810,3 +4811,14 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &-4775158162859081202
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208122978610055015}
+  m_Enabled: 1
+  m_SortingLayerID: 1877034893
+  m_SortingLayer: 2
+  m_SortingOrder: 10

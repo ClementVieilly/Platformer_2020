@@ -289,7 +289,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     penteVelocity = tan;
                     rigidBody.gravityScale = 0f;
                 }
-                
             }
             
             MoveHorizontalOnGround();

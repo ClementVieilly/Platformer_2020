@@ -167,6 +167,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private void OnDestroy()
         {
             UnsubscribeAllEvents();
+            SoundManager.Instance.Stop(currentLvlMusicName);
         }
 
         #region Events subscribtions

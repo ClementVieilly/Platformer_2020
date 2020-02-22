@@ -1707,12 +1707,12 @@ PrefabInstance:
     - target: {fileID: 641285116067221772, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.220642
+      value: 7.200001
       objectReference: {fileID: 0}
     - target: {fileID: 641285116067221772, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9
+      value: 8.999998
       objectReference: {fileID: 0}
     - target: {fileID: 641285116001174876, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
@@ -2695,21 +2695,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -7
       objectReference: {fileID: 0}
-    - target: {fileID: 2570406867611885149, guid: 878606e1f35b95e4f836947162db6efb,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 833581173
-      objectReference: {fileID: 0}
-    - target: {fileID: 2570406867611885149, guid: 878606e1f35b95e4f836947162db6efb,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8017661858374229238, guid: 878606e1f35b95e4f836947162db6efb,
-        type: 3}
-      propertyPath: speed
-      value: 0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 2804600455044329804, guid: 878606e1f35b95e4f836947162db6efb,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -2724,6 +2709,21 @@ PrefabInstance:
         type: 3}
       propertyPath: detectionDuration
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570406867611885149, guid: 878606e1f35b95e4f836947162db6efb,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 833581173
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570406867611885149, guid: 878606e1f35b95e4f836947162db6efb,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017661858374229238, guid: 878606e1f35b95e4f836947162db6efb,
+        type: 3}
+      propertyPath: speed
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 360926600, guid: 878606e1f35b95e4f836947162db6efb, type: 3}
       propertyPath: m_IsTrigger
@@ -4610,9 +4610,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -207.84987, y: 34.704777}
-      - {x: -207.97607, y: -35.510986}
-      - {x: 208.64119, y: -35.470684}
+    - - {x: -232.36424, y: 37.186996}
+      - {x: -231.97844, y: -33.94087}
+      - {x: 208.77277, y: -35.339127}
       - {x: 208.3314, y: 35.19627}
 --- !u!1 &609706322 stripped
 GameObject:
@@ -4631,6 +4631,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelInfos
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
+        type: 3}
+      propertyPath: checkpoints.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
+        type: 3}
+      propertyPath: winFlag
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
+        type: 3}
+      propertyPath: _lvlWinFlag
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
+        type: 3}
+      propertyPath: checkpoints.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6915852076588227888, guid: 217a1201004f2b54d88e7ed2da40e002,
         type: 3}
@@ -4686,26 +4706,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
-        type: 3}
-      propertyPath: checkpoints.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
-        type: 3}
-      propertyPath: winFlag
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
-        type: 3}
-      propertyPath: _lvlWinFlag
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915852076588227891, guid: 217a1201004f2b54d88e7ed2da40e002,
-        type: 3}
-      propertyPath: checkpoints.Array.data[0]
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 217a1201004f2b54d88e7ed2da40e002, type: 3}

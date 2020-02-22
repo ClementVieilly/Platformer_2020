@@ -20,10 +20,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
         private Action DoAction = null;
         private Action PreviousDoAction = null;
 
+        //Shake 
+        private Vector2 parentOriginalPos;
+        [SerializeField] private float shakeMagnitude = 0.2f;
+        
         private void Start()
         {
             _list.Add(this);
             SetModeVoid();
+            parentOriginalPos = transform.parent.position; 
+
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -55,6 +61,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
             {
                 triggeredCollider.SetActive(false);
                 SetModeVoid();
+            }
+            else
+            {
+                float x = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
+                transform.parent.position = new Vector2(x, 0f) + parentOriginalPos;
             }
         }
 

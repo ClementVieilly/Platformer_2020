@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1734738677702790498}
   - component: {fileID: 8879996526337505308}
   m_Layer: 0
-  m_Name: RunningParticuleDefault
+  m_Name: WalkingParticuleDefault
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,7 +222,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.7088413, g: 0.8207547, b: 0.375534, a: 1}
+      maxColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

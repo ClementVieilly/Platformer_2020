@@ -70,7 +70,8 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             if (player.LooseLife())
             {
-                player.setPosition(CheckpointManager.Instance.LastCheckpointPos);
+                if (CheckpointManager.Instance.LastCheckpointPos == Vector2.zero) player.setPosition(player.LastCheckpointPos);
+                else player.setPosition(CheckpointManager.Instance.LastCheckpointPos);
                 Hud.Instance.Life = player.Life;
             }
         }

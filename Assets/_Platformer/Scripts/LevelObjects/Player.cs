@@ -96,6 +96,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         //Pos au spawn et au respawn
         private Vector2 startPosition;
         private Vector2 lastCheckpointPos;
+        public Vector2 LastCheckpointPos => lastCheckpointPos;
 
         //HorizontalMove
         private float horizontalAxis = 0f;
@@ -173,7 +174,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         public void Reset()
         {
             InitLife();
-            Debug.Log("startPosition : " + startPosition);
             gameObject.SetActive(true);
             setPosition(startPosition);
             lastCheckpointPos = transform.position;
@@ -666,11 +666,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             vCamBody.m_LookaheadTime = 0;
             vCamBody.m_LookaheadSmoothing = 0;
 
-            while ((Vector2)transform.position != position)
+            while (transform.position.x != position.x && transform.position.y != position.y)
             {
+                if (!rigidBody.IsSleeping())rigidBody.Sleep();
                 transform.position = position;
                 yield return null;
             }
+            rigidBody.WakeUp();
 
             while (vCamBody.m_LookaheadTime != lastLookAheadTime)
             {
@@ -678,8 +680,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 yield return null;
             }
             vCamBody.m_LookaheadSmoothing = lastLookAheadSmoothing;
-
-            StopAllCoroutines();
+            StopCoroutine("ReplacePlayer");
         }
         #endregion
     }

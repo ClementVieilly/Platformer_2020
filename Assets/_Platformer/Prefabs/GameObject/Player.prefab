@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 641285116001174850}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -846,16 +846,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LandingParticleDefault
       objectReference: {fileID: 0}
-    - target: {fileID: 481516230322950157, guid: 8d3cd12d3048cdc45ab26ffab0b9beff,
-        type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 481516230322950157, guid: 8d3cd12d3048cdc45ab26ffab0b9beff,
-        type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.7
-      objectReference: {fileID: 0}
     - target: {fileID: 5447887435999790469, guid: 8d3cd12d3048cdc45ab26ffab0b9beff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -910,6 +900,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 481516230322950157, guid: 8d3cd12d3048cdc45ab26ffab0b9beff,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 481516230322950157, guid: 8d3cd12d3048cdc45ab26ffab0b9beff,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d3cd12d3048cdc45ab26ffab0b9beff, type: 3}

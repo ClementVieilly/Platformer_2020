@@ -65,7 +65,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
 
         public static void ResetAll()
         {
-            Debug.Log("reset destructible platforms");
             for (int i = List.Count - 1; i >= 0; i--)
             {
                 List[i].triggeredCollider.SetActive(true);

@@ -77,6 +77,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private void KillZone_OnCollision()
         {
 			player.LooseLife();
+            DestructiblePlatform.ResetAll();
         }
 
         private void DeadZone_OnCollision()

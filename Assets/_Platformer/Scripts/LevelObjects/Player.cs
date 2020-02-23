@@ -656,9 +656,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             animator.SetTrigger(settings.Die);
 
+            if (SoundManager.Instance)
+                SoundManager.Instance.Stop(sounds.PlaneWind);
+
 			rigidBody.velocity = new Vector2(0f, rigidBody.velocity.y);
 			SetModeVoid();
-
 			Life -= LoseLife;
 
 			if (Hud.Instance)

@@ -51,7 +51,9 @@ namespace Com.IsartDigital.Platformer.Managers
 
             if (_levelNumber == 1) currentLvlMusicName = sounds.Ambiance_Level_One;
             else if (_levelNumber == 2) currentLvlMusicName = sounds.Ambiance_Level_Two;
-            SoundManager.Instance.Play(currentLvlMusicName);
+
+			if (SoundManager.Instance)
+				SoundManager.Instance.Play(currentLvlMusicName);
         }
 
         private IEnumerator InitHud()
@@ -137,8 +139,12 @@ namespace Com.IsartDigital.Platformer.Managers
             TimedDoor.ResetAll();
 
             timeManager.StartTimer();
-            SoundManager.Instance.Stop(currentLvlMusicName);
-            SoundManager.Instance.Play(currentLvlMusicName);
+
+			if (SoundManager.Instance)
+			{
+				SoundManager.Instance.Stop(currentLvlMusicName);
+				SoundManager.Instance.Play(currentLvlMusicName);
+			}
         }
 
         private void Resume()

@@ -216,6 +216,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MobilePlatform
       objectReference: {fileID: 0}
+    - target: {fileID: -6927626972666347312, guid: 30e18568b7420a649951a042d4fcf214,
+        type: 3}
+      propertyPath: duration
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7581267895413152123, guid: 30e18568b7420a649951a042d4fcf214,
         type: 3}
       propertyPath: m_LocalPosition.x

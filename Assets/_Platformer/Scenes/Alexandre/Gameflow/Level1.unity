@@ -1813,15 +1813,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 641285116067221772, guid: 1ab75253b02f99247949a2d823798f96,
+    - target: {fileID: 641285116001174877, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.2000017
-      objectReference: {fileID: 0}
-    - target: {fileID: 641285116067221772, guid: 1ab75253b02f99247949a2d823798f96,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8.999999
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 641285116001174876, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
@@ -1838,15 +1833,20 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 641285116001174877, guid: 1ab75253b02f99247949a2d823798f96,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 641285116001174879, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
       propertyPath: _sortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 641285116067221772, guid: 1ab75253b02f99247949a2d823798f96,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.2000017
+      objectReference: {fileID: 0}
+    - target: {fileID: 641285116067221772, guid: 1ab75253b02f99247949a2d823798f96,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.999999
       objectReference: {fileID: 0}
     - target: {fileID: 8294627995265780392, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
@@ -2260,7 +2260,7 @@ PrefabInstance:
     - target: {fileID: 1653291158130358686, guid: b52d0f17746bd4a4bac451182b417868,
         type: 3}
       propertyPath: duration
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3121470705852396723, guid: b52d0f17746bd4a4bac451182b417868,
         type: 3}

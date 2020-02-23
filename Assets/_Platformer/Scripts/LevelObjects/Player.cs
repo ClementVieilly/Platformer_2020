@@ -6,6 +6,7 @@
 using Cinemachine;
 using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.Managers;
+using Com.IsartDigital.Platformer.Screens;
 using Com.IsartDigital.Platformer.ScriptableObjects;
 using System;
 using System.Collections;
@@ -46,16 +47,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private RaycastHit2D hitInfosNormal;
 
         #region Life
-        public int Life
-        {
-            get { return _life; }
-            set
-            {
-                _life = value;
-                CheckRestingLife();
-            }
-        }
         private int _life;
+        public int Life
+		{
+            get => _life;
+            set => _life = value;
+        }
 
         public event Action OnDie;
         #endregion
@@ -175,7 +172,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             InitLife();
             gameObject.SetActive(true);
-            setPosition(startPosition);
+            SetPosition(startPosition);
             lastCheckpointPos = transform.position;
 
             rigidBody.simulated = true;
@@ -631,12 +628,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private bool CheckRestingLife()
         {
-            if(Life == 0)
-            {
-                animator.SetTrigger(settings.Die);
-				rigidBody.velocity = new Vector2(0f, rigidBody.velocity.y);
-				SetModeVoid();
-            }
             return Life > 0;
         }
 
@@ -647,17 +638,24 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         public bool LooseLife(int LoseLife = 1)
         {
-            Life -= LoseLife;
-            return Life > 0;
+            animator.SetTrigger(settings.Die);
+
+			rigidBody.velocity = new Vector2(0f, rigidBody.velocity.y);
+			SetModeVoid();
+
+			Life -= LoseLife;
+			Hud.Instance.Life = _life;
+
+			return CheckRestingLife();
         }
 
         public void Die()
         {
-            gameObject.SetActive(false);
             OnDie?.Invoke();
+			SetModeNormal();
         }
 
-        public void setPosition(Vector2 position)
+        public void SetPosition(Vector2 position)
         {
             if (isActiveAndEnabled) StartCoroutine(ReplacePlayer(position));
         }

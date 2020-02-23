@@ -15,7 +15,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         [SerializeField] private float speed = 1f;
         [SerializeField] private string playerTag = "Player";
 
-
         public void Init(Vector3 startPos ,Vector3 targetPos)
         {
             targetPosition = targetPos;
@@ -33,15 +32,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag(playerTag))
-            {
-                if (collision.GetComponent<Player>().LooseLife())
-                {
-                    collision.GetComponent<Player>().setPosition(CheckpointManager.Instance.LastCheckpointPos);
-                    Hud.Instance.Life = collision.GetComponent<Player>().Life;
-                }
-            }
+				collision.GetComponent<Player>().LooseLife();
         }
-
-
     }
 }

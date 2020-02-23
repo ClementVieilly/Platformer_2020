@@ -22,10 +22,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
         {
             _list.Add(this); 
         }
+
         protected override void EffectOfTheCollectible()
         {
             OnCollected?.Invoke(score); 
         }
+
         public static void ResetAll()
         {
             for (int i = List.Count - 1; i >= 0; i--)

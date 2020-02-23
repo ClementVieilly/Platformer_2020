@@ -74,12 +74,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void KillZone_OnCollision()
         {
-            if (player.LooseLife())
-            {
-                if (CheckpointManager.Instance.LastCheckpointPos == Vector2.zero) player.setPosition(player.LastCheckpointPos);
-                else player.setPosition(CheckpointManager.Instance.LastCheckpointPos);
-                Hud.Instance.Life = player.Life;
-            }
+			player.LooseLife();
         }
 
         private void DeadZone_OnCollision()
@@ -90,6 +85,13 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void Player_OnDie()
         {
+			if (player.Life > 0)
+			{
+				player.SetPosition(CheckpointManager.Instance.LastCheckpointPos);
+				return;
+			}
+
+			player.gameObject.SetActive(false);
             _completionTime = timeManager.Timer;
             timeManager.SetModeVoid();
 

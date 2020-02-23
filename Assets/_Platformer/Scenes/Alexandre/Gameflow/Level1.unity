@@ -4757,6 +4757,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: KillZone (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3931200719071682188, guid: 144a8de498deed042998f3636b112f06,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3931200719071682185, guid: 144a8de498deed042998f3636b112f06,
         type: 3}
       propertyPath: m_LocalPosition.x

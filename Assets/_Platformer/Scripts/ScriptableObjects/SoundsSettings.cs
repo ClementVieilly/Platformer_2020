@@ -12,17 +12,16 @@ namespace Com.IsartDigital.Platformer {
 	)]
 	
 	public class SoundsSettings : ScriptableObject {
-        [SerializeField] private string _character_Footsteps_Stone; 
-        [SerializeField] private string _character_Footsteps_Wood; 
-        [SerializeField] private string _character_Jump; 
-        [SerializeField] private string _character_WallJump; 
-        [SerializeField] private string _character_Landing; 
-        [SerializeField] private string _character_Plane_Flap01; 
-        [SerializeField] private string _character_Plane_Flap02; 
-        [SerializeField] private string _character_Plane_Wind; 
-        [SerializeField] private string _ambiance_level_one; 
-        [SerializeField] private string _ambiance_level_two; 
-
+        [SerializeField] private string _character_Footsteps_Stone = null;
+        [SerializeField] private string _character_Footsteps_Wood = null;
+        [SerializeField] private string _character_Jump = null;
+        [SerializeField] private string _character_WallJump = null;
+        [SerializeField] private string _character_Landing = null;
+        [SerializeField] private string _character_Plane_Flap01 = null;
+        [SerializeField] private string _character_Plane_Flap02 = null;
+        [SerializeField] private string _character_Plane_Wind = null;
+        [SerializeField] private string _ambiance_level_one = null;
+        [SerializeField] private string _ambiance_level_two = null;
 
         public string FootstepsStone { get => _character_Footsteps_Stone;  }
         public string FootstepsWood { get => _character_Footsteps_Wood;  }

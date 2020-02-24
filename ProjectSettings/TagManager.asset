@@ -15,6 +15,7 @@ TagManager:
   - Level1Button
   - Level2Button
   - PlatformTraversable
+  - PlayButton
   layers:
   - Default
   - TransparentFX
@@ -51,4 +52,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 757439609
+    locked: 0
+  - name: GameLayer
+    uniqueID: 1877034893
+    locked: 0
+  - name: Foreground
+    uniqueID: 833581173
     locked: 0

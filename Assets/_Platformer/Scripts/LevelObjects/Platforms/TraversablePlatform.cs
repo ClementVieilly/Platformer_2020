@@ -8,12 +8,5 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
 	public class TraversablePlatform : MonoBehaviour {
 	
-		private void Start () {
-			
-		}
-		
-		private void Update () {
-			
-		}
 	}
 }

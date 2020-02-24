@@ -13,10 +13,10 @@ namespace Com.IsartDigital.Platformer {
 	[System.Serializable]
 	public class Sound
 	{
-		[SerializeField] private string _name;
+		[SerializeField] private string _name = null;
 		public string Name => _name;
 
-		[SerializeField] private AudioClip _clip;
+		[SerializeField] private AudioClip _clip = null;
 		public AudioClip Clip => _clip;
 		[Space]
 		[Space]
@@ -44,10 +44,10 @@ namespace Com.IsartDigital.Platformer {
 		[SerializeField] private bool _isPitchedBetweenValues = false;
 		public bool IsPitchedBetweenValues => _isPitchedBetweenValues;
 
-		[SerializeField] private float _minPitchValue;
+		[SerializeField] private float _minPitchValue = 0f;
 		public float MinPitchValue => _minPitchValue;
 
-		[SerializeField] private float _maxPitchValue;
+		[SerializeField] private float _maxPitchValue = 0f;
 		public float MaxPitchValue => _maxPitchValue;
         #endregion
 		[Space]
@@ -56,10 +56,10 @@ namespace Com.IsartDigital.Platformer {
         [SerializeField] private bool _isLoop = false;
 		public bool IsLoop => _isLoop;
         #endregion
-        [SerializeField] private AudioMixerGroup _mixerGroup;
+        [SerializeField] private AudioMixerGroup _mixerGroup = null;
 		public AudioMixerGroup MixerGroup => _mixerGroup;
 
-		private AudioSource _source;
+		private AudioSource _source = null;
 		public AudioSource Source { get => _source; set { _source = value; } }
 	}
 }

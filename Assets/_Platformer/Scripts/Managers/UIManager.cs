@@ -4,6 +4,7 @@
 ///-----------------------------------------------------------------
 
 using Com.IsartDigital.Platformer.Screens;
+using Com.IsartDigital.Platformer.WebScripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,22 +16,21 @@ namespace Com.IsartDigital.Platformer.Managers
     public class UIManager : MonoBehaviour
     {
         [Header("Tiles")]
-        [SerializeField] private GameObject hudPrefab;
-        [SerializeField] private GameObject pausePrefab;
-        [SerializeField] private GameObject titleCardPrefab;
-        [SerializeField] private GameObject creditPrefab;
-        [SerializeField] private GameObject levelSelectorPrefab;
-        [SerializeField] private GameObject loadingScreenPrefab;
-        [SerializeField] private GameObject winScreenPrefab;
-        [SerializeField] private GameObject loseScreenPrefab;
-        [SerializeField] private GameObject loginScreenPrefab;
-        [SerializeField] private GameObject leaderboardPrefab;
-        [SerializeField] private GameObject confirmScreenPrefab;
+        [SerializeField] private GameObject hudPrefab = null;
+        [SerializeField] private GameObject pausePrefab = null;
+        [SerializeField] private GameObject titleCardPrefab = null;
+        [SerializeField] private GameObject creditPrefab = null;
+        [SerializeField] private GameObject levelSelectorPrefab = null;
+        [SerializeField] private GameObject loadingScreenPrefab = null;
+        [SerializeField] private GameObject winScreenPrefab = null;
+        [SerializeField] private GameObject loseScreenPrefab = null;
+        [SerializeField] private GameObject loginScreenPrefab = null;
+        [SerializeField] private GameObject titleLeaderboardPrefab = null;
+        [SerializeField] private GameObject winLeaderboardPrefab = null;
+        [SerializeField] private GameObject confirmScreenPrefab = null;
 
-        [Header("Level names")]
-        [SerializeField] private string menu;
-        [SerializeField] private string level1;
-        [SerializeField] private string level2;
+		[Header("Level names")]
+		[SerializeField] private List<string> sceneNames = new List<string>();
 
         //Screens
         private Hud currentHud;             //correspond au hud actuel utilisé (PC ou mobile)
@@ -42,8 +42,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private LoseScreen currentLoseScreen; //correspond au winScreen actuel utilisé
         private LoginScreen currentLoginScreen; //correspond au loginScreen actuel utilisé
         private Leaderboard currentLeaderboard; //correspond au leaderboard actuel utilisé
-        private ConfirmScreen currentConfirmScreen; //correspond au leaderboard actuel utilisé
-
+        private ConfirmScreen currentConfirmScreen; //correspond à l'écran de confirmation actuel utilisé
 
         //List of all screens
         private List<AScreen> allScreens = new List<AScreen>();
@@ -52,13 +51,24 @@ namespace Com.IsartDigital.Platformer.Managers
         private static UIManager _instance;
         public static UIManager Instance => _instance;
 
-        //Events
-        public delegate void UIManagerEventHandler();
-        public UIManagerEventHandler OnRetry;
-        public UIManagerEventHandler OnResume;
-        public UIManagerEventHandler OnPause;
+		private WebClient webClient = null;
 
-        private void Awake()
+		private bool isPreviousCoroutineEnded = false;
+
+		//Events
+		public delegate void UIManagerEventHandler();
+        public event UIManagerEventHandler OnRetry = null;
+        public event UIManagerEventHandler OnResume = null;
+        public event UIManagerEventHandler OnPause = null;
+
+		public delegate void UIManagerLevelManagerEventHandler(LevelManager levelManager);
+        public event UIManagerLevelManagerEventHandler OnLevelLoaded = null;
+
+		public delegate void UIManagerLeaderboardEventHandler(Leaderboard leaderboard);
+        public event UIManagerLeaderboardEventHandler OnLeaderboardStart = null;
+        public event UIManagerLeaderboardEventHandler OnLeaderBoardChangeLevel = null;
+
+		private void Awake()
         {
             if (_instance)
             {
@@ -68,13 +78,32 @@ namespace Com.IsartDigital.Platformer.Managers
             else _instance = this;
 
             CreateTitleCard();
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
 
         private void OnDestroy()
         {
             if (this == _instance) _instance = null;
         }
+
+		public void SetWebClient(WebClient webClient)
+		{
+			this.webClient = webClient;
+			this.webClient.OnFeedback += WebClient_OnFeedback;
+		}
+
+		private void WebClient_OnFeedback(string message)
+		{
+			if (!currentLoginScreen) return;
+
+			currentLoginScreen.SendFeedback(message);
+		}
+
+		public void WebClient_OnLogged(WebClient webClient)
+		{
+			CloseScreen(currentLoginScreen);
+			if (currentLeaderboard) currentLeaderboard.StartLeaderboard();
+		}
 
         private void CreatePauseMenu() //Crée une instance de Menu Pause et écoute ses événements
         {
@@ -91,8 +120,7 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             currentLevelSelector = Instantiate(levelSelectorPrefab).GetComponent<LevelSelector>();
 
-            currentLevelSelector.OnLevel1Clicked += LevelSelector_OnLevelButtonClicked;
-            currentLevelSelector.OnLevel2Clicked += LevelSelector_OnLevel2ButtonClicked;
+            currentLevelSelector.OnLevelClicked += LevelSelector_OnLevelButtonClicked;
             currentLevelSelector.OnBackToTitleClicked += LevelSelector_OnBackToTitleClicked;
 
             allScreens.Add(currentLevelSelector);
@@ -126,9 +154,63 @@ namespace Com.IsartDigital.Platformer.Managers
             currentCredits.OnBackToTitleClicked += Credits_OnBackToTitleClicked;
 
             allScreens.Add(currentCredits);
-        }
+		}
 
-        private GameObject CreateLoadingScreen()
+		public void CreateTitleLeaderboard()
+		{
+			currentLeaderboard = Instantiate(titleLeaderboardPrefab).GetComponent<Leaderboard>();
+
+			currentLeaderboard.OnStart += Leaderboard_OnStart;
+			currentLeaderboard.OnMenuClicked += Leaderboard_OnBackToTitleClicked;
+			currentLeaderboard.OnNextClicked += Leaderboard_OnNextClicked;
+			currentLeaderboard.OnPreviousClicked += Leaderboard_OnPreviousClicked;
+
+			allScreens.Add(currentLeaderboard);
+
+			if (webClient.wantToLog)
+				CreateLoginScreen();
+			else
+				currentLeaderboard.StartLeaderboard();
+		}
+
+		public void CreateWinLeaderboard()
+		{
+			currentLeaderboard = Instantiate(winLeaderboardPrefab).GetComponent<Leaderboard>();
+			LevelManager levelManager = FindObjectOfType<LevelManager>();
+			currentLeaderboard.LevelToDisplay = levelManager ? levelManager.LevelNumber : 1;
+
+			currentLeaderboard.OnStart += Leaderboard_OnStart;
+			currentLeaderboard.OnMenuClicked += Leaderboard_OnMenuClicked;
+			currentLeaderboard.OnBackClicked += Leaderboard_OnBackClicked;
+			currentLeaderboard.OnSkipClicked += Leaderboard_OnSkipClicked;
+
+			allScreens.Add(currentLeaderboard);
+
+			if (webClient.IsLogged)
+				currentLeaderboard.StartLeaderboard();
+		}
+
+		public void CreateLoginScreen()
+		{
+			currentLoginScreen = Instantiate(loginScreenPrefab).GetComponent<LoginScreen>();
+
+			currentLoginScreen.OnConnectClicked += LoginScreen_OnConnectClicked;
+			currentLoginScreen.OnSkipClicked += LoginScreen_OnSkipClicked;
+
+			allScreens.Add(currentLoginScreen);
+		}
+
+		public void CreateConfirmScreen()
+		{
+			currentConfirmScreen = Instantiate(confirmScreenPrefab).GetComponent<ConfirmScreen>();
+
+			currentConfirmScreen.OnBackClicked += ConfirmScreen_OnBackClicked;
+			currentConfirmScreen.OnSkipClicked += ConfirmScreen_OnSkipClicked;
+
+			allScreens.Add(currentConfirmScreen);
+		}
+
+		private GameObject CreateLoadingScreen()
         {
             return Instantiate(loadingScreenPrefab);
         }
@@ -139,6 +221,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
             currentWinScreen.OnMenuClicked += WinScreen_OnMenuClicked;
             currentWinScreen.OnLevelSelectorClicked += WinScreen_OnLevelSelectorClicked;
+            currentWinScreen.OnLeaderboardClicked += WinScreen_OnLeaderboardClicked;
 
             allScreens.Add(currentWinScreen);
         }
@@ -153,7 +236,7 @@ namespace Com.IsartDigital.Platformer.Managers
             allScreens.Add(currentLoseScreen);
         }
 
-        private void CloseScreen(AScreen screen)
+		private void CloseScreen(AScreen screen)
         {
             if (screen == null) return;
 
@@ -184,16 +267,25 @@ namespace Com.IsartDigital.Platformer.Managers
             CreateTitleCard();
         }
 
-        private void LoadLevel(string levelName)
-        {
+		#region Loading Coroutines
+		//Coroutines de chargement asynchrone de scenes  
+		private IEnumerator LoadLevelCoroutine(string levelName, int level)
+		{
             CloseAllScreens();
             StartCoroutine(LoadAsyncToNextScene(levelName, CreateHud));
+
+			while (!isPreviousCoroutineEnded)
+				yield return null;
+
+			LevelManager levelManager = FindObjectOfType<LevelManager>();
+			levelManager.SetNumber(level);
+			OnLevelLoaded?.Invoke(levelManager);
         }
 
-        //Coroutines de chargement asynchrone de scenes  
-        #region Loading Coroutines
         IEnumerator LoadAsyncToNextScene(string nextScene, Action methodToLaunch)
         {
+			isPreviousCoroutineEnded = false;
+
             Scene currentScene = SceneManager.GetActiveScene();
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene,LoadSceneMode.Additive);
 
@@ -209,6 +301,8 @@ namespace Com.IsartDigital.Platformer.Managers
                 yield return null;
             }
             StartCoroutine(UnloadAsyncOfCurrentScene(currentScene, methodToLaunch));
+
+			isPreviousCoroutineEnded = true;
         }
 
         IEnumerator UnloadAsyncOfCurrentScene(Scene scene, Action action)
@@ -228,8 +322,12 @@ namespace Com.IsartDigital.Platformer.Managers
         private void TitleCard_OnGameStart(TitleCard title)
         {
             CloseScreen(title);
-            CreateLevelSelector();
+			CreateLevelSelector();
+
+			if (webClient.wantToLog)
+				CreateLoginScreen();
         }
+
         private void TitleCard_OnSoundTriggerClicked(TitleCard title)
         {
             Debug.Log("active/désactive le son + change image");
@@ -242,33 +340,101 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void TitleCard_OnLeaderBoardClicked(TitleCard title)
         {
-            Debug.Log("affiche le leaderboard");
-        }
+            CloseScreen(title);
+            CreateTitleLeaderboard();
+		}
 
-        private void TitleCard_OnCreditsClicked(TitleCard title)
+		private void TitleCard_OnCreditsClicked(TitleCard title)
         {
             CloseScreen(title);
             CreateCredits();
-        }
+		}
 
-        //Evenements de la page de crédits
-        private void Credits_OnBackToTitleClicked(Credits credits)
+		//Evenements du Leaderboard
+		private void Leaderboard_OnStart(Leaderboard leaderboard)
+		{
+			OnLeaderboardStart?.Invoke(leaderboard);
+		}
+
+		private void Leaderboard_OnBackToTitleClicked(Leaderboard leaderboard)
+		{
+            ReturnToTitleCard();
+		}
+
+		private void Leaderboard_OnMenuClicked(Leaderboard leaderboard)
+		{
+			CloseAllScreens();
+			StartCoroutine(LoadAsyncToNextScene(sceneNames[0], CreateTitleCard));
+		}
+
+		private void Leaderboard_OnBackClicked(Leaderboard leaderboard)
+		{
+			CloseScreen(currentLeaderboard);
+		}
+
+		private void Leaderboard_OnSkipClicked(Leaderboard leaderboard)
+		{
+			CloseAllScreens();
+			StartCoroutine(LoadAsyncToNextScene(sceneNames[0], CreateLevelSelector));
+		}
+
+		private void Leaderboard_OnNextClicked(Leaderboard leaderboard)
+		{
+			if (++leaderboard.LevelToDisplay >= sceneNames.Count)
+				leaderboard.LevelToDisplay = 1;
+			
+			OnLeaderBoardChangeLevel?.Invoke(leaderboard);
+		}
+
+		private void Leaderboard_OnPreviousClicked(Leaderboard leaderboard)
+		{
+			if (--leaderboard.LevelToDisplay <= 0)
+				leaderboard.LevelToDisplay = sceneNames.Count - 1;
+
+			OnLeaderBoardChangeLevel?.Invoke(leaderboard);
+		}
+
+		//Evenements du LoginScreen
+		private void LoginScreen_OnConnectClicked(LoginScreen loginScreen)
+		{
+			if (!webClient.CanTryToLog) return;
+
+			webClient.Credentials = new WebClient.WebCredentials(currentLoginScreen.Username, currentLoginScreen.Password);
+			webClient.TryToLog();
+		}
+
+		private void LoginScreen_OnSkipClicked(LoginScreen loginScreen)
+		{
+			CreateConfirmScreen();
+		}
+
+		private void ConfirmScreen_OnSkipClicked(ConfirmScreen confirmScreen)
+		{
+			CloseScreen(currentConfirmScreen);
+			CloseScreen(currentLoginScreen);
+
+			webClient.wantToLog = false;
+			if (currentLeaderboard) currentLeaderboard.StartLeaderboard();
+		}
+
+		private void ConfirmScreen_OnBackClicked(ConfirmScreen confirmScreenµ)
+		{
+			CloseScreen(currentConfirmScreen);
+		}
+
+		//Evenements de la page de crédits
+		private void Credits_OnBackToTitleClicked(Credits credits)
         {
             ReturnToTitleCard();
         }
 
         //Evenements du LevelSelector
-        private void LevelSelector_OnLevelButtonClicked(LevelSelector levelSelector)
+        private void LevelSelector_OnLevelButtonClicked(LevelSelector levelSelector, int level)
         {
-            LoadLevel(level1);
+            StartCoroutine(LoadLevelCoroutine(sceneNames[level], level));
         }
 
-        private void LevelSelector_OnLevel2ButtonClicked(LevelSelector levelSelector)
-        {
-            LoadLevel(level2);
-        }
-
-        private void LevelSelector_OnBackToTitleClicked(LevelSelector levelSelector)
+        private void LevelSelector_OnBackToTitleClicked(LevelSelector levelSelector, int level)
         {
             ReturnToTitleCard();
         }
@@ -294,24 +460,29 @@ namespace Com.IsartDigital.Platformer.Managers
         private void PauseMenu_OnHomeClicked(PauseMenu pauseMenu)
         {
             CloseAllScreens();
-            StartCoroutine(LoadAsyncToNextScene(menu, CreateTitleCard));
+            StartCoroutine(LoadAsyncToNextScene(sceneNames[0], CreateTitleCard));
         }
 
         //Evenements du WinScreen
         private void WinScreen_OnMenuClicked(WinScreen winScreen)
         {
             CloseAllScreens();
-            StartCoroutine(LoadAsyncToNextScene(menu, CreateTitleCard));
+            StartCoroutine(LoadAsyncToNextScene(sceneNames[0], CreateTitleCard));
         }
 
         private void WinScreen_OnLevelSelectorClicked(WinScreen winScreen)
         {
             CloseAllScreens();
-            StartCoroutine(LoadAsyncToNextScene(menu, CreateLevelSelector));
+            StartCoroutine(LoadAsyncToNextScene(sceneNames[0], CreateLevelSelector));
         }
 
-        //Evenements du LoseScreen
-        private void LoseScreen_OnRetryClicked(LoseScreen loseScreen)
+		private void WinScreen_OnLeaderboardClicked(WinScreen winScreen)
+		{
+			CreateWinLeaderboard();
+		}
+
+		//Evenements du LoseScreen
+		private void LoseScreen_OnRetryClicked(LoseScreen loseScreen)
         {
             CloseScreen(loseScreen);
             OnRetry?.Invoke();
@@ -320,7 +491,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private void LoseScreen_OnLevelSelector(LoseScreen loseScreen)
         {
             CloseAllScreens();
-            StartCoroutine(LoadAsyncToNextScene(menu, CreateLevelSelector));
+            StartCoroutine(LoadAsyncToNextScene(sceneNames[0], CreateLevelSelector));
         }
     }
 }

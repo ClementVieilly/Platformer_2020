@@ -16,12 +16,11 @@ namespace Com.IsartDigital.Platformer.Managers {
 		public static CheckpointManager Instance => _instance;
 
 		//Checkpoints positions
-		[SerializeField] private Level currentLevel;
+		[SerializeField] private Level currentLevel = null;
 		private List<Checkpoints> checkpointList = new List<Checkpoints>();
-		private Vector2 _lastCheckpointPos;
+		private Vector2 _lastCheckpointPos = Vector2.zero;
 		public Vector2 LastCheckpointPos { get => _lastCheckpointPos; set => _lastCheckpointPos = value; }
-		private Vector2 _lastSuperCheckpointPos;
-		public Vector2 LastSuperCheckpointPos { get => _lastSuperCheckpointPos; set => _lastSuperCheckpointPos = value; }
+		private Vector2 _lastSuperCheckpointPos = Vector2.zero;
 
         //event de Victoire 
         public static event CheckpointManagerEventHandler OnFinalCheckPointTriggered;
@@ -35,25 +34,24 @@ namespace Com.IsartDigital.Platformer.Managers {
 
 			_instance = this;
 			checkpointList = currentLevel.CheckpointsList;
-			foreach (var checkpoint in checkpointList)
-			{
-				checkpoint.OnCollision += setCheckpoint;
-			}
+			
+            for(int i = checkpointList.Count - 1; i >= 0; i--)
+            {
+                checkpointList[i].OnCollision += SetCheckpoint; 
+            }
 		}
 
-        private void setCheckpoint(Checkpoints triggredCheckpoint)
+        private void SetCheckpoint(Checkpoints triggredCheckpoint)
         { 
             _lastCheckpointPos = triggredCheckpoint.transform.position;
-            if(triggredCheckpoint.IsSuperCheckpoint) _lastSuperCheckpointPos = triggredCheckpoint.transform.position;
-			if (triggredCheckpoint.IsFinalCheckPoint)OnFinalCheckPointTriggered?.Invoke();
+			if (triggredCheckpoint.IsFinalCheckPoint)
+                OnFinalCheckPointTriggered?.Invoke();
         }
 
 		public void ResetColliders()
 		{
 			for (int i = checkpointList.Count - 1; i >= 0; i--)
-			{
 				checkpointList[i].ResetCollider();
-			}
 		}
 
 		private void OnDestroy()

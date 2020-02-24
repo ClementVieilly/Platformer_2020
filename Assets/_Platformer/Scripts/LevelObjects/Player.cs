@@ -6,6 +6,7 @@
 using Cinemachine;
 using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.Managers;
+using Com.IsartDigital.Platformer.Screens;
 using Com.IsartDigital.Platformer.ScriptableObjects;
 using System;
 using System.Collections;
@@ -20,7 +21,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private PlayerSettings settings = null;
         [SerializeField] private SoundsSettings sounds = null;
 
-        //Pos des Linecast !
+        //Pos des Linecast 
         [SerializeField] private Transform wallLinecastRightStartPos = null; 
         [SerializeField] private Transform wallLinecastRightEndPos = null;
         [SerializeField] private Transform wallLinecastLeftStartPos = null;
@@ -33,31 +34,25 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private Transform groundLinecastEndPos = null;
 
         [Header("Particle Systems")]
-        [SerializeField] private ParticleSystem walkingPS;
-        [SerializeField] private ParticleSystem jumpingPS;
-        [SerializeField] private ParticleSystem landingPS;
-        [SerializeField] private ParticleSystem wallJumpPSRight;
-        [SerializeField] private ParticleSystem wallJumpPSLeft;
-        [SerializeField] private ParticleSystem planePS;
+        [SerializeField] private ParticleSystem walkingPS = null;
+        [SerializeField] private ParticleSystem jumpingPS = null;
+        [SerializeField] private ParticleSystem landingPS = null;
+        [SerializeField] private ParticleSystem wallJumpPSRight = null;
+        [SerializeField] private ParticleSystem wallJumpPSLeft = null;
+        [SerializeField] private ParticleSystem planePS = null;
 
         [SerializeField] private GameObject stateTag = null;
 
-        private string platformTraversableTag = "PlatformTraversable"; 
-
-        private RaycastHit2D hitInfos; 
-        private RaycastHit2D hitInfosNormal; 
+        private RaycastHit2D hitInfos;
+        private RaycastHit2D hitInfosNormal;
 
         #region Life
-        public int Life
-        {
-            get { return _life; }
-            set
-            {
-                _life = value;
-                CheckRestingLife();
-            }
-        }
         private int _life;
+        public int Life
+		{
+            get => _life;
+            set => _life = value;
+        }
 
         public event Action OnDie;
         #endregion
@@ -86,9 +81,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         }
 
         //Pentes 
-        private bool isSlinding = false;
         private Vector2 penteVelocity;
 
+        //Corner
         private bool isOnCorner = false;
         private bool wasInCorner = false;
 
@@ -98,6 +93,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         //Pos au spawn et au respawn
         private Vector2 startPosition;
         private Vector2 lastCheckpointPos;
+        public Vector2 LastCheckpointPos => lastCheckpointPos;
 
         //HorizontalMove
         private float horizontalAxis = 0f;
@@ -148,7 +144,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         // Properties for Pause
         private Action PreviousDoAction = null;
-        private Vector2 pausePos;
+        private Vector2 lastVelocity = Vector2.zero;
 
         //Event for HUD controller update
         public delegate void PlayerMoveEventHandler(float horizontalAxis);
@@ -157,16 +153,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         public static Action OnPlayerEndJump;
 
         //Cinemachine Virtual Camera
-        [SerializeField] private CinemachineVirtualCamera vCam;
-        private CinemachineFramingTransposer vCamBody;
-        private float lastLookAheadTime;
-        private float lastLookAheadSmoothing;
+        [SerializeField] private CinemachineVirtualCamera vCam = null;
+        private CinemachineFramingTransposer vCamBody = null;
+        private float lastLookAheadTime = 0f;
+        private float lastLookAheadSmoothing = 0f;
 
         private Action DoAction = null;
 
         override public void Init()
         {
-            InitLife();
+            Life = settings.StartLife;
             lastCheckpointPos = transform.position;
             startPosition = transform.position;
             vCamBody = vCam.GetCinemachineComponent<CinemachineFramingTransposer>();
@@ -175,11 +171,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         public void Reset()
         {
             InitLife();
-            lastCheckpointPos = startPosition;
-            setPosition(lastCheckpointPos);
+            gameObject.SetActive(true);
+            SetPosition(startPosition);
+            lastCheckpointPos = transform.position;
 
             rigidBody.simulated = true;
-            gameObject.SetActive(true);
             rigidBody.WakeUp();
             SetModeSpawn();
         }
@@ -252,7 +248,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void SetModePlane()
         {
-            SoundManager.Instance.Play(sounds.PlaneFlap01);
+			if (SoundManager.Instance)
+				SoundManager.Instance.Play(sounds.PlaneFlap01);
+
             stateTag.name = "Plane"; 
             DoAction = DoActionPlane;
             animator.SetBool(settings.IsPlaningParam, true);
@@ -261,6 +259,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         public void SetModePause()
         {
             PreviousDoAction = DoAction;
+            lastVelocity = rigidBody.velocity;
             rigidBody.Sleep();
             rigidBody.simulated = false;
             DoAction = DoActionVoid; 
@@ -271,6 +270,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             rigidBody.WakeUp();
             rigidBody.simulated = true;
             DoAction = PreviousDoAction;
+            rigidBody.velocity = lastVelocity;
         }
 
         private void DoActionNormal()
@@ -283,16 +283,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 Vector2 tan = hitInfosNormal.normal;
                 tan = new Vector2(tan.y, -tan.x);
                 float anglePente = Vector2.Angle(tan, Vector3.up);
-                if(anglePente > settings.AngleMinPente && anglePente < settings.AngleMaxPente || anglePente > 150)
+                if(anglePente > settings.AngleMinPente && anglePente < settings.AngleMaxPente /*|| anglePente > 150*/)
                 {
                     penteVelocity = tan;
                     rigidBody.gravityScale = 0f;
-                    isSlinding = false;
-                }
-                else
-                {
-                   // isSlinding = true;
-                   // rigidBody.gravityScale = gravity;
                 }
             }
             
@@ -311,7 +305,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
                 IsGrounded = false;
                 jumpingPS.Play();
-                SoundManager.Instance.Play(sounds.Jump);
+
+				if (SoundManager.Instance)
+					SoundManager.Instance.Play(sounds.Jump);
             }
             else if (!jump) jumpButtonHasPressed = false;
 
@@ -366,7 +362,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             hitInfos = Physics2D.Linecast(groundLinecastStartPos.position, groundLinecastEndPos.position, settings.GroundLayerMask);
             Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
             IsGrounded = hitInfos.collider != null;
-            
+
             if(IsGrounded)
             {
                 //RayCast vertical pour recup sa normal pour calculer les pentes
@@ -384,18 +380,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
                 ratio = settings.RunAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, settings.RunSpeed, ratio);
-
                 walkingPS.Play();
-                SoundManager.Instance.Play(sounds.FootstepsWood);
+
+				if (SoundManager.Instance)
+					SoundManager.Instance.Play(sounds.FootstepsWood);
             }
             else
             {
                 ratio = settings.RunDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, topSpeed, ratio);
             }
-            if (!isSlinding)
+
                 rigidBody.velocity = penteVelocity.normalized * horizontalMove * previousDirection; 
-            else rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
         }
 
         private void DoActionSpawn()
@@ -407,12 +403,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionInAir()
         {
             CheckIsOnWall();
+            //animator.SetBool(settings.IsOnWallParam, IsOnWall); 
+
             CheckIsGrounded(); 
             if (_isGrounded)
             {
                 wasOnWall = false;
                 wallJumpElaspedTime = 0; 
                 SetModeNormal();
+
+				if (SoundManager.Instance)
+					SoundManager.Instance.Play(sounds.Landing);
+
                 return;
             }
 
@@ -437,8 +439,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     topSpeed = settings.WallJumpHorizontalForce;
                     previousDirection = -facingRightWall;
                     rigidBody.velocity = new Vector2(settings.WallJumpHorizontalForce * previousDirection, settings.WallJumpVerticalForce);
-                   // rigidBody.velocity = Vector2.Lerp(rigidBody.velocity, new Vector2(settings.WallJumpHorizontalForce * previousDirection, rigidBody.velocity.y), wallJumpElaspedTime / 0.5f);
-                   // Debug.Log(Vector2.Lerp(rigidBody.velocity, new Vector2(settings.WallJumpHorizontalForce * previousDirection, rigidBody.velocity.y), wallJumpElaspedTime));
                     ParticleSystem wjParticle = facingRightWall == 1 ? wallJumpPSRight : wallJumpPSLeft;
                     wjParticle.Play();
                 }
@@ -489,7 +489,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
 
-            if (wallJumpElaspedTime >= 1.5f)
+            if (wallJumpElaspedTime >= 1f)
             {
                 wasOnWall = false;
                 wallJumpElaspedTime = 0; 
@@ -507,7 +507,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsOnWall();
             if (_isOnWall || !jump)
             {
-                SoundManager.Instance.Stop(sounds.PlaneWind);
+				if (SoundManager.Instance)
+					SoundManager.Instance.Stop(sounds.PlaneWind);
                 SetModeAir();
                 return;
             }
@@ -515,8 +516,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsGrounded();
             if (_isGrounded)
             {
-                SoundManager.Instance.Stop(sounds.PlaneWind);
-                SetModeNormal();
+				if (SoundManager.Instance)
+				{
+					SoundManager.Instance.Stop(sounds.PlaneWind);
+					SoundManager.Instance.Play(sounds.Landing);
+				}
+
+				SetModeNormal();
                 return; 
             }
 
@@ -533,7 +539,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
 
             planePS.Play();
-            SoundManager.Instance.Play(sounds.PlaneWind); 
+
+			if (SoundManager.Instance)
+				SoundManager.Instance.Play(sounds.PlaneWind); 
         }
 
         private void CheckIsOnWall()
@@ -570,12 +578,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void MoveHorizontalInAir()
         {
             float horizontalMove;
-            if (IsOnWall && horizontalAxis == facingRightWall) return;
+            if(IsOnWall && horizontalAxis == facingRightWall ) return; 
             if (horizontalAxis != 0f) // On maintiens une direction lors de la chute
             {
-                horizontalMove = Mathf.Lerp(rigidBody.velocity.x, 22f * previousDirection, horizontalMoveElapsedTime);
-                rigidBody.velocity = new Vector2(horizontalMove, rigidBody.velocity.y);
+                horizontalMove = Mathf.Lerp(rigidBody.velocity.x, settings.FallHorizontalSpeed * previousDirection,horizontalMoveElapsedTime);
             }
+            else
+            {
+                float ratio = settings.InAirDecelerationCurve.Evaluate(horizontalMoveElapsedTime); 
+                horizontalMove = Mathf.Lerp(0f, rigidBody.velocity.x,ratio);
+            }
+            rigidBody.velocity = new Vector2(horizontalMove, rigidBody.velocity.y);
+
         }
 
         private void MoveHorizontalPlane()
@@ -586,13 +600,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if (horizontalAxis != 0f)
             {
                 ratio = settings.PlaneAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
-                horizontalMove = Mathf.Lerp(topSpeed, settings.PlaneHorizontalSpeed, ratio);
-                wasOnWall = false;
+                horizontalMove = Mathf.Lerp(Mathf.Abs(rigidBody.velocity.x),  settings.PlaneHorizontalSpeed  , ratio);
+                //wasOnWall = false;
             }
             else
             {
                 ratio = settings.PlaneDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
-                horizontalMove = Mathf.Lerp(0f, topSpeed, ratio);
+                horizontalMove = Mathf.Lerp(0f, rigidBody.velocity.x, ratio);
                 wasOnWall = false;
             }
 
@@ -613,10 +627,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             StopAllCoroutines(); 
         }*/
 
-        private void DoActionVoid()
-        {
+		private void SetModeVoid()
+		{
+			DoAction = DoActionVoid;
+		}
 
-        }
+        private void DoActionVoid() {}
 
         #endregion
 
@@ -628,10 +644,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private bool CheckRestingLife()
         {
-            if(Life == 0)
-            {
-                animator.SetTrigger(settings.Die); 
-            }
             return Life > 0;
         }
 
@@ -642,18 +654,28 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         public bool LooseLife(int LoseLife = 1)
         {
-            Life -= LoseLife;
-            return Life > 0;
+            animator.SetTrigger(settings.Die);
+
+            if (SoundManager.Instance)
+                SoundManager.Instance.Stop(sounds.PlaneWind);
+
+			rigidBody.velocity = new Vector2(0f, rigidBody.velocity.y);
+			SetModeVoid();
+			Life -= LoseLife;
+
+			if (Hud.Instance)
+				Hud.Instance.Life = _life;
+
+			return CheckRestingLife();
         }
 
         public void Die()
         {
-            setPosition(startPosition);
-            gameObject.SetActive(false);
             OnDie?.Invoke();
+			SetModeNormal();
         }
 
-        public void setPosition(Vector2 position)
+        public void SetPosition(Vector2 position)
         {
             if (isActiveAndEnabled) StartCoroutine(ReplacePlayer(position));
         }
@@ -665,13 +687,15 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             vCamBody.m_LookaheadTime = 0;
             vCamBody.m_LookaheadSmoothing = 0;
-
-            while ((Vector2)transform.position != position)
-            {
-                transform.position = position;
-                rigidBody.Sleep();
-                yield return null;
-            }
+            transform.position = position;
+            //while (transform.position.x != position.x && transform.position.y != position.y)
+            //{
+            //    Debug.Log("on replace player");
+            //    if (!rigidBody.IsSleeping())rigidBody.Sleep();
+            //    transform.position = position;
+            //    yield return null;
+            //}
+            //rigidBody.WakeUp();
 
             while (vCamBody.m_LookaheadTime != lastLookAheadTime)
             {
@@ -679,8 +703,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 yield return null;
             }
             vCamBody.m_LookaheadSmoothing = lastLookAheadSmoothing;
-            rigidBody.WakeUp();
-            StopAllCoroutines();
+            StopCoroutine("ReplacePlayer");
         }
         #endregion
     }

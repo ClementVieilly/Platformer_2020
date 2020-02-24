@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LoadingScreen : MonoBehaviour
 {
-    [SerializeField] private Slider _loadingBar;
+    [SerializeField] private Slider _loadingBar = null;
     public Slider LoadingBar => _loadingBar;
 }

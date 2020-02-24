@@ -21,7 +21,7 @@ MonoBehaviour:
   _isOnWallParam: {fileID: 11400000, guid: 8d99dcc2a6b6d394b9fab51246032c67, type: 2}
   _idleLong: {fileID: 11400000, guid: b7cc65da8a0ac064db2ae9137b265308, type: 2}
   _die: {fileID: 11400000, guid: 37d5c614e1eefd8458032d3e48030edc, type: 2}
-  _runSpeed: 20
+  _runSpeed: 19
   _runAccelerationCurve:
     serializedVersion: 2
     m_Curve:
@@ -88,8 +88,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _fallHorizontalSpeed: 9
-  _fallVerticalSpeed: 25
+  _fallHorizontalSpeed: 18.48
+  _fallVerticalSpeed: 20
   _fallOnWallVerticalSpeed: 5
   _inAirAccelerationCurve:
     serializedVersion: 2
@@ -130,26 +130,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.0013656616
       value: 0.9972954
-      inSlope: -0.38520476
-      outSlope: -0.38520476
+      inSlope: -0.048349038
+      outSlope: -0.048349038
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.049190033
+      outWeight: 0.12295079
     - serializedVersion: 3
       time: 5
       value: 0
-      inSlope: -0.026366213
+      inSlope: -0.37486535
       outSlope: -2.917352
       tangentMode: 1
       weightedMode: 0
-      inWeight: 0.28182554
+      inWeight: 0.05054672
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   _planeVerticalSpeed: 2
-  _planeHorizontalSpeed: 12
+  _planeHorizontalSpeed: 18
   _planeAccelerationCurve:
     serializedVersion: 2
     m_Curve:
@@ -165,11 +165,11 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.7
       value: 1
-      inSlope: 3.4587219
+      inSlope: 1.6678537
       outSlope: 0
       tangentMode: 65
       weightedMode: 0
-      inWeight: 0.087924376
+      inWeight: 0.060729764
       outWeight: 0.08314355
     - serializedVersion: 3
       time: 1
@@ -223,14 +223,13 @@ MonoBehaviour:
     m_Bits: 256
   _isGroundedRaycastDistance: 0.1
   _jumpTolerance: 0.7
-  _minJumpForce: 18
+  _minJumpForce: 17.76
   _wallJumpHorizontalForce: 17
-  _wallJumpVerticalForce: 20
+  _wallJumpVerticalForce: 23
   _jumpHoldForce: 1
   _maxJumpTime: 0.2
   _jumpHangThreshold: 0.5
   _jumpHangTime: 0.05
-  _delayWallJump: 0.5
-  _startLife: 1
+  _startLife: 2
   _coyoteTime: 0.08
   _impulsionInCorner: {x: 5, y: 5}

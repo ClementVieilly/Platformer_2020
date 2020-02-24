@@ -14,7 +14,7 @@ const regex = [/\/scores\/(?!(\d+\/\d+))/, /\/users\/signup/, /\/users\/signin/]
 // Ce middleware vérifie qu’un JWT valide est présent dans le header Authorization
 const jwtMiddleware = require("express-jwt")({
   secret: secret
-// sauf pour les routes générales
+// sauf pour les routes spécifiées dans l'expression régulière
 }).unless({ path: regex });
 app.use(jwtMiddleware);
 
@@ -65,9 +65,10 @@ app.post("/users/signup", async function (req, res, next) {
 
     // Une fois le compte du joueur créé, il faut lui retourner un
     // token lui permettant d’authentifier ses requêtes suivantes.
+    // On lui préfixe son id par praticité côté client.
     jwt.sign({ id: results[0].user_id }, secret, function (err, token) {
       if (err) return next(err);
-      res.status(200).send(token);
+      res.status(200).send(results[0].user_id + "/" + token);
     });
   }
   catch (err) {
@@ -92,9 +93,10 @@ app.post("/users/signin", async function (req, res, next) {
     {
       // Une fois l’identité du joueur vérifiée, il faut retourner le
       // token lui permettant d’authentifier ses requêtes suivantes.
+      // On lui préfixe son id par praticité côté client.
       jwt.sign({ id: results[0].user_id }, secret, function (err, token) {
         if (err) return next(err);
-        res.status(200).send(token);
+        res.status(200).send(results[0].user_id + "/" + token);
       });
     }
     // 401 (Unauthorized), ce code signifie que le client n’a pas les
@@ -169,7 +171,7 @@ app.get("/scores/:levelId", async function (req, res, next) {
     if (results && results.length)
       res.status(200).send(results);
     else // Requête fonctionelle mais vide
-      res.status(200).send("Pas de scores pour ce level.");
+      res.status(400).send("Pas de scores pour ce level.");
   }
   catch(err) {
     return next(err);
@@ -190,7 +192,7 @@ app.get("/scores/:userId/:levelId", async function (req, res, next) {
     if (results && results.length)
       res.status(200).send(results);
     else // Requête fonctionelle mais vide
-      res.status(200).send("Pas de scores pour cet utilisateur sur ce level.");
+      res.status(400).send("Pas de scores pour cet utilisateur sur ce level.");
   }
   catch(err) {
     return next(err);

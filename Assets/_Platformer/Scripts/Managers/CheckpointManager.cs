@@ -16,11 +16,11 @@ namespace Com.IsartDigital.Platformer.Managers {
 		public static CheckpointManager Instance => _instance;
 
 		//Checkpoints positions
-		[SerializeField] private Level currentLevel;
+		[SerializeField] private Level currentLevel = null;
 		private List<Checkpoints> checkpointList = new List<Checkpoints>();
-		private Vector2 _lastCheckpointPos;
+		private Vector2 _lastCheckpointPos = Vector2.zero;
 		public Vector2 LastCheckpointPos { get => _lastCheckpointPos; set => _lastCheckpointPos = value; }
-		private Vector2 _lastSuperCheckpointPos;
+		private Vector2 _lastSuperCheckpointPos = Vector2.zero;
 
         //event de Victoire 
         public static event CheckpointManagerEventHandler OnFinalCheckPointTriggered;

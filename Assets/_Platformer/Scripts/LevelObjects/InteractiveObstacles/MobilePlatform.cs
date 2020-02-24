@@ -10,15 +10,15 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 	public class MobilePlatform : MonoBehaviour {
 
-        [SerializeField] private Transform[] allPoints;
-        private Vector2 startPos;
-        private float elapsedTime;
+        [SerializeField] private Transform[] allPoints = null;
+        private Vector2 startPos = Vector2.zero;
+        private float elapsedTime = 0f;
         private uint index = 1;
         private uint startIndex = 0;
-        [SerializeField]private float duration;
-        [SerializeField]private string playerTag = "Player"; 
+        [SerializeField] private float duration = 0f;
+        [SerializeField] private string playerTag = "Player"; 
+        [SerializeField] private bool isStarted = false; 
 
-        [SerializeField] private bool _isStarted = false;
         private static List<MobilePlatform> _list = new List<MobilePlatform>();
 
         private Transform touchedObject = null;
@@ -27,9 +27,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         private void Start()
         {
+            if(isStarted) SetModeNormal();
+            else SetModeVoid(); 
+
             _list.Add(this);
             SetStartPosition();
-            SetModeVoid();
             startIndex = index;
         }
 
@@ -53,7 +55,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
             elapsedTime += Time.deltaTime;
             Vector3 previousPos = transform.position;
 
-            transform.position = Vector2.Lerp(index > 0 ? 
+                transform.position = Vector2.Lerp(index > 0 ? 
                 allPoints[index - 1].position : allPoints[allPoints.Length - 1].position, 
                 allPoints[index].position, elapsedTime / duration);
 
@@ -117,7 +119,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         {
             for (int i = _list.Count - 1; i >= 0; i--)
             {
-                _list[i].SetModeNormal();
+                if(_list[i].isStarted) _list[i].SetModeNormal(); 
             }
         }
     }

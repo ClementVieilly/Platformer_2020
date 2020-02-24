@@ -19,11 +19,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects {
         {
             OnCollision?.Invoke(this);
             GetComponent<Collider2D>().enabled = false; 
+            GetComponentInChildren<Renderer>().enabled = false; 
         }
 
         public void ResetCollider()
         {
             GetComponent<Collider2D>().enabled = true;
+            GetComponentInChildren<Renderer>().enabled = true;
         }
     }
 }

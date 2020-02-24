@@ -51,7 +51,9 @@ namespace Com.IsartDigital.Platformer.Managers
 
             if (_levelNumber == 1) currentLvlMusicName = sounds.Ambiance_Level_One;
             else if (_levelNumber == 2) currentLvlMusicName = sounds.Ambiance_Level_Two;
-            SoundManager.Instance.Play(currentLvlMusicName);
+
+			if (SoundManager.Instance)
+				SoundManager.Instance.Play(currentLvlMusicName);
         }
 
         private IEnumerator InitHud()
@@ -74,12 +76,8 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void KillZone_OnCollision()
         {
-            if (player.LooseLife())
-            {
-                if (CheckpointManager.Instance.LastCheckpointPos == Vector2.zero) player.setPosition(player.LastCheckpointPos);
-                else player.setPosition(CheckpointManager.Instance.LastCheckpointPos);
-                Hud.Instance.Life = player.Life;
-            }
+			player.LooseLife();
+            DestructiblePlatform.ResetAll();
         }
 
         private void DeadZone_OnCollision()
@@ -90,6 +88,13 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void Player_OnDie()
         {
+			if (player.Life > 0)
+			{
+				player.SetPosition(CheckpointManager.Instance.LastCheckpointPos);
+				return;
+			}
+
+			player.gameObject.SetActive(false);
             _completionTime = timeManager.Timer;
             timeManager.SetModeVoid();
 
@@ -134,8 +139,12 @@ namespace Com.IsartDigital.Platformer.Managers
             TimedDoor.ResetAll();
 
             timeManager.StartTimer();
-            SoundManager.Instance.Stop(currentLvlMusicName);
-            SoundManager.Instance.Play(currentLvlMusicName);
+
+			if (SoundManager.Instance)
+			{
+				SoundManager.Instance.Stop(currentLvlMusicName);
+				SoundManager.Instance.Play(currentLvlMusicName);
+			}
         }
 
         private void Resume()
@@ -167,6 +176,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private void OnDestroy()
         {
             UnsubscribeAllEvents();
+            SoundManager.Instance.Stop(currentLvlMusicName);
         }
 
         #region Events subscribtions

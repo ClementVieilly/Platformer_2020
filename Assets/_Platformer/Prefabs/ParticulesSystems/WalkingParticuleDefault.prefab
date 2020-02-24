@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1493797280196837400}
   - component: {fileID: 1734738677702790498}
   - component: {fileID: 8879996526337505308}
+  - component: {fileID: 3435555212386930134}
   m_Layer: 0
   m_Name: WalkingParticuleDefault
   m_TagString: Untagged
@@ -48,7 +49,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -4810,3 +4811,14 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &3435555212386930134
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8732930750417750450}
+  m_Enabled: 1
+  m_SortingLayerID: 1877034893
+  m_SortingLayer: 2
+  m_SortingOrder: 10

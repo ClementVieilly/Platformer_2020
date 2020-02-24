@@ -6,6 +6,7 @@
 using Cinemachine;
 using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.Managers;
+using Com.IsartDigital.Platformer.Screens;
 using Com.IsartDigital.Platformer.ScriptableObjects;
 using System;
 using System.Collections;
@@ -46,16 +47,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private RaycastHit2D hitInfosNormal;
 
         #region Life
-        public int Life
-        {
-            get { return _life; }
-            set
-            {
-                _life = value;
-                CheckRestingLife();
-            }
-        }
         private int _life;
+        public int Life
+		{
+            get => _life;
+            set => _life = value;
+        }
 
         public event Action OnDie;
         #endregion
@@ -175,7 +172,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             InitLife();
             gameObject.SetActive(true);
-            setPosition(startPosition);
+            SetPosition(startPosition);
             lastCheckpointPos = transform.position;
 
             rigidBody.simulated = true;
@@ -251,7 +248,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void SetModePlane()
         {
-            SoundManager.Instance.Play(sounds.PlaneFlap01);
+			if (SoundManager.Instance)
+				SoundManager.Instance.Play(sounds.PlaneFlap01);
+
             stateTag.name = "Plane"; 
             DoAction = DoActionPlane;
             animator.SetBool(settings.IsPlaningParam, true);
@@ -306,7 +305,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
                 IsGrounded = false;
                 jumpingPS.Play();
-                SoundManager.Instance.Play(sounds.Jump);
+
+				if (SoundManager.Instance)
+					SoundManager.Instance.Play(sounds.Jump);
             }
             else if (!jump) jumpButtonHasPressed = false;
 
@@ -380,7 +381,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 ratio = settings.RunAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, settings.RunSpeed, ratio);
                 walkingPS.Play();
-                SoundManager.Instance.Play(sounds.FootstepsWood);
+
+				if (SoundManager.Instance)
+					SoundManager.Instance.Play(sounds.FootstepsWood);
             }
             else
             {
@@ -408,7 +411,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 wasOnWall = false;
                 wallJumpElaspedTime = 0; 
                 SetModeNormal();
-                SoundManager.Instance.Play(sounds.Landing);
+
+				if (SoundManager.Instance)
+					SoundManager.Instance.Play(sounds.Landing);
+
                 return;
             }
 
@@ -501,7 +507,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsOnWall();
             if (_isOnWall || !jump)
             {
-                SoundManager.Instance.Stop(sounds.PlaneWind);
+				if (SoundManager.Instance)
+					SoundManager.Instance.Stop(sounds.PlaneWind);
                 SetModeAir();
                 return;
             }
@@ -509,9 +516,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsGrounded();
             if (_isGrounded)
             {
-                SoundManager.Instance.Stop(sounds.PlaneWind);
-                SetModeNormal();
-                SoundManager.Instance.Play(sounds.Landing);
+				if (SoundManager.Instance)
+				{
+					SoundManager.Instance.Stop(sounds.PlaneWind);
+					SoundManager.Instance.Play(sounds.Landing);
+				}
+
+				SetModeNormal();
                 return; 
             }
 
@@ -528,7 +539,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
 
             planePS.Play();
-            SoundManager.Instance.Play(sounds.PlaneWind); 
+
+			if (SoundManager.Instance)
+				SoundManager.Instance.Play(sounds.PlaneWind); 
         }
 
         private void CheckIsOnWall()
@@ -589,7 +602,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 ratio = settings.PlaneAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(Mathf.Abs(rigidBody.velocity.x),  settings.PlaneHorizontalSpeed  , ratio);
                 //wasOnWall = false;
-
             }
             else
             {
@@ -615,10 +627,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             StopAllCoroutines(); 
         }*/
 
-        private void DoActionVoid()
-        {
+		private void SetModeVoid()
+		{
+			DoAction = DoActionVoid;
+		}
 
-        }
+        private void DoActionVoid() {}
 
         #endregion
 
@@ -630,10 +644,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private bool CheckRestingLife()
         {
-            if(Life == 0)
-            {
-                animator.SetTrigger(settings.Die); 
-            }
             return Life > 0;
         }
 
@@ -644,17 +654,28 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         public bool LooseLife(int LoseLife = 1)
         {
-            Life -= LoseLife;
-            return Life > 0;
+            animator.SetTrigger(settings.Die);
+
+            if (SoundManager.Instance)
+                SoundManager.Instance.Stop(sounds.PlaneWind);
+
+			rigidBody.velocity = new Vector2(0f, rigidBody.velocity.y);
+			SetModeVoid();
+			Life -= LoseLife;
+
+			if (Hud.Instance)
+				Hud.Instance.Life = _life;
+
+			return CheckRestingLife();
         }
 
         public void Die()
         {
-            gameObject.SetActive(false);
             OnDie?.Invoke();
+			SetModeNormal();
         }
 
-        public void setPosition(Vector2 position)
+        public void SetPosition(Vector2 position)
         {
             if (isActiveAndEnabled) StartCoroutine(ReplacePlayer(position));
         }
@@ -666,14 +687,15 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             vCamBody.m_LookaheadTime = 0;
             vCamBody.m_LookaheadSmoothing = 0;
-
-            while (transform.position.x != position.x && transform.position.y != position.y)
-            {
-                if (!rigidBody.IsSleeping())rigidBody.Sleep();
-                transform.position = position;
-                yield return null;
-            }
-            rigidBody.WakeUp();
+            transform.position = position;
+            //while (transform.position.x != position.x && transform.position.y != position.y)
+            //{
+            //    Debug.Log("on replace player");
+            //    if (!rigidBody.IsSleeping())rigidBody.Sleep();
+            //    transform.position = position;
+            //    yield return null;
+            //}
+            //rigidBody.WakeUp();
 
             while (vCamBody.m_LookaheadTime != lastLookAheadTime)
             {

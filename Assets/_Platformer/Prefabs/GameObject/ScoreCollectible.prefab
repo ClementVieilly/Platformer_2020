@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37994ffa32010e14fa77f0d6b17aaa35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 10
+  score: 1
 --- !u!1 &2771696382051564651
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +285,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 1, b: 0.0027880669, a: 1}
+      maxColor: {r: 0, g: 0.55484986, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

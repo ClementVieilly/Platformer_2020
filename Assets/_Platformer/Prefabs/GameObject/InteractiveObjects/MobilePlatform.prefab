@@ -227,7 +227,7 @@ MonoBehaviour:
   allPoints: []
   duration: 0
   playerTag: Player
-  _isStarted: 0
+  isStarted: 0
 --- !u!60 &2484867026229071357
 PolygonCollider2D:
   m_ObjectHideFlags: 0

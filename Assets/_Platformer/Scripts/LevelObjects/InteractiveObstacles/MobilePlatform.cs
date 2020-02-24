@@ -17,6 +17,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         private uint startIndex = 0;
         [SerializeField] private float duration = 0f;
         [SerializeField] private string playerTag = "Player"; 
+        [SerializeField] private bool isStarted = false; 
 
         private static List<MobilePlatform> _list = new List<MobilePlatform>();
 
@@ -26,9 +27,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         private void Start()
         {
+            if(isStarted) SetModeNormal();
+            else SetModeVoid(); 
+
             _list.Add(this);
             SetStartPosition();
-            SetModeVoid();
             startIndex = index;
         }
 
@@ -52,7 +55,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
             elapsedTime += Time.deltaTime;
             Vector3 previousPos = transform.position;
 
-            transform.position = Vector2.Lerp(index > 0 ? 
+                transform.position = Vector2.Lerp(index > 0 ? 
                 allPoints[index - 1].position : allPoints[allPoints.Length - 1].position, 
                 allPoints[index].position, elapsedTime / duration);
 
@@ -116,7 +119,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         {
             for (int i = _list.Count - 1; i >= 0; i--)
             {
-                _list[i].SetModeNormal();
+                if(_list[i].isStarted) _list[i].SetModeNormal(); 
             }
         }
     }

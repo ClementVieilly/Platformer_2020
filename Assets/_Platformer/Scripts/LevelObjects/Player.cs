@@ -163,8 +163,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         override public void Init()
         {
             Life = settings.StartLife;
-            lastCheckpointPos = transform.position;
-            startPosition = transform.position;
+			lastCheckpointPos = transform.position;
+			startPosition = transform.position;
             vCamBody = vCam.GetCinemachineComponent<CinemachineFramingTransposer>();
         }
 
@@ -173,7 +173,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             InitLife();
             gameObject.SetActive(true);
             SetPosition(startPosition);
-            lastCheckpointPos = transform.position;
+			lastCheckpointPos = transform.position;
 
             rigidBody.simulated = true;
             rigidBody.WakeUp();
@@ -349,9 +349,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             // Updating Animator
             transform.localScale = previousDirection >= 0 ? scaleRight : scaleLeft;
             animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
-
-            if (!_isGrounded)
-                animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
         }
 
         private void CheckIsGrounded()

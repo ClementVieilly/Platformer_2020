@@ -13,17 +13,23 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
         private static List<DestructiblePlatform> _list = new List<DestructiblePlatform>();
         public static List<DestructiblePlatform> List => _list;
 
-        [SerializeField] private float duration;
-        [SerializeField] private GameObject triggeredCollider;
-        private float elapsedTime;
+        [SerializeField] private float duration = 0f;
+        [SerializeField] private GameObject triggeredCollider = null;
+        private float elapsedTime = 0f;
 
-        private Action DoAction;
-        private Action PreviousDoAction;
+        private Action DoAction = null;
+        private Action PreviousDoAction = null;
 
+        //Shake 
+        private Vector2 parentOriginalPos;
+        [SerializeField] private float shakeMagnitude = 0.2f;
+        
         private void Start()
         {
             _list.Add(this);
             SetModeVoid();
+            parentOriginalPos = transform.parent.position; 
+
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -56,6 +62,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
                 triggeredCollider.SetActive(false);
                 SetModeVoid();
             }
+            else
+            {
+                float x = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
+                transform.parent.position = new Vector2(x, 0f) + parentOriginalPos;
+            }
         }
 
         private void OnDestroy()
@@ -65,7 +76,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
 
         public static void ResetAll()
         {
-            Debug.Log("reset destructible platforms");
             for (int i = List.Count - 1; i >= 0; i--)
             {
                 List[i].triggeredCollider.SetActive(true);

@@ -11,20 +11,18 @@ namespace Com.IsartDigital.Platformer.Screens
 {
     public class LevelSelector : AScreen {
 
-        public delegate void LevelSelectorEventHandler(LevelSelector levelSelector);
-        public LevelSelectorEventHandler OnLevel1Clicked;
-        public LevelSelectorEventHandler OnLevel2Clicked;
+        public delegate void LevelSelectorEventHandler(LevelSelector levelSelector, int level);
+        public LevelSelectorEventHandler OnLevelClicked;
         public LevelSelectorEventHandler OnBackToTitleClicked;
 
         private Button[] buttons;
 
-        private Button level1Button;
-        private Button level2Button;
-        private Button backToTitleButton;
+		[SerializeField] private Button level1Button;
+		[SerializeField] private Button level2Button;
+        [SerializeField] private Button backToTitleButton;
 
         [SerializeField] private string buttonLevel1Tag = "Level1Button";
         [SerializeField] private string buttonLevel2Tag = "Level2Button";
-        [SerializeField] private string buttonBackToTitleTag = "BackToTitleCard";//pas spécialement utile vu le if/else if/ else du Awake()
 
         private void Awake()
         {
@@ -42,20 +40,17 @@ namespace Com.IsartDigital.Platformer.Screens
 
         private void LevelSelector_OnButtonClicked(Button sender)
         {
-            if (sender == level1Button) OnLevel1Clicked?.Invoke(this);
-            else if (sender == level2Button) OnLevel2Clicked?.Invoke(this);
-            else OnBackToTitleClicked?.Invoke(this);
+            if (sender == level1Button) OnLevelClicked?.Invoke(this, 1);
+            else if (sender == level2Button) OnLevelClicked?.Invoke(this, 2);
+            else OnBackToTitleClicked?.Invoke(this, 0);
 
             for (int i = buttons.Length - 1; i >= 0; i--)
-            {
                 buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked -= LevelSelector_OnButtonClicked;
-            }
         }
 
         public override void UnsubscribeEvents()
         {
-            OnLevel1Clicked = null;
-            OnLevel2Clicked = null;
+            OnLevelClicked = null;
             OnBackToTitleClicked = null;
         }
     }

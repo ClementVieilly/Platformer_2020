@@ -166,6 +166,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             lastCheckpointPos = transform.position;
             startPosition = transform.position;
             vCamBody = vCam.GetCinemachineComponent<CinemachineFramingTransposer>();
+            Reset();
         }
 
         public void Reset()
@@ -688,14 +689,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             vCamBody.m_LookaheadTime = 0;
             vCamBody.m_LookaheadSmoothing = 0;
             transform.position = position;
-            //while (transform.position.x != position.x && transform.position.y != position.y)
-            //{
-            //    Debug.Log("on replace player");
-            //    if (!rigidBody.IsSleeping())rigidBody.Sleep();
-            //    transform.position = position;
-            //    yield return null;
-            //}
-            //rigidBody.WakeUp();
 
             while (vCamBody.m_LookaheadTime != lastLookAheadTime)
             {

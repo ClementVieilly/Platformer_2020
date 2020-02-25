@@ -221,8 +221,8 @@ MonoBehaviour:
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  _isGroundedRaycastDistance: 0.1
-  _jumpTolerance: 0.7
+  _isGroundedRaycastDistance: -0.4
+  _jumpTolerance: 0.69
   _minJumpForce: 17.76
   _wallJumpHorizontalForce: 17
   _wallJumpVerticalForce: 23

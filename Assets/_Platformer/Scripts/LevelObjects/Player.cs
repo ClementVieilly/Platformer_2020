@@ -356,19 +356,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void CheckIsGrounded()
         {
-            Vector3 origin = rigidBody.position + Vector2.down * settings.IsGroundedRaycastDistance;
-
             //LineCast horizontal aux pieds
             hitInfos = Physics2D.Linecast(groundLinecastStartPos.position, groundLinecastEndPos.position, settings.GroundLayerMask);
             Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
-            IsGrounded = hitInfos.collider != null;
 
-            if(IsGrounded)
-            {
-                //RayCast vertical pour recup sa normal pour calculer les pentes
-                hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.JumpTolerance, settings.GroundLayerMask);
-                Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.JumpTolerance), Color.blue);
-            }
+            //RayCast vertical pour recup sa normal pour calculer les pentes
+            Vector3 origin = rigidBody.position + Vector2.down * settings.IsGroundedRaycastDistance;
+            hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.JumpTolerance, settings.GroundLayerMask);
+            Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.JumpTolerance), Color.blue);
+            
+            IsGrounded = hitInfosNormal.collider != null;
+
+            if(!IsGrounded && hitInfos.collider) IsGrounded = hitInfos.collider; 
         }
 
         private void MoveHorizontalOnGround()
@@ -550,7 +549,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             RaycastHit2D hitInfosLeft = Physics2D.Linecast(wallLinecastLeftStartPos.position, wallLinecastLeftEndPos.position, settings.GroundLayerMask); 
             RaycastHit2D hitInfosRight = Physics2D.Linecast(wallLinecastRightStartPos.position, wallLinecastRightEndPos.position, settings.GroundLayerMask);
             Debug.DrawLine(wallLinecastRightStartPos.position, wallLinecastRightEndPos.position, Color.white);
-            Debug.DrawLine(wallLinecastLeftStartPos.position, wallLinecastLeftEndPos.position, Color.black);
+            Debug.DrawLine(wallLinecastLeftStartPos.position, wallLinecastLeftEndPos.position, Color.blue);
 
             //LineCast verticaux pour tester la collision au corner
             RaycastHit2D hitInfosCornerRight = Physics2D.Linecast(cornerLinecastRightStartPos.position, cornerLinecastRightEndPos.position, settings.GroundLayerMask); 

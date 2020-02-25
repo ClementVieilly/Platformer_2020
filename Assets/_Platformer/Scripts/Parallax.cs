@@ -45,7 +45,7 @@ namespace Com.IsartDigital.Platformer {
 
 			if (isParallaxOnY)
 			{
-				float yParallax = (previousCamPos.y - cam.position.y) * - parallaxScaleY;
+				float yParallax = (previousCamPos.y - cam.position.y) * parallaxScaleY;
 				float posY = transform.position.y + yParallax;
 				nextPosition = new Vector3(posX, posY, transform.position.z);
 			}

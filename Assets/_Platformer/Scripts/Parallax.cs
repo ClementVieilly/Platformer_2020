@@ -12,17 +12,16 @@ namespace Com.IsartDigital.Platformer {
 	{
 		public static List<Parallax> list = new List<Parallax>();
 
-		private Transform cam;
-
-		private Vector3 previousCamPos;
-		private bool isParallaxOnY;
-
 		[SerializeField] private float scrollingSpeed;
-		[SerializeField] private float parallaxScale;
+		[SerializeField] private float parallaxScaleX;
+		[SerializeField] private float parallaxScaleY;
+		[SerializeField ]private bool isParallaxOnY;
+
+		private Transform cam;
+		private Vector3 previousCamPos;
+
 
 		private Vector3 startPos;
-		private Action DoAction;
-
 
 		private void Awake()
 		{
@@ -33,16 +32,24 @@ namespace Com.IsartDigital.Platformer {
 		{
 			//patch replace background
 			cam.position = Vector3.zero;
-			// probleme position de la camera;
+
 			previousCamPos = cam.position;
 			startPos = transform.position;
 		}
 
 		private void Update()
 		{
-			float parallax = (previousCamPos.x - cam.position.x) * parallaxScale;
-			float posX = transform.position.x + parallax;
-			Vector3 nextPosition = new Vector3(posX, transform.position.y, transform.position.z);
+			Vector3 nextPosition;
+			float xParallax = (previousCamPos.x - cam.position.x) * parallaxScaleX;
+			float posX = transform.position.x + xParallax;
+
+			if (isParallaxOnY)
+			{
+				float yParallax = (previousCamPos.y - cam.position.y) * - parallaxScaleY;
+				float posY = transform.position.y + yParallax;
+				nextPosition = new Vector3(posX, posY, transform.position.z);
+			}
+			else nextPosition = new Vector3(posX, transform.position.y, transform.position.z);
 
 			transform.position = Vector3.Lerp(transform.position, nextPosition, scrollingSpeed * Time.deltaTime);
 			previousCamPos = cam.position;

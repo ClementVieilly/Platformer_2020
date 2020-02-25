@@ -3,13 +3,13 @@
 /// Date : 27/01/2020 12:10
 ///-----------------------------------------------------------------
 
-using System;
 using Com.IsartDigital.Platformer.Screens.Buttons;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Com.IsartDigital.Platformer.Screens {
-	public class TitleCard : AScreen {
+namespace Com.IsartDigital.Platformer.Screens
+{
+    public class TitleCard : AScreen {
 
         public delegate void TitleCardEventHandler(TitleCard title);//Delegates appelés au clic sur les différents boutons du TitleCard
 
@@ -34,7 +34,6 @@ namespace Com.IsartDigital.Platformer.Screens {
         [SerializeField] private string buttonCreditsTag = "Credits";
         [SerializeField] private string buttonPlayTag = "PlayButton";
 
-
         private void Awake()
         {
             buttons = GetComponentsInChildren<Button>();
@@ -45,26 +44,22 @@ namespace Com.IsartDigital.Platformer.Screens {
                 else if (buttons[i].CompareTag(buttonSoundTriggerTag)) soundTriggerButton = buttons[i];
                 else if (buttons[i].CompareTag(buttonLocalisationTag)) localisationButton = buttons[i];
                 else if (buttons[i].CompareTag(buttonPlayTag)) playButton = buttons[i];
-                else creditsButton = buttons[i];
+                else if (buttons[i].CompareTag(buttonCreditsTag)) creditsButton = buttons[i];
 
                 buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked += TitleCard_OnMenuButtonClicked;
             }
         }
-
-        private void Update()
-        {
-            //if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter)) OnGameStart?.Invoke(this);
-        }
-
+		
         private void TitleCard_OnMenuButtonClicked(Button sender)
         {
             if (sender.CompareTag(buttonLeaderBoardTag))
             {
                 OnLeaderBoardClicked?.Invoke(this);
-                foreach (Button button in buttons)
+                /*for (int i = buttons.Length - 1; i >= 0; i--)
                 {
-                    button.GetComponent<MenuButton>().OnMenuButtonClicked -= TitleCard_OnMenuButtonClicked;
-                }
+                    Debug.Log("unsubscribe for leaderboard");
+                    //button.GetComponent<MenuButton>().OnMenuButtonClicked -= TitleCard_OnMenuButtonClicked;
+                }*/
             }
             else if (sender.CompareTag(buttonSoundTriggerTag)) OnSoundTriggerClicked?.Invoke(this);
             else if (sender.CompareTag(buttonLocalisationTag)) OnLocalisationClicked?.Invoke(this);
@@ -72,11 +67,20 @@ namespace Com.IsartDigital.Platformer.Screens {
             else
             {
                 OnCreditsClicked?.Invoke(this);
-                foreach (Button button in buttons)
+				
+                /*for (int i = buttons.Length - 1; i >= 0; i--)
                 {
-                    button.GetComponent<MenuButton>().OnMenuButtonClicked -= TitleCard_OnMenuButtonClicked;
-                }
+                    buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked -= TitleCard_OnMenuButtonClicked;
+                }*/
             }
+        }
+
+        public override void UnsubscribeEvents()
+        {
+            OnCreditsClicked = null;
+            OnLeaderBoardClicked = null;
+            OnLocalisationClicked = null;
+            OnSoundTriggerClicked = null;
         }
     }
 }

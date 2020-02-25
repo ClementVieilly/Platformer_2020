@@ -3,7 +3,25 @@ guid: 288c896f2a243094a804733fd9a0f6f4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - controller: {instanceID: 0}
+  - settings: {instanceID: 0}
+  - wallLinecastRightStartPos: {instanceID: 0}
+  - wallLinecastRightEndPos: {instanceID: 0}
+  - wallLinecastLeftStartPos: {instanceID: 0}
+  - wallLinecastLeftEndPos: {instanceID: 0}
+  - cornerLinecastRightStartPos: {instanceID: 0}
+  - cornerLinecastRightEndPos: {instanceID: 0}
+  - cornerLinecastLeftStartPos: {instanceID: 0}
+  - cornerLinecastLeftEndPos: {instanceID: 0}
+  - groundLinecastStartPos: {instanceID: 0}
+  - groundLinecastEndPos: {instanceID: 0}
+  - runningPS: {instanceID: 0}
+  - jumpingPS: {fileID: 5776562469741061791, guid: e2bb4b2d332511142a12baab350e1b0f,
+      type: 3}
+  - landingPS: {instanceID: 0}
+  - wallJumpPS: {instanceID: 0}
+  - stateTag: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

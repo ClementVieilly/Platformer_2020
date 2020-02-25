@@ -1,19 +1,22 @@
+///-----------------------------------------------------------------
+/// Author : Alexandre RAUMEL
+/// Date : 04/02/2020 11:10
+///-----------------------------------------------------------------
+
 using Com.IsartDigital.Platformer.Screens;
 using Com.IsartDigital.Platformer.Screens.Buttons;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LoseScreen : AScreen
 {
-    [SerializeField] private MenuButton retryBtn;
-    [SerializeField] private MenuButton levelSelectorBtn;
+    [SerializeField] private MenuButton retryBtn = null;
+    [SerializeField] private MenuButton levelSelectorBtn = null;
 
     public delegate void LoseScreenEventHandler(LoseScreen loseScreen);//Delegates appelés au clic sur les différents boutons du WinScreen
 
-    public LoseScreenEventHandler OnRetryClicked;
-    public LoseScreenEventHandler OnLevelSelectorClicked;
+    public event LoseScreenEventHandler OnRetryClicked;
+    public event LoseScreenEventHandler OnLevelSelectorClicked;
 
     private void Awake()
     {
@@ -31,7 +34,7 @@ public class LoseScreen : AScreen
         OnLevelSelectorClicked?.Invoke(this);
     }
 
-    public void UnsubscribeEvents()
+    public override void UnsubscribeEvents()
     {
         OnRetryClicked = null;
         OnLevelSelectorClicked = null;

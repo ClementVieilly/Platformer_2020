@@ -75,7 +75,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 3
-  triggeredCollider: {fileID: 3843724848143336229}
+  triggeredCollider: {fileID: 3843724848143336227}
+  magnitude: 0.2
 --- !u!1 &3843724848143336227
 GameObject:
   m_ObjectHideFlags: 0

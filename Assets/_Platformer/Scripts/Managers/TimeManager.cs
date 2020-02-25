@@ -29,7 +29,7 @@ namespace Com.IsartDigital.Platformer.Managers
             DoAction = DoActionTimer; 
         }
 
-        private void SetModePause()
+        public void SetModePause()
         {
             DoAction = DoActionVoid; 
         }
@@ -84,7 +84,7 @@ namespace Com.IsartDigital.Platformer.Managers
             if(elapsedTime >= 1)
             {
                 _timer++;
-                elapsedTime = 0; 
+                elapsedTime = 0;
             }
         }
     }

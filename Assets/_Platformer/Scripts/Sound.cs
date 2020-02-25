@@ -3,29 +3,36 @@
 /// Date : 07/02/2020 12:53
 ///-----------------------------------------------------------------
 
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
+
 
 namespace Com.IsartDigital.Platformer {
 
 	[System.Serializable]
 	public class Sound
 	{
-		[SerializeField] private string _name;
+		[SerializeField] private string _name = null;
 		public string Name => _name;
 
-		[SerializeField] private AudioClip _clip;
+		[SerializeField] private AudioClip _clip = null;
 		public AudioClip Clip => _clip;
-
-		[Range(0f, 1f)]
+		[Space]
+		[Space]
+        #region Volume properties
+        [Range(0f, 1f)]
 		[SerializeField] private float _volume = .75f;
 		public float Volume => _volume;
 
 		[Range(0f, 1f)]
 		[SerializeField] private float _volumeVariance = .1f;
 		public float VolumeVariance => _volumeVariance;
-
-		[Range(.1f, 3f)]
+        #endregion
+		[Space]
+		[Space]
+        #region Pitch properties
+        [Range(.1f, 3f)]
 		[SerializeField] private float _pitch = 1f;
 		public float Pitch => _pitch;
 
@@ -33,13 +40,26 @@ namespace Com.IsartDigital.Platformer {
 		[SerializeField] private float _pitchVariance = .1f;
 		public float PitchVariance => _pitchVariance;
 
-		[SerializeField] private bool _isLoop = false;
-		public bool IsLoop => _isLoop;
+		[Space]
+		[SerializeField] private bool _isPitchedBetweenValues = false;
+		public bool IsPitchedBetweenValues => _isPitchedBetweenValues;
 
-		[SerializeField] private AudioMixerGroup _mixerGroup;
+		[SerializeField] private float _minPitchValue = 0f;
+		public float MinPitchValue => _minPitchValue;
+
+		[SerializeField] private float _maxPitchValue = 0f;
+		public float MaxPitchValue => _maxPitchValue;
+        #endregion
+		[Space]
+		[Space]
+        #region Loop properties
+        [SerializeField] private bool _isLoop = false;
+		public bool IsLoop => _isLoop;
+        #endregion
+        [SerializeField] private AudioMixerGroup _mixerGroup = null;
 		public AudioMixerGroup MixerGroup => _mixerGroup;
 
-		private AudioSource _source;
+		private AudioSource _source = null;
 		public AudioSource Source { get => _source; set { _source = value; } }
 	}
 }

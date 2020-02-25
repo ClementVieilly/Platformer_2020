@@ -1,27 +1,33 @@
+///-----------------------------------------------------------------
+/// Author : Alexandre RAUMEL
+/// Date : 04/02/2020 11:08
+///-----------------------------------------------------------------
+
 using Com.IsartDigital.Platformer.Screens;
 using Com.IsartDigital.Platformer.Screens.Buttons;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WinScreen : AScreen
 {
-    [SerializeField] private MenuButton menuBtn;
-    [SerializeField] private MenuButton levelSelectorBtn;
+    [SerializeField] private MenuButton menuBtn = null;
+    [SerializeField] private MenuButton levelSelectorBtn = null;
+    [SerializeField] private MenuButton leaderboardBtn = null;
 
     public delegate void WinScreenEventHandler(WinScreen winScreen);//Delegates appelés au clic sur les différents boutons du WinScreen
 
-    public WinScreenEventHandler OnMenuClicked;
-    public WinScreenEventHandler OnLevelSelectorClicked;
+    public event WinScreenEventHandler OnMenuClicked;
+    public event WinScreenEventHandler OnLevelSelectorClicked;
+    public event WinScreenEventHandler OnLeaderboardClicked;
 
-    private void Awake()
+	private void Awake()
     {
         menuBtn.OnMenuButtonClicked += WinScreen_OnMenuClicked;
         levelSelectorBtn.OnMenuButtonClicked += WinScreen_OnLevelSelectorClicked;
+		leaderboardBtn.OnMenuButtonClicked += WinScreen_OnLeaderboardClicked;
     }
 
-    private void WinScreen_OnMenuClicked(Button sender)
+	private void WinScreen_OnMenuClicked(Button sender)
     {
         OnMenuClicked?.Invoke(this);
     }
@@ -29,9 +35,14 @@ public class WinScreen : AScreen
     private void WinScreen_OnLevelSelectorClicked(Button sender)
     {
         OnLevelSelectorClicked?.Invoke(this);
-    }
+	}
 
-    public void UnsubscribeEvents()
+	private void WinScreen_OnLeaderboardClicked(Button button)
+	{
+		OnLeaderboardClicked?.Invoke(this);
+	}
+
+	public override void UnsubscribeEvents()
     {
         OnMenuClicked = null;
         OnLevelSelectorClicked = null;
@@ -41,5 +52,6 @@ public class WinScreen : AScreen
     {
         menuBtn.OnMenuButtonClicked = null;
         levelSelectorBtn.OnMenuButtonClicked = null;
+		leaderboardBtn.OnMenuButtonClicked = null;
     }
 }

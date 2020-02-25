@@ -3,16 +3,14 @@
 /// Date : 04/02/2020 14:45
 ///-----------------------------------------------------------------
 
-using System;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
-
+namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles
+{
     public class TimedDoorTrigger : AInteractiveObstacles
     {
-        [SerializeField] private GameObject doorGameObject;
-        private TimedDoor timedDoor;
+        [SerializeField] private GameObject doorGameObject = null;
+        private TimedDoor timedDoor = null;
 
         private void Awake()
         {

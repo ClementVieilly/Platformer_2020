@@ -44,4 +44,114 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixerGroup: {fileID: 0}
-  sounds: []
+  sounds:
+  - _name: Character_Footsteps_Wood
+    _clip: {fileID: 8300000, guid: dc1916206e9d3554d8cf2e854fdfc55e, type: 3}
+    _volume: 0.273
+    _volumeVariance: 0.193
+    _pitch: 0.75
+    _pitchVariance: 0.185
+    _isPitchedBetweenValues: 0
+    _minPitchValue: 0
+    _maxPitchValue: 0
+    _isLoop: 0
+    _mixerGroup: {fileID: 0}
+  - _name: Character_Jump
+    _clip: {fileID: 8300000, guid: 0c7296f571a9e844594071b0688f6e20, type: 3}
+    _volume: 0.273
+    _volumeVariance: 0.193
+    _pitch: 0.75
+    _pitchVariance: 0.185
+    _isPitchedBetweenValues: 0
+    _minPitchValue: 0
+    _maxPitchValue: 0
+    _isLoop: 0
+    _mixerGroup: {fileID: 0}
+  - _name: Character_WallJump
+    _clip: {fileID: 8300000, guid: 0b4ff05e4a09710428df96ecaa9f8960, type: 3}
+    _volume: 0.273
+    _volumeVariance: 0.193
+    _pitch: 0.75
+    _pitchVariance: 0.185
+    _isPitchedBetweenValues: 0
+    _minPitchValue: 0
+    _maxPitchValue: 0
+    _isLoop: 0
+    _mixerGroup: {fileID: 0}
+  - _name: Character_Plane_Wind
+    _clip: {fileID: 8300000, guid: 3ed7324cf12d02f4099cdbbbd2d492df, type: 3}
+    _volume: 0.273
+    _volumeVariance: 0.193
+    _pitch: 0.75
+    _pitchVariance: 0.185
+    _isPitchedBetweenValues: 0
+    _minPitchValue: 0
+    _maxPitchValue: 0
+    _isLoop: 0
+    _mixerGroup: {fileID: 0}
+  - _name: Character_Plane_Flap01
+    _clip: {fileID: 8300000, guid: 0b4ff05e4a09710428df96ecaa9f8960, type: 3}
+    _volume: 0.273
+    _volumeVariance: 0.193
+    _pitch: 0.75
+    _pitchVariance: 0.185
+    _isPitchedBetweenValues: 0
+    _minPitchValue: 0
+    _maxPitchValue: 0
+    _isLoop: 0
+    _mixerGroup: {fileID: 0}
+  - _name: Character_Footsteps_Stone
+    _clip: {fileID: 8300000, guid: 8c24c9793317b4545b1d9cd069c7c721, type: 3}
+    _volume: 0.75
+    _volumeVariance: 0.1
+    _pitch: 1
+    _pitchVariance: 0.1
+    _isPitchedBetweenValues: 1
+    _minPitchValue: 0.75
+    _maxPitchValue: 1.25
+    _isLoop: 0
+    _mixerGroup: {fileID: 0}
+  - _name: Character_Landing
+    _clip: {fileID: 8300000, guid: ac8ee9018985ae64f815509ed3e5974f, type: 3}
+    _volume: 0.75
+    _volumeVariance: 0.1
+    _pitch: 1
+    _pitchVariance: 0.1
+    _isPitchedBetweenValues: 1
+    _minPitchValue: 0.75
+    _maxPitchValue: 1.25
+    _isLoop: 0
+    _mixerGroup: {fileID: 0}
+  - _name: Character_Flap02
+    _clip: {fileID: 8300000, guid: 18930cc1682309744a7aef154d75a7a3, type: 3}
+    _volume: 0.75
+    _volumeVariance: 0.1
+    _pitch: 1
+    _pitchVariance: 0.1
+    _isPitchedBetweenValues: 1
+    _minPitchValue: 0.75
+    _maxPitchValue: 1.25
+    _isLoop: 1
+    _mixerGroup: {fileID: 0}
+  - _name: Ambiance_Level_One
+    _clip: {fileID: 8300000, guid: 6b4bf9bfc0195db4ba70dab0e73c217a, type: 3}
+    _volume: 0.75
+    _volumeVariance: 0.1
+    _pitch: 1
+    _pitchVariance: 0.1
+    _isPitchedBetweenValues: 0
+    _minPitchValue: 0
+    _maxPitchValue: 0
+    _isLoop: 1
+    _mixerGroup: {fileID: 0}
+  - _name: Ambiance_Level_Two
+    _clip: {fileID: 8300000, guid: efa6b130177d43d4a9d5be0f91c9ccee, type: 3}
+    _volume: 0.75
+    _volumeVariance: 0.1
+    _pitch: 1
+    _pitchVariance: 0.1
+    _isPitchedBetweenValues: 0
+    _minPitchValue: 0
+    _maxPitchValue: 0
+    _isLoop: 1
+    _mixerGroup: {fileID: 0}

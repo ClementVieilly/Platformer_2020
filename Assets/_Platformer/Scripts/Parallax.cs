@@ -13,14 +13,23 @@ namespace Com.IsartDigital.Platformer {
 		public static List<Parallax> list = new List<Parallax>();
 
 		[SerializeField] private Transform cam;
-		[SerializeField, Range(0,1)] private float parallaxFactor = 0.3f;
-		[SerializeField, Range(0,10)] private float scrollingSpeed = 1;
+		[SerializeField] private float parallaxRatio = 0.3f;
 		[SerializeField] private bool isLockedY = false;
+
+		private Vector3 lastCamPos;
+		private Vector3 movementSinceLastFrame;
+
+		private void Start()
+		{
+			lastCamPos = cam.position;	
+		}
 
 		private void LateUpdate()
 		{
-			transform.position =Vector2.Lerp( transform.position,isLockedY ? new Vector2(cam.position.x * - parallaxFactor, transform.position.y) :
-										 new Vector2(cam.position.x * - parallaxFactor, cam.position.y * - parallaxFactor), scrollingSpeed * Time.fixedDeltaTime);	
+			movementSinceLastFrame = cam.position - lastCamPos;
+			if (isLockedY) movementSinceLastFrame.y = 0;
+			transform.position -= movementSinceLastFrame * parallaxRatio;
+			lastCamPos = cam.position;
 		}
 	}
 }

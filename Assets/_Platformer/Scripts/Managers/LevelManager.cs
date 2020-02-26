@@ -131,7 +131,6 @@ namespace Com.IsartDigital.Platformer.Managers
 
             CheckpointManager.Instance.ResetColliders();
 
-            Parallax.ResetAll();
             LifeCollectible.ResetAll();
             ScoreCollectible.ResetAll();
             DestructiblePlatform.ResetAll();

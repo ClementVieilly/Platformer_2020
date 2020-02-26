@@ -12,60 +12,14 @@ namespace Com.IsartDigital.Platformer {
 	{
 		public static List<Parallax> list = new List<Parallax>();
 
-		[SerializeField] private float scrollingSpeed;
-		[SerializeField] private float parallaxScaleX;
-		[SerializeField] private float parallaxScaleY;
-		[SerializeField ]private bool isParallaxOnY;
+		[SerializeField] private Transform cam;
+		[SerializeField, Range(0,2)] private float relativeSpeed = 0.3f;
+		[SerializeField] private bool isLockedY = false;
 
-		private Transform cam;
-		private Vector3 previousCamPos;
-
-
-		private Vector3 startPos;
-
-		private void Awake()
+		private void LateUpdate()
 		{
-			cam = Camera.main.transform;
-			list.Add(this);
-		}
-		private void Start()
-		{
-			//patch replace background
-			cam.position = Vector3.zero;
-
-			previousCamPos = cam.position;
-			startPos = transform.position;
-		}
-
-		private void Update()
-		{
-			Vector3 nextPosition;
-			float xParallax = (previousCamPos.x - cam.position.x) * parallaxScaleX;
-			float posX = transform.position.x + xParallax;
-
-			if (isParallaxOnY)
-			{
-				float yParallax = (previousCamPos.y - cam.position.y) * parallaxScaleY;
-				float posY = transform.position.y + yParallax;
-				nextPosition = new Vector3(posX, posY, transform.position.z);
-			}
-			else nextPosition = new Vector3(posX, transform.position.y, transform.position.z);
-
-			transform.position = Vector3.Lerp(transform.position, nextPosition, scrollingSpeed * Time.deltaTime);
-			previousCamPos = cam.position;
-		}
-
-		public static void ResetAll()
-		{
-			for (int i = list.Count - 1; i >= 0; i--)
-			{
-				list[i].transform.position = list[i].startPos;
-			}
-		}
-
-		private void OnDestroy()
-		{
-			list.Remove(this);
+			transform.position =Vector2.Lerp( transform.position,isLockedY ? new Vector2(cam.position.x * - relativeSpeed, transform.position.y) :
+										 new Vector2(cam.position.x * - relativeSpeed, cam.position.y * - relativeSpeed), 5 * Time.fixedDeltaTime);	
 		}
 	}
 }

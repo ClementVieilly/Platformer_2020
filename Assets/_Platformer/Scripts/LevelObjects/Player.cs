@@ -104,7 +104,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private float topSpeed = 0f;
 
         private bool _jump = false;
-        private bool jump 
+        private bool Jump 
         {
             get { return _jump; }
             set
@@ -217,7 +217,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             horizontalAxis = controller.HorizontalAxis;
             OnPlayerMove?.Invoke(horizontalAxis);
-            jump = controller.Jump;
+            Jump = controller.Jump;
         }
 
         private void FixedUpdate()
@@ -294,7 +294,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             MoveHorizontalOnGround();
 
             //Détéection du jump
-            if (jump && !jumpButtonHasPressed && canJump)
+            if (Jump && !jumpButtonHasPressed && canJump)
             {
                 rigidBody.gravityScale = gravity; 
                 SetModeAir();
@@ -310,7 +310,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 				if (SoundManager.Instance)
 					SoundManager.Instance.Play(sounds.Jump);
             }
-            else if (!jump) jumpButtonHasPressed = false;
+            else if (!Jump) jumpButtonHasPressed = false;
 
             if (!_isGrounded)
             {
@@ -432,7 +432,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             if (_isOnWall)
             {
-                if (jump && !jumpButtonHasPressed)
+                if (Jump && !jumpButtonHasPressed)
                 {
                     jumpButtonHasPressed = true;
                     wasOnWall = true;
@@ -446,12 +446,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
 
             // Gère l'appui long sur le jump
-            if (jump && jumpElapsedTime < settings.MaxJumpTime)
+            if (Jump && jumpElapsedTime < settings.MaxJumpTime)
             {
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y + settings.JumpHoldForce);
                 jumpElapsedTime += Time.fixedDeltaTime;
             }
-            else if (!hasHanged && (!jump || jumpElapsedTime >= settings.MaxJumpTime))
+            else if (!hasHanged && (!Jump || jumpElapsedTime >= settings.MaxJumpTime))
             {
                 jumpElapsedTime = settings.MaxJumpTime;
                 startHang = true;
@@ -474,10 +474,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.gravityScale = gravity;
 
             // Gère le fait qu'on ait bien relaché le bouton de jump avant de pouvoir planer
-            if (!jump) jumpButtonHasPressed = false;
+            if (!Jump) jumpButtonHasPressed = false;
 
             //Passe en mode planage
-            if (jump && !jumpButtonHasPressed) SetModePlane();  
+            if (Jump && !jumpButtonHasPressed) SetModePlane();  
 
             //Chute du Player
             if (_isOnWall && rigidBody.velocity.y <= -settings.FallOnWallVerticalSpeed)
@@ -506,7 +506,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionPlane()
         {
             CheckIsOnWall();
-            if (_isOnWall || !jump)
+            if (_isOnWall || !Jump)
             {
 				if (SoundManager.Instance)
 					SoundManager.Instance.Stop(sounds.PlaneWind);

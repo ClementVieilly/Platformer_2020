@@ -404,8 +404,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsOnWall();
             //animator.SetBool(settings.IsOnWallParam, IsOnWall); 
 
-            CheckIsGrounded(); 
-            if (_isGrounded)
+            //Code pour les platformes traversables
+            if(rigidBody.velocity.y < 2f) CheckIsGrounded();
+
+            if(_isGrounded)
             {
                 wasOnWall = false;
                 wallJumpElaspedTime = 0; 
@@ -482,6 +484,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallOnWallVerticalSpeed);
             else if (rigidBody.velocity.y <= - settings.FallVerticalSpeed)
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.FallVerticalSpeed);
+
+
 
             transform.localScale = previousDirection >= 0 ? scaleRight : scaleLeft;
             animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));

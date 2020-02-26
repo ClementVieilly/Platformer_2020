@@ -4867,7 +4867,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 224670642}
-  relativeSpeed: 0.2
+  parallaxFactor: 0.3
+  scrollingSpeed: 1
   isLockedY: 1
 --- !u!1001 &585956237
 PrefabInstance:
@@ -7836,8 +7837,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 224670642}
-  relativeSpeed: 1
-  isLockedY: 1
+  parallaxFactor: 0.3
+  scrollingSpeed: 2
+  isLockedY: 0
 --- !u!43 &920052332
 Mesh:
   m_ObjectHideFlags: 0
@@ -13075,7 +13077,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 224670642}
-  relativeSpeed: 0.1
+  parallaxFactor: 0.3
+  scrollingSpeed: 1
   isLockedY: 1
 --- !u!1001 &1896193109
 PrefabInstance:
@@ -13092,17 +13095,17 @@ PrefabInstance:
     - target: {fileID: 2517164645187699090, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 375.31033
+      value: 11.861557
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 37
+      value: 11.429132
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}

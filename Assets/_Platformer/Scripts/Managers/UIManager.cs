@@ -301,7 +301,6 @@ namespace Com.IsartDigital.Platformer.Managers
                 yield return null;
             }
             StartCoroutine(UnloadAsyncOfCurrentScene(currentScene, methodToLaunch));
-
 			isPreviousCoroutineEnded = true;
         }
 

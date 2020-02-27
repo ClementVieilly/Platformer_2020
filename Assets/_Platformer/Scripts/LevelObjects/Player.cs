@@ -211,10 +211,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     topSpeed = Mathf.Abs(rigidBody.velocity.x);
             }
 
-            if(horizontalAxis != 0f)
-                previousDirection = horizontalAxis;
+			if (horizontalAxis != 0 && !wasOnWall)
+				previousDirection = horizontalAxis;
 
-            horizontalAxis = controller.HorizontalAxis;
+			horizontalAxis = controller.HorizontalAxis;
             OnPlayerMove?.Invoke(horizontalAxis);
             jump = controller.Jump;
         }
@@ -254,6 +254,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             stateTag.name = "Plane"; 
             DoAction = DoActionPlane;
             animator.SetBool(settings.IsPlaningParam, true);
+			wasOnWall = false;
         }
 
         public void SetModePause()
@@ -428,6 +429,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             if (_isOnWall)
             {
+				if (!wasOnWall)
+					animator.SetBool(settings.IsOnWallParam, true);
+
                 if (jump && !jumpButtonHasPressed)
                 {
                     jumpButtonHasPressed = true;
@@ -438,8 +442,20 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     rigidBody.velocity = new Vector2(settings.WallJumpHorizontalForce * previousDirection, settings.WallJumpVerticalForce);
                     ParticleSystem wjParticle = facingRightWall == 1 ? wallJumpPSRight : wallJumpPSLeft;
                     wjParticle.Play();
-                }
-            }
+
+					animator.SetTrigger(settings.JumpOnWall);
+					animator.SetBool(settings.IsOnWallParam, false);
+
+					// Technique en attendant d'utiliser le wall catch --------------------
+					if (animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+						animator.Play("Fall");
+
+					animator.Play("Jump");
+					// --------------------------------------------------------------------
+
+					transform.localScale = previousDirection >= 0 ? scaleRight : scaleLeft;
+				}
+			}
 
             // Gère l'appui long sur le jump
             if (jump && jumpElapsedTime < settings.MaxJumpTime)
@@ -473,7 +489,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if (!jump) jumpButtonHasPressed = false;
 
             //Passe en mode planage
-            if (jump && !jumpButtonHasPressed) SetModePlane();  
+            if (jump && !jumpButtonHasPressed && !wasOnWall) SetModePlane();  
 
             //Chute du Player
             if (_isOnWall && rigidBody.velocity.y <= -settings.FallOnWallVerticalSpeed)
@@ -481,16 +497,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             else if (rigidBody.velocity.y <= - settings.FallVerticalSpeed)
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.FallVerticalSpeed);
 
-            transform.localScale = previousDirection >= 0 ? scaleRight : scaleLeft;
+			if (!wasOnWall)
+				transform.localScale = previousDirection >= 0 ? scaleRight : scaleLeft;
+
             animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
 
             animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
 
-            if (wallJumpElaspedTime >= 1f)
+            if (wallJumpElaspedTime >= settings.WallJumpTime)
             {
                 wasOnWall = false;
-                wallJumpElaspedTime = 0; 
-            }
+                wallJumpElaspedTime = 0;
+			}
             if (wasOnWall)
             {
                 wallJumpElaspedTime += Time.deltaTime;

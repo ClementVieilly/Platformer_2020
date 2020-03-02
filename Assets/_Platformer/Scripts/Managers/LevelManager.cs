@@ -90,7 +90,11 @@ namespace Com.IsartDigital.Platformer.Managers
         {
 			if (player.Life > 0)
 			{
-				player.SetPosition(CheckpointManager.Instance.LastCheckpointPos);
+				if (CheckpointManager.Instance)
+					player.SetPosition(CheckpointManager.Instance.LastCheckpointPos);
+				else
+					player.SetPosition(player.LastCheckpointPos);
+
 				return;
 			}
 
@@ -98,7 +102,8 @@ namespace Com.IsartDigital.Platformer.Managers
             _completionTime = timeManager.Timer;
             timeManager.SetModeVoid();
 
-            UIManager.Instance.CreateLoseScreen();
+			if (UIManager.Instance)
+				UIManager.Instance.CreateLoseScreen();
         }
 
         private void CheckpointManager_OnFinalCheckPointTriggered()

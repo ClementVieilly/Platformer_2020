@@ -35,7 +35,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         {
             for (int i = List.Count - 1; i >= 0; i--)
             {
-                List[i].mobilePlatform.SetModeVoid();
+                List[i].mobilePlatform.SetModeWait();
             }
         }
 

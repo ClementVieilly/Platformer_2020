@@ -17,6 +17,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private AnimatorParameter _verticalVelocityParam = null;
 		[SerializeField] private AnimatorParameter _isPlaningParam = null;
 		[SerializeField] private AnimatorParameter _isOnWallParam = null;
+		[SerializeField] private AnimatorParameter _jumpOnWallParam = null;
 		[SerializeField] private AnimatorParameter _idleLong = null;
 		[SerializeField] private AnimatorParameter _die = null;
 
@@ -25,6 +26,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public int VerticalVelocityParam => _verticalVelocityParam.ParameterID;
 		public int IsPlaningParam => _isPlaningParam.ParameterID;
 		public int IsOnWallParam => _isOnWallParam.ParameterID;
+		public int JumpOnWall => _jumpOnWallParam.ParameterID;
 		public int IdleLong => _idleLong.ParameterID;
 		public int Die => _die.ParameterID;
 
@@ -46,11 +48,13 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 
 
         [SerializeField] private LayerMask _groundLayerMask;
+
 		[SerializeField] private float _isGroundedRaycastDistance = 0.25f;
 		[SerializeField] private float _jumpTolerance = 0.2f;
 		[SerializeField] private float _minJumpForce = 10f;
 		[SerializeField] private float _wallJumpHorizontalForce = 30f;
 		[SerializeField] private float _wallJumpVerticalForce = 30f;
+		[SerializeField] private float _wallJumpTime = 1f;
 		[SerializeField] private float _jumpHoldForce = 1f;
 		[SerializeField] private float _maxJumpTime = 0.5f;
 		[SerializeField] private float _jumpHangThreshold = 0.5f;
@@ -79,6 +83,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public float MinJumpForce => _minJumpForce;
 		public float WallJumpHorizontalForce => _wallJumpHorizontalForce;
 		public float WallJumpVerticalForce => _wallJumpVerticalForce;
+		public float WallJumpTime => _wallJumpTime;
 		public float JumpHoldForce => _jumpHoldForce;
 		public float MaxJumpTime => _maxJumpTime;
 		public float JumpHangThreshold => _jumpHangThreshold;

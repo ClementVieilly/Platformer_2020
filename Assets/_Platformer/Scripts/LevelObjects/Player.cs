@@ -403,7 +403,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsOnWall();
             //animator.SetBool(settings.IsOnWallParam, IsOnWall); 
 
-            CheckIsGrounded(); 
+            if(rigidBody.velocity.y < 2f)  CheckIsGrounded(); 
             if (_isGrounded)
             {
                 wasOnWall = false;

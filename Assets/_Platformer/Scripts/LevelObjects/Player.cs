@@ -358,14 +358,15 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             //LineCast horizontal aux pieds
             hitInfos = Physics2D.Linecast(groundLinecastStartPos.position, groundLinecastEndPos.position, settings.GroundLayerMask);
-            Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
             IsGrounded = hitInfos.collider != null;
+            Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.JumpTolerance), Color.blue);
 
             if(IsGrounded)
             {
                 //RayCast vertical pour recup sa normal pour calculer les pentes
                 hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.JumpTolerance, settings.GroundLayerMask);
-                Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.JumpTolerance), Color.blue);
+                Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
+
             }
         }
 
@@ -403,7 +404,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsOnWall();
             //animator.SetBool(settings.IsOnWallParam, IsOnWall); 
 
-            if(rigidBody.velocity.y < 2f)  CheckIsGrounded(); 
+            //if(rigidBody.velocity.y <2f)
+                CheckIsGrounded(); 
             if (_isGrounded)
             {
                 wasOnWall = false;
@@ -446,7 +448,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 					animator.SetTrigger(settings.JumpOnWall);
 					animator.SetBool(settings.IsOnWallParam, false);
 
-					// Technique en attendant d'utiliser le wall catch --------------------
+					 //Technique en attendant d'utiliser le wall catch --------------------
 					if (animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
 						animator.Play("Fall");
 

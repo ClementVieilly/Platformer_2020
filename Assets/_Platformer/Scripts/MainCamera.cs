@@ -11,16 +11,5 @@ namespace Com.IsartDigital.Platformer
 	{
 		private static MainCamera _instance;
 
-		private void Awake()
-	    {
-			if (_instance != null && _instance != this)
-			{
-				Destroy(gameObject);
-				return;
-			}
-			else _instance = this;
-
-			DontDestroyOnLoad(gameObject);
-	    }
 	}
 }

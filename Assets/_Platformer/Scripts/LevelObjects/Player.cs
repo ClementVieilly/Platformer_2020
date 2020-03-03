@@ -364,25 +364,31 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             //LineCast horizontal aux pieds
             hitInfos = Physics2D.Linecast(groundLinecastStartPos.position, groundLinecastEndPos.position, settings.GroundLayerMask);
+			Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
 
 			bool isTraversable = false;
-			if (hitInfos.collider && hitInfos.collider.GetComponent<PlatformEffector2D>() &&
-				hitInfos.collider.GetComponent<PlatformEffector2D>().useOneWay &&
-				rigidBody.velocity.y > settings.ToPassTraversableVelocity)
+			if (hitInfos.collider)
+			{
+				if (hitInfos.collider.GetComponent<PlatformEffector2D>() &&
+					hitInfos.collider.GetComponent<PlatformEffector2D>().useOneWay &&
+					rigidBody.velocity.y > settings.ToPassTraversableVelocity)
 				isTraversable = true;
-
-			IsGrounded = hitInfos.collider != null && !isTraversable;
-            Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
-
-            if(IsGrounded)
-            {
-                //RayCast vertical pour recup sa normal pour calculer les pentes
-                hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.JumpTolerance, settings.GroundLayerMask);
-				Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.JumpTolerance), Color.blue);
 			}
+
+			hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.JumpTolerance, settings.GroundLayerMask);
+			Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.JumpTolerance), Color.blue);
+			if (hitInfosNormal.collider)
+			{
+				if (hitInfosNormal.collider.GetComponent<PlatformEffector2D>() &&
+					hitInfosNormal.collider.GetComponent<PlatformEffector2D>().useOneWay &&
+					rigidBody.velocity.y > settings.ToPassTraversableVelocity)
+					isTraversable = true;
+			}
+
+			IsGrounded = (hitInfos.collider != null || hitInfosNormal.collider != null) && !isTraversable;
 		}
 
-        private void MoveHorizontalOnGround()
+		private void MoveHorizontalOnGround()
         {
             float ratio;
             float horizontalMove;
@@ -414,7 +420,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionInAir()
         {
             CheckIsOnWall();
-            //animator.SetBool(settings.IsOnWallParam, IsOnWall); 
+            animator.SetBool(settings.IsOnWallParam, IsOnWall); 
 
             //if(rigidBody.velocity.y <2f)
                 CheckIsGrounded(); 
@@ -443,7 +449,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             if (_isOnWall)
             {
-				if (!wasOnWall)
+				//if (!wasOnWall)
 					animator.SetBool(settings.IsOnWallParam, true);
 
                 if (jump && !jumpButtonHasPressed)

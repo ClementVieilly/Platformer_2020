@@ -358,6 +358,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             //LineCast horizontal aux pieds
             hitInfos = Physics2D.Linecast(groundLinecastStartPos.position, groundLinecastEndPos.position, settings.GroundLayerMask);
+			Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
 
 			bool isTraversable = false;
 			if (hitInfos.collider && hitInfos.collider.GetComponent<PlatformEffector2D>() &&
@@ -365,15 +366,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 				rigidBody.velocity.y > settings.ToPassTraversableVelocity)
 				isTraversable = true;
 
-			IsGrounded = hitInfos.collider != null && !isTraversable;
-            Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
+			Debug.Log("isTraversable : " + isTraversable);
 
-            if(IsGrounded)
-            {
-                //RayCast vertical pour recup sa normal pour calculer les pentes
-                hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.JumpTolerance, settings.GroundLayerMask);
-				Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.JumpTolerance), Color.blue);
-			}
+			hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.JumpTolerance, settings.GroundLayerMask);
+			Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.JumpTolerance), Color.blue);
+
+			IsGrounded = (hitInfos.collider != null || hitInfosNormal.collider != null) && !isTraversable;
 		}
 
         private void MoveHorizontalOnGround()

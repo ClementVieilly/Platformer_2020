@@ -16,8 +16,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         private uint index = 1;
         private uint startIndex = 0;
         [SerializeField] private float duration = 0f;
+        [SerializeField] private float timeBeforeStart = 0f;
         [SerializeField] private string playerTag = "Player"; 
         [SerializeField] private bool isStarted = false; 
+        [SerializeField] private bool oneWay = false; 
 
         private static List<MobilePlatform> _list = new List<MobilePlatform>();
 
@@ -28,16 +30,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         private void Start()
         {
             if(isStarted) SetModeNormal();
-            else SetModeVoid(); 
+            else SetModeWait();
 
             _list.Add(this);
             SetStartPosition();
             startIndex = index;
         }
 
-        public void SetModeVoid() 
+        public void SetModeWait() 
         {
-            DoAction = DoActionVoid;
+            DoAction = DoActionWait;
         }
 
         public void SetModeNormal() 
@@ -45,29 +47,54 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
             DoAction = DoActionNormal;
         }
 
+        public void SetModeVoid()
+        {
+            DoAction = DoActionVoid; 
+        }
+
         private void DoActionVoid()
         {
 
         }
 
-        private void DoActionNormal()
+        private void DoActionWait()
         {
+			if (timeBeforeStart == 0f) return;
+
+            elapsedTime += Time.deltaTime;
+
+			if (elapsedTime >= timeBeforeStart)
+			{
+				elapsedTime = 0f;
+				SetModeNormal();
+			}
+		}
+
+		private void DoActionNormal()
+        {
+            
             elapsedTime += Time.deltaTime;
             Vector3 previousPos = transform.position;
-
-                transform.position = Vector2.Lerp(index > 0 ? 
-                allPoints[index - 1].position : allPoints[allPoints.Length - 1].position, 
-                allPoints[index].position, elapsedTime / duration);
+            
+            transform.position = Vector2.Lerp(index > 0 ? 
+				allPoints[index - 1].position : allPoints[allPoints.Length - 1].position, 
+				allPoints[index].position, elapsedTime / duration);
 
             if (touchedObject != null) touchedObject.position += transform.position - previousPos;
-
             if (elapsedTime >= duration)
             {
-                if (index >= allPoints.Length - 1) index = 0;
+                if(oneWay && index == allPoints.Length - 1)
+                {
+                    SetModeVoid();
+                    return; 
+                }
+
+                if(index >= allPoints.Length - 1) index = 0;
                 else index++;
-                
                 elapsedTime = 0;
+
             }
+
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -89,7 +116,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         private void SetStartPosition()
         {
-            startPos = allPoints[0].position;
+			transform.position = startPos = allPoints[0].position;
         }
 
         private void OnDestroy()
@@ -111,7 +138,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         {
             for (int i = _list.Count - 1; i >= 0; i--)
             {
-                _list[i].SetModeVoid();
+                _list[i].SetModeWait();
             }
         }
 

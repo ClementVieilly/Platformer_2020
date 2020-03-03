@@ -361,20 +361,28 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
 
 			bool isTraversable = false;
-			if (hitInfos.collider && hitInfos.collider.GetComponent<PlatformEffector2D>() &&
-				hitInfos.collider.GetComponent<PlatformEffector2D>().useOneWay &&
-				rigidBody.velocity.y > settings.ToPassTraversableVelocity)
+			if (hitInfos.collider)
+			{
+				if (hitInfos.collider.GetComponent<PlatformEffector2D>() &&
+					hitInfos.collider.GetComponent<PlatformEffector2D>().useOneWay &&
+					rigidBody.velocity.y > settings.ToPassTraversableVelocity)
 				isTraversable = true;
-
-			Debug.Log("isTraversable : " + isTraversable);
+			}
 
 			hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.JumpTolerance, settings.GroundLayerMask);
 			Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.JumpTolerance), Color.blue);
+			if (hitInfosNormal.collider)
+			{
+				if (hitInfosNormal.collider.GetComponent<PlatformEffector2D>() &&
+					hitInfosNormal.collider.GetComponent<PlatformEffector2D>().useOneWay &&
+					rigidBody.velocity.y > settings.ToPassTraversableVelocity)
+					isTraversable = true;
+			}
 
 			IsGrounded = (hitInfos.collider != null || hitInfosNormal.collider != null) && !isTraversable;
 		}
 
-        private void MoveHorizontalOnGround()
+		private void MoveHorizontalOnGround()
         {
             float ratio;
             float horizontalMove;

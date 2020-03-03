@@ -6,10 +6,10 @@
 using Com.IsartDigital.Platformer.LevelObjects;
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer {
+namespace Com.IsartDigital.Platformer.Cameras {
 	public class ChangeCamera : MonoBehaviour
 	{
-		[SerializeField] private GameObject vCam;
+		[SerializeField] protected GameObject vCam;
 
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
@@ -19,6 +19,5 @@ namespace Com.IsartDigital.Platformer {
 		{
 			vCam.SetActive(false);
 		}
-
 	}
 }

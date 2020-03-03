@@ -408,7 +408,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionInAir()
         {
             CheckIsOnWall();
-            //animator.SetBool(settings.IsOnWallParam, IsOnWall); 
+            animator.SetBool(settings.IsOnWallParam, IsOnWall); 
 
             //if(rigidBody.velocity.y <2f)
                 CheckIsGrounded(); 
@@ -437,7 +437,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             if (_isOnWall)
             {
-				if (!wasOnWall)
+				//if (!wasOnWall)
 					animator.SetBool(settings.IsOnWallParam, true);
 
                 if (jump && !jumpButtonHasPressed)

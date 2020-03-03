@@ -21,6 +21,7 @@ namespace Com.IsartDigital.Platformer.Screens
 		[Header("Score")]
 		[SerializeField] private Text scoreText = null;
 		[SerializeField] private GameObject scoreObject = null;
+		[SerializeField] private GameObject bigScoreObject = null;
 
 		[Header("Life")]
 		[SerializeField] private Text lifeText = null;
@@ -45,8 +46,24 @@ namespace Com.IsartDigital.Platformer.Screens
 			{
 				_score = value;
 				scoreObject.SetActive(true);
+				bigScoreObject.SetActive(true);
 				_timer = 0;
 				UpdateText(scoreText, _score);
+			}
+		}
+
+		private bool[] _bigScore = new bool[] { false, false, false, false };
+		public bool[] BigScore
+		{
+			get => _bigScore;
+			set
+			{
+				_bigScore = (bool[])value.Clone();
+				scoreObject.SetActive(true);
+				bigScoreObject.SetActive(true);
+				_timer = 0;
+				UpdateText(scoreText, _score);
+				UpdateBigScore();
 			}
 		}
 
@@ -97,12 +114,13 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		private void showHud()
 		{
-			if (!scoreObject.activeSelf) return;
+			if (!scoreObject.activeSelf && !bigScoreObject.activeSelf) return;
 
 			_timer += Time.deltaTime;
 			if (_timer > 3)
 			{
 				scoreObject.SetActive(false);
+				bigScoreObject.SetActive(false);
 				_timer = 0;
 			}
 		}
@@ -110,6 +128,12 @@ namespace Com.IsartDigital.Platformer.Screens
 		private void UpdateText(Text changingText, float value)
 		{
 			changingText.text = value.ToString();
+		}
+
+		private void UpdateBigScore()
+		{
+			for (int i = _bigScore.Length - 1; i >= 0; i--)
+				bigScoreObject.transform.GetChild(i).gameObject.SetActive(_bigScore[i]);
 		}
 
 		private void Hud_OnButtonPauseClicked()

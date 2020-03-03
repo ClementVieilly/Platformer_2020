@@ -154,6 +154,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         //Cinemachine Virtual Camera
         [SerializeField] private CinemachineVirtualCamera vCam = null;
+        [SerializeField] private GameObject vCamIdle = null;
         private CinemachineFramingTransposer vCamBody = null;
         private float lastLookAheadTime = 0f;
         private float lastLookAheadSmoothing = 0f;
@@ -342,10 +343,15 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 {
                     idleElapsedTime = 0;
                     animator.SetTrigger(settings.IdleLong);
+                    vCamIdle.SetActive(true);
                     isPlaying = true;
                 }
             }
-            else idleElapsedTime = 0;
+            else 
+            {
+                idleElapsedTime = 0;
+                vCamIdle.SetActive(false);
+            }
 
             // Updating Animator
             transform.localScale = previousDirection >= 0 ? scaleRight : scaleLeft;

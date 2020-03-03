@@ -15,7 +15,6 @@ namespace Com.IsartDigital.Platformer.Cameras {
 
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
-			Debug.Log("is on");
 			isStarted = true;
 			vCam.SetActive(true);
 		}

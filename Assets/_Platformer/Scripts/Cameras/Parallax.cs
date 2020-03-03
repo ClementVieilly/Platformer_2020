@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer {
+namespace Com.IsartDigital.Platformer.Cameras {
 	public class Parallax : MonoBehaviour
 	{
 		public static List<Parallax> list = new List<Parallax>();

@@ -59,6 +59,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private float _maxJumpTime = 0.5f;
 		[SerializeField] private float _jumpHangThreshold = 0.5f;
 		[SerializeField] private float _jumpHangTime = 0.5f;
+		[SerializeField] private float _toPassTraversableVelocity = 0.5f;
 		[SerializeField] private int _startLife = 3;
         [SerializeField] private float _coyoteTime = 0f;
         [SerializeField] private Vector2 _impulsionInCorner; 
@@ -88,6 +89,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public float MaxJumpTime => _maxJumpTime;
 		public float JumpHangThreshold => _jumpHangThreshold;
 		public float JumpHangTime => _jumpHangTime;
+		public float ToPassTraversableVelocity => _toPassTraversableVelocity;
 		public int StartLife => _startLife;
 		public float CoyoteTime => _coyoteTime;
 		//public float HalfPlayerHeight => _halfPlayerHeight;

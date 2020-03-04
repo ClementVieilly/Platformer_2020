@@ -50,6 +50,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void UIManager_OnLevelLoaded(LevelManager levelManager)
 		{
 			levelManager.OnWin += LevelManager_OnWin;
+            levelManager.InitPlayerPos(); 
 		}
 
 		private void LevelManager_OnWin(LevelManager levelManager)

@@ -717,6 +717,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private IEnumerator ReplacePlayer(Vector2 position)
         {
+            while(vCamBody == null) yield return null; 
+
             lastLookAheadTime = vCamBody.m_LookaheadTime;
             lastLookAheadSmoothing = vCamBody.m_LookaheadSmoothing;
 

@@ -173,6 +173,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             InitLife();
             gameObject.SetActive(true);
+            GetComponent<Collider2D>().enabled = true;
             SetPosition(startPosition);
 			lastCheckpointPos = transform.position;
 
@@ -689,7 +690,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         public bool LooseLife(int LoseLife = 1)
         {
-            GetComponent<Collider2D>().enabled = false;
+            GetComponent<Collider2D>().enabled = false; // Patch sur la mort du player si il traverse plusieurs kilZone en mourrant 
             animator.SetTrigger(settings.Die);
             if (SoundManager.Instance)
                 SoundManager.Instance.Stop(sounds.PlaneWind);
@@ -717,6 +718,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private IEnumerator ReplacePlayer(Vector2 position)
         {
+            while(vCamBody == null) yield return null; 
+
             lastLookAheadTime = vCamBody.m_LookaheadTime;
             lastLookAheadSmoothing = vCamBody.m_LookaheadSmoothing;
 

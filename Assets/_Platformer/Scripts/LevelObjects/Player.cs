@@ -689,8 +689,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         public bool LooseLife(int LoseLife = 1)
         {
+            GetComponent<Collider2D>().enabled = false;
             animator.SetTrigger(settings.Die);
-
             if (SoundManager.Instance)
                 SoundManager.Instance.Stop(sounds.PlaneWind);
 

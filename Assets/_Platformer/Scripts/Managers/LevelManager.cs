@@ -20,6 +20,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		[SerializeField] private Player player = null;
         [SerializeField] private SoundsSettings sounds = null;
+        [SerializeField] private Level levelInfos;
         private string currentLvlMusicName = "empty";
 		private TimeManager timeManager = null;
 
@@ -44,6 +45,10 @@ namespace Com.IsartDigital.Platformer.Managers
             timeManager.StartTimer();
             StartCoroutine(InitHud());
 		}
+        public void InitPlayerPos()
+        {
+            player.SetPosition(levelInfos.StartPos);
+        }
 
 		/// <summary>
 		/// Set the level number

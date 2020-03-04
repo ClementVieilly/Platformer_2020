@@ -104,6 +104,7 @@ namespace Com.IsartDigital.Platformer.Managers
 				else
 					player.SetPosition(player.LastCheckpointPos);
 
+                player.GetComponent<Collider2D>().enabled = true; 
 				return;
 			}
 

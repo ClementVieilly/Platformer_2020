@@ -52,10 +52,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
             DoAction = DoActionVoid; 
         }
 
-        private void DoActionVoid()
-        {
-
-        }
+        private void DoActionVoid() {}
 
         private void DoActionWait()
         {
@@ -72,7 +69,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
 		private void DoActionNormal()
         {
-            
             elapsedTime += Time.deltaTime;
             Vector3 previousPos = transform.position;
             
@@ -92,9 +88,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
                 if(index >= allPoints.Length - 1) index = 0;
                 else index++;
                 elapsedTime = 0;
-
             }
-
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -138,7 +132,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         {
             for (int i = _list.Count - 1; i >= 0; i--)
             {
-                _list[i].SetModeWait();
+                _list[i].SetModeVoid();
             }
         }
 
@@ -146,8 +140,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         {
             for (int i = _list.Count - 1; i >= 0; i--)
             {
-                if(_list[i].isStarted) _list[i].SetModeNormal(); 
-            }
-        }
+				if (_list[i].isStarted)
+					_list[i].SetModeNormal();
+				else
+					_list[i].SetModeWait();
+			}
+		}
     }
 }

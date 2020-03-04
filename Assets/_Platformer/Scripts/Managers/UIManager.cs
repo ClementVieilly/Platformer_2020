@@ -301,7 +301,7 @@ namespace Com.IsartDigital.Platformer.Managers
                 yield return null;
             }
             StartCoroutine(UnloadAsyncOfCurrentScene(currentScene, methodToLaunch));
-			isPreviousCoroutineEnded = true;
+            isPreviousCoroutineEnded = true;
         }
 
         IEnumerator UnloadAsyncOfCurrentScene(Scene scene, Action action)

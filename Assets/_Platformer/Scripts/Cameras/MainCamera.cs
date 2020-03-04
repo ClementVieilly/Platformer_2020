@@ -8,7 +8,6 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.Cameras {
 	public class MainCamera : MonoBehaviour
 	{
-		private static MainCamera _instance;
 
-	}
+    }
 }

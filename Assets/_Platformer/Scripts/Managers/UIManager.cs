@@ -287,7 +287,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			isPreviousCoroutineEnded = false;
 
             Scene currentScene = SceneManager.GetActiveScene();
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene,LoadSceneMode.Single);
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene,LoadSceneMode.Additive);
 
             ////Creation ecran de chargement
             LoadingScreen loader = CreateLoadingScreen().GetComponent<LoadingScreen>();
@@ -300,9 +300,8 @@ namespace Com.IsartDigital.Platformer.Managers
                 //Debug.Log(progress);
                 yield return null;
             }
-            //StartCoroutine(UnloadAsyncOfCurrentScene(currentScene, methodToLaunch));
-            methodToLaunch();
-			isPreviousCoroutineEnded = true;
+            StartCoroutine(UnloadAsyncOfCurrentScene(currentScene, methodToLaunch));
+            isPreviousCoroutineEnded = true;
         }
 
         IEnumerator UnloadAsyncOfCurrentScene(Scene scene, Action action)

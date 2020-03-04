@@ -173,6 +173,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             InitLife();
             gameObject.SetActive(true);
+            GetComponent<Collider2D>().enabled = true;
             SetPosition(startPosition);
 			lastCheckpointPos = transform.position;
 

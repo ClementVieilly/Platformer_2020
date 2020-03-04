@@ -151,13 +151,15 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		public void Stop(string sound)
 		{
-			Sound currentSound = System.Array.Find(sounds, searchedSound => searchedSound.Name == sound);
+			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
 			if (currentSound == null)
 			{
 				Debug.LogWarning("Sound: " + name + " not found!");
 				return;
 			}
-			currentSound.Source.Stop();
+
+			if (currentSound.Source)
+				currentSound.Source.Stop();
 		}
 
 		/// <summary>

@@ -8705,7 +8705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a09db3d7b904e1846aa988ec7baec3eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
+  cam: {fileID: 1581604838}
   parallaxRatio: 0.3
   isLockedY: 1
 --- !u!4 &399118369
@@ -26275,7 +26275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a09db3d7b904e1846aa988ec7baec3eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
+  cam: {fileID: 1581604838}
   parallaxRatio: 1
   isLockedY: 0
 --- !u!1 &1089460570
@@ -37322,6 +37322,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 391d519b87d81684e8124eb8e206598d, type: 3}
+--- !u!4 &1581604838 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1581604837}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1595159186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40477,7 +40483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a09db3d7b904e1846aa988ec7baec3eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
+  cam: {fileID: 1581604838}
   parallaxRatio: 0.035
   isLockedY: 1
 --- !u!43 &1712931578

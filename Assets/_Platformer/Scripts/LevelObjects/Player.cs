@@ -689,7 +689,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         public bool LooseLife(int LoseLife = 1)
         {
-            GetComponent<Collider2D>().enabled = false;
+            GetComponent<Collider2D>().enabled = false; // Patch sur la mort du player si il traverse plusieurs kilZone en mourrant 
             animator.SetTrigger(settings.Die);
             if (SoundManager.Instance)
                 SoundManager.Instance.Stop(sounds.PlaneWind);

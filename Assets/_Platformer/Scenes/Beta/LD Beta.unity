@@ -923,17 +923,17 @@ PrefabInstance:
     - target: {fileID: 2517164645187699090, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -27.9
+      value: -24.199999
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9199994
+      value: 0.6999991
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
@@ -6110,11 +6110,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CheckPoints final
       objectReference: {fileID: 0}
-    - target: {fileID: 2074140944545821746, guid: 4f96fcb8e8c0bb14e813a4c105451d14,
-        type: 3}
-      propertyPath: _isFinalCheckPoint
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2074140944545821744, guid: 4f96fcb8e8c0bb14e813a4c105451d14,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6184,6 +6179,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.3002
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074140944545821746, guid: 4f96fcb8e8c0bb14e813a4c105451d14,
+        type: 3}
+      propertyPath: _isFinalCheckPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f96fcb8e8c0bb14e813a4c105451d14, type: 3}
@@ -6996,7 +6996,7 @@ PrefabInstance:
     - target: {fileID: 641285116067221772, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.200001
+      value: -7.200001
       objectReference: {fileID: 0}
     - target: {fileID: 641285116067221772, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
@@ -8057,16 +8057,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CheckPoints (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 2074140944545821746, guid: 4f96fcb8e8c0bb14e813a4c105451d14,
-        type: 3}
-      propertyPath: _isFinalCheckPoint
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2074140944545821746, guid: 4f96fcb8e8c0bb14e813a4c105451d14,
-        type: 3}
-      propertyPath: _isSuperCheckpoint
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2074140944545821744, guid: 4f96fcb8e8c0bb14e813a4c105451d14,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8136,6 +8126,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.4592
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074140944545821746, guid: 4f96fcb8e8c0bb14e813a4c105451d14,
+        type: 3}
+      propertyPath: _isFinalCheckPoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074140944545821746, guid: 4f96fcb8e8c0bb14e813a4c105451d14,
+        type: 3}
+      propertyPath: _isSuperCheckpoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f96fcb8e8c0bb14e813a4c105451d14, type: 3}
@@ -9276,7 +9276,10 @@ MonoBehaviour:
   - {fileID: 3751621431964217491}
   - {fileID: 3751621432411936292}
   duration: 2
+  timeBeforeStart: 0
   playerTag: Player
+  isStarted: 0
+  oneWay: 0
 --- !u!4 &6925311985485029853
 Transform:
   m_ObjectHideFlags: 0

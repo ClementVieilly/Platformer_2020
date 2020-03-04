@@ -49,7 +49,20 @@ namespace Com.IsartDigital.Platformer.Controllers
 
 		private const float HORIZONTAL_THRESHOLD = 10f;
 
-		private Camera mainCamera = null;
+		private Camera _mainCamera = null;
+		private Camera MainCamera
+		{
+			get { if (_mainCamera == null)
+					{
+					_mainCamera = Camera.main;
+					}
+				return _mainCamera;
+			}
+			set
+			{
+				_mainCamera = value;
+			}
+		}
 
 		private List<TouchInfo> touches = new List<TouchInfo>();
 
@@ -58,7 +71,7 @@ namespace Com.IsartDigital.Platformer.Controllers
 		/// </summary>
 		public override void Init()
 		{
-			mainCamera = Camera.main;
+			MainCamera = Camera.main;
 		}
 
 		/// <summary>
@@ -94,9 +107,9 @@ namespace Com.IsartDigital.Platformer.Controllers
 				if (touch.phase == TouchPhase.Began)
 				{
 					touchInfo = new TouchInfo(i);
-					Debug.Log(mainCamera);
+					Debug.Log(MainCamera);
 					touchInfo.direction = touchInfo.position = touch.position;
-					touchInfo.side = mainCamera.ScreenToViewportPoint(touch.position).x <= 0.5f ? Side.LEFT : Side.RIGHT;
+					touchInfo.side = MainCamera.ScreenToViewportPoint(touch.position).x <= 0.5f ? Side.LEFT : Side.RIGHT;
 
 					// Check if this side touch is already registered, if not adds it to touches List
 					if (!CheckSideIsAlreadyRegistered(touchInfo.side))
@@ -202,7 +215,7 @@ namespace Com.IsartDigital.Platformer.Controllers
 			{
 				// If the touch leaves right side of the screen it's considered as aborted
 				// so a new touch can be registered
-				if (mainCamera.ScreenToViewportPoint(touch.position).x <= 0.5f)
+				if (MainCamera.ScreenToViewportPoint(touch.position).x <= 0.5f)
 				{
 					_jump = false;
 					touchInfo.side = Side.ABORTED;

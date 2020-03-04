@@ -102,6 +102,8 @@ public class Leaderboard : AScreen
 
 	public void ClearDisplay()
 	{
+		if (infosZone == null) return;
+
 		for (int i = infosZone.transform.childCount - 1; i >= 0; i--)
 			Destroy(infosZone.transform.GetChild(i).gameObject);
 

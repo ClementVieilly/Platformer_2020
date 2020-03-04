@@ -3,6 +3,8 @@
 /// Date : 03/03/2020 15:57
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.LevelObjects;
+using System.Collections;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Cameras {
@@ -10,29 +12,31 @@ namespace Com.IsartDigital.Platformer.Cameras {
 	{
 		[SerializeField] private GameObject vCam;
 		[SerializeField] private float camDuration = 1;
+		[SerializeField] private Player player;
 		private float counter = 1;
-		private bool isStarted = false;
 
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
-			isStarted = true;
-			vCam.SetActive(true);
+			StartCoroutine(ChangeCamera(camDuration));
 		}
 
+		private IEnumerator ChangeCamera (float time)
+		{
+			Rigidbody2D rigidbody = player.GetComponent<Rigidbody2D>();
+			vCam.SetActive(true);
 
-		private void Update()
-	    {
-			if (!isStarted) return;
-			counter += Time.deltaTime;
-			if (counter >= camDuration)
+			player.isLocked = true;
+
+			while (counter <= time)
 			{
-				vCam.SetActive(false);
-				//Destroy(gameObject);
-				isStarted = false;
-				return;
+				rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
+				counter += Time.deltaTime;
+				yield return null;
 			}
-	    }
 
+			player.isLocked = false;
 
+			vCam.SetActive(false);
+		}
 	}
 }

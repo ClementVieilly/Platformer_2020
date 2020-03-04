@@ -158,6 +158,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private CinemachineFramingTransposer vCamBody = null;
         private float lastLookAheadTime = 0f;
         private float lastLookAheadSmoothing = 0f;
+        public bool isLocked = false;
 
         private Action DoAction = null;
 
@@ -199,11 +200,17 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void Update()
         {
+            
             CheckInputs();
         }
 
         private void CheckInputs()
         {
+            if (isLocked) 
+            {
+                horizontalAxis = 0;
+                return;
+            }
             horizontalMoveElapsedTime += Time.deltaTime;
 
             if(horizontalAxis != controller.HorizontalAxis)

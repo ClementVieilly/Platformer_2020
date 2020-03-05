@@ -13,7 +13,7 @@ namespace Com.IsartDigital.Platformer.Cameras {
 		[SerializeField] private float timeLockFirstActivation;
 		[SerializeField] private Player player;
 
-		private bool isFirstActivation = true;
+		[SerializeField] private bool isFirstActivation = true;
 
 		private void Start()
 		{

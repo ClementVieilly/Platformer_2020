@@ -13,7 +13,7 @@ namespace Com.IsartDigital.Platformer.Cameras {
 		[SerializeField] private GameObject vCam;
 		[SerializeField] private float camDuration = 1;
 		[SerializeField] private Player player;
-		private float counter = 1;
+		private float counter = 0;
 
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
@@ -22,20 +22,14 @@ namespace Com.IsartDigital.Platformer.Cameras {
 
 		private IEnumerator ChangeCamera (float time)
 		{
-			Rigidbody2D rigidbody = player.GetComponent<Rigidbody2D>();
+			StartCoroutine(player.Lock(time));
+
 			vCam.SetActive(true);
-
-			player.isLocked = true;
-
 			while (counter <= time)
 			{
-				rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
 				counter += Time.deltaTime;
 				yield return null;
 			}
-
-			player.isLocked = false;
-
 			vCam.SetActive(false);
 		}
 	}

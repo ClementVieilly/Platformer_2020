@@ -9,12 +9,28 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.Cameras {
 	public class ChangeCamera : MonoBehaviour
 	{
-		[SerializeField] protected GameObject vCam;
+		[SerializeField] private GameObject vCam;
+		[SerializeField] private float timeLockFirstActivation;
+		[SerializeField] private Player player;
+
+		private bool isFirstActivation = true;
+
+		private void Start()
+		{
+			//disable vCam if forget to disable it on the scene
+			if (vCam.activeSelf) vCam.SetActive(false);
+		}
 
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
 			vCam.SetActive(true);
+			if (isFirstActivation)
+			{
+				StartCoroutine(player.Lock(timeLockFirstActivation));
+				isFirstActivation = false;
+			}
 		}
+
 		private void OnTriggerExit2D(Collider2D collision)
 		{
 			vCam.SetActive(false);

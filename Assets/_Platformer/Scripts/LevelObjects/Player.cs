@@ -158,7 +158,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private CinemachineFramingTransposer vCamBody = null;
         private float lastLookAheadTime = 0f;
         private float lastLookAheadSmoothing = 0f;
-        public bool isLocked = false;
+
+        //Lock player for cinematics
+        private bool isLocked = false;
+        private float lockTimer = 0;
 
         private Action DoAction = null;
 
@@ -401,6 +404,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             float ratio;
             float horizontalMove;
 
+            if (isLocked) return;
+
             if (horizontalAxis != 0f)
             {
                 ratio = settings.RunAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
@@ -620,6 +625,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void MoveHorizontalInAir()
         {
+            if (isLocked) return;
+
             float horizontalMove;
             if(IsOnWall && horizontalAxis == facingRightWall ) return; 
             if (horizontalAxis != 0f) // On maintiens une direction lors de la chute
@@ -639,6 +646,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             float ratio;
             float horizontalMove;
+
+            if (isLocked) return;
 
             if (horizontalAxis != 0f)
             {
@@ -676,6 +685,23 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 		}
 
         private void DoActionVoid() {}
+
+        public IEnumerator Lock (float duration)
+        {
+            isLocked = true;
+
+            while (lockTimer <= duration)
+            {
+                lockTimer += Time.deltaTime;
+
+                rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
+                if (rigidBody.velocity.y > 0) rigidBody.velocity = new Vector2(0, 0);
+
+                yield return null;
+            }
+            lockTimer = 0;
+            isLocked = false;
+        }
 
         #endregion
 

@@ -5,6 +5,7 @@
 
 using Cinemachine;
 using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
+using Com.IsartDigital.Platformer.LevelObjects.Platforms;
 using Com.IsartDigital.Platformer.Managers;
 using Com.IsartDigital.Platformer.Screens;
 using Com.IsartDigital.Platformer.ScriptableObjects;
@@ -165,6 +166,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private float lockTimer = 0;
 
         private Action DoAction = null;
+
+        private string platformDestructibleTag = "PlatformDestructible"; 
 
         override public void Init()
         {
@@ -623,6 +626,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 facingRightWall = transform.localScale == scaleLeft ? 1 : -1;
             }
             else IsOnWall = false;
+
+            if(IsOnWall)
+            {
+                Collider2D collider = hitInfosLeft.collider != null ? hitInfosLeft.collider : hitInfosRight.collider;
+                if(collider.CompareTag(platformDestructibleTag)) collider.GetComponent<DestructiblePlatform>().SetModeNormal();
+            }
 
             if (hitInfosRight.collider && !hitInfosCornerRight.collider) isOnCorner = true;
             else if (hitInfosLeft.collider && !hitInfosCornerLeft.collider) isOnCorner = true;

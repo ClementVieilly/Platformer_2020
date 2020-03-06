@@ -154,6 +154,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         //Cinemachine Virtual Camera
         [SerializeField] private CinemachineVirtualCamera vCam = null;
+        public CinemachineVirtualCamera VCam => vCam;
         [SerializeField] private GameObject vCamIdle = null;
         private CinemachineFramingTransposer vCamBody = null;
         private float lastLookAheadTime = 0f;
@@ -522,13 +523,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if (!jump) jumpButtonHasPressed = false;
 
             //Passe en mode planage
-            if (jump && !jumpButtonHasPressed && !wasOnWall) SetModePlane();  
+            if (jump && !jumpButtonHasPressed && !wasOnWall) SetModePlane();
 
             //Chute du Player
             if (_isOnWall && rigidBody.velocity.y <= -settings.FallOnWallVerticalSpeed)
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallOnWallVerticalSpeed);
-            else if (rigidBody.velocity.y <= - settings.FallVerticalSpeed)
-                rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.FallVerticalSpeed);
+            else if (rigidBody.velocity.y <= -settings.FallVerticalSpeed)
+            {
+                rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallVerticalSpeed);
+                //rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallVerticalSpeed * (1 + fallMultiplicator));
+                //fallMultiplicator += 0.01f;
+            }
+            //else fallMultiplicator = 0;
 
 			if (!wasOnWall)
 				transform.localScale = previousDirection >= 0 ? scaleRight : scaleLeft;
@@ -549,7 +555,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
             else MoveHorizontalInAir(); 
         }
-
+        private float fallMultiplicator = 0;
         private void DoActionPlane()
         {
             CheckIsOnWall();

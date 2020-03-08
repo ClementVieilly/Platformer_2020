@@ -42,10 +42,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			for (int i = sounds.Length - 1; i > -1; i--)
 			{
 				Sound sound = sounds[i];
-				sound.Source = gameObject.AddComponent<AudioSource>();
-				sound.Source.clip = sounds[i].Clip;
-				sound.Source.loop = sounds[i].IsLoop;
-
+				sound.SetNewSource(gameObject.AddComponent<AudioSource>());
 				sound.Source.outputAudioMixerGroup = mixerGroup;
 			}
 		}
@@ -53,9 +50,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		public Sound Load(string sound,GameObject currentGameObject,AudioSource audioSource = null)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
-
 			Sound loadedSound = new Sound();
-			soundsList.Add(loadedSound);
 
 			//Teste si le son est présent dans le soundmanager
 			if (currentSound == null)
@@ -91,33 +86,6 @@ namespace Com.IsartDigital.Platformer.Managers
 				return;
 			}
 			else if (currentSound.Source.isPlaying) 
-			{
-				//Debug.LogWarning("Sound: " + name + " is already playing!");
-				return;
-			}
-
-			currentSound.Source.volume = currentSound.Volume * (1 + UnityEngine.Random.Range(-currentSound.VolumeVariance / 2, currentSound.VolumeVariance / 2));
-
-			currentSound.Source.pitch = currentSound.IsPitchedBetweenValues ?
-										UnityEngine.Random.Range(currentSound.MinPitchValue, currentSound.MaxPitchValue) :
-										currentSound.Source.pitch = currentSound.Pitch * (1 + UnityEngine.Random.Range(-currentSound.PitchVariance / 2, currentSound.PitchVariance / 2));
-			currentSound.Source.Play();
-		}
-
-		public void Play(string sound, GameObject gameObject)
-		{
-			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
-
-			AudioSource goSource = gameObject.GetComponent<AudioSource>();
-			if (goSource != null) Load(sound, gameObject, goSource);
-			
-
-			if (currentSound == null)
-			{
-				Debug.LogWarning("Sound: " + sound + " not found!");
-				return;
-			}
-			else if (currentSound.Source.isPlaying)
 			{
 				//Debug.LogWarning("Sound: " + name + " is already playing!");
 				return;

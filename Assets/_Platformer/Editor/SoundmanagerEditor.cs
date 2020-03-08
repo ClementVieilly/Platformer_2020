@@ -18,9 +18,14 @@ namespace Com.IsartDigital.Platformer {
 		{
 			base.OnInspectorGUI();
 
-			SoundManager soundmanager = (SoundManager)target;
+			//GUILayout.Space(10);
 
-			GUILayout.Space(10);
+			DrawButtonArea();
+		}
+
+		private void DrawButtonArea()
+		{
+			SoundManager soundmanager = (SoundManager)target;
 
 			GUILayout.Label("Utilities");
 

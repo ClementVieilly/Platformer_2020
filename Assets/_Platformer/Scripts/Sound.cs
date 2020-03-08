@@ -18,8 +18,11 @@ namespace Com.IsartDigital.Platformer {
 
 		[SerializeField] private AudioClip _clip = null;
 		public AudioClip Clip => _clip;
+
+		public SoundTypes type;
 		[Space]
 		[Space]
+
         #region Volume properties
         [Range(0f, 1f)]
 		[SerializeField] private float _volume = .75f;
@@ -29,8 +32,10 @@ namespace Com.IsartDigital.Platformer {
 		[SerializeField] private float _volumeVariance = .1f;
 		public float VolumeVariance => _volumeVariance;
         #endregion
+
 		[Space]
 		[Space]
+
         #region Pitch properties
         [Range(.1f, 3f)]
 		[SerializeField] private float _pitch = 1f;
@@ -50,16 +55,35 @@ namespace Com.IsartDigital.Platformer {
 		[SerializeField] private float _maxPitchValue = 0f;
 		public float MaxPitchValue => _maxPitchValue;
         #endregion
+
 		[Space]
 		[Space]
+
         #region Loop properties
         [SerializeField] private bool _isLoop = false;
 		public bool IsLoop => _isLoop;
         #endregion
+
         [SerializeField] private AudioMixerGroup _mixerGroup = null;
 		public AudioMixerGroup MixerGroup => _mixerGroup;
 
 		private AudioSource _source = null;
 		public AudioSource Source { get => _source; set { _source = value; } }
+
+		public void SetNewSource(AudioSource newSource)
+		{
+			Source = newSource;
+
+			Source.clip = Clip;
+			Source.volume = Volume;
+			Source.pitch = Pitch;
+			Source.loop = IsLoop;
+			Source.outputAudioMixerGroup = MixerGroup;
+		}
+	}
+	public enum SoundTypes
+	{
+		MUSIC,
+		SFX
 	}
 }

@@ -18,7 +18,7 @@ namespace Com.IsartDigital.Platformer {
 		{
 			base.OnInspectorGUI();
 
-			//GUILayout.Space(10);
+			GUILayout.Space(10);
 
 			DrawButtonArea();
 		}

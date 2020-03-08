@@ -23,17 +23,17 @@ PrefabInstance:
     - target: {fileID: 1653878551353223576, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
       propertyPath: m_Name
-      value: BigScore
+      value: BigScore (2)
       objectReference: {fileID: 0}
     - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1641.6
       objectReference: {fileID: 0}
     - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 160.2
       objectReference: {fileID: 0}
     - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
@@ -80,14 +80,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9047345837576227236, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_Radius
+      value: 2.47
+      objectReference: {fileID: 0}
     - target: {fileID: 3570552487461289933, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: bd578676a6bf9434e96962c87ed6aba8,
         type: 3}
-    m_RemovedComponents:
-    - {fileID: 9047345837576227237, guid: deb120095d442c4449ec828e00766c91, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deb120095d442c4449ec828e00766c91, type: 3}
 --- !u!1 &3640091382625888176 stripped
 GameObject:

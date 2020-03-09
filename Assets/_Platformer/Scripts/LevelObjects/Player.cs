@@ -5,6 +5,7 @@
 
 using Cinemachine;
 using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
+using Com.IsartDigital.Platformer.LevelObjects.Platforms;
 using Com.IsartDigital.Platformer.Managers;
 using Com.IsartDigital.Platformer.Screens;
 using Com.IsartDigital.Platformer.ScriptableObjects;
@@ -154,12 +155,19 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         //Cinemachine Virtual Camera
         [SerializeField] private CinemachineVirtualCamera vCam = null;
+        public CinemachineVirtualCamera VCam => vCam;
         [SerializeField] private GameObject vCamIdle = null;
         private CinemachineFramingTransposer vCamBody = null;
         private float lastLookAheadTime = 0f;
         private float lastLookAheadSmoothing = 0f;
 
+        //Lock player for cinematics
+        private bool isLocked = false;
+        private float lockTimer = 0;
+
         private Action DoAction = null;
+
+        private string platformDestructibleTag = "PlatformDestructible"; 
 
         override public void Init()
         {
@@ -199,11 +207,17 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void Update()
         {
+            
             CheckInputs();
         }
 
         private void CheckInputs()
         {
+            if (isLocked) 
+            {
+                horizontalAxis = 0;
+                return;
+            }
             horizontalMoveElapsedTime += Time.deltaTime;
 
             if(horizontalAxis != controller.HorizontalAxis)
@@ -394,6 +408,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             float ratio;
             float horizontalMove;
 
+            if (isLocked) return;
+
             if (horizontalAxis != 0f)
             {
                 ratio = settings.RunAccelerationCurve.Evaluate(horizontalMoveElapsedTime);
@@ -510,13 +526,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if (!jump) jumpButtonHasPressed = false;
 
             //Passe en mode planage
-            if (jump && !jumpButtonHasPressed && !wasOnWall) SetModePlane();  
+            if (jump && !jumpButtonHasPressed && !wasOnWall) SetModePlane();
 
             //Chute du Player
             if (_isOnWall && rigidBody.velocity.y <= -settings.FallOnWallVerticalSpeed)
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallOnWallVerticalSpeed);
-            else if (rigidBody.velocity.y <= - settings.FallVerticalSpeed)
-                rigidBody.velocity = new Vector2(rigidBody.velocity.x, - settings.FallVerticalSpeed);
+            else if (rigidBody.velocity.y <= -settings.FallVerticalSpeed)
+            {
+                rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallVerticalSpeed);
+                //rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallVerticalSpeed * (1 + fallMultiplicator));
+                //fallMultiplicator += 0.01f;
+            }
+            //else fallMultiplicator = 0;
 
 			if (!wasOnWall)
 				transform.localScale = previousDirection >= 0 ? scaleRight : scaleLeft;
@@ -537,7 +558,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
             else MoveHorizontalInAir(); 
         }
-
+        private float fallMultiplicator = 0;
         private void DoActionPlane()
         {
             CheckIsOnWall();
@@ -606,6 +627,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
             else IsOnWall = false;
 
+            if(IsOnWall)
+            {
+                Collider2D collider = hitInfosLeft.collider != null ? hitInfosLeft.collider : hitInfosRight.collider;
+                if(collider.CompareTag(platformDestructibleTag)) collider.GetComponent<DestructiblePlatform>().SetModeNormal();
+            }
+
             if (hitInfosRight.collider && !hitInfosCornerRight.collider) isOnCorner = true;
             else if (hitInfosLeft.collider && !hitInfosCornerLeft.collider) isOnCorner = true;
             else isOnCorner = false;
@@ -613,6 +640,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void MoveHorizontalInAir()
         {
+            if (isLocked) return;
+
             float horizontalMove;
             if(IsOnWall && horizontalAxis == facingRightWall ) return; 
             if (horizontalAxis != 0f) // On maintiens une direction lors de la chute
@@ -632,6 +661,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             float ratio;
             float horizontalMove;
+
+            if (isLocked) return;
 
             if (horizontalAxis != 0f)
             {
@@ -669,6 +700,23 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 		}
 
         private void DoActionVoid() {}
+
+        public IEnumerator Lock (float duration)
+        {
+            isLocked = true;
+
+            while (lockTimer <= duration)
+            {
+                lockTimer += Time.deltaTime;
+
+                rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
+                if (rigidBody.velocity.y > 0) rigidBody.velocity = new Vector2(0, 0);
+
+                yield return null;
+            }
+            lockTimer = 0;
+            isLocked = false;
+        }
 
         #endregion
 

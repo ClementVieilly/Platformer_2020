@@ -173,13 +173,14 @@ namespace Com.IsartDigital.Platformer {
 
             #endregion
 
-            //GUI.Label(position, name.stringValue);
-            showInEditor.boolValue = EditorGUI.Foldout(position, showInEditor.boolValue, name.stringValue);
+            GUI.Label(position, name.stringValue);
+            EditorGUI.BeginProperty(position, label, property);
+            //showInEditor.boolValue = EditorGUI.Foldout(position, showInEditor.boolValue, name.stringValue,false);
+            //showInEditor.boolValue = EditorGUILayout.Foldout(showInEditor.boolValue, name.stringValue,);
 
-            if (!showInEditor.boolValue) return;
+            //if (!showInEditor.boolValue) return;
             GUI.Box(globalRect,"");
 
-            EditorGUI.BeginProperty(position, label, property);
 
             EditorGUI.PropertyField(topInfosLeftRect, name, GUIContent.none);
             EditorGUI.PropertyField(topInfosRightRect, type, GUIContent.none);
@@ -230,8 +231,9 @@ namespace Com.IsartDigital.Platformer {
             //bool
             SerializedProperty showInEditor = property.FindPropertyRelative("showInEditor");
 
-            if (showInEditor.boolValue) return base.GetPropertyHeight(property, label) * (lineNumber + 2);
-            else return base.GetPropertyHeight(property, label);
+            return base.GetPropertyHeight(property, label) * (lineNumber + 2);
+            //if (showInEditor.boolValue) return base.GetPropertyHeight(property, label) * (lineNumber + 2);
+            //else return base.GetPropertyHeight(property, label);
         }
     }
 }

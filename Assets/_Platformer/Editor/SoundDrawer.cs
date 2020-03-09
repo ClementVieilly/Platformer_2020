@@ -69,7 +69,7 @@ namespace Com.IsartDigital.Platformer {
             Rect titleRect = new Rect(position.x,
                 position.y,
                 position.width,
-                lineHeight);
+                lineHeight * 1.1f);
 
             Rect topInfosLeftRect = new Rect(position.x,
                 position.y + lineHeight * 1f,
@@ -173,12 +173,13 @@ namespace Com.IsartDigital.Platformer {
 
             #endregion
 
-            GUI.Label(position, name.stringValue);
-            EditorGUI.BeginProperty(position, label, property);
-            //showInEditor.boolValue = EditorGUI.Foldout(position, showInEditor.boolValue, name.stringValue,false);
-            //showInEditor.boolValue = EditorGUILayout.Foldout(showInEditor.boolValue, name.stringValue,);
+            //GUI.Label(position, name.stringValue);
 
-            //if (!showInEditor.boolValue) return;
+            Rect foldoutRect = showInEditor.boolValue ? titleRect : position;
+            showInEditor.boolValue = EditorGUI.Foldout(foldoutRect, showInEditor.boolValue, name.stringValue);
+
+            if (!showInEditor.boolValue) return;
+            EditorGUI.BeginProperty(position, label, property);
             GUI.Box(globalRect,"");
 
 
@@ -231,9 +232,9 @@ namespace Com.IsartDigital.Platformer {
             //bool
             SerializedProperty showInEditor = property.FindPropertyRelative("showInEditor");
 
-            return base.GetPropertyHeight(property, label) * (lineNumber + 2);
-            //if (showInEditor.boolValue) return base.GetPropertyHeight(property, label) * (lineNumber + 2);
-            //else return base.GetPropertyHeight(property, label);
+            //return base.GetPropertyHeight(property, label) * (lineNumber + 2);
+            if (showInEditor.boolValue) return base.GetPropertyHeight(property, label) * (lineNumber + 2);
+            else return base.GetPropertyHeight(property, label);
         }
     }
 }

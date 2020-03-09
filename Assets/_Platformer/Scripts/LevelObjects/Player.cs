@@ -394,8 +394,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			{
 				if (traversableHitInfos.collider.GetComponent<PlatformEffector2D>() &&
 					traversableHitInfos.collider.GetComponent<PlatformEffector2D>().useOneWay &&
-					(traversableHitInfos.distance < settings.CanGroundOnTraversableDistance ||
-					Mathf.Abs(rigidBody.velocity.y) > settings.ToPassTraversableVelocity))
+					//(traversableHitInfos.distance < settings.CanGroundOnTraversableDistance ||
+					/*Mathf.Abs(*/rigidBody.velocity.y/*)*/ > settings.ToPassTraversableVelocity)/*)*/
 					isTraversable = true;
 			}
 

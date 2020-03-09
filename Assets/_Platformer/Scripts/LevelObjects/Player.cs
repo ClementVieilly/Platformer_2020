@@ -38,7 +38,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private ParticleSystem walkingPS = null;
         [SerializeField] private ParticleSystem jumpingPS = null;
         [SerializeField] private ParticleSystem landingPS = null;
-        [SerializeField] private ParticleSystem wallJumpPSRight = null;
         [SerializeField] private ParticleSystem wallJumpPSLeft = null;
         [SerializeField] private ParticleSystem planePS = null;
 
@@ -169,7 +168,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private float jumpPSTimer = 0; 
         private float jumpPSDuration = 0.3f;
         private float wallJumpPSTimer = 0; 
-        private float wallJumpPSDuration = 0.2f; 
+        private float wallJumpPSDuration = 0.4f; 
 
         private Action DoAction = null;
 
@@ -484,9 +483,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 					wallJumpElaspedTime = 0f;
                     previousDirection = -facingRightWall;
                     rigidBody.velocity = new Vector2(settings.WallJumpHorizontalForce * previousDirection, settings.WallJumpVerticalForce);
-                    ParticleSystem wjParticle = facingRightWall == 1 ? wallJumpPSRight : wallJumpPSLeft;
-                    wjParticle.Play();
-                    StartCoroutine(StartWallJumpParticule(wjParticle)); 
+
+                    wallJumpPSLeft.Play();
+                    StartCoroutine(StartWallJumpParticule()); 
 					animator.SetTrigger(settings.JumpOnWall);
 					animator.SetBool(settings.IsOnWallParam, false);
 
@@ -737,7 +736,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             jumpPSTimer = 0; 
         }
 
-        private IEnumerator StartWallJumpParticule(ParticleSystem currentPS)
+        private IEnumerator StartWallJumpParticule()
         {
             while (wallJumpPSTimer <= wallJumpPSDuration)
             {
@@ -745,8 +744,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 yield return null; 
             }
 
-            currentPS.Stop();
-            wallJumpPSTimer = 0; 
+            wallJumpPSLeft.Stop();
+            wallJumpPSTimer = 0;
         }
 
         #endregion

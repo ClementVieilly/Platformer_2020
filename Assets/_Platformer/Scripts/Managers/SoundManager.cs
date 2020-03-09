@@ -3,6 +3,7 @@
 /// Date : 21/01/2020 10:37
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.LevelObjects;
 using System;
 using System.Collections.Generic;
 
@@ -85,7 +86,7 @@ namespace Com.IsartDigital.Platformer.Managers
 				Debug.LogWarning("Sound: " + sound + " not found!");
 				return;
 			}
-			else if (currentSound.Source.isPlaying) 
+			if (currentSound.Source.isPlaying) 
 			{
 				//Debug.LogWarning("Sound: " + name + " is already playing!");
 				return;
@@ -99,22 +100,48 @@ namespace Com.IsartDigital.Platformer.Managers
 			currentSound.Source.Play();
 		}
 
-		/// <summary>
-		/// DO NOT USE
-		/// </summary>
-		/// <param name="sound"></param>
-		public void Play(Sound sound)
+		public void Play(string sound, ALevelObject emitter)
 		{
-			AudioSource source = sound.Source;
+			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
 
-			if (source.isPlaying) return;
+			if (currentSound == null)
+			{
+				Debug.LogWarning("Sound: " + sound + " not found!");
+				return;
+			}
 
-			source.volume = sound.Volume * (1 + UnityEngine.Random.Range(-sound.VolumeVariance / 2, sound.VolumeVariance / 2));
+			if (currentSound.type == SoundTypes.SFX)
+			{
+				Sound emitSound = emitter.sfxList.Find(x => x.Name == sound);
+				if (emitSound == null)
+				{
+					Debug.Log("ok");
+					emitter.sfxList.Add(new Sound());
+					Sound newSound = emitter.sfxList[emitter.sfxList.Count - 1];
+					newSound.DuplicateValues(currentSound);
 
-			source.pitch = sound.IsPitchedBetweenValues ?
-							UnityEngine.Random.Range(sound.MinPitchValue, sound.MaxPitchValue) :
-							source.pitch = sound.Pitch * (1 + UnityEngine.Random.Range(-sound.PitchVariance / 2, sound.PitchVariance / 2));
-			source.Play();
+					currentSound = newSound;
+					AudioSource source = emitter.gameObject.AddComponent<AudioSource>();
+					currentSound.SetNewSource(source);
+				}
+				else
+				{
+					currentSound = emitSound;
+				}
+			}
+
+			if (currentSound.Source.isPlaying)
+			{
+				//Debug.LogWarning("Sound: " + name + " is already playing!");
+				return;
+			}
+
+			currentSound.Source.volume = currentSound.Volume * (1 + UnityEngine.Random.Range(-currentSound.VolumeVariance / 2, currentSound.VolumeVariance / 2));
+
+			currentSound.Source.pitch = currentSound.IsPitchedBetweenValues ?
+										UnityEngine.Random.Range(currentSound.MinPitchValue, currentSound.MaxPitchValue) :
+										currentSound.Source.pitch = currentSound.Pitch * (1 + UnityEngine.Random.Range(-currentSound.PitchVariance / 2, currentSound.PitchVariance / 2));
+			currentSound.Source.Play();
 		}
 
 		public void Stop(string sound)
@@ -130,15 +157,6 @@ namespace Com.IsartDigital.Platformer.Managers
 				currentSound.Source.Stop();
 		}
 
-		/// <summary>
-		/// DO NOT USE
-		/// </summary>
-		/// <param name="sound"></param>
-		public void Stop(Sound sound)
-		{
-			sound.Source.Stop();
-		}
-
 		public void Pause(string sound)
 		{
 			Sound currentSound = System.Array.Find(sounds, searchedSound => searchedSound.Name == sound);
@@ -148,15 +166,6 @@ namespace Com.IsartDigital.Platformer.Managers
 				return;
 			}
 			currentSound.Source.Pause();
-		}
-
-		/// <summary>
-		/// DO NOT USE
-		/// </summary>
-		/// <param name="sound"></param>
-		public void Pause(Sound sound)
-		{
-			sound.Source.Pause();
 		}
 
 		public void PauseAll()

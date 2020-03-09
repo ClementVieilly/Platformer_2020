@@ -4,12 +4,15 @@
 ///-----------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects
 {
 	public abstract class ALevelObject : MonoBehaviour
 	{
+		public List<Sound> sfxList = new List<Sound>();
+
 		virtual public void Init()
 		{
 			throw new NotImplementedException();

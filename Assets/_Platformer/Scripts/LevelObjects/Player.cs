@@ -4,7 +4,6 @@
 ///-----------------------------------------------------------------
 
 using Cinemachine;
-using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.LevelObjects.Platforms;
 using Com.IsartDigital.Platformer.Managers;
 using Com.IsartDigital.Platformer.Screens;
@@ -265,7 +264,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void SetModePlane()
         {
 			if (SoundManager.Instance)
-				SoundManager.Instance.Play(sounds.PlaneFlap01);
+				SoundManager.Instance.Play(sounds.PlaneFlap01,this);
 
             stateTag.name = "Plane"; 
             DoAction = DoActionPlane;
@@ -324,7 +323,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 jumpingPS.Play();
 
 				if (SoundManager.Instance)
-					SoundManager.Instance.Play(sounds.Jump);
+					SoundManager.Instance.Play(sounds.Jump,this);
             }
             else if (!jump) jumpButtonHasPressed = false;
 
@@ -417,7 +416,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 walkingPS.Play();
 
 				if (SoundManager.Instance)
-					SoundManager.Instance.Play(sounds.FootstepsWood);
+					SoundManager.Instance.Play(sounds.FootstepsWood,this);
             }
             else
             {
@@ -448,7 +447,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 SetModeNormal();
 
 				if (SoundManager.Instance)
-					SoundManager.Instance.Play(sounds.Landing);
+					SoundManager.Instance.Play(sounds.Landing,this);
 
                 return;
             }
@@ -576,7 +575,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 				if (SoundManager.Instance)
 				{
 					SoundManager.Instance.Stop(sounds.PlaneWind);
-					SoundManager.Instance.Play(sounds.Landing);
+					SoundManager.Instance.Play(sounds.Landing,this);
 				}
 
 				SetModeNormal();
@@ -598,7 +597,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             planePS.Play();
 
 			if (SoundManager.Instance)
-				SoundManager.Instance.Play(sounds.PlaneWind); 
+				SoundManager.Instance.Play(sounds.PlaneWind,this); 
         }
 
         private void CheckIsOnWall()

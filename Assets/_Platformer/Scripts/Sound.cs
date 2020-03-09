@@ -80,6 +80,28 @@ namespace Com.IsartDigital.Platformer {
 			Source.loop = IsLoop;
 			Source.outputAudioMixerGroup = MixerGroup;
 		}
+
+		public void DuplicateValues(Sound originSound)
+		{
+			_name = originSound.Name;
+			_clip = originSound.Clip;
+			type = originSound.type;
+
+			_volume = originSound.Volume;
+			_volumeVariance = originSound.VolumeVariance;
+
+			_pitch = originSound.Pitch;
+			_pitchVariance = originSound.PitchVariance;
+
+			_minPitchValue = originSound.MinPitchValue;
+			_maxPitchValue = originSound.MaxPitchValue;
+
+			_isLoop = originSound.IsLoop;
+			_isPitchedBetweenValues = originSound.IsPitchedBetweenValues;
+
+			_mixerGroup = originSound._mixerGroup;
+			_source = originSound.Source;
+		}
 	}
 	public enum SoundTypes
 	{

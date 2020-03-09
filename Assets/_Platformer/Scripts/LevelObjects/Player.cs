@@ -18,12 +18,15 @@ namespace Com.IsartDigital.Platformer.LevelObjects
     [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
     public class Player : ALevelObject
     {
-        [SerializeField] private PlayerController controller = null;
+        [SerializeField] private GameObject stateTag = null;
+
+        [Header("Settings")]
+		[SerializeField] private PlayerController controller = null;
         [SerializeField] private PlayerSettings settings = null;
         [SerializeField] private SoundsSettings sounds = null;
 
-        //Pos des Linecast 
-        [SerializeField] private Transform wallLinecastRightStartPos = null; 
+        [Header("Linecasts and raycasts")]
+		[SerializeField] private Transform wallLinecastRightStartPos = null; 
         [SerializeField] private Transform wallLinecastRightEndPos = null;
         [SerializeField] private Transform wallLinecastLeftStartPos = null;
         [SerializeField] private Transform wallLinecastLeftEndPos = null;
@@ -33,6 +36,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private Transform cornerLinecastLeftEndPos = null;
         [SerializeField] private Transform groundLinecastStartPos = null;
         [SerializeField] private Transform groundLinecastEndPos = null;
+        [SerializeField] private Transform traversableRaycastOrigin = null;
 
         [Header("Particle Systems")]
         [SerializeField] private ParticleSystem walkingPS = null;
@@ -41,8 +45,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private ParticleSystem wallJumpPSRight = null;
         [SerializeField] private ParticleSystem wallJumpPSLeft = null;
         [SerializeField] private ParticleSystem planePS = null;
-
-        [SerializeField] private GameObject stateTag = null;
 
         private RaycastHit2D hitInfos;
         private RaycastHit2D hitInfosNormal;
@@ -154,6 +156,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         public static Action OnPlayerEndJump;
 
         //Cinemachine Virtual Camera
+        [Header("Cinemachine")]
         [SerializeField] private CinemachineVirtualCamera vCam = null;
         public CinemachineVirtualCamera VCam => vCam;
         [SerializeField] private GameObject vCamIdle = null;
@@ -373,30 +376,26 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
         }
 
-        private void CheckIsGrounded()
-        {
-            Vector3 origin = rigidBody.position + Vector2.down * settings.IsGroundedRaycastDistance;
+		private void CheckIsGrounded()
+		{
+			Vector3 origin = rigidBody.position + Vector2.down * settings.IsGroundedRaycastDistance;
 
-            //LineCast horizontal aux pieds
-            hitInfos = Physics2D.Linecast(groundLinecastStartPos.position, groundLinecastEndPos.position, settings.GroundLayerMask);
+			//LineCast horizontal aux pieds
+			hitInfos = Physics2D.Linecast(groundLinecastStartPos.position, groundLinecastEndPos.position, settings.GroundLayerMask);
 			Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
-
-			bool isTraversable = false;
-			if (hitInfos.collider)
-			{
-				if (hitInfos.collider.GetComponent<PlatformEffector2D>() &&
-					hitInfos.collider.GetComponent<PlatformEffector2D>().useOneWay &&
-					rigidBody.velocity.y > settings.ToPassTraversableVelocity)
-				isTraversable = true;
-			}
 
 			hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.JumpTolerance, settings.GroundLayerMask);
 			Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.JumpTolerance), Color.blue);
-			if (hitInfosNormal.collider)
+
+			bool isTraversable = false;
+			RaycastHit2D traversableHitInfos = Physics2D.Raycast(traversableRaycastOrigin.position, Vector2.down, settings.TraversableRaycastDistance, settings.GroundLayerMask);
+			Debug.DrawRay(traversableRaycastOrigin.position, Vector2.down * settings.CanGroundOnTraversableDistance, Color.magenta);
+			if (traversableHitInfos.collider)
 			{
-				if (hitInfosNormal.collider.GetComponent<PlatformEffector2D>() &&
-					hitInfosNormal.collider.GetComponent<PlatformEffector2D>().useOneWay &&
-					rigidBody.velocity.y > settings.ToPassTraversableVelocity)
+				if (traversableHitInfos.collider.GetComponent<PlatformEffector2D>() &&
+					traversableHitInfos.collider.GetComponent<PlatformEffector2D>().useOneWay &&
+					(traversableHitInfos.distance < settings.CanGroundOnTraversableDistance ||
+					Mathf.Abs(rigidBody.velocity.y) > settings.ToPassTraversableVelocity))
 					isTraversable = true;
 			}
 
@@ -439,8 +438,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsOnWall();
             animator.SetBool(settings.IsOnWallParam, IsOnWall); 
 
-            //if(rigidBody.velocity.y <2f)
-                CheckIsGrounded(); 
+            CheckIsGrounded(); 
             if (_isGrounded)
             {
                 wasOnWall = false;
@@ -532,12 +530,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if (_isOnWall && rigidBody.velocity.y <= -settings.FallOnWallVerticalSpeed)
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallOnWallVerticalSpeed);
             else if (rigidBody.velocity.y <= -settings.FallVerticalSpeed)
-            {
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallVerticalSpeed);
-                //rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallVerticalSpeed * (1 + fallMultiplicator));
-                //fallMultiplicator += 0.01f;
-            }
-            //else fallMultiplicator = 0;
 
 			if (!wasOnWall)
 				transform.localScale = previousDirection >= 0 ? scaleRight : scaleLeft;
@@ -558,7 +551,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
             else MoveHorizontalInAir(); 
         }
-        private float fallMultiplicator = 0;
+
         private void DoActionPlane()
         {
             CheckIsOnWall();
@@ -617,12 +610,20 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             if (hitInfosLeft.collider != null)
             {
-                IsOnWall = true;
+				if (hitInfosLeft.collider.GetComponent<PlatformEffector2D>() &&
+					hitInfosLeft.collider.GetComponent<PlatformEffector2D>().useOneWay)
+					return;
+
+				IsOnWall = true;
                 facingRightWall = transform.localScale == scaleLeft ? -1 : 1;
             }
             else if (hitInfosRight.collider != null)
             {
-                IsOnWall = true;
+				if (hitInfosRight.collider.GetComponent<PlatformEffector2D>() &&
+					hitInfosRight.collider.GetComponent<PlatformEffector2D>().useOneWay)
+					return;
+
+				IsOnWall = true;
                 facingRightWall = transform.localScale == scaleLeft ? 1 : -1;
             }
             else IsOnWall = false;

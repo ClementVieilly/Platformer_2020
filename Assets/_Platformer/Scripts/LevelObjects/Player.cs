@@ -165,6 +165,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private bool isLocked = false;
         private float lockTimer = 0;
 
+        //Ps parameter
+        private float jumpPSTimer = 0; 
+        private float jumpPSDuration = 0.3f; 
+
         private Action DoAction = null;
 
         private string platformDestructibleTag = "PlatformDestructible"; 
@@ -322,6 +326,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
                 IsGrounded = false;
                 jumpingPS.Play();
+                StartCoroutine(StartJumpParticule()); 
 
 				if (SoundManager.Instance)
 					SoundManager.Instance.Play(sounds.Jump);
@@ -716,6 +721,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
             lockTimer = 0;
             isLocked = false;
+        }
+
+        private IEnumerator StartJumpParticule()
+        {
+            while (jumpPSTimer <= jumpPSDuration)
+            {
+                jumpPSTimer += Time.deltaTime;
+                yield return null; 
+            }
+
+            jumpingPS.Stop();
+            jumpPSTimer = 0; 
         }
 
         #endregion

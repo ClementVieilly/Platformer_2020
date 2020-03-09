@@ -167,7 +167,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         //Ps parameter
         private float jumpPSTimer = 0; 
-        private float jumpPSDuration = 0.3f; 
+        private float jumpPSDuration = 0.3f;
+        private float wallJumpPSTimer = 0; 
+        private float wallJumpPSDuration = 0.2f; 
 
         private Action DoAction = null;
 
@@ -484,7 +486,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     rigidBody.velocity = new Vector2(settings.WallJumpHorizontalForce * previousDirection, settings.WallJumpVerticalForce);
                     ParticleSystem wjParticle = facingRightWall == 1 ? wallJumpPSRight : wallJumpPSLeft;
                     wjParticle.Play();
-
+                    StartCoroutine(StartWallJumpParticule(wjParticle)); 
 					animator.SetTrigger(settings.JumpOnWall);
 					animator.SetBool(settings.IsOnWallParam, false);
 
@@ -733,6 +735,18 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             jumpingPS.Stop();
             jumpPSTimer = 0; 
+        }
+
+        private IEnumerator StartWallJumpParticule(ParticleSystem currentPS)
+        {
+            while (wallJumpPSTimer <= wallJumpPSDuration)
+            {
+                wallJumpPSTimer += Time.deltaTime;
+                yield return null; 
+            }
+
+            currentPS.Stop();
+            wallJumpPSTimer = 0; 
         }
 
         #endregion

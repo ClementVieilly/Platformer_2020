@@ -13,13 +13,21 @@ namespace Com.IsartDigital.Platformer {
 	[System.Serializable]
 	public class Sound
 	{
-		[SerializeField] private string _name = null;
+		[SerializeField] private string _name = "defaultName";
 		public string Name => _name;
 
 		[SerializeField] private AudioClip _clip = null;
 		public AudioClip Clip => _clip;
 
-		public SoundTypes type;
+		[SerializeField] private SoundTypes _type;
+		public SoundTypes Type
+		{
+			get {return _type; }
+			set 
+			{
+				_type = value;
+			}
+		}
 		[Space]
 		[Space]
 
@@ -79,13 +87,18 @@ namespace Com.IsartDigital.Platformer {
 			Source.pitch = Pitch;
 			Source.loop = IsLoop;
 			Source.outputAudioMixerGroup = MixerGroup;
+
+			if (_type == SoundTypes.SFX)
+			{
+				Source.spatialBlend = 1;
+			}
 		}
 
 		public void DuplicateValues(Sound originSound)
 		{
 			_name = originSound.Name;
 			_clip = originSound.Clip;
-			type = originSound.type;
+			_type = originSound._type;
 
 			_volume = originSound.Volume;
 			_volumeVariance = originSound.VolumeVariance;
@@ -104,7 +117,7 @@ namespace Com.IsartDigital.Platformer {
 		}
 
 #if UNITY_EDITOR
-		public bool showInEditor = false;
+		public bool showInEditor = true;
 #endif
 	}
 	public enum SoundTypes

@@ -18,7 +18,7 @@ namespace Com.IsartDigital.Platformer {
             //string
             SerializedProperty name = property.FindPropertyRelative("_name");
             //SoundTypes
-            SerializedProperty type = property.FindPropertyRelative("type");
+            SerializedProperty type = property.FindPropertyRelative("_type");
             //AudioClip
             SerializedProperty clip = property.FindPropertyRelative("_clip");
 
@@ -171,17 +171,17 @@ namespace Com.IsartDigital.Platformer {
                 position.width * 0.2f,
                 lineHeight);
 
+            Rect foldoutRect = showInEditor.boolValue ? titleRect : position;
             #endregion
 
-            //GUI.Label(position, name.stringValue);
-
-            Rect foldoutRect = showInEditor.boolValue ? titleRect : position;
             showInEditor.boolValue = EditorGUI.Foldout(foldoutRect, showInEditor.boolValue, name.stringValue);
 
             if (!showInEditor.boolValue) return;
-            EditorGUI.BeginProperty(position, label, property);
-            GUI.Box(globalRect,"");
 
+            EditorGUI.BeginProperty(position, label, property);
+
+            //Rect for bakcground
+            GUI.Box(globalRect,"");
 
             EditorGUI.PropertyField(topInfosLeftRect, name, GUIContent.none);
             EditorGUI.PropertyField(topInfosRightRect, type, GUIContent.none);
@@ -199,7 +199,6 @@ namespace Com.IsartDigital.Platformer {
             
             GUI.Label(pitchLeftRect, "Pitch");
             EditorGUI.Slider(pitchRightRect ,pitch, 0, 1,GUIContent.none);
-
 
             isPitchedBetweenValues.boolValue = EditorGUI.Toggle(pitchBoolLeftRect, isPitchedBetweenValues.boolValue);
             GUI.Label(pitchBoolMiddleRect, "is Pitched Between Value ?");

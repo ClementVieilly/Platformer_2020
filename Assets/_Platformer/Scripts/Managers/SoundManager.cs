@@ -82,7 +82,7 @@ namespace Com.IsartDigital.Platformer.Managers
 				return;
 			}
 
-			if (currentSound.type == SoundTypes.SFX)
+			if (currentSound.Type == SoundTypes.SFX)
 			{
 				Sound emitSound = emitter.sfxList.Find(x => x.Name == sound);
 
@@ -140,7 +140,7 @@ namespace Com.IsartDigital.Platformer.Managers
 				return;
 			}
 
-			if (currentSound.type == SoundTypes.SFX)
+			if (currentSound.Type == SoundTypes.SFX)
 			{
 				Sound emitSound = emitter.sfxList.Find(x => x.Name == sound);
 

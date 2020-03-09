@@ -11,8 +11,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 {
 	public abstract class ALevelObject : MonoBehaviour
 	{
+		[SerializeField] protected SoundsSettings sounds = null;
+		[HideInInspector]
 		public List<Sound> sfxList = new List<Sound>();
-
 		virtual public void Init()
 		{
 			throw new NotImplementedException();

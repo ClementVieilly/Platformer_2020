@@ -19,7 +19,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
     {
         [SerializeField] private PlayerController controller = null;
         [SerializeField] private PlayerSettings settings = null;
-        [SerializeField] private SoundsSettings sounds = null;
+        //[SerializeField] private SoundsSettings sounds = null;
 
         //Pos des Linecast 
         [SerializeField] private Transform wallLinecastRightStartPos = null; 

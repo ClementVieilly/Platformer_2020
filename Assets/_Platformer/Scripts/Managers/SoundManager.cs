@@ -43,38 +43,10 @@ namespace Com.IsartDigital.Platformer.Managers
 			for (int i = sounds.Length - 1; i > -1; i--)
 			{
 				Sound sound = sounds[i];
+				soundsList.Add(sounds[i]);
 				sound.SetNewSource(gameObject.AddComponent<AudioSource>());
 				sound.Source.outputAudioMixerGroup = mixerGroup;
 			}
-		}
-
-		public Sound Load(string sound,GameObject currentGameObject,AudioSource audioSource = null)
-		{
-			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
-			Sound loadedSound = new Sound();
-
-			//Teste si le son est présent dans le soundmanager
-			if (currentSound == null)
-			{
-				Debug.LogWarning("Sound: " + name + " not found!");
-				return null;
-			}
-
-			//Teste si un audiosource est present sur le gameobject appelant la methode
-			if (audioSource == null)
-			{
-				audioSource =  currentGameObject.GetComponent<AudioSource>() == null ?
-					currentGameObject.AddComponent<AudioSource>() : currentGameObject.GetComponent<AudioSource>();
-			}
-			
-			loadedSound.Source = audioSource;
-			loadedSound.Source.clip = currentSound.Clip;
-			loadedSound.Source.loop = currentSound.IsLoop;
-
-			loadedSound.Source.outputAudioMixerGroup = currentSound.MixerGroup;
-			soundsList.Add(loadedSound);
-
-			return loadedSound;
 		}
 
 		public void Play(string sound)
@@ -113,16 +85,18 @@ namespace Com.IsartDigital.Platformer.Managers
 			if (currentSound.type == SoundTypes.SFX)
 			{
 				Sound emitSound = emitter.sfxList.Find(x => x.Name == sound);
+
 				if (emitSound == null)
 				{
-					Debug.Log("ok");
 					emitter.sfxList.Add(new Sound());
-					Sound newSound = emitter.sfxList[emitter.sfxList.Count - 1];
-					newSound.DuplicateValues(currentSound);
+					emitSound = emitter.sfxList[emitter.sfxList.Count - 1];
+					emitSound.DuplicateValues(currentSound);
 
-					currentSound = newSound;
+					currentSound = emitSound;
 					AudioSource source = emitter.gameObject.AddComponent<AudioSource>();
 					currentSound.SetNewSource(source);
+
+					soundsList.Add(currentSound);
 				}
 				else
 				{
@@ -151,6 +125,29 @@ namespace Com.IsartDigital.Platformer.Managers
 			{
 				Debug.LogWarning("Sound: " + name + " not found!");
 				return;
+			}
+
+			if (currentSound.Source)
+				currentSound.Source.Stop();
+		}
+
+		public void Stop(string sound, ALevelObject emitter)
+		{
+			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
+			if (currentSound == null)
+			{
+				Debug.LogWarning("Sound: " + name + " not found!");
+				return;
+			}
+
+			if (currentSound.type == SoundTypes.SFX)
+			{
+				Sound emitSound = emitter.sfxList.Find(x => x.Name == sound);
+
+				if (emitSound == null)
+					return;
+				else
+					currentSound = emitSound;
 			}
 
 			if (currentSound.Source)

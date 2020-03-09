@@ -56,6 +56,8 @@ namespace Com.IsartDigital.Platformer {
             SerializedProperty mixerGroup = property.FindPropertyRelative("_mixerGroup");
             //AudioSource
             SerializedProperty source = property.FindPropertyRelative("_source");
+            //bool
+            SerializedProperty showInEditor = property.FindPropertyRelative("showInEditor");
 
             #endregion
 
@@ -171,7 +173,10 @@ namespace Com.IsartDigital.Platformer {
 
             #endregion
 
-            GUI.Label(position, name.stringValue);
+            //GUI.Label(position, name.stringValue);
+            showInEditor.boolValue = EditorGUI.Foldout(position, showInEditor.boolValue, name.stringValue);
+
+            if (!showInEditor.boolValue) return;
             GUI.Box(globalRect,"");
 
             EditorGUI.BeginProperty(position, label, property);
@@ -222,7 +227,11 @@ namespace Com.IsartDigital.Platformer {
         {
             // Use Unity's default height, which is a single line
             // in the inspector
-            return base.GetPropertyHeight(property, label) * (lineNumber + 2);
+            //bool
+            SerializedProperty showInEditor = property.FindPropertyRelative("showInEditor");
+
+            if (showInEditor.boolValue) return base.GetPropertyHeight(property, label) * (lineNumber + 2);
+            else return base.GetPropertyHeight(property, label);
         }
     }
 }

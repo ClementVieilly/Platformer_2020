@@ -102,6 +102,10 @@ namespace Com.IsartDigital.Platformer {
 			_mixerGroup = originSound._mixerGroup;
 			_source = originSound.Source;
 		}
+
+#if UNITY_EDITOR
+		public bool showInEditor = false;
+#endif
 	}
 	public enum SoundTypes
 	{

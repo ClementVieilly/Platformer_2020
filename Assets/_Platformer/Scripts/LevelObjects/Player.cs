@@ -27,10 +27,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private Transform wallLinecastRightEndPos = null;
         [SerializeField] private Transform wallLinecastLeftStartPos = null;
         [SerializeField] private Transform wallLinecastLeftEndPos = null;
-        [SerializeField] private Transform cornerLinecastRightStartPos = null;
-        [SerializeField] private Transform cornerLinecastRightEndPos = null;
-        [SerializeField] private Transform cornerLinecastLeftStartPos = null;
-        [SerializeField] private Transform cornerLinecastLeftEndPos = null;
         [SerializeField] private Transform groundLinecastStartPos = null;
         [SerializeField] private Transform groundLinecastEndPos = null;
 
@@ -40,6 +36,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private ParticleSystem landingPS = null;
         [SerializeField] private ParticleSystem wallJumpPSLeft = null;
         [SerializeField] private ParticleSystem planePS = null;
+        [SerializeField] private ParticleSystem onWallPS = null;
 
         [SerializeField] private GameObject stateTag = null;
 
@@ -462,22 +459,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 return;
             }
 
-            //Gère le cas ou le joueur est sur un coin de plateforme et lui donne un impulsion pour qu'il soit sur la plateforme
-            if (isOnCorner && !wasInCorner)
-            {
-                wasInCorner = true;
-                if (wasInCorner)
-                {
-                   // StartCoroutine(TestCoroutine());
-                    isOnCorner = false;
-                }
-            }
-
             if (_isOnWall)
             {
-				//if (!wasOnWall)
-					animator.SetBool(settings.IsOnWallParam, true);
-
+				animator.SetBool(settings.IsOnWallParam, true);
+                
                 if (jump && !jumpButtonHasPressed)
                 {
                     jumpButtonHasPressed = true;
@@ -486,7 +471,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 					wallJumpElaspedTime = 0f;
                     previousDirection = -facingRightWall;
                     rigidBody.velocity = new Vector2(settings.WallJumpHorizontalForce * previousDirection, settings.WallJumpVerticalForce);
-
+                    onWallPS.Stop();
                     wallJumpPSLeft.Play();
 					animator.SetTrigger(settings.JumpOnWall);
 					animator.SetBool(settings.IsOnWallParam, false);
@@ -538,7 +523,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             //Chute du Player
             if (_isOnWall && rigidBody.velocity.y <= -settings.FallOnWallVerticalSpeed)
+            {
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallOnWallVerticalSpeed);
+                if(!onWallPS.isPlaying) onWallPS.Play(); 
+            }
             else if (rigidBody.velocity.y <= -settings.FallVerticalSpeed)
             {
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallVerticalSpeed);
@@ -617,12 +605,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             Debug.DrawLine(wallLinecastRightStartPos.position, wallLinecastRightEndPos.position, Color.white);
             Debug.DrawLine(wallLinecastLeftStartPos.position, wallLinecastLeftEndPos.position, Color.black);
 
-            //LineCast verticaux pour tester la collision au corner
-            RaycastHit2D hitInfosCornerRight = Physics2D.Linecast(cornerLinecastRightStartPos.position, cornerLinecastRightEndPos.position, settings.GroundLayerMask); 
-            RaycastHit2D hitInfosCornerLeft = Physics2D.Linecast(cornerLinecastLeftStartPos.position, cornerLinecastLeftEndPos.position, settings.GroundLayerMask);
-            Debug.DrawLine(cornerLinecastRightStartPos.position, cornerLinecastRightEndPos.position, Color.yellow);
-            Debug.DrawLine(cornerLinecastLeftStartPos.position, cornerLinecastLeftEndPos.position, Color.red);
-
             if (hitInfosLeft.collider != null)
             {
                 IsOnWall = true;
@@ -640,10 +622,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 Collider2D collider = hitInfosLeft.collider != null ? hitInfosLeft.collider : hitInfosRight.collider;
                 if(collider.CompareTag(platformDestructibleTag)) collider.GetComponent<DestructiblePlatform>().SetModeNormal();
             }
+            else onWallPS.Stop();
 
-            if (hitInfosRight.collider && !hitInfosCornerRight.collider) isOnCorner = true;
-            else if (hitInfosLeft.collider && !hitInfosCornerLeft.collider) isOnCorner = true;
-            else isOnCorner = false;
         }
 
         private void MoveHorizontalInAir()
@@ -688,19 +668,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             rigidBody.velocity = new Vector2(previousDirection * horizontalMove, rigidBody.velocity.y);
         }
 
-        //Coroutine qui replace le player qd on arrive a un corner
-      /*  private IEnumerator TestCoroutine()
-        {
-            while (isOnCorner)
-            {
-                //rigidBody.position = Vector2.MoveTowards(rigidBody.position, target, 1f); Tp le player a une pos 
-                rigidBody.velocity += new Vector2(settings.ImpulsionInCorner.x * previousDirection, settings.ImpulsionInCorner.y);
-                wasInCorner = false;
-                yield return null;
-            }
-
-            StopAllCoroutines(); 
-        }*/
 
 		private void SetModeVoid()
 		{

@@ -4,6 +4,7 @@
 ///-----------------------------------------------------------------
 
 using Cinemachine;
+using Com.IsartDigital.Platformer.Cameras;
 using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
 using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
@@ -104,10 +105,15 @@ namespace Com.IsartDigital.Platformer.Managers
         {
 			if (player.Life > 0)
 			{
-				if (CheckpointManager.Instance)
-					player.SetPosition(CheckpointManager.Instance.LastCheckpointPos);
-				else
-					player.SetPosition(player.LastCheckpointPos);
+				if(CheckpointManager.Instance)
+                {
+                    player.SetPosition(CheckpointManager.Instance.LastCheckpointPos);
+                    PlatformTrigger.ResetAll();
+                    MobilePlatform.ResetAll();
+                    ChangeTravellingCamera.ResetAll();
+                }
+                /*else
+					player.SetPosition(player.LastCheckpointPos);*/
 
                 player.GetComponent<Collider2D>().enabled = true;
 				return;
@@ -157,6 +163,7 @@ namespace Com.IsartDigital.Platformer.Managers
             MobilePlatform.ResetAll();
             PlatformTrigger.ResetAll();
             TimedDoor.ResetAll();
+            ChangeTravellingCamera.ResetAll();
 
             timeManager.StartTimer();
 
@@ -175,6 +182,7 @@ namespace Com.IsartDigital.Platformer.Managers
             MobilePlatform.ResumeAll();
             TimedDoor.ResumeAll();
             SoundManager.Instance.ResumeAll();
+            ChangeTravellingCamera.ResumeAll();
         }
 
         private void PauseGame()
@@ -185,6 +193,7 @@ namespace Com.IsartDigital.Platformer.Managers
             MobilePlatform.PauseAll();
             TimedDoor.PauseAll();
             SoundManager.Instance.PauseAll();
+            ChangeTravellingCamera.PauseAll();
         }
 
         private void UpdateHud()

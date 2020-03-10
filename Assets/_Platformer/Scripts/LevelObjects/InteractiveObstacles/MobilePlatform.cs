@@ -126,6 +126,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
                 _list[i].elapsedTime = 0;
                 _list[i].index = _list[i].startIndex;
             }
+			ResumeAll();
         }
 
         public static void PauseAll()

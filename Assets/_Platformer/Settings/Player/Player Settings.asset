@@ -221,8 +221,10 @@ MonoBehaviour:
   _angleMaxPente: 150
   _groundLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   _isGroundedRaycastDistance: -0.4
+  _canGroundOnTraversableDistance: 1
+  _traversableRaycastDistance: 3
   _jumpTolerance: 0.69
   _minJumpForce: 19
   _wallJumpHorizontalForce: 17
@@ -232,7 +234,7 @@ MonoBehaviour:
   _maxJumpTime: 0.2
   _jumpHangThreshold: 0.5
   _jumpHangTime: 0.05
-  _toPassTraversableVelocity: 3
+  _toPassTraversableVelocity: 0.5
   _startLife: 3
   _coyoteTime: 0.15
   _impulsionInCorner: {x: 5, y: 5}

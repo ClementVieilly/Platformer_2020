@@ -9,19 +9,20 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.Cameras {
 	public class ChangeCamera : MonoBehaviour
 	{
-		[SerializeField] private GameObject vCam;
-		[SerializeField] private float timeLockFirstActivation;
-		[SerializeField] private Player player;
+		[SerializeField] protected GameObject vCam;
+		[SerializeField] protected Player player;
 
-		[SerializeField] private bool isFirstActivation = true;
+		[Space(10)]
+		[SerializeField] protected bool isFirstActivation = true;
+		[SerializeField] protected float timeLockFirstActivation;
 
-		private void Start()
+		virtual protected void Start()
 		{
 			//disable vCam if forget to disable it on the scene
 			if (vCam.activeSelf) vCam.SetActive(false);
 		}
 
-		private void OnTriggerEnter2D(Collider2D collision)
+		virtual protected void OnTriggerEnter2D(Collider2D collision)
 		{
 			vCam.SetActive(true);
 			if (isFirstActivation)
@@ -31,7 +32,7 @@ namespace Com.IsartDigital.Platformer.Cameras {
 			}
 		}
 
-		private void OnTriggerExit2D(Collider2D collision)
+		virtual protected void OnTriggerExit2D(Collider2D collision)
 		{
 			vCam.SetActive(false);
 		}

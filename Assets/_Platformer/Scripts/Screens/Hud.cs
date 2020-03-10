@@ -107,8 +107,7 @@ namespace Com.IsartDigital.Platformer.Screens
 			Player.OnPlayerMove += UpdateMoveController;
 			Player.OnPlayerJump += UpdateJumpController;
 			Player.OnPlayerEndJump += UpdateJumpController2;
-#else
-			joystick.enabled = false;
+			joystick.gameObject.SetActive(true);
 #endif
 		}
 

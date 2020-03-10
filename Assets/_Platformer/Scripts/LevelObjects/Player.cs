@@ -749,6 +749,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			SetModeNormal();
         }
 
+		public void SetStartPosition(Vector2 position)
+		{
+			startPosition = position;
+			SetPosition(startPosition);
+		}
+
         public void SetPosition(Vector2 position)
         {
             if (isActiveAndEnabled) StartCoroutine(ReplacePlayer(position));

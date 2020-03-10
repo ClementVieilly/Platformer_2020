@@ -5565,7 +5565,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1441873181}
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 14
@@ -5849,7 +5849,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1441873181}
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 14
@@ -12067,12 +12067,12 @@ PrefabInstance:
     - target: {fileID: 641285116001174875, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1151
+      value: 1103
       objectReference: {fileID: 0}
     - target: {fileID: 641285116001174875, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 107
+      value: 79
       objectReference: {fileID: 0}
     - target: {fileID: 641285116001174875, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
@@ -12798,7 +12798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vCam: {fileID: 191553127}
-  player: {fileID: 0}
+  player: {fileID: 1441873182}
   isFirstActivation: 0
   timeLockFirstActivation: 1.5
 --- !u!4 &390244057
@@ -19048,7 +19048,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1441873181}
   m_Lens:
     FieldOfView: 25
     OrthographicSize: 22
@@ -23084,7 +23084,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1441873181}
     - target: {fileID: 115112065961503839, guid: c0b65d88c9789aa4780b2f6111d68069,
         type: 3}
       propertyPath: m_Lens.FieldOfView
@@ -23104,7 +23104,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1441873182}
     - target: {fileID: 115112065564126521, guid: c0b65d88c9789aa4780b2f6111d68069,
         type: 3}
       propertyPath: timeLockFirstActivation
@@ -27518,7 +27518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vCam: {fileID: 644192666}
-  player: {fileID: 0}
+  player: {fileID: 1441873182}
   isFirstActivation: 0
   timeLockFirstActivation: 1.5
 --- !u!4 &986291840
@@ -27535,7 +27535,7 @@ Transform:
   - {fileID: 644192669}
   - {fileID: 884407359}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &987425483 stripped
 Transform:
@@ -31597,7 +31597,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1441873181}
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 18
@@ -35598,7 +35598,7 @@ PrefabInstance:
     - target: {fileID: 1966107884059546863, guid: f813be0894c08b5479f5b573021164a2,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 58.11
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 1966107883820702649, guid: f813be0894c08b5479f5b573021164a2,
         type: 3}
@@ -42466,7 +42466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vCam: {fileID: 380753168}
-  player: {fileID: 0}
+  player: {fileID: 1441873182}
   isFirstActivation: 0
   timeLockFirstActivation: 1.5
   camPath: {fileID: 1760978092}
@@ -42512,7 +42512,7 @@ Transform:
   - {fileID: 688190953}
   - {fileID: 380753170}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1503438336
 Mesh:
@@ -44358,7 +44358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vCam: {fileID: 1077645655}
-  player: {fileID: 0}
+  player: {fileID: 1441873182}
   isFirstActivation: 0
   timeLockFirstActivation: 1.5
 --- !u!4 &1554354743
@@ -45097,12 +45097,12 @@ PrefabInstance:
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1373.6667
+      value: 1107.2667
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 145.5
+      value: 83.5
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
@@ -52551,7 +52551,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1441873181}
   m_Lens:
     FieldOfView: 25
     OrthographicSize: 30
@@ -52916,7 +52916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vCam: {fileID: 180139448}
-  player: {fileID: 0}
+  player: {fileID: 1441873182}
   isFirstActivation: 0
   timeLockFirstActivation: 1.5
 --- !u!4 &1830308369
@@ -52933,7 +52933,7 @@ Transform:
   - {fileID: 180139451}
   - {fileID: 556925256}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1831606776
 PrefabInstance:
@@ -58319,7 +58319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vCam: {fileID: 1559709517}
-  player: {fileID: 0}
+  player: {fileID: 1441873182}
   isFirstActivation: 0
   timeLockFirstActivation: 1.5
   camPath: {fileID: 1841620121}
@@ -58424,7 +58424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vCam: {fileID: 1819314474}
-  player: {fileID: 0}
+  player: {fileID: 1441873182}
   isFirstActivation: 1
   timeLockFirstActivation: 1.5
 --- !u!4 &2041042249
@@ -58441,7 +58441,7 @@ Transform:
   - {fileID: 1819314477}
   - {fileID: 1306941044}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2043473211
 PrefabInstance:

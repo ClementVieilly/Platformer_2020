@@ -34,7 +34,7 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		[Header("controller")]
 		[SerializeField] private Joystick joystick = null;
-		[SerializeField] private Button jumpButton = null;
+		[SerializeField] private Joystick jumpButton = null;
 
 		private Button btnPause;
 
@@ -105,9 +105,8 @@ namespace Com.IsartDigital.Platformer.Screens
 
 #if UNITY_ANDROID || UNITY_EDITOR
 			Player.OnPlayerMove += UpdateMoveController;
-			Player.OnPlayerJump += UpdateJumpController;
-			Player.OnPlayerEndJump += UpdateJumpController2;
 			joystick.gameObject.SetActive(true);
+			jumpButton.gameObject.SetActive(true);
 #endif
 		}
 
@@ -150,21 +149,10 @@ namespace Com.IsartDigital.Platformer.Screens
 			joystick.UpdateHandleHorizontalPosition(horizontalAxis);
 		}
 
-		private void UpdateJumpController()
-		{
-			jumpButton.image.color = Color.green;
-		}
-		private void UpdateJumpController2()
-		{
-			jumpButton.image.color = Color.white;
-		}
-
 		private void OnDestroy()
 		{
 			btnPause.onClick.RemoveListener(Hud_OnButtonPauseClicked);
 			Player.OnPlayerMove -= UpdateMoveController;
-			Player.OnPlayerJump -= UpdateJumpController;
-			Player.OnPlayerEndJump -= UpdateJumpController2;
 			_instance = null;
 		}
 

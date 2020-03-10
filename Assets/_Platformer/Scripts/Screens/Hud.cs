@@ -102,9 +102,12 @@ namespace Com.IsartDigital.Platformer.Screens
 
 			btnPause = GetComponentInChildren<Button>();
 			btnPause.onClick.AddListener(Hud_OnButtonPauseClicked);
+
+#if UNITY_ANDROID && !UNITY_EDITOR
 			Player.OnPlayerMove += UpdateMoveController;
 			Player.OnPlayerJump += UpdateJumpController;
 			Player.OnPlayerEndJump += UpdateJumpController2;
+#endif
 		}
 
 		private void Update()

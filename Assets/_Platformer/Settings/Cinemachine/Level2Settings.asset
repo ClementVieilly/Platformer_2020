@@ -10,366 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36baaa8bdcb9d8b49b9199833965d2c3, type: 3}
-  m_Name: Level1Settings
+  m_Name: Level2Settings
   m_EditorClassIdentifier: 
   m_CustomBlends:
   - m_From: '**ANY CAMERA**'
-    m_To: Main vcam
+    m_To: CM fall A
     m_Blend:
       m_Style: 7
-      m_Time: 0.75
-      m_CustomCurve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.39347756
-          value: 0.8348795
-          inSlope: 0.808748
-          outSlope: 0.808748
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-  - m_From: '**ANY CAMERA**'
-    m_To: Idle vcam
-    m_Blend:
-      m_Style: 7
-      m_Time: 5
-      m_CustomCurve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.39347756
-          value: 0.8348795
-          inSlope: 0.808748
-          outSlope: 0.808748
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-  - m_From: '**ANY CAMERA**'
-    m_To: CM mobile platforms 1
-    m_Blend:
-      m_Style: 1
-      m_Time: 1
-      m_CustomCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
-  - m_From: '**ANY CAMERA**'
-    m_To: CM mobile platforms 2
-    m_Blend:
-      m_Style: 1
-      m_Time: 1
-      m_CustomCurve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.39347756
-          value: 0.8348795
-          inSlope: 0.808748
-          outSlope: 0.808748
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-  - m_From: '**ANY CAMERA**'
-    m_To: CM mobile platforms 3
-    m_Blend:
-      m_Style: 1
-      m_Time: 1
-      m_CustomCurve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.39347756
-          value: 0.8348795
-          inSlope: 0.808748
-          outSlope: 0.808748
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-  - m_From: '**ANY CAMERA**'
-    m_To: CM mobile platforms 4
-    m_Blend:
-      m_Style: 1
-      m_Time: 1
-      m_CustomCurve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.39347756
-          value: 0.8348795
-          inSlope: 0.808748
-          outSlope: 0.808748
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-  - m_From: '**ANY CAMERA**'
-    m_To: CM fall 1
-    m_Blend:
-      m_Style: 7
-      m_Time: 3.5
-      m_CustomCurve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.39347756
-          value: 0.8348795
-          inSlope: 0.808748
-          outSlope: 0.808748
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-  - m_From: '**ANY CAMERA**'
-    m_To: CM fall 2
-    m_Blend:
-      m_Style: 7
-      m_Time: 3
-      m_CustomCurve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.39347756
-          value: 0.8348795
-          inSlope: 0.808748
-          outSlope: 0.808748
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-  - m_From: '**ANY CAMERA**'
-    m_To: CM trigger platform 1
-    m_Blend:
-      m_Style: 7
-      m_Time: 0.75
-      m_CustomCurve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.4578086
-          value: 0.83005774
-          inSlope: 0.808748
-          outSlope: 0.808748
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-  - m_From: CM mobile platforms 1
-    m_To: Main vcam
-    m_Blend:
-      m_Style: 1
-      m_Time: 1
-      m_CustomCurve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 0.4578086
-          value: 0.83005774
-          inSlope: 0.808748
-          outSlope: 0.808748
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-  - m_From: CM fall 2
-    m_To: Main vcam
-    m_Blend:
-      m_Style: 3
       m_Time: 1.5
       m_CustomCurve:
         serializedVersion: 2
@@ -384,8 +31,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.39347756
-          value: 0.8348795
+          time: 0.4578086
+          value: 0.83005774
           inSlope: 0.808748
           outSlope: 0.808748
           tangentMode: 0
@@ -404,11 +51,11 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 0
-  - m_From: CM fall 1
-    m_To: Main vcam
+  - m_From: '**ANY CAMERA**'
+    m_To: CM fall B
     m_Blend:
-      m_Style: 3
-      m_Time: 3
+      m_Style: 7
+      m_Time: 1.5
       m_CustomCurve:
         serializedVersion: 2
         m_Curve:
@@ -422,8 +69,274 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.39347756
-          value: 0.8348795
+          time: 0.4578086
+          value: 0.83005774
+          inSlope: 0.808748
+          outSlope: 0.808748
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+  - m_From: '**ANY CAMERA**'
+    m_To: CM fix 1
+    m_Blend:
+      m_Style: 7
+      m_Time: 0.75
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: -0.38175976
+          outSlope: -0.38175976
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.25592554
+        - serializedVersion: 3
+          time: 0.42027506
+          value: 0.43294874
+          inSlope: 1.6708939
+          outSlope: 1.6708939
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+  - m_From: '**ANY CAMERA**'
+    m_To: 6_CM SemiFix 1
+    m_Blend:
+      m_Style: 1
+      m_Time: 1.25
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.4578086
+          value: 0.83005774
+          inSlope: 0.808748
+          outSlope: 0.808748
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+  - m_From: '**ANY CAMERA**'
+    m_To: Main vcam
+    m_Blend:
+      m_Style: 7
+      m_Time: 0.75
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.4578086
+          value: 0.83005774
+          inSlope: 0.808748
+          outSlope: 0.808748
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+  - m_From: '**ANY CAMERA**'
+    m_To: CM travelling 1
+    m_Blend:
+      m_Style: 7
+      m_Time: 0.75
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.4578086
+          value: 0.83005774
+          inSlope: 0.808748
+          outSlope: 0.808748
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+  - m_From: CM travelling 1
+    m_To: Main vcam
+    m_Blend:
+      m_Style: 7
+      m_Time: 1
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.4578086
+          value: 0.83005774
+          inSlope: 0.808748
+          outSlope: 0.808748
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+  - m_From: CM fall B
+    m_To: Main vcam
+    m_Blend:
+      m_Style: 7
+      m_Time: 2.5
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.4578086
+          value: 0.83005774
+          inSlope: 0.808748
+          outSlope: 0.808748
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+  - m_From: 8_CM travelling 2
+    m_To: 9_CM Dezzom
+    m_Blend:
+      m_Style: 1
+      m_Time: 1.5
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.4578086
+          value: 0.83005774
           inSlope: 0.808748
           outSlope: 0.808748
           tangentMode: 0

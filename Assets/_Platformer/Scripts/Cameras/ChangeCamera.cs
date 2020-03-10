@@ -10,12 +10,29 @@ namespace Com.IsartDigital.Platformer.Cameras {
 	public class ChangeCamera : MonoBehaviour
 	{
 		[SerializeField] protected GameObject vCam;
+		[SerializeField] protected Player player;
 
-		private void OnTriggerEnter2D(Collider2D collision)
+		[Space(10)]
+		[SerializeField] protected bool isFirstActivation = true;
+		[SerializeField] protected float timeLockFirstActivation;
+
+		virtual protected void Start()
+		{
+			//disable vCam if forget to disable it on the scene
+			if (vCam.activeSelf) vCam.SetActive(false);
+		}
+
+		virtual protected void OnTriggerEnter2D(Collider2D collision)
 		{
 			vCam.SetActive(true);
+			if (isFirstActivation)
+			{
+				StartCoroutine(player.Lock(timeLockFirstActivation));
+				isFirstActivation = false;
+			}
 		}
-		private void OnTriggerExit2D(Collider2D collision)
+
+		virtual protected void OnTriggerExit2D(Collider2D collision)
 		{
 			vCam.SetActive(false);
 		}

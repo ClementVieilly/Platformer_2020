@@ -168,7 +168,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private float jumpPSTimer = 0; 
         private float jumpPSDuration = 0.3f;
         private float wallJumpPSTimer = 0; 
-        private float wallJumpPSDuration = 0.4f; 
+        private float wallJumpPSDuration = 0.5f; 
 
         private Action DoAction = null;
 
@@ -252,6 +252,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             DoAction = DoActionNormal;
             landingPS.Play();
             animator.SetBool(settings.IsPlaningParam, false);
+            planePS.Stop();
         }
 
         private void SetModeSpawn()
@@ -265,6 +266,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             stateTag.name = "Air"; 
             DoAction = DoActionInAir;
             animator.SetBool(settings.IsPlaningParam, false);
+            planePS.Stop();
         }
 
         private void SetModePlane()
@@ -276,6 +278,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             DoAction = DoActionPlane;
             animator.SetBool(settings.IsPlaningParam, true);
 			wasOnWall = false;
+            planePS.Play();
         }
 
         public void SetModePause()
@@ -485,7 +488,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     rigidBody.velocity = new Vector2(settings.WallJumpHorizontalForce * previousDirection, settings.WallJumpVerticalForce);
 
                     wallJumpPSLeft.Play();
-                    StartCoroutine(StartWallJumpParticule()); 
 					animator.SetTrigger(settings.JumpOnWall);
 					animator.SetBool(settings.IsOnWallParam, false);
 
@@ -584,7 +586,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 					SoundManager.Instance.Stop(sounds.PlaneWind);
 					SoundManager.Instance.Play(sounds.Landing);
 				}
-
+                //planePS.Stop(); 
 				SetModeNormal();
                 return; 
             }
@@ -601,7 +603,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             animator.SetFloat(settings.HorizontalSpeedParam, Mathf.Abs(rigidBody.velocity.x));
             animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
 
-            planePS.Play();
+            
 
 			if (SoundManager.Instance)
 				SoundManager.Instance.Play(sounds.PlaneWind); 
@@ -736,17 +738,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             jumpPSTimer = 0; 
         }
 
-        private IEnumerator StartWallJumpParticule()
-        {
-            while (wallJumpPSTimer <= wallJumpPSDuration)
-            {
-                wallJumpPSTimer += Time.deltaTime;
-                yield return null; 
-            }
-
-            wallJumpPSLeft.Stop();
-            wallJumpPSTimer = 0;
-        }
+       
 
         #endregion
 

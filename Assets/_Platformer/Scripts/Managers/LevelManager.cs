@@ -46,9 +46,10 @@ namespace Com.IsartDigital.Platformer.Managers
             timeManager.StartTimer();
             StartCoroutine(InitHud());
 		}
+
         public void InitPlayerPos()
         {
-            player.SetPosition(levelInfos.StartPos);
+            player.SetStartPosition(levelInfos.StartPos);
         }
 
 		/// <summary>

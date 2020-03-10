@@ -33,7 +33,7 @@ namespace Com.IsartDigital.Platformer.Screens
 		[SerializeField] private Sprite lifeSprite3 = null;
 
 		[Header("controller")]
-		[SerializeField] private Slider moveSlider = null;
+		[SerializeField] private Joystick joystick = null;
 		[SerializeField] private Button jumpButton = null;
 
 		private Button btnPause;
@@ -143,7 +143,7 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		private void UpdateMoveController(float horizontalAxis)
 		{
-			moveSlider.value = Mathf.Lerp(moveSlider.value, horizontalAxis, 0.1f);
+			joystick.UpdateHandleHorizontalPosition(horizontalAxis);
 		}
 
 		private void UpdateJumpController()

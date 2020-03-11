@@ -395,7 +395,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
 			bool isTraversable = false;
 			RaycastHit2D traversableHitInfos = Physics2D.Raycast(traversableRaycastOrigin.position, Vector2.down, settings.TraversableRaycastDistance, settings.GroundLayerMask);
-			Debug.DrawRay(traversableRaycastOrigin.position, Vector2.down * settings.CanGroundOnTraversableDistance, Color.magenta);
+			//Debug.DrawRay(traversableRaycastOrigin.position, Vector2.down * settings.CanGroundOnTraversableDistance, Color.magenta);
 			if (traversableHitInfos.collider)
 			{
 				if (traversableHitInfos.collider.GetComponent<PlatformEffector2D>() &&

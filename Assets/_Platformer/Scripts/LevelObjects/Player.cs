@@ -405,11 +405,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 					isTraversable = true;
 			}
 
-			bool isTrigger = false;
-			if ((hitInfos.collider && hitInfos.collider.isTrigger) || (hitInfosNormal.collider && hitInfosNormal.collider.isTrigger))
-				isTrigger = true;
-
-			IsGrounded = (hitInfos.collider != null || hitInfosNormal.collider != null) && !isTraversable && !isTrigger;
+			IsGrounded = (hitInfos.collider != null || hitInfosNormal.collider != null) && !isTraversable;
 		}
 
 		private void MoveHorizontalOnGround()

@@ -166,9 +166,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         //Ps parameter
         private float jumpPSTimer = 0; 
-        private float jumpPSDuration = 0.3f;
-        private float wallJumpPSTimer = 0; 
-        private float wallJumpPSDuration = 0.5f; 
+        private float jumpPSDuration = 0.4f;
 
         private Action DoAction = null;
 

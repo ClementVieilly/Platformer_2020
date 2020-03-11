@@ -22,7 +22,7 @@ namespace Com.IsartDigital.Platformer.Cameras {
 			if (vCam.activeSelf) vCam.SetActive(false);
 		}
 
-		virtual protected void Launch()
+		virtual public void Launch()
 		{
 			vCam.SetActive(true);
 			if (isFirstActivation)

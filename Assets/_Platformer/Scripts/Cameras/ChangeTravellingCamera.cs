@@ -15,6 +15,7 @@ namespace Com.IsartDigital.Platformer.Cameras {
 		[SerializeField] private float camSpeed = 0;
 		public static List<ChangeTravellingCamera> list = new List<ChangeTravellingCamera>();
 		private bool isPlaying = false;
+		[SerializeField] private bool isTriggerExtern = false;
 
 		protected override void Start()
 		{
@@ -23,7 +24,7 @@ namespace Com.IsartDigital.Platformer.Cameras {
 			list.Add(this);
 		}
 
-		protected override void Launch()
+		public override void Launch()
 		{
 			base.Launch();
 			camPath.m_Speed = camSpeed;
@@ -32,7 +33,7 @@ namespace Com.IsartDigital.Platformer.Cameras {
 
 		protected override void OnTriggerEnter2D(Collider2D collision)
 		{
-			//if (CONDITION)
+			if (!isTriggerExtern)
 				Launch();
 		}
 

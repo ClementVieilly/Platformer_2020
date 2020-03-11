@@ -13280,12 +13280,12 @@ PrefabInstance:
     - target: {fileID: 641285116001174875, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 606
+      value: 1379
       objectReference: {fileID: 0}
     - target: {fileID: 641285116001174875, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 123
+      value: 138
       objectReference: {fileID: 0}
     - target: {fileID: 641285116001174875, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
@@ -13395,7 +13395,7 @@ PrefabInstance:
     - target: {fileID: 641285116067221772, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.533325
+      value: -8.533447
       objectReference: {fileID: 0}
     - target: {fileID: 641285116067221772, guid: 1ab75253b02f99247949a2d823798f96,
         type: 3}
@@ -45221,6 +45221,57 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b52d0f17746bd4a4bac451182b417868, type: 3}
+--- !u!1 &1437675697 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3751621431771777929, guid: b52d0f17746bd4a4bac451182b417868,
+    type: 3}
+  m_PrefabInstance: {fileID: 1437675696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1437675698 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 3751621431771777933, guid: b52d0f17746bd4a4bac451182b417868,
+    type: 3}
+  m_PrefabInstance: {fileID: 1437675696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1437675699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437675697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de83a807e5d16e846b9864822fa6e541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collider: {fileID: 1437675698}
+  _onStay:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Com.IsartDigital.Common.UnityEvents.Trigger2DUnityEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  _onEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2037161531}
+        m_MethodName: Launch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Com.IsartDigital.Common.UnityEvents.Trigger2DUnityEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  _onExit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Com.IsartDigital.Common.UnityEvents.Trigger2DUnityEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!4 &1441873181 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 641285116001174875, guid: 1ab75253b02f99247949a2d823798f96,
@@ -46327,6 +46378,7 @@ MonoBehaviour:
   timeLockFirstActivation: 1.5
   camPath: {fileID: 1760978092}
   camSpeed: 10
+  isTriggerExtern: 0
 --- !u!61 &1502568724
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -49384,12 +49436,12 @@ PrefabInstance:
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 610.26666
+      value: 1383.2667
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 127.5
+      value: 142.5
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
@@ -63556,6 +63608,7 @@ MonoBehaviour:
   timeLockFirstActivation: 1.5
   camPath: {fileID: 1841620121}
   camSpeed: 9
+  isTriggerExtern: 1
 --- !u!61 &2037161532
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -63569,7 +63622,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 125.855835, y: 5.0337334}
+  m_Offset: {x: 129.10211, y: 5.0337334}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -63580,7 +63633,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 243.26416, y: 58.196693}
+  m_Size: {x: 236.7716, y: 58.196693}
   m_EdgeRadius: 0
 --- !u!4 &2037161533
 Transform:

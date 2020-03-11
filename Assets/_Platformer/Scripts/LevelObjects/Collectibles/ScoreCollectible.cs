@@ -17,6 +17,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 
 		public event ScoreCollectibleEventHandler OnCollected;
 
+        [SerializeField] private ParticleSystem collectParticleSystem;
+
 		[SerializeField] private int score = 1;
 
 		private void Awake()
@@ -27,6 +29,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 		protected override void EffectOfTheCollectible()
 		{
 			OnCollected?.Invoke(score);
+            Instantiate(collectParticleSystem,transform.position, Quaternion.identity);
 		}
 
 		public static void ResetAll()

@@ -46378,7 +46378,7 @@ MonoBehaviour:
   timeLockFirstActivation: 1.5
   camPath: {fileID: 1760978092}
   camSpeed: 10
-  isTriggerExtern: 0
+  isTriggerExtern: 1
 --- !u!61 &1502568724
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46392,7 +46392,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 43.7, y: 5.0337334}
+  m_Offset: {x: 49.77645, y: 5.0337334}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -46403,7 +46403,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 97.0293, y: 58.196693}
+  m_Size: {x: 84.87639, y: 58.196693}
   m_EdgeRadius: 0
 --- !u!4 &1502568725
 Transform:
@@ -54552,6 +54552,57 @@ Transform:
   m_Father: {fileID: 1668831295}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1724022656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3751621431771777929, guid: b52d0f17746bd4a4bac451182b417868,
+    type: 3}
+  m_PrefabInstance: {fileID: 2080905000}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1724022657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724022656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de83a807e5d16e846b9864822fa6e541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collider: {fileID: 1724022659}
+  _onStay:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Com.IsartDigital.Common.UnityEvents.Trigger2DUnityEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  _onEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1502568723}
+        m_MethodName: Launch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Com.IsartDigital.Common.UnityEvents.Trigger2DUnityEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  _onExit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Com.IsartDigital.Common.UnityEvents.Trigger2DUnityEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!58 &1724022659 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 3751621431771777933, guid: b52d0f17746bd4a4bac451182b417868,
+    type: 3}
+  m_PrefabInstance: {fileID: 2080905000}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1738772823
 PrefabInstance:
   m_ObjectHideFlags: 0

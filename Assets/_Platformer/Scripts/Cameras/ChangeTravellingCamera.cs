@@ -23,11 +23,17 @@ namespace Com.IsartDigital.Platformer.Cameras {
 			list.Add(this);
 		}
 
-		protected override void OnTriggerEnter2D(Collider2D collision)
+		protected override void Launch()
 		{
-			base.OnTriggerEnter2D(collision);
+			base.Launch();
 			camPath.m_Speed = camSpeed;
 			isPlaying = true;
+		}
+
+		protected override void OnTriggerEnter2D(Collider2D collision)
+		{
+			//if (CONDITION)
+				Launch();
 		}
 
 		protected override void OnTriggerExit2D(Collider2D collision)

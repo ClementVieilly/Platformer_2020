@@ -104,6 +104,33 @@ namespace Com.IsartDigital.Platformer.Managers
 			currentSound.Source.Play();
 		}
 
+		public void Play(string sound, GameObject gameObject)
+		{
+			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
+
+			AudioSource goSource = gameObject.GetComponent<AudioSource>();
+			if (goSource != null) Load(sound, gameObject, goSource);
+			
+
+			if (currentSound == null)
+			{
+				Debug.LogWarning("Sound: " + sound + " not found!");
+				return;
+			}
+			else if (currentSound.Source.isPlaying)
+			{
+				//Debug.LogWarning("Sound: " + name + " is already playing!");
+				return;
+			}
+
+			currentSound.Source.volume = currentSound.Volume * (1 + UnityEngine.Random.Range(-currentSound.VolumeVariance / 2, currentSound.VolumeVariance / 2));
+
+			currentSound.Source.pitch = currentSound.IsPitchedBetweenValues ?
+										UnityEngine.Random.Range(currentSound.MinPitchValue, currentSound.MaxPitchValue) :
+										currentSound.Source.pitch = currentSound.Pitch * (1 + UnityEngine.Random.Range(-currentSound.PitchVariance / 2, currentSound.PitchVariance / 2));
+			currentSound.Source.Play();
+		}
+
 		/// <summary>
 		/// DO NOT USE
 		/// </summary>
@@ -124,13 +151,15 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		public void Stop(string sound)
 		{
-			Sound currentSound = System.Array.Find(sounds, searchedSound => searchedSound.Name == sound);
+			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
 			if (currentSound == null)
 			{
 				Debug.LogWarning("Sound: " + name + " not found!");
 				return;
 			}
-			currentSound.Source.Stop();
+
+			if (currentSound.Source)
+				currentSound.Source.Stop();
 		}
 
 		/// <summary>

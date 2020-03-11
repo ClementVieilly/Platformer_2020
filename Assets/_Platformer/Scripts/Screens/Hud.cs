@@ -21,6 +21,7 @@ namespace Com.IsartDigital.Platformer.Screens
 		[Header("Score")]
 		[SerializeField] private Text scoreText = null;
 		[SerializeField] private GameObject scoreObject = null;
+		[SerializeField] private GameObject bigScoreObject = null;
 
 		[Header("Life")]
 		[SerializeField] private Text lifeText = null;
@@ -32,8 +33,8 @@ namespace Com.IsartDigital.Platformer.Screens
 		[SerializeField] private Sprite lifeSprite3 = null;
 
 		[Header("controller")]
-		[SerializeField] private Slider moveSlider = null;
-		[SerializeField] private Button jumpButton = null;
+		[SerializeField] private Joystick joystick = null;
+		[SerializeField] private Joystick jumpButton = null;
 
 		private Button btnPause;
 
@@ -45,8 +46,24 @@ namespace Com.IsartDigital.Platformer.Screens
 			{
 				_score = value;
 				scoreObject.SetActive(true);
+				bigScoreObject.SetActive(true);
 				_timer = 0;
 				UpdateText(scoreText, _score);
+			}
+		}
+
+		private bool[] _bigScore = new bool[] { false, false, false, false };
+		public bool[] BigScore
+		{
+			get => _bigScore;
+			set
+			{
+				_bigScore = (bool[])value.Clone();
+				scoreObject.SetActive(true);
+				bigScoreObject.SetActive(true);
+				_timer = 0;
+				UpdateText(scoreText, _score);
+				UpdateBigScore();
 			}
 		}
 
@@ -85,9 +102,12 @@ namespace Com.IsartDigital.Platformer.Screens
 
 			btnPause = GetComponentInChildren<Button>();
 			btnPause.onClick.AddListener(Hud_OnButtonPauseClicked);
+
+#if UNITY_ANDROID || UNITY_EDITOR
 			Player.OnPlayerMove += UpdateMoveController;
-			Player.OnPlayerJump += UpdateJumpController;
-			Player.OnPlayerEndJump += UpdateJumpController2;
+			joystick.gameObject.SetActive(true);
+			jumpButton.gameObject.SetActive(true);
+#endif
 		}
 
 		private void Update()
@@ -97,12 +117,13 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		private void showHud()
 		{
-			if (!scoreObject.activeSelf) return;
+			if (!scoreObject.activeSelf && !bigScoreObject.activeSelf) return;
 
 			_timer += Time.deltaTime;
 			if (_timer > 3)
 			{
 				scoreObject.SetActive(false);
+				bigScoreObject.SetActive(false);
 				_timer = 0;
 			}
 		}
@@ -112,6 +133,12 @@ namespace Com.IsartDigital.Platformer.Screens
 			changingText.text = value.ToString();
 		}
 
+		private void UpdateBigScore()
+		{
+			for (int i = _bigScore.Length - 1; i >= 0; i--)
+				bigScoreObject.transform.GetChild(i).gameObject.SetActive(_bigScore[i]);
+		}
+
 		private void Hud_OnButtonPauseClicked()
 		{
 			OnButtonPausePressed?.Invoke(this);
@@ -119,24 +146,13 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		private void UpdateMoveController(float horizontalAxis)
 		{
-			moveSlider.value = Mathf.Lerp(moveSlider.value, horizontalAxis, 0.1f);
-		}
-
-		private void UpdateJumpController()
-		{
-			jumpButton.image.color = Color.green;
-		}
-		private void UpdateJumpController2()
-		{
-			jumpButton.image.color = Color.white;
+			joystick.UpdateHandleHorizontalPosition(horizontalAxis);
 		}
 
 		private void OnDestroy()
 		{
 			btnPause.onClick.RemoveListener(Hud_OnButtonPauseClicked);
 			Player.OnPlayerMove -= UpdateMoveController;
-			Player.OnPlayerJump -= UpdateJumpController;
-			Player.OnPlayerEndJump -= UpdateJumpController2;
 			_instance = null;
 		}
 

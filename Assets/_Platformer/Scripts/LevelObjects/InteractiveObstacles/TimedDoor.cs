@@ -56,7 +56,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles
                     yield return null;
                 }
 
-                transform.position = Vector3.MoveTowards(transform.position , endPos.position, openingSpeed);
+                transform.position = Vector3.MoveTowards(transform.position , endPos.position, openingSpeed *  Time.deltaTime);
                 yield return null;
             }
         }
@@ -70,7 +70,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles
                     yield return null;
                 }
 
-                transform.position = Vector3.MoveTowards(transform.position, startPos.position, closingSpeed);
+                transform.position = Vector3.MoveTowards(transform.position, startPos.position, closingSpeed * Time.deltaTime);
                 yield return null;
             }
         }

@@ -31,7 +31,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
 			instance = this;
 
-			DontDestroyOnLoad(this.gameObject);
+			DontDestroyOnLoad(gameObject);
 
 			// Définit le controller en fonction du device
 #if UNITY_ANDROID && !UNITY_EDITOR

@@ -10,9 +10,17 @@ namespace Com.IsartDigital.Platformer.LevelObjects.FTUE {
 	public class InteractiveTuto : AInteractiveObstacles
 	{
 		[SerializeField] private Animator animator;
+		[SerializeField ]private float leftLifeTimeAfterUse = 0;
+
 		protected override void TriggerInteraction()
 		{
-			animator.SetTrigger("start");
+			animator.SetBool("isStart",true);
+		}
+
+		private void OnTriggerExit2D(Collider2D collision)
+		{
+			animator.SetBool("isStart", false);
+			//Destroy(gameObject,leftLifeTimeAfterUse);
 		}
 	}
 }

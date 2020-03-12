@@ -50,6 +50,8 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
         [SerializeField] private LayerMask _groundLayerMask;
 
 		[SerializeField] private float _isGroundedRaycastDistance = 0.25f;
+		[SerializeField] private float _canGroundOnTraversableDistance = 2f;
+		[SerializeField] private float _traversableRaycastDistance = 3f;
 		[SerializeField] private float _jumpTolerance = 0.2f;
 		[SerializeField] private float _minJumpForce = 10f;
 		[SerializeField] private float _wallJumpHorizontalForce = 30f;
@@ -62,7 +64,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private float _toPassTraversableVelocity = 0.5f;
 		[SerializeField] private int _startLife = 3;
         [SerializeField] private float _coyoteTime = 0f;
-        [SerializeField] private Vector2 _impulsionInCorner; 
+        [SerializeField] private Vector2 _impulsionInCorner;
 
         public float RunSpeed => _runSpeed;
         public float AngleMinPente => _angleMinPente;
@@ -80,6 +82,8 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public AnimationCurve PlaneDecelerationCurve => _planeDecelerationCurve;
         public int GroundLayerMask => _groundLayerMask;
 		public float IsGroundedRaycastDistance => _isGroundedRaycastDistance;
+		public float CanGroundOnTraversableDistance => _canGroundOnTraversableDistance;
+		public float TraversableRaycastDistance => _traversableRaycastDistance;
 		public float JumpTolerance => _jumpTolerance;
 		public float MinJumpForce => _minJumpForce;
 		public float WallJumpHorizontalForce => _wallJumpHorizontalForce;

@@ -1,22 +1,16 @@
 fileFormatVersion: 2
-guid: 2cf24d08bbba0d042abfa8a6f71bb8c0
+guid: a4cf5a2c09dd464499791028d75c20b7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7586069144641494855
-    second: kill zones statiques_0
+      213: 3497545019595389337
+    second: Squelettes_0
   - first:
-      213: -5804387514967173811
-    second: kill zones statiques_1
+      213: 6656714829917211159
+    second: Squelettes_1
   - first:
-      213: -5238233053999915038
-    second: kill zones statiques_2
-  - first:
-      213: 1102182056178135220
-    second: kill zones statiques_3
-  - first:
-      213: -4929099385138735904
-    second: kill zones statiques_4
+      213: -84700664197954062
+    second: Squelettes_2
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -95,144 +89,115 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: kill zones statiques_0
+      name: Squelettes_0
       rect:
         serializedVersion: 2
-        x: 90
-        y: 398
-        width: 225
-        height: 210
+        x: 77
+        y: 335
+        width: 875
+        height: 296
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 112.5, y: -56.5}
-        - {x: 112.5, y: -44.5}
-        - {x: 32.5, y: -13.5}
-        - {x: 59.5, y: 47.5}
-        - {x: 25.5, y: 55.5}
-        - {x: 88.5, y: 102.5}
-        - {x: -6.5, y: 105.5}
-        - {x: -112.5, y: 105.5}
-        - {x: -112.5, y: -105.5}
-        - {x: -47.5, y: -105.5}
-        - {x: 33.5, y: -96.5}
-        - {x: -18.5, y: -80.5}
+      - - {x: 437.5, y: -36}
+        - {x: 386.5, y: -9}
+        - {x: 263.5, y: -39}
+        - {x: 193.5, y: 68}
+        - {x: 24.5, y: 99}
+        - {x: 0.5, y: 27}
+        - {x: -148.5, y: 148}
+        - {x: -190.5, y: 148}
+        - {x: -364.5, y: -3}
+        - {x: -436.5, y: -35}
+        - {x: -437.5, y: -36}
+        - {x: -437.5, y: -148}
+        - {x: -271.5, y: -148}
+        - {x: -210.5, y: -42}
+        - {x: -120.5, y: -148}
+        - {x: 35.5, y: -147}
+        - {x: 117.5, y: -87}
+        - {x: 148.5, y: -148}
+        - {x: 427.5, y: -148}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e40da93002b1454ba0724b8668dc1d4
-      internalID: 7586069144641494855
+      spriteID: 8c46705f368fe9746bab44fe3076344c
+      internalID: 3497545019595389337
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kill zones statiques_1
+      name: Squelettes_1
       rect:
         serializedVersion: 2
-        x: 438
-        y: 485
-        width: 4
-        height: 10
+        x: 423
+        y: 629
+        width: 548
+        height: 319
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 198, y: 10.5}
+        - {x: 73, y: -46.5}
+        - {x: 101, y: 39.5}
+        - {x: 199, y: 42.5}
+        - {x: 243, y: -28.5}
+        - {x: 268, y: -16.5}
+        - {x: 255, y: 85.5}
+        - {x: 122, y: 159.5}
+        - {x: -83, y: 159.5}
+        - {x: -274, y: 99.5}
+        - {x: -274, y: -28.5}
+        - {x: -194, y: -159.5}
+        - {x: 73, y: -159.5}
+        - {x: 195, y: -79.5}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05b70e2ddcd0e324ca5ffbb4faea200f
-      internalID: -5804387514967173811
+      spriteID: d8ea8c4df60f7314e959324f960a6498
+      internalID: 6656714829917211159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kill zones statiques_2
+      name: Squelettes_2
       rect:
         serializedVersion: 2
-        x: 550
-        y: 414
-        width: 191
-        height: 297
+        x: 38
+        y: 50
+        width: 886
+        height: 282
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 443, y: -91}
+        - {x: 293, y: 8}
+        - {x: 136, y: 8}
+        - {x: -107, y: 141}
+        - {x: -195, y: 141}
+        - {x: -359.2597, y: 9.194824}
+        - {x: -303, y: -65}
+        - {x: -443, y: -95.769455}
+        - {x: -443, y: -141}
+        - {x: -76, y: -141}
+        - {x: 114, y: -128}
+        - {x: 319, y: -96}
+        - {x: 373, y: -141}
+        - {x: 443, y: -141}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bcec6de20d5005040944cfb9066a670c
-      internalID: -5238233053999915038
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kill zones statiques_3
-      rect:
-        serializedVersion: 2
-        x: 155
-        y: 94
-        width: 132
-        height: 231
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7673136a4c00a634aa04ef6686b91e1d
-      internalID: 1102182056178135220
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kill zones statiques_4
-      rect:
-        serializedVersion: 2
-        x: 580
-        y: 104
-        width: 211
-        height: 227
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5fc2c5d01c4298045aa600d95ca4e9b2
-      internalID: -4929099385138735904
+      spriteID: c0009dada6228444da90e88310c0a78f
+      internalID: -84700664197954062
       vertices: []
       indices: 
       edges: []
@@ -240,7 +205,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 00178b603ba685146a634db80f07e99f
+    spriteID: daa34dfb86e646a41bcec5e1fd681974
     internalID: 0
     vertices: []
     indices: 

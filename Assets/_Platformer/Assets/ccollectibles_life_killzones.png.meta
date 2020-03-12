@@ -1,40 +1,43 @@
 fileFormatVersion: 2
-guid: 6f018aa3504710249a5ff2c5400d9274
+guid: 2d9db64bfd275334a9cf3039f2543317
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6793441571742550620
-    second: Cages_Oiseau_Couleur_0
+      213: -2242381857777561170
+    second: ccollectibles_life_killzones_0
   - first:
-      213: 77994039438054238
-    second: Cages_Oiseau_Couleur_1
+      213: 8497791257755077986
+    second: ccollectibles_life_killzones_1
   - first:
-      213: 5363281162493370812
-    second: Cages_Oiseau_Couleur_2
+      213: -6871049557817223620
+    second: ccollectibles_life_killzones_2
   - first:
-      213: 2593011497736130327
-    second: Cages_Oiseau_Couleur_3
+      213: 7162605148684020029
+    second: ccollectibles_life_killzones_3
   - first:
-      213: 1879799786480286037
-    second: Cages_Oiseau_Couleur_4
+      213: -1973610100618406474
+    second: ccollectibles_life_killzones_4
   - first:
-      213: -1596591318373070613
-    second: Cages_Oiseau_Couleur_5
+      213: 4417201946426823546
+    second: ccollectibles_life_killzones_5
   - first:
-      213: 5359420373739401641
-    second: Cages_Oiseau_Couleur_6
+      213: 2336854285590739904
+    second: ccollectibles_life_killzones_6
   - first:
-      213: -2497983580046968188
-    second: Cages_Oiseau_Couleur_7
+      213: -8375383973930461221
+    second: ccollectibles_life_killzones_7
   - first:
-      213: 5964315598421867198
-    second: Cages_Oiseau_Couleur_8
+      213: -2203590917394656919
+    second: ccollectibles_life_killzones_8
   - first:
-      213: -1053710492098981142
-    second: Cages_Oiseau_Couleur_9
+      213: 2373488430038845905
+    second: ccollectibles_life_killzones_9
   - first:
-      213: -396688070759217273
-    second: Cages_Oiseau_Couleur_10
+      213: 3291102992093976437
+    second: ccollectibles_life_killzones_10
+  - first:
+      213: 5542145917331833488
+    second: ccollectibles_life_killzones_11
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -117,71 +120,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cages_Oiseau_Couleur_0
+      name: ccollectibles_life_killzones_0
       rect:
         serializedVersion: 2
-        x: 1266
-        y: 1471
-        width: 931
-        height: 1404
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 465.5, y: 82}
-        - {x: 465.5, y: 264}
-        - {x: 101.5, y: 702}
-        - {x: -102.5, y: 695}
-        - {x: -465.5, y: 252}
-        - {x: -465.5, y: 67}
-        - {x: -192.03708, y: -702}
-        - {x: 166.5, y: -702}
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 36e2dc08d241e94469ae7ce67c761515
-      internalID: -6793441571742550620
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cages_Oiseau_Couleur_1
-      rect:
-        serializedVersion: 2
-        x: 2299
-        y: 1775
-        width: 889
-        height: 1148
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -91.5, y: 574}
-        - {x: -444.5, y: 157}
-        - {x: -444.4901, y: -32.143482}
-        - {x: -251.5, y: -574}
-        - {x: 209.5, y: -574}
-        - {x: 444.5, y: 29}
-        - {x: 444.5, y: 184}
-        - {x: 94.09092, y: 574}
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aac1792e742cab342bd4d3ea5e73a999
-      internalID: 77994039438054238
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cages_Oiseau_Couleur_2
-      rect:
-        serializedVersion: 2
-        x: 5989
-        y: 2859
-        width: 7
-        height: 12
+        x: 1299
+        y: 2835
+        width: 65
+        height: 63
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -189,244 +134,273 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59a1b28407c699d4d94d6276ccf4db3f
-      internalID: 5363281162493370812
+      spriteID: f3e0b43c050e7ef48b0a86345b64c3b0
+      internalID: -2242381857777561170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cages_Oiseau_Couleur_3
+      name: ccollectibles_life_killzones_1
       rect:
         serializedVersion: 2
-        x: 115
-        y: 1783
-        width: 1062
-        height: 1018
+        x: 1380
+        y: 2848
+        width: 40
+        height: 40
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 82, y: 509}
-        - {x: -99, y: 509}
-        - {x: -420, y: 239}
-        - {x: -531, y: -178}
-        - {x: -531, y: -332}
-        - {x: -395, y: -509}
-        - {x: 370, y: -509}
-        - {x: 531, y: -309}
-        - {x: 531, y: -122}
-        - {x: 449, y: 205}
+      outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87c3aabd94a8c2c4da43437f3b7b5511
-      internalID: 2593011497736130327
+      spriteID: 613b8da70f792de44b8169be521634e5
+      internalID: 8497791257755077986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cages_Oiseau_Couleur_4
+      name: ccollectibles_life_killzones_2
       rect:
         serializedVersion: 2
-        x: 3489
-        y: 1862
-        width: 512
-        height: 974
+        x: 18
+        y: 2137
+        width: 2006
+        height: 509
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 97, y: 487}
-        - {x: -76, y: 487}
-        - {x: -256, y: 91}
-        - {x: -256, y: -318}
-        - {x: -79, y: -487}
-        - {x: 61, y: -487}
-        - {x: 256, y: -333}
-        - {x: 256, y: 37.00809}
+      outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b29762e03a5364449ed84d4f61533fb
-      internalID: 1879799786480286037
+      spriteID: dc4eb60f73f5f024f998bf756f8c9901
+      internalID: -6871049557817223620
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cages_Oiseau_Couleur_5
+      name: ccollectibles_life_killzones_3
       rect:
         serializedVersion: 2
-        x: 4105
-        y: 133
-        width: 708
-        height: 1965
+        x: 1635
+        y: 1838
+        width: 594
+        height: 553
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 85, y: -791.5}
-        - {x: 354, y: 666.5}
-        - {x: 354, y: 787.5}
-        - {x: 223, y: 760.5}
-        - {x: 70, y: 982.5}
-        - {x: -75, y: 982.5}
-        - {x: -221, y: 756.5}
-        - {x: -354, y: 779.5}
-        - {x: -354, y: 697.5}
-        - {x: -62, y: -783.5}
-        - {x: -354, y: -854.5}
-        - {x: -354, y: -982.5}
-        - {x: 354, y: -982.5}
-        - {x: 354, y: -855.5}
+      outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 042f7498cae3f4f489ed64253efb24a0
-      internalID: -1596591318373070613
+      spriteID: d9144eba4cd3c1d4dbf7773c3925a0f2
+      internalID: 7162605148684020029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cages_Oiseau_Couleur_6
+      name: ccollectibles_life_killzones_4
       rect:
         serializedVersion: 2
-        x: 4855
-        y: 1391
-        width: 946
-        height: 1433
+        x: 2505
+        y: 2081
+        width: 594
+        height: 532
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -75, y: 716.5}
-        - {x: -473, y: 306.5}
-        - {x: -473, y: -114.5}
-        - {x: -164, y: -716.5}
-        - {x: 184, y: -716.5}
-        - {x: 473, y: -131.5}
-        - {x: 473, y: 325.5}
-        - {x: 85, y: 716.5}
+      - - {x: 18, y: 263}
+        - {x: -297, y: 41}
+        - {x: -297, y: -138}
+        - {x: -135, y: -266}
+        - {x: 172, y: -266}
+        - {x: 297, y: 101}
+        - {x: 297, y: 266}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9eef388e6b511e24aa59671d11dcb9f0
-      internalID: 5359420373739401641
+      spriteID: 3dbeb8309a90b3b4eb959c4d568527d3
+      internalID: -1973610100618406474
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cages_Oiseau_Couleur_7
+      name: ccollectibles_life_killzones_5
       rect:
         serializedVersion: 2
-        x: 5905
-        y: 58
-        width: 95
-        height: 2772
+        x: 0
+        y: 1293
+        width: 3508
+        height: 488
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -47.5, y: 1386}
-        - {x: -47.5, y: -1386}
-        - {x: 47.5, y: -1386}
-        - {x: 47.5, y: 1386}
+      - - {x: -225, y: 244}
+        - {x: -853, y: 244}
+        - {x: -911, y: 139}
+        - {x: -1754, y: 244}
+        - {x: -1754, y: 72}
+        - {x: -1319, y: -52}
+        - {x: -574, y: -110}
+        - {x: -364, y: 43}
+        - {x: 364, y: -62}
+        - {x: 554, y: -244}
+        - {x: 1138, y: -244}
+        - {x: 1754, y: -6}
+        - {x: 1754, y: 178}
+        - {x: 895, y: 26}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d9f9edeb7496e2448912988ff7a3e83
-      internalID: -2497983580046968188
+      spriteID: c39feda5114580d4f85f2e7067fab63e
+      internalID: 4417201946426823546
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cages_Oiseau_Couleur_8
+      name: ccollectibles_life_killzones_6
       rect:
         serializedVersion: 2
-        x: 49
-        y: 153
-        width: 1021
-        height: 1580
+        x: 196
+        y: 224
+        width: 410
+        height: 887
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -78.5, y: 790}
-        - {x: -510.5, y: 38}
-        - {x: -510.41013, y: -789.9869}
-        - {x: 510.5, y: -790}
-        - {x: 510.5, y: -17}
-        - {x: 90.6582, y: 790}
+      - - {x: 205, y: -395.5}
+        - {x: 205, y: -228.5}
+        - {x: 51, y: -235.5}
+        - {x: 59, y: 22.5}
+        - {x: 205, y: 185.5}
+        - {x: 205, y: 339.5}
+        - {x: 52, y: 443.5}
+        - {x: -50, y: 442.5}
+        - {x: -205, y: 338.5}
+        - {x: -205, y: 154.5}
+        - {x: -59, y: 34.5}
+        - {x: -35, y: -440.5}
+        - {x: 31, y: -443.5}
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be061ebb9473d8741b290f68b38ed28d
-      internalID: 5964315598421867198
+      spriteID: d223f025ee986a1468d85da9172f1e3a
+      internalID: 2336854285590739904
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cages_Oiseau_Couleur_9
+      name: ccollectibles_life_killzones_7
       rect:
         serializedVersion: 2
-        x: 1159
-        y: 135
-        width: 1470
-        height: 1282
+        x: 708
+        y: 218
+        width: 490
+        height: 894
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 68.44774, y: 641}
-        - {x: -92.2339, y: 637.72797}
-        - {x: -735, y: 1}
-        - {x: -735, y: -641}
-        - {x: 735, y: -641}
-        - {x: 735, y: 60.631927}
+      outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c619903503ad6094b8f5e7ae4fc00d8e
-      internalID: -1053710492098981142
+      spriteID: 82f0d8f4818e9d34f85102bdaa4cdd09
+      internalID: -8375383973930461221
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cages_Oiseau_Couleur_10
+      name: ccollectibles_life_killzones_8
       rect:
         serializedVersion: 2
-        x: 2713
-        y: 109
-        width: 1251
-        height: 1725
+        x: 1299
+        y: 215
+        width: 343
+        height: 886
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 625.5, y: 511.5}
-        - {x: 91.50889, y: 862.5}
-        - {x: -128.68446, y: 862.5}
-        - {x: -625.5, y: 574.544}
-        - {x: -625.5, y: 122.5}
-        - {x: -524.5, y: -862.5}
-        - {x: -146.53798, y: -862.2467}
-        - {x: -188.5, y: -385.5}
-        - {x: 214.5, y: -379.5}
-        - {x: 98.5, y: -862.5}
-        - {x: 518.5, y: -862.5}
-        - {x: 625.5, y: -62.046482}
+      outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 151f9f74f6b15b9429b38af277785916
-      internalID: -396688070759217273
+      spriteID: fd626b2fdd233454f8a46c291d2f234b
+      internalID: -2203590917394656919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ccollectibles_life_killzones_9
+      rect:
+        serializedVersion: 2
+        x: 1799
+        y: 217
+        width: 379
+        height: 908
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8218d85a52e27854c92f28abbd07a608
+      internalID: 2373488430038845905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ccollectibles_life_killzones_10
+      rect:
+        serializedVersion: 2
+        x: 2293
+        y: 194
+        width: 460
+        height: 852
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48c3497769ebd804bb63af1950d3059b
+      internalID: 3291102992093976437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ccollectibles_life_killzones_11
+      rect:
+        serializedVersion: 2
+        x: 2930
+        y: 186
+        width: 426
+        height: 903
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d495cb7b0c9fe8f4da90d85b627d76f7
+      internalID: 5542145917331833488
       vertices: []
       indices: 
       edges: []
@@ -434,7 +408,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: c9fdf33ecf25a90449bb20108faa5301
+    spriteID: 6835bea0ad4ec354c834ac1144f504db
     internalID: 0
     vertices: []
     indices: 

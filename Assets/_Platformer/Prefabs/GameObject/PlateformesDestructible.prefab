@@ -74,9 +74,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920554508b8d0ee4c8e78023d61e0521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 3
+  duration: 2
   triggeredCollider: {fileID: 3843724848143336227}
-  magnitude: 0.2
+  shakeMagnitude: 0.2
 --- !u!1 &3843724848143336227
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 3843724848143336225}
   - component: {fileID: 3843724848143336229}
   m_Layer: 8
-  m_Name: ModelPlateformesDestructible
+  m_Name: PlateformesDestructible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

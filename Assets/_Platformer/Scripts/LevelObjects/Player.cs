@@ -166,9 +166,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         //Ps parameter
         private float jumpPSTimer = 0; 
-        private float jumpPSDuration = 0.3f;
-        private float wallJumpPSTimer = 0; 
-        private float wallJumpPSDuration = 0.5f; 
+        private float jumpPSDuration = 0.4f;
 
         private Action DoAction = null;
 
@@ -395,7 +393,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
 			bool isTraversable = false;
 			RaycastHit2D traversableHitInfos = Physics2D.Raycast(traversableRaycastOrigin.position, Vector2.down, settings.TraversableRaycastDistance, settings.GroundLayerMask);
-			Debug.DrawRay(traversableRaycastOrigin.position, Vector2.down * settings.CanGroundOnTraversableDistance, Color.magenta);
+			//Debug.DrawRay(traversableRaycastOrigin.position, Vector2.down * settings.CanGroundOnTraversableDistance, Color.magenta);
 			if (traversableHitInfos.collider)
 			{
 				if (traversableHitInfos.collider.GetComponent<PlatformEffector2D>() &&

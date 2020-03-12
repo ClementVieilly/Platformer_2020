@@ -5,6 +5,7 @@
 
 using Com.IsartDigital.Platformer.Localization;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -17,8 +18,10 @@ namespace Com.IsartDigital.Platformer.Managers
         private static LocalizationManager _instance;
         public static LocalizationManager Instance => _instance;
 
-        private string defaultLocalizedText = "localizedText_en.json";
-        private string frenchLocalizedText = "localizedText_fr.json";
+        private string filePathName = "_Platformer/Resources/"; 
+        private string extensionName = ".json"; 
+        private string defaultLocalizedText = "localizedText_en";
+        private string frenchLocalizedText =  "localizedText_fr";
         private string fileName; 
 
         private bool isReady = false;
@@ -35,28 +38,31 @@ namespace Com.IsartDigital.Platformer.Managers
             }
             else _instance = this;
 
-            DontDestroyOnLoad(gameObject);
             fileName = defaultLocalizedText; 
-            LoadLocalizedText();
+            StartCoroutine(LoadLocalizedText());
+            DontDestroyOnLoad(gameObject);
         }
 
-        public void LoadLocalizedText()
+        public IEnumerator LoadLocalizedText()
         {
             localizedText = new Dictionary<string, string>();
-            string filePath = Path.Combine(Application.streamingAssetsPath, fileName);
-            if(File.Exists(filePath))
+            string filePath = Path.Combine(Application.persistentDataPath, filePathName + fileName + extensionName);
+
+            while (!File.Exists(filePath))
             {
-                string dataJson = File.ReadAllText(filePath);
-                LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataJson);
-
-                for(int i = 0; i < loadedData.items.Length; i++)
-                {
-                    localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
-                }
+                Debug.Log("oui"); 
+                yield return null; 
             }
-            else Debug.LogError("FilePath doesn't exist !");
 
+            string dataJson = Resources.Load<TextAsset>(fileName).text;
+            LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataJson);
+
+            for(int i = 0; i < loadedData.items.Length; i++)
+            {
+                localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
+            }
             isReady = true;
+            StopAllCoroutines(); 
         }
 
         public string GetLocalizedValue(string key)
@@ -68,8 +74,8 @@ namespace Com.IsartDigital.Platformer.Managers
         public void ChooseLanguage()
         {
             fileName = fileName == defaultLocalizedText ? frenchLocalizedText : defaultLocalizedText;
-            Debug.Log(fileName); 
-            LoadLocalizedText();
+            Debug.Log(fileName);
+            StartCoroutine(LoadLocalizedText());
             OnChangeLanguage?.Invoke();
         }
     }

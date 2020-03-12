@@ -13,7 +13,8 @@ namespace Com.IsartDigital.Platformer.Cameras {
 		public static List<Parallax> list = new List<Parallax>();
 
 		[SerializeField] private Transform cam;
-		[SerializeField] private float parallaxRatio = 0.3f;
+		[SerializeField] private float parallaxRatioX = 0.3f;
+		[SerializeField] private float parallaxRatioY = 0.3f;
 		[SerializeField] private bool isLockedY = false;
 
 		private Vector3 lastCamPos;
@@ -28,7 +29,7 @@ namespace Com.IsartDigital.Platformer.Cameras {
 		{
 			movementSinceLastFrame = cam.position - lastCamPos;
 			if (isLockedY) movementSinceLastFrame.y = 0;
-			transform.position -= movementSinceLastFrame * parallaxRatio;
+			transform.position -= new Vector3 (movementSinceLastFrame.x * parallaxRatioX, movementSinceLastFrame.y * parallaxRatioY);
 			lastCamPos = cam.position;
 		}
 	}

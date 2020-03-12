@@ -75,6 +75,8 @@ namespace Com.IsartDigital.Platformer.Cameras {
 			lastCamPos = cam.position;
 		}
 
+
+
 		private void SetStartPos()
 		{
 			transform.position = Vector3.zero;

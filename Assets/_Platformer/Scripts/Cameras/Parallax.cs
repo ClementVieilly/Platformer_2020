@@ -21,23 +21,65 @@ namespace Com.IsartDigital.Platformer.Cameras {
 		private Vector3 lastCamPos;
 		private Vector3 movementSinceLastFrame;
 
+		private Action DoAction;
+
 		private void Start()
 		{
 			lastCamPos = cam.position;
+
+			if (GetComponent<Collider2D>() != null) SetModeVoid();
+			else SetModeNormal();
 		}
 
 		private void LateUpdate()
 		{
+			DoAction();
+		}
+
+		private void OnTriggerEnter2D(Collider2D collision)
+		{
+			SetModeNormal();
+		}
+		private void OnTriggerExit2D(Collider2D collision)
+		{
+			SetModeVoid();
+		}
+
+		private void SetModeVoid()
+		{
+			Debug.Log("is void");
+			DoAction = DoActionVoid;
+		}
+
+		private void SetModeNormal()
+		{
+			DoAction = DoActionNormal;
+		}
+
+		private void DoActionVoid()	{}
+
+		private void DoActionNormal()
+		{
+			UpdatePos();
 			if (transform.position != Vector3.zero && firstUpdate)
 			{
-				transform.position = Vector3.zero;
-				firstUpdate = false;
+				SetStartPos();
 			}
+		}
 
+		private void UpdatePos()
+		{
 			movementSinceLastFrame = cam.position - lastCamPos;
 			if (isLockedY) movementSinceLastFrame.y = 0;
-			transform.position -= new Vector3 (movementSinceLastFrame.x * parallaxRatioX, movementSinceLastFrame.y * parallaxRatioY);
+			transform.position -= new Vector3(movementSinceLastFrame.x * parallaxRatioX, movementSinceLastFrame.y * parallaxRatioY);
 			lastCamPos = cam.position;
 		}
+
+		private void SetStartPos()
+		{
+			transform.position = Vector3.zero;
+			firstUpdate = false;
+		}
+
 	}
 }

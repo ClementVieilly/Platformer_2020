@@ -1,7 +1,130 @@
 fileFormatVersion: 2
 guid: 4ddc700edc0286442b2aadc4d3169427
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 4298880230518886297
+    second: Damien1_0
+  - first:
+      213: 329102215864174364
+    second: Damien1_1
+  - first:
+      213: 3258297928772847172
+    second: Damien1_2
+  - first:
+      213: 3295966517418689403
+    second: Damien1_3
+  - first:
+      213: 6587305248393943719
+    second: Damien1_4
+  - first:
+      213: -3647888134443972985
+    second: Damien1_5
+  - first:
+      213: -6691783240105522615
+    second: Damien1_6
+  - first:
+      213: -5456700028836629105
+    second: Damien1_7
+  - first:
+      213: -3463830341026501253
+    second: Damien1_8
+  - first:
+      213: 8796163959611812935
+    second: Damien1_9
+  - first:
+      213: 8356683255581710717
+    second: Damien1_10
+  - first:
+      213: 740946249328243531
+    second: Damien1_11
+  - first:
+      213: 1800446246484940132
+    second: Damien1_12
+  - first:
+      213: -8850339316931361608
+    second: Damien1_13
+  - first:
+      213: -5610756498249608289
+    second: Damien1_14
+  - first:
+      213: -633339869575395997
+    second: Damien1_15
+  - first:
+      213: -6254955787327033760
+    second: Damien1_16
+  - first:
+      213: -8527654288380038591
+    second: Damien1_17
+  - first:
+      213: -5214482175833627287
+    second: Damien1_18
+  - first:
+      213: 2776222224139270685
+    second: Damien1_19
+  - first:
+      213: 190398508319256325
+    second: Damien1_20
+  - first:
+      213: 8141459179338653880
+    second: Damien1_21
+  - first:
+      213: 7102941786354930421
+    second: Damien1_22
+  - first:
+      213: 7596668864324224055
+    second: Damien1_23
+  - first:
+      213: -994832338935221995
+    second: Damien1_24
+  - first:
+      213: 986584876499267983
+    second: Damien1_25
+  - first:
+      213: -2412459605191294754
+    second: Damien1_26
+  - first:
+      213: 5784229857063396969
+    second: Damien1_27
+  - first:
+      213: -3514946672827276503
+    second: Damien1_28
+  - first:
+      213: -1564198023516474663
+    second: Damien1_29
+  - first:
+      213: -1352969758597306574
+    second: Damien1_30
+  - first:
+      213: -1828580530929796692
+    second: Damien1_31
+  - first:
+      213: -2235170698188595640
+    second: Damien1_32
+  - first:
+      213: 3222786071633819810
+    second: Damien1_33
+  - first:
+      213: 6978240486762557033
+    second: Damien1_34
+  - first:
+      213: -5254670698445295006
+    second: Damien1_35
+  - first:
+      213: 7395779115087754284
+    second: Damien1_36
+  - first:
+      213: -341923090062157543
+    second: Damien1_37
+  - first:
+      213: 7509748841152956319
+    second: Damien1_38
+  - first:
+      213: 3149352018235951234
+    second: Damien1_39
+  - first:
+      213: -4173200579132044672
+    second: Damien1_40
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,7 +163,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -69,9 +192,1109 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Damien1_0
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1743
+        width: 111
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b323029c1fe30947a2be1a2977106fb
+      internalID: 4298880230518886297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_1
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 1744
+        width: 120
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0b86d0a2c666124cad896d12d80eb59
+      internalID: 329102215864174364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_2
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 1743
+        width: 112
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f3cac0a81c5364498d2ec5a41030313
+      internalID: 3258297928772847172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_3
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 1744
+        width: 93
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 201c4c62a37482545861f6976b493acc
+      internalID: 3295966517418689403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_4
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 1575
+        width: 114
+        height: 301
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4e555bc72636224492b8a5318cc1e87
+      internalID: 6587305248393943719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_5
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 1577
+        width: 115
+        height: 303
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e5e64f52d7a11f42ba86a2a967bc486
+      internalID: -3647888134443972985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_6
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 1580
+        width: 114
+        height: 302
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1782d0154f32cba4bb21d9894c4f46be
+      internalID: -6691783240105522615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_7
+      rect:
+        serializedVersion: 2
+        x: 1444
+        y: 1577
+        width: 90
+        height: 301
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96aa5999e0941d245a5f65df502a6552
+      internalID: -5456700028836629105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_8
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 1155
+        width: 420
+        height: 412
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f796a6264f6283542ac2cad71b39b4dd
+      internalID: -3463830341026501253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_9
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 900
+        width: 436
+        height: 801
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 165.45578, y: -186.14716}
+        - {x: 145, y: -226.5}
+        - {x: 106.249725, y: -207.29214}
+        - {x: 127, y: -54.5}
+        - {x: 132, y: 400.5}
+        - {x: 105, y: 400.5}
+        - {x: 71, y: 64.5}
+        - {x: 24, y: 108.5}
+        - {x: 16, y: 321.5}
+        - {x: -24, y: 320.5}
+        - {x: -53, y: 119.5}
+        - {x: -95, y: -1.5}
+        - {x: -117, y: 400.5}
+        - {x: -161.5872, y: 400.5}
+        - {x: -143.2615, y: -98.7479}
+        - {x: -124, y: -191.5}
+        - {x: -218, y: -205.5}
+        - {x: -217.97392, y: -339.8007}
+        - {x: -135, y: -400.5}
+        - {x: 135, y: -400.5}
+        - {x: 214, y: -310.5}
+        - {x: 218, y: -236.89511}
+        - {x: 199.28781, y: -184.73749}
+      - - {x: 117.52707, y: 225.47514}
+        - {x: 117.52707, y: 217.01715}
+        - {x: 118.93674, y: 217.01715}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b551c547880d44b4caf0ca365a7885f3
+      internalID: 8796163959611812935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_10
+      rect:
+        serializedVersion: 2
+        x: 1048
+        y: 858
+        width: 400
+        height: 843
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 200, y: -30.5}
+        - {x: 68, y: -41.5}
+        - {x: 50, y: 80.5}
+        - {x: 5, y: 421.5}
+        - {x: -25, y: 421.5}
+        - {x: -90.306946, y: -4.0103707}
+        - {x: -67, y: -89.5}
+        - {x: -134.00665, y: -37.842342}
+        - {x: -200, y: -69.5}
+        - {x: -200, y: -333.5}
+        - {x: -47, y: -324.5}
+        - {x: 12, y: -421.5}
+        - {x: 51, y: -337.5}
+        - {x: 200, y: -336.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4718e9f7e829eeb4eb79596dee6b1f1e
+      internalID: 8356683255581710717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_11
+      rect:
+        serializedVersion: 2
+        x: 1494
+        y: 1071
+        width: 236
+        height: 499
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 118, y: 180.5}
+        - {x: 58, y: 189.5}
+        - {x: 48, y: 249.5}
+        - {x: -42, y: 249.5}
+        - {x: -118, y: 213.5}
+        - {x: -117.955414, y: 14.455782}
+        - {x: -89, y: -159.5}
+        - {x: -16, y: -249.5}
+        - {x: 118, y: -249.15164}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 676f2919a87324e4ead000d9b974083c
+      internalID: 740946249328243531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_12
+      rect:
+        serializedVersion: 2
+        x: 1725
+        y: 1260
+        width: 200
+        height: 333
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -99.81523, y: 166.5}
+        - {x: -100, y: -96.5}
+        - {x: -16.644821, y: -166.5}
+        - {x: 41, y: -166.5}
+        - {x: 85, y: -95.5}
+        - {x: 100, y: 166.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8e3ea3b189285647b7a483f7a454198
+      internalID: 1800446246484940132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_13
+      rect:
+        serializedVersion: 2
+        x: 1926
+        y: 1381
+        width: 488
+        height: 310
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 126, y: 155}
+        - {x: 99, y: 49}
+        - {x: -96, y: 44}
+        - {x: -112, y: 155}
+        - {x: -193, y: 155}
+        - {x: -244, y: 55}
+        - {x: -244, y: -154.83046}
+        - {x: 216.77759, y: -154.83046}
+        - {x: 244, y: -104.082504}
+        - {x: 241, y: 3}
+        - {x: 200, y: 155}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a5c73b0438c7ea46b91e8c9a1de7768
+      internalID: -8850339316931361608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_14
+      rect:
+        serializedVersion: 2
+        x: 2451
+        y: 1333
+        width: 172
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14.388869, y: 65}
+        - {x: -30.720507, y: 65}
+        - {x: -65.962204, y: 48.089947}
+        - {x: -85.697556, y: 29.764297}
+        - {x: -80.05888, y: -29.44165}
+        - {x: -30.720507, y: -64.68329}
+        - {x: 21, y: -65}
+        - {x: 86, y: -32}
+        - {x: 86, y: 38.22229}
+        - {x: 60.907913, y: 55.138275}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49d8cef77be5aa641ba8ad286655bb20
+      internalID: -5610756498249608289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_15
+      rect:
+        serializedVersion: 2
+        x: 2045
+        y: 1207
+        width: 356
+        height: 131
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd2bf778762be7143bb309d6eaacad28
+      internalID: -633339869575395997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_16
+      rect:
+        serializedVersion: 2
+        x: 2579
+        y: 1332
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 004b41792f6cd9e4b834c63babcbfdb8
+      internalID: -6254955787327033760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_17
+      rect:
+        serializedVersion: 2
+        x: 2585
+        y: 914
+        width: 205
+        height: 426
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -102.5, y: 213}
+        - {x: -91.5, y: 143}
+        - {x: -89.5, y: -46}
+        - {x: -26.409937, y: -213}
+        - {x: 41.254128, y: -213}
+        - {x: 93.41184, y: -112.94127}
+        - {x: 102.5, y: 213}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4d9dbae26a586041b6a691acff15759
+      internalID: -8527654288380038591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_18
+      rect:
+        serializedVersion: 2
+        x: 2795
+        y: 1334
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbe0783e702a8114292a949fa3854b81
+      internalID: -5214482175833627287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_19
+      rect:
+        serializedVersion: 2
+        x: 1761
+        y: 510
+        width: 773
+        height: 679
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: -79.5}
+        - {x: -70.5, y: -38.5}
+        - {x: 353.44656, y: -41.883987}
+        - {x: 386.5, y: -10.871347}
+        - {x: 386.5, y: 39.876606}
+        - {x: 364.7239, y: 82.16657}
+        - {x: 308.33716, y: 114.588875}
+        - {x: 309.74683, y: 214.67511}
+        - {x: 282.96313, y: 252.73608}
+        - {x: 118.03199, y: 264.0134}
+        - {x: 82.79029, y: 210.44612}
+        - {x: 85.60963, y: 114.588875}
+        - {x: -25.5, y: 80.5}
+        - {x: 3.5, y: 275.5}
+        - {x: -73.68286, y: 339.5}
+        - {x: -118.79224, y: 339.5}
+        - {x: -182.5, y: 269.5}
+        - {x: -139.93726, y: 176.61415}
+        - {x: -130.5, y: 65.5}
+        - {x: -254.12036, y: 61.021587}
+        - {x: -386.5, y: -87.5}
+        - {x: -365.5, y: -339.5}
+        - {x: -235.79468, y: -339.3234}
+        - {x: -130.06958, y: -315.35907}
+        - {x: -94.5, y: -181.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21b3435a22ee0114c8e57c017192e32a
+      internalID: 2776222224139270685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_20
+      rect:
+        serializedVersion: 2
+        x: 1823
+        y: 992
+        width: 143
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ba751c421a8db649950c9194a60921c
+      internalID: 190398508319256325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_21
+      rect:
+        serializedVersion: 2
+        x: 2407
+        y: 1130
+        width: 182
+        height: 183
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -91, y: -91.5}
+        - {x: 91, y: -91.5}
+        - {x: 91, y: 85.5}
+        - {x: -91, y: 91.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f77343d301a11af4c9ea87b747b3a0ed
+      internalID: 8141459179338653880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_22
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 793
+        width: 405
+        height: 335
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24.5, y: 167.5}
+        - {x: -26.5, y: 58.5}
+        - {x: -120.5, y: 52.5}
+        - {x: -124.5, y: -48.5}
+        - {x: -202.5, y: -50.5}
+        - {x: -202.31789, y: -167.5}
+        - {x: 202.5, y: -167.5}
+        - {x: 202.5, y: 167.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8124b767c5531ab47a27b142fdf60066
+      internalID: 7102941786354930421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_23
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 638
+        width: 1030
+        height: 217
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -237, y: 108.5}
+        - {x: -233, y: 6.5}
+        - {x: -514.9663, y: 9.994049}
+        - {x: -514.9663, y: -108.41785}
+        - {x: 112, y: -108.5}
+        - {x: 113, y: -1.5}
+        - {x: 207, y: -4.5}
+        - {x: 210.65674, y: -108.41785}
+        - {x: 515, y: -108.41785}
+        - {x: 515, y: 9.5}
+        - {x: 271, y: 9.5}
+        - {x: 270, y: 108.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caf931a0003d58b4ea1412242748d749
+      internalID: 7596668864324224055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_24
+      rect:
+        serializedVersion: 2
+        x: 1257
+        y: 805
+        width: 5
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bb01ca5f002a1b43bad76b25faaeff8
+      internalID: -994832338935221995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_25
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 364
+        width: 213
+        height: 518
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6afc94789da51154b951d409774b86f3
+      internalID: 986584876499267983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_26
+      rect:
+        serializedVersion: 2
+        x: 1065
+        y: 68
+        width: 555
+        height: 515
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 76.5, y: -140.5}
+        - {x: 137.5, y: -70.5}
+        - {x: 146.60126, y: 166.67659}
+        - {x: 91.62421, y: 200.50856}
+        - {x: -88.8133, y: 257.5}
+        - {x: -129.69368, y: 257.5}
+        - {x: -125.46467, y: 228.70186}
+        - {x: -195.94807, y: 228.70186}
+        - {x: -222.73177, y: 193.46024}
+        - {x: -277.5, y: 69.409676}
+        - {x: -277.5, y: -3.5}
+        - {x: -143.5, y: -12.5}
+        - {x: -138.5, y: -84.5}
+        - {x: -253.5, y: -257.5}
+        - {x: -132.5, y: -257.5}
+        - {x: -8.5, y: -210.5}
+        - {x: 244.5, y: -229.5}
+        - {x: 277.5, y: -192.78809}
+        - {x: 277.5, y: -140.63048}
+        - {x: 253.73602, y: -115.25649}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caeeb386f59ec264ab5ed459577d8eaa
+      internalID: -2412459605191294754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_27
+      rect:
+        serializedVersion: 2
+        x: 2057
+        y: 321
+        width: 69
+        height: 218
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 34.5, y: -97.67063}
+        - {x: 34.5, y: 103.91152}
+        - {x: -7.5, y: 109}
+        - {x: -33.5, y: 59}
+        - {x: -34.5, y: -98}
+        - {x: 3.5, y: -109}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb41150d412c95f4a9f26df4a9fd27ee
+      internalID: 5784229857063396969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_28
+      rect:
+        serializedVersion: 2
+        x: 2124
+        y: 507
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2758699982ab33498446f7a962808dd
+      internalID: -3514946672827276503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_29
+      rect:
+        serializedVersion: 2
+        x: 2146
+        y: 339
+        width: 130
+        height: 214
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -36.87094, y: 107}
+        - {x: -65, y: 57}
+        - {x: -65, y: -7}
+        - {x: -12, y: -107}
+        - {x: 18, y: -107}
+        - {x: 65, y: -79}
+        - {x: 65, y: 55}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 973fe4df0a0bd2a4ea0ec4ee753e2726
+      internalID: -1564198023516474663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_30
+      rect:
+        serializedVersion: 2
+        x: 2403
+        y: 163
+        width: 107
+        height: 386
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -53.346436, y: 193}
+        - {x: -53.5, y: 164}
+        - {x: 13.5, y: 111}
+        - {x: 27.5, y: 18}
+        - {x: -53.346436, y: -66.070625}
+        - {x: -28.5, y: -92}
+        - {x: 2.5, y: -75}
+        - {x: -25.153076, y: -150.65054}
+        - {x: -12.4660635, y: -180.25352}
+        - {x: 22.5, y: -193}
+        - {x: 53.5, y: -192.9405}
+        - {x: 53.5, y: 143.96953}
+        - {x: 5.859621, y: 193}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b038bac29c20833449e72aa679b90d1f
+      internalID: -1352969758597306574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_31
+      rect:
+        serializedVersion: 2
+        x: 2128
+        y: 500
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e302af312267faa47805d2e96aebd3c0
+      internalID: -1828580530929796692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_32
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 160
+        width: 219
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 109.5, y: 31}
+        - {x: 51.17334, y: 124}
+        - {x: -109.5, y: 124}
+        - {x: -109.5, y: 31}
+        - {x: -82.5, y: 1}
+        - {x: -85.5, y: -76}
+        - {x: -60.5, y: -124}
+        - {x: 19.5, y: -124}
+        - {x: 109.5, y: -74}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 286ad35e769f3024c942948cdf0594c9
+      internalID: -2235170698188595640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_33
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 78
+        width: 421
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 210.5, y: -58.5}
+        - {x: 161.5, y: -58.5}
+        - {x: 149.5, y: 14.5}
+        - {x: 86.93945, y: 55.445347}
+        - {x: 144.73584, y: 73.770996}
+        - {x: 54.517086, y: 196.5}
+        - {x: -140.5, y: 196.5}
+        - {x: -210.5, y: 99.5}
+        - {x: -210.5, y: -10.5}
+        - {x: -144.24611, y: 8.92639}
+        - {x: -131.5591, y: -163.0528}
+        - {x: -93.498055, y: -196.5}
+        - {x: 12.227046, y: -196.5}
+        - {x: 210.5, y: -126.40149}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ea95e22059840f41bfce0803da8425d
+      internalID: 3222786071633819810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_34
+      rect:
+        serializedVersion: 2
+        x: 2287
+        y: 381
+        width: 176
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -88, y: -22.86912}
+        - {x: 88, y: -36.965775}
+        - {x: 88, y: -17.230457}
+        - {x: 34, y: 46.5}
+        - {x: -12, y: 46.5}
+        - {x: -88, y: 5.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 481a8d66b92135b44b2a106ca1184f14
+      internalID: 6978240486762557033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_35
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 173
+        width: 142
+        height: 194
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 71, y: 94.76357}
+        - {x: 64.55224, y: 97}
+        - {x: -5.931163, y: 97}
+        - {x: -70.775894, y: 55.292942}
+        - {x: -70.775894, y: -96.95092}
+        - {x: 40.587883, y: -96.95092}
+        - {x: 71, y: -71.57694}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b38f1d1c95df46429bff9534a15d623
+      internalID: -5254670698445295006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_36
+      rect:
+        serializedVersion: 2
+        x: 1947
+        y: 87
+        width: 148
+        height: 249
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 74, y: 101.5}
+        - {x: -8.209527, y: 124.5}
+        - {x: -74, y: 89.81933}
+        - {x: -74, y: -14.495908}
+        - {x: -40.63189, y: -124.44981}
+        - {x: -18.077202, y: -124.44981}
+        - {x: 60.864204, y: -42.689217}
+        - {x: 74, y: 13.6974}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eda74e359efa1c246bfad41fe82e02a6
+      internalID: 7395779115087754284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_37
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 118
+        width: 124
+        height: 208
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -61.725975, y: 104}
+        - {x: -62, y: 38}
+        - {x: -22.255272, y: -104}
+        - {x: 42, y: -104}
+        - {x: 62, y: -60.32267}
+        - {x: 62, y: 104}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc30f96566562f849b9c01e301cf1740
+      internalID: -341923090062157543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_38
+      rect:
+        serializedVersion: 2
+        x: 2235
+        y: 135
+        width: 35
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32715b26970f6c041a7579e9843923ce
+      internalID: 7509748841152956319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_39
+      rect:
+        serializedVersion: 2
+        x: 2267
+        y: 170
+        width: 34
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c94ce64a70a82344480eef3a653a9e79
+      internalID: 3149352018235951234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_40
+      rect:
+        serializedVersion: 2
+        x: 2306
+        y: 99
+        width: 90
+        height: 239
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fbd873c91345ea46b5ff406ebb38558
+      internalID: -4173200579132044672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

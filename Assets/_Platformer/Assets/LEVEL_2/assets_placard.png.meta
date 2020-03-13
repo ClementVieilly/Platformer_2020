@@ -1,0 +1,243 @@
+fileFormatVersion: 2
+guid: 812077dfd0ffca745b737acd4ffe0c28
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2933847464972086041
+    second: assets_placard_0
+  - first:
+      213: 4878256803481367968
+    second: assets_placard_1
+  - first:
+      213: -6013445534356921886
+    second: assets_placard_2
+  - first:
+      213: -3288294138423249357
+    second: assets_placard_3
+  - first:
+      213: 7592313696194854580
+    second: assets_placard_4
+  - first:
+      213: 4821507145885504351
+    second: assets_placard_5
+  - first:
+      213: 1564043875504678265
+    second: assets_placard_6
+  - first:
+      213: -8971005986664630582
+    second: assets_placard_7
+  - first:
+      213: 1893625727632191038
+    second: assets_placard_8
+  - first:
+      213: -3819324219857041712
+    second: assets_placard_9
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: assets_placard_0
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 137
+        width: 602
+        height: 818
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 301, y: 315}
+        - {x: 301, y: 409}
+        - {x: 145, y: 409}
+        - {x: -301, y: -238}
+        - {x: -301, y: -409}
+        - {x: -7, y: -409}
+        - {x: -11, y: -241}
+        - {x: -82, y: -211}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fab6b281d1f40b244934976dab7d4b1d
+      internalID: -2933847464972086041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: assets_placard_1
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 189
+        width: 426
+        height: 702
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 75, y: 32}
+        - {x: 213, y: 110}
+        - {x: 213, y: 182}
+        - {x: 49, y: 351}
+        - {x: -142, y: 351}
+        - {x: -213, y: 222}
+        - {x: -213, y: 40}
+        - {x: -120, y: -42}
+        - {x: 2, y: 1}
+        - {x: 186, y: -351}
+        - {x: 213, y: -351}
+        - {x: 213, y: -330}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b312c0cf315fd747a8d71d6bfcb865f
+      internalID: 4878256803481367968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: assets_placard_8
+      rect:
+        serializedVersion: 2
+        x: 1424
+        y: 319
+        width: 420
+        height: 556
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -210, y: 49}
+        - {x: -122, y: -278}
+        - {x: 182, y: -278}
+        - {x: 182, y: -181}
+        - {x: 85, y: -172}
+        - {x: 124, y: 70}
+        - {x: 22, y: 119}
+        - {x: -150, y: 175}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b92a2f86d410148418101fe31b95812b
+      internalID: 1893625727632191038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: assets_placard_9
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 134
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91d2528fe08c60a4e9ba3a49b6fe41a7
+      internalID: -3819324219857041712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 787a6117b19602543aaff21edf38c675
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

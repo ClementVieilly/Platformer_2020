@@ -468,6 +468,9 @@ MonoBehaviour:
   wallJumpPSLeft: {fileID: 7259554848344101600}
   planePS: {fileID: 9202119730613913554}
   onWallPS: {fileID: 6589254216183073983}
+  drawGroundLinecast: 1
+  drawGroundRaycast: 1
+  drawTraversableRaycast: 1
   vCam: {fileID: 641285116067221770}
   vCamIdle: {fileID: 2004198357732514620}
 --- !u!1 &641285116067221775
@@ -501,7 +504,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641285116067221775}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.680008, y: 9, z: -20}
+  m_LocalPosition: {x: -7.6800003, y: 9, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 641285114707324082}
@@ -5699,12 +5702,12 @@ PrefabInstance:
     - target: {fileID: 1493797280196837400, guid: 9961f18758ad7a042870d9ff46c2a2d0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.87
+      value: 0.86999893
       objectReference: {fileID: 0}
     - target: {fileID: 1493797280196837400, guid: 9961f18758ad7a042870d9ff46c2a2d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.72
+      value: 0.7200012
       objectReference: {fileID: 0}
     - target: {fileID: 1493797280196837400, guid: 9961f18758ad7a042870d9ff46c2a2d0,
         type: 3}
@@ -5905,12 +5908,12 @@ PrefabInstance:
     - target: {fileID: 5447887435999790469, guid: 8d3cd12d3048cdc45ab26ffab0b9beff,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.76
+      value: -0.7599983
       objectReference: {fileID: 0}
     - target: {fileID: 5447887435999790469, guid: 8d3cd12d3048cdc45ab26ffab0b9beff,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.05
+      value: 0.7200012
       objectReference: {fileID: 0}
     - target: {fileID: 5447887435999790469, guid: 8d3cd12d3048cdc45ab26ffab0b9beff,
         type: 3}
@@ -6187,6 +6190,11 @@ PrefabInstance:
         type: 3}
       propertyPath: EmissionModule.rateOverDistance.scalar
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776562469741061791, guid: e2bb4b2d332511142a12baab350e1b0f,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5142109955712172467, guid: e2bb4b2d332511142a12baab350e1b0f,
         type: 3}
@@ -6719,6 +6727,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.atime0
       value: 15035
+      objectReference: {fileID: 0}
+    - target: {fileID: 7440247056625795617, guid: 56b9ce024e5a9934785da0c1aa396f18,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56b9ce024e5a9934785da0c1aa396f18, type: 3}
@@ -7625,6 +7638,11 @@ PrefabInstance:
       propertyPath: ColorModule.gradient.maxGradient.atime0
       value: 15035
       objectReference: {fileID: 0}
+    - target: {fileID: 3395508045760975678, guid: 658e0338d4e8a7343adb837025de7079,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1228856383600632135, guid: 658e0338d4e8a7343adb837025de7079,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -8000,6 +8018,11 @@ PrefabInstance:
         type: 3}
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 3701159127536777740, guid: bbd93ad5d3ef1cb43bbec798941bf4b8,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbd93ad5d3ef1cb43bbec798941bf4b8, type: 3}

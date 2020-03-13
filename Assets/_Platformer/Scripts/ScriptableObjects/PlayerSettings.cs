@@ -17,6 +17,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private AnimatorParameter _verticalVelocityParam = null;
 		[SerializeField] private AnimatorParameter _isPlaningParam = null;
 		[SerializeField] private AnimatorParameter _isOnWallParam = null;
+		[SerializeField] private AnimatorParameter _jumpOnWallParam = null;
 		[SerializeField] private AnimatorParameter _idleLong = null;
 		[SerializeField] private AnimatorParameter _die = null;
 
@@ -25,6 +26,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public int VerticalVelocityParam => _verticalVelocityParam.ParameterID;
 		public int IsPlaningParam => _isPlaningParam.ParameterID;
 		public int IsOnWallParam => _isOnWallParam.ParameterID;
+		public int JumpOnWall => _jumpOnWallParam.ParameterID;
 		public int IdleLong => _idleLong.ParameterID;
 		public int Die => _die.ParameterID;
 
@@ -46,18 +48,23 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 
 
         [SerializeField] private LayerMask _groundLayerMask;
+
 		[SerializeField] private float _isGroundedRaycastDistance = 0.25f;
+		[SerializeField] private float _canGroundOnTraversableDistance = 2f;
+		[SerializeField] private float _traversableRaycastDistance = 3f;
 		[SerializeField] private float _jumpTolerance = 0.2f;
 		[SerializeField] private float _minJumpForce = 10f;
 		[SerializeField] private float _wallJumpHorizontalForce = 30f;
 		[SerializeField] private float _wallJumpVerticalForce = 30f;
+		[SerializeField] private float _wallJumpTime = 1f;
 		[SerializeField] private float _jumpHoldForce = 1f;
 		[SerializeField] private float _maxJumpTime = 0.5f;
 		[SerializeField] private float _jumpHangThreshold = 0.5f;
 		[SerializeField] private float _jumpHangTime = 0.5f;
+		[SerializeField] private float _toPassTraversableVelocity = 0.5f;
 		[SerializeField] private int _startLife = 3;
         [SerializeField] private float _coyoteTime = 0f;
-        [SerializeField] private Vector2 _impulsionInCorner; 
+        [SerializeField] private Vector2 _impulsionInCorner;
 
         public float RunSpeed => _runSpeed;
         public float AngleMinPente => _angleMinPente;
@@ -75,14 +82,18 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public AnimationCurve PlaneDecelerationCurve => _planeDecelerationCurve;
         public int GroundLayerMask => _groundLayerMask;
 		public float IsGroundedRaycastDistance => _isGroundedRaycastDistance;
+		public float CanGroundOnTraversableDistance => _canGroundOnTraversableDistance;
+		public float TraversableRaycastDistance => _traversableRaycastDistance;
 		public float JumpTolerance => _jumpTolerance;
 		public float MinJumpForce => _minJumpForce;
 		public float WallJumpHorizontalForce => _wallJumpHorizontalForce;
 		public float WallJumpVerticalForce => _wallJumpVerticalForce;
+		public float WallJumpTime => _wallJumpTime;
 		public float JumpHoldForce => _jumpHoldForce;
 		public float MaxJumpTime => _maxJumpTime;
 		public float JumpHangThreshold => _jumpHangThreshold;
 		public float JumpHangTime => _jumpHangTime;
+		public float ToPassTraversableVelocity => _toPassTraversableVelocity;
 		public int StartLife => _startLife;
 		public float CoyoteTime => _coyoteTime;
 		//public float HalfPlayerHeight => _halfPlayerHeight;

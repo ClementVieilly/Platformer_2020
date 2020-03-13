@@ -16,6 +16,7 @@ TagManager:
   - Level2Button
   - PlatformTraversable
   - PlayButton
+  - PlatformDestructible
   layers:
   - Default
   - TransparentFX
@@ -55,6 +56,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 757439609
+    locked: 0
+  - name: Background Transparent
+    uniqueID: 1471966771
     locked: 0
   - name: GameLayer
     uniqueID: 1877034893

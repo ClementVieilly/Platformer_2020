@@ -24,11 +24,11 @@ namespace Com.IsartDigital.Platformer.Controllers
 		}
 
 		/// <summary>
-		/// Struct to register touch info between frames
+		/// Class to register touch info between frames
 		/// </summary>
 		private class TouchInfo
 		{
-			public int touchIndex;
+			public int fingerId;
 
 			public Vector2 position = Vector2.zero;
 			public Vector2 direction = Vector2.zero;
@@ -37,7 +37,7 @@ namespace Com.IsartDigital.Platformer.Controllers
 
 			public TouchInfo(int index)
 			{
-				touchIndex = index;
+				fingerId = index;
 			}
 		}
 
@@ -49,7 +49,25 @@ namespace Com.IsartDigital.Platformer.Controllers
 
 		private const float HORIZONTAL_THRESHOLD = 10f;
 
-		private Camera mainCamera = null;
+		private Camera _mainCamera = null;
+		private Camera MainCamera
+		{
+			get
+			{
+				if (_mainCamera == null)
+					_mainCamera = Camera.main;
+
+				return _mainCamera;
+			}
+			set
+			{
+				_mainCamera = value;
+			}
+		}
+
+		private const int NOT_REGISTERED_INDEX = -1;
+		private int leftTouchIndex = NOT_REGISTERED_INDEX;
+		private int rightTouchIndex = NOT_REGISTERED_INDEX;
 
 		private List<TouchInfo> touches = new List<TouchInfo>();
 
@@ -58,7 +76,7 @@ namespace Com.IsartDigital.Platformer.Controllers
 		/// </summary>
 		public override void Init()
 		{
-			mainCamera = Camera.main;
+			MainCamera = Camera.main;
 		}
 
 		/// <summary>
@@ -68,8 +86,6 @@ namespace Com.IsartDigital.Platformer.Controllers
 		{
 			if (Input.touchCount == 0)
 			{
-				if (touches.Count != 0) touches.Clear();
-
 				_horizontalAxis = 0f;
 				_jump = false;
 
@@ -86,91 +102,60 @@ namespace Com.IsartDigital.Platformer.Controllers
 		/// </summary>
 		private void RegisterTouches()
 		{
-			Touch touch;
 			TouchInfo touchInfo;
-			for (int i = Input.touchCount - 1; i >= 0; i--)
+			foreach (Touch touch in Input.touches)
 			{
-				touch = Input.GetTouch(i);
 				if (touch.phase == TouchPhase.Began)
 				{
-					touchInfo = new TouchInfo(i);
-					Debug.Log(mainCamera);
+					touchInfo = new TouchInfo(touch.fingerId);
 					touchInfo.direction = touchInfo.position = touch.position;
-					touchInfo.side = mainCamera.ScreenToViewportPoint(touch.position).x <= 0.5f ? Side.LEFT : Side.RIGHT;
+					touchInfo.side = MainCamera.ScreenToViewportPoint(touch.position).x <= 0.5f ? Side.LEFT : Side.RIGHT;
 
-					// Check if this side touch is already registered, if not adds it to touches List
-					if (!CheckSideIsAlreadyRegistered(touchInfo.side))
+					// Check if this side touch is already registered, if not set the corresponded side index
+					if (touchInfo.side == Side.RIGHT && rightTouchIndex == NOT_REGISTERED_INDEX)
 					{
-						// If touch is right side set _jump to true
-						if (touchInfo.side == Side.RIGHT) _jump = true;
-						touches.Add(touchInfo);
+						rightTouchIndex = touchInfo.fingerId;
+						_jump = true;
 					}
+					else if (touchInfo.side == Side.LEFT && leftTouchIndex == NOT_REGISTERED_INDEX)
+						leftTouchIndex = touchInfo.fingerId;
+
+					AddInTouches(touchInfo);
 				}
 			}
 		}
 
-		/// <summary>
-		/// Returns true if a touch same side than "side" is already registered
-		/// </summary>
-		/// <returns></returns>
-		private bool CheckSideIsAlreadyRegistered(Side side)
+		private void AddInTouches(TouchInfo touchInfo)
 		{
-			for (int i = touches.Count - 1; i >= 0; i--)
+			int diff = touchInfo.fingerId - touches.Count;
+
+			if (diff >= 0)
 			{
-				if (touches[i].side == side)
-					return true;
-				else
-					continue;
+				for (int i = diff; i >= 0; i--)
+					touches.Add(null);
 			}
 
-			return false;
+			touches[touchInfo.fingerId] = touchInfo;
 		}
 
 		/// <summary>
-		/// Removes the TouchInfo from touches List at index position and rectifies Touch indexes of others TouchInfo
-		/// </summary>
-		private void RemoveTouchInfoAt(int index)
-		{
-			TouchInfo touchInfo;
-			for (int i = touches.Count - 1; i >= 0; i--)
-			{
-				touchInfo = touches[i];
-				if (i > index) touchInfo.touchIndex--;
-			}
-
-			touches.RemoveAt(index);
-		}
-
-		/// <summary>
-		/// Update touches already contained in touches List<TouchInfo>
+		/// Update touches
 		/// </summary>
 		private void UpdateTouches()
 		{
-			TouchInfo touchInfo;
-			for (int i = touches.Count - 1; i >= 0; i--)
+			foreach (Touch touch in Input.touches)
 			{
-				touchInfo = touches[i];
-
-				if (touchInfo.side == Side.LEFT)
-					UpdateLeftTouch(i);
-				else if (touchInfo.side == Side.RIGHT)
-					UpdateRightTouch(i);
-				else
-				{
-					if (Input.GetTouch(touchInfo.touchIndex).phase == TouchPhase.Ended)
-						RemoveTouchInfoAt(i);
-				}
+				if (leftTouchIndex != NOT_REGISTERED_INDEX && leftTouchIndex == touch.fingerId) UpdateLeftTouch(touch);
+				else if (rightTouchIndex != NOT_REGISTERED_INDEX && rightTouchIndex == touch.fingerId) UpdateRightTouch(touch);
 			}
 		}
 
 		/// <summary>
 		/// Update left side touch corresponding to the horizontal axis
 		/// </summary>
-		/// <param name="index">index in the touches List</param>
-		private void UpdateLeftTouch(int index)
+		private void UpdateLeftTouch(Touch touch)
 		{
-			TouchInfo touchInfo = touches[index];
-			Touch touch = Input.GetTouch(touchInfo.touchIndex);
+			TouchInfo touchInfo = touches[touch.fingerId];
 
 			if (touch.phase == TouchPhase.Moved)
 			{
@@ -185,24 +170,23 @@ namespace Com.IsartDigital.Platformer.Controllers
 			else if (touch.phase == TouchPhase.Ended)
 			{
 				_horizontalAxis = 0f;
-				RemoveTouchInfoAt(index);
+				leftTouchIndex = NOT_REGISTERED_INDEX;
+				touches[touch.fingerId] = null;
 			}
 		}
 
 		/// <summary>
 		/// Update right side touch corresponding to the jump axis
 		/// </summary>
-		/// <param name="index">index in the touches List</param>
-		private void UpdateRightTouch(int index)
+		private void UpdateRightTouch(Touch touch)
 		{
-			TouchInfo touchInfo = touches[index];
-			Touch touch = Input.GetTouch(touchInfo.touchIndex);
+			TouchInfo touchInfo = touches[touch.fingerId];
 
 			if (touch.phase == TouchPhase.Moved)
 			{
 				// If the touch leaves right side of the screen it's considered as aborted
 				// so a new touch can be registered
-				if (mainCamera.ScreenToViewportPoint(touch.position).x <= 0.5f)
+				if (MainCamera.ScreenToViewportPoint(touch.position).x <= 0.5f)
 				{
 					_jump = false;
 					touchInfo.side = Side.ABORTED;
@@ -211,9 +195,9 @@ namespace Com.IsartDigital.Platformer.Controllers
 			else if (touch.phase == TouchPhase.Ended)
 			{
 				_jump = false;
-				RemoveTouchInfoAt(index);
+				rightTouchIndex = NOT_REGISTERED_INDEX;
+				touches[touch.fingerId] = null;
 			}
 		}
 	}
 }
- 

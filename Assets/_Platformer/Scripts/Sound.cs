@@ -70,9 +70,16 @@ namespace Com.IsartDigital.Platformer {
         #region Loop properties
         [SerializeField] private bool _isLoop = false;
 		public bool IsLoop => _isLoop;
-        #endregion
+		#endregion
 
-        [SerializeField] private AudioMixerGroup _mixerGroup = null;
+		#region Spatialization properties
+
+		public AudioRolloffMode rolloffMode;
+		public AnimationCurve volumeSpatialization;
+		public float minDistance;
+		#endregion
+
+		[SerializeField] private AudioMixerGroup _mixerGroup = null;
 		public AudioMixerGroup MixerGroup => _mixerGroup;
 
 		private AudioSource _source = null;
@@ -87,6 +94,12 @@ namespace Com.IsartDigital.Platformer {
 			Source.pitch = Pitch;
 			Source.loop = IsLoop;
 			Source.outputAudioMixerGroup = MixerGroup;
+			
+			Source.rolloffMode = rolloffMode;
+			if (rolloffMode == AudioRolloffMode.Custom)
+			{
+				Source.SetCustomCurve(AudioSourceCurveType.CustomRolloff,volumeSpatialization);
+			}
 
 			if (_type == SoundTypes.SFX)
 			{

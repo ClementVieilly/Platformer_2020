@@ -7,13 +7,14 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections;
 
-namespace Com.IsartDigital.Platformer {
-	[CustomPropertyDrawer(typeof(Sound))]
-	public class SoundDrawer : PropertyDrawer
-	{
-        private float lineNumber = 12;
+namespace Com.IsartDigital.Platformer
+{
+    [CustomPropertyDrawer(typeof(Sound))]
+    public class SoundDrawer : PropertyDrawer
+    {
+        private float lineNumber = 15;
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-		{
+        {
             #region Infos
             //string
             SerializedProperty name = property.FindPropertyRelative("_name");
@@ -45,6 +46,8 @@ namespace Com.IsartDigital.Platformer {
             SerializedProperty minPitchValue = property.FindPropertyRelative("_minPitchValue");
             //flaot
             SerializedProperty maxPitchValue = property.FindPropertyRelative("_maxPitchValue");
+            //flaot
+            SerializedProperty rolloffMode = property.FindPropertyRelative("rolloffMode");
 
             #endregion
 
@@ -80,7 +83,7 @@ namespace Com.IsartDigital.Platformer {
                 position.y + lineHeight * 1f + 2.5f,
                 position.width * 0.3f,
                 lineHeight);
-            
+
             Rect bottomInfosLeftRect = new Rect(position.x,
                 position.y + lineHeight * 2.2f,
                 position.width * 0.65f,
@@ -92,7 +95,7 @@ namespace Com.IsartDigital.Platformer {
                 lineHeight);
 
             Rect bottomInfosRightRect = new Rect(position.x + position.width * 0.7f + 40,
-                position.y + lineHeight * 2.1f +2.8f,
+                position.y + lineHeight * 2.1f + 2.8f,
                 position.width * 0.5f,
                 lineHeight);
 
@@ -171,6 +174,11 @@ namespace Com.IsartDigital.Platformer {
                 position.width * 0.2f,
                 lineHeight);
 
+            Rect spatializeRect = new Rect(position.x + 15,
+                position.y + lineHeight * 11.5f + 2.5f,
+                200,
+                lineHeight);
+
             Rect foldoutRect = showInEditor.boolValue ? titleRect : position;
             #endregion
 
@@ -181,7 +189,7 @@ namespace Com.IsartDigital.Platformer {
             EditorGUI.BeginProperty(position, label, property);
 
             //Rect for bakcground
-            GUI.Box(globalRect,"");
+            GUI.Box(globalRect, "");
 
             EditorGUI.PropertyField(topInfosLeftRect, name, GUIContent.none);
             EditorGUI.PropertyField(topInfosRightRect, type, GUIContent.none);
@@ -192,13 +200,13 @@ namespace Com.IsartDigital.Platformer {
             GUI.Label(bottomInfosRightRect, infoLoop);
 
             GUI.Label(volumeLeftRect, "Volume");
-            EditorGUI.Slider(volumeRightRect ,volume, 0, 1,GUIContent.none);
+            EditorGUI.Slider(volumeRightRect, volume, 0, 1, GUIContent.none);
 
             GUI.Label(volumeVarLeftRect, "Volume variance");
-            EditorGUI.Slider(volumeVarRightRect ,volumeVariance, 0, 1,GUIContent.none);
-            
+            EditorGUI.Slider(volumeVarRightRect, volumeVariance, 0, 1, GUIContent.none);
+
             GUI.Label(pitchLeftRect, "Pitch");
-            EditorGUI.Slider(pitchRightRect ,pitch, 0, 1,GUIContent.none);
+            EditorGUI.Slider(pitchRightRect, pitch, 0, 1, GUIContent.none);
 
             isPitchedBetweenValues.boolValue = EditorGUI.Toggle(pitchBoolLeftRect, isPitchedBetweenValues.boolValue);
             GUI.Label(pitchBoolMiddleRect, "is Pitched Between Value ?");
@@ -219,6 +227,8 @@ namespace Com.IsartDigital.Platformer {
                 GUI.Label(pitchVarLeftRect, "Pitch variance");
                 EditorGUI.Slider(pitchVarRightRect, pitchVariance, 0, 1, GUIContent.none);
             }
+
+            EditorGUI.PropertyField(spatializeRect, rolloffMode, GUIContent.none);
 
             EditorGUI.EndProperty();
         }

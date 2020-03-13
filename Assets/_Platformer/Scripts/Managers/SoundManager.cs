@@ -115,6 +115,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			currentSound.Source.pitch = currentSound.IsPitchedBetweenValues ?
 										UnityEngine.Random.Range(currentSound.MinPitchValue, currentSound.MaxPitchValue) :
 										currentSound.Source.pitch = currentSound.Pitch * (1 + UnityEngine.Random.Range(-currentSound.PitchVariance / 2, currentSound.PitchVariance / 2));
+
 			currentSound.Source.Play();
 		}
 

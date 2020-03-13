@@ -449,8 +449,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsGrounded(); 
             if (_isGrounded)
             {
-                wasOnWall = false;
-                wallJumpElaspedTime = 0; 
+				onWallPS.Stop();
+				wasOnWall = false;
+				wallJumpElaspedTime = 0; 
                 SetModeNormal();
 
 				if (SoundManager.Instance)

@@ -4,7 +4,6 @@
 ///-----------------------------------------------------------------
 
 using Cinemachine;
-using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.LevelObjects.Platforms;
 using Com.IsartDigital.Platformer.Managers;
 using Com.IsartDigital.Platformer.Screens;
@@ -37,7 +36,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [Header("Particle Systems")]
         [SerializeField] private ParticleSystem walkingPS = null;
         [SerializeField] private ParticleSystem jumpingWingsPS = null;
-        [SerializeField] private ParticleSystem jumpDustPS = null;
+        [SerializeField] private ParticleSystem jumpDustGroundPS = null;
+        [SerializeField] private ParticleSystem jumpDustAirPS = null;
         [SerializeField] private ParticleSystem landingPS = null;
         [SerializeField] private ParticleSystem wallJumpPSLeft = null;
         [SerializeField] private ParticleSystem planePS = null;
@@ -333,7 +333,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
                 IsGrounded = false;
                 jumpingWingsPS.Play();
-                jumpDustPS.Play();
+				jumpDustGroundPS.Play();
+				jumpDustAirPS.Play();
                 StartCoroutine(StartJumpParticule()); 
 
 				if (SoundManager.Instance)

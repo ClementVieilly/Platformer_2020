@@ -39,7 +39,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private ParticleSystem jumpDustGroundPS = null;
         [SerializeField] private ParticleSystem jumpDustAirPS = null;
         [SerializeField] private ParticleSystem landingPS = null;
-        [SerializeField] private ParticleSystem wallJumpPSLeft = null;
+        [SerializeField] private ParticleSystem wallJumpPS = null;
+		[SerializeField] private ParticleSystem onWallJumpPS = null;
         [SerializeField] private ParticleSystem planePS = null;
         [SerializeField] private ParticleSystem onWallPS = null;
 
@@ -476,7 +477,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     previousDirection = -facingRightWall;
                     rigidBody.velocity = new Vector2(settings.WallJumpHorizontalForce * previousDirection, settings.WallJumpVerticalForce);
                     onWallPS.Stop();
-                    wallJumpPSLeft.Play();
+					onWallJumpPS.transform.localScale = facingRightWall == 1 ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
+                    wallJumpPS.Play();
 					animator.SetTrigger(settings.JumpOnWall);
 					animator.SetBool(settings.IsOnWallParam, false);
 

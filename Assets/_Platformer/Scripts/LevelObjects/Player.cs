@@ -4,7 +4,6 @@
 ///-----------------------------------------------------------------
 
 using Cinemachine;
-using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.LevelObjects.Platforms;
 using Com.IsartDigital.Platformer.Managers;
 using Com.IsartDigital.Platformer.Screens;
@@ -36,7 +35,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         [Header("Particle Systems")]
         [SerializeField] private ParticleSystem walkingPS = null;
-        [SerializeField] private ParticleSystem jumpingPS = null;
+        [SerializeField] private ParticleSystem jumpingWingsPS = null;
+        [SerializeField] private ParticleSystem jumpDustGroundPS = null;
+        [SerializeField] private ParticleSystem jumpDustAirPS = null;
         [SerializeField] private ParticleSystem landingPS = null;
         [SerializeField] private ParticleSystem wallJumpPSLeft = null;
         [SerializeField] private ParticleSystem planePS = null;
@@ -331,7 +332,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 jumpButtonHasPressed = true;
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
                 IsGrounded = false;
-                jumpingPS.Play();
+                jumpingWingsPS.Play();
+				jumpDustGroundPS.Play();
+				jumpDustAirPS.Play();
                 StartCoroutine(StartJumpParticule()); 
 
 				if (SoundManager.Instance)
@@ -449,8 +452,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             CheckIsGrounded(); 
             if (_isGrounded)
             {
-                wasOnWall = false;
-                wallJumpElaspedTime = 0; 
+				onWallPS.Stop();
+				wasOnWall = false;
+				wallJumpElaspedTime = 0; 
                 SetModeNormal();
 
 				if (SoundManager.Instance)
@@ -704,7 +708,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 yield return null; 
             }
 
-            jumpingPS.Stop();
+            jumpingWingsPS.Stop();
             jumpPSTimer = 0; 
         }
 

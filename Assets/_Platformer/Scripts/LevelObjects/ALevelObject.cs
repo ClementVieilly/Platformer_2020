@@ -3,6 +3,7 @@
 /// Date : 21/01/2020 10:38
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.Sounds;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

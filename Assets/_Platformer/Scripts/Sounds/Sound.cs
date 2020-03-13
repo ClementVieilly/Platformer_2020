@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 
-namespace Com.IsartDigital.Platformer {
+namespace Com.IsartDigital.Platformer.Sounds {
 
 	[System.Serializable]
 	public class Sound

@@ -6,6 +6,7 @@
 using UnityEditor;
 using UnityEngine;
 using System.Collections;
+using Com.IsartDigital.Platformer.Sounds;
 
 namespace Com.IsartDigital.Platformer
 {
@@ -50,6 +51,8 @@ namespace Com.IsartDigital.Platformer
             SerializedProperty rolloffMode = property.FindPropertyRelative("rolloffMode");
 
             SerializedProperty minDistance = property.FindPropertyRelative("minDistance");
+
+            SerializedProperty maxDistance = property.FindPropertyRelative("maxDistance");
 
             SerializedProperty volumeSpatialization = property.FindPropertyRelative("volumeSpatialization");
 
@@ -281,7 +284,7 @@ namespace Com.IsartDigital.Platformer
             EditorGUI.PropertyField(spatializeRight2Rect, minDistance, GUIContent.none);
             
             GUI.Label(spatializeLeft3Rect, "Max Distance");
-            EditorGUI.PropertyField(spatializeRight3Rect, minDistance, GUIContent.none);
+            EditorGUI.PropertyField(spatializeRight3Rect, maxDistance, GUIContent.none);
 
             GUI.Label(spatializeCurveTitleLeftRect, "Custom Curve Spatialization");
             EditorGUI.PropertyField(spatializeCurveTitleRightRect, volumeSpatialization, GUIContent.none);

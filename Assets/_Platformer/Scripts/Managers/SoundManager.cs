@@ -4,6 +4,7 @@
 ///-----------------------------------------------------------------
 
 using Com.IsartDigital.Platformer.LevelObjects;
+using Com.IsartDigital.Platformer.Sounds;
 using System;
 using System.Collections.Generic;
 

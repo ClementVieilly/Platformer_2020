@@ -31,7 +31,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.86666673
+    m_StopTime: 1.1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -239,4 +239,53 @@ AnimationClip:
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 26
+    messageOptions: 0
+  - time: 0.90000004
+    functionName: GotoAndStop
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 27
+    messageOptions: 0
+  - time: 0.9333334
+    functionName: GotoAndStop
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 28
+    messageOptions: 0
+  - time: 0.9666667
+    functionName: GotoAndStop
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 29
+    messageOptions: 0
+  - time: 1
+    functionName: GotoAndStop
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 30
+    messageOptions: 0
+  - time: 1.0333334
+    functionName: GotoAndStop
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 31
+    messageOptions: 0
+  - time: 1.0666667
+    functionName: GotoAndStop
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 32
+    messageOptions: 0
+  - time: 1.1
+    functionName: GotoAndStop
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 33
     messageOptions: 0

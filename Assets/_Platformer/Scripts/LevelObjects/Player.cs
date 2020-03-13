@@ -36,7 +36,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         [Header("Particle Systems")]
         [SerializeField] private ParticleSystem walkingPS = null;
-        [SerializeField] private ParticleSystem jumpingPS = null;
+        [SerializeField] private ParticleSystem jumpingWingsPS = null;
+        [SerializeField] private ParticleSystem jumpDustPS = null;
         [SerializeField] private ParticleSystem landingPS = null;
         [SerializeField] private ParticleSystem wallJumpPSLeft = null;
         [SerializeField] private ParticleSystem planePS = null;
@@ -331,7 +332,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 jumpButtonHasPressed = true;
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, settings.MinJumpForce);
                 IsGrounded = false;
-                jumpingPS.Play();
+                jumpingWingsPS.Play();
+                jumpDustPS.Play();
                 StartCoroutine(StartJumpParticule()); 
 
 				if (SoundManager.Instance)
@@ -705,7 +707,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 yield return null; 
             }
 
-            jumpingPS.Stop();
+            jumpingWingsPS.Stop();
             jumpPSTimer = 0; 
         }
 

@@ -1,7 +1,130 @@
 fileFormatVersion: 2
 guid: bbe7b2bede3ca704c8919e306a33b190
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 4298880230518886297
+    second: Damien1_0
+  - first:
+      213: 329102215864174364
+    second: Damien1_1
+  - first:
+      213: 3258297928772847172
+    second: Damien1_2
+  - first:
+      213: 3295966517418689403
+    second: Damien1_3
+  - first:
+      213: 6587305248393943719
+    second: Damien1_4
+  - first:
+      213: -3647888134443972985
+    second: Damien1_5
+  - first:
+      213: -6691783240105522615
+    second: Damien1_6
+  - first:
+      213: -5456700028836629105
+    second: Damien1_7
+  - first:
+      213: -3463830341026501253
+    second: Damien1_8
+  - first:
+      213: 8796163959611812935
+    second: Damien1_9
+  - first:
+      213: 8356683255581710717
+    second: Damien1_10
+  - first:
+      213: 740946249328243531
+    second: Damien1_11
+  - first:
+      213: 1800446246484940132
+    second: Damien1_12
+  - first:
+      213: -8850339316931361608
+    second: Damien1_13
+  - first:
+      213: -5610756498249608289
+    second: Damien1_14
+  - first:
+      213: -633339869575395997
+    second: Damien1_15
+  - first:
+      213: -6254955787327033760
+    second: Damien1_16
+  - first:
+      213: -8527654288380038591
+    second: Damien1_17
+  - first:
+      213: -5214482175833627287
+    second: Damien1_18
+  - first:
+      213: 2776222224139270685
+    second: Damien1_19
+  - first:
+      213: 190398508319256325
+    second: Damien1_20
+  - first:
+      213: 8141459179338653880
+    second: Damien1_21
+  - first:
+      213: 7102941786354930421
+    second: Damien1_22
+  - first:
+      213: 7596668864324224055
+    second: Damien1_23
+  - first:
+      213: -994832338935221995
+    second: Damien1_24
+  - first:
+      213: 986584876499267983
+    second: Damien1_25
+  - first:
+      213: -2412459605191294754
+    second: Damien1_26
+  - first:
+      213: 5784229857063396969
+    second: Damien1_27
+  - first:
+      213: -3514946672827276503
+    second: Damien1_28
+  - first:
+      213: -1564198023516474663
+    second: Damien1_29
+  - first:
+      213: -1352969758597306574
+    second: Damien1_30
+  - first:
+      213: -1828580530929796692
+    second: Damien1_31
+  - first:
+      213: -2235170698188595640
+    second: Damien1_32
+  - first:
+      213: 3222786071633819810
+    second: Damien1_33
+  - first:
+      213: 6978240486762557033
+    second: Damien1_34
+  - first:
+      213: -5254670698445295006
+    second: Damien1_35
+  - first:
+      213: 7395779115087754284
+    second: Damien1_36
+  - first:
+      213: -341923090062157543
+    second: Damien1_37
+  - first:
+      213: 7509748841152956319
+    second: Damien1_38
+  - first:
+      213: 3149352018235951234
+    second: Damien1_39
+  - first:
+      213: -4173200579132044672
+    second: Damien1_40
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,7 +163,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -69,9 +192,903 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Damien1_0
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1743
+        width: 111
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95b71260fb3b8cb449c0eda799b091fa
+      internalID: 4298880230518886297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_1
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 1744
+        width: 120
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba0ae589274ab8d4da776682bac5a5ba
+      internalID: 329102215864174364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_2
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 1743
+        width: 112
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b18f717815fd9f47a4a453758b8da6e
+      internalID: 3258297928772847172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_3
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 1744
+        width: 93
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06afe340bb4010440a3163ef30ec08fb
+      internalID: 3295966517418689403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_4
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 1575
+        width: 114
+        height: 301
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8f32b1451821fb45a90497fd6e584ee
+      internalID: 6587305248393943719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_5
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 1577
+        width: 115
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 689426db08c969340a1b82767f5f834a
+      internalID: -3647888134443972985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_6
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 1580
+        width: 114
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2272c30b570147c438f80fb7090b0162
+      internalID: -6691783240105522615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_7
+      rect:
+        serializedVersion: 2
+        x: 1444
+        y: 1577
+        width: 90
+        height: 301
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10246e3cdda6d334ebd81b35387092c1
+      internalID: -5456700028836629105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_8
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 1155
+        width: 420
+        height: 412
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebed68559f5d0384eba900b47c1ae0ea
+      internalID: -3463830341026501253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_9
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 900
+        width: 436
+        height: 801
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 181b36e81cd59fa43b3abecd81dab419
+      internalID: 8796163959611812935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_10
+      rect:
+        serializedVersion: 2
+        x: 1048
+        y: 858
+        width: 400
+        height: 843
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59deccbff6cd9cb4eb962e797835115c
+      internalID: 8356683255581710717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_11
+      rect:
+        serializedVersion: 2
+        x: 1494
+        y: 1071
+        width: 236
+        height: 499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a7f8d4e7e61a114cbe19c11ec8e55ae
+      internalID: 740946249328243531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_12
+      rect:
+        serializedVersion: 2
+        x: 1725
+        y: 1260
+        width: 200
+        height: 333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6932186d2ea03094f91f58bba392091d
+      internalID: 1800446246484940132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_13
+      rect:
+        serializedVersion: 2
+        x: 1926
+        y: 1381
+        width: 488
+        height: 310
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 701f921b75d5c0e4484e406aebfe1d1b
+      internalID: -8850339316931361608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_14
+      rect:
+        serializedVersion: 2
+        x: 2451
+        y: 1333
+        width: 172
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a032a18b5ffdfc49bc8c82998cc2193
+      internalID: -5610756498249608289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_15
+      rect:
+        serializedVersion: 2
+        x: 2045
+        y: 1207
+        width: 356
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4006ba7cd2a8b2548af3d1be2ff18d8e
+      internalID: -633339869575395997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_16
+      rect:
+        serializedVersion: 2
+        x: 2579
+        y: 1332
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 863f33a95f1f81f4aba9f873b2ecfc6f
+      internalID: -6254955787327033760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_17
+      rect:
+        serializedVersion: 2
+        x: 2585
+        y: 914
+        width: 205
+        height: 426
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5178eff051ce9244fa70b13d8b63abb0
+      internalID: -8527654288380038591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_18
+      rect:
+        serializedVersion: 2
+        x: 2795
+        y: 1334
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2c7d435629ecd04397b270221445e80
+      internalID: -5214482175833627287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_19
+      rect:
+        serializedVersion: 2
+        x: 1761
+        y: 510
+        width: 773
+        height: 679
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a76ecf83939ed548ba8a563445ec867
+      internalID: 2776222224139270685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_20
+      rect:
+        serializedVersion: 2
+        x: 1823
+        y: 992
+        width: 143
+        height: 228
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4558673a5dd4da4ab5c253ee55e0ea0
+      internalID: 190398508319256325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_21
+      rect:
+        serializedVersion: 2
+        x: 2407
+        y: 1130
+        width: 182
+        height: 183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1451ebd5aaaa62a43a70a2efe7185b67
+      internalID: 8141459179338653880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_22
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 793
+        width: 405
+        height: 335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55e7f7b6d0e43d349a8e2bd050aee734
+      internalID: 7102941786354930421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_23
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 638
+        width: 1030
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55ba6bc7008b2654ab8dc31b736a6bbc
+      internalID: 7596668864324224055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_24
+      rect:
+        serializedVersion: 2
+        x: 1257
+        y: 805
+        width: 5
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e263044e9f442a44a2b8cc8a3524e4a
+      internalID: -994832338935221995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_25
+      rect:
+        serializedVersion: 2
+        x: 2562
+        y: 364
+        width: 213
+        height: 518
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6de8663b42a164b429e6573f791d5ac0
+      internalID: 986584876499267983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_26
+      rect:
+        serializedVersion: 2
+        x: 1065
+        y: 68
+        width: 555
+        height: 515
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bf1c1d4537c6244b880a70caf467f38
+      internalID: -2412459605191294754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_27
+      rect:
+        serializedVersion: 2
+        x: 2057
+        y: 321
+        width: 69
+        height: 218
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6e191df4e1751348b0d7dc64a5f4890
+      internalID: 5784229857063396969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_28
+      rect:
+        serializedVersion: 2
+        x: 2124
+        y: 507
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 361b400e09631564eb2b540c89206726
+      internalID: -3514946672827276503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_29
+      rect:
+        serializedVersion: 2
+        x: 2146
+        y: 339
+        width: 130
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 182969ecf6718984aa22797b9597cf21
+      internalID: -1564198023516474663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_30
+      rect:
+        serializedVersion: 2
+        x: 2403
+        y: 163
+        width: 107
+        height: 386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7474c2c788b817941a92c00800dd733d
+      internalID: -1352969758597306574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_31
+      rect:
+        serializedVersion: 2
+        x: 2128
+        y: 500
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0f092ff87c9f36488100c765d6cbd74
+      internalID: -1828580530929796692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_32
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 160
+        width: 219
+        height: 248
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 112a4402b4f41b449bc5a6c4aa817aa7
+      internalID: -2235170698188595640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_33
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 78
+        width: 421
+        height: 393
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0153993a61a89d6449a6c4a041a54e38
+      internalID: 3222786071633819810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_34
+      rect:
+        serializedVersion: 2
+        x: 2287
+        y: 381
+        width: 176
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c15634543b5bc1428733a4719c35003
+      internalID: 6978240486762557033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_35
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 173
+        width: 142
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b2a296f32d2b93429077a89b827c28e
+      internalID: -5254670698445295006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_36
+      rect:
+        serializedVersion: 2
+        x: 1947
+        y: 87
+        width: 148
+        height: 249
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9df2025c32102e1418f2a4d3b110309a
+      internalID: 7395779115087754284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_37
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 118
+        width: 124
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2db1ffebfac34aa4c86e712139973404
+      internalID: -341923090062157543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_38
+      rect:
+        serializedVersion: 2
+        x: 2235
+        y: 135
+        width: 35
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 877e0db74cbbeb342b7fe713cce86d2b
+      internalID: 7509748841152956319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_39
+      rect:
+        serializedVersion: 2
+        x: 2267
+        y: 170
+        width: 34
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 438cb6b02eaf5234498136809c34b5eb
+      internalID: 3149352018235951234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Damien1_40
+      rect:
+        serializedVersion: 2
+        x: 2306
+        y: 99
+        width: 90
+        height: 239
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25654c5513dadbd43adeacbf32403d18
+      internalID: -4173200579132044672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

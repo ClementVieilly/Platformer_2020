@@ -22,7 +22,7 @@ namespace Com.IsartDigital.Platformer.Cameras {
 			if (vCam.activeSelf) vCam.SetActive(false);
 		}
 
-		virtual protected void OnTriggerEnter2D(Collider2D collision)
+		virtual public void Launch()
 		{
 			vCam.SetActive(true);
 			if (isFirstActivation)
@@ -30,6 +30,11 @@ namespace Com.IsartDigital.Platformer.Cameras {
 				StartCoroutine(player.Lock(timeLockFirstActivation));
 				isFirstActivation = false;
 			}
+		}
+
+		virtual protected void OnTriggerEnter2D(Collider2D collision)
+		{
+			Launch();
 		}
 
 		virtual protected void OnTriggerExit2D(Collider2D collision)

@@ -14,15 +14,15 @@ namespace Com.IsartDigital.Platformer.Localization {
         [SerializeField]  private string key;
         private Text componentText; 
 		private void Start () {
-            LocalizationManager.Instance.OnChangeLanguage += LocalizationManager_OnChangeLanguage; 
+            LocalizationManager.Instance.OnLoadFinished += LocalizationManager_OnLoadFinished; 
             componentText = GetComponent<Text>();
-            componentText.text = LocalizationManager.Instance.GetLocalizedValue(key);
-		}
 
-        private void LocalizationManager_OnChangeLanguage()
+        }
+
+        private void LocalizationManager_OnLoadFinished()
         {
-            Debug.Log(LocalizationManager.Instance.GetLocalizedValue(key)); 
             componentText.text = LocalizationManager.Instance.GetLocalizedValue(key);
         }
+
     }
 }

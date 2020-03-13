@@ -1354,6 +1354,7 @@ MonoBehaviour:
   buttonLocalisationTag: Localisation
   buttonCreditsTag: Credits
   buttonPlayTag: PlayButton
+  localizationToggle: {fileID: 702772732724303701}
 --- !u!95 &1391584208870809957
 Animator:
   serializedVersion: 3
@@ -2573,9 +2574,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Touch to play
-
-'
+  m_Text: Touch For Play
 --- !u!114 &2495159720712758762
 MonoBehaviour:
   m_ObjectHideFlags: 0

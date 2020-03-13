@@ -77,6 +77,8 @@ namespace Com.IsartDigital.Platformer {
 		public AudioRolloffMode rolloffMode;
 		public AnimationCurve volumeSpatialization;
 		public float minDistance;
+		public float maxDistance;
+
 		#endregion
 
 		[SerializeField] private AudioMixerGroup _mixerGroup = null;
@@ -96,6 +98,8 @@ namespace Com.IsartDigital.Platformer {
 			Source.outputAudioMixerGroup = MixerGroup;
 			
 			Source.rolloffMode = rolloffMode;
+			Source.minDistance = minDistance;
+			Source.maxDistance = maxDistance;
 			if (rolloffMode == AudioRolloffMode.Custom)
 			{
 				Source.SetCustomCurve(AudioSourceCurveType.CustomRolloff,volumeSpatialization);
@@ -125,8 +129,14 @@ namespace Com.IsartDigital.Platformer {
 			_isLoop = originSound.IsLoop;
 			_isPitchedBetweenValues = originSound.IsPitchedBetweenValues;
 
+			rolloffMode = originSound.rolloffMode;
+			volumeSpatialization = originSound.volumeSpatialization;
+			minDistance = originSound.minDistance;
+			maxDistance = originSound.maxDistance;
+
 			_mixerGroup = originSound._mixerGroup;
 			_source = originSound.Source;
+
 		}
 
 #if UNITY_EDITOR

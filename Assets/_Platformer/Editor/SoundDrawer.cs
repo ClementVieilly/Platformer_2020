@@ -12,7 +12,7 @@ namespace Com.IsartDigital.Platformer
     [CustomPropertyDrawer(typeof(Sound))]
     public class SoundDrawer : PropertyDrawer
     {
-        private float lineNumber = 15;
+        private float lineNumber = 20;
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             #region Infos
@@ -48,6 +48,10 @@ namespace Com.IsartDigital.Platformer
             SerializedProperty maxPitchValue = property.FindPropertyRelative("_maxPitchValue");
             //flaot
             SerializedProperty rolloffMode = property.FindPropertyRelative("rolloffMode");
+
+            SerializedProperty minDistance = property.FindPropertyRelative("minDistance");
+
+            SerializedProperty volumeSpatialization = property.FindPropertyRelative("volumeSpatialization");
 
             #endregion
 
@@ -174,8 +178,48 @@ namespace Com.IsartDigital.Platformer
                 position.width * 0.2f,
                 lineHeight);
 
-            Rect spatializeRect = new Rect(position.x + 15,
-                position.y + lineHeight * 11.5f + 2.5f,
+            Rect spatializeHeaderRect = new Rect(position.x + position.width * 0.4f,
+                position.y + lineHeight * 11f + 2.5f,
+                200,
+                lineHeight);
+
+            Rect spatializeLeftRect = new Rect(position.x + 15,
+                position.y + lineHeight * 12.5f + 2.5f,
+                200,
+                lineHeight);
+
+            Rect spatializeRightRect = new Rect(position.x + 85,
+                position.y + lineHeight * 12.5f + 2.5f,
+                position.width * 0.2f,
+                lineHeight);
+
+            Rect spatializeLeft2Rect = new Rect(position.x + position.width * 0.4f,
+                position.y + lineHeight * 12.5f + 2.5f,
+                position.width * 0.2f,
+                lineHeight);
+
+            Rect spatializeRight2Rect = new Rect(position.x + position.width * 0.4f + 75,
+                position.y + lineHeight * 12.5f + 2.5f,
+                position.width * 0.2f,
+                lineHeight);
+
+            Rect spatializeLeft3Rect = new Rect(position.x + position.width * 0.4f,
+                position.y + lineHeight * 13.5f + 2.5f,
+                position.width * 0.2f,
+                lineHeight);
+
+            Rect spatializeRight3Rect = new Rect(position.x + position.width * 0.4f + 75,
+                position.y + lineHeight * 13.5f + 2.5f,
+                position.width * 0.2f,
+                lineHeight);
+
+            Rect spatializeCurveTitleLeftRect = new Rect(position.x + 15,
+                position.y + lineHeight * 15.5f + 2.5f,
+                200,
+                lineHeight);
+                        
+            Rect spatializeCurveTitleRightRect = new Rect(position.x + 15 + position.width * 0.3f,
+                position.y + lineHeight * 15.5f + 2.5f,
                 200,
                 lineHeight);
 
@@ -228,7 +272,20 @@ namespace Com.IsartDigital.Platformer
                 EditorGUI.Slider(pitchVarRightRect, pitchVariance, 0, 1, GUIContent.none);
             }
 
-            EditorGUI.PropertyField(spatializeRect, rolloffMode, GUIContent.none);
+            GUI.Label(spatializeHeaderRect, "Spatialization settings",GUIStyle.none);
+
+            GUI.Label(spatializeLeftRect, "Rolloff Mode");
+            EditorGUI.PropertyField(spatializeRightRect, rolloffMode, GUIContent.none);
+            
+            GUI.Label(spatializeLeft2Rect, "Min Distance");
+            EditorGUI.PropertyField(spatializeRight2Rect, minDistance, GUIContent.none);
+            
+            GUI.Label(spatializeLeft3Rect, "Max Distance");
+            EditorGUI.PropertyField(spatializeRight3Rect, minDistance, GUIContent.none);
+
+            GUI.Label(spatializeCurveTitleLeftRect, "Custom Curve Spatialization");
+            EditorGUI.PropertyField(spatializeCurveTitleRightRect, volumeSpatialization, GUIContent.none);
+
 
             EditorGUI.EndProperty();
         }

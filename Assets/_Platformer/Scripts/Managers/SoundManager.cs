@@ -109,7 +109,6 @@ namespace Com.IsartDigital.Platformer.Managers
 				//Debug.LogWarning("Sound: " + name + " is already playing!");
 				return;
 			}
-
 			currentSound.Source.volume = currentSound.Volume * (1 + UnityEngine.Random.Range(-currentSound.VolumeVariance / 2, currentSound.VolumeVariance / 2));
 
 			currentSound.Source.pitch = currentSound.IsPitchedBetweenValues ?

@@ -42,7 +42,12 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private ParticleSystem planePS = null;
         [SerializeField] private ParticleSystem onWallPS = null;
 
-        private RaycastHit2D hitInfos;
+		[Header("Debug")]
+		[SerializeField] private bool drawGroundLinecast = true;
+		[SerializeField] private bool drawGroundRaycast = true;
+		[SerializeField] private bool drawTraversableRaycast = true;
+
+		private RaycastHit2D hitInfos;
         private RaycastHit2D hitInfosNormal;
 
         #region Life
@@ -210,11 +215,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void Update()
         {
-            
             CheckInputs();
         }
 
-        private void CheckInputs()
+		private void CheckInputs()
         {
             if (isLocked) 
             {
@@ -386,14 +390,14 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
 			//LineCast horizontal aux pieds
 			hitInfos = Physics2D.Linecast(groundLinecastStartPos.position, groundLinecastEndPos.position, settings.GroundLayerMask);
-			Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
+			if (drawGroundLinecast) Debug.DrawLine(groundLinecastStartPos.position, groundLinecastEndPos.position, Color.red);
 
 			hitInfosNormal = Physics2D.Raycast(origin, Vector2.down, settings.JumpTolerance, settings.GroundLayerMask);
-			Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.JumpTolerance), Color.blue);
+			if (drawGroundRaycast) Debug.DrawRay(origin, Vector2.down - new Vector2(0, settings.JumpTolerance), Color.blue);
 
 			bool isTraversable = false;
 			RaycastHit2D traversableHitInfos = Physics2D.Raycast(traversableRaycastOrigin.position, Vector2.down, settings.TraversableRaycastDistance, settings.GroundLayerMask);
-			//Debug.DrawRay(traversableRaycastOrigin.position, Vector2.down * settings.CanGroundOnTraversableDistance, Color.magenta);
+			if (drawTraversableRaycast) Debug.DrawRay(traversableRaycastOrigin.position, Vector2.down * settings.CanGroundOnTraversableDistance, Color.magenta);
 			if (traversableHitInfos.collider)
 			{
 				if (traversableHitInfos.collider.GetComponent<PlatformEffector2D>() &&

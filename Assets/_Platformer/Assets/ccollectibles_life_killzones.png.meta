@@ -1,7 +1,61 @@
 fileFormatVersion: 2
-guid: e83113f0e2f58914cb5f4b9ba3d46826
+guid: 1cdec1dce4acd9a47be73335edb42c78
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -2242381857777561170
+    second: ccollectibles_life_killzones_0
+  - first:
+      213: 8497791257755077986
+    second: ccollectibles_life_killzones_1
+  - first:
+      213: -6871049557817223620
+    second: ccollectibles_life_killzones_2
+  - first:
+      213: 7162605148684020029
+    second: ccollectibles_life_killzones_3
+  - first:
+      213: -1973610100618406474
+    second: ccollectibles_life_killzones_4
+  - first:
+      213: 4417201946426823546
+    second: ccollectibles_life_killzones_5
+  - first:
+      213: 2336854285590739904
+    second: ccollectibles_life_killzones_6
+  - first:
+      213: -8375383973930461221
+    second: ccollectibles_life_killzones_7
+  - first:
+      213: -2203590917394656919
+    second: ccollectibles_life_killzones_8
+  - first:
+      213: 2373488430038845905
+    second: ccollectibles_life_killzones_9
+  - first:
+      213: 3291102992093976437
+    second: ccollectibles_life_killzones_10
+  - first:
+      213: 5542145917331833488
+    second: ccollectibles_life_killzones_11
+  - first:
+      213: 32315096052595880
+    second: ccollectibles_life_killzones_12
+  - first:
+      213: 5910645532324081073
+    second: ccollectibles_life_killzones_13
+  - first:
+      213: -8277871031123117603
+    second: ccollectibles_life_killzones_14
+  - first:
+      213: 1848898530260744183
+    second: ccollectibles_life_killzones_15
+  - first:
+      213: -1351979248584740965
+    second: ccollectibles_life_killzones_16
+  - first:
+      213: 7512489098839911371
+    second: ccollectibles_life_killzones_17
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,7 +94,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -69,13 +123,327 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: ccollectibles_life_killzones_0
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 1960
+        width: 2781
+        height: 1121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1152.5, y: -44.5}
+        - {x: 1026.5, y: 560.5}
+        - {x: 710.5, y: 560.5}
+        - {x: 529.5, y: 52.5}
+        - {x: -159.5, y: 359.5}
+        - {x: -351.5, y: 537.5}
+        - {x: -1390.5, y: 10.5}
+        - {x: -1390.5, y: -560.5}
+        - {x: 1390.5, y: -560.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5186025b0920488458fc5c9381018b5b
+      internalID: -2242381857777561170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ccollectibles_life_killzones_1
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 2983
+        width: 885
+        height: 846
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 442.5, y: -172.6385}
+        - {x: 92.5, y: 423}
+        - {x: -23.5, y: 423}
+        - {x: -123.5, y: 44}
+        - {x: -251.5, y: 172}
+        - {x: -442.5, y: -329}
+        - {x: -442.5, y: -423}
+        - {x: 442.5, y: -423}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0e6bb9ef671fe244b2237c3fbcc69ef
+      internalID: 8497791257755077986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ccollectibles_life_killzones_2
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 2926
+        width: 1517
+        height: 1087
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 758.5, y: 493.5}
+        - {x: -389.5, y: 543.5}
+        - {x: -675.5, y: 128.5}
+        - {x: -758.5, y: -295.5}
+        - {x: -757.5, y: -543.5}
+        - {x: -132.5, y: -462.5}
+        - {x: 648.5, y: -19.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ade5f915ae0e11d4096ebc174bda1fba
+      internalID: -6871049557817223620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ccollectibles_life_killzones_3
+      rect:
+        serializedVersion: 2
+        x: 2804
+        y: 2610
+        width: 645
+        height: 1416
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 106.5, y: 261}
+        - {x: -18.5, y: 62}
+        - {x: -57.5, y: 708}
+        - {x: -148.5, y: 708}
+        - {x: -310.21863, y: 308.84293}
+        - {x: -322.5, y: -707.51855}
+        - {x: 322.5, y: -707.51855}
+        - {x: 322.5, y: -621.4557}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e88516d3a7a967a4d83dd57bbca2a21c
+      internalID: 7162605148684020029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ccollectibles_life_killzones_6
+      rect:
+        serializedVersion: 2
+        x: 3238
+        y: 2054
+        width: 596
+        height: 531
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 53, y: 265.5}
+        - {x: -298, y: 47.5}
+        - {x: -298, y: -129.5}
+        - {x: -158, y: -265.5}
+        - {x: 158.61136, y: -265.5}
+        - {x: 225, y: -109.5}
+        - {x: 236, y: 57.5}
+        - {x: 298, y: 67.5}
+        - {x: 298, y: 265.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a47c5838694ce94ea24f8cbb2158869
+      internalID: 2336854285590739904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ccollectibles_life_killzones_11
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 1292
+        width: 3497
+        height: 490
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 368.24408, y: 245}
+        - {x: -1108.9609, y: 245}
+        - {x: -1748.1953, y: 148.59329}
+        - {x: -1748.1953, y: 19.498993}
+        - {x: -1271.5, y: -173}
+        - {x: -146.5, y: 30}
+        - {x: 565.5, y: -245}
+        - {x: 1748.5, y: -244.83696}
+        - {x: 1748.5, y: 245}
+        - {x: 922.5, y: 48}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 568dc6572b3bf334eac58ae4a51d38e2
+      internalID: 5542145917331833488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ccollectibles_life_killzones_12
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 222
+        width: 410
+        height: 890
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 710cf869fbbb1cd499aa3d37902c0a0f
+      internalID: 32315096052595880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ccollectibles_life_killzones_13
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 218
+        width: 492
+        height: 894
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bcee1d6676748f488a8869164e5048b
+      internalID: 5910645532324081073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ccollectibles_life_killzones_14
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 214
+        width: 342
+        height: 887
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a07a1bc8a9f9e574ab5046989198df41
+      internalID: -8277871031123117603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ccollectibles_life_killzones_15
+      rect:
+        serializedVersion: 2
+        x: 2144
+        y: 216
+        width: 377
+        height: 910
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43466051224c269458ac3f31fddd9874
+      internalID: 1848898530260744183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ccollectibles_life_killzones_16
+      rect:
+        serializedVersion: 2
+        x: 2636
+        y: 194
+        width: 461
+        height: 911
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd9a4d2fd98d72e4288d7759b5a5ba75
+      internalID: -1351979248584740965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ccollectibles_life_killzones_17
+      rect:
+        serializedVersion: 2
+        x: 3275
+        y: 185
+        width: 426
+        height: 904
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34b5a325ec8fef84493acbe335b1a19e
+      internalID: 7512489098839911371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5f63f003a18241d45b92eb418920fe36
+    spriteID: 6db75f8645b49454ba5dce88959dfe0c
     internalID: 0
     vertices: []
     indices: 

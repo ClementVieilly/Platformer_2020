@@ -8,9 +8,11 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles.ParticleSystems {
 	public class CollectedCollectibleParticleSystem : MonoBehaviour {
 
+        [SerializeField] private float durationBeforeDestruction;
+
         private void Start()
         {
-            Destroy(gameObject, 10f);
+            Destroy(gameObject, durationBeforeDestruction);
         }
     }
 }

@@ -4,6 +4,7 @@
 ///-----------------------------------------------------------------
 
 using Com.IsartDigital.Platformer.Localization;
+using Com.IsartDigital.Platformer.Screens;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,48 +23,58 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private string defaultLocalizedText = "localizedText_en.json";
         private string frenchLocalizedText =  "localizedText_fr.json";
-        public string fileName;
+        private string _fileName = null; 
         private string dataJson;
         public static bool toggleBool = false; 
-        public static bool isFisrtTime = false; 
+        public static bool isToggleChanged = false;
+        public bool isPreload = false;
+        public bool notFinished = true;
+       
 
-        private Dictionary<string, string> localizedText;
+        public Dictionary<string, string> localizedText;
 
-        public Action  OnChangeLanguage;
-        public Action  OnLoadFinished;
+        public  Action OnLoadFinished;
+        public  Action OnChangeLanguage;
+
+        public string FileName
+        {
+            get { return _fileName; }
+            set
+            {
+                _fileName = value;
+            }
+        }
+
         private void Awake()
         {
-            if(_instance)
+            if(_instance != null && _instance != this)
             {
                 Destroy(gameObject);
                 return;
             }
             else _instance = this;
-        }
-        private void Start()
-        {
-            fileName = currentFileName;
-            DontDestroyOnLoad(gameObject);
 
-            Debug.Log("Start");
+            _fileName = currentFileName;
+            DontDestroyOnLoad(gameObject);
+            TitleCard.OnChangeLanguage += TitleCard_OnChangeLanguage;
+        }
+
+        private void TitleCard_OnChangeLanguage(TitleCard title)
+        {
+            _fileName = _fileName == defaultLocalizedText ? frenchLocalizedText : defaultLocalizedText;
 #if UNITY_ANDROID && !UNITY_EDITOR
-           if(isFisrtTime) {
             StartCoroutine(LoadLocalizedTextOnAndroid());
-            isFisrtTime = true; 
-            }
 #else
-            if(isFisrtTime)
-            {
-                StartCoroutine(LoadLocalizedText());
-                isFisrtTime = true; 
-            }
+            StartCoroutine(LoadLocalizedText());
 #endif
         }
 
         public IEnumerator LoadLocalizedText()
         {
             localizedText = new Dictionary<string, string>();
-            string filePath = Path.Combine(Application.streamingAssetsPath,  fileName);
+            localizedText.Clear();
+
+            string filePath = Path.Combine(Application.streamingAssetsPath,  _fileName);
 
              while (!File.Exists(filePath))
              {
@@ -78,45 +89,38 @@ namespace Com.IsartDigital.Platformer.Managers
             {
                 localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
             }
-            OnLoadFinished?.Invoke();
+            if(isPreload) OnLoadFinished?.Invoke();
+            else OnChangeLanguage?.Invoke(); 
         }
 
-        IEnumerator LoadLocalizedTextOnAndroid()
+      public  IEnumerator LoadLocalizedTextOnAndroid()
         {
-            Debug.Log(fileName); 
-            while(string.IsNullOrEmpty(dataJson))
+            while(notFinished)
             {
+                string filePath = Path.Combine("jar:file://" + Application.dataPath + "!/assets", _fileName);
                 localizedText = new Dictionary<string, string>();
-                string filePath = Path.Combine("jar:file://" + Application.dataPath + "!/assets", fileName);
-
                 UnityWebRequest www = UnityWebRequest.Get(filePath);
-                yield return www.Send();
+                yield return www.SendWebRequest();
                 dataJson = www.downloadHandler.text;
+                notFinished = false; 
             }
-
             LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataJson);
+
             for(int i = 0; i < loadedData.items.Length; i++)
             {
                 localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
             }
-            dataJson = "";
-            OnLoadFinished?.Invoke(); 
+            if(isPreload) OnLoadFinished?.Invoke();
+            else
+            {
+                OnChangeLanguage?.Invoke();
+            }
+            notFinished = true; 
         }
 
         public string GetLocalizedValue(string key)
         {
             return localizedText[key]; 
         }
-
-        public void ChooseLanguage()
-        {
-            fileName = fileName == defaultLocalizedText ? frenchLocalizedText : defaultLocalizedText;
-#if UNITY_ANDROID && !UNITY_EDITOR
-            StartCoroutine(LoadLocalizedTextOnAndroid());
-#else
-            StartCoroutine(LoadLocalizedText());
-#endif
-        }
-
     }
 }

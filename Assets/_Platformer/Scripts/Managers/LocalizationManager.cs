@@ -61,7 +61,6 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void TitleCard_OnChangeLanguage(TitleCard title)
         {
-            Debug.Log("callBack de l'event de la TitleCard"); 
             _fileName = _fileName == defaultLocalizedText ? frenchLocalizedText : defaultLocalizedText;
 #if UNITY_ANDROID && !UNITY_EDITOR
             StartCoroutine(LoadLocalizedTextOnAndroid());
@@ -96,7 +95,6 @@ namespace Com.IsartDigital.Platformer.Managers
 
       public  IEnumerator LoadLocalizedTextOnAndroid()
         {
-            Debug.Log("je rentre dans la coroutine"); 
             while(notFinished)
             {
                 string filePath = Path.Combine("jar:file://" + Application.dataPath + "!/assets", _fileName);
@@ -106,10 +104,7 @@ namespace Com.IsartDigital.Platformer.Managers
                 dataJson = www.downloadHandler.text;
                 notFinished = false; 
             }
-            Debug.Log("j'ai recup le fichier"); 
             LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataJson);
-            Debug.Log("le dictio   " + localizedText);
-            Debug.Log("les data    "   +  loadedData); 
 
             for(int i = 0; i < loadedData.items.Length; i++)
             {
@@ -119,7 +114,6 @@ namespace Com.IsartDigital.Platformer.Managers
             else
             {
                 OnChangeLanguage?.Invoke();
-                Debug.Log("J'invoque l'event"); 
             }
             notFinished = true; 
         }

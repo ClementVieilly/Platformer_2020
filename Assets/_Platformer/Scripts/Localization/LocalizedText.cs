@@ -21,7 +21,6 @@ namespace Com.IsartDigital.Platformer.Localization {
 
         private void LocalizationManager_OnChangeLanguage()
         {
-            Debug.Log("Je récup la key après le changement");
             if(componentText != null) componentText.text = LocalizationManager.Instance.GetLocalizedValue(key);
         }
 

@@ -82,7 +82,7 @@ namespace Com.IsartDigital.Platformer.Screens
         public override void UnsubscribeEvents()
         {
             LocalizationManager.currentFileName = LocalizationManager.Instance.fileName;
-            LocalizationManager.toggleBool = localizationToggle.isOn; 
+            LocalizationManager.toggleBool = localizationToggle.isOn;
             OnCreditsClicked = null;
             OnLeaderBoardClicked = null;
             OnLocalisationClicked = null;

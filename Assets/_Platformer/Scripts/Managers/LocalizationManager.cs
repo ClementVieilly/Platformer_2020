@@ -22,12 +22,11 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private string defaultLocalizedText = "localizedText_en.json";
         private string frenchLocalizedText =  "localizedText_fr.json";
-        public string fileName;
+        public string fileName = null; 
         private string dataJson;
         public static bool toggleBool = false; 
-        public static bool isFisrtTime = false; 
 
-        private Dictionary<string, string> localizedText;
+        public Dictionary<string, string> localizedText;
 
         public Action  OnChangeLanguage;
         public Action  OnLoadFinished;
@@ -42,21 +41,16 @@ namespace Com.IsartDigital.Platformer.Managers
         }
         private void Start()
         {
-            fileName = currentFileName;
+            if(fileName == null) fileName = currentFileName;
             DontDestroyOnLoad(gameObject);
 
             Debug.Log("Start");
 #if UNITY_ANDROID && !UNITY_EDITOR
-           if(isFisrtTime) {
+         
             StartCoroutine(LoadLocalizedTextOnAndroid());
-            isFisrtTime = true; 
-            }
+           
 #else
-            if(isFisrtTime)
-            {
                 StartCoroutine(LoadLocalizedText());
-                isFisrtTime = true; 
-            }
 #endif
         }
 
@@ -83,15 +77,16 @@ namespace Com.IsartDigital.Platformer.Managers
 
         IEnumerator LoadLocalizedTextOnAndroid()
         {
-            Debug.Log(fileName); 
             while(string.IsNullOrEmpty(dataJson))
             {
-                localizedText = new Dictionary<string, string>();
+                Debug.Log("j'entre dans la coroutine"); 
                 string filePath = Path.Combine("jar:file://" + Application.dataPath + "!/assets", fileName);
-
+                localizedText = new Dictionary<string, string>();
+                Debug.Log(localizedText); 
                 UnityWebRequest www = UnityWebRequest.Get(filePath);
                 yield return www.Send();
                 dataJson = www.downloadHandler.text;
+                Debug.Log(dataJson); 
             }
 
             LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataJson);
@@ -100,7 +95,7 @@ namespace Com.IsartDigital.Platformer.Managers
                 localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
             }
             dataJson = "";
-            OnLoadFinished?.Invoke(); 
+            OnLoadFinished?.Invoke();
         }
 
         public string GetLocalizedValue(string key)

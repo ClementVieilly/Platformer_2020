@@ -3,6 +3,7 @@
 /// Date : 27/01/2020 12:10
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.Managers;
 using Com.IsartDigital.Platformer.Screens.Buttons;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,10 +35,13 @@ namespace Com.IsartDigital.Platformer.Screens
         [SerializeField] private string buttonCreditsTag = "Credits";
         [SerializeField] private string buttonPlayTag = "PlayButton";
 
+        [SerializeField] private Toggle localizationToggle = null; 
+
         private void Awake()
         {
+            
+            localizationToggle.isOn = LocalizationManager.toggleBool; 
             buttons = GetComponentsInChildren<Button>();
-
             for (int i = 0; i < buttons.Length; i++)//Assigne les bonnes références de chaque boutons grâce à leurs tags
             {
                 if (buttons[i].CompareTag(buttonLeaderBoardTag)) leaderBoardButton = buttons[i];
@@ -77,6 +81,8 @@ namespace Com.IsartDigital.Platformer.Screens
 
         public override void UnsubscribeEvents()
         {
+            LocalizationManager.currentFileName = LocalizationManager.Instance.fileName;
+            LocalizationManager.toggleBool = localizationToggle.isOn; 
             OnCreditsClicked = null;
             OnLeaderBoardClicked = null;
             OnLocalisationClicked = null;

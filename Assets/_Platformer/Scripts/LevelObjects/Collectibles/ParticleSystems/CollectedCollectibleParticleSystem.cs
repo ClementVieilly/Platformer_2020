@@ -10,7 +10,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles.ParticleSystems 
 
         private void Start()
         {
-            Destroy(gameObject, 2f);
+            Destroy(gameObject, 10f);
         }
     }
 }

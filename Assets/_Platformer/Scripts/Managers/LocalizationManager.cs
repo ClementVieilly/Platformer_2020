@@ -25,6 +25,7 @@ namespace Com.IsartDigital.Platformer.Managers
         public string fileName = null; 
         private string dataJson;
         public static bool toggleBool = false; 
+        public static bool isToggleChanged = false; 
 
         public Dictionary<string, string> localizedText;
 
@@ -32,7 +33,7 @@ namespace Com.IsartDigital.Platformer.Managers
         public Action  OnLoadFinished;
         private void Awake()
         {
-            if(_instance)
+            if(_instance != null && _instance != this)
             {
                 Destroy(gameObject);
                 return;
@@ -41,14 +42,12 @@ namespace Com.IsartDigital.Platformer.Managers
         }
         private void Start()
         {
-            if(fileName == null) fileName = currentFileName;
+            fileName = currentFileName;
             DontDestroyOnLoad(gameObject);
-
-            Debug.Log("Start");
+        
 #if UNITY_ANDROID && !UNITY_EDITOR
          
             StartCoroutine(LoadLocalizedTextOnAndroid());
-           
 #else
                 StartCoroutine(LoadLocalizedText());
 #endif
@@ -84,17 +83,19 @@ namespace Com.IsartDigital.Platformer.Managers
                 localizedText = new Dictionary<string, string>();
                 Debug.Log(localizedText); 
                 UnityWebRequest www = UnityWebRequest.Get(filePath);
-                yield return www.Send();
+                yield return www.SendWebRequest();
                 dataJson = www.downloadHandler.text;
-                Debug.Log(dataJson); 
+                Debug.Log("je sors du while"); 
             }
-
+            Debug.Log("dataJson   :" + dataJson); 
             LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataJson);
+            Debug.Log("loaded Data  " + loadedData); 
             for(int i = 0; i < loadedData.items.Length; i++)
             {
                 localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
             }
             dataJson = "";
+            loadedData = null; 
             OnLoadFinished?.Invoke();
         }
 
@@ -105,7 +106,9 @@ namespace Com.IsartDigital.Platformer.Managers
 
         public void ChooseLanguage()
         {
+            if(!isToggleChanged) return; 
             fileName = fileName == defaultLocalizedText ? frenchLocalizedText : defaultLocalizedText;
+            Debug.Log("changement de langage  " + localizedText); 
 #if UNITY_ANDROID && !UNITY_EDITOR
             StartCoroutine(LoadLocalizedTextOnAndroid());
 #else

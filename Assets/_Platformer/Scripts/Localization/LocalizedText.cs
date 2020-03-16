@@ -16,7 +16,6 @@ namespace Com.IsartDigital.Platformer.Localization {
 		private void Start () {
             LocalizationManager.Instance.OnLoadFinished += LocalizationManager_OnLoadFinished; 
             componentText = GetComponent<Text>();
-
         }
 
         private void LocalizationManager_OnLoadFinished()

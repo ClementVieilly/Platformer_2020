@@ -39,8 +39,9 @@ namespace Com.IsartDigital.Platformer.Screens
 
         private void Awake()
         {
-            
-            localizationToggle.isOn = LocalizationManager.toggleBool; 
+            LocalizationManager.isToggleChanged = false; //Coupe l'appel de la méthode OnChangeLanguage lorsqu'on change le toggle par code
+            localizationToggle.isOn = LocalizationManager.toggleBool;
+            LocalizationManager.isToggleChanged = true;
             buttons = GetComponentsInChildren<Button>();
             for (int i = 0; i < buttons.Length; i++)//Assigne les bonnes références de chaque boutons grâce à leurs tags
             {

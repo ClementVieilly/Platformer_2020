@@ -81,6 +81,8 @@ namespace Com.IsartDigital.Platformer.Managers
 
             // CreateTitleCard();
             //Je lance PreLoad 
+          
+
             CreatePreload(); 
             DontDestroyOnLoad(gameObject);
         }
@@ -88,14 +90,13 @@ namespace Com.IsartDigital.Platformer.Managers
         private void CreatePreload()
         {
             currentPreload = Instantiate(preloadPrefab).GetComponent<PreLoad>();
-            currentPreload.LauchLoadText();
             currentPreload.OnLauchTitleCard += currentPreload_OnLaunchTitleCard;
             allScreens.Add(currentPreload);
+            currentPreload.LauchLoadText(); 
         }
 
         private void currentPreload_OnLaunchTitleCard()
         {
-            Debug.Log("CreateTitleCard"); 
             CloseScreen(currentPreload); 
             CreateTitleCard(); 
         }
@@ -162,7 +163,6 @@ namespace Com.IsartDigital.Platformer.Managers
             currentTitleCard.OnLocalisationClicked += TitleCard_OnLocalisationClicked;
             currentTitleCard.OnSoundTriggerClicked += TitleCard_OnSoundTriggerClicked;
             currentTitleCard.OnGameStart += TitleCard_OnGameStart;
-
             allScreens.Add(currentTitleCard);
         }
 

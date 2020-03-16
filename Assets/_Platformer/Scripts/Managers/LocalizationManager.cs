@@ -4,6 +4,7 @@
 ///-----------------------------------------------------------------
 
 using Com.IsartDigital.Platformer.Localization;
+using Com.IsartDigital.Platformer.Screens;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,12 +26,15 @@ namespace Com.IsartDigital.Platformer.Managers
         private string _fileName = null; 
         private string dataJson;
         public static bool toggleBool = false; 
-        public static bool isToggleChanged = false; 
+        public static bool isToggleChanged = false;
+        public bool isPreload = false;
+        public bool notFinished = true;
        
 
         public Dictionary<string, string> localizedText;
 
-        public static Action  OnLoadFinished;
+        public  Action OnLoadFinished;
+        public  Action OnChangeLanguage;
 
         public string FileName
         {
@@ -52,11 +56,25 @@ namespace Com.IsartDigital.Platformer.Managers
 
             _fileName = currentFileName;
             DontDestroyOnLoad(gameObject);
+            TitleCard.OnChangeLanguage += TitleCard_OnChangeLanguage;
         }
+
+        private void TitleCard_OnChangeLanguage(TitleCard title)
+        {
+            Debug.Log("callBack de l'event de la TitleCard"); 
+            _fileName = _fileName == defaultLocalizedText ? frenchLocalizedText : defaultLocalizedText;
+#if UNITY_ANDROID && !UNITY_EDITOR
+            StartCoroutine(LoadLocalizedTextOnAndroid());
+#else
+            StartCoroutine(LoadLocalizedText());
+#endif
+        }
+
         public IEnumerator LoadLocalizedText()
         {
-            Debug.Log(_fileName); 
             localizedText = new Dictionary<string, string>();
+            localizedText.Clear();
+
             string filePath = Path.Combine(Application.streamingAssetsPath,  _fileName);
 
              while (!File.Exists(filePath))
@@ -72,47 +90,43 @@ namespace Com.IsartDigital.Platformer.Managers
             {
                 localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
             }
-            OnLoadFinished?.Invoke();
-           
+            if(isPreload) OnLoadFinished?.Invoke();
+            else OnChangeLanguage?.Invoke(); 
         }
 
       public  IEnumerator LoadLocalizedTextOnAndroid()
         {
-            while(string.IsNullOrEmpty(dataJson))
+            Debug.Log("je rentre dans la coroutine"); 
+            while(notFinished)
             {
                 string filePath = Path.Combine("jar:file://" + Application.dataPath + "!/assets", _fileName);
                 localizedText = new Dictionary<string, string>();
-                Debug.Log(localizedText); 
                 UnityWebRequest www = UnityWebRequest.Get(filePath);
                 yield return www.SendWebRequest();
                 dataJson = www.downloadHandler.text;
+                notFinished = false; 
             }
-
+            Debug.Log("j'ai recup le fichier"); 
             LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataJson);
+            Debug.Log("le dictio   " + localizedText);
+            Debug.Log("les data    "   +  loadedData); 
+
             for(int i = 0; i < loadedData.items.Length; i++)
             {
                 localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
             }
-            dataJson = "";
-            loadedData = null; 
-            OnLoadFinished?.Invoke();
+            if(isPreload) OnLoadFinished?.Invoke();
+            else
+            {
+                OnChangeLanguage?.Invoke();
+                Debug.Log("J'invoque l'event"); 
+            }
+            notFinished = true; 
         }
 
         public string GetLocalizedValue(string key)
         {
             return localizedText[key]; 
         }
-
-        public void ChooseLanguage()
-        {
-            if(!isToggleChanged) return; 
-            _fileName = _fileName == defaultLocalizedText ? frenchLocalizedText : defaultLocalizedText;
-#if UNITY_ANDROID && !UNITY_EDITOR
-            StartCoroutine(LoadLocalizedTextOnAndroid());
-#else
-            StartCoroutine(LoadLocalizedText());
-#endif
-        }
-
     }
 }

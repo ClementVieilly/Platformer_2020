@@ -10,34 +10,33 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.Screens {
 	public class PreLoad : AScreen {
       
-        public Action OnLauchTitleCard; 
+        public  Action OnLauchTitleCard; 
 
         private void Awake()
         {
-            LocalizationManager.OnLoadFinished += LocalizationManager_OnLoadFinished;
+            LocalizationManager.Instance.OnLoadFinished += LocalizationManager_OnLoadFinished;
         }
 
         private void LocalizationManager_OnLoadFinished()
         {
-            Debug.Log("Le Load est finit");
-            Debug.Log(OnLauchTitleCard); 
-            OnLauchTitleCard?.Invoke(); 
+            OnLauchTitleCard?.Invoke();
+            LocalizationManager.Instance.isPreload = false;
         }
 
         public void LauchLoadText()
         {
+            LocalizationManager.Instance.isPreload = true; 
 #if UNITY_ANDROID && !UNITY_EDITOR
          
             StartCoroutine(LocalizationManager.Instance.LoadLocalizedTextOnAndroid());
 #else
-            Debug.Log(LocalizationManager.Instance); 
             StartCoroutine(LocalizationManager.Instance.LoadLocalizedText());
 #endif
         }
 
         public override void UnsubscribeEvents()
         {
-            LocalizationManager.OnLoadFinished -= LocalizationManager_OnLoadFinished;
+            LocalizationManager.Instance.OnLoadFinished -= LocalizationManager_OnLoadFinished;
         }
     }
 }

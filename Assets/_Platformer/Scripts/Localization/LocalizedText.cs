@@ -14,8 +14,9 @@ namespace Com.IsartDigital.Platformer.Localization {
         [SerializeField]  private string key;
         private Text componentText; 
 		private void Start () {
-            LocalizationManager.Instance.OnLoadFinished += LocalizationManager_OnLoadFinished; 
+            LocalizationManager.OnLoadFinished += LocalizationManager_OnLoadFinished; 
             componentText = GetComponent<Text>();
+            componentText.text = LocalizationManager.Instance.GetLocalizedValue(key);
         }
 
         private void LocalizationManager_OnLoadFinished()

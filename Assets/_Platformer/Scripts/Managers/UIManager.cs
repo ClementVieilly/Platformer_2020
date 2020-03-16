@@ -28,6 +28,7 @@ namespace Com.IsartDigital.Platformer.Managers
         [SerializeField] private GameObject titleLeaderboardPrefab = null;
         [SerializeField] private GameObject winLeaderboardPrefab = null;
         [SerializeField] private GameObject confirmScreenPrefab = null;
+        [SerializeField] private GameObject preloadPrefab = null;
 
 		[Header("Level names")]
 		[SerializeField] private List<string> sceneNames = new List<string>();
@@ -43,6 +44,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private LoginScreen currentLoginScreen; //correspond au loginScreen actuel utilisé
         private Leaderboard currentLeaderboard; //correspond au leaderboard actuel utilisé
         private ConfirmScreen currentConfirmScreen; //correspond à l'écran de confirmation actuel utilisé
+        private PreLoad currentPreload; 
 
         //List of all screens
         private List<AScreen> allScreens = new List<AScreen>();
@@ -77,8 +79,25 @@ namespace Com.IsartDigital.Platformer.Managers
             }
             else _instance = this;
 
-            CreateTitleCard();
+            // CreateTitleCard();
+            //Je lance PreLoad 
+            CreatePreload(); 
             DontDestroyOnLoad(gameObject);
+        }
+
+        private void CreatePreload()
+        {
+            currentPreload = Instantiate(preloadPrefab).GetComponent<PreLoad>();
+            currentPreload.LauchLoadText();
+            currentPreload.OnLauchTitleCard += currentPreload_OnLaunchTitleCard;
+            allScreens.Add(currentPreload);
+        }
+
+        private void currentPreload_OnLaunchTitleCard()
+        {
+            Debug.Log("CreateTitleCard"); 
+            CloseScreen(currentPreload); 
+            CreateTitleCard(); 
         }
 
         private void OnDestroy()

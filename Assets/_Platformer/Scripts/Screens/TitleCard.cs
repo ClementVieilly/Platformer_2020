@@ -39,9 +39,11 @@ namespace Com.IsartDigital.Platformer.Screens
 
         private void Awake()
         {
+          
             LocalizationManager.isToggleChanged = false; //Coupe l'appel de la méthode OnChangeLanguage lorsqu'on change le toggle par code
             localizationToggle.isOn = LocalizationManager.toggleBool;
             LocalizationManager.isToggleChanged = true;
+
             buttons = GetComponentsInChildren<Button>();
             for (int i = 0; i < buttons.Length; i++)//Assigne les bonnes références de chaque boutons grâce à leurs tags
             {
@@ -82,12 +84,14 @@ namespace Com.IsartDigital.Platformer.Screens
 
         public override void UnsubscribeEvents()
         {
-            LocalizationManager.currentFileName = LocalizationManager.Instance.fileName;
+            LocalizationManager.currentFileName = LocalizationManager.Instance.FileName;
             LocalizationManager.toggleBool = localizationToggle.isOn;
             OnCreditsClicked = null;
             OnLeaderBoardClicked = null;
             OnLocalisationClicked = null;
             OnSoundTriggerClicked = null;
         }
+
+        
     }
 }

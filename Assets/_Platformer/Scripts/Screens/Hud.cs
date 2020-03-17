@@ -149,6 +149,11 @@ namespace Com.IsartDigital.Platformer.Screens
 			joystick.UpdateHandleHorizontalPosition(horizontalAxis);
 		}
 
+		private void OnApplicationPause(bool pause)
+		{
+			if(pause) OnButtonPausePressed?.Invoke(this);
+		}
+
 		private void OnDestroy()
 		{
 			btnPause.onClick.RemoveListener(Hud_OnButtonPauseClicked);

@@ -121,6 +121,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		public void WebClient_OnLogged(WebClient webClient)
 		{
+            CreateLevelSelector(); 
 			CloseScreen(currentLoginScreen);
 			if (currentLeaderboard) currentLeaderboard.StartLeaderboard();
 		}
@@ -340,8 +341,9 @@ namespace Com.IsartDigital.Platformer.Managers
         private void TitleCard_OnGameStart(TitleCard title)
         {
             CloseScreen(title);
-			CreateLevelSelector();
-            Debug.Log(webClient.wantToLog); 
+            //CreateLevelSelector();
+            CreateConfirmScreen(); 
+
 			//if (webClient.wantToLog)
 				//CreateLoginScreen();
         }
@@ -423,6 +425,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private void LoginScreen_OnSkipClicked(LoginScreen loginScreen)
 		{
+            CloseScreen(loginScreen); 
 			CreateConfirmScreen();
 		}
 
@@ -430,7 +433,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			CloseScreen(currentConfirmScreen);
 			CloseScreen(currentLoginScreen);
-
+            CreateLevelSelector(); 
 			webClient.wantToLog = false;
 			if (currentLeaderboard) currentLeaderboard.StartLeaderboard();
 		}
@@ -438,6 +441,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void ConfirmScreen_OnBackClicked(ConfirmScreen confirmScreenµ)
 		{
 			CloseScreen(currentConfirmScreen);
+            CreateLoginScreen(); 
 		}
 
 		//Evenements de la page de crédits

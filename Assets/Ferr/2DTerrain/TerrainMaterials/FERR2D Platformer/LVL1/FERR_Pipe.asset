@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cfe511f5ae84c24e82fbf88db7e24ae, type: 3}
   m_Name: FERR_Pipe
   m_EditorClassIdentifier: 
-  _fillMaterial: {fileID: 0}
+  _fillMaterial: {fileID: 2100000, guid: 04267eeee35e473498ca0f83aacb8ed2, type: 2}
   _edgeMaterial: {fileID: 2100000, guid: 8075262fb308cb7439379920e71f68b5, type: 2}
   _descriptors:
   - _applyTo: 0
@@ -27,10 +27,10 @@ MonoBehaviour:
       height: 0
     _leftCaps:
     - serializedVersion: 2
-      x: 0.25100097
-      y: 0.579292
-      width: 0.140625
-      height: 0.171875
+      x: 0
+      y: 0
+      width: 0
+      height: 0
     _leftCapWeights: []
     _leftCapColliderSize:
     - 1.13
@@ -46,10 +46,10 @@ MonoBehaviour:
     _innerLeftCaps: []
     _innerLeftCapWeights: []
     _innerLeftCapColliderSize:
-    - 1
+    - 1.13
     _innerLeftCapColliderType: 03000000
     _innerLeftCapOffset:
-    - 0
+    - -0.64
     _legacyRightCap:
       serializedVersion: 2
       x: 0
@@ -58,16 +58,16 @@ MonoBehaviour:
       height: 0
     _rightCaps:
     - serializedVersion: 2
-      x: 0.1899414
-      y: 0.020507812
+      x: 0
+      y: 0
       width: 0
       height: 0
     _rightCapWeights: []
     _rightCapColliderSize:
-    - 1
+    - 1.13
     _rightCapColliderType: 03000000
     _rightCapOffset:
-    - 0
+    - -0.64
     _legacyInnerRightCap:
       serializedVersion: 2
       x: 0
@@ -77,46 +77,16 @@ MonoBehaviour:
     _innerRightCaps: []
     _innerRightCapWeights: []
     _innerRightCapColliderSize:
-    - 1
+    - 1.13
     _innerRightCapColliderType: 03000000
     _innerRightCapOffset:
-    - 0
+    - -0.64
     _bodies:
     - serializedVersion: 2
-      x: 0.019042969
-      y: 0.21923828
-      width: 0.171875
-      height: 0.16796875
-    - serializedVersion: 2
-      x: 0.21289062
-      y: 0.21923828
-      width: 0.17773438
-      height: 0.16845703
-    - serializedVersion: 2
-      x: 0.7792969
-      y: 0.42285156
-      width: 0.20214844
-      height: 0.16845703
-    - serializedVersion: 2
-      x: 0.55322266
-      y: 0.42285156
-      width: 0.2055664
-      height: 0.16845703
-    - serializedVersion: 2
-      x: 0.7338867
-      y: 0.21826172
-      width: 0.20898438
-      height: 0.1694336
-    - serializedVersion: 2
-      x: 0.5175781
-      y: 0.21875
-      width: 0.19873047
-      height: 0.16894531
-    - serializedVersion: 2
-      x: 0.010253906
-      y: 0.42236328
-      width: 0.4086914
-      height: 0.16845703
+      x: 0.095940635
+      y: 0.5055056
+      width: 0.7924334
+      height: 0.31554157
     _bodyWeights: []
     _yOffsetPercent: -0.03
     _colliderOffset: -0.02

@@ -119,6 +119,22 @@ namespace Com.IsartDigital.Platformer.Managers
 			currentSound.Source.Play();
 		}
 
+		public void PlayRandom(string[] randomSounds)
+		{
+			float random = UnityEngine.Random.Range(0, randomSounds.Length - 1);
+			int randomIndex = Mathf.CeilToInt(random);
+
+			Play(randomSounds[randomIndex]);
+		}
+
+		public void PlayRandom(string[] randomSounds, ALevelObject emitter)
+		{
+			float random = UnityEngine.Random.Range(0, randomSounds.Length - 1);
+			int randomIndex = Mathf.CeilToInt(random);
+
+			Play(randomSounds[randomIndex], emitter);
+		}
+
 		public void Stop(string sound)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);

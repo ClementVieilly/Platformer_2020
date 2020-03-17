@@ -121,7 +121,9 @@ public class Leaderboard : AScreen
 		display.Username = scoreObject.username;
 		TimeSpan time = new TimeSpan(0, 0, scoreObject.completion_time);
 		string timeString = time.Minutes >= 10 ? time.Minutes.ToString() : "0" + time.Minutes;
-		display.Time = timeString + " : " + time.Seconds.ToString();
+		timeString += " : ";
+		timeString += time.Seconds >= 10 ? time.Seconds.ToString() : "0" + time.Seconds;
+		display.Time = timeString;
 		display.Score = scoreObject.nb_score.ToString();
 		display.Lives = scoreObject.nb_lives.ToString();
 

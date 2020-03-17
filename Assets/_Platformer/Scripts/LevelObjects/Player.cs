@@ -467,9 +467,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if (_isOnWall)
             {
 				animator.SetBool(settings.IsOnWallParam, true);
-                
-                if (jump && !jumpButtonHasPressed)
-                {
+
+				previousDirection = facingRightWall;
+
+				if (jump && !jumpButtonHasPressed)
+				{
                     jumpButtonHasPressed = true;
                     wasOnWall = true;
                     horizontalMoveElapsedTime = 0f;
@@ -643,7 +645,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if(IsOnWall && horizontalAxis == facingRightWall ) return; 
             if (horizontalAxis != 0f) // On maintiens une direction lors de la chute
             {
-                horizontalMove = Mathf.Lerp(rigidBody.velocity.x, settings.FallHorizontalSpeed * previousDirection,horizontalMoveElapsedTime);
+                horizontalMove = Mathf.Lerp(rigidBody.velocity.x, settings.FallHorizontalSpeed * horizontalAxis, horizontalMoveElapsedTime);
             }
             else
             {

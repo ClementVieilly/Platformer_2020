@@ -23,7 +23,8 @@ namespace Com.IsartDigital.Platformer.Managers
 		private static SoundManager _instance;
 		public static SoundManager Instance => _instance;
 
-		public AudioMixerGroup mixerGroup;
+		[SerializeField] private AudioMixerGroup mainMixerGroup;
+		[SerializeField] private AudioMixerGroup pauseMixerGroup;
 		
 		public Sound[] sounds;
 
@@ -47,7 +48,7 @@ namespace Com.IsartDigital.Platformer.Managers
 				Sound sound = sounds[i];
 				soundsList.Add(sounds[i]);
 				sound.SetNewSource(gameObject.AddComponent<AudioSource>());
-				sound.Source.outputAudioMixerGroup = mixerGroup;
+				sound.Source.outputAudioMixerGroup = mainMixerGroup;
 			}
 		}
 
@@ -224,6 +225,19 @@ namespace Com.IsartDigital.Platformer.Managers
 				}
 			}
 		}
+		public void PauseAllByMixerGroup()
+		{
+			playedSounds.RemoveRange(0, playedSounds.Count);
+			for (int i = sounds.Length - 1; i >= 0; i--)
+			{
+				Sound testedSound = sounds[i];
+				if (testedSound.Source.isPlaying)
+				{
+					playedSounds.Add(testedSound);
+					testedSound.Source.outputAudioMixerGroup = pauseMixerGroup;
+				}
+			}
+		}
 
 		public void ResumeAll()
 		{
@@ -231,6 +245,20 @@ namespace Com.IsartDigital.Platformer.Managers
 			{
 				playedSounds[i].Source.UnPause();
 				playedSounds.Remove(playedSounds[i]);
+			}
+		}
+
+		public void ResumeAllByMixerGroup()
+		{
+			playedSounds.RemoveRange(0, playedSounds.Count);
+			for (int i = sounds.Length - 1; i >= 0; i--)
+			{
+				Sound testedSound = sounds[i];
+				if (testedSound.Source.isPlaying)
+				{
+					playedSounds.Add(testedSound);
+					testedSound.Source.outputAudioMixerGroup = mainMixerGroup;
+				}
 			}
 		}
 

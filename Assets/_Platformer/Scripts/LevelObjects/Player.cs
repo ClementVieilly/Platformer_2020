@@ -296,10 +296,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         public void SetModeResume()
         {
-            rigidBody.WakeUp();
-            rigidBody.simulated = true;
-            DoAction = PreviousDoAction;
             rigidBody.velocity = lastVelocity;
+			rigidBody.simulated = true;
+            rigidBody.WakeUp();
+            DoAction = PreviousDoAction;
         }
 
         private void DoActionNormal()

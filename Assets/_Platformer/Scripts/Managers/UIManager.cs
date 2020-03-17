@@ -470,6 +470,7 @@ namespace Com.IsartDigital.Platformer.Managers
             CloseScreen(pauseMenu);
             OnResume?.Invoke();
         }
+
         private void PauseMenu_OnRetryClicked(PauseMenu pauseMenu)
         {
             CloseScreen(pauseMenu);

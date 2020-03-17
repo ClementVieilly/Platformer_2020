@@ -13,45 +13,45 @@ using UnityEngine.SceneManagement;
 
 namespace Com.IsartDigital.Platformer.Managers
 {
-    public class UIManager : MonoBehaviour
-    {
-        [Header("Tiles")]
-        [SerializeField] private GameObject hudPrefab = null;
-        [SerializeField] private GameObject pausePrefab = null;
-        [SerializeField] private GameObject titleCardPrefab = null;
-        [SerializeField] private GameObject creditPrefab = null;
-        [SerializeField] private GameObject levelSelectorPrefab = null;
-        [SerializeField] private GameObject loadingScreenPrefab = null;
-        [SerializeField] private GameObject winScreenPrefab = null;
-        [SerializeField] private GameObject loseScreenPrefab = null;
-        [SerializeField] private GameObject loginScreenPrefab = null;
-        [SerializeField] private GameObject titleLeaderboardPrefab = null;
-        [SerializeField] private GameObject winLeaderboardPrefab = null;
-        [SerializeField] private GameObject confirmScreenPrefab = null;
-        [SerializeField] private GameObject preloadPrefab = null;
+	public class UIManager : MonoBehaviour
+	{
+		[Header("Tiles")]
+		[SerializeField] private GameObject hudPrefab = null;
+		[SerializeField] private GameObject pausePrefab = null;
+		[SerializeField] private GameObject titleCardPrefab = null;
+		[SerializeField] private GameObject creditPrefab = null;
+		[SerializeField] private GameObject levelSelectorPrefab = null;
+		[SerializeField] private GameObject loadingScreenPrefab = null;
+		[SerializeField] private GameObject winScreenPrefab = null;
+		[SerializeField] private GameObject loseScreenPrefab = null;
+		[SerializeField] private GameObject loginScreenPrefab = null;
+		[SerializeField] private GameObject titleLeaderboardPrefab = null;
+		[SerializeField] private GameObject winLeaderboardPrefab = null;
+		[SerializeField] private GameObject confirmScreenPrefab = null;
+		[SerializeField] private GameObject preloadPrefab = null;
 
 		[Header("Level names")]
 		[SerializeField] private List<string> sceneNames = new List<string>();
 
-        //Screens
-        private Hud currentHud;             //correspond au hud actuel utilisé (PC ou mobile)
-        private PauseMenu currentPauseMenu; //correspond au menu pause actuel utilisé 
-        private TitleCard currentTitleCard; //correspond au titlecard actuel
-        private Credits currentCredits;     //correspond à la page de crédits actuelle utilisée
-        private LevelSelector currentLevelSelector; //correspond au levelSelector actuel utilisé
-        private WinScreen currentWinScreen; //correspond au winScreen actuel utilisé
-        private LoseScreen currentLoseScreen; //correspond au winScreen actuel utilisé
-        private LoginScreen currentLoginScreen; //correspond au loginScreen actuel utilisé
-        private Leaderboard currentLeaderboard; //correspond au leaderboard actuel utilisé
-        private ConfirmScreen currentConfirmScreen; //correspond à l'écran de confirmation actuel utilisé
-        private PreLoad currentPreload; 
+		//Screens
+		private Hud currentHud;             //correspond au hud actuel utilisé (PC ou mobile)
+		private PauseMenu currentPauseMenu; //correspond au menu pause actuel utilisé 
+		private TitleCard currentTitleCard; //correspond au titlecard actuel
+		private Credits currentCredits;     //correspond à la page de crédits actuelle utilisée
+		private LevelSelector currentLevelSelector; //correspond au levelSelector actuel utilisé
+		private WinScreen currentWinScreen; //correspond au winScreen actuel utilisé
+		private LoseScreen currentLoseScreen; //correspond au winScreen actuel utilisé
+		private LoginScreen currentLoginScreen; //correspond au loginScreen actuel utilisé
+		private Leaderboard currentLeaderboard; //correspond au leaderboard actuel utilisé
+		private ConfirmScreen currentConfirmScreen; //correspond à l'écran de confirmation actuel utilisé
+		private PreLoad currentPreload;
 
-        //List of all screens
-        private List<AScreen> allScreens = new List<AScreen>();
+		//List of all screens
+		private List<AScreen> allScreens = new List<AScreen>();
 
-        //Singleton
-        private static UIManager _instance;
-        public static UIManager Instance => _instance;
+		//Singleton
+		private static UIManager _instance;
+		public static UIManager Instance => _instance;
 
 		private WebClient webClient = null;
 
@@ -59,52 +59,52 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		//Events
 		public delegate void UIManagerEventHandler();
-        public event UIManagerEventHandler OnRetry = null;
-        public event UIManagerEventHandler OnResume = null;
-        public event UIManagerEventHandler OnPause = null;
+		public event UIManagerEventHandler OnRetry = null;
+		public event UIManagerEventHandler OnResume = null;
+		public event UIManagerEventHandler OnPause = null;
 
 		public delegate void UIManagerLevelManagerEventHandler(LevelManager levelManager);
-        public event UIManagerLevelManagerEventHandler OnLevelLoaded = null;
+		public event UIManagerLevelManagerEventHandler OnLevelLoaded = null;
 
 		public delegate void UIManagerLeaderboardEventHandler(Leaderboard leaderboard);
-        public event UIManagerLeaderboardEventHandler OnLeaderboardStart = null;
-        public event UIManagerLeaderboardEventHandler OnLeaderBoardChangeLevel = null;
+		public event UIManagerLeaderboardEventHandler OnLeaderboardStart = null;
+		public event UIManagerLeaderboardEventHandler OnLeaderBoardChangeLevel = null;
 
 		private void Awake()
-        {
-            if (_instance)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            else _instance = this;
+		{
+			if (_instance)
+			{
+				Destroy(gameObject);
+				return;
+			}
+			else _instance = this;
 
-            // CreateTitleCard();
-            //Je lance PreLoad 
-          
+			// CreateTitleCard();
+			//Je lance PreLoad 
 
-            CreatePreload(); 
-            DontDestroyOnLoad(gameObject);
-        }
 
-        private void CreatePreload()
-        {
-            currentPreload = Instantiate(preloadPrefab).GetComponent<PreLoad>();
-            currentPreload.OnLauchTitleCard += currentPreload_OnLaunchTitleCard;
-            allScreens.Add(currentPreload);
-            currentPreload.LauchLoadText(); 
-        }
+			CreatePreload();
+			DontDestroyOnLoad(gameObject);
+		}
 
-        private void currentPreload_OnLaunchTitleCard()
-        {
-            CloseScreen(currentPreload); 
-            CreateTitleCard(); 
-        }
+		private void CreatePreload()
+		{
+			currentPreload = Instantiate(preloadPrefab).GetComponent<PreLoad>();
+			currentPreload.OnLauchTitleCard += currentPreload_OnLaunchTitleCard;
+			allScreens.Add(currentPreload);
+			currentPreload.LauchLoadText();
+		}
 
-        private void OnDestroy()
-        {
-            if (this == _instance) _instance = null;
-        }
+		private void currentPreload_OnLaunchTitleCard()
+		{
+			CloseScreen(currentPreload);
+			CreateTitleCard();
+		}
+
+		private void OnDestroy()
+		{
+			if (this == _instance) _instance = null;
+		}
 
 		public void SetWebClient(WebClient webClient)
 		{
@@ -125,54 +125,55 @@ namespace Com.IsartDigital.Platformer.Managers
 			if (currentLeaderboard) currentLeaderboard.StartLeaderboard();
 		}
 
-        private void CreatePauseMenu() //Crée une instance de Menu Pause et écoute ses événements
-        {
-            currentPauseMenu = Instantiate(pausePrefab).GetComponent<PauseMenu>();
+		private void CreatePauseMenu() //Crée une instance de Menu Pause et écoute ses événements
+		{
+			currentPauseMenu = Instantiate(pausePrefab).GetComponent<PauseMenu>();
 
-            currentPauseMenu.OnResumeClicked += PauseMenu_OnResumeClicked;
-            currentPauseMenu.OnRetryClicked += PauseMenu_OnRetryClicked;
-            currentPauseMenu.OnHomeClicked += PauseMenu_OnHomeClicked;
+			currentPauseMenu.OnResumeClicked += PauseMenu_OnResumeClicked;
+			currentPauseMenu.OnRetryClicked += PauseMenu_OnRetryClicked;
+			currentPauseMenu.OnHomeClicked += PauseMenu_OnHomeClicked;
 
-            allScreens.Add(currentPauseMenu);
-        }
+			allScreens.Add(currentPauseMenu);
+		}
 
-        private void CreateLevelSelector()
-        {
-            currentLevelSelector = Instantiate(levelSelectorPrefab).GetComponent<LevelSelector>();
+		private void CreateLevelSelector()
+		{
+			currentLevelSelector = Instantiate(levelSelectorPrefab).GetComponent<LevelSelector>();
 
-            currentLevelSelector.OnLevelClicked += LevelSelector_OnLevelButtonClicked;
-            currentLevelSelector.OnBackToTitleClicked += LevelSelector_OnBackToTitleClicked;
+			currentLevelSelector.OnLevelClicked += LevelSelector_OnLevelButtonClicked;
+			currentLevelSelector.OnBackToTitleClicked += LevelSelector_OnBackToTitleClicked;
 
-            allScreens.Add(currentLevelSelector);
-        }
+			allScreens.Add(currentLevelSelector);
+		}
 
-        private void CreateHud() //Crée une instance de Hud et écoute ses événements
-        {
-            currentHud = Instantiate(hudPrefab).GetComponent<Hud>();
-            currentHud.OnButtonPausePressed += Hud_OnPauseButtonPressed;
+		private void CreateHud() //Crée une instance de Hud et écoute ses événements
+		{
+			currentHud = Instantiate(hudPrefab).GetComponent<Hud>();
+			currentHud.OnButtonPausePressed += Hud_OnPauseButtonPressed;
+			OnResume += currentHud.UIManager_OnResume;
 
-            allScreens.Add(currentHud);
-        }
+			allScreens.Add(currentHud);
+		}
 
-        private void CreateTitleCard()
-        {
-            currentTitleCard = Instantiate(titleCardPrefab).GetComponent<TitleCard>();
+		private void CreateTitleCard()
+		{
+			currentTitleCard = Instantiate(titleCardPrefab).GetComponent<TitleCard>();
 
-            currentTitleCard.OnCreditsClicked += TitleCard_OnCreditsClicked;
-            currentTitleCard.OnLeaderBoardClicked += TitleCard_OnLeaderBoardClicked;
-            currentTitleCard.OnLocalisationClicked += TitleCard_OnLocalisationClicked;
-            currentTitleCard.OnSoundTriggerClicked += TitleCard_OnSoundTriggerClicked;
-            currentTitleCard.OnGameStart += TitleCard_OnGameStart;
-            allScreens.Add(currentTitleCard);
-        }
+			currentTitleCard.OnCreditsClicked += TitleCard_OnCreditsClicked;
+			currentTitleCard.OnLeaderBoardClicked += TitleCard_OnLeaderBoardClicked;
+			currentTitleCard.OnLocalisationClicked += TitleCard_OnLocalisationClicked;
+			currentTitleCard.OnSoundTriggerClicked += TitleCard_OnSoundTriggerClicked;
+			currentTitleCard.OnGameStart += TitleCard_OnGameStart;
+			allScreens.Add(currentTitleCard);
+		}
 
-        private void CreateCredits()
-        {
-            currentCredits = Instantiate(creditPrefab).GetComponent<Credits>();
+		private void CreateCredits()
+		{
+			currentCredits = Instantiate(creditPrefab).GetComponent<Credits>();
 
-            currentCredits.OnBackToTitleClicked += Credits_OnBackToTitleClicked;
+			currentCredits.OnBackToTitleClicked += Credits_OnBackToTitleClicked;
 
-            allScreens.Add(currentCredits);
+			allScreens.Add(currentCredits);
 		}
 
 		public void CreateTitleLeaderboard()
@@ -230,68 +231,68 @@ namespace Com.IsartDigital.Platformer.Managers
 		}
 
 		private GameObject CreateLoadingScreen()
-        {
-            return Instantiate(loadingScreenPrefab);
-        }
+		{
+			return Instantiate(loadingScreenPrefab);
+		}
 
-        public void CreateWinScreen()
-        {
-            currentWinScreen = Instantiate(winScreenPrefab).GetComponent<WinScreen>();
+		public void CreateWinScreen()
+		{
+			currentWinScreen = Instantiate(winScreenPrefab).GetComponent<WinScreen>();
 
-            currentWinScreen.OnMenuClicked += WinScreen_OnMenuClicked;
-            currentWinScreen.OnLevelSelectorClicked += WinScreen_OnLevelSelectorClicked;
-            currentWinScreen.OnLeaderboardClicked += WinScreen_OnLeaderboardClicked;
+			currentWinScreen.OnMenuClicked += WinScreen_OnMenuClicked;
+			currentWinScreen.OnLevelSelectorClicked += WinScreen_OnLevelSelectorClicked;
+			currentWinScreen.OnLeaderboardClicked += WinScreen_OnLeaderboardClicked;
 
-            allScreens.Add(currentWinScreen);
-        }
+			allScreens.Add(currentWinScreen);
+		}
 
-        public void CreateLoseScreen()
-        {
-            currentLoseScreen = Instantiate(loseScreenPrefab).GetComponent<LoseScreen>();
+		public void CreateLoseScreen()
+		{
+			currentLoseScreen = Instantiate(loseScreenPrefab).GetComponent<LoseScreen>();
 
-            currentLoseScreen.OnRetryClicked += LoseScreen_OnRetryClicked;
-            currentLoseScreen.OnLevelSelectorClicked += LoseScreen_OnLevelSelector;
+			currentLoseScreen.OnRetryClicked += LoseScreen_OnRetryClicked;
+			currentLoseScreen.OnLevelSelectorClicked += LoseScreen_OnLevelSelector;
 
-            allScreens.Add(currentLoseScreen);
-        }
+			allScreens.Add(currentLoseScreen);
+		}
 
 		private void CloseScreen(AScreen screen)
-        {
-            if (screen == null) return;
+		{
+			if (screen == null) return;
 
-            for (int i = allScreens.Count - 1; i >= 0; i--)
-            {
-                AScreen currentScreen = allScreens[i];
-                if (screen == currentScreen)
-                {
-                    currentScreen.UnsubscribeEvents();
-                    break;
-                }
-            }
-            Destroy(screen.gameObject);
-            allScreens.RemoveAt(allScreens.IndexOf(screen));
-        }
+			for (int i = allScreens.Count - 1; i >= 0; i--)
+			{
+				AScreen currentScreen = allScreens[i];
+				if (screen == currentScreen)
+				{
+					currentScreen.UnsubscribeEvents();
+					break;
+				}
+			}
+			Destroy(screen.gameObject);
+			allScreens.RemoveAt(allScreens.IndexOf(screen));
+		}
 
-        private void CloseAllScreens()
-        {
-            for (int i = allScreens.Count - 1; i > -1 ; i--)
-            {
-                CloseScreen(allScreens[i]);
-            }
-        }
+		private void CloseAllScreens()
+		{
+			for (int i = allScreens.Count - 1; i > -1; i--)
+			{
+				CloseScreen(allScreens[i]);
+			}
+		}
 
-        private void ReturnToTitleCard()
-        {
-            CloseAllScreens();
-            CreateTitleCard();
-        }
+		private void ReturnToTitleCard()
+		{
+			CloseAllScreens();
+			CreateTitleCard();
+		}
 
 		#region Loading Coroutines
 		//Coroutines de chargement asynchrone de scenes  
 		private IEnumerator LoadLevelCoroutine(string levelName, int level)
 		{
-            CloseAllScreens();
-            StartCoroutine(LoadAsyncToNextScene(levelName, CreateHud));
+			CloseAllScreens();
+			StartCoroutine(LoadAsyncToNextScene(levelName, CreateHud));
 
 			while (!isPreviousCoroutineEnded)
 				yield return null;
@@ -299,73 +300,73 @@ namespace Com.IsartDigital.Platformer.Managers
 			LevelManager levelManager = FindObjectOfType<LevelManager>();
 			levelManager.SetNumber(level);
 			OnLevelLoaded?.Invoke(levelManager);
-        }
+		}
 
-        IEnumerator LoadAsyncToNextScene(string nextScene, Action methodToLaunch)
-        {
+		IEnumerator LoadAsyncToNextScene(string nextScene, Action methodToLaunch)
+		{
 			isPreviousCoroutineEnded = false;
 
-            Scene currentScene = SceneManager.GetActiveScene();
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene,LoadSceneMode.Additive);
+			Scene currentScene = SceneManager.GetActiveScene();
+			AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Additive);
 
-            ////Creation ecran de chargement
-            LoadingScreen loader = CreateLoadingScreen().GetComponent<LoadingScreen>();
+			////Creation ecran de chargement
+			LoadingScreen loader = CreateLoadingScreen().GetComponent<LoadingScreen>();
 
-            while (!asyncLoad.isDone)
-            {
-                ////Barre de chargement
-                float progress = Mathf.Clamp01(asyncLoad.progress / .9f);
-                loader.LoadingBar.value = progress;
-                //Debug.Log(progress);
-                yield return null;
-            }
-            StartCoroutine(UnloadAsyncOfCurrentScene(currentScene, methodToLaunch));
-            isPreviousCoroutineEnded = true;
-        }
+			while (!asyncLoad.isDone)
+			{
+				////Barre de chargement
+				float progress = Mathf.Clamp01(asyncLoad.progress / .9f);
+				loader.LoadingBar.value = progress;
+				//Debug.Log(progress);
+				yield return null;
+			}
+			StartCoroutine(UnloadAsyncOfCurrentScene(currentScene, methodToLaunch));
+			isPreviousCoroutineEnded = true;
+		}
 
-        IEnumerator UnloadAsyncOfCurrentScene(Scene scene, Action action)
-        {
-            Scene currentScene = scene;
-            AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(currentScene);
+		IEnumerator UnloadAsyncOfCurrentScene(Scene scene, Action action)
+		{
+			Scene currentScene = scene;
+			AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(currentScene);
 
-            while (!asyncUnload.isDone)
-            {
-                yield return null;
-            }
-            action();
-        }
-        #endregion
+			while (!asyncUnload.isDone)
+			{
+				yield return null;
+			}
+			action();
+		}
+		#endregion
 
-        //Evenements du TitleCard
-        private void TitleCard_OnGameStart(TitleCard title)
-        {
-            CloseScreen(title);
+		//Evenements du TitleCard
+		private void TitleCard_OnGameStart(TitleCard title)
+		{
+			CloseScreen(title);
 			CreateLevelSelector();
 
 			if (webClient.wantToLog)
 				CreateLoginScreen();
-        }
+		}
 
-        private void TitleCard_OnSoundTriggerClicked(TitleCard title)
-        {
-            Debug.Log("active/désactive le son + change image");
-        }
+		private void TitleCard_OnSoundTriggerClicked(TitleCard title)
+		{
+			Debug.Log("active/désactive le son + change image");
+		}
 
-        private void TitleCard_OnLocalisationClicked(TitleCard title)
-        {
-            Debug.Log("change la langue");
-        }
+		private void TitleCard_OnLocalisationClicked(TitleCard title)
+		{
+			Debug.Log("change la langue");
+		}
 
-        private void TitleCard_OnLeaderBoardClicked(TitleCard title)
-        {
-            CloseScreen(title);
-            CreateTitleLeaderboard();
+		private void TitleCard_OnLeaderBoardClicked(TitleCard title)
+		{
+			CloseScreen(title);
+			CreateTitleLeaderboard();
 		}
 
 		private void TitleCard_OnCreditsClicked(TitleCard title)
-        {
-            CloseScreen(title);
-            CreateCredits();
+		{
+			CloseScreen(title);
+			CreateCredits();
 		}
 
 		//Evenements du Leaderboard
@@ -376,7 +377,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private void Leaderboard_OnBackToTitleClicked(Leaderboard leaderboard)
 		{
-            ReturnToTitleCard();
+			ReturnToTitleCard();
 		}
 
 		private void Leaderboard_OnMenuClicked(Leaderboard leaderboard)
@@ -400,7 +401,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			if (++leaderboard.LevelToDisplay >= sceneNames.Count)
 				leaderboard.LevelToDisplay = 1;
-			
+
 			OnLeaderBoardChangeLevel?.Invoke(leaderboard);
 		}
 
@@ -442,34 +443,41 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		//Evenements de la page de crédits
 		private void Credits_OnBackToTitleClicked(Credits credits)
-        {
-            ReturnToTitleCard();
-        }
+		{
+			ReturnToTitleCard();
+		}
 
-        //Evenements du LevelSelector
-        private void LevelSelector_OnLevelButtonClicked(LevelSelector levelSelector, int level)
-        {
-            StartCoroutine(LoadLevelCoroutine(sceneNames[level], level));
-        }
+		//Evenements du LevelSelector
+		private void LevelSelector_OnLevelButtonClicked(LevelSelector levelSelector, int level)
+		{
+			StartCoroutine(LoadLevelCoroutine(sceneNames[level], level));
+		}
 
-        private void LevelSelector_OnBackToTitleClicked(LevelSelector levelSelector, int level)
-        {
-            ReturnToTitleCard();
-        }
+		private void LevelSelector_OnBackToTitleClicked(LevelSelector levelSelector, int level)
+		{
+			ReturnToTitleCard();
+		}
 
-        //Evenements du HUD
-        private void Hud_OnPauseButtonPressed(Hud hud) //Fonction callback de l'event de click sur le bouton pause du Hud
-        {
-            CreatePauseMenu();
-            OnPause?.Invoke();
-        }
+		//Evenements du HUD
+		private void Hud_OnPauseButtonPressed(Hud hud) //Fonction callback de l'event de click sur le bouton pause du Hud
+		{
+			CreatePauseMenu();
+			OnPause?.Invoke();
+		}
 
-        //Evenements du Menu Pause
-        private void PauseMenu_OnResumeClicked(PauseMenu pauseMenu)
+		public void UpdatePauseMenu(float score, bool[] bigScore)
+		{
+			currentPauseMenu.Score = score;
+			currentPauseMenu.BigScore = bigScore;
+		}
+
+		//Evenements du Menu Pause
+		private void PauseMenu_OnResumeClicked(PauseMenu pauseMenu)
         {
             CloseScreen(pauseMenu);
             OnResume?.Invoke();
         }
+
         private void PauseMenu_OnRetryClicked(PauseMenu pauseMenu)
         {
             CloseScreen(pauseMenu);

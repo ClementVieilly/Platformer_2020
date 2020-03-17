@@ -47,7 +47,6 @@ namespace Com.IsartDigital.Platformer.Screens
 			{
 				_score = value;
 				scoreObject.SetActive(true);
-				bigScoreObject.SetActive(true);
 				_timer = 0;
 				UpdateText(scoreText, _score);
 			}
@@ -93,6 +92,7 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		private float _timer = 0f;
 		private bool paused = false;
+		public bool Paused { set { paused = value; } }
 
 		private void Awake()
 		{
@@ -145,9 +145,6 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		private void Hud_OnButtonPauseClicked()
 		{
-			scoreObject.SetActive(true);
-			bigScoreObject.SetActive(true);
-
 			paused = true;
 			_timer = 0;
 
@@ -156,6 +153,9 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		internal void UIManager_OnResume()
 		{
+			scoreObject.SetActive(true);
+			bigScoreObject.SetActive(true);
+
 			paused = false;
 		}
 

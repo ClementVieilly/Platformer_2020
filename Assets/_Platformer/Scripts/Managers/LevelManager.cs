@@ -206,6 +206,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			hud.Score = _score;
 			hud.Life = player.Life;
 			hud.BigScore = _bigScoreCollectibles;
+			hud.Paused = false;
         }
 
         private void OnDestroy()

@@ -39,7 +39,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private ParticleSystem jumpDustGroundPS = null;
         [SerializeField] private ParticleSystem jumpDustAirPS = null;
         [SerializeField] private ParticleSystem landingPS = null;
-        [SerializeField] private ParticleSystem wallJumpPSLeft = null;
+        [SerializeField] private ParticleSystem wallJumpPS = null;
+		[SerializeField] private ParticleSystem onWallJumpPS = null;
         [SerializeField] private ParticleSystem planePS = null;
         [SerializeField] private ParticleSystem onWallPS = null;
 
@@ -295,10 +296,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         public void SetModeResume()
         {
-            rigidBody.WakeUp();
-            rigidBody.simulated = true;
-            DoAction = PreviousDoAction;
             rigidBody.velocity = lastVelocity;
+			rigidBody.simulated = true;
+            rigidBody.WakeUp();
+            DoAction = PreviousDoAction;
         }
 
         private void DoActionNormal()
@@ -466,9 +467,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if (_isOnWall)
             {
 				animator.SetBool(settings.IsOnWallParam, true);
-                
-                if (jump && !jumpButtonHasPressed)
-                {
+
+				previousDirection = facingRightWall;
+
+				if (jump && !jumpButtonHasPressed)
+				{
                     jumpButtonHasPressed = true;
                     wasOnWall = true;
                     horizontalMoveElapsedTime = 0f;
@@ -476,7 +479,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     previousDirection = -facingRightWall;
                     rigidBody.velocity = new Vector2(settings.WallJumpHorizontalForce * previousDirection, settings.WallJumpVerticalForce);
                     onWallPS.Stop();
-                    wallJumpPSLeft.Play();
+					onWallJumpPS.transform.localScale = facingRightWall == 1 ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
+                    wallJumpPS.Play();
 					animator.SetTrigger(settings.JumpOnWall);
 					animator.SetBool(settings.IsOnWallParam, false);
 
@@ -641,7 +645,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if(IsOnWall && horizontalAxis == facingRightWall ) return; 
             if (horizontalAxis != 0f) // On maintiens une direction lors de la chute
             {
-                horizontalMove = Mathf.Lerp(rigidBody.velocity.x, settings.FallHorizontalSpeed * previousDirection,horizontalMoveElapsedTime);
+                horizontalMove = Mathf.Lerp(rigidBody.velocity.x, settings.FallHorizontalSpeed * horizontalAxis, horizontalMoveElapsedTime);
             }
             else
             {

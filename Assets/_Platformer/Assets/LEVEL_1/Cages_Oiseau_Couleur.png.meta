@@ -1,0 +1,461 @@
+fileFormatVersion: 2
+guid: 6f018aa3504710249a5ff2c5400d9274
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6793441571742550620
+    second: Cages_Oiseau_Couleur_0
+  - first:
+      213: 77994039438054238
+    second: Cages_Oiseau_Couleur_1
+  - first:
+      213: 5363281162493370812
+    second: Cages_Oiseau_Couleur_2
+  - first:
+      213: 2593011497736130327
+    second: Cages_Oiseau_Couleur_3
+  - first:
+      213: 1879799786480286037
+    second: Cages_Oiseau_Couleur_4
+  - first:
+      213: -1596591318373070613
+    second: Cages_Oiseau_Couleur_5
+  - first:
+      213: 5359420373739401641
+    second: Cages_Oiseau_Couleur_6
+  - first:
+      213: -2497983580046968188
+    second: Cages_Oiseau_Couleur_7
+  - first:
+      213: 5964315598421867198
+    second: Cages_Oiseau_Couleur_8
+  - first:
+      213: -1053710492098981142
+    second: Cages_Oiseau_Couleur_9
+  - first:
+      213: -396688070759217273
+    second: Cages_Oiseau_Couleur_10
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couleur_0
+      rect:
+        serializedVersion: 2
+        x: 1266
+        y: 1471
+        width: 931
+        height: 1404
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 465.5, y: 192}
+        - {x: 110.5, y: 386}
+        - {x: 99.5, y: 702}
+        - {x: -89.5, y: 702}
+        - {x: -97.5, y: 400}
+        - {x: -465.5, y: 221}
+        - {x: -465.5, y: 114}
+        - {x: -192.03708, y: -702}
+        - {x: 178.5, y: -702}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36e2dc08d241e94469ae7ce67c761515
+      internalID: -6793441571742550620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couleur_1
+      rect:
+        serializedVersion: 2
+        x: 2299
+        y: 1775
+        width: 889
+        height: 1148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 80.5, y: 574}
+        - {x: -90.5, y: 574}
+        - {x: -119.5, y: 456}
+        - {x: -444.5, y: 124}
+        - {x: -444.4901, y: -32.143482}
+        - {x: -277.85733, y: -573.54285}
+        - {x: 199.5, y: -574}
+        - {x: 444.5, y: 46}
+        - {x: 444.5, y: 132}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aac1792e742cab342bd4d3ea5e73a999
+      internalID: 77994039438054238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couleur_2
+      rect:
+        serializedVersion: 2
+        x: 5989
+        y: 2859
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59a1b28407c699d4d94d6276ccf4db3f
+      internalID: 5363281162493370812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couleur_3
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 1783
+        width: 1062
+        height: 1018
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 34, y: 509}
+        - {x: -146, y: 509}
+        - {x: -462, y: 117}
+        - {x: -531, y: -252}
+        - {x: -323, y: -509}
+        - {x: 323, y: -509}
+        - {x: 531, y: -272}
+        - {x: 531, y: -34}
+        - {x: 362, y: 272}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87c3aabd94a8c2c4da43437f3b7b5511
+      internalID: 2593011497736130327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couleur_4
+      rect:
+        serializedVersion: 2
+        x: 3489
+        y: 1862
+        width: 512
+        height: 974
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 61, y: 487}
+        - {x: -68, y: 487}
+        - {x: -256, y: 26}
+        - {x: -256, y: -279}
+        - {x: -53, y: -487}
+        - {x: 72, y: -487}
+        - {x: 256, y: -289}
+        - {x: 256, y: -28}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b29762e03a5364449ed84d4f61533fb
+      internalID: 1879799786480286037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couleur_5
+      rect:
+        serializedVersion: 2
+        x: 4105
+        y: 133
+        width: 708
+        height: 1965
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 195, y: 542.5}
+        - {x: 354, y: 656.5}
+        - {x: 354, y: 794.5}
+        - {x: 213, y: 761.5}
+        - {x: 42, y: 982.5}
+        - {x: -67, y: 982.5}
+        - {x: -252, y: 753.5}
+        - {x: -354, y: 780.5}
+        - {x: -354, y: 692.5}
+        - {x: -245, y: 586.5}
+        - {x: -209, y: 8.5}
+        - {x: -103, y: -801.5}
+        - {x: -330, y: -798.5}
+        - {x: -353.91528, y: -982.5}
+        - {x: 354, y: -982.5}
+        - {x: 354, y: -860.5}
+        - {x: 60, y: -706.5}
+        - {x: 78, y: -453.5}
+        - {x: 212, y: -155.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 042f7498cae3f4f489ed64253efb24a0
+      internalID: -1596591318373070613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couleur_6
+      rect:
+        serializedVersion: 2
+        x: 4855
+        y: 1391
+        width: 946
+        height: 1433
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -89, y: 716.5}
+        - {x: -95, y: 538.5}
+        - {x: -214, y: 454.5}
+        - {x: -473, y: 286.5}
+        - {x: -473, y: -77.5}
+        - {x: -199, y: -356.5}
+        - {x: -170, y: -716.5}
+        - {x: 196, y: -716.5}
+        - {x: 195, y: -369.5}
+        - {x: 473, y: -102.5}
+        - {x: 473, y: 293.5}
+        - {x: 80, y: 536.5}
+        - {x: 98, y: 716.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eef388e6b511e24aa59671d11dcb9f0
+      internalID: 5359420373739401641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couleur_7
+      rect:
+        serializedVersion: 2
+        x: 5905
+        y: 58
+        width: 95
+        height: 2772
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d9f9edeb7496e2448912988ff7a3e83
+      internalID: -2497983580046968188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couleur_8
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 153
+        width: 1021
+        height: 1580
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -83.5, y: 790}
+        - {x: -510.5, y: -50}
+        - {x: -510.41013, y: -789.9869}
+        - {x: 510.5, y: -790}
+        - {x: 510.5, y: 135.15167}
+        - {x: 90.6582, y: 790}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be061ebb9473d8741b290f68b38ed28d
+      internalID: 5964315598421867198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couleur_9
+      rect:
+        serializedVersion: 2
+        x: 1159
+        y: 135
+        width: 1470
+        height: 1282
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 68.44774, y: 641}
+        - {x: -92.2339, y: 637.72797}
+        - {x: -735, y: -19}
+        - {x: -726.0337, y: -578.9333}
+        - {x: -621.8882, y: -641}
+        - {x: 627.85785, y: -641}
+        - {x: 735, y: -590.83215}
+        - {x: 735, y: -24}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c619903503ad6094b8f5e7ae4fc00d8e
+      internalID: -1053710492098981142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couleur_10
+      rect:
+        serializedVersion: 2
+        x: 2713
+        y: 109
+        width: 1251
+        height: 1725
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 273.5, y: 622.5}
+        - {x: 161.5, y: 862.5}
+        - {x: -161.5, y: 862.5}
+        - {x: -315.5, y: 633.5}
+        - {x: -625.5, y: 574.544}
+        - {x: -625.5, y: 203.5}
+        - {x: -531.5, y: -862.5}
+        - {x: -146.53798, y: -862.2467}
+        - {x: -212.5, y: -372.5}
+        - {x: 185.5, y: -356.5}
+        - {x: 139.11827, y: -862.2467}
+        - {x: 510.5, y: -862.5}
+        - {x: 452.5, y: -504.5}
+        - {x: 625.5, y: 99.5}
+        - {x: 625.5, y: 566.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 151f9f74f6b15b9429b38af277785916
+      internalID: -396688070759217273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: c9fdf33ecf25a90449bb20108faa5301
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

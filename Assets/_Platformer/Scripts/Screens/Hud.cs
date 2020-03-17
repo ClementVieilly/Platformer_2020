@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace Com.IsartDigital.Platformer.Screens
 {
-	[RequireComponent(typeof(Button))]
+	[RequireComponent(typeof(Button), typeof(Animator))]
 	public class Hud : AScreen
 	{
 		private static Hud _instance;
@@ -94,6 +94,8 @@ namespace Com.IsartDigital.Platformer.Screens
 		private bool paused = false;
 		public bool Paused { set { paused = value; } }
 
+		private Animator animator = null;
+
 		private void Awake()
 		{
 			if (_instance != null)
@@ -105,11 +107,25 @@ namespace Com.IsartDigital.Platformer.Screens
 			btnPause = GetComponentInChildren<Button>();
 			btnPause.onClick.AddListener(Hud_OnButtonPauseClicked);
 
+			animator = GetComponent<Animator>();
+
 #if UNITY_ANDROID || UNITY_EDITOR
 			Player.OnPlayerMove += UpdateMoveController;
+			Player.OnPlayerJump += PulseJumpButton;
+			Player.OnPlayerEndJump += StopPulsingJumpButton;
 			joystick.gameObject.SetActive(true);
 			jumpButton.gameObject.SetActive(true);
 #endif
+		}
+
+		private void PulseJumpButton()
+		{
+			animator.SetBool("IsHold", true);
+		}
+
+		private void StopPulsingJumpButton()
+		{
+			animator.SetBool("IsHold", false);
 		}
 
 		private void Update()

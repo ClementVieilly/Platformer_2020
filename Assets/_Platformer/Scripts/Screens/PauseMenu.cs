@@ -18,8 +18,33 @@ namespace Com.IsartDigital.Platformer.Screens
 
         private Button[] buttons;//tableau des boutons contenu dans le Menu Pause
 
-        [SerializeField] private string buttonResumeTag = "ResumeButton";
-        [SerializeField] private string buttonRetryTag = "RetryButton";
+		[SerializeField] private string buttonResumeTag = "ResumeButton";
+		[SerializeField] private string buttonRetryTag = "RetryButton";
+
+		private float _score = 0f;
+		public float Score
+		{
+			set
+			{
+				_score = value;
+				UpdateText(scoreText, _score);
+			}
+		}
+
+		private bool[] _bigScore = new bool[] { false, false, false, false };
+		public bool[] BigScore
+		{
+			set
+			{
+				_bigScore = (bool[])value.Clone();
+				UpdateBigScore();
+			}
+		}
+
+		[Header("Score")]
+		[SerializeField] private Text scoreText = null;
+		[SerializeField] private GameObject scoreObject = null;
+		[SerializeField] private GameObject bigScoreObject = null;
 
         private void Awake()
         {
@@ -37,9 +62,20 @@ namespace Com.IsartDigital.Platformer.Screens
 
             for (int i = buttons.Length - 1; i >= 0; i--)
                 buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked -= PauseMenu_OnButtonClicked;
-        }
+		}
 
-        public override void UnsubscribeEvents()
+		private void UpdateText(Text changingText, float value)
+		{
+			changingText.text = value.ToString();
+		}
+
+		private void UpdateBigScore()
+		{
+			for (int i = _bigScore.Length - 1; i >= 0; i--)
+				bigScoreObject.transform.GetChild(i).gameObject.SetActive(_bigScore[i]);
+		}
+
+		public override void UnsubscribeEvents()
         {
             OnHomeClicked = null;
             OnResumeClicked = null;

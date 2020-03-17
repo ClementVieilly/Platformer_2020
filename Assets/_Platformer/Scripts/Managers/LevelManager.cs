@@ -186,16 +186,19 @@ namespace Com.IsartDigital.Platformer.Managers
             ChangeTravellingCamera.ResumeAll();
         }
 
-        private void PauseGame()
-        {
-            player.SetModePause();
-            timeManager.SetModePause();
-            DestructiblePlatform.PauseAll();
-            MobilePlatform.PauseAll();
-            TimedDoor.PauseAll();
-            SoundManager.Instance.PauseAll();
-            ChangeTravellingCamera.PauseAll();
-        }
+		private void PauseGame()
+		{
+			player.SetModePause();
+			timeManager.SetModePause();
+			DestructiblePlatform.PauseAll();
+			MobilePlatform.PauseAll();
+			TimedDoor.PauseAll();
+			SoundManager.Instance.PauseAll();
+			ChangeTravellingCamera.PauseAll();
+
+			if (UIManager.Instance != null)
+				UIManager.Instance.UpdatePauseMenu(_score, _bigScoreCollectibles);
+		}
 
         private void UpdateHud()
         {

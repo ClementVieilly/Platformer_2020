@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2588355335554336148}
   - component: {fileID: 5394578913921064190}
   - component: {fileID: 4322693911900184955}
+  - component: {fileID: 7894431618980206616}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -79,6 +80,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: LOGIN ?
+--- !u!114 &7894431618980206616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482056072606308517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef9b24279366e247b42d27e69e3244c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Login_Title
 --- !u!1 &1306939091695180917
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,6 +869,7 @@ GameObject:
   - component: {fileID: 4464354922086316367}
   - component: {fileID: 4464354922086316361}
   - component: {fileID: 4464354922086316360}
+  - component: {fileID: 5341975190732403688}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -924,6 +939,19 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "If you are not logged, your score will not being saved.\r\nDo you really
     want to continue without save ?"
+--- !u!114 &5341975190732403688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4464354922086316366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef9b24279366e247b42d27e69e3244c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: ConfirmScreen_Message
 --- !u!1 &4464354922441639402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1551,12 +1579,6 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1aae5dde7ccb324f91c95ed77d0e55c, type: 3}
---- !u!224 &8936935814400353612 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3251477474756671994, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
-    type: 3}
-  m_PrefabInstance: {fileID: 5843928820318641334}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1496717675342553163 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5034081582312717565, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
@@ -1569,6 +1591,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5de8f6123a6c7b409c4dac2b2fda472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &8936935814400353612 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3251477474756671994, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5843928820318641334}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8936935814400353613 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3251477474756671995, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
@@ -1725,12 +1753,6 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1aae5dde7ccb324f91c95ed77d0e55c, type: 3}
---- !u!1 &5412038505807225812 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3251477474756671995, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
-    type: 3}
-  m_PrefabInstance: {fileID: 7351279568271841839}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2582914813562447570 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5034081582312717565, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
@@ -1746,6 +1768,12 @@ MonoBehaviour:
 --- !u!224 &5412038505807225813 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3251477474756671994, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7351279568271841839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5412038505807225812 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3251477474756671995, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
     type: 3}
   m_PrefabInstance: {fileID: 7351279568271841839}
   m_PrefabAsset: {fileID: 0}

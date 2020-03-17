@@ -17,12 +17,12 @@ namespace Com.IsartDigital.Platformer.Localization {
             LocalizationManager.Instance.OnChangeLanguage += LocalizationManager_OnChangeLanguage; 
             componentText = GetComponent<Text>();
             componentText.text = LocalizationManager.Instance.GetLocalizedValue(key);
-		}
+        }
 
         private void LocalizationManager_OnChangeLanguage()
         {
-            Debug.Log(LocalizationManager.Instance.GetLocalizedValue(key)); 
-            componentText.text = LocalizationManager.Instance.GetLocalizedValue(key);
+            if(componentText != null) componentText.text = LocalizationManager.Instance.GetLocalizedValue(key);
         }
+
     }
 }

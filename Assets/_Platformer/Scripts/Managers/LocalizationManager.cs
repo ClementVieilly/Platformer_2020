@@ -4,10 +4,13 @@
 ///-----------------------------------------------------------------
 
 using Com.IsartDigital.Platformer.Localization;
+using Com.IsartDigital.Platformer.Screens;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Com.IsartDigital.Platformer.Managers
 {
@@ -15,62 +18,109 @@ namespace Com.IsartDigital.Platformer.Managers
     {
 
         private static LocalizationManager _instance;
+        public static string currentFileName = "localizedText_en.json"; 
         public static LocalizationManager Instance => _instance;
 
         private string defaultLocalizedText = "localizedText_en.json";
-        private string frenchLocalizedText = "localizedText_fr.json";
-        private string fileName; 
+        private string frenchLocalizedText =  "localizedText_fr.json";
+        private string _fileName = null; 
+        private string dataJson;
+        public static bool toggleBool = false; 
+        public static bool isToggleChanged = false;
+        public bool isPreload = false;
+        public bool notFinished = true;
+       
 
-        private bool isReady = false;
+        public Dictionary<string, string> localizedText;
 
-        private Dictionary<string, string> localizedText;
+        public  Action OnLoadFinished;
+        public  Action OnChangeLanguage;
 
-        public Action  OnChangeLanguage;
+        public string FileName
+        {
+            get { return _fileName; }
+            set
+            {
+                _fileName = value;
+            }
+        }
+
         private void Awake()
         {
-            if(_instance)
+            if(_instance != null && _instance != this)
             {
                 Destroy(gameObject);
                 return;
             }
             else _instance = this;
 
+            _fileName = currentFileName;
             DontDestroyOnLoad(gameObject);
-            fileName = defaultLocalizedText; 
-            LoadLocalizedText();
+            TitleCard.OnChangeLanguage += TitleCard_OnChangeLanguage;
         }
 
-        public void LoadLocalizedText()
+        private void TitleCard_OnChangeLanguage(TitleCard title)
+        {
+            _fileName = _fileName == defaultLocalizedText ? frenchLocalizedText : defaultLocalizedText;
+#if UNITY_ANDROID && !UNITY_EDITOR
+            StartCoroutine(LoadLocalizedTextOnAndroid());
+#else
+            StartCoroutine(LoadLocalizedText());
+#endif
+        }
+
+        public IEnumerator LoadLocalizedText()
         {
             localizedText = new Dictionary<string, string>();
-            string filePath = Path.Combine(Application.streamingAssetsPath, fileName);
-            if(File.Exists(filePath))
+            localizedText.Clear();
+
+            string filePath = Path.Combine(Application.streamingAssetsPath,  _fileName);
+
+             while (!File.Exists(filePath))
+             {
+                 Debug.Log("FilePath introuvable"); 
+                 yield return null; 
+             }
+
+            string dataJson = File.ReadAllText(filePath);
+            LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataJson);
+
+            for(int i = 0; i < loadedData.items.Length; i++)
             {
-                string dataJson = File.ReadAllText(filePath);
-                LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataJson);
-
-                for(int i = 0; i < loadedData.items.Length; i++)
-                {
-                    localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
-                }
+                localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
             }
-            else Debug.LogError("FilePath doesn't exist !");
+            if(isPreload) OnLoadFinished?.Invoke();
+            else OnChangeLanguage?.Invoke(); 
+        }
 
-            isReady = true;
+      public  IEnumerator LoadLocalizedTextOnAndroid()
+        {
+            while(notFinished)
+            {
+                string filePath = Path.Combine("jar:file://" + Application.dataPath + "!/assets", _fileName);
+                localizedText = new Dictionary<string, string>();
+                UnityWebRequest www = UnityWebRequest.Get(filePath);
+                yield return www.SendWebRequest();
+                dataJson = www.downloadHandler.text;
+                notFinished = false; 
+            }
+            LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataJson);
+
+            for(int i = 0; i < loadedData.items.Length; i++)
+            {
+                localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
+            }
+            if(isPreload) OnLoadFinished?.Invoke();
+            else
+            {
+                OnChangeLanguage?.Invoke();
+            }
+            notFinished = true; 
         }
 
         public string GetLocalizedValue(string key)
         {
-            if(isReady) return localizedText[key];
-            else return "Not ready"; 
-        }
-
-        public void ChooseLanguage()
-        {
-            fileName = fileName == defaultLocalizedText ? frenchLocalizedText : defaultLocalizedText;
-            Debug.Log(fileName); 
-            LoadLocalizedText();
-            OnChangeLanguage?.Invoke();
+            return localizedText[key]; 
         }
     }
 }

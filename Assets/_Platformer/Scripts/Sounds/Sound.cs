@@ -96,6 +96,9 @@ namespace Com.IsartDigital.Platformer.Sounds {
 		[SerializeField] private bool _isFadeOut = false;
 		public bool IsFadeOut => _isFadeOut;
 
+		[SerializeField] private float _fadeInDuration = 1;
+		public float FadeInDuration => _fadeInDuration;
+
 		[SerializeField] private AnimationCurve _fadeInCurve;
 		public AnimationCurve FadeInCurve => _fadeInCurve;
 

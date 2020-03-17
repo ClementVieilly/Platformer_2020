@@ -75,36 +75,30 @@ namespace Com.IsartDigital.Platformer.Managers
 		}
 
 
-
-		private IEnumerator FadeIn(Sound sound)
+		private void FadeIn(Sound sound)
 		{
-			//float elapsedTime = 0f;
-			//float ratio = sound.FadeInCurve.Evaluate(0);
-
-			//while()
-
-			yield return null;
+			StartCoroutine(Fade(sound, sound.FadeInCurve));
 		}
 
+		private void FadeOut(Sound sound)
+		{
+			StartCoroutine(Fade(sound, sound.FadeOutCurve));
+		}
 
-		//private IEnumerator FadeIn(Sound sound)
-		//{
-		//	float elapsed = 0f;
-		//	float lRatio = fadeInCurve.Evaluate(0);
-		//	AnimationCurve lCurve = fadeIn ? fadeInCurve : fadeOutCurve;
-		//	Debug.Log(sound.isPaused ? "resume" : "play");
-		//	sound.source.volume = 0f;
-		//	while (lRatio != fadeInCurve.Evaluate(cooldownTimeForFades / cooldownTimeForFades))
-		//	{
-		//		elapsed += Time.deltaTime;
-		//		lRatio = fadeInCurve.Evaluate(elapsed / cooldownTimeForFades);
-		//		sound.source.volume = sound.volume * lRatio;
-		//		Debug.Log("source volume : " + sound.source.volume + "ratio volume : " + lRatio);
-		//		yield return null;
-		//	}
-		//	elapsed -= cooldownTimeForFades;
-		//	Debug.Log("on termine fadeIn");
-		//}
+		private IEnumerator Fade(Sound sound,AnimationCurve curve)
+		{
+			float elapsedTime = 0f;
+			float ratio = curve.Evaluate(0);
+
+			while (ratio <= curve.Evaluate(1))
+			{
+				elapsedTime += Time.deltaTime;
+				ratio = curve.Evaluate(elapsedTime / sound.FadeInDuration);
+				sound.Source.volume = sound.Volume * ratio;
+				yield return null;
+			}
+			elapsedTime = 0f;
+		}
 
 		/// <summary>
 		/// Coroutine needed for fades, fadeIn false => fadeOut

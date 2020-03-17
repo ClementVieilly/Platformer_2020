@@ -73,7 +73,10 @@ namespace Com.IsartDigital.Platformer
             SerializedProperty _fadeInCurve = property.FindPropertyRelative("_fadeInCurve");
             //AnimationCurve
             SerializedProperty _fadeOutCurve = property.FindPropertyRelative("_fadeOutCurve");
-
+            //float
+            SerializedProperty _fadeInDuration = property.FindPropertyRelative("_fadeInDuration");
+            //float
+            SerializedProperty _fadeOutDuration = property.FindPropertyRelative("_fadeOutDuration");
             #endregion
 
             #region Other properties
@@ -255,18 +258,30 @@ namespace Com.IsartDigital.Platformer
 
             Rect fadeInCurveTitleRightRect = new Rect(position.x + position.width * 0.2f,
                 position.y + lineHeight * 18.5f + 2.5f,
-                position.width * 0.6f,
+                position.width * 0.4f,
                 lineHeight);
 
-            Rect fadeInBoolLeftRect = new Rect(position.x + position.width * 0.82f,
+            Rect fadeInBoolLeftRect = new Rect(position.x + position.width * 0.62f,
                 position.y + lineHeight * 18.5f + 2.5f,
                 position.width * 0.05f,
                 lineHeight);
 
-            Rect fadeInBooRightRect = new Rect(position.x + position.width * 0.82f + 35,
+            Rect fadeInBooRightRect = new Rect(position.x + position.width * 0.62f + 35,
                 position.y + lineHeight * 18.5f + 2.5f,
                 position.width * 0.1f,
                 lineHeight);
+
+
+            Rect fadeInTimelLeftRect = new Rect(position.x + position.width * 0.77f,
+                position.y + lineHeight * 18.5f + 2.5f,
+                position.width * 0.1f,
+                lineHeight);
+
+            Rect fadeInTimeRightRect = new Rect(position.x + position.width * 0.78f + 35,
+                position.y + lineHeight * 18.5f + 2.5f,
+                position.width * 0.1f,
+                lineHeight);
+
 
             Rect fadeOutCurveTitleLeftRect = new Rect(position.x + 15,
                 position.y + lineHeight * 19.5f + 2.5f,
@@ -275,15 +290,25 @@ namespace Com.IsartDigital.Platformer
 
             Rect fadeOutCurveTitleRightRect = new Rect(position.x + position.width * 0.2f,
                 position.y + lineHeight * 19.5f + 2.5f,
-                position.width * 0.6f,
+                position.width * 0.4f,
                 lineHeight);
 
-            Rect fadeOutBoolLeftRect = new Rect(position.x + position.width * 0.82f,
+            Rect fadeOutBoolLeftRect = new Rect(position.x + position.width * 0.62f,
                 position.y + lineHeight * 19.5f + 2.5f,
                 position.width * 0.05f,
                 lineHeight);
 
-            Rect fadeOutBooRightRect = new Rect(position.x + position.width * 0.82f + 35,
+            Rect fadeOutBooRightRect = new Rect(position.x + position.width * 0.62f + 35,
+                position.y + lineHeight * 19.5f + 2.5f,
+                position.width * 0.1f,
+                lineHeight);
+            
+            Rect fadeOutTimelLeftRect = new Rect(position.x + position.width * 0.77f,
+                position.y + lineHeight * 19.5f + 2.5f,
+                position.width * 0.1f,
+                lineHeight);
+
+            Rect fadeOutTimeRightRect = new Rect(position.x + position.width * 0.78f + 35,
                 position.y + lineHeight * 19.5f + 2.5f,
                 position.width * 0.1f,
                 lineHeight);
@@ -359,11 +384,17 @@ namespace Com.IsartDigital.Platformer
             _isFadeIn.boolValue = EditorGUI.Toggle(fadeInBoolLeftRect, _isFadeIn.boolValue);
             GUI.Label(fadeInBooRightRect, _isFadeIn.boolValue ? "is On" : "is Off");
 
+            GUI.Label(fadeInTimelLeftRect, "Duration");
+            EditorGUI.PropertyField(fadeInTimeRightRect, _fadeInDuration, GUIContent.none);
+
             GUI.Label(fadeOutCurveTitleLeftRect, "Fade Out Curve");
             EditorGUI.PropertyField(fadeOutCurveTitleRightRect, _fadeOutCurve, GUIContent.none);
 
             _isFadeOut.boolValue = EditorGUI.Toggle(fadeOutBoolLeftRect, _isFadeOut.boolValue);
             GUI.Label(fadeOutBooRightRect, _isFadeOut.boolValue ? "is On" : "is Off");
+
+            GUI.Label(fadeOutTimelLeftRect, "Duration");
+            EditorGUI.PropertyField(fadeOutTimeRightRect, _fadeOutDuration, GUIContent.none);
 
             EditorGUI.EndProperty();
         }

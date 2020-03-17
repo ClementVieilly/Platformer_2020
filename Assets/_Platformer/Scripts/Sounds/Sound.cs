@@ -105,9 +105,12 @@ namespace Com.IsartDigital.Platformer.Sounds {
 		[SerializeField] private AnimationCurve _fadeOutCurve;
 		public AnimationCurve FadeOutCurve => _fadeOutCurve;
 
-        #endregion
+		[SerializeField] private float _fadeOutDuration = 1;
+		public float FadeOutDuration => _fadeOutDuration;
 
-        [SerializeField] private AudioMixerGroup _mixerGroup = null;
+		#endregion
+
+		[SerializeField] private AudioMixerGroup _mixerGroup = null;
 		public AudioMixerGroup MixerGroup => _mixerGroup;
 
 		private AudioSource _source = null;

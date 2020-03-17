@@ -66,7 +66,8 @@ namespace Com.IsartDigital.Platformer.Managers
 				return;
 			}
 
-			currentSound.Source.volume = currentSound.Volume * (1 + UnityEngine.Random.Range(-currentSound.VolumeVariance / 2, currentSound.VolumeVariance / 2));
+			if (currentSound.IsFadeIn) FadeIn(currentSound);
+			else currentSound.Source.volume = currentSound.Volume * (1 + UnityEngine.Random.Range(-currentSound.VolumeVariance / 2, currentSound.VolumeVariance / 2));
 
 			currentSound.Source.pitch = currentSound.IsPitchedBetweenValues ?
 										UnityEngine.Random.Range(currentSound.MinPitchValue, currentSound.MaxPitchValue) :

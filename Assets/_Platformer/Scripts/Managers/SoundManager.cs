@@ -6,6 +6,7 @@
 using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.Sounds;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 #if UNITY_EDITOR
@@ -72,6 +73,115 @@ namespace Com.IsartDigital.Platformer.Managers
 										currentSound.Source.pitch = currentSound.Pitch * (1 + UnityEngine.Random.Range(-currentSound.PitchVariance / 2, currentSound.PitchVariance / 2));
 			currentSound.Source.Play();
 		}
+
+
+
+		private IEnumerator FadeIn(Sound sound)
+		{
+			//float elapsedTime = 0f;
+			//float ratio = sound.FadeInCurve.Evaluate(0);
+
+			//while()
+
+			yield return null;
+		}
+
+
+		//private IEnumerator FadeIn(Sound sound)
+		//{
+		//	float elapsed = 0f;
+		//	float lRatio = fadeInCurve.Evaluate(0);
+		//	AnimationCurve lCurve = fadeIn ? fadeInCurve : fadeOutCurve;
+		//	Debug.Log(sound.isPaused ? "resume" : "play");
+		//	sound.source.volume = 0f;
+		//	while (lRatio != fadeInCurve.Evaluate(cooldownTimeForFades / cooldownTimeForFades))
+		//	{
+		//		elapsed += Time.deltaTime;
+		//		lRatio = fadeInCurve.Evaluate(elapsed / cooldownTimeForFades);
+		//		sound.source.volume = sound.volume * lRatio;
+		//		Debug.Log("source volume : " + sound.source.volume + "ratio volume : " + lRatio);
+		//		yield return null;
+		//	}
+		//	elapsed -= cooldownTimeForFades;
+		//	Debug.Log("on termine fadeIn");
+		//}
+
+		/// <summary>
+		/// Coroutine needed for fades, fadeIn false => fadeOut
+		/// </summary>
+		/// <param name="sound"></param>
+		/// <param name="fadeCurve"></param>
+		/// <returns></returns>
+		//private IEnumerator Fade(Sound sound, AnimationCurve fadeCurve, float targetedVolume = 1)
+		//{
+		//	float elapsed = 0f;
+		//	float lRatio = 1f - targetedVolume;
+		//	float volumeInitial = 1 - targetedVolume;
+		//	AnimationCurve lCurve = fadeCurve;
+		//	//AnimationCurve lCurve = fadeIn ? fadeInCurve : fadeOutCurve;
+		//	sound.source.volume = lCurve.Evaluate(0);
+		//	while (lRatio != lCurve.Evaluate(1))
+		//	{
+		//		elapsed += Time.deltaTime;
+		//		lRatio = lCurve.Evaluate(elapsed / cooldownTimeForFades);
+		//		sound.source.volume = 1f * lRatio;
+		//		//Debug.Log("source volume : " + sound.source.volume);
+		//		yield return null;
+		//	}
+		//	elapsed -= cooldownTimeForFades;
+		//	Debug.Log("on termine la fade std");
+		//}
+
+		/// <summary>
+		/// Coroutine needed for fadeIn
+		/// </summary>
+		/// <param name="sound"></param>
+		/// <returns></returns>
+		//private IEnumerator FadeIn(Sound sound)
+		//{
+		//	float elapsed = 0f;
+		//	float lRatio = fadeInCurve.Evaluate(0);
+		//	AnimationCurve lCurve = fadeIn ? fadeInCurve : fadeOutCurve;
+		//	Debug.Log(sound.isPaused ? "resume" : "play");
+		//	sound.source.volume = 0f;
+		//	while (lRatio != fadeInCurve.Evaluate(cooldownTimeForFades / cooldownTimeForFades))
+		//	{
+		//		elapsed += Time.deltaTime;
+		//		lRatio = fadeInCurve.Evaluate(elapsed / cooldownTimeForFades);
+		//		sound.source.volume = sound.volume * lRatio;
+		//		Debug.Log("source volume : " + sound.source.volume + "ratio volume : " + lRatio);
+		//		yield return null;
+		//	}
+		//	elapsed -= cooldownTimeForFades;
+		//	Debug.Log("on termine fadeIn");
+		//}
+
+		/// <summary>
+		/// Coroutine needed for fades, fadeIn false => fadeOut
+		/// </summary>
+		/// <param name="sound"></param>
+		/// <param name="fadeCurve"></param>
+		/// <returns></returns>
+		//private IEnumerator FadeOut(Sound sound)
+		//{
+		//	float elapsed = 0f;
+		//	float lRatio = fadeOutCurve.Evaluate(0);
+		//	//AnimationCurve lCurve = fadeIn ? fadeInCurve : fadeOutCurve;
+		//	sound.source.volume = 1f;
+		//	while (lRatio != fadeOutCurve.Evaluate(1))
+		//	{
+		//		elapsed += Time.deltaTime;
+		//		lRatio = fadeOutCurve.Evaluate(elapsed / cooldownTimeForFades);
+		//		sound.source.volume = 1f * lRatio;
+		//		//Debug.Log("source volume : " + sound.source.volume);
+		//		yield return null;
+		//	}
+		//	elapsed -= cooldownTimeForFades;
+		//	Debug.Log("on termine fadeOut");
+		//	sound.source.Pause();
+		//}
+
+
 
 		public void Play(string sound, ALevelObject emitter)
 		{

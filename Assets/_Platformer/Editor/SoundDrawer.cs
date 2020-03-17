@@ -13,7 +13,7 @@ namespace Com.IsartDigital.Platformer
     [CustomPropertyDrawer(typeof(Sound))]
     public class SoundDrawer : PropertyDrawer
     {
-        private float lineNumber = 20;
+        private float lineNumber = 24;
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             #region Infos
@@ -45,16 +45,34 @@ namespace Com.IsartDigital.Platformer
             SerializedProperty isPitchedBetweenValues = property.FindPropertyRelative("_isPitchedBetweenValues");
             //float
             SerializedProperty minPitchValue = property.FindPropertyRelative("_minPitchValue");
-            //flaot
+            //float
             SerializedProperty maxPitchValue = property.FindPropertyRelative("_maxPitchValue");
-            //flaot
-            SerializedProperty rolloffMode = property.FindPropertyRelative("rolloffMode");
 
-            SerializedProperty minDistance = property.FindPropertyRelative("minDistance");
+            #endregion
 
-            SerializedProperty maxDistance = property.FindPropertyRelative("maxDistance");
+            #region Spatialization properties
 
-            SerializedProperty volumeSpatialization = property.FindPropertyRelative("volumeSpatialization");
+            //AudioRolloffMode
+            SerializedProperty _rolloffMode = property.FindPropertyRelative("_rolloffMode");
+            //float
+            SerializedProperty _minDistance = property.FindPropertyRelative("_minDistance");
+            //float
+            SerializedProperty _maxDistance = property.FindPropertyRelative("_maxDistance");
+            //AnimationCurve
+            SerializedProperty _volumeSpatialization = property.FindPropertyRelative("_volumeSpatialization");
+
+            #endregion
+
+            #region Fade properties
+
+            //bool
+            SerializedProperty _isFadeIn = property.FindPropertyRelative("_isFadeIn");
+            //bool
+            SerializedProperty _isFadeOut = property.FindPropertyRelative("_isFadeOut");
+            //AnimationCurve
+            SerializedProperty _fadeInCurve = property.FindPropertyRelative("_fadeInCurve");
+            //AnimationCurve
+            SerializedProperty _fadeOutCurve = property.FindPropertyRelative("_fadeOutCurve");
 
             #endregion
 
@@ -170,7 +188,6 @@ namespace Com.IsartDigital.Platformer
                 position.y + lineHeight * 9.5f + 2.5f,
                 position.width * 0.2f,
                 lineHeight);
-
             Rect pitchMaxLeftRect = new Rect(position.x + position.width * 0.5f,
                 position.y + lineHeight * 9.5f + 2.5f,
                 200,
@@ -221,9 +238,54 @@ namespace Com.IsartDigital.Platformer
                 200,
                 lineHeight);
                         
-            Rect spatializeCurveTitleRightRect = new Rect(position.x + 15 + position.width * 0.3f,
+            Rect spatializeCurveTitleRightRect = new Rect(position.x + position.width * 0.2f,
                 position.y + lineHeight * 15.5f + 2.5f,
+                position.width * 0.6f,
+                lineHeight);
+
+            Rect fadeHeaderRect = new Rect(position.x + position.width * 0.4f,
+                position.y + lineHeight * 17.5f + 2.5f,
                 200,
+                lineHeight);
+
+            Rect fadeInCurveTitleLeftRect = new Rect(position.x + 15,
+                position.y + lineHeight * 18.5f + 2.5f,
+                position.width * 0.15f,
+                lineHeight);
+
+            Rect fadeInCurveTitleRightRect = new Rect(position.x + position.width * 0.2f,
+                position.y + lineHeight * 18.5f + 2.5f,
+                position.width * 0.6f,
+                lineHeight);
+
+            Rect fadeInBoolLeftRect = new Rect(position.x + position.width * 0.82f,
+                position.y + lineHeight * 18.5f + 2.5f,
+                position.width * 0.05f,
+                lineHeight);
+
+            Rect fadeInBooRightRect = new Rect(position.x + position.width * 0.82f + 35,
+                position.y + lineHeight * 18.5f + 2.5f,
+                position.width * 0.1f,
+                lineHeight);
+
+            Rect fadeOutCurveTitleLeftRect = new Rect(position.x + 15,
+                position.y + lineHeight * 19.5f + 2.5f,
+                position.width * 0.15f,
+                lineHeight);
+
+            Rect fadeOutCurveTitleRightRect = new Rect(position.x + position.width * 0.2f,
+                position.y + lineHeight * 19.5f + 2.5f,
+                position.width * 0.6f,
+                lineHeight);
+
+            Rect fadeOutBoolLeftRect = new Rect(position.x + position.width * 0.82f,
+                position.y + lineHeight * 19.5f + 2.5f,
+                position.width * 0.05f,
+                lineHeight);
+
+            Rect fadeOutBooRightRect = new Rect(position.x + position.width * 0.82f + 35,
+                position.y + lineHeight * 19.5f + 2.5f,
+                position.width * 0.1f,
                 lineHeight);
 
             Rect foldoutRect = showInEditor.boolValue ? titleRect : position;
@@ -278,17 +340,30 @@ namespace Com.IsartDigital.Platformer
             GUI.Label(spatializeHeaderRect, "Spatialization settings",GUIStyle.none);
 
             GUI.Label(spatializeLeftRect, "Rolloff Mode");
-            EditorGUI.PropertyField(spatializeRightRect, rolloffMode, GUIContent.none);
+            EditorGUI.PropertyField(spatializeRightRect, _rolloffMode, GUIContent.none);
             
             GUI.Label(spatializeLeft2Rect, "Min Distance");
-            EditorGUI.PropertyField(spatializeRight2Rect, minDistance, GUIContent.none);
+            EditorGUI.PropertyField(spatializeRight2Rect, _minDistance, GUIContent.none);
             
             GUI.Label(spatializeLeft3Rect, "Max Distance");
-            EditorGUI.PropertyField(spatializeRight3Rect, maxDistance, GUIContent.none);
+            EditorGUI.PropertyField(spatializeRight3Rect, _maxDistance, GUIContent.none);
 
-            GUI.Label(spatializeCurveTitleLeftRect, "Custom Curve Spatialization");
-            EditorGUI.PropertyField(spatializeCurveTitleRightRect, volumeSpatialization, GUIContent.none);
+            GUI.Label(spatializeCurveTitleLeftRect, "Custom Curve");
+            EditorGUI.PropertyField(spatializeCurveTitleRightRect, _volumeSpatialization, GUIContent.none);
 
+            GUI.Label(fadeHeaderRect, "Fade settings", GUIStyle.none);
+
+            GUI.Label(fadeInCurveTitleLeftRect, "Fade In Curve");
+            EditorGUI.PropertyField(fadeInCurveTitleRightRect, _fadeInCurve, GUIContent.none);
+
+            _isFadeIn.boolValue = EditorGUI.Toggle(fadeInBoolLeftRect, _isFadeIn.boolValue);
+            GUI.Label(fadeInBooRightRect, _isFadeIn.boolValue ? "is On" : "is Off");
+
+            GUI.Label(fadeOutCurveTitleLeftRect, "Fade Out Curve");
+            EditorGUI.PropertyField(fadeOutCurveTitleRightRect, _fadeOutCurve, GUIContent.none);
+
+            _isFadeOut.boolValue = EditorGUI.Toggle(fadeOutBoolLeftRect, _isFadeOut.boolValue);
+            GUI.Label(fadeOutBooRightRect, _isFadeOut.boolValue ? "is On" : "is Off");
 
             EditorGUI.EndProperty();
         }

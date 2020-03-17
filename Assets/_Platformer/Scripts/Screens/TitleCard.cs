@@ -38,8 +38,12 @@ namespace Com.IsartDigital.Platformer.Screens {
 
         [SerializeField] private Toggle localizationToggle = null; 
 
+
+
         private void Awake()
         {
+            animator = GetComponent<Animator>();
+            animator.SetTrigger(enter); 
             localizationToggle.isOn = LocalizationManager.toggleBool; 
             localizationToggle.onValueChanged.AddListener(delegate { OnChangeLanguage?.Invoke(this); }); 
             buttons = GetComponentsInChildren<Button>();

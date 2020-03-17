@@ -30,6 +30,7 @@ public class Leaderboard : AScreen
 	public int LevelToDisplay { get => _levelToDisplay; set { _levelToDisplay = value; } }
 	[SerializeField] private GameObject infosZone = null;
 	[SerializeField] private Text level = null;
+	private static string levelLocalized = null;
 	[SerializeField] private GameObject scoreDisplayPrefab = null;
 
 	private void Awake()
@@ -39,6 +40,7 @@ public class Leaderboard : AScreen
 		skipButton.OnMenuButtonClicked += Leaderboard_OnSkipClicked;
 		if (nextLevel) nextLevel.OnMenuButtonClicked += Leaderboard_OnNextLevel;
 		if (previousLevel) previousLevel.OnMenuButtonClicked += Leaderboard_OnPreviousLevel;
+		
 	}
 
 	public void StartLeaderboard()
@@ -106,8 +108,10 @@ public class Leaderboard : AScreen
 
 		for (int i = infosZone.transform.childCount - 1; i >= 0; i--)
 			Destroy(infosZone.transform.GetChild(i).gameObject);
-
-		level.text = "Level " + _levelToDisplay.ToString();
+		if (levelLocalized == null) {
+			levelLocalized = level.text;
+		}
+		level.text = levelLocalized + " " + _levelToDisplay.ToString();
 	}
 
 	private ScoreDisplay AddScoreDisplay(ScoreObject scoreObject)

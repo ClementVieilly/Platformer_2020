@@ -150,6 +150,7 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             currentHud = Instantiate(hudPrefab).GetComponent<Hud>();
             currentHud.OnButtonPausePressed += Hud_OnPauseButtonPressed;
+			OnResume += currentHud.UIManager_OnResume;
 
             allScreens.Add(currentHud);
         }

@@ -3,6 +3,7 @@
 /// Date : 21/01/2020 10:36
 ///-----------------------------------------------------------------
 
+using System;
 using Com.IsartDigital.Platformer.LevelObjects;
 using UnityEngine;
 using UnityEngine.UI;
@@ -91,6 +92,7 @@ namespace Com.IsartDigital.Platformer.Screens
 		}
 
 		private float _timer = 0f;
+		private bool paused = false;
 
 		private void Awake()
 		{
@@ -119,6 +121,8 @@ namespace Com.IsartDigital.Platformer.Screens
 		{
 			if (!scoreObject.activeSelf && !bigScoreObject.activeSelf) return;
 
+			if (paused) return;
+
 			_timer += Time.deltaTime;
 			if (_timer > 3)
 			{
@@ -141,7 +145,18 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		private void Hud_OnButtonPauseClicked()
 		{
+			scoreObject.SetActive(true);
+			bigScoreObject.SetActive(true);
+
+			paused = true;
+			_timer = 0;
+
 			OnButtonPausePressed?.Invoke(this);
+		}
+
+		internal void UIManager_OnResume()
+		{
+			paused = false;
 		}
 
 		private void UpdateMoveController(float horizontalAxis)

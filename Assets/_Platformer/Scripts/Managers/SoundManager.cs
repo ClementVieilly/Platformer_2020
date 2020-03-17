@@ -91,6 +91,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			float elapsedTime = 0f;
 			float ratio = curve.Evaluate(0);
 
+
 			while (ratio <= curve.Evaluate(1))
 			{
 				elapsedTime += Time.deltaTime;

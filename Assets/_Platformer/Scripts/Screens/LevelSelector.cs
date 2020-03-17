@@ -27,7 +27,8 @@ namespace Com.IsartDigital.Platformer.Screens
         private void Awake()
         {
             buttons = GetComponentsInChildren<Button>();
-
+            animator = GetComponent<Animator>();
+            animator.SetTrigger(enter); 
             for (int i = 0; i < buttons.Length; i++)//Assigne les bonnes références de chaque boutons grâce à leurs tags
             {
                 if (buttons[i].CompareTag(buttonLevel1Tag)) level1Button = buttons[i];

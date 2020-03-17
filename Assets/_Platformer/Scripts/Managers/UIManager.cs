@@ -341,9 +341,9 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             CloseScreen(title);
 			CreateLevelSelector();
-
-			if (webClient.wantToLog)
-				CreateLoginScreen();
+            Debug.Log(webClient.wantToLog); 
+			//if (webClient.wantToLog)
+				//CreateLoginScreen();
         }
 
         private void TitleCard_OnSoundTriggerClicked(TitleCard title)

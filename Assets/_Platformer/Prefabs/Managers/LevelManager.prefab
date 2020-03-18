@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2146941416575920075}
   - component: {fileID: 8772840175503732436}
   - component: {fileID: 3404692365797821932}
+  - component: {fileID: 810185118}
+  - component: {fileID: 810185119}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -44,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247ddb52062bbb845a2fb6e8804f7425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   sounds: {fileID: 11400000, guid: e4526ec7fb9357d408af38f7e3a4d718, type: 2}
+  levelInfos: {fileID: 0}
 --- !u!114 &3404692365797821932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,3 +62,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slowDownFactor: 0.05
   waiting: 0
+--- !u!114 &810185118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450356246194564255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f697f4109310c94ea2efddfa0b80607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _startPos: {x: 1, y: 10.5}
+--- !u!114 &810185119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450356246194564255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e7ff0ae3fde05d43952752ec4e56113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLevel: {fileID: 810185118}

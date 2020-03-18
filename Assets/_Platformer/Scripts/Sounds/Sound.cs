@@ -113,8 +113,18 @@ namespace Com.IsartDigital.Platformer.Sounds {
 		[SerializeField] private bool _isStartAtRandomTime = false;
 		public bool IsStartAtRandomTime => _isStartAtRandomTime;
 
-		[SerializeField] private AudioMixerGroup _mixerGroup = null;
-		public AudioMixerGroup MixerGroup => _mixerGroup;
+		//Temp : need to make arrays and choose by level
+		[SerializeField] private AudioMixerGroup _mixerGroupLvl1 = null;
+		public AudioMixerGroup MixerGroupLvl1 => _mixerGroupLvl1;
+		
+		[SerializeField] private AudioMixerGroup _mixerGroupLvl2 = null;
+		public AudioMixerGroup MixerGroupLvl2 => _mixerGroupLvl2;
+
+		[SerializeField] private AudioMixerGroup _pauseMixerGroup = null;
+		public AudioMixerGroup PauseMixerGroup => _pauseMixerGroup;
+
+		[SerializeField] private AudioMixerGroup _transitionMixerGroup = null;
+		public AudioMixerGroup TransitionMixerGroup => _transitionMixerGroup;
 
 		private AudioSource _source = null;
 		public AudioSource Source { get => _source; set { _source = value; } }
@@ -122,12 +132,11 @@ namespace Com.IsartDigital.Platformer.Sounds {
 		public void SetNewSource(AudioSource newSource)
 		{
 			Source = newSource;
-
 			Source.clip = Clip;
 			Source.volume = Volume;
 			Source.pitch = Pitch;
 			Source.loop = IsLoop;
-			Source.outputAudioMixerGroup = MixerGroup;
+			Source.outputAudioMixerGroup = MixerGroupLvl1;
 			
 			Source.rolloffMode = _rolloffMode;
 			Source.minDistance = minDistance;
@@ -137,11 +146,18 @@ namespace Com.IsartDigital.Platformer.Sounds {
 				Source.SetCustomCurve(AudioSourceCurveType.CustomRolloff,_volumeSpatialization);
 			}
 
-			if (_type == SoundTypes.SFX)
+			if (_type == SoundTypes.SFX_ClassicPause || _type == SoundTypes.SFX_MixerPause)
 			{
 				Source.spatialBlend = 1;
 			}
 		}
+
+		//public void SetMode(SoundMode mode)
+		//{
+		//	if (mode == SoundMode.Normal) Source.outputAudioMixerGroup = MixerGroupLvl1;
+		//	else if (mode == SoundMode.Pause) Source.outputAudioMixerGroup = PauseMixerGroup;
+		//	else if (mode == SoundMode.Transition) Source.outputAudioMixerGroup = TransitionMixerGroup;
+		//}
 
 		public void DuplicateValues(Sound originSound)
 		{
@@ -171,7 +187,10 @@ namespace Com.IsartDigital.Platformer.Sounds {
 			_fadeInCurve = originSound.FadeInCurve;
 			_fadeOutCurve = originSound.FadeOutCurve;
 
-			_mixerGroup = originSound._mixerGroup;
+			_mixerGroupLvl1 = originSound.MixerGroupLvl1;
+			_pauseMixerGroup = originSound.PauseMixerGroup;
+			_transitionMixerGroup = originSound.TransitionMixerGroup;
+
 			_source = originSound.Source;
 		}
 
@@ -182,6 +201,15 @@ namespace Com.IsartDigital.Platformer.Sounds {
 	public enum SoundTypes
 	{
 		MUSIC,
-		SFX
-	}
+		SFX_ClassicPause,
+		SFX_MixerPause,
+		UI
+	}	
+
+	//public enum SoundMode
+	//{
+	//	Normal,
+	//	Pause,
+	//	Transition
+	//}
 }

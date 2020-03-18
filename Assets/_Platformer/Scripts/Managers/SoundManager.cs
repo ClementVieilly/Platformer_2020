@@ -53,6 +53,10 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 		}
 
+		/// <summary>
+		/// Play a sound whose name is the parameter sound 
+		/// </summary>
+		/// <param name="sound">name of the sound you want to play</param>
 		public void Play(string sound)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
@@ -79,6 +83,11 @@ namespace Com.IsartDigital.Platformer.Managers
 			currentSound.Source.Play();
 		}
 
+		/// <summary>
+		/// Play a sound whose name is the parameter sound on a specific gameObject
+		/// </summary>
+		/// <param name="sound">name of the sound you want to play</param>
+		/// <param name="emitter">object which call the Play method</param>
 		public void Play(string sound, ALevelObject emitter)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
@@ -126,6 +135,10 @@ namespace Com.IsartDigital.Platformer.Managers
 			currentSound.Source.Play();
 		}
 
+		/// <summary>
+		/// Play a sound randomly chosen on a list of sound's names
+		/// </summary>
+		/// <param name="randomSounds">list of sound's name in which you want to choose randomly a sound</param>
 		public void PlayRandom(string[] randomSounds)
 		{
 			float random = UnityEngine.Random.Range(0, randomSounds.Length - 1);
@@ -134,6 +147,11 @@ namespace Com.IsartDigital.Platformer.Managers
 			Play(randomSounds[randomIndex]);
 		}
 
+		/// <summary>
+		/// Play a sound randomly chosen on a list of sound's names on a specific gameObject
+		/// </summary>
+		/// <param name="randomSounds">list of sound's name in which you want to choose randomly a sound</param>
+		/// <param name="emitter">object which call the PlayRandom method</param>
 		public void PlayRandom(string[] randomSounds, ALevelObject emitter)
 		{
 			float random = UnityEngine.Random.Range(0, randomSounds.Length - 1);
@@ -142,12 +160,16 @@ namespace Com.IsartDigital.Platformer.Managers
 			Play(randomSounds[randomIndex], emitter);
 		}
 
+		/// <summary>
+		/// Stop a sound whose name is the parameter sound
+		/// </summary>
+		/// <param name="sound">name of the sound you want to play</param>
 		public void Stop(string sound)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
 			if (currentSound == null)
 			{
-				Debug.LogWarning("Sound: " + name + " not found!");
+				Debug.LogWarning("Sound: " + sound + " not found!");
 				return;
 			}
 
@@ -158,12 +180,17 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 		}
 
+		/// <summary>
+		/// Stop a sound whose name is the parameter sound on a specific gameObject
+		/// </summary>
+		/// <param name="sound">name of the sound you want to play</param>
+		/// <param name="emitter">object which call the Play method</param>
 		public void Stop(string sound, ALevelObject emitter)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
 			if (currentSound == null)
 			{
-				Debug.LogWarning("Sound: " + name + " not found!");
+				Debug.LogWarning("Sound: " + sound + " not found!");
 				return;
 			}
 
@@ -171,10 +198,8 @@ namespace Com.IsartDigital.Platformer.Managers
 			{
 				Sound emitSound = emitter.sfxList.Find(x => x.Name == sound);
 
-				if (emitSound == null)
-					return;
-				else
-					currentSound = emitSound;
+				if (emitSound == null) return;
+				else currentSound = emitSound;
 			}
 
 			if (currentSound.Source)
@@ -184,17 +209,25 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 		}
 
+		/// <summary>
+		/// Pause a sound whose name is the parameter sound
+		/// </summary>
+		/// <param name="sound">name of the sound you want to pause</param>
 		public void Pause(string sound)
 		{
 			Sound currentSound = System.Array.Find(sounds, searchedSound => searchedSound.Name == sound);
 			if (currentSound == null)
 			{
-				Debug.LogWarning("Sound: " + name + " not found!");
+				Debug.LogWarning("Sound: " + sound + " not found!");
 				return;
 			}
 			Pause(currentSound);
 		}
-		
+
+		/// <summary>
+		/// Pause a sound from Sound object
+		/// </summary>
+		/// <param name="sound">Sound object you want to pause</param>
 		private void Pause (Sound sound)
 		{
 			if (!sound.IsFadeOut) sound.Source.Pause();

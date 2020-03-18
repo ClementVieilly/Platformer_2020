@@ -152,12 +152,12 @@ namespace Com.IsartDigital.Platformer.Sounds {
 			}
 		}
 
-		public void SetMode(SoundMode mode)
-		{
-			if (mode == SoundMode.Normal) Source.outputAudioMixerGroup = MixerGroupLvl1;
-			else if (mode == SoundMode.Pause) Source.outputAudioMixerGroup = PauseMixerGroup;
-			else if (mode == SoundMode.Transition) Source.outputAudioMixerGroup = TransitionMixerGroup;
-		}
+		//public void SetMode(SoundMode mode)
+		//{
+		//	if (mode == SoundMode.Normal) Source.outputAudioMixerGroup = MixerGroupLvl1;
+		//	else if (mode == SoundMode.Pause) Source.outputAudioMixerGroup = PauseMixerGroup;
+		//	else if (mode == SoundMode.Transition) Source.outputAudioMixerGroup = TransitionMixerGroup;
+		//}
 
 		public void DuplicateValues(Sound originSound)
 		{
@@ -206,10 +206,10 @@ namespace Com.IsartDigital.Platformer.Sounds {
 		UI
 	}	
 
-	public enum SoundMode
-	{
-		Normal,
-		Pause,
-		Transition
-	}
+	//public enum SoundMode
+	//{
+	//	Normal,
+	//	Pause,
+	//	Transition
+	//}
 }

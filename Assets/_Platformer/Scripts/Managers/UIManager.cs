@@ -152,6 +152,8 @@ namespace Com.IsartDigital.Platformer.Managers
 			currentHud.OnButtonPausePressed += Hud_OnPauseButtonPressed;
 			OnResume += currentHud.UIManager_OnResume;
 
+			currentHud.RegisterSelfAnimator();
+
 			allScreens.Add(currentHud);
 		}
 

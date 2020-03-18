@@ -125,7 +125,8 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		private void StopPulsingJumpButton()
 		{
-			animator.SetBool("IsHold", false);
+			if (animator != null)
+				animator.SetBool("IsHold", false);
 		}
 
 		private void Update()

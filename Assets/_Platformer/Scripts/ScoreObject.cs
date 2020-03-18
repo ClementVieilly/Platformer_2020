@@ -22,7 +22,7 @@ namespace Com.IsartDigital.Platformer
 			nb_lives = nbLives;
 		}
 
-		public int TotalScore { get => -completion_time + nb_score + nb_lives; }
+		public int TotalScore { get => -completion_time / 30 + nb_score + nb_lives; }
 
 		public int CompareTo(object other)
 		{

@@ -38,8 +38,12 @@ namespace Com.IsartDigital.Platformer.Screens {
 
         [SerializeField] private Toggle localizationToggle = null; 
 
+
+
         private void Awake()
         {
+            animator = GetComponent<Animator>();
+            animator.SetTrigger(enter); 
             localizationToggle.isOn = LocalizationManager.toggleBool; 
             localizationToggle.onValueChanged.AddListener(delegate { OnChangeLanguage?.Invoke(this); }); 
             buttons = GetComponentsInChildren<Button>();
@@ -56,7 +60,7 @@ namespace Com.IsartDigital.Platformer.Screens {
         }
         private void TitleCard_OnMenuButtonClicked(Button sender)
         {
-            if (sender.CompareTag(buttonLeaderBoardTag))
+            if(sender.CompareTag(buttonLeaderBoardTag))
             {
                 OnLeaderBoardClicked?.Invoke(this);
                 /*for (int i = buttons.Length - 1; i >= 0; i--)
@@ -65,13 +69,13 @@ namespace Com.IsartDigital.Platformer.Screens {
                     //button.GetComponent<MenuButton>().OnMenuButtonClicked -= TitleCard_OnMenuButtonClicked;
                 }*/
             }
-            else if (sender.CompareTag(buttonSoundTriggerTag)) OnSoundTriggerClicked?.Invoke(this);
-            else if (sender.CompareTag(buttonLocalisationTag)) OnLocalisationClicked?.Invoke(this);
-            else if (sender.CompareTag(buttonPlayTag)) OnGameStart?.Invoke(this);
+            else if(sender.CompareTag(buttonSoundTriggerTag)) OnSoundTriggerClicked?.Invoke(this);
+            else if(sender.CompareTag(buttonLocalisationTag)) OnLocalisationClicked?.Invoke(this);
+            else if(sender.CompareTag(buttonPlayTag)) animator.SetTrigger(exit);//OnGameStart?.Invoke(this);
             else
             {
                 OnCreditsClicked?.Invoke(this);
-				
+
                 /*for (int i = buttons.Length - 1; i >= 0; i--)
                 {
                     buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked -= TitleCard_OnMenuButtonClicked;
@@ -79,6 +83,10 @@ namespace Com.IsartDigital.Platformer.Screens {
             }
         }
 
+        public void OnAnimEnd()
+        {
+            OnGameStart?.Invoke(this);  
+        }
         public override void UnsubscribeEvents()
         {
             localizationToggle.onValueChanged.RemoveListener(delegate { OnChangeLanguage?.Invoke(this); });

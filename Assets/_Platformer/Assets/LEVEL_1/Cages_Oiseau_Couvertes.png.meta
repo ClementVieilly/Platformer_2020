@@ -1,0 +1,461 @@
+fileFormatVersion: 2
+guid: 09ea267cac0121446ab1149b3c9a2172
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1248022733403469462
+    second: Cages_Oiseau_Couvertes_0
+  - first:
+      213: 3799836805767082914
+    second: Cages_Oiseau_Couvertes_1
+  - first:
+      213: 3488092154969835328
+    second: Cages_Oiseau_Couvertes_2
+  - first:
+      213: -6412928388194751021
+    second: Cages_Oiseau_Couvertes_3
+  - first:
+      213: -2072053058442593774
+    second: Cages_Oiseau_Couvertes_4
+  - first:
+      213: 2267573710247802592
+    second: Cages_Oiseau_Couvertes_5
+  - first:
+      213: -1066449577657884984
+    second: Cages_Oiseau_Couvertes_6
+  - first:
+      213: 1191493848093775868
+    second: Cages_Oiseau_Couvertes_7
+  - first:
+      213: 6629253188365720432
+    second: Cages_Oiseau_Couvertes_8
+  - first:
+      213: 3794641181577496999
+    second: Cages_Oiseau_Couvertes_9
+  - first:
+      213: 2596047180772535751
+    second: Cages_Oiseau_Couvertes_10
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couvertes_0
+      rect:
+        serializedVersion: 2
+        x: 1230
+        y: 1471
+        width: 1003
+        height: 1404
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 90.048584, y: 702}
+        - {x: -101.20068, y: 702}
+        - {x: -160.18823, y: 381.99487}
+        - {x: -501.5, y: 274.18457}
+        - {x: -501.5, y: -358.79456}
+        - {x: -136.64014, y: -702}
+        - {x: 132.83325, y: -702}
+        - {x: 501.5, y: -408.8546}
+        - {x: 501.5, y: 264.75024}
+        - {x: 168.27283, y: 371.74292}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 413efb23346515d4a9e461a32348f964
+      internalID: -1248022733403469462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couvertes_1
+      rect:
+        serializedVersion: 2
+        x: 2269
+        y: 1775
+        width: 946
+        height: 1148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -68.3226, y: 574}
+        - {x: -231.97983, y: 351.59564}
+        - {x: -169.49252, y: 301.02536}
+        - {x: -473, y: 128.4915}
+        - {x: -473, y: -514.04846}
+        - {x: -309.34506, y: -573.54285}
+        - {x: 241.13832, y: -573.54285}
+        - {x: 473, y: -490.25067}
+        - {x: 473, y: 128.4915}
+        - {x: 275.6858, y: 277.9497}
+        - {x: 61.252686, y: 574}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c81fed1618f4ad748a4e5cc87edbb5de
+      internalID: 3799836805767082914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couvertes_2
+      rect:
+        serializedVersion: 2
+        x: 5989
+        y: 2859
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f9d50204bbaa0547a4c6ef6960f4358
+      internalID: 3488092154969835328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couvertes_3
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 1783
+        width: 1062
+        height: 1030
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 112.02443, y: 515}
+        - {x: -57.58396, y: 515}
+        - {x: -372.37543, y: 291.17114}
+        - {x: -530.7021, y: 91.87051}
+        - {x: -531, y: -280.4309}
+        - {x: -339.34155, y: -515}
+        - {x: 358.075, y: -515}
+        - {x: 531, y: -349.6394}
+        - {x: 531, y: -27.118374}
+        - {x: 364.94922, y: 380.41852}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a60a3f30c5176014a8ec36e08d51573b
+      internalID: -6412928388194751021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couvertes_4
+      rect:
+        serializedVersion: 2
+        x: 3454
+        y: 1862
+        width: 579
+        height: 974
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 103.5, y: 235}
+        - {x: 67.7832, y: 487}
+        - {x: -78.0205, y: 487}
+        - {x: -289.5, y: -53}
+        - {x: -289.5, y: -378}
+        - {x: -45.5, y: -487}
+        - {x: 47.5, y: -487}
+        - {x: 289.5, y: -364}
+        - {x: 289.5, y: -133}
+        - {x: 252.5, y: 120}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d48c37d6504b3240ae5cda7a562f464
+      internalID: -2072053058442593774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couvertes_5
+      rect:
+        serializedVersion: 2
+        x: 4081
+        y: 133
+        width: 750
+        height: 1989
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 110.36719, y: -790.42334}
+        - {x: 140, y: -66.5}
+        - {x: 375, y: 141.40051}
+        - {x: 375, y: 778.51465}
+        - {x: 51.01172, y: 994.5}
+        - {x: -61.631836, y: 994.5}
+        - {x: -375, y: 780.6936}
+        - {x: -374.9398, y: 100.27803}
+        - {x: -133.07861, y: -53.845093}
+        - {x: -101.52734, y: -786.25665}
+        - {x: -360.06186, y: -931.9505}
+        - {x: -312.45248, y: -994.4196}
+        - {x: 375, y: -994.5}
+        - {x: 370.40332, y: -849.8518}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88481d7479dd5834a8c12f74ef71a97d
+      internalID: 2267573710247802592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couvertes_6
+      rect:
+        serializedVersion: 2
+        x: 4810
+        y: 1306
+        width: 1036
+        height: 1518
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 201, y: 488}
+        - {x: 89.23307, y: 759}
+        - {x: -87, y: 759}
+        - {x: -110, y: 579}
+        - {x: -518, y: 335}
+        - {x: -518, y: -111}
+        - {x: -403, y: -264}
+        - {x: -235, y: -333}
+        - {x: -283, y: -759}
+        - {x: 103, y: -754}
+        - {x: 518, y: -209}
+        - {x: 518, y: 322.85437}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebbc997f785eb9c4684f209e1e933b23
+      internalID: -1066449577657884984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couvertes_7
+      rect:
+        serializedVersion: 2
+        x: 5905
+        y: 58
+        width: 95
+        height: 2772
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9098014e4df166641b4c3d5f8b3ffc50
+      internalID: 1191493848093775868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couvertes_8
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 153
+        width: 1089
+        height: 1580
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 83.55206, y: 790}
+        - {x: -81.542206, y: 790}
+        - {x: -177.31042, y: 305.52795}
+        - {x: -544.5, y: 105.817505}
+        - {x: -544.5, y: -599.0138}
+        - {x: -299.1496, y: -790}
+        - {x: 309.14496, y: -790}
+        - {x: 544.5, y: -588.0819}
+        - {x: 544.5, y: -25.483313}
+        - {x: 438.45227, y: 179.4674}
+        - {x: 180.30823, y: 328.7301}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11d3352d4b7c818409aabb9c6212d5ac
+      internalID: 6629253188365720432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couvertes_9
+      rect:
+        serializedVersion: 2
+        x: 1102
+        y: 135
+        width: 1589
+        height: 1282
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 784.3606, y: -45.325623}
+        - {x: 546.26807, y: 207.88373}
+        - {x: 254.69995, y: 295.5149}
+        - {x: 73.89014, y: 641}
+        - {x: -84.08179, y: 641}
+        - {x: -270.29333, y: 312.7224}
+        - {x: -794.5, y: 1.1374898}
+        - {x: -794.5, y: -519.43884}
+        - {x: -681.8638, y: -641}
+        - {x: 794.5, y: -641}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e468361a1427433449d614691648536a
+      internalID: 3794641181577496999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cages_Oiseau_Couvertes_10
+      rect:
+        serializedVersion: 2
+        x: 2665
+        y: 109
+        width: 1359
+        height: 1752
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -679.5, y: -422}
+        - {x: -491.84302, y: -876}
+        - {x: 506.7412, y: -871.18915}
+        - {x: 679.5, y: -493.2108}
+        - {x: 679.5, y: 431.33093}
+        - {x: 105.11548, y: 867.1124}
+        - {x: -92.25244, y: 876}
+        - {x: -679.5, y: 477.86554}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 808fcacd7179e724db474a59164b2bf4
+      internalID: 2596047180772535751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: a43b585d1126ed543986e5d30e128717
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

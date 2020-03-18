@@ -6,6 +6,7 @@
 using Com.IsartDigital.Platformer;
 using Com.IsartDigital.Platformer.Screens;
 using Com.IsartDigital.Platformer.Screens.Buttons;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -118,7 +119,11 @@ public class Leaderboard : AScreen
 	{
 		ScoreDisplay display = Instantiate(scoreDisplayPrefab, infosZone.transform).GetComponent<ScoreDisplay>();
 		display.Username = scoreObject.username;
-		display.Time = scoreObject.completion_time.ToString();
+		TimeSpan time = new TimeSpan(0, 0, scoreObject.completion_time);
+		string timeString = time.Minutes >= 10 ? time.Minutes.ToString() : "0" + time.Minutes;
+		timeString += " : ";
+		timeString += time.Seconds >= 10 ? time.Seconds.ToString() : "0" + time.Seconds;
+		display.Time = timeString;
 		display.Score = scoreObject.nb_score.ToString();
 		display.Lives = scoreObject.nb_lives.ToString();
 

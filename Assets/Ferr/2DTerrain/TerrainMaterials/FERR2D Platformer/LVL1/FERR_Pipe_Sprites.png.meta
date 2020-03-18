@@ -1,0 +1,307 @@
+fileFormatVersion: 2
+guid: 42e54e9b9d4e9a84babcef9b7f962935
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3719004510583902424
+    second: FERR_Pipe_Sprites_0
+  - first:
+      213: 6347759546833737443
+    second: FERR_Pipe_Sprites_1
+  - first:
+      213: -7182524329217660586
+    second: FERR_Pipe_Sprites_2
+  - first:
+      213: -3557146032092893915
+    second: FERR_Pipe_Sprites_3
+  - first:
+      213: -4073867411068638041
+    second: FERR_Pipe_Sprites_4
+  - first:
+      213: 1619403914088835249
+    second: FERR_Pipe_Sprites_5
+  - first:
+      213: 6446555489837228353
+    second: FERR_Pipe_Sprites_6
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FERR_Pipe_Sprites_0
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 44
+        width: 203
+        height: 202
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -59.5, y: 101}
+        - {x: -101.5, y: 49}
+        - {x: -101.5, y: -53}
+        - {x: -53.5, y: -101}
+        - {x: 56.5, y: -101}
+        - {x: 101.5, y: -44}
+        - {x: 101.5, y: 47}
+        - {x: 47.5, y: 101}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1dce896e83a6434891dc22c68ecd183
+      internalID: 3719004510583902424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FERR_Pipe_Sprites_1
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 40
+        width: 102
+        height: 219
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18, y: 109.5}
+        - {x: -51, y: 88.5}
+        - {x: -51, y: -85.5}
+        - {x: -21, y: -109.5}
+        - {x: 19, y: -109.5}
+        - {x: 51, y: -86.5}
+        - {x: 51, y: 83.5}
+        - {x: 24, y: 109.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd5354a3c534d1f4397b50bc12567d18
+      internalID: 6347759546833737443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FERR_Pipe_Sprites_2
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 27
+        width: 138
+        height: 209
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -50, y: 104.5}
+        - {x: -69, y: -71.5}
+        - {x: -69, y: -104.5}
+        - {x: 69, y: -104.5}
+        - {x: 69, y: -68.5}
+        - {x: 51, y: 104.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e54c3f9414d1bc4ebd54676dfade0d3
+      internalID: -7182524329217660586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FERR_Pipe_Sprites_3
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 39
+        width: 91
+        height: 214
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -45.5, y: 107}
+        - {x: -45.5, y: -107}
+        - {x: 45.5, y: -107}
+        - {x: 45.5, y: 107}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 078225ebae39d43448e764352b745666
+      internalID: -3557146032092893915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FERR_Pipe_Sprites_4
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 63
+        width: 54
+        height: 167
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27, y: 83.5}
+        - {x: -27, y: -83.5}
+        - {x: 27, y: -83.5}
+        - {x: 27, y: 83.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a5388b2c2412804483c4446c5088436
+      internalID: -4073867411068638041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FERR_Pipe_Sprites_5
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 64
+        width: 34
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 82.5}
+        - {x: -17, y: -82.5}
+        - {x: 17, y: -82.5}
+        - {x: 17, y: 82.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 370c58f8da18c1a41af1f903c9fc587e
+      internalID: 1619403914088835249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FERR_Pipe_Sprites_6
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 68
+        width: 42
+        height: 177
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21, y: 88.5}
+        - {x: -21, y: -88.5}
+        - {x: 21, y: -88.5}
+        - {x: 21, y: 88.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c3fb3cc765cf29459d1f48bc733ab81
+      internalID: 6446555489837228353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 7611214ecbc25154995915f444f87cc9
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

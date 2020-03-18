@@ -6,6 +6,7 @@
 using Com.IsartDigital.Platformer;
 using Com.IsartDigital.Platformer.Screens;
 using Com.IsartDigital.Platformer.Screens.Buttons;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +31,7 @@ public class Leaderboard : AScreen
 	public int LevelToDisplay { get => _levelToDisplay; set { _levelToDisplay = value; } }
 	[SerializeField] private GameObject infosZone = null;
 	[SerializeField] private Text level = null;
+	private static string levelLocalized = null;
 	[SerializeField] private GameObject scoreDisplayPrefab = null;
 
 	private void Awake()
@@ -39,6 +41,7 @@ public class Leaderboard : AScreen
 		skipButton.OnMenuButtonClicked += Leaderboard_OnSkipClicked;
 		if (nextLevel) nextLevel.OnMenuButtonClicked += Leaderboard_OnNextLevel;
 		if (previousLevel) previousLevel.OnMenuButtonClicked += Leaderboard_OnPreviousLevel;
+		
 	}
 
 	public void StartLeaderboard()
@@ -106,15 +109,21 @@ public class Leaderboard : AScreen
 
 		for (int i = infosZone.transform.childCount - 1; i >= 0; i--)
 			Destroy(infosZone.transform.GetChild(i).gameObject);
-
-		level.text = "Level " + _levelToDisplay.ToString();
+		if (levelLocalized == null) {
+			levelLocalized = level.text;
+		}
+		level.text = levelLocalized + " " + _levelToDisplay.ToString();
 	}
 
 	private ScoreDisplay AddScoreDisplay(ScoreObject scoreObject)
 	{
 		ScoreDisplay display = Instantiate(scoreDisplayPrefab, infosZone.transform).GetComponent<ScoreDisplay>();
 		display.Username = scoreObject.username;
-		display.Time = scoreObject.completion_time.ToString();
+		TimeSpan time = new TimeSpan(0, 0, scoreObject.completion_time);
+		string timeString = time.Minutes >= 10 ? time.Minutes.ToString() : "0" + time.Minutes;
+		timeString += " : ";
+		timeString += time.Seconds >= 10 ? time.Seconds.ToString() : "0" + time.Seconds;
+		display.Time = timeString;
 		display.Score = scoreObject.nb_score.ToString();
 		display.Lives = scoreObject.nb_lives.ToString();
 

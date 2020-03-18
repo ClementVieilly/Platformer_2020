@@ -377,6 +377,7 @@ GameObject:
   - component: {fileID: 7993002015802635018}
   - component: {fileID: 2185690142347291841}
   - component: {fileID: 2525932733290344696}
+  - component: {fileID: 5741409183016692924}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -445,6 +446,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Game over
+--- !u!114 &5741409183016692924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6290190173364684817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef9b24279366e247b42d27e69e3244c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Lose_Screen
 --- !u!1 &7732735223603130240
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +657,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5418131114504980451, guid: 2ec36942461b4e444a938f69b590b87f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5418131114504980451, guid: 2ec36942461b4e444a938f69b590b87f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 5418131114095877747, guid: 2ec36942461b4e444a938f69b590b87f,
         type: 3}
       propertyPath: m_Sprite
@@ -815,6 +839,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5418131114504980451, guid: 2ec36942461b4e444a938f69b590b87f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5418131114504980451, guid: 2ec36942461b4e444a938f69b590b87f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5418131114095877747, guid: 2ec36942461b4e444a938f69b590b87f,
         type: 3}

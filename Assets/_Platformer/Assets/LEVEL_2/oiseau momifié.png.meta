@@ -1,0 +1,223 @@
+fileFormatVersion: 2
+guid: 674ca7d3468ce2b418d0c6f278993bb8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6109485213619434239
+    second: "oiseau momifi\xE9_0"
+  - first:
+      213: -7303480440195712063
+    second: "oiseau momifi\xE9_1"
+  - first:
+      213: 5112833318213049152
+    second: "oiseau momifi\xE9_2"
+  - first:
+      213: -8119071246376882425
+    second: "oiseau momifi\xE9_3"
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "oiseau momifi\xE9_0"
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 48
+        width: 701
+        height: 1244
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 50.5, y: 622}
+        - {x: -14.5, y: 622}
+        - {x: -145.5, y: 191}
+        - {x: -350.5, y: -212}
+        - {x: -350.5, y: -388}
+        - {x: -273.5, y: -566}
+        - {x: -34.5, y: -622}
+        - {x: 103.5, y: -622}
+        - {x: 297.5, y: -593}
+        - {x: 350.5, y: -458}
+        - {x: 350.5, y: -289}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 118e7bba2428fa24a961c3bef8e35772
+      internalID: -6109485213619434239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "oiseau momifi\xE9_1"
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 1100
+        width: 289
+        height: 639
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55fab558d9d95af4d8b3fa9c75ae182d
+      internalID: -7303480440195712063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "oiseau momifi\xE9_2"
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 891
+        width: 511
+        height: 935
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa7a06a0fcef55f4795e1202618216b5
+      internalID: 5112833318213049152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "oiseau momifi\xE9_3"
+      rect:
+        serializedVersion: 2
+        x: 1013
+        y: 24
+        width: 609
+        height: 798
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 282.5, y: -335}
+        - {x: 242.5, y: -194}
+        - {x: 142.5, y: -117}
+        - {x: 219.5, y: 127}
+        - {x: 145.5, y: 184}
+        - {x: 194.5, y: 251}
+        - {x: 304.5, y: 216}
+        - {x: 304.5, y: 293}
+        - {x: 212.5, y: 399}
+        - {x: 89.5, y: 399}
+        - {x: -3.5, y: 259}
+        - {x: -304.5, y: 116}
+        - {x: -304.5, y: -11}
+        - {x: -130.5, y: -399}
+        - {x: 139.5, y: -399}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6d7532e880a1b5409f18616e3cdac1c
+      internalID: -8119071246376882425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 545f655175a1dbb4688ae545117f4d49
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

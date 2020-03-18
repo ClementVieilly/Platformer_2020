@@ -109,10 +109,10 @@ namespace Com.IsartDigital.Platformer.Screens
 
 #if UNITY_ANDROID || UNITY_EDITOR
 			Player.OnPlayerMove += UpdateMoveController;
-			Player.OnPlayerJump += PulseJumpButton;
-			Player.OnPlayerEndJump += StopPulsingJumpButton;
-			Player.OnPlayerPlane += GrowJumpButton;
-			Player.OnPlayerEndPlane += StopGrowJumpButton;
+			Player.OnPlayerJump += GrowJumpButton;
+			Player.OnPlayerEndJump += StopGrowJumpButton;
+			Player.OnPlayerPlane += PulseJumpButton;
+			Player.OnPlayerEndPlane += StopPulsingJumpButton;
 			joystick.gameObject.SetActive(true);
 			jumpButton.gameObject.SetActive(true);
 #endif

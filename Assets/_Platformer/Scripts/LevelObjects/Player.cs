@@ -113,7 +113,15 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private bool jump 
         {
             get { return _jump; }
-            set { _jump = value; }
+            set
+			{
+				_jump = value;
+				if (!_jump)
+				{
+					OnPlayerEndJump?.Invoke();
+					OnPlayerEndPlane?.Invoke();
+				}
+			}
         }
 
         // ElapsedTime des différents états
@@ -339,7 +347,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 jumpingWingsPS.Play();
 				jumpDustGroundPS.Play();
 				jumpDustAirPS.Play();
-                StartCoroutine(StartJumpParticule()); 
+                StartCoroutine(StartJumpParticule());
+
+				OnPlayerJump?.Invoke();
 
 				if (SoundManager.Instance)
 					SoundManager.Instance.Play(sounds.Jump,this);
@@ -499,6 +509,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 						animator.Play("Fall");
 						animator.Play("Jump");
 					}
+
+					OnPlayerJump?.Invoke();
 
 					transform.localScale = facingRightWall < 0 ? scaleRight : scaleLeft;
 				}

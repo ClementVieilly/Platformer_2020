@@ -3,6 +3,7 @@
 /// Date : 21/01/2020 10:36
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.WebScripts;
 using System;
 using System.Collections;
@@ -55,6 +56,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void UIManager_OnLevelLoaded(LevelManager levelManager)
 		{
 			levelManager.OnWin += LevelManager_OnWin;
+			levelManager.SetPlayer(FindObjectOfType<Player>());
             levelManager.InitPlayerPos(); 
 		}
 

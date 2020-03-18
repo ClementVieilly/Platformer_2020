@@ -48,7 +48,12 @@ namespace Com.IsartDigital.Platformer.Managers
             StartCoroutine(InitHud());
 		}
 
-        public void InitPlayerPos()
+		public void SetPlayer(Player player)
+		{
+			this.player = player;
+		}
+
+		public void InitPlayerPos()
         {
             player.SetStartPosition(levelInfos.StartPos);
         }
@@ -253,24 +258,16 @@ namespace Com.IsartDigital.Platformer.Managers
         private void UnsubscribeAllEvents()
         {
             for(int i = LifeCollectible.List.Count - 1; i >= 0; i--)
-            {
                 LifeCollectible.List[i].OnCollected -= LifeCollectible_OnCollected;
-            }
 
             for(int i = KillZone.List.Count - 1; i >= 0; i--)
-            {
                 KillZone.List[i].OnCollision -= KillZone_OnCollision;
-            }
 
             for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
-            {
                 ScoreCollectible.List[i].OnCollected -= ScoreCollectible_OnCollected;
-            }
 
             for (int i = DeadZone.List.Count - 1; i >= 0; i--)
-            {
                 DeadZone.List[i].OnCollision -= DeadZone_OnCollision;
-            }
 
             CheckpointManager.OnFinalCheckPointTriggered -= CheckpointManager_OnFinalCheckPointTriggered;
             player.OnDie -= Player_OnDie;

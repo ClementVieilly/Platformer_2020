@@ -209,6 +209,7 @@ namespace Com.IsartDigital.Platformer.Managers
 				}
 			}
 		}
+
 		public void PauseAllByMixerGroup()
 		{
 			playedSounds.RemoveRange(0, playedSounds.Count);
@@ -250,6 +251,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			StartCoroutine(Fade(sound, sound.FadeInCurve));
 		}
+
 		private void FadeOut(Sound sound, Action action = null)
 		{
 			StartCoroutine(Fade(sound, sound.FadeOutCurve, action));

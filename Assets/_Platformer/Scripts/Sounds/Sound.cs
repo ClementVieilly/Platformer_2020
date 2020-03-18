@@ -173,7 +173,6 @@ namespace Com.IsartDigital.Platformer.Sounds {
 
 			_mixerGroup = originSound._mixerGroup;
 			_source = originSound.Source;
-
 		}
 
 #if UNITY_EDITOR

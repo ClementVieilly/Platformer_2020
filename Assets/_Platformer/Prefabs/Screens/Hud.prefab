@@ -221,7 +221,7 @@ RectTransform:
   m_GameObject: {fileID: 691636184930737326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children:
   - {fileID: 669788951859458822}
   - {fileID: 6848862403435494750}
@@ -261,7 +261,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 865ab97cdde33cd44abe1fcf8e18b41c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 62480f435640daa42963de739ec9a8c7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1033,8 +1033,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 350, y: -350}
-  m_SizeDelta: {x: 500, y: 500}
+  m_AnchoredPosition: {x: 274.7, y: -319}
+  m_SizeDelta: {x: 349.3, y: 399}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6698253095836975849
 CanvasRenderer:
@@ -1090,14 +1090,14 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 1
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_ChildScaleHeight: 1
 --- !u!1 &5853879725851981623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,7 +1443,7 @@ RectTransform:
   m_GameObject: {fileID: 6960458740344200439}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children:
   - {fileID: 2469495814379607604}
   - {fileID: 3763401442068055861}
@@ -1453,7 +1453,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 200}
+  m_SizeDelta: {x: 217.5, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3321696312016188706
 CanvasRenderer:
@@ -1505,12 +1505,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 20
+    m_Left: 0
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 20
+  m_Spacing: 0
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -1715,9 +1715,9 @@ MonoBehaviour:
   bigScoreObject: {fileID: 5881193315709737288}
   lifeText: {fileID: 1664249750748353191}
   lifeImage: {fileID: 608193652260294930}
-  lifeSprite1: {fileID: 21300000, guid: b1696ac58205a274591b84727a00c658, type: 3}
-  lifeSprite2: {fileID: 21300000, guid: 1839ad793a1912248a9c630ba121a742, type: 3}
-  lifeSprite3: {fileID: 21300000, guid: 865ab97cdde33cd44abe1fcf8e18b41c, type: 3}
+  lifeSprite1: {fileID: 21300000, guid: 6d974857f3e6e364a80c749851d45f55, type: 3}
+  lifeSprite2: {fileID: 21300000, guid: 5fb3f7a938e33224db1eae5d72ab751a, type: 3}
+  lifeSprite3: {fileID: 21300000, guid: 62480f435640daa42963de739ec9a8c7, type: 3}
   joystick: {fileID: 7818357247597840709}
   jumpButton: {fileID: 8725618639441290886}
 --- !u!95 &4478502792388168297
@@ -1919,21 +1919,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8135886326569738823, guid: 56fae09712773584fb63896d473a98ee,
-        type: 3}
-      propertyPath: deadZone
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 8135886326569738823, guid: 56fae09712773584fb63896d473a98ee,
-        type: 3}
-      propertyPath: handleRange
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8135886326569738823, guid: 56fae09712773584fb63896d473a98ee,
-        type: 3}
-      propertyPath: moveThreshold
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 8135886326569738822, guid: 56fae09712773584fb63896d473a98ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2043,6 +2028,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RaycastTarget
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135886326569738823, guid: 56fae09712773584fb63896d473a98ee,
+        type: 3}
+      propertyPath: deadZone
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135886326569738823, guid: 56fae09712773584fb63896d473a98ee,
+        type: 3}
+      propertyPath: handleRange
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135886326569738823, guid: 56fae09712773584fb63896d473a98ee,
+        type: 3}
+      propertyPath: moveThreshold
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8135886327475159576, guid: 56fae09712773584fb63896d473a98ee,
         type: 3}
@@ -2233,11 +2233,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8339976059704383063}
     m_Modifications:
-    - target: {fileID: 3251477474756671995, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
-        type: 3}
-      propertyPath: m_Name
-      value: Pause
-      objectReference: {fileID: 0}
     - target: {fileID: 3251477474756671994, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2301,7 +2296,7 @@ PrefabInstance:
     - target: {fileID: 3251477474756671994, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -203
+      value: -220
       objectReference: {fileID: 0}
     - target: {fileID: 3251477474756671994, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}
@@ -2346,12 +2341,17 @@ PrefabInstance:
     - target: {fileID: 3251477474756671994, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 3251477474756671994, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3251477474756671995, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
+        type: 3}
+      propertyPath: m_Name
+      value: Pause
       objectReference: {fileID: 0}
     - target: {fileID: 3251477474632835188, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}
@@ -2720,11 +2720,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5074053556693624430}
     m_Modifications:
-    - target: {fileID: 5627167867423426899, guid: 4e25f96e39cb3514793ccde38c0d327b,
-        type: 3}
-      propertyPath: m_Name
-      value: ScoreIcon
-      objectReference: {fileID: 0}
     - target: {fileID: 2216870230098466351, guid: 4e25f96e39cb3514793ccde38c0d327b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2829,6 +2824,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627167867423426899, guid: 4e25f96e39cb3514793ccde38c0d327b,
+        type: 3}
+      propertyPath: m_Name
+      value: ScoreIcon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e25f96e39cb3514793ccde38c0d327b, type: 3}
@@ -2987,16 +2987,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6848862403435494750}
     m_Modifications:
-    - target: {fileID: 849067121568122089, guid: 1d2923be16415614492256cf1cc6fccf,
-        type: 3}
-      propertyPath: m_Name
-      value: BigScoreHud 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 849067121568122089, guid: 1d2923be16415614492256cf1cc6fccf,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8102525353037834801, guid: 1d2923be16415614492256cf1cc6fccf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3101,6 +3091,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 849067121568122089, guid: 1d2923be16415614492256cf1cc6fccf,
+        type: 3}
+      propertyPath: m_Name
+      value: BigScoreHud 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 849067121568122089, guid: 1d2923be16415614492256cf1cc6fccf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d2923be16415614492256cf1cc6fccf, type: 3}

@@ -183,7 +183,8 @@ namespace Com.IsartDigital.Platformer.Managers
             DestructiblePlatform.ResumeAll();
             MobilePlatform.ResumeAll();
             TimedDoor.ResumeAll();
-            SoundManager.Instance.ResumeAll();
+            //SoundManager.Instance.ResumeAll();
+            SoundManager.Instance.ResumeAllByMixerGroup();
             ChangeTravellingCamera.ResumeAll();
         }
 
@@ -194,7 +195,8 @@ namespace Com.IsartDigital.Platformer.Managers
 			DestructiblePlatform.PauseAll();
 			MobilePlatform.PauseAll();
 			TimedDoor.PauseAll();
-			SoundManager.Instance.PauseAll();
+			//SoundManager.Instance.PauseAll();
+			SoundManager.Instance.PauseAllByMixerGroup();
 			ChangeTravellingCamera.PauseAll();
 
 			if (UIManager.Instance != null)

@@ -23,7 +23,8 @@ namespace Com.IsartDigital.Platformer.Managers
 		private static SoundManager _instance;
 		public static SoundManager Instance => _instance;
 
-		public AudioMixerGroup mixerGroup;
+		[SerializeField] private AudioMixerGroup mainMixerGroup;
+		[SerializeField] private AudioMixerGroup pauseMixerGroup;
 		
 		public Sound[] sounds;
 
@@ -47,7 +48,7 @@ namespace Com.IsartDigital.Platformer.Managers
 				Sound sound = sounds[i];
 				soundsList.Add(sounds[i]);
 				sound.SetNewSource(gameObject.AddComponent<AudioSource>());
-				sound.Source.outputAudioMixerGroup = mixerGroup;
+				sound.Source.outputAudioMixerGroup = mainMixerGroup;
 			}
 		}
 
@@ -80,13 +81,12 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			StartCoroutine(Fade(sound, sound.FadeInCurve));
 		}
-
-		private void FadeOut(Sound sound)
+		private void FadeOut(Sound sound, Action action = null)
 		{
-			StartCoroutine(Fade(sound, sound.FadeOutCurve));
+			StartCoroutine(Fade(sound, sound.FadeOutCurve, action));
 		}
 
-		private IEnumerator Fade(Sound sound,AnimationCurve curve)
+		private IEnumerator Fade(Sound sound, AnimationCurve curve, Action action = null)
 		{
 			float elapsedTime = 0f;
 			float ratio = curve.Evaluate(0);
@@ -100,6 +100,7 @@ namespace Com.IsartDigital.Platformer.Managers
 				yield return null;
 			}
 			elapsedTime = 0f;
+			action();
 		}
 
 		public void Play(string sound, ALevelObject emitter)
@@ -174,7 +175,10 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 
 			if (currentSound.Source)
-				currentSound.Source.Stop();
+			{
+				if (!currentSound.IsFadeOut) currentSound.Source.Stop();
+				else FadeOut(currentSound, currentSound.Source.Stop);
+			}
 		}
 
 		public void Stop(string sound, ALevelObject emitter)
@@ -197,7 +201,10 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 
 			if (currentSound.Source)
-				currentSound.Source.Stop();
+			{
+				if (!currentSound.IsFadeOut) currentSound.Source.Stop();
+				else FadeOut(currentSound, currentSound.Source.Stop);
+			}
 		}
 
 		public void Pause(string sound)
@@ -208,7 +215,9 @@ namespace Com.IsartDigital.Platformer.Managers
 				Debug.LogWarning("Sound: " + name + " not found!");
 				return;
 			}
-			currentSound.Source.Pause();
+			// currentSound.Source.Pause();
+			if (!currentSound.IsFadeOut) currentSound.Source.Pause();
+			else FadeOut(currentSound, currentSound.Source.Pause);
 		}
 
 		public void PauseAll()
@@ -224,6 +233,19 @@ namespace Com.IsartDigital.Platformer.Managers
 				}
 			}
 		}
+		public void PauseAllByMixerGroup()
+		{
+			playedSounds.RemoveRange(0, playedSounds.Count);
+			for (int i = sounds.Length - 1; i >= 0; i--)
+			{
+				Sound testedSound = sounds[i];
+				if (testedSound.Source.isPlaying)
+				{
+					playedSounds.Add(testedSound);
+					testedSound.Source.outputAudioMixerGroup = pauseMixerGroup;
+				}
+			}
+		}
 
 		public void ResumeAll()
 		{
@@ -231,6 +253,20 @@ namespace Com.IsartDigital.Platformer.Managers
 			{
 				playedSounds[i].Source.UnPause();
 				playedSounds.Remove(playedSounds[i]);
+			}
+		}
+
+		public void ResumeAllByMixerGroup()
+		{
+			playedSounds.RemoveRange(0, playedSounds.Count);
+			for (int i = sounds.Length - 1; i >= 0; i--)
+			{
+				Sound testedSound = sounds[i];
+				if (testedSound.Source.isPlaying)
+				{
+					playedSounds.Add(testedSound);
+					testedSound.Source.outputAudioMixerGroup = mainMixerGroup;
+				}
 			}
 		}
 

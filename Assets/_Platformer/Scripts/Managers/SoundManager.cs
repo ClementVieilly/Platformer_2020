@@ -81,13 +81,12 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			StartCoroutine(Fade(sound, sound.FadeInCurve));
 		}
-
-		private void FadeOut(Sound sound)
+		private void FadeOut(Sound sound, Action action = null)
 		{
-			StartCoroutine(Fade(sound, sound.FadeOutCurve));
+			StartCoroutine(Fade(sound, sound.FadeOutCurve, action));
 		}
 
-		private IEnumerator Fade(Sound sound,AnimationCurve curve)
+		private IEnumerator Fade(Sound sound, AnimationCurve curve, Action action = null)
 		{
 			float elapsedTime = 0f;
 			float ratio = curve.Evaluate(0);
@@ -101,6 +100,7 @@ namespace Com.IsartDigital.Platformer.Managers
 				yield return null;
 			}
 			elapsedTime = 0f;
+			action();
 		}
 
 		public void Play(string sound, ALevelObject emitter)
@@ -175,7 +175,10 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 
 			if (currentSound.Source)
-				currentSound.Source.Stop();
+			{
+				if (!currentSound.IsFadeOut) currentSound.Source.Stop();
+				else FadeOut(currentSound, currentSound.Source.Stop);
+			}
 		}
 
 		public void Stop(string sound, ALevelObject emitter)
@@ -198,7 +201,10 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 
 			if (currentSound.Source)
-				currentSound.Source.Stop();
+			{
+				if (!currentSound.IsFadeOut) currentSound.Source.Stop();
+				else FadeOut(currentSound, currentSound.Source.Stop);
+			}
 		}
 
 		public void Pause(string sound)
@@ -209,7 +215,9 @@ namespace Com.IsartDigital.Platformer.Managers
 				Debug.LogWarning("Sound: " + name + " not found!");
 				return;
 			}
-			currentSound.Source.Pause();
+			// currentSound.Source.Pause();
+			if (!currentSound.IsFadeOut) currentSound.Source.Pause();
+			else FadeOut(currentSound, currentSound.Source.Pause);
 		}
 
 		public void PauseAll()

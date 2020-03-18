@@ -110,6 +110,9 @@ namespace Com.IsartDigital.Platformer.Sounds {
 
 		#endregion
 
+		[SerializeField] private bool _isStartAtRandomTime = false;
+		public bool IsStartAtRandomTime => _isStartAtRandomTime;
+
 		[SerializeField] private AudioMixerGroup _mixerGroup = null;
 		public AudioMixerGroup MixerGroup => _mixerGroup;
 
@@ -170,7 +173,6 @@ namespace Com.IsartDigital.Platformer.Sounds {
 
 			_mixerGroup = originSound._mixerGroup;
 			_source = originSound.Source;
-
 		}
 
 #if UNITY_EDITOR

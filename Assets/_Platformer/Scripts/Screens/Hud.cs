@@ -109,8 +109,10 @@ namespace Com.IsartDigital.Platformer.Screens
 
 #if UNITY_ANDROID || UNITY_EDITOR
 			Player.OnPlayerMove += UpdateMoveController;
-			Player.OnPlayerJump += PulseJumpButton;
-			Player.OnPlayerEndJump += StopPulsingJumpButton;
+			Player.OnPlayerJump += GrowJumpButton;
+			Player.OnPlayerEndJump += StopGrowJumpButton;
+			Player.OnPlayerPlane += PulseJumpButton;
+			Player.OnPlayerEndPlane += StopPulsingJumpButton;
 			joystick.gameObject.SetActive(true);
 			jumpButton.gameObject.SetActive(true);
 #endif
@@ -121,16 +123,24 @@ namespace Com.IsartDigital.Platformer.Screens
 			animator = GetComponent<Animator>();
 		}
 
+		private void GrowJumpButton()
+		{
+			animator.SetBool("IsHold", true);
+		}
+
+		private void StopGrowJumpButton()
+		{
+			animator.SetBool("IsHold", false);
+		}
+
 		private void PulseJumpButton()
 		{
-			if (animator != null)
-				animator.SetBool("IsHold", true);
+			animator.SetBool("IsPlane", true);
 		}
 
 		private void StopPulsingJumpButton()
 		{
-			if (animator != null)
-				animator.SetBool("IsHold", false);
+			animator.SetBool("IsPlane", false);
 		}
 
 		private void Update()
@@ -196,6 +206,9 @@ namespace Com.IsartDigital.Platformer.Screens
 			Player.OnPlayerMove -= UpdateMoveController;
 			Player.OnPlayerJump -= PulseJumpButton;
 			Player.OnPlayerEndJump -= StopPulsingJumpButton;
+			Player.OnPlayerPlane -= GrowJumpButton;
+			Player.OnPlayerEndPlane -= StopGrowJumpButton;
+
 			_instance = null;
 		}
 

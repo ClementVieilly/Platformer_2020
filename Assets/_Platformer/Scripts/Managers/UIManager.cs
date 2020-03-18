@@ -121,8 +121,9 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		public void WebClient_OnLogged(WebClient webClient)
 		{
-			CloseScreen(currentLoginScreen);
-			if (currentLeaderboard) currentLeaderboard.StartLeaderboard();
+            currentLoginScreen.Animator.SetTrigger("Exit"); 
+            
+			
 		}
 
 		private void CreatePauseMenu() //Crée une instance de Menu Pause et écoute ses événements
@@ -218,11 +219,19 @@ namespace Com.IsartDigital.Platformer.Managers
 
 			currentLoginScreen.OnConnectClicked += LoginScreen_OnConnectClicked;
 			currentLoginScreen.OnSkipClicked += LoginScreen_OnSkipClicked;
+			currentLoginScreen.OnLaunchLvlSelector += LoginScreen_OnLaunchLvlSelector;
 
 			allScreens.Add(currentLoginScreen);
 		}
 
-		public void CreateConfirmScreen()
+        private void LoginScreen_OnLaunchLvlSelector(LoginScreen loginScreen)
+        {
+            CloseScreen(loginScreen);
+            CreateLevelSelector(); 
+            if(currentLeaderboard) currentLeaderboard.StartLeaderboard();
+        }
+
+        public void CreateConfirmScreen()
 		{
 			currentConfirmScreen = Instantiate(confirmScreenPrefab).GetComponent<ConfirmScreen>();
 
@@ -338,16 +347,16 @@ namespace Com.IsartDigital.Platformer.Managers
 			action();
 		}
 		#endregion
+        //Evenements du TitleCard
+        private void TitleCard_OnGameStart(TitleCard title)
+        {
+            CloseScreen(title);
+            //CreateLevelSelector();
+            CreateConfirmScreen(); 
 
-		//Evenements du TitleCard
-		private void TitleCard_OnGameStart(TitleCard title)
-		{
-			CloseScreen(title);
-			CreateLevelSelector();
-
-			if (webClient.wantToLog)
-				CreateLoginScreen();
-		}
+			//if (webClient.wantToLog)
+				//CreateLoginScreen();
+        }
 
 		private void TitleCard_OnSoundTriggerClicked(TitleCard title)
 		{
@@ -426,6 +435,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private void LoginScreen_OnSkipClicked(LoginScreen loginScreen)
 		{
+            CloseScreen(loginScreen); 
 			CreateConfirmScreen();
 		}
 
@@ -433,7 +443,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			CloseScreen(currentConfirmScreen);
 			CloseScreen(currentLoginScreen);
-
+            CreateLevelSelector(); 
 			webClient.wantToLog = false;
 			if (currentLeaderboard) currentLeaderboard.StartLeaderboard();
 		}
@@ -441,6 +451,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void ConfirmScreen_OnBackClicked(ConfirmScreen confirmScreenµ)
 		{
 			CloseScreen(currentConfirmScreen);
+            CreateLoginScreen(); 
 		}
 
 		//Evenements de la page de crédits

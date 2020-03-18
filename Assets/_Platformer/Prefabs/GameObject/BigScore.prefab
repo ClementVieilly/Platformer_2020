@@ -7,6 +7,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1653878551353223576, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_Name
+      value: BigScore (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1641.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 160.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2928252199260402151, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
       propertyPath: m_Name
@@ -15,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 2928252199260402148, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
       propertyPath: allSprites.Array.size
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2928252199260402148, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
@@ -68,11 +128,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 2928252199521261150, guid: deb120095d442c4449ec828e00766c91,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2928252199521261151, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
@@ -409,65 +464,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 59e4faf24927edf4a82f463ad16f1c37, type: 2}
-    - target: {fileID: 1653878551353223576, guid: deb120095d442c4449ec828e00766c91,
+    - target: {fileID: 2928252199521261150, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
-      propertyPath: m_Name
-      value: BigScore (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1641.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 160.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      propertyPath: m_Materials.Array.data[1]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9047345837576227236, guid: deb120095d442c4449ec828e00766c91,
         type: 3}

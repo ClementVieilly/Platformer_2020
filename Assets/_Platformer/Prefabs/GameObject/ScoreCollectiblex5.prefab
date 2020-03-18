@@ -161,6 +161,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3710985999376324442, guid: de11218678e16ef4695dbbc28bf4f2d4,
         type: 3}
+    - target: {fileID: 2928252199260402148, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: score
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2928252197981242802, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
       propertyPath: m_LocalScale.x

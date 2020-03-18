@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2928252199260402151, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_Name
+      value: BigScore
+      objectReference: {fileID: 0}
     - target: {fileID: 1653878551353223576, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
       propertyPath: m_Name
@@ -67,10 +72,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2928252199260402151, guid: deb120095d442c4449ec828e00766c91,
+    - target: {fileID: 2928252197981242802, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
-      propertyPath: m_Name
-      value: BigScore
+      propertyPath: m_LocalScale.x
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928252197981242802, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 2928252199260402148, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
@@ -119,15 +129,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3077920815105848323, guid: 5926ff54cff363745bb29a95b33a6bb6,
         type: 3}
-    - target: {fileID: 2928252197981242802, guid: deb120095d442c4449ec828e00766c91,
+    - target: {fileID: 2928252199183082323, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.65
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 59e4faf24927edf4a82f463ad16f1c37, type: 2}
+    - target: {fileID: 2928252199183082323, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1877034893
       objectReference: {fileID: 0}
-    - target: {fileID: 2928252197981242802, guid: deb120095d442c4449ec828e00766c91,
+    - target: {fileID: 2928252199183082323, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.65
+      propertyPath: m_SortingLayer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2928252199521261151, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
@@ -459,11 +474,6 @@ PrefabInstance:
       propertyPath: TrailModule.textureMode
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2928252199183082323, guid: deb120095d442c4449ec828e00766c91,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 59e4faf24927edf4a82f463ad16f1c37, type: 2}
     - target: {fileID: 2928252199521261150, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
       propertyPath: m_Materials.Array.data[1]

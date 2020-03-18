@@ -4726,8 +4726,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1877034893
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -4823,13 +4823,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1973610100618406474, guid: 2d9db64bfd275334a9cf3039f2543317,
+  m_Sprite: {fileID: 2336854285590739904, guid: 1cdec1dce4acd9a47be73335edb42c78,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.28, y: 3.2}
+  m_Size: {x: 5.960837, y: 5.3099995}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4915,6 +4915,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095eae1bed7101d4a8c0ad03a72f4abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds: {fileID: 0}
+  sfxList: []
   WinLife: 1
   collectedLifeParticleSystem: {fileID: 6955771386330270759, guid: 0bb6dfafab2c03246860d0833c64c49d,
     type: 3}

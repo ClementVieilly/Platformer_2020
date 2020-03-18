@@ -1,0 +1,477 @@
+fileFormatVersion: 2
+guid: 6f78dd49705216d4dbcd19597eea583e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3654814119109261295
+    second: ASSETS LEVEL 1 - ZONE D OBSERVATION_0
+  - first:
+      213: 746533465691811106
+    second: ASSETS LEVEL 1 - ZONE D OBSERVATION_1
+  - first:
+      213: 6400438313603314423
+    second: ASSETS LEVEL 1 - ZONE D OBSERVATION_2
+  - first:
+      213: -6178926807805111534
+    second: ASSETS LEVEL 1 - ZONE D OBSERVATION_3
+  - first:
+      213: -4262449466506177290
+    second: ASSETS LEVEL 1 - ZONE D OBSERVATION_4
+  - first:
+      213: -7879078040112308576
+    second: ASSETS LEVEL 1 - ZONE D OBSERVATION_5
+  - first:
+      213: -155653911529212901
+    second: ASSETS LEVEL 1 - ZONE D OBSERVATION_6
+  - first:
+      213: 7411258116171503604
+    second: ASSETS LEVEL 1 - ZONE D OBSERVATION_7
+  - first:
+      213: 8607047818174162861
+    second: ASSETS LEVEL 1 - ZONE D OBSERVATION_8
+  - first:
+      213: -8712329198257340068
+    second: ASSETS LEVEL 1 - ZONE D OBSERVATION_9
+  - first:
+      213: 6237085010167282204
+    second: ASSETS LEVEL 1 - ZONE D OBSERVATION_10
+  - first:
+      213: -4117937649889895313
+    second: ASSETS LEVEL 1 - ZONE D OBSERVATION_11
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ASSETS LEVEL 1 - ZONE D OBSERVATION_0
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 2738
+        width: 738
+        height: 709
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01b19ec8b5f449242ae9607a33f415b9
+      internalID: -3654814119109261295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 1 - ZONE D OBSERVATION_1
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 3088
+        width: 1065
+        height: 364
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 532.5, y: -102}
+        - {x: 361.5, y: 182}
+        - {x: -214.5, y: 182}
+        - {x: -532.5, y: 182}
+        - {x: -532.5, y: 44.04461}
+        - {x: -395.5, y: -182}
+        - {x: 465.69504, y: -181.6595}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9cd7542568e233459fcebd4d959fd48
+      internalID: 746533465691811106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 1 - ZONE D OBSERVATION_2
+      rect:
+        serializedVersion: 2
+        x: 2234
+        y: 2583
+        width: 1523
+        height: 726
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -657.9091, y: 363}
+        - {x: -761.5, y: 283.25803}
+        - {x: -678.5, y: 115}
+        - {x: -761.5, y: -363}
+        - {x: 761.5, y: -363}
+        - {x: 687.5, y: 98}
+        - {x: 761.5, y: 214}
+        - {x: 761.5, y: 363}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d8f77edc18ade24db3a5244142e7c2f
+      internalID: 6400438313603314423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 1 - ZONE D OBSERVATION_3
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 2777
+        width: 717
+        height: 205
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7712bf7167c7a3842ac1a073b2c66c24
+      internalID: -6178926807805111534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 1 - ZONE D OBSERVATION_4
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 2099
+        width: 1474
+        height: 582
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3c3fda8ba764aa4a919fa7081c8cd34
+      internalID: -4262449466506177290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 1 - ZONE D OBSERVATION_5
+      rect:
+        serializedVersion: 2
+        x: 3507
+        y: 2580
+        width: 10
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e854c3166763c164594615da0b3a5b15
+      internalID: -7879078040112308576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 1 - ZONE D OBSERVATION_6
+      rect:
+        serializedVersion: 2
+        x: 3514
+        y: 2548
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b0736c1a93704b4fb59ab25f3adfd45
+      internalID: -155653911529212901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 1 - ZONE D OBSERVATION_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1060
+        width: 1662
+        height: 963
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -583, y: -481.5}
+        - {x: -547, y: -152.5}
+        - {x: -387, y: -144.5}
+        - {x: -293, y: -300.5}
+        - {x: -91, y: -281.5}
+        - {x: 183, y: -182.5}
+        - {x: 485, y: -321.5}
+        - {x: 508, y: -481.5}
+        - {x: 654, y: -481.5}
+        - {x: 831, y: 184.5}
+        - {x: 831, y: 452.0223}
+        - {x: -831, y: 481.5}
+        - {x: -807.3755, y: 55.515083}
+        - {x: -831, y: -481.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d138059f7aea21a46a4255183af6e874
+      internalID: 7411258116171503604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 1 - ZONE D OBSERVATION_8
+      rect:
+        serializedVersion: 2
+        x: 1657
+        y: 1144
+        width: 1492
+        height: 1051
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6, y: 525.5}
+        - {x: -746, y: 397.5}
+        - {x: -745.80646, y: -525.39716}
+        - {x: 746, y: -525.5}
+        - {x: 746, y: 369.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2059713954f2e5d43831d0a39bc09fca
+      internalID: 8607047818174162861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 1 - ZONE D OBSERVATION_9
+      rect:
+        serializedVersion: 2
+        x: 3165
+        y: 1108
+        width: 1000
+        height: 1329
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 222, y: -286.5}
+        - {x: 345, y: -12.5}
+        - {x: 154, y: 190.5}
+        - {x: 456, y: 409.5}
+        - {x: 269, y: 664.5}
+        - {x: -76.70408, y: 664.5}
+        - {x: -343.11765, y: 505.10562}
+        - {x: -499.71188, y: 2.8631504}
+        - {x: -500, y: -201.5}
+        - {x: -361, y: -556.5}
+        - {x: 313.76468, y: -556.3137}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b1573e19d1961a4bad95769b75064af
+      internalID: -8712329198257340068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 1 - ZONE D OBSERVATION_10
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 123
+        width: 1505
+        height: 907
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -530.5, y: -50.5}
+        - {x: 545.5, y: -71.5}
+        - {x: 541.5, y: -453.5}
+        - {x: 752.5, y: -453.4605}
+        - {x: 752.5, y: 453.5}
+        - {x: -752.4934, y: 453.5}
+        - {x: -748.5, y: -453.5}
+        - {x: -532.85474, y: -453.4605}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54295ea971503e247923a066450d2a34
+      internalID: 6237085010167282204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 1 - ZONE D OBSERVATION_11
+      rect:
+        serializedVersion: 2
+        x: 1563
+        y: 142
+        width: 2059
+        height: 922
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -845.90753, y: 461}
+        - {x: -1028.9397, y: 458.1891}
+        - {x: -1028.9397, y: 326.02002}
+        - {x: -908.95197, y: 212.15128}
+        - {x: -801.5, y: -461}
+        - {x: -277.5, y: -461}
+        - {x: -225.5, y: -146}
+        - {x: 318.5, y: -162}
+        - {x: 316.5, y: -461}
+        - {x: 819.5, y: -461}
+        - {x: 708.5, y: -13}
+        - {x: 1029.5, y: 237}
+        - {x: 1029.5, y: 461}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 681690d8f624ca6449746fd83cbe0be6
+      internalID: -4117937649889895313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 9818311824bbf3045a905e240e3e92fc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

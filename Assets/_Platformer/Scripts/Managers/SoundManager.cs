@@ -23,7 +23,8 @@ namespace Com.IsartDigital.Platformer.Managers
 		private static SoundManager _instance;
 		public static SoundManager Instance => _instance;
 
-		public AudioMixerGroup mixerGroup;
+		[SerializeField] private AudioMixerGroup mainMixerGroup;
+		[SerializeField] private AudioMixerGroup pauseMixerGroup;
 		
 		public Sound[] sounds;
 
@@ -47,7 +48,7 @@ namespace Com.IsartDigital.Platformer.Managers
 				Sound sound = sounds[i];
 				soundsList.Add(sounds[i]);
 				sound.SetNewSource(gameObject.AddComponent<AudioSource>());
-				sound.Source.outputAudioMixerGroup = mixerGroup;
+				if (sound.MixerGroup == null) sound.Source.outputAudioMixerGroup = mainMixerGroup;
 			}
 		}
 
@@ -62,7 +63,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 			if (currentSound.Source.isPlaying) 
 			{
-				//Debug.LogWarning("Sound: " + name + " is already playing!");
+				//Debug.LogWarning("Sound: " + sound + " is already playing!");
 				return;
 			}
 
@@ -72,33 +73,9 @@ namespace Com.IsartDigital.Platformer.Managers
 			currentSound.Source.pitch = currentSound.IsPitchedBetweenValues ?
 										UnityEngine.Random.Range(currentSound.MinPitchValue, currentSound.MaxPitchValue) :
 										currentSound.Source.pitch = currentSound.Pitch * (1 + UnityEngine.Random.Range(-currentSound.PitchVariance / 2, currentSound.PitchVariance / 2));
+
+			if (currentSound.IsStartAtRandomTime) currentSound.Source.time = UnityEngine.Random.Range(0, currentSound.Source.clip.length);
 			currentSound.Source.Play();
-		}
-
-
-		private void FadeIn(Sound sound)
-		{
-			StartCoroutine(Fade(sound, sound.FadeInCurve));
-		}
-
-		private void FadeOut(Sound sound)
-		{
-			StartCoroutine(Fade(sound, sound.FadeOutCurve));
-		}
-
-		private IEnumerator Fade(Sound sound,AnimationCurve curve)
-		{
-			float elapsedTime = 0f;
-			float ratio = curve.Evaluate(0);
-
-			while (ratio <= curve.Evaluate(1))
-			{
-				elapsedTime += Time.deltaTime;
-				ratio = curve.Evaluate(elapsedTime / sound.FadeInDuration);
-				sound.Source.volume = sound.Volume * ratio;
-				yield return null;
-			}
-			elapsedTime = 0f;
 		}
 
 		public void Play(string sound, ALevelObject emitter)
@@ -144,6 +121,7 @@ namespace Com.IsartDigital.Platformer.Managers
 										UnityEngine.Random.Range(currentSound.MinPitchValue, currentSound.MaxPitchValue) :
 										currentSound.Source.pitch = currentSound.Pitch * (1 + UnityEngine.Random.Range(-currentSound.PitchVariance / 2, currentSound.PitchVariance / 2));
 
+			if (currentSound.IsStartAtRandomTime) currentSound.Source.time = UnityEngine.Random.Range(0, currentSound.Source.clip.length);
 			currentSound.Source.Play();
 		}
 
@@ -173,7 +151,10 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 
 			if (currentSound.Source)
-				currentSound.Source.Stop();
+			{
+				if (!currentSound.IsFadeOut) currentSound.Source.Stop();
+				else FadeOut(currentSound, currentSound.Source.Stop);
+			}
 		}
 
 		public void Stop(string sound, ALevelObject emitter)
@@ -196,7 +177,10 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 
 			if (currentSound.Source)
-				currentSound.Source.Stop();
+			{
+				if (!currentSound.IsFadeOut) currentSound.Source.Stop();
+				else FadeOut(currentSound, currentSound.Source.Stop);
+			}
 		}
 
 		public void Pause(string sound)
@@ -207,7 +191,9 @@ namespace Com.IsartDigital.Platformer.Managers
 				Debug.LogWarning("Sound: " + name + " not found!");
 				return;
 			}
-			currentSound.Source.Pause();
+			// currentSound.Source.Pause();
+			if (!currentSound.IsFadeOut) currentSound.Source.Pause();
+			else FadeOut(currentSound, currentSound.Source.Pause);
 		}
 
 		public void PauseAll()
@@ -224,6 +210,20 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 		}
 
+		public void PauseAllByMixerGroup()
+		{
+			playedSounds.RemoveRange(0, playedSounds.Count);
+			for (int i = sounds.Length - 1; i >= 0; i--)
+			{
+				Sound testedSound = sounds[i];
+				if (testedSound.Source.isPlaying)
+				{
+					playedSounds.Add(testedSound);
+					testedSound.Source.outputAudioMixerGroup = pauseMixerGroup;
+				}
+			}
+		}
+
 		public void ResumeAll()
 		{
 			for (int i = playedSounds.Count - 1; i >= 0; i--)
@@ -231,6 +231,48 @@ namespace Com.IsartDigital.Platformer.Managers
 				playedSounds[i].Source.UnPause();
 				playedSounds.Remove(playedSounds[i]);
 			}
+		}
+
+		public void ResumeAllByMixerGroup()
+		{
+			playedSounds.RemoveRange(0, playedSounds.Count);
+			for (int i = sounds.Length - 1; i >= 0; i--)
+			{
+				Sound testedSound = sounds[i];
+				if (testedSound.Source.isPlaying)
+				{
+					playedSounds.Add(testedSound);
+					if (testedSound.MixerGroup == null) testedSound.Source.outputAudioMixerGroup = mainMixerGroup;
+					else testedSound.Source.outputAudioMixerGroup = testedSound.MixerGroup;
+				}
+			}
+		}
+
+		private void FadeIn(Sound sound)
+		{
+			StartCoroutine(Fade(sound, sound.FadeInCurve));
+		}
+
+		private void FadeOut(Sound sound, Action action = null)
+		{
+			StartCoroutine(Fade(sound, sound.FadeOutCurve, action));
+		}
+
+		private IEnumerator Fade(Sound sound, AnimationCurve curve, Action action = null)
+		{
+			float elapsedTime = 0f;
+			float ratio = curve.Evaluate(0);
+
+
+			while (ratio <= curve.Evaluate(1))
+			{
+				elapsedTime += Time.deltaTime;
+				ratio = curve.Evaluate(elapsedTime / sound.FadeInDuration);
+				sound.Source.volume = sound.Volume * ratio;
+				yield return null;
+			}
+			elapsedTime = 0f;
+			action();
 		}
 
 #if UNITY_EDITOR

@@ -1,0 +1,256 @@
+fileFormatVersion: 2
+guid: 06e61d2c7666027478ebbc0c33bdf7ae
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7187519528456131445
+    second: Collectible_Blanc_0
+  - first:
+      213: -827084675473241655
+    second: Collectible_Blanc_1
+  - first:
+      213: 5430777184693048917
+    second: Collectible_Blanc_2
+  - first:
+      213: 7403890486065737074
+    second: Collectible_Blanc_3
+  - first:
+      213: 4634238652094495761
+    second: Collectible_Blanc_4
+  - first:
+      213: 361039299053375840
+    second: Collectible_Blanc_5
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Collectible_Blanc_0
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 2490
+        width: 961
+        height: 1147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -480.5, y: -223.5}
+        - {x: -480.5, y: 328.5}
+        - {x: -219.5, y: 521.5}
+        - {x: -16.5, y: 219.5}
+        - {x: 145.5, y: 573.5}
+        - {x: 353.5, y: 573.5}
+        - {x: 215.5, y: 32.5}
+        - {x: 480.5, y: 2.5}
+        - {x: 480.5, y: -180.5}
+        - {x: 27.5, y: -573.5}
+        - {x: -325.5, y: -573.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9a1c7b2b374d424f83140495706877b
+      internalID: -7187519528456131445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collectible_Blanc_1
+      rect:
+        serializedVersion: 2
+        x: 1341
+        y: 2448
+        width: 860
+        height: 1238
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1c41992a7a475045b3e5387179b7abc
+      internalID: -827084675473241655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collectible_Blanc_2
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 1352
+        width: 845
+        height: 1108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93405d40bce8d73489b018941f048cce
+      internalID: 5430777184693048917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collectible_Blanc_3
+      rect:
+        serializedVersion: 2
+        x: 1340
+        y: 1296
+        width: 973
+        height: 1127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1223acb6c90ab494a909ba0d60b5ff0f
+      internalID: 7403890486065737074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collectible_Blanc_4
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 131
+        width: 890
+        height: 1129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ce558e23b989bd4fbd64dad940d1143
+      internalID: 4634238652094495761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Collectible_Blanc_5
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 90
+        width: 782
+        height: 1247
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 231ef939dc9d0694090891277c3ca5a1
+      internalID: 361039299053375840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: e17cc32a5a4ef1b4e96321dca3fab32b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

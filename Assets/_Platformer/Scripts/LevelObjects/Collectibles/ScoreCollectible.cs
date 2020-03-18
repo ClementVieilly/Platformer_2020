@@ -19,11 +19,15 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 
         [SerializeField] private ParticleSystem collectParticleSystem;
 
+        [SerializeField] private List<Sprite> allSprites = new List<Sprite>();
+
 		[SerializeField] private int score = 1;
 
 		private void Awake()
 		{
 			_list.Add(this);
+
+            GetComponentInChildren<SpriteRenderer>().sprite = allSprites[Random.Range(0, allSprites.Count -1)];
 		}
 
 		protected override void EffectOfTheCollectible()

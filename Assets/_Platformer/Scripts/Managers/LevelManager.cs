@@ -19,7 +19,7 @@ namespace Com.IsartDigital.Platformer.Managers
 	{
 		public delegate void LevelManagerEventHandler(LevelManager levelManager);
 
-		[SerializeField] private Player player = null;
+		private Player player = null;
         [SerializeField] private SoundsSettings sounds = null;
         [SerializeField] private Level levelInfos;
         private string currentLvlMusicName = "empty";
@@ -41,6 +41,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void Start()
         {
+			player = FindObjectOfType<Player>();
             SubscribeAllEvents();
             timeManager = GetComponent<TimeManager>();
             timeManager.StartTimer();
@@ -219,30 +220,19 @@ namespace Com.IsartDigital.Platformer.Managers
         private void SubscribeAllEvents()
         {
             for(int i = LifeCollectible.List.Count - 1; i >= 0; i--)
-            {
                 LifeCollectible.List[i].OnCollected += LifeCollectible_OnCollected; 
-            }
 
             for(int i = KillZone.List.Count - 1; i >= 0; i--)
-            {
                 KillZone.List[i].OnCollision += KillZone_OnCollision; 
-            }
 
             for(int i = DeadZone.List.Count - 1; i >= 0; i--)
-            {
                 DeadZone.List[i].OnCollision += DeadZone_OnCollision; 
-            }
 
             for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
-            {
                 ScoreCollectible.List[i].OnCollected += ScoreCollectible_OnCollected;
-			}
 
 			for (int i = BigScoreCollectible.List.Count - 1; i >= 0; i--)
-			{
 				BigScoreCollectible.List[i].OnCollected += BigScoreCollectible_OnCollected;
-			}
-
 
 			CheckpointManager.OnFinalCheckPointTriggered += CheckpointManager_OnFinalCheckPointTriggered;
             player.OnDie += Player_OnDie;

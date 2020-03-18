@@ -19,6 +19,8 @@ public class ConfirmScreen : AScreen
 
 	private void Awake()
 	{
+        animator = GetComponent<Animator>();
+        animator.SetTrigger(enter); 
 		backButton.OnMenuButtonClicked += ConfirmScreenBack_Clicked;
 		skipButton.OnMenuButtonClicked += ConfirmScreenSkip_Clicked;
 	}

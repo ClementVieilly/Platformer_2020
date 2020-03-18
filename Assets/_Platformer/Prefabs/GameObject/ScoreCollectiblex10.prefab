@@ -135,11 +135,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3710985999376324442, guid: b7ef49032d3271142844e37c3c879c26,
         type: 3}
-    - target: {fileID: 6884410464145177984, guid: deb120095d442c4449ec828e00766c91,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7121737702124392160, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -166,6 +161,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3710985999376324442, guid: b7ef49032d3271142844e37c3c879c26,
         type: 3}
+    - target: {fileID: 2928252199260402148, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: score
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2928252197981242802, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -192,6 +192,11 @@ PrefabInstance:
       value: 0.9433962
       objectReference: {fileID: 0}
     - target: {fileID: 2928252199183082320, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884410464145177984, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 5

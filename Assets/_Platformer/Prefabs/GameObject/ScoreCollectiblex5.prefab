@@ -67,11 +67,74 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5152728740392591168, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047345837576227237, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: allSprites.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 9047345837576227237, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
       propertyPath: score
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 9047345837576227237, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: allSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: c61da20a0e90c624ca0745d955db5208,
+        type: 3}
+    - target: {fileID: 9047345837576227237, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: allSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: f09964908b14fc94ab1f394d385e211e,
+        type: 3}
+    - target: {fileID: 9047345837576227237, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: allSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7386b1bc2ea35a34395eaaddea6c3440,
+        type: 3}
+    - target: {fileID: 9047345837576227237, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: allSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b662f619cb3369448832b81915fb49d,
+        type: 3}
+    - target: {fileID: 9047345837576227237, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: allSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: a70058564ef2d374ea4526de7389be1e,
+        type: 3}
+    - target: {fileID: 9047345837576227237, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: allSprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: ab4ed420ac14bbc43b3438a9c93245b1,
+        type: 3}
+    - target: {fileID: 9047345837576227237, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: allSprites.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: d5202040c6ce43944950c407c51d6304,
+        type: 3}
+    - target: {fileID: 9047345837576227237, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: collectParticleSystem
+      value: 
+      objectReference: {fileID: 3710985999376324442, guid: de11218678e16ef4695dbbc28bf4f2d4,
+        type: 3}
     - target: {fileID: 7121737702124392160, guid: deb120095d442c4449ec828e00766c91,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -86,6 +149,42 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.00002193451
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928252199260402151, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_Name
+      value: ScoreCollectiblex5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928252199260402148, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: collectParticleSystem
+      value: 
+      objectReference: {fileID: 3710985999376324442, guid: de11218678e16ef4695dbbc28bf4f2d4,
+        type: 3}
+    - target: {fileID: 2928252197981242802, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928252197981242802, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928252199521261151, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.60083157
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928252199521261151, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.09718761
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928252199521261151, guid: deb120095d442c4449ec828e00766c91,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.9811321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deb120095d442c4449ec828e00766c91, type: 3}

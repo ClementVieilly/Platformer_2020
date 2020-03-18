@@ -1,0 +1,220 @@
+fileFormatVersion: 2
+guid: a4cf5a2c09dd464499791028d75c20b7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3497545019595389337
+    second: Squelettes_0
+  - first:
+      213: 6656714829917211159
+    second: Squelettes_1
+  - first:
+      213: -84700664197954062
+    second: Squelettes_2
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Squelettes_0
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 335
+        width: 875
+        height: 296
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 437.5, y: -36}
+        - {x: 386.5, y: -9}
+        - {x: 263.5, y: -39}
+        - {x: 193.5, y: 68}
+        - {x: 24.5, y: 99}
+        - {x: 0.5, y: 27}
+        - {x: -148.5, y: 148}
+        - {x: -190.5, y: 148}
+        - {x: -364.5, y: -3}
+        - {x: -436.5, y: -35}
+        - {x: -437.5, y: -36}
+        - {x: -437.5, y: -148}
+        - {x: -271.5, y: -148}
+        - {x: -210.5, y: -42}
+        - {x: -120.5, y: -148}
+        - {x: 35.5, y: -147}
+        - {x: 117.5, y: -87}
+        - {x: 148.5, y: -148}
+        - {x: 427.5, y: -148}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c46705f368fe9746bab44fe3076344c
+      internalID: 3497545019595389337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Squelettes_1
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 629
+        width: 548
+        height: 319
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 198, y: 10.5}
+        - {x: 73, y: -46.5}
+        - {x: 101, y: 39.5}
+        - {x: 199, y: 42.5}
+        - {x: 243, y: -28.5}
+        - {x: 268, y: -16.5}
+        - {x: 255, y: 85.5}
+        - {x: 122, y: 159.5}
+        - {x: -83, y: 159.5}
+        - {x: -274, y: 99.5}
+        - {x: -274, y: -28.5}
+        - {x: -194, y: -159.5}
+        - {x: 73, y: -159.5}
+        - {x: 195, y: -79.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8ea8c4df60f7314e959324f960a6498
+      internalID: 6656714829917211159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Squelettes_2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 50
+        width: 886
+        height: 282
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 443, y: -91}
+        - {x: 293, y: 8}
+        - {x: 136, y: 8}
+        - {x: -107, y: 141}
+        - {x: -195, y: 141}
+        - {x: -359.2597, y: 9.194824}
+        - {x: -303, y: -65}
+        - {x: -443, y: -95.769455}
+        - {x: -443, y: -141}
+        - {x: -76, y: -141}
+        - {x: 114, y: -128}
+        - {x: 319, y: -96}
+        - {x: 373, y: -141}
+        - {x: 443, y: -141}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0009dada6228444da90e88310c0a78f
+      internalID: -84700664197954062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: daa34dfb86e646a41bcec5e1fd681974
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

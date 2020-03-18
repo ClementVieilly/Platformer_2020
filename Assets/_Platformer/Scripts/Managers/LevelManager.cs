@@ -106,15 +106,15 @@ namespace Com.IsartDigital.Platformer.Managers
         {
 			if (player.Life > 0)
 			{
-				if(CheckpointManager.Instance)
-                {
-                    player.SetPosition(CheckpointManager.Instance.LastCheckpointPos);
-                    PlatformTrigger.ResetAll();
-                    MobilePlatform.ResetAll();
-                    ChangeTravellingCamera.ResetAll();
-                }
-                /*else
-					player.SetPosition(player.LastCheckpointPos);*/
+				if (!Hud.Instance)
+					player.SetPosition(player.LastCheckpointPos);
+				else if (CheckpointManager.Instance)
+				{
+					player.SetPosition(CheckpointManager.Instance.LastCheckpointPos);
+					PlatformTrigger.ResetAll();
+					MobilePlatform.ResetAll();
+					ChangeTravellingCamera.ResetAll();
+				}
 
                 player.GetComponent<Collider2D>().enabled = true;
 				return;

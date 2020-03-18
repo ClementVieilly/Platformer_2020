@@ -3,13 +3,14 @@
 /// Date : 21/01/2020 10:36
 ///-----------------------------------------------------------------
 
+using System;
 using Com.IsartDigital.Platformer.LevelObjects;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Com.IsartDigital.Platformer.Screens
 {
-	[RequireComponent(typeof(Button))]
+	[RequireComponent(typeof(Button), typeof(Animator))]
 	public class Hud : AScreen
 	{
 		private static Hud _instance;
@@ -46,7 +47,6 @@ namespace Com.IsartDigital.Platformer.Screens
 			{
 				_score = value;
 				scoreObject.SetActive(true);
-				bigScoreObject.SetActive(true);
 				_timer = 0;
 				UpdateText(scoreText, _score);
 			}
@@ -91,6 +91,10 @@ namespace Com.IsartDigital.Platformer.Screens
 		}
 
 		private float _timer = 0f;
+		private bool paused = false;
+		public bool Paused { set { paused = value; } }
+
+		private Animator animator = null;
 
 		private void Awake()
 		{
@@ -103,11 +107,26 @@ namespace Com.IsartDigital.Platformer.Screens
 			btnPause = GetComponentInChildren<Button>();
 			btnPause.onClick.AddListener(Hud_OnButtonPauseClicked);
 
+			animator = GetComponent<Animator>();
+
 #if UNITY_ANDROID || UNITY_EDITOR
 			Player.OnPlayerMove += UpdateMoveController;
+			Player.OnPlayerJump += PulseJumpButton;
+			Player.OnPlayerEndJump += StopPulsingJumpButton;
 			joystick.gameObject.SetActive(true);
 			jumpButton.gameObject.SetActive(true);
 #endif
+		}
+
+		private void PulseJumpButton()
+		{
+			animator.SetBool("IsHold", true);
+		}
+
+		private void StopPulsingJumpButton()
+		{
+			if (animator != null)
+				animator.SetBool("IsHold", false);
 		}
 
 		private void Update()
@@ -118,6 +137,8 @@ namespace Com.IsartDigital.Platformer.Screens
 		private void showHud()
 		{
 			if (!scoreObject.activeSelf && !bigScoreObject.activeSelf) return;
+
+			if (paused) return;
 
 			_timer += Time.deltaTime;
 			if (_timer > 3)
@@ -141,12 +162,28 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		private void Hud_OnButtonPauseClicked()
 		{
+			paused = true;
+			_timer = 0;
+
 			OnButtonPausePressed?.Invoke(this);
+		}
+
+		internal void UIManager_OnResume()
+		{
+			scoreObject.SetActive(true);
+			bigScoreObject.SetActive(true);
+
+			paused = false;
 		}
 
 		private void UpdateMoveController(float horizontalAxis)
 		{
 			joystick.UpdateHandleHorizontalPosition(horizontalAxis);
+		}
+
+		private void OnApplicationPause(bool pause)
+		{
+			if(pause) OnButtonPausePressed?.Invoke(this);
 		}
 
 		private void OnDestroy()

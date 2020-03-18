@@ -433,8 +433,8 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private void LoginScreen_OnSkipClicked(LoginScreen loginScreen)
 		{
-            CloseScreen(loginScreen); 
-			CreateConfirmScreen();
+            CloseScreen(loginScreen);
+            CreateTitleCard(); 
 		}
 
 		private void ConfirmScreen_OnSkipClicked(ConfirmScreen confirmScreen)

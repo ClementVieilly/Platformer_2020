@@ -181,7 +181,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         override public void Init()
         {
-            Life = Hud.Instance != null ? settings.StartLife : int.MaxValue;
+			if (UIManager.Instance)
+				Life = settings.StartLife;
+			else
+				Life = int.MaxValue;
+
 			lastCheckpointPos = transform.position;
 			startPosition = transform.position;
             vCamBody = vCam.GetCinemachineComponent<CinemachineFramingTransposer>();

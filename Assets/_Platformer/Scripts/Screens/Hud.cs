@@ -107,8 +107,6 @@ namespace Com.IsartDigital.Platformer.Screens
 			btnPause = GetComponentInChildren<Button>();
 			btnPause.onClick.AddListener(Hud_OnButtonPauseClicked);
 
-			animator = GetComponent<Animator>();
-
 #if UNITY_ANDROID || UNITY_EDITOR
 			Player.OnPlayerMove += UpdateMoveController;
 			Player.OnPlayerJump += PulseJumpButton;
@@ -118,9 +116,15 @@ namespace Com.IsartDigital.Platformer.Screens
 #endif
 		}
 
+		public void RegisterSelfAnimator()
+		{
+			animator = GetComponent<Animator>();
+		}
+
 		private void PulseJumpButton()
 		{
-			animator.SetBool("IsHold", true);
+			if (animator != null)
+				animator.SetBool("IsHold", true);
 		}
 
 		private void StopPulsingJumpButton()
@@ -190,6 +194,8 @@ namespace Com.IsartDigital.Platformer.Screens
 		{
 			btnPause.onClick.RemoveListener(Hud_OnButtonPauseClicked);
 			Player.OnPlayerMove -= UpdateMoveController;
+			Player.OnPlayerJump -= PulseJumpButton;
+			Player.OnPlayerEndJump -= StopPulsingJumpButton;
 			_instance = null;
 		}
 

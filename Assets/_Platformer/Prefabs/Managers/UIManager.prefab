@@ -68,10 +68,12 @@ MonoBehaviour:
     type: 3}
   confirmScreenPrefab: {fileID: 1708156884381924262, guid: b772027d8ddf01f47a63ffd589156053,
     type: 3}
+  preloadPrefab: {fileID: 3241904462058673718, guid: d759f624495146b45802ffd29534bb6b,
+    type: 3}
   sceneNames:
   - Main
-  - Level 1 LD
-  - Level 1 LD
+  - Level 1
+  - Level 2 LD
 --- !u!1 &7974276177514552796
 GameObject:
   m_ObjectHideFlags: 0

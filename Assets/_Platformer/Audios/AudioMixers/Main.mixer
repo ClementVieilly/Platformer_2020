@@ -1,21 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!244 &-2891306094340161583
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: fff6136c6ee16364a8760e015b21155b
-  m_EffectName: Distortion
-  m_MixLevel: 442e3e02cbd5f68489c04e6cc609eb14
-  m_Parameters:
-  - m_ParameterName: Level
-    m_GUID: 9dbdaf2ef53c42a41a0e75fead506001
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -139,7 +123,6 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 2996601131845525644}
-  - {fileID: -2891306094340161583}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0

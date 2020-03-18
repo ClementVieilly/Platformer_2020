@@ -13,7 +13,7 @@ namespace Com.IsartDigital.Platformer
     [CustomPropertyDrawer(typeof(Sound))]
     public class SoundDrawer : PropertyDrawer
     {
-        private float lineNumber = 24;
+        private float lineNumber = 28;
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             #region Infos
@@ -87,6 +87,13 @@ namespace Com.IsartDigital.Platformer
             SerializedProperty mixerGroup = property.FindPropertyRelative("_mixerGroup");
             //AudioSource
             SerializedProperty source = property.FindPropertyRelative("_source");
+            //bool
+            SerializedProperty _isStartAtRandomTime = property.FindPropertyRelative("_isStartAtRandomTime");
+
+            #endregion
+
+            #region Editor properties
+
             //bool
             SerializedProperty showInEditor = property.FindPropertyRelative("showInEditor");
 
@@ -313,7 +320,28 @@ namespace Com.IsartDigital.Platformer
                 position.width * 0.1f,
                 lineHeight);
 
+            Rect otherHeaderRect = new Rect(position.x + position.width * 0.4f,
+                position.y + lineHeight * 21.5f + 2.5f,
+                200,
+                lineHeight);
+
+            Rect randomTimeLeftRect = new Rect(position.x + 15,
+                position.y + lineHeight * 22.5f + 2.5f,
+                200,
+                lineHeight);
+
+            Rect randomTimeMiddleRect = new Rect(position.x + 60,
+                position.y + lineHeight * 22.5f + 2.5f,
+                200,
+                lineHeight);
+
+            Rect randomTimeRightRect = new Rect(position.x + 60 + 175,
+                position.y + lineHeight * 22.5f + 2.5f,
+                position.width * 0.3f,
+                lineHeight);
+
             Rect foldoutRect = showInEditor.boolValue ? titleRect : position;
+
             #endregion
 
             showInEditor.boolValue = EditorGUI.Foldout(foldoutRect, showInEditor.boolValue, name.stringValue);
@@ -395,6 +423,14 @@ namespace Com.IsartDigital.Platformer
 
             GUI.Label(fadeOutTimelLeftRect, "Duration");
             EditorGUI.PropertyField(fadeOutTimeRightRect, _fadeOutDuration, GUIContent.none);
+
+            GUI.Label(otherHeaderRect, "Other settings", GUIStyle.none);
+
+            _isStartAtRandomTime.boolValue = EditorGUI.Toggle(randomTimeLeftRect, _isStartAtRandomTime.boolValue);
+            GUI.Label(randomTimeMiddleRect, "Random start time ?");
+            string stateRandomTime = _isStartAtRandomTime.boolValue ? "ON" : "OFF";
+            GUI.Label(randomTimeRightRect, stateRandomTime);
+
 
             EditorGUI.EndProperty();
         }

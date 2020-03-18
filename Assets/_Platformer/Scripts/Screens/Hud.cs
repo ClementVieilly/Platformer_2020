@@ -125,7 +125,8 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		private void StopPulsingJumpButton()
 		{
-			animator.SetBool("IsHold", false);
+			if (animator != null)
+				animator.SetBool("IsHold", false);
 		}
 
 		private void Update()
@@ -178,6 +179,11 @@ namespace Com.IsartDigital.Platformer.Screens
 		private void UpdateMoveController(float horizontalAxis)
 		{
 			joystick.UpdateHandleHorizontalPosition(horizontalAxis);
+		}
+
+		private void OnApplicationPause(bool pause)
+		{
+			if(pause) OnButtonPausePressed?.Invoke(this);
 		}
 
 		private void OnDestroy()

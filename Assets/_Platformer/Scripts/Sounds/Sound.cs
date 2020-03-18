@@ -74,12 +74,44 @@ namespace Com.IsartDigital.Platformer.Sounds {
 
 		#region Spatialization properties
 
-		public AudioRolloffMode rolloffMode;
-		public AnimationCurve volumeSpatialization;
-		public float minDistance;
-		public float maxDistance;
+		[SerializeField] private AudioRolloffMode _rolloffMode;
+		public AudioRolloffMode RolloffMode => _rolloffMode;
+
+		[SerializeField] AnimationCurve _volumeSpatialization;
+		public AnimationCurve VolumeSpatialization => _volumeSpatialization;
+
+		[SerializeField] private float _minDistance;
+		public float minDistance => _minDistance;
+
+		[SerializeField] private float _maxDistance;
+		public float maxDistance => _maxDistance;
 
 		#endregion
+
+		#region Fade properties
+
+		[SerializeField] private bool _isFadeIn = false;
+		public bool IsFadeIn => _isFadeIn;
+		
+		[SerializeField] private bool _isFadeOut = false;
+		public bool IsFadeOut => _isFadeOut;
+
+		[SerializeField] private float _fadeInDuration = 1;
+		public float FadeInDuration => _fadeInDuration;
+
+		[SerializeField] private AnimationCurve _fadeInCurve;
+		public AnimationCurve FadeInCurve => _fadeInCurve;
+
+		[SerializeField] private AnimationCurve _fadeOutCurve;
+		public AnimationCurve FadeOutCurve => _fadeOutCurve;
+
+		[SerializeField] private float _fadeOutDuration = 1;
+		public float FadeOutDuration => _fadeOutDuration;
+
+		#endregion
+
+		[SerializeField] private bool _isStartAtRandomTime = false;
+		public bool IsStartAtRandomTime => _isStartAtRandomTime;
 
 		[SerializeField] private AudioMixerGroup _mixerGroup = null;
 		public AudioMixerGroup MixerGroup => _mixerGroup;
@@ -97,12 +129,12 @@ namespace Com.IsartDigital.Platformer.Sounds {
 			Source.loop = IsLoop;
 			Source.outputAudioMixerGroup = MixerGroup;
 			
-			Source.rolloffMode = rolloffMode;
+			Source.rolloffMode = _rolloffMode;
 			Source.minDistance = minDistance;
-			Source.maxDistance = maxDistance;
-			if (rolloffMode == AudioRolloffMode.Custom)
+			Source.maxDistance = _maxDistance;
+			if (_rolloffMode == AudioRolloffMode.Custom)
 			{
-				Source.SetCustomCurve(AudioSourceCurveType.CustomRolloff,volumeSpatialization);
+				Source.SetCustomCurve(AudioSourceCurveType.CustomRolloff,_volumeSpatialization);
 			}
 
 			if (_type == SoundTypes.SFX)
@@ -115,7 +147,7 @@ namespace Com.IsartDigital.Platformer.Sounds {
 		{
 			_name = originSound.Name;
 			_clip = originSound.Clip;
-			_type = originSound._type;
+			_type = originSound.Type;
 
 			_volume = originSound.Volume;
 			_volumeVariance = originSound.VolumeVariance;
@@ -129,14 +161,18 @@ namespace Com.IsartDigital.Platformer.Sounds {
 			_isLoop = originSound.IsLoop;
 			_isPitchedBetweenValues = originSound.IsPitchedBetweenValues;
 
-			rolloffMode = originSound.rolloffMode;
-			volumeSpatialization = originSound.volumeSpatialization;
-			minDistance = originSound.minDistance;
-			maxDistance = originSound.maxDistance;
+			_rolloffMode = originSound.RolloffMode;
+			_volumeSpatialization = originSound.VolumeSpatialization;
+			_minDistance = originSound.minDistance;
+			_maxDistance = originSound.maxDistance;
+
+			_isFadeIn = originSound.IsFadeIn;
+			_isFadeOut = originSound.IsFadeOut;
+			_fadeInCurve = originSound.FadeInCurve;
+			_fadeOutCurve = originSound.FadeOutCurve;
 
 			_mixerGroup = originSound._mixerGroup;
 			_source = originSound.Source;
-
 		}
 
 #if UNITY_EDITOR

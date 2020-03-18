@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2361820653141298950}
   - component: {fileID: 6712226807216998318}
   - component: {fileID: 8551219550433765939}
+  - component: {fileID: 5204967734621352810}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -79,6 +80,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Victory
+--- !u!114 &5204967734621352810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932701985942052786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef9b24279366e247b42d27e69e3244c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Win_Screen
 --- !u!1 &1362380149452414697
 GameObject:
   m_ObjectHideFlags: 0

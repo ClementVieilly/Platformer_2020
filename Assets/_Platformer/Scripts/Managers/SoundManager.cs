@@ -63,7 +63,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 			if (currentSound.Source.isPlaying) 
 			{
-				//Debug.LogWarning("Sound: " + name + " is already playing!");
+				//Debug.LogWarning("Sound: " + sound + " is already playing!");
 				return;
 			}
 
@@ -73,34 +73,9 @@ namespace Com.IsartDigital.Platformer.Managers
 			currentSound.Source.pitch = currentSound.IsPitchedBetweenValues ?
 										UnityEngine.Random.Range(currentSound.MinPitchValue, currentSound.MaxPitchValue) :
 										currentSound.Source.pitch = currentSound.Pitch * (1 + UnityEngine.Random.Range(-currentSound.PitchVariance / 2, currentSound.PitchVariance / 2));
+
+			if (currentSound.IsStartAtRandomTime) currentSound.Source.time = UnityEngine.Random.Range(0, currentSound.Source.clip.length);
 			currentSound.Source.Play();
-		}
-
-
-		private void FadeIn(Sound sound)
-		{
-			StartCoroutine(Fade(sound, sound.FadeInCurve));
-		}
-		private void FadeOut(Sound sound, Action action = null)
-		{
-			StartCoroutine(Fade(sound, sound.FadeOutCurve, action));
-		}
-
-		private IEnumerator Fade(Sound sound, AnimationCurve curve, Action action = null)
-		{
-			float elapsedTime = 0f;
-			float ratio = curve.Evaluate(0);
-
-
-			while (ratio <= curve.Evaluate(1))
-			{
-				elapsedTime += Time.deltaTime;
-				ratio = curve.Evaluate(elapsedTime / sound.FadeInDuration);
-				sound.Source.volume = sound.Volume * ratio;
-				yield return null;
-			}
-			elapsedTime = 0f;
-			action();
 		}
 
 		public void Play(string sound, ALevelObject emitter)
@@ -146,6 +121,7 @@ namespace Com.IsartDigital.Platformer.Managers
 										UnityEngine.Random.Range(currentSound.MinPitchValue, currentSound.MaxPitchValue) :
 										currentSound.Source.pitch = currentSound.Pitch * (1 + UnityEngine.Random.Range(-currentSound.PitchVariance / 2, currentSound.PitchVariance / 2));
 
+			if (currentSound.IsStartAtRandomTime) currentSound.Source.time = UnityEngine.Random.Range(0, currentSound.Source.clip.length);
 			currentSound.Source.Play();
 		}
 
@@ -268,6 +244,32 @@ namespace Com.IsartDigital.Platformer.Managers
 					testedSound.Source.outputAudioMixerGroup = mainMixerGroup;
 				}
 			}
+		}
+
+		private void FadeIn(Sound sound)
+		{
+			StartCoroutine(Fade(sound, sound.FadeInCurve));
+		}
+		private void FadeOut(Sound sound, Action action = null)
+		{
+			StartCoroutine(Fade(sound, sound.FadeOutCurve, action));
+		}
+
+		private IEnumerator Fade(Sound sound, AnimationCurve curve, Action action = null)
+		{
+			float elapsedTime = 0f;
+			float ratio = curve.Evaluate(0);
+
+
+			while (ratio <= curve.Evaluate(1))
+			{
+				elapsedTime += Time.deltaTime;
+				ratio = curve.Evaluate(elapsedTime / sound.FadeInDuration);
+				sound.Source.volume = sound.Volume * ratio;
+				yield return null;
+			}
+			elapsedTime = 0f;
+			action();
 		}
 
 #if UNITY_EDITOR

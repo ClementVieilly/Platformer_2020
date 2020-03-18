@@ -113,12 +113,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private bool jump 
         {
             get { return _jump; }
-            set
-            {
-                _jump = value;
-                if (_jump) OnPlayerJump?.Invoke();
-                else OnPlayerEndJump?.Invoke();
-            }
+            set { _jump = value; }
         }
 
         // ElapsedTime des différents états
@@ -157,9 +152,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         public static event PlayerMoveEventHandler OnPlayerMove;
         public static Action OnPlayerJump;
         public static Action OnPlayerEndJump;
+		public static Action OnPlayerPlane;
+		public static Action OnPlayerEndPlane;
 
-        //Cinemachine Virtual Camera
-        [Header("Cinemachine")]
+		//Cinemachine Virtual Camera
+		[Header("Cinemachine")]
         [SerializeField] private CinemachineVirtualCamera vCam = null;
         public CinemachineVirtualCamera VCam => vCam;
         [SerializeField] private GameObject vCamIdle = null;
@@ -282,6 +279,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			if (SoundManager.Instance)
 				SoundManager.Instance.Play(sounds.PlaneFlap01,this);
 
+			OnPlayerPlane?.Invoke();
+
             stateTag.name = "Plane"; 
             DoAction = DoActionPlane;
             animator.SetBool(settings.IsPlaningParam, true);
@@ -325,7 +324,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             
             MoveHorizontalOnGround();
 
-            //Détéection du jump
+            //Détection du jump
             if (jump && !jumpButtonHasPressed && canJump)
             {
                 rigidBody.gravityScale = gravity; 

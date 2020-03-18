@@ -121,9 +121,9 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		public void WebClient_OnLogged(WebClient webClient)
 		{
-            CreateLevelSelector(); 
-			CloseScreen(currentLoginScreen);
-			if (currentLeaderboard) currentLeaderboard.StartLeaderboard();
+            currentLoginScreen.Animator.SetTrigger("Exit"); 
+            
+			
 		}
 
         private void CreatePauseMenu() //Crée une instance de Menu Pause et écoute ses événements
@@ -216,11 +216,19 @@ namespace Com.IsartDigital.Platformer.Managers
 
 			currentLoginScreen.OnConnectClicked += LoginScreen_OnConnectClicked;
 			currentLoginScreen.OnSkipClicked += LoginScreen_OnSkipClicked;
+			currentLoginScreen.OnLaunchLvlSelector += LoginScreen_OnLaunchLvlSelector;
 
 			allScreens.Add(currentLoginScreen);
 		}
 
-		public void CreateConfirmScreen()
+        private void LoginScreen_OnLaunchLvlSelector(LoginScreen loginScreen)
+        {
+            CloseScreen(loginScreen);
+            CreateLevelSelector(); 
+            if(currentLeaderboard) currentLeaderboard.StartLeaderboard();
+        }
+
+        public void CreateConfirmScreen()
 		{
 			currentConfirmScreen = Instantiate(confirmScreenPrefab).GetComponent<ConfirmScreen>();
 

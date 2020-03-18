@@ -48,7 +48,7 @@ namespace Com.IsartDigital.Platformer.Managers
 				Sound sound = sounds[i];
 				soundsList.Add(sounds[i]);
 				sound.SetNewSource(gameObject.AddComponent<AudioSource>());
-				sound.Source.outputAudioMixerGroup = mainMixerGroup;
+				if (sound.MixerGroup == null) sound.Source.outputAudioMixerGroup = mainMixerGroup;
 			}
 		}
 
@@ -242,7 +242,8 @@ namespace Com.IsartDigital.Platformer.Managers
 				if (testedSound.Source.isPlaying)
 				{
 					playedSounds.Add(testedSound);
-					testedSound.Source.outputAudioMixerGroup = mainMixerGroup;
+					if (testedSound.MixerGroup == null) testedSound.Source.outputAudioMixerGroup = mainMixerGroup;
+					else testedSound.Source.outputAudioMixerGroup = testedSound.MixerGroup;
 				}
 			}
 		}

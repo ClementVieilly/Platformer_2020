@@ -89,6 +89,8 @@ namespace Com.IsartDigital.Platformer
             SerializedProperty source = property.FindPropertyRelative("_source");
             //bool
             SerializedProperty _isStartAtRandomTime = property.FindPropertyRelative("_isStartAtRandomTime");
+            //AudioMixerGroup
+            SerializedProperty _mixerGroup = property.FindPropertyRelative("_mixerGroup");
 
             #endregion
 
@@ -339,6 +341,16 @@ namespace Com.IsartDigital.Platformer
                 position.y + lineHeight * 22.5f + 2.5f,
                 position.width * 0.3f,
                 lineHeight);
+            
+            Rect audioMixerLeftRect = new Rect(position.x + 15,
+                position.y + lineHeight * 23.5f + 2.5f,
+                200,
+                lineHeight);
+
+            Rect audioMixerRightRect = new Rect(position.x + 150,
+                position.y + lineHeight * 23.5f + 2.5f,
+                position.width * 0.5f,
+                lineHeight);
 
             Rect foldoutRect = showInEditor.boolValue ? titleRect : position;
 
@@ -431,6 +443,8 @@ namespace Com.IsartDigital.Platformer
             string stateRandomTime = _isStartAtRandomTime.boolValue ? "ON" : "OFF";
             GUI.Label(randomTimeRightRect, stateRandomTime);
 
+            GUI.Label(audioMixerLeftRect, "Audio Mixer Group");
+            EditorGUI.PropertyField(audioMixerRightRect, _mixerGroup, GUIContent.none);
 
             EditorGUI.EndProperty();
         }

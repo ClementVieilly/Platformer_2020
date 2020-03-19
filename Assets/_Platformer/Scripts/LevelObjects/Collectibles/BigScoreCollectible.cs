@@ -8,14 +8,14 @@ using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 {
-    public delegate void BigScoreCollectibleEventHandler(uint slotNumber);
+    public delegate void BigScoreCollectibleEventHandler(int slotNumber);
 
 	public class BigScoreCollectible : ACollectible
 	{
 		private static List<BigScoreCollectible> _list = new List<BigScoreCollectible>();
 		public static List<BigScoreCollectible> List => _list;
 
-		[SerializeField] private uint slotNumber = 0;
+		[SerializeField] private int slotNumber = 0;
         [SerializeField] private ParticleSystem collectParticleSystem;
 
         public event BigScoreCollectibleEventHandler OnCollected;

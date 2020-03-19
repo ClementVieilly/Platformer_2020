@@ -90,10 +90,14 @@ namespace Com.IsartDigital.Platformer.Managers
             if(Hud.Instance != null) Hud.Instance.Score = _score;
 		}
 
-		private void BigScoreCollectible_OnCollected(uint slotNumber)
+		private void BigScoreCollectible_OnCollected(int slotNumber)
 		{
 			_bigScoreCollectibles[slotNumber] = true;
-			if (Hud.Instance != null) Hud.Instance.BigScore = _bigScoreCollectibles;
+            if(Hud.Instance != null)
+            {
+                Hud.Instance.SlotNumber = slotNumber;
+                Hud.Instance.BigScore = _bigScoreCollectibles;
+            }
 		}
 
 		private void KillZone_OnCollision()

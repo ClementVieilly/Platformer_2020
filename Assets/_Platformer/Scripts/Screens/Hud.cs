@@ -5,8 +5,10 @@
 
 using System;
 using Com.IsartDigital.Platformer.LevelObjects;
+using Pixelplacement;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 namespace Com.IsartDigital.Platformer.Screens
 {
@@ -37,9 +39,14 @@ namespace Com.IsartDigital.Platformer.Screens
 		[SerializeField] private Joystick joystick = null;
 		[SerializeField] private Joystick jumpButton = null;
 
-		private Button btnPause;
+        [Header("Slot")]
+        [SerializeField] private RectTransform slot1 = null; 
 
+        private Button btnPause;
+        public int SlotNumber = 0; 
 		private float _score = 0f;
+
+        private bool isFirstTime = true; 
 		public float Score
 		{
 			get => _score;
@@ -58,12 +65,20 @@ namespace Com.IsartDigital.Platformer.Screens
 			get => _bigScore;
 			set
 			{
+                if(isFirstTime)
+                {
+                    isFirstTime = false;
+                    return;
+                }
 				_bigScore = (bool[])value.Clone();
-				scoreObject.SetActive(true);
+                scoreObject.SetActive(true);
 				bigScoreObject.SetActive(true);
 				_timer = 0;
-				UpdateText(scoreText, _score);
+                Debug.Log(slot1.localPosition.x);
+                Tween.LocalPosition(bigScoreObject.transform.GetChild(SlotNumber).transform, new Vector2(slot1.localPosition.x, slot1.localPosition.y), 0.5f, 0,Tween.EaseBounce);
+                UpdateText(scoreText, _score);
 				UpdateBigScore();
+                
 			}
 		}
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FERR_GroundLVL2
   m_EditorClassIdentifier: 
   _fillMaterial: {fileID: 2100000, guid: c0ddd65a90ff906408b08d2d953ed100, type: 2}
-  _edgeMaterial: {fileID: 2100000, guid: 015a8d9e419e7b94bb3cc9b3fd5193ce, type: 2}
+  _edgeMaterial: {fileID: 2100000, guid: 8bbfb5a7a74d06348b95da911d9013bc, type: 2}
   _descriptors:
   - _applyTo: 0
     _zOffset: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
     _innerLeftCapWeights: []
     _innerLeftCapColliderSize:
     - 1
-    _innerLeftCapColliderType: 02000000
+    _innerLeftCapColliderType: 03000000
     _innerLeftCapOffset:
     - 0
     _legacyRightCap:
@@ -65,7 +65,7 @@ MonoBehaviour:
     _rightCapWeights: []
     _rightCapColliderSize:
     - 1
-    _rightCapColliderType: 02000000
+    _rightCapColliderType: 03000000
     _rightCapOffset:
     - -0.65
     _legacyInnerRightCap:
@@ -78,7 +78,7 @@ MonoBehaviour:
     _innerRightCapWeights: []
     _innerRightCapColliderSize:
     - 1
-    _innerRightCapColliderType: 02000000
+    _innerRightCapColliderType: 03000000
     _innerRightCapOffset:
     - 0
     _bodies:
@@ -89,7 +89,7 @@ MonoBehaviour:
       height: 0.29400173
     _bodyWeights: []
     _yOffsetPercent: 0.36
-    _colliderOffset: 0.34
+    _colliderOffset: 0.12
     _colliderThickness: 0.95
     _physicsMaterial2D: {fileID: 0}
     _physicsMaterial3D: {fileID: 0}

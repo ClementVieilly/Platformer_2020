@@ -16,8 +16,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 		public static List<BigScoreCollectible> List => _list;
 
 		[SerializeField] private uint slotNumber = 0;
+        [SerializeField] private ParticleSystem collectParticleSystem;
 
-		public event BigScoreCollectibleEventHandler OnCollected;
+        public event BigScoreCollectibleEventHandler OnCollected;
 
 		private void Awake()
 		{
@@ -27,9 +28,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 		protected override void EffectOfTheCollectible()
 		{
 			OnCollected?.Invoke(slotNumber);
-		}
+            Instantiate(collectParticleSystem, transform.position, Quaternion.identity);
+        }
 
-		public static void ResetAll()
+        public static void ResetAll()
 		{
 			for (int i = List.Count - 1; i >= 0; i--)
 				List[i].gameObject.SetActive(true);

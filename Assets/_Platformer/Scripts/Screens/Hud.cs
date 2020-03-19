@@ -46,7 +46,7 @@ namespace Com.IsartDigital.Platformer.Screens
 			set
 			{
 				_score = value;
-				scoreObject.SetActive(true);
+                if(!animator.GetCurrentAnimatorStateInfo(1).IsName(enter)) animator.SetTrigger(enter); 
 				_timer = 0;
 				UpdateText(scoreText, _score);
 			}
@@ -94,7 +94,6 @@ namespace Com.IsartDigital.Platformer.Screens
 		private bool paused = false;
 		public bool Paused { set { paused = value; } }
 
-		private Animator animator = null;
 
 		private void Awake()
 		{
@@ -145,7 +144,7 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		private void Update()
 		{
-			showHud();
+			//showHud();
 		}
 
 		private void showHud()

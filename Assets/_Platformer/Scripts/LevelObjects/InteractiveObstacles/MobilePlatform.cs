@@ -76,9 +76,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 				allPoints[index - 1].position : allPoints[allPoints.Length - 1].position, 
 				allPoints[index].position, elapsedTime / duration);
 
-            if (touchedObject != null) touchedObject.position += transform.position - previousPos;
+			if (touchedObject != null)
+			{
+				touchedObject.position += transform.position - previousPos;
+			}
+
             if (elapsedTime >= duration)
-            {
+			{
                 if(oneWay && index == allPoints.Length - 1)
                 {
                     SetModeVoid();

@@ -65,7 +65,6 @@ namespace Com.IsartDigital.Platformer.Screens
                 _score = value;
                 if(!animator.GetCurrentAnimatorStateInfo(1).IsName(enter))
                 {
-                    Debug.Log("oui"); 
                     animator.SetTrigger(enter);
                    
                 }

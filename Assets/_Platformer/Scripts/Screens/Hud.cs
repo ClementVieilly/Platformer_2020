@@ -26,10 +26,13 @@ namespace Com.IsartDigital.Platformer.Screens
 		[SerializeField] private Text scoreText = null;
 		[SerializeField] private GameObject scoreObject = null;
 		[SerializeField] private GameObject bigScoreObject = null;
+        [SerializeField] private AnimationCurve bigScoreEnterAnim = null; 
 
 		[Header("Life")]
 		[SerializeField] private Text lifeText = null;
 		[SerializeField] private Image lifeImage = null;
+		[SerializeField] private Transform lifeCadre = null;
+		[SerializeField] private Transform lifeBorder = null;
 
 		[Header("sprite for life")]
 		[SerializeField] private Sprite lifeSprite1 = null;
@@ -47,17 +50,26 @@ namespace Com.IsartDigital.Platformer.Screens
         public int SlotNumber = 0; 
 		private float _score = 0f;
 
-
+        private bool isFirstTimeBg = true; 
         private bool isFirstTime = true; 
 		public float Score
 		{
 			get => _score;
 			set
 			{
-				_score = value;
-                if(!animator.GetCurrentAnimatorStateInfo(1).IsName(enter)) animator.SetTrigger(enter); 
+                if(isFirstTime)
+                {
+                    isFirstTime = false;
+                    return;
+                }
+                _score = value;
+                if(!animator.GetCurrentAnimatorStateInfo(1).IsName(enter))
+                {
+                    animator.SetTrigger(enter);
+                    UpdateText(scoreText, _score); 
+                }
 				_timer = 0;
-				UpdateText(scoreText, _score);
+				
 			}
 		}
 
@@ -67,19 +79,17 @@ namespace Com.IsartDigital.Platformer.Screens
 			get => _bigScore;
 			set
 			{
-                if(isFirstTime)
+                if(isFirstTimeBg)
                 {
-                    isFirstTime = false;
+                    isFirstTimeBg = false;
                     return;
                 }
 				_bigScore = (bool[])value.Clone();
                 scoreObject.SetActive(true);
 				bigScoreObject.SetActive(true);
 				_timer = 0;
-                Tween.LocalPosition(bigScoreObject.transform.GetChild(SlotNumber).transform, new Vector2(slotsPos[SlotNumber].localPosition.x, slotsPos[SlotNumber].localPosition.y), 0.7f, 0,Tween.EaseOut);
-                Tween.LocalScale(bigScoreObject.transform.GetChild(SlotNumber).transform, new Vector2(1.2f, 1.2f), 0.2f,0.7f,Tween.EaseIn);
-                Tween.LocalScale(bigScoreObject.transform.GetChild(SlotNumber).transform, new Vector2(1, 1), 0.2f,.9f,Tween.EaseOut);
-                UpdateText(scoreText, _score);
+                Tween.LocalPosition(bigScoreObject.transform.GetChild(SlotNumber).transform, new Vector2(slotsPos[SlotNumber].localPosition.x, slotsPos[SlotNumber].localPosition.y), 1, 0,bigScoreEnterAnim);
+               
 				UpdateBigScore();
                 
 			}
@@ -162,7 +172,7 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		private void Update()
 		{
-			showHud();
+			//showHud();
 		}
 
 		private void showHud()
@@ -172,9 +182,9 @@ namespace Com.IsartDigital.Platformer.Screens
 			if (paused) return;
 
 			_timer += Time.deltaTime;
-			if (_timer > 5)
+			if (_timer > 4)
 			{
-				bigScoreObject.SetActive(false);
+				//bigScoreObject.SetActive(false);
 				_timer = 0;
 			}
 		}
@@ -182,7 +192,16 @@ namespace Com.IsartDigital.Platformer.Screens
 		private void UpdateText(Text changingText, float value)
 		{
 			changingText.text = value.ToString();
+          /*  Tween.LocalScale(lifeCadre, new Vector2(4f, 4f), 0.2f, 0, Tween.EaseIn); 
+            Tween.LocalScale(lifeCadre, new Vector2(1, 1), 0.2f, 0.2f, Tween.EaseIn); 
+            Tween.LocalScale(lifeBorder, new Vector2(4, 4), 0.2f, 0, Tween.EaseIn); 
+            Tween.LocalScale(lifeBorder, new Vector2(1, 1), 0.2f, 0.2f, Tween.EaseIn); */
 		}
+
+        private void callBack()
+        {
+            UpdateText(scoreText, _score);
+        }
 
 		private void UpdateBigScore()
 		{

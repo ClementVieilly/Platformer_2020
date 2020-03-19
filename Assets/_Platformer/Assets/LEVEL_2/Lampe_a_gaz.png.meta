@@ -1,7 +1,13 @@
 fileFormatVersion: 2
 guid: 0a3a5e08a8364cd48a52f1e9dbef0432
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -2315823171655348600
+    second: Lampe_a_gaz_0
+  - first:
+      213: 5073554562358755918
+    second: Lampe_a_gaz_1
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -69,9 +75,79 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Lampe_a_gaz_0
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 329
+        width: 435
+        height: 963
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 130.5, y: 481.5}
+        - {x: -88.5, y: 481.5}
+        - {x: -217.5, y: -4.5}
+        - {x: -212.5, y: -338.5}
+        - {x: -190.5, y: -481.5}
+        - {x: 185.5, y: -481.5}
+        - {x: 217.5, y: -250.5}
+        - {x: 217.5, y: -92.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76dcf6e23474d744aaa7f6b329610095
+      internalID: -2315823171655348600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lampe_a_gaz_1
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 14
+        width: 770
+        height: 1408
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 171, y: 704}
+        - {x: -95, y: 704}
+        - {x: -341, y: 446}
+        - {x: -385, y: -631}
+        - {x: -174, y: -704}
+        - {x: 144, y: -704}
+        - {x: 385, y: -630}
+        - {x: 385, y: -49}
+        - {x: 302, y: 558}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2441a6aff8a452740b5411ea87e32d86
+      internalID: 5073554562358755918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline:
     - - {x: 100, y: 664}
       - {x: -6, y: 536}

@@ -4,6 +4,7 @@
 ///-----------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using Com.IsartDigital.Platformer.LevelObjects;
 using Pixelplacement;
 using UnityEngine;
@@ -40,11 +41,12 @@ namespace Com.IsartDigital.Platformer.Screens
 		[SerializeField] private Joystick jumpButton = null;
 
         [Header("Slot")]
-        [SerializeField] private RectTransform slot1 = null; 
+        [SerializeField] private List<RectTransform> slotsPos = new List<RectTransform>(); 
 
         private Button btnPause;
         public int SlotNumber = 0; 
 		private float _score = 0f;
+
 
         private bool isFirstTime = true; 
 		public float Score
@@ -74,8 +76,9 @@ namespace Com.IsartDigital.Platformer.Screens
                 scoreObject.SetActive(true);
 				bigScoreObject.SetActive(true);
 				_timer = 0;
-                Debug.Log(slot1.localPosition.x);
-                Tween.LocalPosition(bigScoreObject.transform.GetChild(SlotNumber).transform, new Vector2(slot1.localPosition.x, slot1.localPosition.y), 0.5f, 0,Tween.EaseBounce);
+                Tween.LocalPosition(bigScoreObject.transform.GetChild(SlotNumber).transform, new Vector2(slotsPos[SlotNumber].localPosition.x, slotsPos[SlotNumber].localPosition.y), 0.7f, 0,Tween.EaseOut);
+                Tween.LocalScale(bigScoreObject.transform.GetChild(SlotNumber).transform, new Vector2(1.2f, 1.2f), 0.2f,0.7f,Tween.EaseIn);
+                Tween.LocalScale(bigScoreObject.transform.GetChild(SlotNumber).transform, new Vector2(1, 1), 0.2f,.9f,Tween.EaseOut);
                 UpdateText(scoreText, _score);
 				UpdateBigScore();
                 
@@ -159,19 +162,18 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		private void Update()
 		{
-			//showHud();
+			showHud();
 		}
 
 		private void showHud()
 		{
-			if (!scoreObject.activeSelf && !bigScoreObject.activeSelf) return;
+			if (!bigScoreObject.activeSelf) return;
 
 			if (paused) return;
 
 			_timer += Time.deltaTime;
-			if (_timer > 3)
+			if (_timer > 5)
 			{
-				scoreObject.SetActive(false);
 				bigScoreObject.SetActive(false);
 				_timer = 0;
 			}

@@ -40,7 +40,7 @@ public class ConfirmScreen : AScreen
 
     public void OnAnimEnd()
     {
-        Debug.Log("oui"); 
+
         if(isLogin) OnBackClicked?.Invoke(this);
         else OnSkipClicked?.Invoke(this); 
     }

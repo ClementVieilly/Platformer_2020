@@ -14,6 +14,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
 	public class LifeCollectible : ACollectible {
 
 		[SerializeField] private int WinLife = 1;
+        [SerializeField] private ParticleSystem collectedLifeParticleSystem;
 
 		private static List<LifeCollectible> _list = new List<LifeCollectible>();
 		public static List<LifeCollectible> List => _list;
@@ -28,6 +29,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
         protected override void EffectOfTheCollectible()
         {
             OnCollected?.Invoke(WinLife);
+            Instantiate(collectedLifeParticleSystem,transform.position, Quaternion.identity);
+
         }
 
         private void OnDestroy()

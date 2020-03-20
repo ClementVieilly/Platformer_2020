@@ -48,6 +48,8 @@ namespace Com.IsartDigital.Platformer.Screens
 
         private void Awake()
         {
+            animator = GetComponent<Animator>();
+            animator.SetTrigger(enter); 
             buttons = GetComponentsInChildren<Button>();//récupère tous les boutons du Menu Pause
 
             for (int i = 0; i < buttons.Length; i++)// Abonne le menu de pause aux boutons

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 869265862570046650}
   - component: {fileID: -3948370939264128018}
   - component: {fileID: 4119345193157944826}
+  - component: {fileID: 750109195034821556}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -131,6 +132,25 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!95 &750109195034821556
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869265862570046649}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac272fc84e0e2e34cba1125af23a30d8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &994802652308442667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,6 +1769,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e25f96e39cb3514793ccde38c0d327b, type: 3}
+--- !u!1 &4185435637589020350 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5627167867423426899, guid: 4e25f96e39cb3514793ccde38c0d327b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8359262369620494317}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &7692701696512577986 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2216870230098466351, guid: 4e25f96e39cb3514793ccde38c0d327b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8359262369620494317}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &339115523622552172 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8121915443319588225, guid: 4e25f96e39cb3514793ccde38c0d327b,
@@ -1761,15 +1793,3 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &7692701696512577986 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2216870230098466351, guid: 4e25f96e39cb3514793ccde38c0d327b,
-    type: 3}
-  m_PrefabInstance: {fileID: 8359262369620494317}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4185435637589020350 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5627167867423426899, guid: 4e25f96e39cb3514793ccde38c0d327b,
-    type: 3}
-  m_PrefabInstance: {fileID: 8359262369620494317}
-  m_PrefabAsset: {fileID: 0}

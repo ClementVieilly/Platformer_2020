@@ -4,6 +4,7 @@
 ///-----------------------------------------------------------------
 
 using System;
+using System.Collections;
 using Com.IsartDigital.Platformer.LevelObjects;
 using UnityEngine;
 using UnityEngine.UI;
@@ -121,6 +122,7 @@ namespace Com.IsartDigital.Platformer.Screens
 		public void RegisterSelfAnimator()
 		{
 			animator = GetComponent<Animator>();
+			Debug.Log(animator);
 		}
 
 		private void GrowJumpButton()
@@ -202,19 +204,26 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		private void OnDestroy()
 		{
-			btnPause.onClick.RemoveListener(Hud_OnButtonPauseClicked);
-			Player.OnPlayerMove -= UpdateMoveController;
-			Player.OnPlayerJump -= PulseJumpButton;
-			Player.OnPlayerEndJump -= StopPulsingJumpButton;
-			Player.OnPlayerPlane -= GrowJumpButton;
-			Player.OnPlayerEndPlane -= StopGrowJumpButton;
+			//btnPause.onClick.RemoveListener(Hud_OnButtonPauseClicked);
+			//Player.OnPlayerMove -= UpdateMoveController;
+			//Player.OnPlayerJump -= PulseJumpButton;
+			//Player.OnPlayerEndJump -= StopPulsingJumpButton;
+			//Player.OnPlayerPlane -= GrowJumpButton;
+			//Player.OnPlayerEndPlane -= StopGrowJumpButton;
 
 			_instance = null;
 		}
 
 		public override void UnsubscribeEvents()
 		{
+			btnPause.onClick.RemoveListener(Hud_OnButtonPauseClicked);
 			OnButtonPausePressed = null;
+			Player.OnPlayerMove -= UpdateMoveController;
+			Player.OnPlayerJump -= PulseJumpButton;
+			Player.OnPlayerEndJump -= StopPulsingJumpButton;
+			Player.OnPlayerPlane -= GrowJumpButton;
+			Player.OnPlayerEndPlane -= StopGrowJumpButton;
+			_instance = null;
 		}
 	}
 }

@@ -1919,6 +1919,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8135886326569738823, guid: 56fae09712773584fb63896d473a98ee,
+        type: 3}
+      propertyPath: deadZone
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135886326569738823, guid: 56fae09712773584fb63896d473a98ee,
+        type: 3}
+      propertyPath: handleRange
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135886326569738823, guid: 56fae09712773584fb63896d473a98ee,
+        type: 3}
+      propertyPath: moveThreshold
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8135886326569738822, guid: 56fae09712773584fb63896d473a98ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2028,21 +2043,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RaycastTarget
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8135886326569738823, guid: 56fae09712773584fb63896d473a98ee,
-        type: 3}
-      propertyPath: deadZone
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 8135886326569738823, guid: 56fae09712773584fb63896d473a98ee,
-        type: 3}
-      propertyPath: handleRange
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8135886326569738823, guid: 56fae09712773584fb63896d473a98ee,
-        type: 3}
-      propertyPath: moveThreshold
-      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8135886327475159576, guid: 56fae09712773584fb63896d473a98ee,
         type: 3}
@@ -2233,6 +2233,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8339976059704383063}
     m_Modifications:
+    - target: {fileID: 3251477474756671995, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
+        type: 3}
+      propertyPath: m_Name
+      value: Pause
+      objectReference: {fileID: 0}
     - target: {fileID: 3251477474756671994, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2348,11 +2353,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.15
       objectReference: {fileID: 0}
-    - target: {fileID: 3251477474756671995, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
-        type: 3}
-      propertyPath: m_Name
-      value: Pause
-      objectReference: {fileID: 0}
     - target: {fileID: 3251477474632835188, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2403,7 +2403,7 @@ PrefabInstance:
     - target: {fileID: 8170153791668043269, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8170153792821263258, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
@@ -2720,6 +2720,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5074053556693624430}
     m_Modifications:
+    - target: {fileID: 5627167867423426899, guid: 4e25f96e39cb3514793ccde38c0d327b,
+        type: 3}
+      propertyPath: m_Name
+      value: ScoreIcon
+      objectReference: {fileID: 0}
     - target: {fileID: 2216870230098466351, guid: 4e25f96e39cb3514793ccde38c0d327b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2824,11 +2829,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5627167867423426899, guid: 4e25f96e39cb3514793ccde38c0d327b,
-        type: 3}
-      propertyPath: m_Name
-      value: ScoreIcon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e25f96e39cb3514793ccde38c0d327b, type: 3}
@@ -2987,6 +2987,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6848862403435494750}
     m_Modifications:
+    - target: {fileID: 849067121568122089, guid: 1d2923be16415614492256cf1cc6fccf,
+        type: 3}
+      propertyPath: m_Name
+      value: BigScoreHud 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 849067121568122089, guid: 1d2923be16415614492256cf1cc6fccf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8102525353037834801, guid: 1d2923be16415614492256cf1cc6fccf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3091,16 +3101,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 849067121568122089, guid: 1d2923be16415614492256cf1cc6fccf,
-        type: 3}
-      propertyPath: m_Name
-      value: BigScoreHud 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 849067121568122089, guid: 1d2923be16415614492256cf1cc6fccf,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d2923be16415614492256cf1cc6fccf, type: 3}

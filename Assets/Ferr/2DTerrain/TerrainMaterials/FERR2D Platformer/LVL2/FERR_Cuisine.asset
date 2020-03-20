@@ -89,7 +89,7 @@ MonoBehaviour:
       height: 0.37089154
     _bodyWeights: []
     _yOffsetPercent: 0.23
-    _colliderOffset: 0.15
+    _colliderOffset: 0.06
     _colliderThickness: 0.88
     _physicsMaterial2D: {fileID: 0}
     _physicsMaterial3D: {fileID: 0}
@@ -105,14 +105,14 @@ MonoBehaviour:
       height: 0
     _leftCaps:
     - serializedVersion: 2
-      x: 0.24747649
-      y: 0.4865387
-      width: 0
-      height: 0
+      x: 0
+      y: 0
+      width: 0.049309663
+      height: 0.13440861
     _leftCapWeights: []
     _leftCapColliderSize:
     - 0
-    _leftCapColliderType: 00000000
+    _leftCapColliderType: 03000000
     _leftCapOffset:
     - 0
     _legacyInnerLeftCap:
@@ -121,11 +121,16 @@ MonoBehaviour:
       y: 0
       width: 0
       height: 0
-    _innerLeftCaps: []
+    _innerLeftCaps:
+    - serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
     _innerLeftCapWeights: []
     _innerLeftCapColliderSize:
     - 0
-    _innerLeftCapColliderType: 00000000
+    _innerLeftCapColliderType: 03000000
     _innerLeftCapOffset:
     - 0
     _legacyRightCap:
@@ -136,14 +141,14 @@ MonoBehaviour:
       height: 0
     _rightCaps:
     - serializedVersion: 2
-      x: 0.691859
-      y: 0.4865387
-      width: 0
-      height: 0
+      x: 0
+      y: 0
+      width: 0.049309663
+      height: 0.13440861
     _rightCapWeights: []
     _rightCapColliderSize:
     - 0
-    _rightCapColliderType: 00000000
+    _rightCapColliderType: 03000000
     _rightCapOffset:
     - 0
     _legacyInnerRightCap:
@@ -156,7 +161,7 @@ MonoBehaviour:
     _innerRightCapWeights: []
     _innerRightCapColliderSize:
     - 0
-    _innerRightCapColliderType: 00000000
+    _innerRightCapColliderType: 03000000
     _innerRightCapOffset:
     - 0
     _bodies:
@@ -183,14 +188,14 @@ MonoBehaviour:
       height: 0
     _leftCaps:
     - serializedVersion: 2
-      x: 0.24846256
-      y: 0.52162117
-      width: 0
-      height: 0
+      x: 0
+      y: 0
+      width: 0.049309663
+      height: 0.13440861
     _leftCapWeights: []
     _leftCapColliderSize:
     - 0
-    _leftCapColliderType: 00000000
+    _leftCapColliderType: 03000000
     _leftCapOffset:
     - 0
     _legacyInnerLeftCap:
@@ -203,7 +208,7 @@ MonoBehaviour:
     _innerLeftCapWeights: []
     _innerLeftCapColliderSize:
     - 0
-    _innerLeftCapColliderType: 00000000
+    _innerLeftCapColliderType: 03000000
     _innerLeftCapOffset:
     - 0
     _legacyRightCap:
@@ -214,14 +219,14 @@ MonoBehaviour:
       height: 0
     _rightCaps:
     - serializedVersion: 2
-      x: 0.6952301
-      y: 0.52162117
-      width: 0
-      height: 0
+      x: 0
+      y: 0
+      width: 0.049309663
+      height: 0.13440861
     _rightCapWeights: []
     _rightCapColliderSize:
     - 0
-    _rightCapColliderType: 00000000
+    _rightCapColliderType: 03000000
     _rightCapOffset:
     - 0
     _legacyInnerRightCap:
@@ -234,7 +239,7 @@ MonoBehaviour:
     _innerRightCapWeights: []
     _innerRightCapColliderSize:
     - 0
-    _innerRightCapColliderType: 00000000
+    _innerRightCapColliderType: 03000000
     _innerRightCapOffset:
     - 0
     _bodies:
@@ -281,7 +286,7 @@ MonoBehaviour:
     _innerLeftCapWeights: []
     _innerLeftCapColliderSize:
     - 0
-    _innerLeftCapColliderType: 00000000
+    _innerLeftCapColliderType: 03000000
     _innerLeftCapOffset:
     - 0
     _legacyRightCap:
@@ -312,7 +317,7 @@ MonoBehaviour:
     _innerRightCapWeights: []
     _innerRightCapColliderSize:
     - 0
-    _innerRightCapColliderType: 00000000
+    _innerRightCapColliderType: 03000000
     _innerRightCapOffset:
     - 0
     _bodies:

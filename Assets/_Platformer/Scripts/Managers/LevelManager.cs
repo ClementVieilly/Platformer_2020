@@ -10,6 +10,7 @@ using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
 using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.LevelObjects.Platforms;
 using Com.IsartDigital.Platformer.Screens;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ namespace Com.IsartDigital.Platformer.Managers
 	{
 		public delegate void LevelManagerEventHandler(LevelManager levelManager);
 
-		[SerializeField] private Player player = null;
+		private Player player = null;
         [SerializeField] private SoundsSettings sounds = null;
         [SerializeField] private Level levelInfos;
         private string currentLvlMusicName = "empty";
@@ -38,16 +39,23 @@ namespace Com.IsartDigital.Platformer.Managers
 		public bool[] BigScoreCollectibles { get => _bigScoreCollectibles; }
 
 		public event LevelManagerEventHandler OnWin;
+		public event LevelManagerEventHandler OnLaunchHudAnim;
 
         private void Start()
         {
+			player = FindObjectOfType<Player>();
             SubscribeAllEvents();
             timeManager = GetComponent<TimeManager>();
             timeManager.StartTimer();
             StartCoroutine(InitHud());
 		}
 
-        public void InitPlayerPos()
+		public void SetPlayer(Player player)
+		{
+			this.player = player;
+		}
+
+		public void InitPlayerPos()
         {
             player.SetStartPosition(levelInfos.StartPos);
         }
@@ -84,10 +92,14 @@ namespace Com.IsartDigital.Platformer.Managers
             if(Hud.Instance != null) Hud.Instance.Score = _score;
 		}
 
-		private void BigScoreCollectible_OnCollected(uint slotNumber)
+		private void BigScoreCollectible_OnCollected(int slotNumber)
 		{
 			_bigScoreCollectibles[slotNumber] = true;
-			if (Hud.Instance != null) Hud.Instance.BigScore = _bigScoreCollectibles;
+            if(Hud.Instance != null)
+            {
+                Hud.Instance.SlotNumber = slotNumber;
+                Hud.Instance.BigScore = _bigScoreCollectibles;
+            }
 		}
 
 		private void KillZone_OnCollision()
@@ -111,7 +123,7 @@ namespace Com.IsartDigital.Platformer.Managers
 				else if (CheckpointManager.Instance)
 				{
 					player.SetPosition(CheckpointManager.Instance.LastCheckpointPos);
-					PlatformTrigger.ResetAll();
+					PlatformTrigger.ResetAllOnDeath();
 					MobilePlatform.ResetAll();
 					ChangeTravellingCamera.ResetAll();
 				}
@@ -136,16 +148,19 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void Win()
         {
-			_completionTime = timeManager.Timer;
+            Hud.Instance.OnFinalAnimFinished += Hud_OnFinalAnimFinished;
+            _completionTime = timeManager.Timer;
             timeManager.SetModeVoid();
+            OnLaunchHudAnim?.Invoke(this); 
+        }
 
-			OnWin?.Invoke(this);
-
+        private void Hud_OnFinalAnimFinished(Hud hud)
+        {
             UnsubscribeAllEvents();
-
-			if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();
-            else Debug.LogError("Pas d'UImanager sur la scène");
-            player.gameObject.SetActive(false);
+            OnWin?.Invoke(this);
+            if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();
+             else Debug.LogError("Pas d'UImanager sur la scène");
+             player.gameObject.SetActive(false);
         }
 
         private void Retry()
@@ -182,7 +197,8 @@ namespace Com.IsartDigital.Platformer.Managers
             DestructiblePlatform.ResumeAll();
             MobilePlatform.ResumeAll();
             TimedDoor.ResumeAll();
-            SoundManager.Instance.ResumeAll();
+            //SoundManager.Instance.ResumeAll();
+            SoundManager.Instance.ResumeAllByMixerGroup();
             ChangeTravellingCamera.ResumeAll();
         }
 
@@ -193,7 +209,8 @@ namespace Com.IsartDigital.Platformer.Managers
 			DestructiblePlatform.PauseAll();
 			MobilePlatform.PauseAll();
 			TimedDoor.PauseAll();
-			SoundManager.Instance.PauseAll();
+			//SoundManager.Instance.PauseAll();
+			SoundManager.Instance.PauseAllByMixerGroup();
 			ChangeTravellingCamera.PauseAll();
 
 			if (UIManager.Instance != null)
@@ -219,30 +236,19 @@ namespace Com.IsartDigital.Platformer.Managers
         private void SubscribeAllEvents()
         {
             for(int i = LifeCollectible.List.Count - 1; i >= 0; i--)
-            {
                 LifeCollectible.List[i].OnCollected += LifeCollectible_OnCollected; 
-            }
 
             for(int i = KillZone.List.Count - 1; i >= 0; i--)
-            {
                 KillZone.List[i].OnCollision += KillZone_OnCollision; 
-            }
 
             for(int i = DeadZone.List.Count - 1; i >= 0; i--)
-            {
                 DeadZone.List[i].OnCollision += DeadZone_OnCollision; 
-            }
 
             for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
-            {
                 ScoreCollectible.List[i].OnCollected += ScoreCollectible_OnCollected;
-			}
 
 			for (int i = BigScoreCollectible.List.Count - 1; i >= 0; i--)
-			{
 				BigScoreCollectible.List[i].OnCollected += BigScoreCollectible_OnCollected;
-			}
-
 
 			CheckpointManager.OnFinalCheckPointTriggered += CheckpointManager_OnFinalCheckPointTriggered;
             player.OnDie += Player_OnDie;
@@ -261,24 +267,16 @@ namespace Com.IsartDigital.Platformer.Managers
         private void UnsubscribeAllEvents()
         {
             for(int i = LifeCollectible.List.Count - 1; i >= 0; i--)
-            {
                 LifeCollectible.List[i].OnCollected -= LifeCollectible_OnCollected;
-            }
 
             for(int i = KillZone.List.Count - 1; i >= 0; i--)
-            {
                 KillZone.List[i].OnCollision -= KillZone_OnCollision;
-            }
 
             for(int i = ScoreCollectible.List.Count - 1; i >= 0; i--)
-            {
                 ScoreCollectible.List[i].OnCollected -= ScoreCollectible_OnCollected;
-            }
 
             for (int i = DeadZone.List.Count - 1; i >= 0; i--)
-            {
                 DeadZone.List[i].OnCollision -= DeadZone_OnCollision;
-            }
 
             CheckpointManager.OnFinalCheckPointTriggered -= CheckpointManager_OnFinalCheckPointTriggered;
             player.OnDie -= Player_OnDie;

@@ -122,8 +122,6 @@ namespace Com.IsartDigital.Platformer.Managers
 		public void WebClient_OnLogged(WebClient webClient)
 		{
             currentLoginScreen.Animator.SetTrigger("Exit"); 
-            
-			
 		}
 
 		private void CreatePauseMenu() //Crée une instance de Menu Pause et écoute ses événements
@@ -227,8 +225,9 @@ namespace Com.IsartDigital.Platformer.Managers
         private void LoginScreen_OnLaunchLvlSelector(LoginScreen loginScreen)
         {
             CloseScreen(loginScreen);
-            CreateLevelSelector(); 
+            
             if(currentLeaderboard) currentLeaderboard.StartLeaderboard();
+            else CreateLevelSelector();
         }
 
         public void CreateConfirmScreen()
@@ -351,11 +350,10 @@ namespace Com.IsartDigital.Platformer.Managers
         private void TitleCard_OnGameStart(TitleCard title)
         {
             CloseScreen(title);
-            //CreateLevelSelector();
-            CreateConfirmScreen(); 
+            if(webClient.wantToLog) CreateConfirmScreen();
+            else CreateLevelSelector(); 
 
-			//if (webClient.wantToLog)
-				//CreateLoginScreen();
+			
         }
 
 		private void TitleCard_OnSoundTriggerClicked(TitleCard title)
@@ -435,14 +433,13 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private void LoginScreen_OnSkipClicked(LoginScreen loginScreen)
 		{
-            CloseScreen(loginScreen); 
-			CreateConfirmScreen();
+            CloseScreen(loginScreen);
+            CreateTitleCard(); 
 		}
 
 		private void ConfirmScreen_OnSkipClicked(ConfirmScreen confirmScreen)
 		{
 			CloseScreen(currentConfirmScreen);
-			CloseScreen(currentLoginScreen);
             CreateLevelSelector(); 
 			webClient.wantToLog = false;
 			if (currentLeaderboard) currentLeaderboard.StartLeaderboard();

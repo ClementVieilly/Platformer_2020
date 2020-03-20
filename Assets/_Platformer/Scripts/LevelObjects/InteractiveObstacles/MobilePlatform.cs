@@ -18,6 +18,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
         [SerializeField] private float duration = 0f;
         [SerializeField] private float timeBeforeStart = 0f;
         [SerializeField] private string playerTag = "Player"; 
+        [SerializeField] private bool isWall = false; 
         [SerializeField] private bool isStarted = false; 
         [SerializeField] private bool oneWay = false; 
 
@@ -76,9 +77,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 				allPoints[index - 1].position : allPoints[allPoints.Length - 1].position, 
 				allPoints[index].position, elapsedTime / duration);
 
-            if (touchedObject != null) touchedObject.position += transform.position - previousPos;
+			if (touchedObject != null && !isWall)
+				touchedObject.position += transform.position - previousPos;
+			
             if (elapsedTime >= duration)
-            {
+			{
                 if(oneWay && index == allPoints.Length - 1)
                 {
                     SetModeVoid();

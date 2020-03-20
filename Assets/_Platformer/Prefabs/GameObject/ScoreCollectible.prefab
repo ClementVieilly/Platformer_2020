@@ -4825,8 +4825,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1877034893
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -4914,6 +4914,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37994ffa32010e14fa77f0d6b17aaa35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds: {fileID: 0}
+  sfxList: []
   collectParticleSystem: {fileID: 3710985999376324442, guid: d5dc69d0318d8ef4482dee9bced82a9d,
     type: 3}
   allSprites:

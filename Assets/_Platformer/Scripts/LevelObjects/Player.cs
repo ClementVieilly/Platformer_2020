@@ -250,7 +250,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
 			horizontalAxis = controller.HorizontalAxis;
             OnPlayerMove?.Invoke(horizontalAxis);
-            jump = controller.Jump;
+
+            if (jump != controller.Jump) jump = controller.Jump;
         }
 
         private void FixedUpdate()
@@ -735,7 +736,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             jumpPSTimer = 0; 
         }
 
-       
+        private void OnDestroy()
+        {
+            OnPlayerJump     = null;
+            OnPlayerEndJump  = null;
+            OnPlayerPlane    = null;
+            OnPlayerEndPlane = null;
+        }
 
         #endregion
 

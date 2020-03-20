@@ -1,0 +1,230 @@
+fileFormatVersion: 2
+guid: 04a1f6ffc12329a43a7c5bdf33b15310
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8896844648848601128
+    second: lights_0
+  - first:
+      213: -838988493365444387
+    second: lights_1
+  - first:
+      213: -3600859888516322830
+    second: lights_2
+  - first:
+      213: 2403883324935396316
+    second: lights_3
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: lights_0
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 183
+        width: 2479
+        height: 2710
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 527.43555, y: 1355}
+        - {x: -1239.3857, y: -932.92053}
+        - {x: -1239.3857, y: -1173.7667}
+        - {x: -1168.7129, y: -1302.218}
+        - {x: -497.32083, y: -1353.5985}
+        - {x: 1083.1812, y: -1353.5985}
+        - {x: 1239.5, y: -1218.7246}
+        - {x: 1239.5, y: -598.9472}
+        - {x: 649.50684, y: 1355}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16d52a6baf462ad4e9954864244ae54b
+      internalID: 8896844648848601128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lights_1
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 2444
+        width: 562
+        height: 590
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 147.57375, y: 295}
+        - {x: -205.7905, y: 295}
+        - {x: -279.67575, y: 215.37032}
+        - {x: -279.67575, y: -105.75788}
+        - {x: -212.2153, y: -295}
+        - {x: 68, y: -295}
+        - {x: 281, y: -150.71584}
+        - {x: 273, y: 190}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d821481c23ad94b48bc44fa749633a69
+      internalID: -838988493365444387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lights_2
+      rect:
+        serializedVersion: 2
+        x: 2573
+        y: 180
+        width: 1773
+        height: 2771
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 881.6701, y: 1385.5}
+        - {x: 528.30585, y: 1385.5}
+        - {x: -885.1511, y: -1083.6395}
+        - {x: -885.1511, y: -1385.5}
+        - {x: 611.8283, y: -1385.5}
+        - {x: 672.86395, y: -1260.26}
+        - {x: 886.5, y: 1212.4271}
+        - {x: 886.5, y: 1372.9912}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e193b86e181118342927dc0bcedb363e
+      internalID: -3600859888516322830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lights_3
+      rect:
+        serializedVersion: 2
+        x: 4491
+        y: 851
+        width: 1885
+        height: 2023
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8.092571, y: 1011.5}
+        - {x: -107.55391, y: 1011.5}
+        - {x: -942.5, y: -632.61224}
+        - {x: -942.5, y: -886.3035}
+        - {x: -297.08566, y: -1011.5}
+        - {x: 682.6971, y: -1011.5}
+        - {x: 942.5, y: -924.5}
+        - {x: 942.5, y: -584.44305}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f699c757f112dd4cbf7fa316eb322b7
+      internalID: 2403883324935396316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: f2af6560f7b432545a6a7deec9423b4d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

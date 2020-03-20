@@ -40,22 +40,11 @@ namespace Com.IsartDigital.Platformer.Cameras {
 			objs = GetComponentsInChildren<Transform>();
 			lastCamPos = cam.position;
 
-			if (GetComponent<Collider2D>() != null) SetModeVoid();
-			else SetModeNormal();
 
 			Vector2 pos = new Vector2();
 			Transform obj;
 
-			//for (int i = objs.Length - 1; i >= 0; i--)
-			//{
-			//	obj = objs[i];
-			//	pos.x = (obj.localPosition.x - refPos.x) * parallaxRatioX;
-			//	//obj.position += (Vector3)pos;
-			//	if (obj.localPosition.x >= 0) obj.position += (Vector3)pos;
-			//	else obj.position -= (Vector3)pos;
-			//}
-
-			for (int i = 0; i < objs.Length; i++)
+			for (int i = objs.Length - 1; i >= 0; i--)
 			{
 				obj = objs[i];
 				pos.x = (obj.localPosition.x - refPos.x) * parallaxRatioX;
@@ -63,6 +52,9 @@ namespace Com.IsartDigital.Platformer.Cameras {
 			}
 
 			gameObject.transform.position = startPos;
+
+			if (GetComponent<Collider2D>() != null) SetModeVoid();
+			else SetModeNormal();
 		}
 
 		private void LateUpdate()

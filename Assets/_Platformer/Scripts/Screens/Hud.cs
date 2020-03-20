@@ -168,10 +168,10 @@ namespace Com.IsartDigital.Platformer.Screens
            {
                 for(int i = 0; i < keyTab.Count; i++)
                 {
-                    Tween.LocalScale(keyTab[i], new Vector2(1, 1), 0.2f, 0.2f * i, bigScoreEnterAnimWin);
+                    Tween.LocalScale(keyTab[i], new Vector2(1, 1), 0.2f, 0.5f * i, bigScoreEnterAnimWin);
                 }
 
-                yield return new WaitForSeconds(0.4f*keyTab.Count);
+                yield return new WaitForSeconds(0.5f*keyTab.Count);
             }
             OnFinalAnimFinished?.Invoke(this);
         }

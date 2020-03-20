@@ -156,7 +156,6 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void Hud_OnFinalAnimFinished(Hud hud)
         {
-            Debug.Log("eventAnim"); 
             UnsubscribeAllEvents();
             OnWin?.Invoke(this);
             if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();

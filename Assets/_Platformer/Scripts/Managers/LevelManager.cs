@@ -3,27 +3,26 @@
 /// Date : 21/01/2020 10:37
 ///-----------------------------------------------------------------
 
-using Cinemachine;
+using Com.IsartDigital.InteractiveObstacles;
 using Com.IsartDigital.Platformer.Cameras;
 using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
-using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.LevelObjects.Platforms;
 using Com.IsartDigital.Platformer.Screens;
-using System;
 using System.Collections;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Managers
 {
-	public class LevelManager : MonoBehaviour
+    public class LevelManager : MonoBehaviour
 	{
 		public delegate void LevelManagerEventHandler(LevelManager levelManager);
 
 		private Player player = null;
         [SerializeField] private SoundsSettings sounds = null;
         [SerializeField] private Level levelInfos;
-        private string currentLvlMusicName = "empty";
+        private string currentLvlAmbianceName = "";
+        private string currentLvlMusiceName = "";
 		private TimeManager timeManager = null;
 
 		private int _levelNumber = 0;
@@ -67,11 +66,22 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			_levelNumber = level;
 
-            if (_levelNumber == 1) currentLvlMusicName = sounds.Ambiance_Level_One;
-            else if (_levelNumber == 2) currentLvlMusicName = sounds.Ambiance_Level_Two;
+            if (_levelNumber == 1) 
+            { 
+            currentLvlAmbianceName = sounds.Ambiance_Level_1;
+            currentLvlMusiceName = sounds.Music_Level_1;
+            }
+            else if (_levelNumber == 2)
+            {
+                currentLvlAmbianceName = sounds.Ambiance_Level_2;
+                currentLvlMusiceName = sounds.Music_Level_2;
+            }
 
-			if (SoundManager.Instance)
-				SoundManager.Instance.Play(currentLvlMusicName);
+            if (SoundManager.Instance)
+            {
+				SoundManager.Instance.Play(currentLvlMusiceName);
+				SoundManager.Instance.Play(currentLvlAmbianceName);
+            }
         }
 
         private IEnumerator InitHud()
@@ -185,8 +195,8 @@ namespace Com.IsartDigital.Platformer.Managers
 
 			if (SoundManager.Instance)
 			{
-				SoundManager.Instance.Stop(currentLvlMusicName);
-				SoundManager.Instance.Play(currentLvlMusicName);
+				SoundManager.Instance.Stop(currentLvlAmbianceName);
+				SoundManager.Instance.Play(currentLvlAmbianceName);
 			}
         }
 
@@ -227,7 +237,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private void OnDestroy()
         {
             UnsubscribeAllEvents();
-            SoundManager.Instance.Stop(currentLvlMusicName);
+            SoundManager.Instance.Stop(currentLvlAmbianceName);
         }
 
         #region Events subscribtions

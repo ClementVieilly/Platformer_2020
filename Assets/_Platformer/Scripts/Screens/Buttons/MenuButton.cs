@@ -3,6 +3,7 @@
 /// Date : 22/01/2020 16:35
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.Managers;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ namespace Com.IsartDigital.Platformer.Screens.Buttons {
 
         public delegate void MenuButtonEventHandler(Button button);
         public MenuButtonEventHandler OnMenuButtonClicked;
+        [SerializeField] SoundsSettings sounds = null;
 
         private Button button;
 		public Button Button { get => button; }
@@ -25,6 +27,7 @@ namespace Com.IsartDigital.Platformer.Screens.Buttons {
         private void MenuButton_OnClick()
         {
             OnMenuButtonClicked?.Invoke(button);
+            SoundManager.Instance.Play(sounds.Ui_Button);
         }
 
         private void OnDestroy()

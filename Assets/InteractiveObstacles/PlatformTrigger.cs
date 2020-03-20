@@ -6,7 +6,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
+namespace Com.IsartDigital.InteractiveObstacles {
 	public class PlatformTrigger : AInteractiveObstacles {
 
         private static List<PlatformTrigger> _list = new List<PlatformTrigger>();

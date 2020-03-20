@@ -3,11 +3,11 @@
 /// Date : 04/02/2020 12:15
 ///-----------------------------------------------------------------
 
-using Com.IsartDigital.Platformer.Managers;
-using Com.IsartDigital.Platformer.Screens;
+using Com.IsartDigital.Platformer.LevelObjects;
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
+namespace Com.IsartDigital.InteractiveObstacles
+{
     public class InteractiveEnemyAttack : MonoBehaviour
     {
         private Vector3 targetPosition;

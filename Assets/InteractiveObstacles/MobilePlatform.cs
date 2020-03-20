@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
+namespace Com.IsartDigital.InteractiveObstacles {
 	public class MobilePlatform : MonoBehaviour {
 
         [SerializeField] private Transform[] allPoints = null;

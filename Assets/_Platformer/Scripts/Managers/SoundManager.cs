@@ -48,8 +48,6 @@ namespace Com.IsartDigital.Platformer.Managers
 			{
 				Sound sound = sounds[i];
 				soundsList.Add(sounds[i]);
-				sound.SetNewSource(gameObject.AddComponent<AudioSource>());
-				if (sound.MixerGroupLvl1 == null) sound.Source.outputAudioMixerGroup = mainMixerGroupLvl1;
 			}
 		}
 
@@ -60,11 +58,16 @@ namespace Com.IsartDigital.Platformer.Managers
 		public void Play(string sound)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
-
+			Debug.Log(currentSound);
 			if (currentSound == null)
 			{
 				Debug.LogWarning("Sound: " + sound + " not found!");
 				return;
+			}
+			if (currentSound.Source == null)
+			{
+				currentSound.SetNewSource(gameObject.AddComponent<AudioSource>());
+				if (currentSound.MixerGroupLvl1 == null) currentSound.Source.outputAudioMixerGroup = mainMixerGroupLvl1;
 			}
 			if (currentSound.Source.isPlaying) 
 			{
@@ -258,7 +261,8 @@ namespace Com.IsartDigital.Platformer.Managers
 			for (int i = sounds.Length - 1; i >= 0; i--)
 			{
 				Sound sound = sounds[i];
-				if (sound.Source.isPlaying)
+				
+				if (sound.Source != null && sound.Source.isPlaying)
 				{
 					if (sound.Type == SoundTypes.SFX_ClassicPause) Pause(sound);
 					else if (sound.Type == SoundTypes.SFX_MixerPause || sound.Type == SoundTypes.MUSIC) PauseByMixer(sound);

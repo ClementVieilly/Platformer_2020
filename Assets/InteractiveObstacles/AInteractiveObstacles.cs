@@ -3,9 +3,10 @@
 /// Date : 04/02/2020 11:10
 ///-----------------------------------------------------------------
 
-using UnityEngine;
+using Com.IsartDigital.Platformer.LevelObjects;
 
-namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
+namespace Com.IsartDigital.InteractiveObstacles
+{
     abstract public class AInteractiveObstacles : ACollisionableObject
     {
         protected override void EffectOnCollision()

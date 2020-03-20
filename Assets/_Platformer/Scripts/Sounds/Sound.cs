@@ -80,10 +80,10 @@ namespace Com.IsartDigital.Platformer.Sounds {
 		[SerializeField] AnimationCurve _volumeSpatialization;
 		public AnimationCurve VolumeSpatialization => _volumeSpatialization;
 
-		[SerializeField] private float _minDistance;
+		[SerializeField] private float _minDistance = 0;
 		public float minDistance => _minDistance;
 
-		[SerializeField] private float _maxDistance;
+		[SerializeField] private float _maxDistance = 500;
 		public float maxDistance => _maxDistance;
 
 		#endregion

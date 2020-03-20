@@ -91,6 +91,10 @@ namespace Com.IsartDigital.Platformer
             SerializedProperty _isStartAtRandomTime = property.FindPropertyRelative("_isStartAtRandomTime");
             //AudioMixerGroup
             SerializedProperty _mixerGroupLvl1 = property.FindPropertyRelative("_mixerGroupLvl1");
+            //AudioMixerGroup
+            SerializedProperty _mixerGroupLvl2 = property.FindPropertyRelative("_mixerGroupLvl2");
+            //AudioMixerGroup
+            SerializedProperty _pauseMixerGroup = property.FindPropertyRelative("_pauseMixerGroup");
 
             #endregion
 
@@ -467,10 +471,10 @@ namespace Com.IsartDigital.Platformer
             EditorGUI.PropertyField(audioMixerLvl1RightRect, _mixerGroupLvl1, GUIContent.none);
 
             GUI.Label(audioMixerLvl2LeftRect, "Main Mixer Lvl 2");
-            EditorGUI.PropertyField(audioMixerLvl2RightRect, _mixerGroupLvl1, GUIContent.none);
+            EditorGUI.PropertyField(audioMixerLvl2RightRect, _mixerGroupLvl2, GUIContent.none);
 
             GUI.Label(audioMixerPauseLeftRect, "Pause Mixer Group");
-            EditorGUI.PropertyField(audioMixerPauseRightRect, _mixerGroupLvl1, GUIContent.none);
+            EditorGUI.PropertyField(audioMixerPauseRightRect, _pauseMixerGroup, GUIContent.none);
 
             EditorGUI.EndProperty();
         }

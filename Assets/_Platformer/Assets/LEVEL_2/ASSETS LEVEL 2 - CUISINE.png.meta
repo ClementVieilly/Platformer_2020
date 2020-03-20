@@ -1,0 +1,441 @@
+fileFormatVersion: 2
+guid: fe8eacb15c26edf49a053f989366624f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2418292842424184438
+    second: ASSETS LEVEL 2 - CUISINE_0
+  - first:
+      213: 3509007436609664117
+    second: ASSETS LEVEL 2 - CUISINE_1
+  - first:
+      213: -886713559659292710
+    second: ASSETS LEVEL 2 - CUISINE_2
+  - first:
+      213: -1120055032514459714
+    second: ASSETS LEVEL 2 - CUISINE_3
+  - first:
+      213: -9192695577769048445
+    second: ASSETS LEVEL 2 - CUISINE_4
+  - first:
+      213: -3391672936167603089
+    second: ASSETS LEVEL 2 - CUISINE_5
+  - first:
+      213: 8242115082915921256
+    second: ASSETS LEVEL 2 - CUISINE_6
+  - first:
+      213: -5963464572467949838
+    second: ASSETS LEVEL 2 - CUISINE_7
+  - first:
+      213: 4308849976387874246
+    second: ASSETS LEVEL 2 - CUISINE_8
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ASSETS LEVEL 2 - CUISINE_0
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 1533
+        width: 464
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 46, y: 256}
+        - {x: -65, y: 256}
+        - {x: -232, y: 58}
+        - {x: -231.69995, y: -77.24365}
+        - {x: -99, y: -256}
+        - {x: 92, y: -254}
+        - {x: 232, y: -37}
+        - {x: 232, y: 42.787148}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8344a8ba47a851441807743cfbe7adc9
+      internalID: 2418292842424184438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 2 - CUISINE_1
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 1502
+        width: 878
+        height: 515
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 317, y: 257.5}
+        - {x: -321, y: 257.5}
+        - {x: -439, y: 172.5}
+        - {x: -438.79517, y: 14.838826}
+        - {x: -361.5149, y: -257.5}
+        - {x: 358.41187, y: -257.5}
+        - {x: 439, y: 34.5}
+        - {x: 439, y: 122.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2b80de9e559b6d478ef446aa816a396
+      internalID: 3509007436609664117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 2 - CUISINE_2
+      rect:
+        serializedVersion: 2
+        x: 1872
+        y: 1844
+        width: 2111
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1055.5, y: 12}
+        - {x: -1009.5, y: -180}
+        - {x: 367.5, y: -180}
+        - {x: 592.5, y: -36}
+        - {x: 1055.5, y: 0}
+        - {x: 1055.5, y: 180}
+        - {x: 612.5, y: 180}
+        - {x: 369.5, y: 28}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7432cb2f52791f64a833e4106758db1c
+      internalID: -886713559659292710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 2 - CUISINE_3
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1500
+        width: 1173
+        height: 287
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 586.5, y: -143.5}
+        - {x: 586.5, y: -27.5}
+        - {x: 13.720715, y: 143.5}
+        - {x: -299.46777, y: 143.5}
+        - {x: -586.5, y: -6.5}
+        - {x: -586.5, y: -143.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3227d8c61be08a42b47a6fe4b2d12ca
+      internalID: -1120055032514459714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 2 - CUISINE_4
+      rect:
+        serializedVersion: 2
+        x: 2273
+        y: 945
+        width: 1806
+        height: 655
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 447.7619, y: 327.5}
+        - {x: -903, y: 43.5}
+        - {x: -902.6092, y: -132.22552}
+        - {x: -678, y: -327.5}
+        - {x: 166, y: -327.5}
+        - {x: 903, y: 103.5}
+        - {x: 903, y: 327.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 466772beb4f7afd4cbadd119379ae730
+      internalID: -9192695577769048445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 2 - CUISINE_5
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 353
+        width: 1995
+        height: 1058
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -997.5, y: 268.57153}
+        - {x: -997.5, y: -529}
+        - {x: 102.41648, y: -528.9212}
+        - {x: 135.5, y: 59}
+        - {x: 997.5, y: 423}
+        - {x: 997.5, y: 529}
+        - {x: 884.5, y: 529}
+        - {x: 99.5, y: 248}
+      - - {x: 263.0781, y: -132.20926}
+        - {x: 250.87596, y: -140.34694}
+        - {x: 250.87596, y: -296.99728}
+        - {x: 370.86374, y: -528.9212}
+        - {x: 671.8501, y: -528.9212}
+        - {x: 698.2881, y: -488.2328}
+        - {x: 698.2881, y: -282.75635}
+        - {x: 582.3677, y: -132.20926}
+      - - {x: 765.3999, y: 14.269005}
+        - {x: 720.6587, y: -85.41759}
+        - {x: 720.6587, y: -260.37775}
+        - {x: 763.3662, y: -459.75092}
+        - {x: 869.11816, y: -528.9212}
+        - {x: 960.6343, y: -528.9212}
+        - {x: 997.5, y: -488.2328}
+        - {x: 997.5, y: 14.269005}
+      - - {x: 480.68307, y: -482.12955}
+        - {x: 472.5483, y: -457.7165}
+        - {x: 478.64938, y: -449.57883}
+        - {x: 492.88522, y: -443.47556}
+        - {x: 488.81784, y: -445.50998}
+        - {x: 478.64938, y: -455.68207}
+        - {x: 478.64938, y: -473.99185}
+        - {x: 480.68307, y: -480.09512}
+        - {x: 488.81784, y: -486.1984}
+        - {x: 490.85153, y: -486.1984}
+        - {x: 494.9189, y: -492.30164}
+        - {x: 498.9863, y: -492.30164}
+        - {x: 488.81784, y: -490.2672}
+        - {x: 488.81784, y: -488.2328}
+      - - {x: 924.02783, y: -427.2002}
+        - {x: 926.0615, y: -425.16577}
+        - {x: 934.1963, y: -406.856}
+        - {x: 919.96045, y: -431.26904}
+        - {x: 924.02783, y: -433.30347}
+      - - {x: 871.15186, y: -421.09692}
+        - {x: 860.9834, y: -417.0281}
+        - {x: 879.2866, y: -414.99368}
+        - {x: 881.3203, y: -429.23462}
+        - {x: 881.3203, y: -427.2002}
+      - - {x: 517.28955, y: -408.8904}
+        - {x: 535.5928, y: -364.13318}
+        - {x: 543.72754, y: -347.85782}
+        - {x: 553.896, y: -305.13498}
+        - {x: 555.9297, y: -290.89404}
+        - {x: 555.9297, y: -296.99728}
+        - {x: 562.03076, y: -303.10056}
+        - {x: 545.7612, y: -414.99368}
+        - {x: 511.18845, y: -417.0281}
+        - {x: 513.22217, y: -417.0281}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b834442b0d4c82d45beb44ee990350c6
+      internalID: -3391672936167603089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 2 - CUISINE_6
+      rect:
+        serializedVersion: 2
+        x: 1437
+        y: 111
+        width: 453
+        height: 635
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -226.5, y: 317.5}
+        - {x: -166.5, y: 10.5}
+        - {x: -226.5, y: -317.24545}
+        - {x: 145.5, y: -317.5}
+        - {x: 226.5, y: -32.5}
+        - {x: 226.5, y: 317.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b429832c25a853745b6df0025ef803f6
+      internalID: 8242115082915921256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 2 - CUISINE_7
+      rect:
+        serializedVersion: 2
+        x: 1919
+        y: 135
+        width: 356
+        height: 757
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -177.73587, y: 378.5}
+        - {x: -178, y: -0.5}
+        - {x: -40, y: -182.5}
+        - {x: -178, y: -315.5}
+        - {x: -178, y: -378.5}
+        - {x: 178, y: -378.5}
+        - {x: 51, y: -174.5}
+        - {x: 178, y: -0.5}
+        - {x: 178, y: 378.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9212ae11d38b8342a0f230d7b5af642
+      internalID: -5963464572467949838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ASSETS LEVEL 2 - CUISINE_8
+      rect:
+        serializedVersion: 2
+        x: 2332
+        y: 119
+        width: 583
+        height: 736
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 182.38826, y: -290.9357}
+        - {x: 291.5, y: -191}
+        - {x: 129.5, y: -12}
+        - {x: 291.5, y: 101.70742}
+        - {x: 291.5, y: 233.94473}
+        - {x: 127.47859, y: 368}
+        - {x: -126.732834, y: 368}
+        - {x: -291.5, y: 227}
+        - {x: -291.5, y: 95}
+        - {x: -129.5, y: -1}
+        - {x: -238.5, y: -103}
+        - {x: -291.46185, y: -368}
+        - {x: 291.5, y: -368}
+        - {x: 291.5, y: -301}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a520c093cf7f504fa7eb85217feab2d
+      internalID: 4308849976387874246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 7fe5e0813f2f4d046868004ace6de481
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

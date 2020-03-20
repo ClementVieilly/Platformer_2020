@@ -1,0 +1,429 @@
+fileFormatVersion: 2
+guid: f118e93b22f0bab41be7248130f397e7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -301391882574087476
+    second: Oiseaux_2_0
+  - first:
+      213: 1881493018424123334
+    second: Oiseaux_2_1
+  - first:
+      213: -1721861442868785339
+    second: Oiseaux_2_2
+  - first:
+      213: 7140671601027340084
+    second: Oiseaux_2_3
+  - first:
+      213: -146067324380134984
+    second: Oiseaux_2_4
+  - first:
+      213: -3926936685258506189
+    second: Oiseaux_2_5
+  - first:
+      213: -7189964702860222936
+    second: Oiseaux_2_6
+  - first:
+      213: 2421625160065130098
+    second: Oiseaux_2_7
+  - first:
+      213: -2506398472257669102
+    second: Oiseaux_2_8
+  - first:
+      213: 8201605557940993319
+    second: Oiseaux_2_9
+  - first:
+      213: -460000935791437788
+    second: Oiseaux_2_10
+  - first:
+      213: 8893086141425086541
+    second: Oiseaux_2_11
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Oiseaux_2_0
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 1792
+        width: 399
+        height: 441
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9df8c2254cc810e46a681c59cb4add42
+      internalID: -301391882574087476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oiseaux_2_1
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 871
+        width: 1489
+        height: 1086
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 744.5, y: -103}
+        - {x: 744.5, y: 329}
+        - {x: 480.10938, y: 543}
+        - {x: 480.10938, y: 543}
+        - {x: 299.5, y: 395}
+        - {x: -59.5, y: 234}
+        - {x: -407.5, y: 362}
+        - {x: -744.5, y: 347}
+        - {x: -744.5, y: -75}
+        - {x: -233.5, y: -543}
+        - {x: -65.5, y: -477}
+        - {x: 125.5, y: -258}
+        - {x: 345.5, y: -256}
+        - {x: 335.5, y: -543}
+        - {x: 392.5, y: -543}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31a517e1821a24f40a55d22c58a6a089
+      internalID: 1881493018424123334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oiseaux_2_2
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 1691
+        width: 427
+        height: 697
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 213.5, y: 66.5}
+        - {x: 9.5, y: 348.5}
+        - {x: -213.5, y: 348.5}
+        - {x: -213.5, y: -348.5}
+        - {x: 213.5, y: -348.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0df5ee1a7cde0a741a9647a7e16cd51d
+      internalID: -1721861442868785339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oiseaux_2_3
+      rect:
+        serializedVersion: 2
+        x: 1912
+        y: 612
+        width: 1530
+        height: 1811
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 336, y: -238.5}
+        - {x: 765, y: 141.5}
+        - {x: 765, y: 411.6132}
+        - {x: 552, y: 581.5}
+        - {x: -123, y: 636.5}
+        - {x: -158.88483, y: 905.5}
+        - {x: -491.1856, y: 905.5}
+        - {x: -652.1973, y: 844.9281}
+        - {x: -765, y: 618.85077}
+        - {x: -765, y: 273.5}
+        - {x: -606, y: 313.5}
+        - {x: -234, y: -533.5}
+        - {x: -489, y: -712.5}
+        - {x: -280, y: -849.5}
+        - {x: 128.8808, y: -905.4587}
+        - {x: 351.55658, y: -581.757}
+        - {x: 254, y: -519.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 118c1203c1228a44ab444fa669a0c96d
+      internalID: 7140671601027340084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oiseaux_2_4
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 114
+        width: 262
+        height: 767
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ee26c22d687ab74aa8b1185be17f719
+      internalID: -146067324380134984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oiseaux_2_5
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 152
+        width: 377
+        height: 691
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e48e7d7c3d702a4f9c16b5e4c5626ea
+      internalID: -3926936685258506189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oiseaux_2_6
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 633
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc97d34a87e3f434db90a15bf198dbb9
+      internalID: -7189964702860222936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oiseaux_2_7
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 112
+        width: 436
+        height: 694
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97190b38d8fa0f644a08b1da498729b6
+      internalID: 2421625160065130098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oiseaux_2_8
+      rect:
+        serializedVersion: 2
+        x: 1429
+        y: 135
+        width: 365
+        height: 686
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 72.5, y: 343}
+        - {x: 4.5, y: 302}
+        - {x: -182.5, y: 37.375675}
+        - {x: -182.5, y: -342.84534}
+        - {x: -74.5, y: -339}
+        - {x: 182.5, y: 71}
+        - {x: 182.5, y: 337}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a04594c46df9e0e4fa16225355a8f09a
+      internalID: -2506398472257669102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oiseaux_2_9
+      rect:
+        serializedVersion: 2
+        x: 1758
+        y: 110
+        width: 464
+        height: 665
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 154.73433, y: 332.5}
+        - {x: 72.51558, y: 332.5}
+        - {x: -11.416065, y: 280.41437}
+        - {x: -232, y: -211.13261}
+        - {x: -232, y: -332.5}
+        - {x: -66.22857, y: -332.5}
+        - {x: -59.377003, y: -317.32047}
+        - {x: 195.8437, y: -3.8950396}
+        - {x: 232, y: 100.5801}
+        - {x: 232, y: 229.03314}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 282ccb3596da5b9419695839cd2ffc07
+      internalID: 8201605557940993319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oiseaux_2_10
+      rect:
+        serializedVersion: 2
+        x: 2320
+        y: 95
+        width: 740
+        height: 478
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -197.09283, y: 239}
+        - {x: -370, y: 239}
+        - {x: -370, y: 74}
+        - {x: -255, y: -239}
+        - {x: -85, y: -239}
+        - {x: 370, y: -76.27072}
+        - {x: 367, y: -42}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 367fa2a9898c84d438a391a9de3ac3bc
+      internalID: -460000935791437788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: bcbad9d5932723c4caff45a21c4b5a1d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

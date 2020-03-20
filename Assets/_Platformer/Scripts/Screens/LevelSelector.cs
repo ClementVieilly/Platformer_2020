@@ -23,11 +23,13 @@ namespace Com.IsartDigital.Platformer.Screens
 
         [SerializeField] private string buttonLevel1Tag = "Level1Button";
         [SerializeField] private string buttonLevel2Tag = "Level2Button";
+        private int level;
 
         private void Awake()
         {
             buttons = GetComponentsInChildren<Button>();
-
+            animator = GetComponent<Animator>();
+            animator.SetTrigger(enter); 
             for (int i = 0; i < buttons.Length; i++)//Assigne les bonnes références de chaque boutons grâce à leurs tags
             {
                 if (buttons[i].CompareTag(buttonLevel1Tag)) level1Button = buttons[i];
@@ -40,12 +42,25 @@ namespace Com.IsartDigital.Platformer.Screens
 
         private void LevelSelector_OnButtonClicked(Button sender)
         {
-            if (sender == level1Button) OnLevelClicked?.Invoke(this, 1);
-            else if (sender == level2Button) OnLevelClicked?.Invoke(this, 2);
+            if(sender == level1Button)
+            {
+                level = 1;
+                animator.SetTrigger(exit);
+            }
+            else if(sender == level2Button)
+            {
+                level = 2;
+                animator.SetTrigger(exit);
+            }
             else OnBackToTitleClicked?.Invoke(this, 0);
 
             for (int i = buttons.Length - 1; i >= 0; i--)
                 buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked -= LevelSelector_OnButtonClicked;
+        }
+
+        public void OnAnimEnd()
+        {
+            OnLevelClicked?.Invoke(this, level);
         }
 
         public override void UnsubscribeEvents()

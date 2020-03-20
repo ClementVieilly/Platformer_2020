@@ -1,0 +1,329 @@
+fileFormatVersion: 2
+guid: c67a104727aedfd4a80af04d83c74da0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1134218586873198721
+    second: Hiboux_0
+  - first:
+      213: 750975734473079986
+    second: Hiboux_1
+  - first:
+      213: 1494153994122698637
+    second: Hiboux_2
+  - first:
+      213: -6138407924099113015
+    second: Hiboux_3
+  - first:
+      213: 8779562710815133438
+    second: Hiboux_4
+  - first:
+      213: -8529064219900643234
+    second: Hiboux_5
+  - first:
+      213: 6011638195206583099
+    second: Hiboux_6
+  - first:
+      213: -4096816599598254315
+    second: Hiboux_7
+  - first:
+      213: -1128529666617816395
+    second: Hiboux_8
+  - first:
+      213: 4829266607585072845
+    second: Hiboux_9
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Hiboux_1
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 660
+        width: 887
+        height: 1732
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 151.5, y: -866}
+        - {x: 443.5, y: -531}
+        - {x: 443.5, y: 326}
+        - {x: 202.5, y: 866}
+        - {x: -197.1084, y: 866}
+        - {x: -443.5, y: 193}
+        - {x: -443.5, y: -403}
+        - {x: -211.5, y: -866}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8981d5c1fb546664cbed53d92fa07d2f
+      internalID: 750975734473079986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hiboux_2
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 652
+        width: 1519
+        height: 1765
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 633.5, y: -882.5}
+        - {x: 759.5, y: -882.5}
+        - {x: 759.5, y: -647.5}
+        - {x: 291.5, y: 882.5}
+        - {x: -180.5, y: 882.5}
+        - {x: -759.5, y: 747.91156}
+        - {x: -759.5, y: 349.5}
+        - {x: -198.5, y: -313.5}
+        - {x: -405.5, y: -404.5}
+        - {x: -387.5, y: -610.5}
+        - {x: -202.5, y: -517.5}
+        - {x: -4.5, y: -533.5}
+        - {x: 101.5, y: -399.5}
+        - {x: 296.5, y: -657.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5448fa7e6614e214999aff2391a61efb
+      internalID: 1494153994122698637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hiboux_3
+      rect:
+        serializedVersion: 2
+        x: 2293
+        y: 1357
+        width: 829
+        height: 982
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -153.5, y: -491}
+        - {x: 205.5, y: -491}
+        - {x: 414.5, y: -320}
+        - {x: 414.5, y: 491}
+        - {x: 13.5, y: 376}
+        - {x: -414.22366, y: 450.97784}
+        - {x: -414.22366, y: 281.41983}
+        - {x: -302.5, y: 216}
+        - {x: -304.5, y: -272}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a388765aa8eb55f43bf86a528faa0729
+      internalID: -6138407924099113015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hiboux_5
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 93
+        width: 587
+        height: 1150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -198.5, y: 575}
+        - {x: -237.5, y: 220}
+        - {x: -293.5, y: 178}
+        - {x: -293.5, y: -150}
+        - {x: -232.5, y: -575}
+        - {x: 177.5, y: -575}
+        - {x: 293.5, y: -443}
+        - {x: 293.5, y: -216}
+        - {x: 293.5, y: 49}
+        - {x: 18.5, y: 362}
+        - {x: 16.681656, y: 575}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fba6508d85a91649a74ed860357147d
+      internalID: -8529064219900643234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hiboux_6
+      rect:
+        serializedVersion: 2
+        x: 1620
+        y: 217
+        width: 296
+        height: 453
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b962ba04f170d6449a3840fbfbcc4939
+      internalID: 6011638195206583099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hiboux_7
+      rect:
+        serializedVersion: 2
+        x: 2464
+        y: 136
+        width: 886
+        height: 1108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 36.83384, y: 554}
+        - {x: -443, y: -342}
+        - {x: -442.77554, y: -554}
+        - {x: -162, y: -554}
+        - {x: 67, y: -502}
+        - {x: 291, y: -457}
+        - {x: 443, y: -182.56357}
+        - {x: 443, y: 276.44196}
+        - {x: 324.5995, y: 554}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 000689470ec7d824f9bb31b73f0cf161
+      internalID: -4096816599598254315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hiboux_8
+      rect:
+        serializedVersion: 2
+        x: 1931
+        y: 152
+        width: 519
+        height: 412
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0636d8663bd3cd844a0cec0f0703db6f
+      internalID: -1128529666617816395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 3d27ae3a82528a24492b95ec77538b2d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

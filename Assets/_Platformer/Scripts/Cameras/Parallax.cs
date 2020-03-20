@@ -11,21 +11,21 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.Cameras {
 	public class Parallax : MonoBehaviour
 	{
-		public static List<Parallax> list = new List<Parallax>();
-
 		[SerializeField] private Transform cam;
+		[SerializeField] private Level level;
+
 		[SerializeField] private float parallaxRatioX = 0.3f;
 		[SerializeField] private float parallaxRatioY = 0.3f;
+
 		[SerializeField] private bool isLockedY = false;
-		[SerializeField] private Level level;
+
 		private bool firstUpdate = true;
 
 		private Vector2 refPos;
 		private Vector3 lastCamPos;
-		private Vector3 movementSinceLastFrame;
+		private Vector3 velocity;
 		private Vector3 startPos;
 
-		private Action DoAction;
 		private Transform[] objs;
 
 		private void Awake()
@@ -40,53 +40,19 @@ namespace Com.IsartDigital.Platformer.Cameras {
 			objs = GetComponentsInChildren<Transform>();
 			lastCamPos = cam.position;
 
-
-			Vector2 pos = new Vector2();
+			Vector2 gap = new Vector2();
 			Transform obj;
 
 			for (int i = objs.Length - 1; i >= 0; i--)
 			{
 				obj = objs[i];
-				pos.x = (obj.localPosition.x - refPos.x) * parallaxRatioX;
-				obj.position += (Vector3)pos;
+				gap.x = (obj.localPosition.x - refPos.x) * parallaxRatioX;
+				obj.position += (Vector3)gap;
 			}
-
 			gameObject.transform.position = startPos;
-
-			if (GetComponent<Collider2D>() != null) SetModeVoid();
-			else SetModeNormal();
 		}
 
 		private void LateUpdate()
-		{
-			DoAction();
-		}
-
-		private void OnTriggerEnter2D(Collider2D collision)
-		{
-			if (collision.gameObject.GetComponent<Player>())
-			SetModeNormal();
-		}
-		private void OnTriggerExit2D(Collider2D collision)
-		{
-			if (collision.gameObject.GetComponent<Player>())
-				SetModeVoid();
-		}
-
-		private void SetModeVoid()
-		{
-			Debug.Log("is void");
-			DoAction = DoActionVoid;
-		}
-
-		private void SetModeNormal()
-		{
-			DoAction = DoActionNormal;
-		}
-
-		private void DoActionVoid()	{}
-
-		private void DoActionNormal()
 		{
 			UpdatePos();
 			if (transform.position != startPos && firstUpdate)
@@ -95,21 +61,18 @@ namespace Com.IsartDigital.Platformer.Cameras {
 			}
 		}
 
-		private void UpdatePos()
-		{
-			movementSinceLastFrame = cam.position - lastCamPos;
-			if (isLockedY) movementSinceLastFrame.y = 0;
-			transform.position -= new Vector3(movementSinceLastFrame.x * parallaxRatioX, movementSinceLastFrame.y * parallaxRatioY);
-			lastCamPos = cam.position;
-		}
-
-
-
 		private void SetStartPos()
 		{
 			transform.position = startPos;
 			firstUpdate = false;
 		}
 
+		private void UpdatePos()
+		{
+			velocity = cam.position - lastCamPos;
+			if (isLockedY) velocity.y = 0;
+			transform.position -= new Vector3(velocity.x * parallaxRatioX, velocity.y * parallaxRatioY);
+			lastCamPos = cam.position;
+		}
 	}
 }

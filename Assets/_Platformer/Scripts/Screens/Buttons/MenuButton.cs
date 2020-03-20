@@ -13,7 +13,8 @@ namespace Com.IsartDigital.Platformer.Screens.Buttons {
 
         public delegate void MenuButtonEventHandler(Button button);
         public MenuButtonEventHandler OnMenuButtonClicked;
-        [SerializeField] SoundsSettings sounds = null;
+        [SerializeField] private SoundsSettings sounds = null;
+        [SerializeField] private ButtonType type = ButtonType.NORMAL;
 
         private Button button;
 		public Button Button { get => button; }
@@ -27,12 +28,21 @@ namespace Com.IsartDigital.Platformer.Screens.Buttons {
         private void MenuButton_OnClick()
         {
             OnMenuButtonClicked?.Invoke(button);
-            SoundManager.Instance.Play(sounds.Ui_Button);
+            if (type == ButtonType.NORMAL) SoundManager.Instance.Play(sounds.Ui_Button);
+            else if (type == ButtonType.PAUSE) SoundManager.Instance.Play(sounds.Ui_Pause);
+            else if (type == ButtonType.START) SoundManager.Instance.Play(sounds.Ui_Start);
         }
 
         private void OnDestroy()
         {
             button.onClick.RemoveListener(MenuButton_OnClick);
         }
+    }
+
+    public enum ButtonType
+    {
+        NORMAL,
+        PAUSE,
+        START
     }
 }

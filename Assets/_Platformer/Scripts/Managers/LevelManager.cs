@@ -115,6 +115,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void KillZone_OnCollision()
         {
 			player.LooseLife();
+            SoundManager.Instance.Play(sounds.Character_Death, player);
             DestructiblePlatform.ResetAll();
         }
 

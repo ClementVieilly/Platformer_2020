@@ -137,7 +137,7 @@ MonoBehaviour:
       type: 2}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
-    showInEditor: 1
+    showInEditor: 0
   - _name: Poire_Death
     _clip: {fileID: 8300000, guid: aaeb5a60244ecb348b9e8c97ba79b537, type: 3}
     _type: 1
@@ -149,7 +149,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 0
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -193,7 +193,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 0
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -313,7 +313,7 @@ MonoBehaviour:
       type: 2}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
-    showInEditor: 1
+    showInEditor: 0
   - _name: Poire_Fall
     _clip: {fileID: 8300000, guid: b4aa2801ad2a3f74d8a9acfa0c1a41f1, type: 3}
     _type: 1
@@ -325,7 +325,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 0
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -367,7 +367,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 0
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -401,7 +401,7 @@ MonoBehaviour:
   - _name: Music_Menu
     _clip: {fileID: 0}
     _type: 0
-    _volume: 0.75
+    _volume: 1
     _volumeVariance: 0
     _pitch: 1
     _pitchVariance: 0
@@ -439,7 +439,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
-    showInEditor: 1
+    showInEditor: 0
   - _name: Music_Level_1
     _clip: {fileID: 0}
     _type: 0
@@ -485,7 +485,7 @@ MonoBehaviour:
   - _name: Music_Level_2
     _clip: {fileID: 8300000, guid: 33c039304efbaf4429dc1c51923ea394, type: 3}
     _type: 0
-    _volume: 0.75
+    _volume: 0.35
     _volumeVariance: 0
     _pitch: 1
     _pitchVariance: 0
@@ -523,7 +523,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
-    showInEditor: 0
+    showInEditor: 1
   - _name: Ambience_Level_1
     _clip: {fileID: 8300000, guid: cfb3d5d11a7e2ab458667238977da6d7, type: 3}
     _type: 0

@@ -387,6 +387,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 {
                     idleElapsedTime = 0;
                     animator.SetTrigger(settings.IdleLong);
+                    SoundManager.Instance.Stop(sounds.Character_Idle, this);
+                    SoundManager.Instance.Play(sounds.Character_IdleLong, this);
                     vCamIdle.SetActive(true);
                     isPlaying = true;
                 }
@@ -450,14 +452,20 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 walkingPS.Play();
 
 				if (SoundManager.Instance)
+                {
+                    SoundManager.Instance.Stop(sounds.Character_Idle, this);
 					SoundManager.Instance.Play(sounds.Character_Run,this);
+                }
             }
             else
             {
                 ratio = settings.RunDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, topSpeed, ratio);
                 if (SoundManager.Instance)
+                {
                     SoundManager.Instance.Stop(sounds.Character_Run, this);
+                    SoundManager.Instance.Play(sounds.Character_Idle, this);
+                }
             }
 
                 rigidBody.velocity = penteVelocity.normalized * horizontalMove * previousDirection; 
@@ -466,6 +474,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionSpawn()
         {
             //if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Player_Spawn"))
+            SoundManager.Instance.Play(sounds.Character_Spawn, this);
             SetModeNormal();
         }
 
@@ -557,7 +566,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if (_isOnWall && rigidBody.velocity.y <= -settings.FallOnWallVerticalSpeed)
             {
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallOnWallVerticalSpeed);
-                if(!onWallPS.isPlaying) onWallPS.Play(); 
+                if(!onWallPS.isPlaying) onWallPS.Play();
             }
             else if (rigidBody.velocity.y <= -settings.FallVerticalSpeed)
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallVerticalSpeed);
@@ -588,7 +597,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if (_isOnWall || !jump)
             {
 				if (SoundManager.Instance)
+                {
 					SoundManager.Instance.Stop(sounds.Character_Planer,this);
+                }
                 SetModeAir();
                 return;
             }
@@ -654,6 +665,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
                 Collider2D collider = hitInfosLeft.collider != null ? hitInfosLeft.collider : hitInfosRight.collider;
                 if(collider.CompareTag(platformDestructibleTag)) collider.GetComponent<DestructiblePlatform>().SetModeNormal();
+                SoundManager.Instance.Play(sounds.Character_WallCatch, this);
             }
             else onWallPS.Stop();
 
@@ -787,6 +799,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         public void Die()
         {
+            
             OnDie?.Invoke();
 			SetModeNormal();
         }

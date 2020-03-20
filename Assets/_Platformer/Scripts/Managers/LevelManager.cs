@@ -123,7 +123,7 @@ namespace Com.IsartDigital.Platformer.Managers
 				else if (CheckpointManager.Instance)
 				{
 					player.SetPosition(CheckpointManager.Instance.LastCheckpointPos);
-					PlatformTrigger.ResetAll();
+					PlatformTrigger.ResetAllOnDeath();
 					MobilePlatform.ResetAll();
 					ChangeTravellingCamera.ResetAll();
 				}

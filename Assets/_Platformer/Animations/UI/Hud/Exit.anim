@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle
+  m_Name: Exit
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -22,37 +22,27 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 329
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.y
-    path: Title
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: -280
-        inSlope: -91.28684
-        outSlope: -91.28684
+        value: 174.65
+        inSlope: -68.492615
+        outSlope: -68.492615
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.24533327
+        inWeight: 0.36880982
+        outWeight: 0.20892225
+      - serializedVersion: 3
+        time: 0.93333334
+        value: -196.2463
+        inSlope: -1710.9637
+        outSlope: -1710.9637
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.052645624
+        outWeight: 0.07552703
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_AnchoredPosition.y
-    path: BottomLeft
+    attribute: m_AnchoredPosition.x
+    path: UpLeft/PlayerInfosZone/ScoreInfos
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -67,19 +57,28 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0
         outWeight: 0
+      - serializedVersion: 3
+        time: 0.93333334
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: LevelButtons
+    path: UpLeft/PlayerInfosZone
     classID: 114
-    script: {fileID: -405508275, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+    script: {fileID: 1297475563, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   - curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -2000
+        value: -312
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -89,27 +88,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_AnchoredPosition.x
-    path: LevelButtons/Level1
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 2000
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.x
-    path: LevelButtons/Level2
+    attribute: m_AnchoredPosition.y
+    path: UpLeft/PlayerInfosZone/ScoreInfos
     classID: 224
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -121,36 +101,22 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 2838692853
-      attribute: 538195251
+      path: 3706358522
+      attribute: 1460864421
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 341172720
+      path: 3568409310
       attribute: 3305885265
-      script: {fileID: -405508275, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+      script: {fileID: 1297475563, guid: f70555f144d8491a825f0804e09c671c, type: 3}
       typeID: 114
       customType: 24
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3942078319
+      path: 3706358522
       attribute: 538195251
-      script: {fileID: 0}
-      typeID: 224
-      customType: 28
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2212562102
-      attribute: 1460864421
-      script: {fileID: 0}
-      typeID: 224
-      customType: 28
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 451433740
-      attribute: 1460864421
       script: {fileID: 0}
       typeID: 224
       customType: 28
@@ -161,7 +127,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0
+    m_StopTime: 0.93333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -182,37 +148,27 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 329
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.y
-    path: Title
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: -280
-        inSlope: -91.28684
-        outSlope: -91.28684
+        value: 174.65
+        inSlope: -68.492615
+        outSlope: -68.492615
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.24533327
+        inWeight: 0.36880982
+        outWeight: 0.20892225
+      - serializedVersion: 3
+        time: 0.93333334
+        value: -196.2463
+        inSlope: -1710.9637
+        outSlope: -1710.9637
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.052645624
+        outWeight: 0.07552703
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_AnchoredPosition.y
-    path: BottomLeft
+    attribute: m_AnchoredPosition.x
+    path: UpLeft/PlayerInfosZone/ScoreInfos
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -227,19 +183,28 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0
         outWeight: 0
+      - serializedVersion: 3
+        time: 0.93333334
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: LevelButtons
+    path: UpLeft/PlayerInfosZone
     classID: 114
-    script: {fileID: -405508275, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+    script: {fileID: 1297475563, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   - curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -2000
+        value: -312
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -249,27 +214,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_AnchoredPosition.x
-    path: LevelButtons/Level1
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 2000
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.x
-    path: LevelButtons/Level2
+    attribute: m_AnchoredPosition.y
+    path: UpLeft/PlayerInfosZone/ScoreInfos
     classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves: []

@@ -4,8 +4,10 @@
 ///-----------------------------------------------------------------
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Com.IsartDigital.Platformer.LevelObjects;
+using Com.IsartDigital.Platformer.Managers;
 using Pixelplacement;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,12 +23,16 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		public delegate void HudEventHandler(Hud hud);
 		public event HudEventHandler OnButtonPausePressed;
+		public event HudEventHandler OnFinalAnimFinished;
+
+        private LevelManager lvlManager = null; 
 
 		[Header("Score")]
 		[SerializeField] private Text scoreText = null;
 		[SerializeField] private GameObject scoreObject = null;
 		[SerializeField] private GameObject bigScoreObject = null;
         [SerializeField] private AnimationCurve bigScoreEnterAnim = null; 
+        [SerializeField] private AnimationCurve bigScoreEnterAnimWin = null; 
 
 		[Header("Life")]
 		[SerializeField] private Text lifeText = null;
@@ -75,6 +81,7 @@ namespace Com.IsartDigital.Platformer.Screens
 		}
 
 		private bool[] _bigScore = new bool[] { false, false, false, false };
+        private List<Transform> keyTab = new List<Transform>();
 		public bool[] BigScore
 		{
 			get => _bigScore;
@@ -90,7 +97,7 @@ namespace Com.IsartDigital.Platformer.Screens
 				bigScoreObject.SetActive(true);
 				_timer = 0;
                 Tween.LocalPosition(bigScoreObject.transform.GetChild(SlotNumber).transform, new Vector2(slotsPos[SlotNumber].localPosition.x, slotsPos[SlotNumber].localPosition.y), 1, 0,bigScoreEnterAnim);
-               
+                keyTab.Add(bigScoreObject.transform.GetChild(SlotNumber).transform); 
 				UpdateBigScore();
                 
 			}
@@ -121,18 +128,22 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		private float _timer = 0f;
 		private bool paused = false;
-		public bool Paused { set { paused = value; } }
+        private bool test = false; 
+
+        public bool Paused { set { paused = value; } }
 
 
 		private void Awake()
 		{
+           
 			if (_instance != null)
 			{
 				Destroy(gameObject);
 			}
 			else _instance = this;
-
-			btnPause = GetComponentInChildren<Button>();
+            lvlManager = FindObjectOfType<LevelManager>();
+            lvlManager.OnLaunchHudAnim += LevelManager_Test;
+            btnPause = GetComponentInChildren<Button>();
 			btnPause.onClick.AddListener(Hud_OnButtonPauseClicked);
 
 #if UNITY_ANDROID || UNITY_EDITOR
@@ -146,7 +157,25 @@ namespace Com.IsartDigital.Platformer.Screens
 #endif
 		}
 
-		public void RegisterSelfAnimator()
+        private void LevelManager_Test(LevelManager levelManager)
+        {
+            StartCoroutine(WinAnim()); 
+
+        }
+        private IEnumerator WinAnim()
+        {
+            lvlManager.OnLaunchHudAnim -= LevelManager_Test;
+           {
+                for(int i = 0; i < keyTab.Count; i++)
+                {
+                    Tween.LocalScale(keyTab[i], new Vector2(1, 1), 0.2f, 0.2f * i, bigScoreEnterAnimWin);
+                }
+
+                yield return new WaitForSeconds(0.4f*keyTab.Count);
+            }
+            OnFinalAnimFinished?.Invoke(this);
+        }
+        public void RegisterSelfAnimator()
 		{
 			animator = GetComponent<Animator>();
 		}

@@ -10,6 +10,7 @@ using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
 using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.LevelObjects.Platforms;
 using Com.IsartDigital.Platformer.Screens;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -38,6 +39,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		public bool[] BigScoreCollectibles { get => _bigScoreCollectibles; }
 
 		public event LevelManagerEventHandler OnWin;
+		public event LevelManagerEventHandler OnLaunchHudAnim;
 
         private void Start()
         {
@@ -146,16 +148,20 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void Win()
         {
-			_completionTime = timeManager.Timer;
+            Hud.Instance.OnFinalAnimFinished += Hud_OnFinalAnimFinished;
+            _completionTime = timeManager.Timer;
             timeManager.SetModeVoid();
+            OnLaunchHudAnim?.Invoke(this); 
+        }
 
-			OnWin?.Invoke(this);
-
+        private void Hud_OnFinalAnimFinished(Hud hud)
+        {
+            Debug.Log("eventAnim"); 
             UnsubscribeAllEvents();
-
-			if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();
-            else Debug.LogError("Pas d'UImanager sur la scène");
-            player.gameObject.SetActive(false);
+            OnWin?.Invoke(this);
+            if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();
+             else Debug.LogError("Pas d'UImanager sur la scène");
+             player.gameObject.SetActive(false);
         }
 
         private void Retry()

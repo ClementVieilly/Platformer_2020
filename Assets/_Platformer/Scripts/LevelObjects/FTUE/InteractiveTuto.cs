@@ -3,10 +3,11 @@
 /// Date : 11/03/2020 10:44
 ///-----------------------------------------------------------------
 
-using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
+using Com.IsartDigital.InteractiveObstacles;
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer.LevelObjects.FTUE {
+namespace Com.IsartDigital.Platformer.LevelObjects.FTUE
+{
 	public class InteractiveTuto : AInteractiveObstacles
 	{
 		[SerializeField] private Animator animator;

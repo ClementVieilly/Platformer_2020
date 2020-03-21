@@ -33,7 +33,9 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private List<Sound> playedSounds = new List<Sound>();
 
-		private void Awake()
+		private int currentLvlNumber;
+
+		private void Start()
 		{
 			if (_instance != null && _instance != this)
 			{
@@ -47,7 +49,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			for (int i = sounds.Length - 1; i > -1; i--)
 			{
 				Sound sound = sounds[i];
-				soundsList.Add(sounds[i]);
+				soundsList.Add(sound);
 			}
 		}
 
@@ -66,9 +68,39 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 			if (currentSound.Source == null)
 			{
+				Debug.Log("set new source standard");
 				currentSound.SetNewSource(gameObject.AddComponent<AudioSource>());
-				if (currentSound.MixerGroupLvl1 == null) currentSound.Source.outputAudioMixerGroup = mainMixerGroupLvl1;
+				currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl1;
 			}
+
+			//TEMP
+			if (currentLvlNumber == 1)
+			{
+				if (currentSound.Source.outputAudioMixerGroup != currentSound.MixerGroupLvl1)
+				{
+					currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl1;
+					currentSound.CurrentMixerGroup = currentSound.Source.outputAudioMixerGroup;
+				}
+			}
+			else if (currentLvlNumber == 2)
+			{
+				if (currentSound.Source.outputAudioMixerGroup != currentSound.MixerGroupLvl2)
+				{
+					currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl2;
+					currentSound.CurrentMixerGroup = currentSound.Source.outputAudioMixerGroup;
+				}
+			}
+			else
+			{
+				Debug.Log("test default");
+				if (currentSound.Source.outputAudioMixerGroup != currentSound.MixerGroupLvl1)
+				{
+					currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl1;
+					currentSound.CurrentMixerGroup = currentSound.Source.outputAudioMixerGroup;
+				}
+			}
+
+
 			if (currentSound.Source.isPlaying && isForcePlay) 
 			{
 				//Debug.LogWarning("Sound: " + sound + " is already playing!");
@@ -119,10 +151,36 @@ namespace Com.IsartDigital.Platformer.Managers
 					currentSound = emitSound;
 					AudioSource source = emitter.gameObject.AddComponent<AudioSource>();
 					currentSound.SetNewSource(source);
+					currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl1;
 
 					soundsList.Add(currentSound);
 				}
+			}
 
+			//TEMP
+			if (currentLvlNumber == 1)
+			{
+				if (currentSound.Source.outputAudioMixerGroup != currentSound.MixerGroupLvl1)
+				{
+					currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl1;
+					currentSound.CurrentMixerGroup = currentSound.Source.outputAudioMixerGroup;
+				}
+			}
+			else if (currentLvlNumber == 2)
+			{
+				if (currentSound.Source.outputAudioMixerGroup != currentSound.MixerGroupLvl2)
+				{
+					currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl2;
+					currentSound.CurrentMixerGroup = currentSound.Source.outputAudioMixerGroup;
+				}
+			}
+			else
+			{
+				if (currentSound.Source.outputAudioMixerGroup != currentSound.MixerGroupLvl1)
+				{
+					currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl1;
+					currentSound.CurrentMixerGroup = currentSound.Source.outputAudioMixerGroup;
+				}
 			}
 
 			if (currentSound.Source.isPlaying && !isForcePlay)
@@ -307,19 +365,21 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private void ResumeByMixer(Sound sound, int lvlNumber = 1)
 		{
-			if (lvlNumber == 1)
-			{
-				if (sound.MixerGroupLvl1 != null) sound.Source.outputAudioMixerGroup = sound.MixerGroupLvl1;
-				else sound.Source.outputAudioMixerGroup = mainMixerGroupLvl1;
-			}
-			else if (lvlNumber == 2)
-			{
-				if (sound.MixerGroupLvl2 != null) sound.Source.outputAudioMixerGroup = sound.MixerGroupLvl2;
-				else sound.Source.outputAudioMixerGroup = mainMixerGroupLvl2;
-			}
+			sound.Source.outputAudioMixerGroup = sound.CurrentMixerGroup;
+
+			//if (lvlNumber == 1)
+			//{
+			//	if (sound.MixerGroupLvl1 != null) sound.Source.outputAudioMixerGroup = sound.MixerGroupLvl1;
+			//	else sound.Source.outputAudioMixerGroup = mainMixerGroupLvl1;
+			//}
+			//else if (lvlNumber == 2)
+			//{
+			//	if (sound.MixerGroupLvl2 != null) sound.Source.outputAudioMixerGroup = sound.MixerGroupLvl2;
+			//	else sound.Source.outputAudioMixerGroup = mainMixerGroupLvl2;
+			//}
 		}
 
-		public void ResumeAll(int lvlNumber = 1)
+		public void ResumeAll()
 		{
 			Sound sound;
 
@@ -328,7 +388,7 @@ namespace Com.IsartDigital.Platformer.Managers
 				sound = playedSounds[i];
 
 				if (sound.Type == SoundTypes.SFX_ClassicPause) Resume(sound);
-				else if (sound.Type == SoundTypes.SFX_MixerPause || sound.Type == SoundTypes.MUSIC) ResumeByMixer(sound,lvlNumber);
+				else if (sound.Type == SoundTypes.SFX_MixerPause || sound.Type == SoundTypes.MUSIC) ResumeByMixer(sound,1);
 
 				if (sound.Type != SoundTypes.UI) playedSounds.Remove(sound);
 			}
@@ -348,7 +408,10 @@ namespace Com.IsartDigital.Platformer.Managers
 		//		}
 		//	}
 		//}
-
+		public void SetLevelNumber(int currentLvlNb)
+		{
+			currentLvlNumber = currentLvlNb;
+		}
 		private void FadeIn(Sound sound, Action action = null)
 		{
 			StartCoroutine(Fade(sound, sound.FadeInCurve, action,true));

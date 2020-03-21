@@ -22,7 +22,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [Header("Settings")]
 		[SerializeField] private PlayerController controller = null;
         [SerializeField] private PlayerSettings settings = null;
-        //[SerializeField] private SoundsSettings sounds = null;
 
         [Header("Linecasts and raycasts")]
 		[SerializeField] private Transform wallLinecastRightStartPos = null; 
@@ -286,7 +285,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void SetModePlane()
         {
 			if (SoundManager.Instance)
-				SoundManager.Instance.Play(sounds.PlaneFlap01,this);
+				SoundManager.Instance.Play(sounds.Character_Planer,this);
 
 			OnPlayerPlane?.Invoke();
 
@@ -353,7 +352,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 				OnPlayerJump?.Invoke();
 
 				if (SoundManager.Instance)
-					SoundManager.Instance.Play(sounds.Jump,this);
+					SoundManager.Instance.Play(sounds.Character_Jump,this);
             }
             else if (!jump) jumpButtonHasPressed = false;
 
@@ -387,6 +386,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 {
                     idleElapsedTime = 0;
                     animator.SetTrigger(settings.IdleLong);
+                    SoundManager.Instance.Stop(sounds.Character_Idle, this);
+                    SoundManager.Instance.Play(sounds.Character_IdleLong, this);
                     vCamIdle.SetActive(true);
                     isPlaying = true;
                 }
@@ -450,12 +451,20 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 walkingPS.Play();
 
 				if (SoundManager.Instance)
-					SoundManager.Instance.Play(sounds.FootstepsWood,this);
+                {
+                    SoundManager.Instance.Stop(sounds.Character_Idle, this);
+					SoundManager.Instance.Play(sounds.Character_Run,this);
+                }
             }
             else
             {
                 ratio = settings.RunDecelerationCurve.Evaluate(horizontalMoveElapsedTime);
                 horizontalMove = Mathf.Lerp(0f, topSpeed, ratio);
+                if (SoundManager.Instance)
+                {
+                    SoundManager.Instance.Stop(sounds.Character_Run, this);
+                    SoundManager.Instance.Play(sounds.Character_Idle, this);
+                }
             }
 
                 rigidBody.velocity = penteVelocity.normalized * horizontalMove * previousDirection; 
@@ -464,6 +473,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionSpawn()
         {
             //if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Player_Spawn"))
+            SoundManager.Instance.Play(sounds.Character_Spawn, this);
             SetModeNormal();
         }
 
@@ -481,7 +491,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 SetModeNormal();
 
 				if (SoundManager.Instance)
-					SoundManager.Instance.Play(sounds.Landing,this);
+					SoundManager.Instance.Play(sounds.Character_Fall,this);
 
                 return;
             }
@@ -555,7 +565,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if (_isOnWall && rigidBody.velocity.y <= -settings.FallOnWallVerticalSpeed)
             {
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallOnWallVerticalSpeed);
-                if(!onWallPS.isPlaying) onWallPS.Play(); 
+                if(!onWallPS.isPlaying) onWallPS.Play();
             }
             else if (rigidBody.velocity.y <= -settings.FallVerticalSpeed)
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, -settings.FallVerticalSpeed);
@@ -586,7 +596,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if (_isOnWall || !jump)
             {
 				if (SoundManager.Instance)
-					SoundManager.Instance.Stop(sounds.PlaneWind,this);
+                {
+					SoundManager.Instance.Stop(sounds.Character_Planer,this);
+                }
                 SetModeAir();
                 return;
             }
@@ -596,8 +608,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
 				if (SoundManager.Instance)
 				{
-					SoundManager.Instance.Stop(sounds.PlaneWind,this);
-					SoundManager.Instance.Play(sounds.Landing,this);
+					SoundManager.Instance.Stop(sounds.Character_Planer,this);
+					SoundManager.Instance.Play(sounds.Character_Fall,this);
 				}
                 //planePS.Stop(); 
 				SetModeNormal();
@@ -617,7 +629,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             animator.SetFloat(settings.VerticalVelocityParam, rigidBody.velocity.y);
 
 			if (SoundManager.Instance)
-				SoundManager.Instance.Play(sounds.PlaneWind,this); 
+				SoundManager.Instance.Play(sounds.Character_Planer,this); 
         }
 
         private void CheckIsOnWall()
@@ -652,6 +664,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
                 Collider2D collider = hitInfosLeft.collider != null ? hitInfosLeft.collider : hitInfosRight.collider;
                 if(collider.CompareTag(platformDestructibleTag)) collider.GetComponent<DestructiblePlatform>().SetModeNormal();
+                SoundManager.Instance.Play(sounds.Character_WallCatch, this);
             }
             else onWallPS.Stop();
 
@@ -659,6 +672,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void MoveHorizontalInAir()
         {
+            SoundManager.Instance.Stop(sounds.Character_Run, this);
             if (isLocked) return;
 
             float horizontalMove;
@@ -769,7 +783,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			animator.SetTrigger(settings.Die);
 
             if (SoundManager.Instance)
-                SoundManager.Instance.Stop(sounds.PlaneWind, this);
+                SoundManager.Instance.Stop(sounds.Character_Planer, this);
 
 			rigidBody.velocity = new Vector2(0f, rigidBody.velocity.y);
 
@@ -784,6 +798,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         public void Die()
         {
+            
             OnDie?.Invoke();
 			SetModeNormal();
         }

@@ -3,26 +3,27 @@
 /// Date : 21/01/2020 10:37
 ///-----------------------------------------------------------------
 
-using Com.IsartDigital.InteractiveObstacles;
+using Cinemachine;
 using Com.IsartDigital.Platformer.Cameras;
 using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
+using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.LevelObjects.Platforms;
 using Com.IsartDigital.Platformer.Screens;
+using System;
 using System.Collections;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Managers
 {
-    public class LevelManager : MonoBehaviour
+	public class LevelManager : MonoBehaviour
 	{
 		public delegate void LevelManagerEventHandler(LevelManager levelManager);
 
 		private Player player = null;
         [SerializeField] private SoundsSettings sounds = null;
         [SerializeField] private Level levelInfos;
-        private string currentLvlAmbianceName = "";
-        private string currentLvlMusiceName = "";
+        private string currentLvlMusicName = "empty";
 		private TimeManager timeManager = null;
 
 		private int _levelNumber = 0;
@@ -66,22 +67,11 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			_levelNumber = level;
 
-            if (_levelNumber == 1) 
-            { 
-            currentLvlAmbianceName = sounds.Ambiance_Level_1;
-            currentLvlMusiceName = sounds.Music_Level_1;
-            }
-            else if (_levelNumber == 2)
-            {
-                currentLvlAmbianceName = sounds.Ambiance_Level_2;
-                currentLvlMusiceName = sounds.Music_Level_2;
-            }
+            if (_levelNumber == 1) currentLvlMusicName = sounds.Ambiance_Level_One;
+            else if (_levelNumber == 2) currentLvlMusicName = sounds.Ambiance_Level_Two;
 
-            if (SoundManager.Instance)
-            {
-				SoundManager.Instance.Play(currentLvlMusiceName);
-				SoundManager.Instance.Play(currentLvlAmbianceName);
-            }
+			if (SoundManager.Instance)
+				SoundManager.Instance.Play(currentLvlMusicName);
         }
 
         private IEnumerator InitHud()
@@ -115,8 +105,6 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void KillZone_OnCollision()
         {
 			player.LooseLife();
-            SoundManager.Instance.Play(sounds.Character_Death, player);
-            DestructiblePlatform.ResetAll();
         }
 
         private void DeadZone_OnCollision()
@@ -137,9 +125,10 @@ namespace Com.IsartDigital.Platformer.Managers
 					PlatformTrigger.ResetAllOnDeath();
 					MobilePlatform.ResetAll();
 					ChangeTravellingCamera.ResetAll();
+					DestructiblePlatform.ResetAll();
 				}
 
-                player.GetComponent<Collider2D>().enabled = true;
+				player.GetComponent<Collider2D>().enabled = true;
 				return;
 			}
 
@@ -178,11 +167,13 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             player.Reset();
             _score = 0;
+            Hud.Instance.ResetKeyPos();
             UpdateHud();
 
             timeManager.SetModeVoid();
 
             CheckpointManager.Instance.ResetColliders();
+           
 
             LifeCollectible.ResetAll();
             ScoreCollectible.ResetAll();
@@ -191,13 +182,14 @@ namespace Com.IsartDigital.Platformer.Managers
             PlatformTrigger.ResetAll();
             TimedDoor.ResetAll();
             ChangeTravellingCamera.ResetAll();
+			TempChangeCamera.ResetAll();
 
             timeManager.StartTimer();
 
 			if (SoundManager.Instance)
 			{
-				SoundManager.Instance.Stop(currentLvlAmbianceName);
-				SoundManager.Instance.Play(currentLvlAmbianceName);
+				SoundManager.Instance.Stop(currentLvlMusicName);
+				SoundManager.Instance.Play(currentLvlMusicName);
 			}
         }
 
@@ -208,7 +200,8 @@ namespace Com.IsartDigital.Platformer.Managers
             DestructiblePlatform.ResumeAll();
             MobilePlatform.ResumeAll();
             TimedDoor.ResumeAll();
-            SoundManager.Instance.ResumeAll(LevelNumber);
+            //SoundManager.Instance.ResumeAll();
+            SoundManager.Instance.ResumeAllByMixerGroup();
             ChangeTravellingCamera.ResumeAll();
         }
 
@@ -219,8 +212,9 @@ namespace Com.IsartDigital.Platformer.Managers
 			DestructiblePlatform.PauseAll();
 			MobilePlatform.PauseAll();
 			TimedDoor.PauseAll();
-            SoundManager.Instance.PauseAll();
-            ChangeTravellingCamera.PauseAll();
+			//SoundManager.Instance.PauseAll();
+			SoundManager.Instance.PauseAllByMixerGroup();
+			ChangeTravellingCamera.PauseAll();
 
 			if (UIManager.Instance != null)
 				UIManager.Instance.UpdatePauseMenu(_score, _bigScoreCollectibles);
@@ -238,7 +232,7 @@ namespace Com.IsartDigital.Platformer.Managers
         private void OnDestroy()
         {
             UnsubscribeAllEvents();
-            SoundManager.Instance.Stop(currentLvlAmbianceName);
+            SoundManager.Instance.Stop(currentLvlMusicName);
         }
 
         #region Events subscribtions

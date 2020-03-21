@@ -474,6 +474,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionSpawn()
         {
             SoundManager.Instance.Play(sounds.Character_Spawn, this);
+            rigidBody.velocity = Vector2.zero; 
         }
 
         private void DoActionInAir()

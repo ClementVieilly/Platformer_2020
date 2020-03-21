@@ -1,0 +1,238 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9fa30e000f3420796cfbd1e09a86d6, type: 3}
+  m_Name: VolColombe.fla._Stage_
+  m_EditorClassIdentifier: 
+  Name: _Stage_
+  Sprite: {fileID: 21300000, guid: acfc4cc348145844985a29e18edc5928, type: 3}
+  FrameRate: 30
+  AssetGUID: e67a358426e3e474bbf6111affa16292
+  Sequences:
+  - Name: Default
+    Frames:
+    - Labels: []
+      MeshData:
+        SubMeshes:
+        - StartVertex: 0
+          IndexCount: 18
+        Vertices:
+        - {x: -0.26, y: 0.71999997}
+        - {x: 4.8834286, y: 0.71999997}
+        - {x: 4.8834286, y: -6.082599}
+        - {x: -0.26, y: -6.082599}
+        - {x: 2.45, y: -2.6799998}
+        - {x: 3.2929885, y: -2.6799998}
+        - {x: 3.2929885, y: -3.5269854}
+        - {x: 2.45, y: -3.5269854}
+        - {x: 0.65999997, y: 0}
+        - {x: 4.4442325, y: 0}
+        - {x: 4.4442325, y: -4.050387}
+        - {x: 0.65999997, y: -4.050387}
+        UVs: 000000009f82bf629f8f5f495f9f1f59bf8200001fd13f49
+        AddColors: 000000000000000000000000000000000000000000000000
+        MulColors: 000200020002000200020002000200020002000200020002
+      Materials:
+      - {fileID: 2100000, guid: d58d9a5e482e8429f8d7d18a9538d94a, type: 2}
+    - Labels: []
+      MeshData:
+        SubMeshes:
+        - StartVertex: 0
+          IndexCount: 18
+        Vertices:
+        - {x: -0.26, y: 0.71999997}
+        - {x: 4.8834286, y: 0.71999997}
+        - {x: 4.8834286, y: -6.082599}
+        - {x: -0.26, y: -6.082599}
+        - {x: 2.45, y: -2.6799998}
+        - {x: 3.2929885, y: -2.6799998}
+        - {x: 3.2929885, y: -3.5269854}
+        - {x: 2.45, y: -3.5269854}
+        - {x: 0.65999997, y: 0}
+        - {x: 4.4442325, y: 0}
+        - {x: 4.4442325, y: -4.050387}
+        - {x: 0.65999997, y: -4.050387}
+        UVs: 000000009f82bf629f8f5f495f9f1f59bf8200001fd13f49
+        AddColors: 000000000000000000000000000000000000000000000000
+        MulColors: 000200020002000200020002000200020002000200020002
+      Materials:
+      - {fileID: 2100000, guid: d58d9a5e482e8429f8d7d18a9538d94a, type: 2}
+    - Labels: []
+      MeshData:
+        SubMeshes:
+        - StartVertex: 0
+          IndexCount: 12
+        Vertices:
+        - {x: -0.26, y: 0.71999997}
+        - {x: 4.8834286, y: 0.71999997}
+        - {x: 4.8834286, y: -6.082599}
+        - {x: -0.26, y: -6.082599}
+        - {x: 0.65999997, y: -1.23}
+        - {x: 4.4442325, y: -1.23}
+        - {x: 4.4442325, y: -4.181895}
+        - {x: 0.65999997, y: -4.181895}
+        UVs: 000000009f82bf625f425fb07f7b9ff9
+        AddColors: 00000000000000000000000000000000
+        MulColors: 00020002000200020002000200020002
+      Materials:
+      - {fileID: 2100000, guid: d58d9a5e482e8429f8d7d18a9538d94a, type: 2}
+    - Labels: []
+      MeshData:
+        SubMeshes:
+        - StartVertex: 0
+          IndexCount: 12
+        Vertices:
+        - {x: -0.26, y: 0.71999997}
+        - {x: 4.8834286, y: 0.71999997}
+        - {x: 4.8834286, y: -6.082599}
+        - {x: -0.26, y: -6.082599}
+        - {x: 0.65999997, y: -1.23}
+        - {x: 4.4442325, y: -1.23}
+        - {x: 4.4442325, y: -4.181895}
+        - {x: 0.65999997, y: -4.181895}
+        UVs: 000000009f82bf625f425fb07f7b9ff9
+        AddColors: 00000000000000000000000000000000
+        MulColors: 00020002000200020002000200020002
+      Materials:
+      - {fileID: 2100000, guid: d58d9a5e482e8429f8d7d18a9538d94a, type: 2}
+    - Labels: []
+      MeshData:
+        SubMeshes:
+        - StartVertex: 0
+          IndexCount: 12
+        Vertices:
+        - {x: -0.26, y: 0.71999997}
+        - {x: 4.8834286, y: 0.71999997}
+        - {x: 4.8834286, y: -6.082599}
+        - {x: -0.26, y: -6.082599}
+        - {x: 2.53, y: -2.81}
+        - {x: 3.615, y: -2.81}
+        - {x: 3.615, y: -3.4944983}
+        - {x: 2.53, y: -3.4944983}
+        UVs: 000000009f82bf62bf825f497f8f9f5d
+        AddColors: 00000000000000000000000000000000
+        MulColors: 00020002000200020002000200020002
+      Materials:
+      - {fileID: 2100000, guid: d58d9a5e482e8429f8d7d18a9538d94a, type: 2}
+    - Labels: []
+      MeshData:
+        SubMeshes:
+        - StartVertex: 0
+          IndexCount: 12
+        Vertices:
+        - {x: -0.26, y: 0.71999997}
+        - {x: 4.8834286, y: 0.71999997}
+        - {x: 4.8834286, y: -6.082599}
+        - {x: -0.26, y: -6.082599}
+        - {x: 2.53, y: -2.81}
+        - {x: 3.615, y: -2.81}
+        - {x: 3.615, y: -3.4944983}
+        - {x: 2.53, y: -3.4944983}
+        UVs: 000000009f82bf62bf825f497f8f9f5d
+        AddColors: 00000000000000000000000000000000
+        MulColors: 00020002000200020002000200020002
+      Materials:
+      - {fileID: 2100000, guid: d58d9a5e482e8429f8d7d18a9538d94a, type: 2}
+    - Labels: []
+      MeshData:
+        SubMeshes:
+        - StartVertex: 0
+          IndexCount: 12
+        Vertices:
+        - {x: -0.26, y: 0.71999997}
+        - {x: 4.8834286, y: 0.71999997}
+        - {x: 4.8834286, y: -6.082599}
+        - {x: -0.26, y: -6.082599}
+        - {x: 1.8299999, y: -2.3999999}
+        - {x: 2.859497, y: -2.3999999}
+        - {x: 2.859497, y: -2.9609911}
+        - {x: 1.8299999, y: -2.9609911}
+        UVs: 000000009f82bf627f9f5f49ffa99f5c
+        AddColors: 00000000000000000000000000000000
+        MulColors: 00020002000200020002000200020002
+      Materials:
+      - {fileID: 2100000, guid: d58d9a5e482e8429f8d7d18a9538d94a, type: 2}
+    - Labels: []
+      MeshData:
+        SubMeshes:
+        - StartVertex: 0
+          IndexCount: 12
+        Vertices:
+        - {x: -0.26, y: 0.71999997}
+        - {x: 4.8834286, y: 0.71999997}
+        - {x: 4.8834286, y: -6.082599}
+        - {x: -0.26, y: -6.082599}
+        - {x: 1.8299999, y: -2.3999999}
+        - {x: 2.859497, y: -2.3999999}
+        - {x: 2.859497, y: -2.9609911}
+        - {x: 1.8299999, y: -2.9609911}
+        UVs: 000000009f82bf627f9f5f49ffa99f5c
+        AddColors: 00000000000000000000000000000000
+        MulColors: 00020002000200020002000200020002
+      Materials:
+      - {fileID: 2100000, guid: d58d9a5e482e8429f8d7d18a9538d94a, type: 2}
+    - Labels: []
+      MeshData:
+        SubMeshes:
+        - StartVertex: 0
+          IndexCount: 12
+        Vertices:
+        - {x: -0.26, y: 0.71999997}
+        - {x: 4.8834286, y: 0.71999997}
+        - {x: 4.8834286, y: -6.082599}
+        - {x: -0.26, y: -6.082599}
+        - {x: 0, y: -1.6899999}
+        - {x: 4.4036465, y: -1.6899999}
+        - {x: 4.4036465, y: -5.1112947}
+        - {x: 0, y: -5.1112947}
+        UVs: 000000009f82bf620000df623f421fb8
+        AddColors: 00000000000000000000000000000000
+        MulColors: 00020002000200020002000200020002
+      Materials:
+      - {fileID: 2100000, guid: d58d9a5e482e8429f8d7d18a9538d94a, type: 2}
+    - Labels: []
+      MeshData:
+        SubMeshes:
+        - StartVertex: 0
+          IndexCount: 12
+        Vertices:
+        - {x: -0.26, y: 0.71999997}
+        - {x: 4.8834286, y: 0.71999997}
+        - {x: 4.8834286, y: -6.082599}
+        - {x: -0.26, y: -6.082599}
+        - {x: 0, y: -1.6899999}
+        - {x: 4.4036465, y: -1.6899999}
+        - {x: 4.4036465, y: -5.1112947}
+        - {x: 0, y: -5.1112947}
+        UVs: 000000009f82bf620000df623f421fb8
+        AddColors: 00000000000000000000000000000000
+        MulColors: 00020002000200020002000200020002
+      Materials:
+      - {fileID: 2100000, guid: d58d9a5e482e8429f8d7d18a9538d94a, type: 2}
+    - Labels: []
+      MeshData:
+        SubMeshes:
+        - StartVertex: 0
+          IndexCount: 12
+        Vertices:
+        - {x: -0.26, y: 0.71999997}
+        - {x: 4.8834286, y: 0.71999997}
+        - {x: 4.8834286, y: -6.082599}
+        - {x: -0.26, y: -6.082599}
+        - {x: 0.56, y: -0.62}
+        - {x: 4.687983, y: -0.62}
+        - {x: 4.687983, y: -4.0169687}
+        - {x: 0.56, y: -4.0169687}
+        UVs: 000000009f82bf625f42df62ff813fb0
+        AddColors: 00000000000000000000000000000000
+        MulColors: 00020002000200020002000200020002
+      Materials:
+      - {fileID: 2100000, guid: d58d9a5e482e8429f8d7d18a9538d94a, type: 2}

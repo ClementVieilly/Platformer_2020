@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.LevelObjects {
     [RequireComponent(typeof(Collider2D))]
 
-   abstract public class ACollisionableObject : MonoBehaviour {
+   abstract public class ACollisionableObject : ALevelObject {
         protected Collider2D collidedObject;
         protected string playerTag = "Player"; 
         private void OnTriggerEnter2D(Collider2D collision)

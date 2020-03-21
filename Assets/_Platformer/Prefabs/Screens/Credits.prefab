@@ -870,6 +870,7 @@ GameObject:
   - component: {fileID: 5712852684098719064}
   - component: {fileID: 5491693238879089702}
   - component: {fileID: 841234634296780}
+  - component: {fileID: 7605554104189922097}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -938,6 +939,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Gameplay programmers and Game designers
+--- !u!114 &7605554104189922097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2606512250367143418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef9b24279366e247b42d27e69e3244c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: GDP_Title
 --- !u!1 &2739884444639631569
 GameObject:
   m_ObjectHideFlags: 0
@@ -2107,6 +2121,7 @@ GameObject:
   - component: {fileID: 799406709960779833}
   - component: {fileID: 7439517472698221833}
   - component: {fileID: 8047801606467482176}
+  - component: {fileID: 7785727336036943875}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -2175,6 +2190,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Music and Sound Designers
+--- !u!114 &7785727336036943875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7961087397734090983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef9b24279366e247b42d27e69e3244c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: MS_Title
 --- !u!1 &8495064732353927948
 GameObject:
   m_ObjectHideFlags: 0
@@ -2834,6 +2862,7 @@ GameObject:
   - component: {fileID: 7160268364862270535}
   - component: {fileID: 5798297325183317778}
   - component: {fileID: 4717855137300171580}
+  - component: {fileID: 8437388596855239260}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -2902,6 +2931,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Game Artists
+--- !u!114 &8437388596855239260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8863473834947233267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef9b24279366e247b42d27e69e3244c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: GA_Title
 --- !u!1 &9151697395507379931
 GameObject:
   m_ObjectHideFlags: 0
@@ -3089,6 +3131,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8495064732353927951}
     m_Modifications:
+    - target: {fileID: 3251477474756671995, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
+        type: 3}
+      propertyPath: m_Name
+      value: ButtonReturn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3251477474756671995, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
+        type: 3}
+      propertyPath: m_TagString
+      value: BackToTitleCard
+      objectReference: {fileID: 0}
     - target: {fileID: 3251477474756671994, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3203,16 +3255,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251477474756671995, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
-        type: 3}
-      propertyPath: m_Name
-      value: ButtonReturn
-      objectReference: {fileID: 0}
-    - target: {fileID: 3251477474756671995, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
-        type: 3}
-      propertyPath: m_TagString
-      value: BackToTitleCard
       objectReference: {fileID: 0}
     - target: {fileID: 3251477474632835188, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}

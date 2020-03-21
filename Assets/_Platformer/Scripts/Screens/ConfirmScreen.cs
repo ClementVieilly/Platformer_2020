@@ -16,26 +16,39 @@ public class ConfirmScreen : AScreen
 
 	[SerializeField] private MenuButton backButton = null;
 	[SerializeField] private MenuButton skipButton = null;
+    private bool isLogin = false; 
 
 	private void Awake()
 	{
+        animator = GetComponent<Animator>();
+        animator.SetTrigger(enter); 
 		backButton.OnMenuButtonClicked += ConfirmScreenBack_Clicked;
 		skipButton.OnMenuButtonClicked += ConfirmScreenSkip_Clicked;
 	}
 
 	private void ConfirmScreenBack_Clicked(Button button)
 	{
-		OnBackClicked?.Invoke(this);
+        animator.SetTrigger(exit); 
+        isLogin = true; 
 	}
 
 	private void ConfirmScreenSkip_Clicked(Button button)
 	{
-		OnSkipClicked?.Invoke(this);
+        animator.SetTrigger("ExitBis");
+        isLogin = false; 
 	}
 
-	public override void UnsubscribeEvents()
+    public void OnAnimEnd()
+    {
+
+        if(isLogin) OnBackClicked?.Invoke(this);
+        else OnSkipClicked?.Invoke(this); 
+    }
+    public override void UnsubscribeEvents()
 	{
-		OnBackClicked = null;
+        backButton.OnMenuButtonClicked -= ConfirmScreenBack_Clicked;
+        skipButton.OnMenuButtonClicked -= ConfirmScreenSkip_Clicked;
+        OnBackClicked = null;
 		OnSkipClicked = null;
 	}
 }

@@ -84,7 +84,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -225,7 +225,7 @@ TextureImporter:
       name: walls_checkpoint_platformesD_4
       rect:
         serializedVersion: 2
-        x: 2387
+        x: 2381
         y: 4236
         width: 786
         height: 1686
@@ -316,9 +316,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1472
-        y: 1315
-        width: 2632
-        height: 955
+        y: 1281
+        width: 2658
+        height: 989
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -358,9 +358,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1472
-        y: 182
-        width: 872
-        height: 952
+        y: 4
+        width: 2784
+        height: 1130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -391,48 +391,6 @@ TextureImporter:
       bones: []
       spriteID: 142207991a10d6948915f0f529e45a3b
       internalID: 6287808346028863187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walls_checkpoint_platformesD_12
-      rect:
-        serializedVersion: 2
-        x: 3459
-        y: 182
-        width: 645
-        height: 955
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a82060263c283d245b465e5ed9e8c011
-      internalID: -6355491868025221463
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walls_checkpoint_platformesD_13
-      rect:
-        serializedVersion: 2
-        x: 2189
-        y: 65
-        width: 81
-        height: 192
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ab67cc783d20f94a92265653dbf800a
-      internalID: -4547264281301019200
       vertices: []
       indices: 
       edges: []

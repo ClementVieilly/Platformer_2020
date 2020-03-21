@@ -13,6 +13,7 @@ public class LoginScreen : AScreen
 	public delegate void LoginScreenEventHandler(LoginScreen loginScreen);
 	public event LoginScreenEventHandler OnConnectClicked;
 	public event LoginScreenEventHandler OnSkipClicked;
+	public event LoginScreenEventHandler OnLaunchLvlSelector;
 
 	[SerializeField] private InputField usernameField = null;
 	[SerializeField] private InputField passwordField = null;
@@ -25,8 +26,12 @@ public class LoginScreen : AScreen
 	public MenuButton ConnectButton { get => _connectButton; }
 	[SerializeField] private MenuButton skipButton = null;
 
-	private void Awake()
+    public Animator Animator { get => animator;  }
+    private void Awake()
 	{
+        animator = GetComponent<Animator>();
+        
+        animator.SetTrigger(enter); 
 		_connectButton.OnMenuButtonClicked += LoginScreenConnect_Clicked;
 		skipButton.OnMenuButtonClicked += LoginScreenSkip_Clicked;
 
@@ -47,6 +52,11 @@ public class LoginScreen : AScreen
 	{
 		OnSkipClicked?.Invoke(this);
 	}
+
+    public void isAnimEnd()
+    {
+        OnLaunchLvlSelector?.Invoke(this); 
+    }
 
 	public void SendFeedback(string message)
 	{

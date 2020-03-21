@@ -48,8 +48,6 @@ namespace Com.IsartDigital.Platformer.Managers
 			{
 				Sound sound = sounds[i];
 				soundsList.Add(sounds[i]);
-				sound.SetNewSource(gameObject.AddComponent<AudioSource>());
-				if (sound.MixerGroupLvl1 == null) sound.Source.outputAudioMixerGroup = mainMixerGroupLvl1;
 			}
 		}
 
@@ -57,16 +55,21 @@ namespace Com.IsartDigital.Platformer.Managers
 		/// Play a sound whose name is the parameter sound 
 		/// </summary>
 		/// <param name="sound">name of the sound you want to play</param>
-		public void Play(string sound)
+		/// <param name="isForcePlay">want to restart the sound at the beginning if is already playing</param>
+		public void Play(string sound,bool isForcePlay = false)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
-
 			if (currentSound == null)
 			{
 				Debug.LogWarning("Sound: " + sound + " not found!");
 				return;
 			}
-			if (currentSound.Source.isPlaying) 
+			if (currentSound.Source == null)
+			{
+				currentSound.SetNewSource(gameObject.AddComponent<AudioSource>());
+				if (currentSound.MixerGroupLvl1 == null) currentSound.Source.outputAudioMixerGroup = mainMixerGroupLvl1;
+			}
+			if (currentSound.Source.isPlaying && isForcePlay) 
 			{
 				//Debug.LogWarning("Sound: " + sound + " is already playing!");
 				return;
@@ -88,7 +91,8 @@ namespace Com.IsartDigital.Platformer.Managers
 		/// </summary>
 		/// <param name="sound">name of the sound you want to play</param>
 		/// <param name="emitter">object which call the Play method</param>
-		public void Play(string sound, ALevelObject emitter)
+		/// <param name="isForcePlay">want to restart the sound at the beginning if is already playing</param>
+		public void Play(string sound, ALevelObject emitter , bool isForcePlay = false)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
 
@@ -102,7 +106,11 @@ namespace Com.IsartDigital.Platformer.Managers
 			{
 				Sound emitSound = emitter.sfxList.Find(x => x.Name == sound);
 
-				if (emitSound == null)
+				if (emitSound != null)
+				{
+					currentSound = emitSound;
+				}
+				else
 				{
 					emitter.sfxList.Add(new Sound());
 					emitSound = emitter.sfxList[emitter.sfxList.Count - 1];
@@ -114,15 +122,12 @@ namespace Com.IsartDigital.Platformer.Managers
 
 					soundsList.Add(currentSound);
 				}
-				else
-				{
-					currentSound = emitSound;
-				}
+
 			}
 
-			if (currentSound.Source.isPlaying)
+			if (currentSound.Source.isPlaying && !isForcePlay)
 			{
-				//Debug.LogWarning("Sound: " + sound + " is already playing!");
+				Debug.LogWarning("Sound: " + sound + " is already playing!");
 				return;
 			}
 			currentSound.Source.volume = currentSound.Volume * (1 + UnityEngine.Random.Range(-currentSound.VolumeVariance / 2, currentSound.VolumeVariance / 2));
@@ -258,7 +263,8 @@ namespace Com.IsartDigital.Platformer.Managers
 			for (int i = sounds.Length - 1; i >= 0; i--)
 			{
 				Sound sound = sounds[i];
-				if (sound.Source.isPlaying)
+				
+				if (sound.Source != null && sound.Source.isPlaying)
 				{
 					if (sound.Type == SoundTypes.SFX_ClassicPause) Pause(sound);
 					else if (sound.Type == SoundTypes.SFX_MixerPause || sound.Type == SoundTypes.MUSIC) PauseByMixer(sound);

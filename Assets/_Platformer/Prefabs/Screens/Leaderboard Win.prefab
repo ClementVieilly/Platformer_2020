@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1949553820915755406}
   - component: {fileID: 8473206472550672084}
   - component: {fileID: 4192306805028119041}
+  - component: {fileID: 2972813432401062487}
   m_Layer: 5
   m_Name: Time
   m_TagString: Untagged
@@ -71,7 +72,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 80
+    m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -79,6 +80,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Time
+--- !u!114 &2972813432401062487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3293752137303060421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef9b24279366e247b42d27e69e3244c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: LB_Time
 --- !u!1 &3589825324189781998
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,6 +443,7 @@ GameObject:
   - component: {fileID: 3176097175605657731}
   - component: {fileID: 4316982100291190597}
   - component: {fileID: 4588845662824569215}
+  - component: {fileID: 7975830058283244264}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -497,6 +512,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Leaderboard
+--- !u!114 &7975830058283244264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5078126275414891605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef9b24279366e247b42d27e69e3244c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Leaderboard_Title
 --- !u!1 &5428225446206717030
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,6 +781,7 @@ GameObject:
   - component: {fileID: 8461267328382397766}
   - component: {fileID: 3121960191795837033}
   - component: {fileID: 8949324252641694691}
+  - component: {fileID: 368592074473800848}
   m_Layer: 5
   m_Name: Level
   m_TagString: Untagged
@@ -813,7 +842,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 80
+    m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -821,6 +850,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Level 1
+--- !u!114 &368592074473800848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5780745229632767972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef9b24279366e247b42d27e69e3244c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: LB_Level
 --- !u!1 &6006462179477542956
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,6 +874,7 @@ GameObject:
   - component: {fileID: 6842776596277661664}
   - component: {fileID: 4630039259973797553}
   - component: {fileID: 7469867526848502890}
+  - component: {fileID: 394162789520116857}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -892,7 +935,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 80
+    m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -900,6 +943,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Score
+--- !u!114 &394162789520116857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6006462179477542956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef9b24279366e247b42d27e69e3244c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: LB_Score
 --- !u!1 &6570333295931947818
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +1032,7 @@ GameObject:
   - component: {fileID: 2513788188303252523}
   - component: {fileID: 3205334707908847242}
   - component: {fileID: 2260072996068782510}
+  - component: {fileID: 4818723816445383295}
   m_Layer: 5
   m_Name: Lives
   m_TagString: Untagged
@@ -1036,7 +1093,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 80
+    m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1044,6 +1101,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Lives
+--- !u!114 &4818723816445383295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8306716867157454500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef9b24279366e247b42d27e69e3244c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: LB_Lives
 --- !u!1001 &891012967405691153
 PrefabInstance:
   m_ObjectHideFlags: 0

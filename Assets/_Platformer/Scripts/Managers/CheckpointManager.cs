@@ -36,9 +36,7 @@ namespace Com.IsartDigital.Platformer.Managers {
 			checkpointList = currentLevel.CheckpointsList;
 			
             for(int i = checkpointList.Count - 1; i >= 0; i--)
-            {
                 checkpointList[i].OnCollision += SetCheckpoint; 
-            }
 		}
 
         private void SetCheckpoint(Checkpoints triggredCheckpoint)

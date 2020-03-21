@@ -1,0 +1,413 @@
+fileFormatVersion: 2
+guid: 1a1501a351659dc4f9ec7f52694035e6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3534078248562663493
+    second: walls_checkpoint_platformesD_0
+  - first:
+      213: 1453620718034738992
+    second: walls_checkpoint_platformesD_1
+  - first:
+      213: -1097353255235627924
+    second: walls_checkpoint_platformesD_2
+  - first:
+      213: -6145624510555276144
+    second: walls_checkpoint_platformesD_3
+  - first:
+      213: -4540305970047659881
+    second: walls_checkpoint_platformesD_4
+  - first:
+      213: 3655012617115211915
+    second: walls_checkpoint_platformesD_5
+  - first:
+      213: -1048597058361861466
+    second: walls_checkpoint_platformesD_6
+  - first:
+      213: 3533035724480920406
+    second: walls_checkpoint_platformesD_7
+  - first:
+      213: -1501985179614620168
+    second: walls_checkpoint_platformesD_8
+  - first:
+      213: -9062715769404063789
+    second: walls_checkpoint_platformesD_9
+  - first:
+      213: -9202029115943932481
+    second: walls_checkpoint_platformesD_10
+  - first:
+      213: 6287808346028863187
+    second: walls_checkpoint_platformesD_11
+  - first:
+      213: -6355491868025221463
+    second: walls_checkpoint_platformesD_12
+  - first:
+      213: -4547264281301019200
+    second: walls_checkpoint_platformesD_13
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: walls_checkpoint_platformesD_0
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 4193
+        width: 142
+        height: 1625
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -71, y: 812.5}
+        - {x: -71, y: -812.5}
+        - {x: 71, y: -812.5}
+        - {x: 71, y: 812.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bcf9f055ab7aae46bc9c76e61918c60
+      internalID: 3534078248562663493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walls_checkpoint_platformesD_1
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 2473
+        width: 366
+        height: 3445
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -183, y: 1722.5}
+        - {x: -183, y: -1722.5}
+        - {x: 183, y: -1722.5}
+        - {x: 183, y: 1722.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f2e70f09acabe54ea930b09d4d9f6f0
+      internalID: 1453620718034738992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walls_checkpoint_platformesD_2
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 2473
+        width: 366
+        height: 3445
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -183, y: 1722.5}
+        - {x: -183, y: -1722.5}
+        - {x: 183, y: -1722.2148}
+        - {x: 183, y: 1722.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e699e236112db104d889ae621262536b
+      internalID: -1097353255235627924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walls_checkpoint_platformesD_3
+      rect:
+        serializedVersion: 2
+        x: 1402
+        y: 4236
+        width: 784
+        height: 1686
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ba97726a3e1ab94f83abba2ad9908b9
+      internalID: -6145624510555276144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walls_checkpoint_platformesD_4
+      rect:
+        serializedVersion: 2
+        x: 2381
+        y: 4236
+        width: 786
+        height: 1686
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -46, y: 843}
+        - {x: -393, y: 239.79642}
+        - {x: -393, y: -843}
+        - {x: 393, y: -843}
+        - {x: 393, y: 277.56497}
+        - {x: 56, y: 843}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4311498625d57f4f8f4df7521baa944
+      internalID: -4540305970047659881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walls_checkpoint_platformesD_5
+      rect:
+        serializedVersion: 2
+        x: 3276
+        y: 4236
+        width: 1095
+        height: 1686
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7e7de16e40e37844ac94a353684226d
+      internalID: 3655012617115211915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walls_checkpoint_platformesD_6
+      rect:
+        serializedVersion: 2
+        x: 1469
+        y: 3324
+        width: 2635
+        height: 685
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d4fdb4984305904c8716b55032ad85c
+      internalID: -1048597058361861466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walls_checkpoint_platformesD_7
+      rect:
+        serializedVersion: 2
+        x: 1469
+        y: 2473
+        width: 2635
+        height: 686
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47c60862d500230449dc69c23a19cfb2
+      internalID: 3533035724480920406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walls_checkpoint_platformesD_8
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 1281
+        width: 2658
+        height: 989
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b63699f024ff90d4f8d660fc98dc1aeb
+      internalID: -1501985179614620168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walls_checkpoint_platformesD_9
+      rect:
+        serializedVersion: 2
+        x: 3656
+        y: 1188
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 769cd3e48e5c9344cb7d3c009168db32
+      internalID: -9062715769404063789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walls_checkpoint_platformesD_10
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 4
+        width: 2784
+        height: 1130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a79f9c2cdba8494e993d16367dd2a37
+      internalID: -9202029115943932481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walls_checkpoint_platformesD_11
+      rect:
+        serializedVersion: 2
+        x: 2654
+        y: 604
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 142207991a10d6948915f0f529e45a3b
+      internalID: 6287808346028863187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 7d6deedb2d1a6da429152e09163330d6
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

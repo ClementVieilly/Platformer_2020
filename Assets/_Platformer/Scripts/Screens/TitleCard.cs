@@ -3,15 +3,15 @@
 /// Date : 27/01/2020 12:10
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.Managers;
 using Com.IsartDigital.Platformer.Screens.Buttons;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Com.IsartDigital.Platformer.Screens
-{
+namespace Com.IsartDigital.Platformer.Screens {
     public class TitleCard : AScreen {
 
-        public delegate void TitleCardEventHandler(TitleCard title);//Delegates appelés au clic sur les différents boutons du TitleCard
+        public delegate void TitleCardEventHandler(TitleCard title);//Delegates appelï¿½s au clic sur les diffï¿½rents boutons du TitleCard
 
         public TitleCardEventHandler OnLeaderBoardClicked;
         public TitleCardEventHandler OnSoundTriggerClicked;
@@ -19,9 +19,11 @@ namespace Com.IsartDigital.Platformer.Screens
         public TitleCardEventHandler OnCreditsClicked;
         public TitleCardEventHandler OnGameStart;
 
-        private Button[] buttons;//Tableau des différents boutons contenus dans le TitleCard
+        public static event TitleCardEventHandler OnChangeLanguage; 
 
-        //variables contenant les références aux bons boutons (lisibilité du code)
+        private Button[] buttons;//Tableau des diffï¿½rents boutons contenus dans le TitleCard
+
+        //variables contenant les rï¿½fï¿½rences aux bons boutons (lisibilitï¿½ du code)
         private Button leaderBoardButton;
         private Button soundTriggerButton;
         private Button localisationButton;
@@ -34,11 +36,18 @@ namespace Com.IsartDigital.Platformer.Screens
         [SerializeField] private string buttonCreditsTag = "Credits";
         [SerializeField] private string buttonPlayTag = "PlayButton";
 
+        [SerializeField] private Toggle localizationToggle = null; 
+
+
+
         private void Awake()
         {
+            animator = GetComponent<Animator>();
+            animator.SetTrigger(enter); 
+            localizationToggle.isOn = LocalizationManager.toggleBool; 
+            localizationToggle.onValueChanged.AddListener(delegate { OnChangeLanguage?.Invoke(this); }); 
             buttons = GetComponentsInChildren<Button>();
-
-            for (int i = 0; i < buttons.Length; i++)//Assigne les bonnes références de chaque boutons grâce à leurs tags
+            for (int i = 0; i < buttons.Length; i++)//Assigne les bonnes rï¿½fï¿½rences de chaque boutons grï¿½ce ï¿½ leurs tags
             {
                 if (buttons[i].CompareTag(buttonLeaderBoardTag)) leaderBoardButton = buttons[i];
                 else if (buttons[i].CompareTag(buttonSoundTriggerTag)) soundTriggerButton = buttons[i];
@@ -49,10 +58,9 @@ namespace Com.IsartDigital.Platformer.Screens
                 buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked += TitleCard_OnMenuButtonClicked;
             }
         }
-		
         private void TitleCard_OnMenuButtonClicked(Button sender)
         {
-            if (sender.CompareTag(buttonLeaderBoardTag))
+            if(sender.CompareTag(buttonLeaderBoardTag))
             {
                 OnLeaderBoardClicked?.Invoke(this);
                 /*for (int i = buttons.Length - 1; i >= 0; i--)
@@ -61,13 +69,13 @@ namespace Com.IsartDigital.Platformer.Screens
                     //button.GetComponent<MenuButton>().OnMenuButtonClicked -= TitleCard_OnMenuButtonClicked;
                 }*/
             }
-            else if (sender.CompareTag(buttonSoundTriggerTag)) OnSoundTriggerClicked?.Invoke(this);
-            else if (sender.CompareTag(buttonLocalisationTag)) OnLocalisationClicked?.Invoke(this);
-            else if (sender.CompareTag(buttonPlayTag)) OnGameStart?.Invoke(this);
+            else if(sender.CompareTag(buttonSoundTriggerTag)) OnSoundTriggerClicked?.Invoke(this);
+            else if(sender.CompareTag(buttonLocalisationTag)) OnLocalisationClicked?.Invoke(this);
+            else if(sender.CompareTag(buttonPlayTag)) animator.SetTrigger(exit);//OnGameStart?.Invoke(this);
             else
             {
                 OnCreditsClicked?.Invoke(this);
-				
+
                 /*for (int i = buttons.Length - 1; i >= 0; i--)
                 {
                     buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked -= TitleCard_OnMenuButtonClicked;
@@ -75,12 +83,20 @@ namespace Com.IsartDigital.Platformer.Screens
             }
         }
 
+        public void OnAnimEnd()
+        {
+            OnGameStart?.Invoke(this);  
+        }
         public override void UnsubscribeEvents()
         {
+            localizationToggle.onValueChanged.RemoveListener(delegate { OnChangeLanguage?.Invoke(this); });
+            LocalizationManager.toggleBool = localizationToggle.isOn; 
+            LocalizationManager.currentFileName = LocalizationManager.Instance.FileName;
             OnCreditsClicked = null;
             OnLeaderBoardClicked = null;
             OnLocalisationClicked = null;
             OnSoundTriggerClicked = null;
         }
+        
     }
 }

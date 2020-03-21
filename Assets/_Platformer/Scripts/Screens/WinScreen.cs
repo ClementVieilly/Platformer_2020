@@ -3,6 +3,7 @@
 /// Date : 04/02/2020 11:08
 ///-----------------------------------------------------------------
 
+using System;
 using Com.IsartDigital.Platformer.Screens;
 using Com.IsartDigital.Platformer.Screens.Buttons;
 using UnityEngine;
@@ -20,14 +21,41 @@ public class WinScreen : AScreen
     public event WinScreenEventHandler OnLevelSelectorClicked;
     public event WinScreenEventHandler OnLeaderboardClicked;
 
+    private string enterLastScreenParam = "EnterLastScreen"; 
+
 	private void Awake()
     {
+        animator = GetComponent<Animator>();
         menuBtn.OnMenuButtonClicked += WinScreen_OnMenuClicked;
-        levelSelectorBtn.OnMenuButtonClicked += WinScreen_OnLevelSelectorClicked;
+       
 		leaderboardBtn.OnMenuButtonClicked += WinScreen_OnLeaderboardClicked;
     }
 
-	private void WinScreen_OnMenuClicked(Button sender)
+    public void DisplayWinScreen(int level)
+    {
+
+
+        if(level == 1)
+        {
+            animator.SetTrigger(enter);
+            levelSelectorBtn.OnMenuButtonClicked += WinScreen_OnLevelSelectorClicked;
+            Debug.Log("alors t'as lseum");
+        }
+        else
+        {
+            animator.SetTrigger(enterLastScreenParam); 
+            levelSelectorBtn.OnMenuButtonClicked += WinScreen_EndScreenClicked;
+        }
+
+    }
+
+    private void WinScreen_EndScreenClicked(Button button)
+    {
+        Debug.Log("oui"); 
+        animator.SetTrigger(exit); 
+    }
+
+    private void WinScreen_OnMenuClicked(Button sender)
     {
         OnMenuClicked?.Invoke(this);
     }

@@ -34,7 +34,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         public static void ResetAllOnDeath()
         {
-            for (int i = List.Count - 1; i >= 0; i--)
+            for (int i = _list.Count - 1; i >= 0; i--)
             {
 				if (_list[i].mustResetOnDeath)
 					_list[i].mobilePlatform.SetModeWait();
@@ -45,7 +45,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
 		public static void ResetAll()
 		{
-			for (int i = List.Count - 1; i >= 0; i--)
+			for (int i = _list.Count - 1; i >= 0; i--)
 			{
 				_list[i].mobilePlatform.SetModeWait();
 				_list[i].mobilePlatform.IsStarted = false;

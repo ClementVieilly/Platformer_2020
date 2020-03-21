@@ -182,6 +182,7 @@ namespace Com.IsartDigital.Platformer.Managers
             PlatformTrigger.ResetAll();
             TimedDoor.ResetAll();
             ChangeTravellingCamera.ResetAll();
+			TempChangeCamera.ResetAll();
 
             timeManager.StartTimer();
 

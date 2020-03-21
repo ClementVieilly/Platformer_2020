@@ -24,22 +24,24 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         protected override void TriggerInteraction()
         {
-            mobilePlatform.SetModeNormal(); ;
-        }
+            mobilePlatform.SetModeNormal();
+			mobilePlatform.IsStarted = true;
+		}
 
-        private void OnDestroy()
+		private void OnDestroy()
         {
             _list.Remove(this);
         }
 
         public static void ResetAllOnDeath()
         {
+			PlatformTrigger trigger = null;
             for (int i = _list.Count - 1; i >= 0; i--)
             {
-				if (_list[i].mustResetOnDeath)
-					_list[i].mobilePlatform.SetModeWait();
-				else
-					_list[i].mobilePlatform.IsStarted = true;
+				trigger = _list[i];
+
+				if (trigger.mustResetOnDeath)
+					trigger.mobilePlatform.IsStarted = false;
 			}
 		}
 

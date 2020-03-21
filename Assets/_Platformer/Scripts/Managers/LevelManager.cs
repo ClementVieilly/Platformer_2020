@@ -3,8 +3,8 @@
 /// Date : 21/01/2020 10:37
 ///-----------------------------------------------------------------
 
-using Com.IsartDigital.InteractiveObstacles;
 using Com.IsartDigital.Platformer.Cameras;
+using Com.IsartDigital.Platformer.InteractiveObstacles;
 using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
 using Com.IsartDigital.Platformer.LevelObjects.Platforms;
@@ -14,13 +14,13 @@ using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Managers
 {
-    public class LevelManager : MonoBehaviour
+	public class LevelManager : MonoBehaviour
 	{
 		public delegate void LevelManagerEventHandler(LevelManager levelManager);
 
 		private Player player = null;
         [SerializeField] private SoundsSettings sounds = null;
-        [SerializeField] private Level levelInfos;
+        [SerializeField] private Level levelInfos = null;
 
         private string currentLvlMusicName = "";
         private string currentLvlAmbianceName = "";

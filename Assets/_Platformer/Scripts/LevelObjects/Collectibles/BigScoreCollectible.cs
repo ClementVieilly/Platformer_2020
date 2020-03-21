@@ -16,7 +16,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 		public static List<BigScoreCollectible> List => _list;
 
 		[SerializeField] private int slotNumber = 0;
-        [SerializeField] private ParticleSystem collectParticleSystem;
+        [SerializeField] private ParticleSystem collectParticleSystem = null;
 
         public event BigScoreCollectibleEventHandler OnCollected;
 

@@ -11,9 +11,9 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.Cameras {
 	public class Parallax : MonoBehaviour
 	{
-		[SerializeField] private Transform cam;
-		[SerializeField] private Level level;
-		[SerializeField] private float yOffset = 0 ;
+		[SerializeField] private Transform cam = null;
+		[SerializeField] private Level level = null;
+		[SerializeField] private float yOffset = 0f;
 
 		[SerializeField] private float parallaxRatioX = 0.3f;
 		[SerializeField] private float parallaxRatioY = 0.3f;

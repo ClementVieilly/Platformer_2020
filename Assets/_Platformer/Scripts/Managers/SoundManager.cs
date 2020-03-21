@@ -23,9 +23,9 @@ namespace Com.IsartDigital.Platformer.Managers
 		private static SoundManager _instance;
 		public static SoundManager Instance => _instance;
 
-		[SerializeField] private AudioMixerGroup mainMixerGroupLvl1;
-		[SerializeField] private AudioMixerGroup mainMixerGroupLvl2;
-		[SerializeField] private AudioMixerGroup pauseMixerGroup;
+		[SerializeField] private AudioMixerGroup mainMixerGroupLvl1 = null;
+		[SerializeField] private AudioMixerGroup mainMixerGroupLvl2 = null;
+		[SerializeField] private AudioMixerGroup pauseMixerGroup = null;
 		
 		public Sound[] sounds;
 

@@ -6,7 +6,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Com.IsartDigital.InteractiveObstacles {
+namespace Com.IsartDigital.Platformer.InteractiveObstacles {
     public class InteractiveEnemy : AInteractiveObstacles
     {
         private bool isTriggered = false;

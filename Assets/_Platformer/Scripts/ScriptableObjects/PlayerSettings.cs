@@ -47,7 +47,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private float _angleMaxPente = 110f;
 
 
-        [SerializeField] private LayerMask _groundLayerMask;
+        [SerializeField] private LayerMask _groundLayerMask = 0;
 
 		[SerializeField] private float _isGroundedRaycastDistance = 0.25f;
 		[SerializeField] private float _canGroundOnTraversableDistance = 2f;
@@ -64,7 +64,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private float _toPassTraversableVelocity = 0.5f;
 		[SerializeField] private int _startLife = 3;
         [SerializeField] private float _coyoteTime = 0f;
-        [SerializeField] private Vector2 _impulsionInCorner;
+        [SerializeField] private Vector2 _impulsionInCorner = Vector2.one;
 
         public float RunSpeed => _runSpeed;
         public float AngleMinPente => _angleMinPente;

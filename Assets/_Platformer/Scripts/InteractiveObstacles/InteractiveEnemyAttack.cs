@@ -6,8 +6,7 @@
 using Com.IsartDigital.Platformer.LevelObjects;
 using UnityEngine;
 
-namespace Com.IsartDigital.InteractiveObstacles
-{
+namespace Com.IsartDigital.Platformer.InteractiveObstacles {
     public class InteractiveEnemyAttack : MonoBehaviour
     {
         private Vector3 targetPosition;

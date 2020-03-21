@@ -5,8 +5,7 @@
 
 using Com.IsartDigital.Platformer.LevelObjects;
 
-namespace Com.IsartDigital.InteractiveObstacles
-{
+namespace Com.IsartDigital.Platformer.InteractiveObstacles {
     abstract public class AInteractiveObstacles : ACollisionableObject
     {
         protected override void EffectOnCollision()

@@ -89,8 +89,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private Vector2 penteVelocity;
 
         //Corner
-        private bool isOnCorner = false;
-        private bool wasInCorner = false;
+        //private bool isOnCorner = false;
+        //private bool wasInCorner = false;
 
         private float elapsedTimerBeforeSetModeAir = 0f;
         private bool canJump = false;

@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Com.IsartDigital.InteractiveObstacles {
+namespace Com.IsartDigital.Platformer.InteractiveObstacles {
     public class TimedDoor : MonoBehaviour
     {
         private static List<TimedDoor> _list = new List<TimedDoor>();

@@ -5,7 +5,7 @@
 
 using UnityEngine;
 
-namespace Com.IsartDigital.InteractiveObstacles {
+namespace Com.IsartDigital.Platformer.InteractiveObstacles {
     public class TimedDoorTrigger : AInteractiveObstacles
     {
         [SerializeField] private GameObject doorGameObject = null;

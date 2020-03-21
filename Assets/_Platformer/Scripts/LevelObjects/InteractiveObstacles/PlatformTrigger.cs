@@ -14,8 +14,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         [SerializeField] private GameObject mobilePlatformGameObject = null;
         private MobilePlatform mobilePlatform = null;
+		[SerializeField] private bool mustResetOnDeath = true;
 
-        private void Awake()
+		private void Awake()
         {
             _list.Add(this);
             mobilePlatform = mobilePlatformGameObject.GetComponent<MobilePlatform>();
@@ -23,21 +24,34 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         protected override void TriggerInteraction()
         {
-            mobilePlatform.SetModeNormal(); ;
-        }
+            mobilePlatform.SetModeNormal();
+			mobilePlatform.IsStarted = true;
+		}
 
-        private void OnDestroy()
+		private void OnDestroy()
         {
             _list.Remove(this);
         }
 
-        public static void ResetAll()
+        public static void ResetAllOnDeath()
         {
-            for (int i = List.Count - 1; i >= 0; i--)
+			PlatformTrigger trigger = null;
+            for (int i = _list.Count - 1; i >= 0; i--)
             {
-                List[i].mobilePlatform.SetModeWait();
-            }
-        }
+				trigger = _list[i];
 
-    }
+				if (trigger.mustResetOnDeath)
+					trigger.mobilePlatform.IsStarted = false;
+			}
+		}
+
+		public static void ResetAll()
+		{
+			for (int i = _list.Count - 1; i >= 0; i--)
+			{
+				_list[i].mobilePlatform.SetModeWait();
+				_list[i].mobilePlatform.IsStarted = false;
+			}
+		}
+	}
 }

@@ -26,7 +26,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 		private void Awake()
 		{
 			_list.Add(this);
-
             GetComponentInChildren<SpriteRenderer>().sprite = allSprites[Random.Range(0, allSprites.Count -1)];
 		}
 

@@ -10,6 +10,7 @@ using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
 using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.LevelObjects.Platforms;
 using Com.IsartDigital.Platformer.Screens;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -38,6 +39,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		public bool[] BigScoreCollectibles { get => _bigScoreCollectibles; }
 
 		public event LevelManagerEventHandler OnWin;
+		public event LevelManagerEventHandler OnLaunchHudAnim;
 
         private void Start()
         {
@@ -90,16 +92,19 @@ namespace Com.IsartDigital.Platformer.Managers
             if(Hud.Instance != null) Hud.Instance.Score = _score;
 		}
 
-		private void BigScoreCollectible_OnCollected(uint slotNumber)
+		private void BigScoreCollectible_OnCollected(int slotNumber)
 		{
 			_bigScoreCollectibles[slotNumber] = true;
-			if (Hud.Instance != null) Hud.Instance.BigScore = _bigScoreCollectibles;
+            if(Hud.Instance != null)
+            {
+                Hud.Instance.SlotNumber = slotNumber;
+                Hud.Instance.BigScore = _bigScoreCollectibles;
+            }
 		}
 
 		private void KillZone_OnCollision()
         {
 			player.LooseLife();
-            DestructiblePlatform.ResetAll();
         }
 
         private void DeadZone_OnCollision()
@@ -117,12 +122,13 @@ namespace Com.IsartDigital.Platformer.Managers
 				else if (CheckpointManager.Instance)
 				{
 					player.SetPosition(CheckpointManager.Instance.LastCheckpointPos);
-					PlatformTrigger.ResetAll();
+					PlatformTrigger.ResetAllOnDeath();
 					MobilePlatform.ResetAll();
 					ChangeTravellingCamera.ResetAll();
+					DestructiblePlatform.ResetAll();
 				}
 
-                player.GetComponent<Collider2D>().enabled = true;
+				player.GetComponent<Collider2D>().enabled = true;
 				return;
 			}
 
@@ -142,27 +148,32 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void Win()
         {
-			_completionTime = timeManager.Timer;
+            Hud.Instance.OnFinalAnimFinished += Hud_OnFinalAnimFinished;
+            _completionTime = timeManager.Timer;
             timeManager.SetModeVoid();
+            OnLaunchHudAnim?.Invoke(this); 
+        }
 
-			OnWin?.Invoke(this);
-
+        private void Hud_OnFinalAnimFinished(Hud hud)
+        {
             UnsubscribeAllEvents();
-
-			if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();
-            else Debug.LogError("Pas d'UImanager sur la scène");
-            player.gameObject.SetActive(false);
+            OnWin?.Invoke(this);
+            if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();
+             else Debug.LogError("Pas d'UImanager sur la scène");
+             player.gameObject.SetActive(false);
         }
 
         private void Retry()
         {
             player.Reset();
             _score = 0;
+            Hud.Instance.ResetKeyPos();
             UpdateHud();
 
             timeManager.SetModeVoid();
 
             CheckpointManager.Instance.ResetColliders();
+           
 
             LifeCollectible.ResetAll();
             ScoreCollectible.ResetAll();
@@ -171,6 +182,7 @@ namespace Com.IsartDigital.Platformer.Managers
             PlatformTrigger.ResetAll();
             TimedDoor.ResetAll();
             ChangeTravellingCamera.ResetAll();
+			TempChangeCamera.ResetAll();
 
             timeManager.StartTimer();
 

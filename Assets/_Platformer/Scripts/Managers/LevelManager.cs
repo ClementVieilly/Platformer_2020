@@ -174,7 +174,8 @@ namespace Com.IsartDigital.Platformer.Managers
             _score = 0;
             Hud.Instance.ResetKeyPos();
             UpdateHud();
-
+            _bigScoreCollectibles  = new bool[] { false, false, false, false };
+            UIManager.Instance.UpdatePauseMenu(_score, _bigScoreCollectibles); 
             timeManager.SetModeVoid();
 
             CheckpointManager.Instance.ResetColliders();
@@ -182,6 +183,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
             LifeCollectible.ResetAll();
             ScoreCollectible.ResetAll();
+            BigScoreCollectible.ResetAll(); 
             DestructiblePlatform.ResetAll();
             MobilePlatform.ResetAll();
             PlatformTrigger.ResetAll();
@@ -190,8 +192,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			TempChangeCamera.ResetAll();
 
             timeManager.StartTimer();
-
-			if (SoundManager.Instance)
+            if (SoundManager.Instance)
 			{
 				SoundManager.Instance.Stop(currentLvlMusicName);
 				SoundManager.Instance.Play(currentLvlMusicName);

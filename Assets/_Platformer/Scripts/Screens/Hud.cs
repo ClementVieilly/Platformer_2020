@@ -84,11 +84,11 @@ namespace Com.IsartDigital.Platformer.Screens
 			}
 		}
 
-		private bool[] _bigScore = new bool[] { false, false, false, false };
+		//private bool[] _bigScore = new bool[] { false, false, false, false };
         private List<Transform> keyTab = new List<Transform>();
 		public bool[] BigScore
 		{
-			get => _bigScore;
+			//get => _bigScore;
 			set
 			{
                 if(isFirstTimeBg)
@@ -96,13 +96,13 @@ namespace Com.IsartDigital.Platformer.Screens
                     isFirstTimeBg = false;
                     return;
                 }
-				_bigScore = (bool[])value.Clone();
+			//	_bigScore = (bool[])value.Clone();
                 scoreObject.SetActive(true);
 				bigScoreObject.SetActive(true);
 				_timer = 0;
                 Tween.LocalPosition(bigScoreObject.transform.GetChild(SlotNumber).transform, new Vector2(slotsPos[SlotNumber].localPosition.x, slotsPos[SlotNumber].localPosition.y), 1, 0,bigScoreEnterAnim);
                 keyTab.Add(bigScoreObject.transform.GetChild(SlotNumber).transform); 
-				UpdateBigScore();
+				//UpdateBigScore();
 			}
 		}
 
@@ -226,25 +226,21 @@ namespace Com.IsartDigital.Platformer.Screens
             UpdateText(scoreText, _score);
         }
 
-		private void UpdateBigScore()
+		/*private void UpdateBigScore()
 		{
 			for (int i = _bigScore.Length - 1; i >= 0; i--)
 				bigScoreObject.transform.GetChild(i).gameObject.SetActive(_bigScore[i]);
-		}
+		}*/
 
 		private void Hud_OnButtonPauseClicked()
 		{
 			paused = true;
-			_timer = 0;
 
 			OnButtonPausePressed?.Invoke(this);
 		}
 
 		internal void UIManager_OnResume()
 		{
-			scoreObject.SetActive(true);
-			bigScoreObject.SetActive(true);
-
 			paused = false;
 		}
 

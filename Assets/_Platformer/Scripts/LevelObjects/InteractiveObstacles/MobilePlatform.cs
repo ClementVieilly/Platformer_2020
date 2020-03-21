@@ -41,6 +41,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         public void SetModeWait() 
         {
+
             DoAction = DoActionWait;
         }
 
@@ -58,6 +59,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 
         private void DoActionWait()
         {
+
 			if (timeBeforeStart == 0f) return;
 
             elapsedTime += Time.deltaTime;
@@ -130,7 +132,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
                 _list[i].elapsedTime = 0;
                 _list[i].index = _list[i].startIndex;
             }
-
 			ResumeAll();
         }
 

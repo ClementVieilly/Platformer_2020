@@ -51,7 +51,6 @@ public class WinScreen : AScreen
 
     private void WinScreen_EndScreenClicked(Button button)
     {
-        Debug.Log("oui"); 
         animator.SetTrigger(exit); 
     }
 

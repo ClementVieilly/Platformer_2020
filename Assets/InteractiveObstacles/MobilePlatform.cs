@@ -130,15 +130,14 @@ namespace Com.IsartDigital.InteractiveObstacles {
                 _list[i].elapsedTime = 0;
                 _list[i].index = _list[i].startIndex;
             }
+
 			ResumeAll();
         }
 
         public static void PauseAll()
         {
             for (int i = _list.Count - 1; i >= 0; i--)
-            {
                 _list[i].SetModeVoid();
-            }
         }
 
         public static void ResumeAll()

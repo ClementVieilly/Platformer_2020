@@ -13,6 +13,7 @@ namespace Com.IsartDigital.Platformer.Cameras {
 	{
 		[SerializeField] private Transform cam;
 		[SerializeField] private Level level;
+		[SerializeField] private float yOffset = 0 ;
 
 		[SerializeField] private float parallaxRatioX = 0.3f;
 		[SerializeField] private float parallaxRatioY = 0.3f;
@@ -47,6 +48,7 @@ namespace Com.IsartDigital.Platformer.Cameras {
 			{
 				obj = objs[i];
 				gap.x = (obj.localPosition.x - refPos.x) * parallaxRatioX;
+				if (!isLockedY) gap.y = yOffset;
 				obj.position += (Vector3)gap;
 			}
 			gameObject.transform.position = startPos;

@@ -50,7 +50,10 @@ namespace Com.IsartDigital.Platformer.Screens
 		[SerializeField] private Joystick jumpButton = null;
 
         [Header("Slot")]
+
+
         [SerializeField] private List<RectTransform> slotsPos = new List<RectTransform>(); 
+        private List<Vector2> keyStartPo = new List<Vector2>(); 
 
         private Button btnPause;
         public int SlotNumber = 0; 
@@ -145,6 +148,7 @@ namespace Com.IsartDigital.Platformer.Screens
             lvlManager.OnLaunchHudAnim += LevelManager_Test;
             btnPause = GetComponentInChildren<Button>();
 			btnPause.onClick.AddListener(Hud_OnButtonPauseClicked);
+            SaveKeyStartPos(); 
 
 #if UNITY_ANDROID || UNITY_EDITOR
 			Player.OnPlayerMove += UpdateMoveController;
@@ -281,5 +285,23 @@ namespace Com.IsartDigital.Platformer.Screens
 		{
 			OnButtonPausePressed = null;
 		}
+
+        private void SaveKeyStartPos()
+        {
+            for(int i = 0; i < bigScoreObject.transform.childCount; i++)
+            {
+                keyStartPo.Add(bigScoreObject.transform.GetChild(i).localPosition);
+            }
+        }
+
+        public void ResetKeyPos()
+        {
+            for(int i = keyStartPo.Count - 1; i >= 0; i--)
+            {
+                bigScoreObject.transform.GetChild(i).localPosition = keyStartPo[i];
+            }
+            isFirstTime = true;
+            isFirstTimeBg = true;
+        }
 	}
 }

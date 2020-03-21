@@ -139,8 +139,6 @@ namespace Com.IsartDigital.Platformer.Sounds {
 			Source.pitch = Pitch;
 			Source.loop = IsLoop;
 			CurrentMixerGroup = MixerGroupLvl1;
-			Debug.Log(_mixerGroupLvl1);
-			Debug.Log(CurrentMixerGroup);
 			Source.outputAudioMixerGroup = CurrentMixerGroup;
 			
 			Source.rolloffMode = _rolloffMode;

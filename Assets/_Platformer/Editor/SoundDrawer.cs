@@ -13,7 +13,7 @@ namespace Com.IsartDigital.Platformer
     [CustomPropertyDrawer(typeof(Sound))]
     public class SoundDrawer : PropertyDrawer
     {
-        private float lineNumber = 28;
+        private float lineNumber = 31;
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             #region Infos
@@ -89,6 +89,12 @@ namespace Com.IsartDigital.Platformer
             SerializedProperty source = property.FindPropertyRelative("_source");
             //bool
             SerializedProperty _isStartAtRandomTime = property.FindPropertyRelative("_isStartAtRandomTime");
+            //AudioMixerGroup
+            SerializedProperty _mixerGroupLvl1 = property.FindPropertyRelative("_mixerGroupLvl1");
+            //AudioMixerGroup
+            SerializedProperty _mixerGroupLvl2 = property.FindPropertyRelative("_mixerGroupLvl2");
+            //AudioMixerGroup
+            SerializedProperty _pauseMixerGroup = property.FindPropertyRelative("_pauseMixerGroup");
 
             #endregion
 
@@ -339,6 +345,36 @@ namespace Com.IsartDigital.Platformer
                 position.y + lineHeight * 22.5f + 2.5f,
                 position.width * 0.3f,
                 lineHeight);
+            
+            Rect audioMixerLvl1LeftRect = new Rect(position.x + 15,
+                position.y + lineHeight * 24f + 2.5f,
+                200,
+                lineHeight);
+
+            Rect audioMixerLvl1RightRect = new Rect(position.x + 150,
+                position.y + lineHeight * 24f + 2.5f,
+                position.width * 0.5f,
+                lineHeight);
+                        
+            Rect audioMixerLvl2LeftRect = new Rect(position.x + 15,
+                position.y + lineHeight * 25f + 2.5f,
+                200,
+                lineHeight);
+
+            Rect audioMixerLvl2RightRect = new Rect(position.x + 150,
+                position.y + lineHeight * 25f + 2.5f,
+                position.width * 0.5f,
+                lineHeight);
+                        
+            Rect audioMixerPauseLeftRect = new Rect(position.x + 15,
+                position.y + lineHeight * 26f + 2.5f,
+                200,
+                lineHeight);
+
+            Rect audioMixerPauseRightRect = new Rect(position.x + 150,
+                position.y + lineHeight * 26f + 2.5f,
+                position.width * 0.5f,
+                lineHeight);
 
             Rect foldoutRect = showInEditor.boolValue ? titleRect : position;
 
@@ -431,6 +467,14 @@ namespace Com.IsartDigital.Platformer
             string stateRandomTime = _isStartAtRandomTime.boolValue ? "ON" : "OFF";
             GUI.Label(randomTimeRightRect, stateRandomTime);
 
+            GUI.Label(audioMixerLvl1LeftRect, "Main Mixer Lvl 1");
+            EditorGUI.PropertyField(audioMixerLvl1RightRect, _mixerGroupLvl1, GUIContent.none);
+
+            GUI.Label(audioMixerLvl2LeftRect, "Main Mixer Lvl 2");
+            EditorGUI.PropertyField(audioMixerLvl2RightRect, _mixerGroupLvl2, GUIContent.none);
+
+            GUI.Label(audioMixerPauseLeftRect, "Pause Mixer Group");
+            EditorGUI.PropertyField(audioMixerPauseRightRect, _pauseMixerGroup, GUIContent.none);
 
             EditorGUI.EndProperty();
         }

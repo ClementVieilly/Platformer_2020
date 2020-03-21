@@ -67,6 +67,8 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			_levelNumber = level;
 
+            SoundManager.Instance.SetLevelNumber(level);
+
             if (_levelNumber == 1)
             {
                 currentLvlMusicName = sounds.Music_Level_1;
@@ -212,7 +214,6 @@ namespace Com.IsartDigital.Platformer.Managers
             MobilePlatform.ResumeAll();
             TimedDoor.ResumeAll();
             SoundManager.Instance.ResumeAll();
-            //SoundManager.Instance.ResumeAllByMixerGroup();
             ChangeTravellingCamera.ResumeAll();
         }
 
@@ -224,7 +225,6 @@ namespace Com.IsartDigital.Platformer.Managers
 			MobilePlatform.PauseAll();
 			TimedDoor.PauseAll();
 			SoundManager.Instance.PauseAll();
-			//SoundManager.Instance.PauseAllByMixerGroup();
 			ChangeTravellingCamera.PauseAll();
 
 			if (UIManager.Instance != null)

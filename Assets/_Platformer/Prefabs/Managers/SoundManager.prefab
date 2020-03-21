@@ -93,6 +93,7 @@ MonoBehaviour:
       type: 2}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
   - _name: Poire_Spawn
     _clip: {fileID: 8300000, guid: c5538253ee1de8746911fded54e6d925, type: 3}
@@ -137,7 +138,8 @@ MonoBehaviour:
       type: 2}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
-    showInEditor: 0
+    CurrentMixerGroup: {fileID: 0}
+    showInEditor: 1
   - _name: Poire_Death
     _clip: {fileID: 8300000, guid: aaeb5a60244ecb348b9e8c97ba79b537, type: 3}
     _type: 1
@@ -181,6 +183,7 @@ MonoBehaviour:
       type: 2}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
   - _name: Poire_Planer
     _clip: {fileID: 8300000, guid: da3158413aabe59448066805b3176533, type: 3}
@@ -225,6 +228,7 @@ MonoBehaviour:
       type: 2}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
   - _name: Poire_Idle
     _clip: {fileID: 8300000, guid: 1f3480ffb3ee83e40ada90dc503396c5, type: 3}
@@ -269,10 +273,11 @@ MonoBehaviour:
       type: 2}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
   - _name: Poire_Idle_Long
     _clip: {fileID: 8300000, guid: 3a190e2f5c5bf224881faccc7beca740, type: 3}
-    _type: 0
+    _type: 1
     _volume: 0.75
     _volumeVariance: 0
     _pitch: 1
@@ -281,7 +286,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 0
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -313,7 +318,8 @@ MonoBehaviour:
       type: 2}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
-    showInEditor: 0
+    CurrentMixerGroup: {fileID: 0}
+    showInEditor: 1
   - _name: Poire_Fall
     _clip: {fileID: 8300000, guid: b4aa2801ad2a3f74d8a9acfa0c1a41f1, type: 3}
     _type: 1
@@ -355,6 +361,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
   - _name: Poire_Wall_Catch
     _clip: {fileID: 8300000, guid: b4aa2801ad2a3f74d8a9acfa0c1a41f1, type: 3}
@@ -397,6 +404,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
   - _name: Music_Menu
     _clip: {fileID: 0}
@@ -439,6 +447,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 0
   - _name: Music_Level_1
     _clip: {fileID: 0}
@@ -481,6 +490,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 0
   - _name: Music_Level_2
     _clip: {fileID: 8300000, guid: 33c039304efbaf4429dc1c51923ea394, type: 3}
@@ -523,6 +533,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
   - _name: Ambience_Level_1
     _clip: {fileID: 8300000, guid: cfb3d5d11a7e2ab458667238977da6d7, type: 3}
@@ -565,6 +576,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 0
   - _name: Ambience_Level_2
     _clip: {fileID: 8300000, guid: 6a988eb1e32bb7246a1af3e3c1189f14, type: 3}
@@ -607,6 +619,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 0
   - _name: UI_Button
     _clip: {fileID: 8300000, guid: 11d6d6c3c58f32a4b91bfa358122ff97, type: 3}
@@ -649,6 +662,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 0
   - _name: UI_Pause
     _clip: {fileID: 8300000, guid: 778e3694f22e093438af156397d74596, type: 3}
@@ -691,6 +705,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 0
   - _name: UI_Start
     _clip: {fileID: 8300000, guid: 12e9e0ca088b4e748916311463408b13, type: 3}
@@ -733,6 +748,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 0
   - _name: Birds_Dove
     _clip: {fileID: 8300000, guid: a751f825184b8854887f57c0467672c4, type: 3}
@@ -775,6 +791,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 0
   - _name: Birds_1
     _clip: {fileID: 0}
@@ -817,6 +834,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 0
   - _name: Birds_2
     _clip: {fileID: 0}
@@ -859,6 +877,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 0
   - _name: Birds_3
     _clip: {fileID: 0}
@@ -901,6 +920,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
   - _name: Birds_4
     _clip: {fileID: 0}
@@ -943,6 +963,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
   - _name: Props_Flaque_Toxique
     _clip: {fileID: 0}
@@ -985,6 +1006,7 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 0
   - _name: Props_Platforme_Destructible_Tuyaux_Verre
     _clip: {fileID: 8300000, guid: c2c4c0a8f908a614381772196d203c7d, type: 3}
@@ -1027,4 +1049,5 @@ MonoBehaviour:
     _mixerGroupLvl2: {fileID: 0}
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
     showInEditor: 0

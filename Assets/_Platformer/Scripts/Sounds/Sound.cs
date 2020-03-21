@@ -114,17 +114,19 @@ namespace Com.IsartDigital.Platformer.Sounds {
 		public bool IsStartAtRandomTime => _isStartAtRandomTime;
 
 		//Temp : need to make arrays and choose by level
-		[SerializeField] private AudioMixerGroup _mixerGroupLvl1 = null;
+		[SerializeField] private AudioMixerGroup _mixerGroupLvl1;
 		public AudioMixerGroup MixerGroupLvl1 => _mixerGroupLvl1;
 		
-		[SerializeField] private AudioMixerGroup _mixerGroupLvl2 = null;
+		[SerializeField] private AudioMixerGroup _mixerGroupLvl2;
 		public AudioMixerGroup MixerGroupLvl2 => _mixerGroupLvl2;
 
-		[SerializeField] private AudioMixerGroup _pauseMixerGroup = null;
+		[SerializeField] private AudioMixerGroup _pauseMixerGroup;
 		public AudioMixerGroup PauseMixerGroup => _pauseMixerGroup;
 
-		[SerializeField] private AudioMixerGroup _transitionMixerGroup = null;
+		[SerializeField] private AudioMixerGroup _transitionMixerGroup;
 		public AudioMixerGroup TransitionMixerGroup => _transitionMixerGroup;
+
+		public AudioMixerGroup CurrentMixerGroup;
 
 		private AudioSource _source = null;
 		public AudioSource Source { get => _source; set { _source = value; } }
@@ -136,7 +138,10 @@ namespace Com.IsartDigital.Platformer.Sounds {
 			Source.volume = Volume;
 			Source.pitch = Pitch;
 			Source.loop = IsLoop;
-			Source.outputAudioMixerGroup = MixerGroupLvl1;
+			CurrentMixerGroup = MixerGroupLvl1;
+			Debug.Log(_mixerGroupLvl1);
+			Debug.Log(CurrentMixerGroup);
+			Source.outputAudioMixerGroup = CurrentMixerGroup;
 			
 			Source.rolloffMode = _rolloffMode;
 			Source.minDistance = minDistance;
@@ -152,6 +157,25 @@ namespace Com.IsartDigital.Platformer.Sounds {
 			}
 		}
 
+		public void SetMixer1(AudioMixerGroup newMixer)
+		{
+			SetMixer(_mixerGroupLvl1, newMixer);
+		}
+
+		public void SetMixer2(AudioMixerGroup newMixer)
+		{
+			SetMixer(_mixerGroupLvl2, newMixer);
+		}
+
+		public void SetMixerPause(AudioMixerGroup newMixer)
+		{
+			SetMixer(_pauseMixerGroup, newMixer);
+		}
+
+		public void SetMixer(AudioMixerGroup emptyMixer,AudioMixerGroup newMixer)
+		{
+			emptyMixer = newMixer;
+		}
 		//public void SetMode(SoundMode mode)
 		//{
 		//	if (mode == SoundMode.Normal) Source.outputAudioMixerGroup = MixerGroupLvl1;

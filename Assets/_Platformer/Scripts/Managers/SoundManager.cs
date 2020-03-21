@@ -127,7 +127,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
 			if (currentSound.Source.isPlaying && !isForcePlay)
 			{
-				Debug.LogWarning("Sound: " + sound + " is already playing!");
+				//Debug.LogWarning("Sound: " + sound + " is already playing!");
 				return;
 			}
 			currentSound.Source.volume = currentSound.Volume * (1 + UnityEngine.Random.Range(-currentSound.VolumeVariance / 2, currentSound.VolumeVariance / 2));

@@ -3,20 +3,18 @@
 /// Date : 21/01/2020 10:37
 ///-----------------------------------------------------------------
 
-using Cinemachine;
+using Com.IsartDigital.InteractiveObstacles;
 using Com.IsartDigital.Platformer.Cameras;
 using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
-using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.LevelObjects.Platforms;
 using Com.IsartDigital.Platformer.Screens;
-using System;
 using System.Collections;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Managers
 {
-	public class LevelManager : MonoBehaviour
+    public class LevelManager : MonoBehaviour
 	{
 		public delegate void LevelManagerEventHandler(LevelManager levelManager);
 
@@ -67,8 +65,8 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			_levelNumber = level;
 
-            if (_levelNumber == 1) currentLvlMusicName = sounds.Ambiance_Level_One;
-            else if (_levelNumber == 2) currentLvlMusicName = sounds.Ambiance_Level_Two;
+            if (_levelNumber == 1) currentLvlMusicName = sounds.Ambiance_Level_1;
+            else if (_levelNumber == 2) currentLvlMusicName = sounds.Ambiance_Level_2;
 
 			if (SoundManager.Instance)
 				SoundManager.Instance.Play(currentLvlMusicName);
@@ -200,8 +198,8 @@ namespace Com.IsartDigital.Platformer.Managers
             DestructiblePlatform.ResumeAll();
             MobilePlatform.ResumeAll();
             TimedDoor.ResumeAll();
-            //SoundManager.Instance.ResumeAll();
-            SoundManager.Instance.ResumeAllByMixerGroup();
+            SoundManager.Instance.ResumeAll();
+            //SoundManager.Instance.ResumeAllByMixerGroup();
             ChangeTravellingCamera.ResumeAll();
         }
 
@@ -212,8 +210,8 @@ namespace Com.IsartDigital.Platformer.Managers
 			DestructiblePlatform.PauseAll();
 			MobilePlatform.PauseAll();
 			TimedDoor.PauseAll();
-			//SoundManager.Instance.PauseAll();
-			SoundManager.Instance.PauseAllByMixerGroup();
+			SoundManager.Instance.PauseAll();
+			//SoundManager.Instance.PauseAllByMixerGroup();
 			ChangeTravellingCamera.PauseAll();
 
 			if (UIManager.Instance != null)

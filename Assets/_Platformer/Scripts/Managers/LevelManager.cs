@@ -105,7 +105,6 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void KillZone_OnCollision()
         {
 			player.LooseLife();
-            DestructiblePlatform.ResetAll();
         }
 
         private void DeadZone_OnCollision()
@@ -123,12 +122,13 @@ namespace Com.IsartDigital.Platformer.Managers
 				else if (CheckpointManager.Instance)
 				{
 					player.SetPosition(CheckpointManager.Instance.LastCheckpointPos);
-					PlatformTrigger.ResetAll();
+					PlatformTrigger.ResetAllOnDeath();
 					MobilePlatform.ResetAll();
 					ChangeTravellingCamera.ResetAll();
+					DestructiblePlatform.ResetAll();
 				}
 
-                player.GetComponent<Collider2D>().enabled = true;
+				player.GetComponent<Collider2D>().enabled = true;
 				return;
 			}
 
@@ -167,11 +167,13 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             player.Reset();
             _score = 0;
+            Hud.Instance.ResetKeyPos();
             UpdateHud();
 
             timeManager.SetModeVoid();
 
             CheckpointManager.Instance.ResetColliders();
+           
 
             LifeCollectible.ResetAll();
             ScoreCollectible.ResetAll();
@@ -180,6 +182,7 @@ namespace Com.IsartDigital.Platformer.Managers
             PlatformTrigger.ResetAll();
             TimedDoor.ResetAll();
             ChangeTravellingCamera.ResetAll();
+			TempChangeCamera.ResetAll();
 
             timeManager.StartTimer();
 

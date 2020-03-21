@@ -105,7 +105,6 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void KillZone_OnCollision()
         {
 			player.LooseLife();
-            DestructiblePlatform.ResetAll();
         }
 
         private void DeadZone_OnCollision()
@@ -126,9 +125,10 @@ namespace Com.IsartDigital.Platformer.Managers
 					PlatformTrigger.ResetAllOnDeath();
 					MobilePlatform.ResetAll();
 					ChangeTravellingCamera.ResetAll();
+					DestructiblePlatform.ResetAll();
 				}
 
-                player.GetComponent<Collider2D>().enabled = true;
+				player.GetComponent<Collider2D>().enabled = true;
 				return;
 			}
 
@@ -182,6 +182,7 @@ namespace Com.IsartDigital.Platformer.Managers
             PlatformTrigger.ResetAll();
             TimedDoor.ResetAll();
             ChangeTravellingCamera.ResetAll();
+			TempChangeCamera.ResetAll();
 
             timeManager.StartTimer();
 

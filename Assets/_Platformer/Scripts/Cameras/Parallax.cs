@@ -3,6 +3,7 @@
 /// Date : 25/02/2020 11:41
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.LevelObjects;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,78 +11,70 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.Cameras {
 	public class Parallax : MonoBehaviour
 	{
-		public static List<Parallax> list = new List<Parallax>();
-
 		[SerializeField] private Transform cam;
+		[SerializeField] private Level level;
+		[SerializeField] private float yOffset = 0 ;
+
 		[SerializeField] private float parallaxRatioX = 0.3f;
 		[SerializeField] private float parallaxRatioY = 0.3f;
+
 		[SerializeField] private bool isLockedY = false;
+
 		private bool firstUpdate = true;
 
+		private Vector2 refPos;
 		private Vector3 lastCamPos;
-		private Vector3 movementSinceLastFrame;
+		private Vector3 velocity;
+		private Vector3 startPos;
 
-		private Action DoAction;
+		private Transform[] objs;
+
+		private void Awake()
+		{
+			startPos = gameObject.transform.position;
+		}
 
 		private void Start()
 		{
+			refPos = level.StartPos;
+
+			objs = GetComponentsInChildren<Transform>();
 			lastCamPos = cam.position;
 
-			if (GetComponent<Collider2D>() != null) SetModeVoid();
-			else SetModeNormal();
+			Vector2 gap = new Vector2();
+			Transform obj;
+
+			for (int i = objs.Length - 1; i >= 0; i--)
+			{
+				obj = objs[i];
+				gap.x = (obj.localPosition.x - refPos.x) * parallaxRatioX;
+				if (!isLockedY) gap.y = yOffset;
+				obj.position += (Vector3)gap;
+			}
+			gameObject.transform.position = startPos;
 		}
 
 		private void LateUpdate()
 		{
-			DoAction();
-		}
-
-		private void OnTriggerEnter2D(Collider2D collision)
-		{
-			SetModeNormal();
-		}
-		private void OnTriggerExit2D(Collider2D collision)
-		{
-			SetModeVoid();
-		}
-
-		private void SetModeVoid()
-		{
-			Debug.Log("is void");
-			DoAction = DoActionVoid;
-		}
-
-		private void SetModeNormal()
-		{
-			DoAction = DoActionNormal;
-		}
-
-		private void DoActionVoid()	{}
-
-		private void DoActionNormal()
-		{
 			UpdatePos();
-			if (transform.position != Vector3.zero && firstUpdate)
+			if (transform.position != startPos && firstUpdate)
 			{
 				SetStartPos();
 			}
 		}
 
-		private void UpdatePos()
-		{
-			movementSinceLastFrame = cam.position - lastCamPos;
-			if (isLockedY) movementSinceLastFrame.y = 0;
-			transform.position -= new Vector3(movementSinceLastFrame.x * parallaxRatioX, movementSinceLastFrame.y * parallaxRatioY);
-			lastCamPos = cam.position;
-		}
-
-
-
 		private void SetStartPos()
 		{
-			transform.position = Vector3.zero;
+			transform.position = startPos;
 			firstUpdate = false;
 		}
 
+		private void UpdatePos()
+		{
+			velocity = cam.position - lastCamPos;
+			if (isLockedY) velocity.y = 0;
+			transform.position -= new Vector3(velocity.x * parallaxRatioX, velocity.y * parallaxRatioY);
+			lastCamPos = cam.position;
+		}
 	}
 }

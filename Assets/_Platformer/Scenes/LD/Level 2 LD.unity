@@ -41397,6 +41397,16 @@ PrefabInstance:
       propertyPath: sounds.Array.data[24].showInEditor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
+        type: 3}
+      propertyPath: sounds.Array.data[23]._type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
+        type: 3}
+      propertyPath: sounds.Array.data[24]._type
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f32ce0eed9d4a574ba57ca6332634227, type: 3}
 --- !u!43 &1347369447

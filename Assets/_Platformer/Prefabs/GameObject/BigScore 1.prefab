@@ -29,7 +29,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
-  m_Father: {fileID: 2878532328505538610}
+  m_Father: {fileID: 2878532328685080083}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &2878532327525004412
@@ -4781,7 +4781,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
-  m_Father: {fileID: 2878532328505538610}
+  m_Father: {fileID: 2878532328685080083}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &2878532328103123607
@@ -9533,8 +9533,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2878532328103123593}
-  - {fileID: 2878532327525004414}
   - {fileID: 2878532328685080083}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -9567,8 +9565,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0455547ca1e9eaf41ab55e5190466ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: {fileID: 0}
+  sounds: {fileID: 11400000, guid: e4526ec7fb9357d408af38f7e3a4d718, type: 2}
   sfxList: []
+  GFX: {fileID: 2878532328685080082}
   slotNumber: 0
   collectParticleSystem: {fileID: 3077920815105848323, guid: 5926ff54cff363745bb29a95b33a6bb6,
     type: 3}
@@ -9600,9 +9599,11 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2878532328103123593}
+  - {fileID: 2878532327525004414}
   m_Father: {fileID: 2878532328505538610}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2878532328685080081
 SpriteRenderer:

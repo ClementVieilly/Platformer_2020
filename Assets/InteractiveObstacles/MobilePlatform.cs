@@ -41,6 +41,7 @@ namespace Com.IsartDigital.InteractiveObstacles {
 
         public void SetModeWait() 
         {
+
             DoAction = DoActionWait;
         }
 
@@ -58,6 +59,7 @@ namespace Com.IsartDigital.InteractiveObstacles {
 
         private void DoActionWait()
         {
+
 			if (timeBeforeStart == 0f) return;
 
             elapsedTime += Time.deltaTime;
@@ -130,8 +132,7 @@ namespace Com.IsartDigital.InteractiveObstacles {
                 _list[i].elapsedTime = 0;
                 _list[i].index = _list[i].startIndex;
             }
-
-			ResumeAll();
+            ResumeAfterRetry();
         }
 
         public static void PauseAll()
@@ -141,6 +142,15 @@ namespace Com.IsartDigital.InteractiveObstacles {
         }
 
         public static void ResumeAll()
+        {
+            for (int i = _list.Count - 1; i >= 0; i--)
+            {
+					_list[i].SetModeNormal();
+			}
+		}
+
+
+        public static void ResumeAfterRetry()
         {
             for (int i = _list.Count - 1; i >= 0; i--)
             {

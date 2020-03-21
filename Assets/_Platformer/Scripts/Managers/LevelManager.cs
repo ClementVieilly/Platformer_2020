@@ -167,11 +167,13 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             player.Reset();
             _score = 0;
+            Hud.Instance.ResetKeyPos();
             UpdateHud();
 
             timeManager.SetModeVoid();
 
             CheckpointManager.Instance.ResetColliders();
+           
 
             LifeCollectible.ResetAll();
             ScoreCollectible.ResetAll();

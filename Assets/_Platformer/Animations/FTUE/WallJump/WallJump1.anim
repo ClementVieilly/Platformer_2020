@@ -28,7 +28,7 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.0634441, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.5
+        time: 0.36666667
         value: {x: 346.79, y: 42.19, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -63,7 +63,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5
+    m_StopTime: 0.36666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -92,7 +92,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.5
+        time: 0.36666667
         value: 346.79
         inSlope: 0
         outSlope: 0
@@ -120,7 +120,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.0634441
       - serializedVersion: 3
-        time: 0.5
+        time: 0.36666667
         value: 42.19
         inSlope: 0
         outSlope: 0
@@ -148,7 +148,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.5
+        time: 0.36666667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -245,37 +245,9 @@ AnimationClip:
     intParameter: 10
     messageOptions: 0
   - time: 0.36666667
-    functionName: GotoAndStop
-    data: 
+    functionName: set_sequence
+    data: Wall_Catch
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 11
-    messageOptions: 0
-  - time: 0.40000004
-    functionName: GotoAndStop
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 12
-    messageOptions: 0
-  - time: 0.43333337
-    functionName: GotoAndStop
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 13
-    messageOptions: 0
-  - time: 0.4666667
-    functionName: GotoAndStop
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 14
-    messageOptions: 0
-  - time: 0.5
-    functionName: GotoAndStop
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 15
     messageOptions: 0

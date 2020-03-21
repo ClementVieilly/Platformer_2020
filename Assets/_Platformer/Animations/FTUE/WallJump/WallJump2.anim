@@ -28,7 +28,7 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.08157107, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.11178247, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.6666667
+        time: 0.5
         value: {x: 341.79, y: 50.62, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -86,7 +86,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6666667
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -115,7 +115,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.6666667
+        time: 0.5
         value: 341.79
         inSlope: 0
         outSlope: 0
@@ -143,7 +143,7 @@ AnimationClip:
         inWeight: 0.08157107
         outWeight: 0.11178247
       - serializedVersion: 3
-        time: 0.6666667
+        time: 0.5
         value: 50.62
         inSlope: 0
         outSlope: 0
@@ -171,7 +171,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.6666667
+        time: 0.5
         value: 0
         inSlope: 0
         outSlope: 0
@@ -330,67 +330,4 @@ AnimationClip:
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 15
-    messageOptions: 0
-  - time: 0.40000004
-    functionName: GotoAndStop
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 16
-    messageOptions: 0
-  - time: 0.43333337
-    functionName: GotoAndStop
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 17
-    messageOptions: 0
-  - time: 0.4666667
-    functionName: GotoAndStop
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 18
-    messageOptions: 0
-  - time: 0.5
-    functionName: GotoAndStop
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 19
-    messageOptions: 0
-  - time: 0.53333336
-    functionName: GotoAndStop
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 20
-    messageOptions: 0
-  - time: 0.5666667
-    functionName: GotoAndStop
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 21
-    messageOptions: 0
-  - time: 0.6
-    functionName: GotoAndStop
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 22
-    messageOptions: 0
-  - time: 0.6333334
-    functionName: GotoAndStop
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 23
-    messageOptions: 0
-  - time: 0.6666667
-    functionName: GotoAndStop
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 24
     messageOptions: 0

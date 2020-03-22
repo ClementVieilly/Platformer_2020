@@ -58,7 +58,6 @@ namespace Com.IsartDigital.Platformer.Cameras {
 
 		private void LateUpdate()
 		{
-			Debug.Log(isShaking);
 			if (isShaking) return;
 
 			UpdatePos();

@@ -99,9 +99,9 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 
 
-			if (currentSound.Source.isPlaying && isForcePlay) 
+			if (currentSound.Source.isPlaying && !isForcePlay) 
 			{
-				//Debug.LogWarning("Sound: " + sound + " is already playing!");
+				Debug.LogWarning("Sound: " + sound + " is already playing!");
 				return;
 			}
 
@@ -215,7 +215,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		/// <param name="emitter">object which call the PlayRandom method</param>
 		public void PlayRandom(string[] randomSounds, ALevelObject emitter)
 		{
-			float random = UnityEngine.Random.Range(0, randomSounds.Length - 1);
+			float random = UnityEngine.Random.Range(0, randomSounds.Length);
 			int randomIndex = Mathf.CeilToInt(random);
 
 			Play(randomSounds[randomIndex], emitter);

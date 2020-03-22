@@ -5,19 +5,21 @@
 
 using UnityEngine;
 
-namespace Com.IsartDigital.Platformer {
-	
+namespace Com.IsartDigital.Platformer
+{
+
 	[CreateAssetMenu(
 		menuName = "Platformer/Sound"
 	)]
-	
-	public class SoundsSettings : ScriptableObject {
+
+	public class SoundsSettings : ScriptableObject
+	{
 
 		[Header("Characters SD")]
 		[SerializeField] private string _character_Spawn = null;
 		[SerializeField] private string _character_Idle = null;
 		[SerializeField] private string _character_IdleLong = null;
-        [SerializeField] private string _character_Run = null;
+		[SerializeField] private string _character_Run = null;
 		[SerializeField] private string _character_Jump = null;
 		[SerializeField] private string _character_Planer = null;
 		[SerializeField] private string _character_Fall = null;
@@ -37,6 +39,10 @@ namespace Com.IsartDigital.Platformer {
 		[SerializeField] private string _ui_Button = null;
 		[SerializeField] private string _ui_Start = null;
 		[SerializeField] private string _ui_Pause = null;
+
+		[Header("Collectibles")]
+		[SerializeField] private string _collectible_Life = null;
+		[SerializeField] private string _collectible_Score = null;
 
 		[Header("Birds")]
 		//[SerializeField] private string _birds = null;
@@ -64,6 +70,8 @@ namespace Com.IsartDigital.Platformer {
 		public string Ui_Pause { get => _ui_Pause; }
 		//public string Birds { get => _birds; }
 		public string Props_Flaque_Toxique { get => _props_Flaque_Toxique; }
-		public string Props_DestructiblePlatform_Tuyaux_Verre { get => _props_DestructiblePlatform_Tuyaux_Verre;  }
+		public string Props_DestructiblePlatform_Tuyaux_Verre { get => _props_DestructiblePlatform_Tuyaux_Verre; }
+		public string Collectible_Life { get => _collectible_Life; }
+		public string Collectible_Score { get => _collectible_Score; }
 	}
 }

@@ -114,19 +114,19 @@ namespace Com.IsartDigital.Platformer.Sounds {
 		public bool IsStartAtRandomTime => _isStartAtRandomTime;
 
 		//Temp : need to make arrays and choose by level
-		[SerializeField] private AudioMixerGroup _mixerGroupLvl1;
+		[SerializeField] private AudioMixerGroup _mixerGroupLvl1 = null;
 		public AudioMixerGroup MixerGroupLvl1 => _mixerGroupLvl1;
 		
-		[SerializeField] private AudioMixerGroup _mixerGroupLvl2;
+		[SerializeField] private AudioMixerGroup _mixerGroupLvl2 = null;
 		public AudioMixerGroup MixerGroupLvl2 => _mixerGroupLvl2;
 
-		[SerializeField] private AudioMixerGroup _pauseMixerGroup;
+		[SerializeField] private AudioMixerGroup _pauseMixerGroup = null;
 		public AudioMixerGroup PauseMixerGroup => _pauseMixerGroup;
 
-		[SerializeField] private AudioMixerGroup _transitionMixerGroup;
+		[SerializeField] private AudioMixerGroup _transitionMixerGroup = null;
 		public AudioMixerGroup TransitionMixerGroup => _transitionMixerGroup;
 
-		public AudioMixerGroup CurrentMixerGroup;
+		public AudioMixerGroup CurrentMixerGroup = null;
 
 		private AudioSource _source = null;
 		public AudioSource Source { get => _source; set { _source = value; } }

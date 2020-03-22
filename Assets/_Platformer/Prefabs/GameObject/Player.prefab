@@ -365,8 +365,8 @@ MonoBehaviour:
   _sortingOrder: 10
   _tint: {r: 1, g: 1, b: 1, a: 1}
   _clip: {fileID: 11400000, guid: b7797aeabce53fa418c99c696295b80f, type: 2}
-  _sequence: Wall_Catch
-  _currentFrame: 0
+  _sequence: Spawn
+  _currentFrame: 71
 --- !u!114 &641285116001174878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,7 +458,6 @@ MonoBehaviour:
   stateTag: {fileID: 641285115681601434}
   controller: {fileID: 11400000, guid: afc949fa4aadcb8479b513a67c7d3030, type: 2}
   settings: {fileID: 11400000, guid: 605a13ce69349944b9ba17ad0b95f4e2, type: 2}
-  sounds: {fileID: 11400000, guid: e4526ec7fb9357d408af38f7e3a4d718, type: 2}
   wallLinecastRightStartPos: {fileID: 641285115777135913}
   wallLinecastRightEndPos: {fileID: 641285115515738446}
   wallLinecastLeftStartPos: {fileID: 641285115127736795}
@@ -511,7 +510,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641285116067221775}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.200001, y: 9, z: -20}
+  m_LocalPosition: {x: -8.533337, y: 9, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 641285114707324082}

@@ -9,9 +9,9 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.LevelObjects {
 	public class Level : MonoBehaviour {
 
-		[SerializeField] private List<Checkpoints> checkpoints = new List<Checkpoints>();
+		[SerializeField] private List<Checkpoint> checkpoints = new List<Checkpoint>();
         [SerializeField] private Vector2 _startPos = Vector2.zero;
-		public List<Checkpoints> CheckpointsList => checkpoints;
+		public List<Checkpoint> CheckpointsList => checkpoints;
 		public Vector2 StartPos => _startPos;
 
 	}

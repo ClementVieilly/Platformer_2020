@@ -185,8 +185,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
             timeManager.SetModeVoid();
 
-            CheckpointManager.Instance.ResetColliders();
-           
+            CheckpointManager.Instance.Reset();
 
             LifeCollectible.ResetAll();
             ScoreCollectible.ResetAll();

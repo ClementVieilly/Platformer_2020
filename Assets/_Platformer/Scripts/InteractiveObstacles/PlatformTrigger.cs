@@ -17,6 +17,7 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
 		[SerializeField] private bool mustResetOnDeath = true;
 
 		[SerializeField] private Animator animator = null;
+		[SerializeField] private GameObject halo = null;
 
 		private void Awake()
         {
@@ -48,6 +49,7 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
 				{
 					trigger.mobilePlatform.IsStarted = false;
 					trigger.animator.SetBool("IsActive", false);
+					trigger.halo.SetActive(false);
 				}
 			}
 		}
@@ -59,6 +61,7 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
 				_list[i].mobilePlatform.SetModeWait();
 				_list[i].mobilePlatform.IsStarted = false;
 				_list[i].animator.SetBool("IsActive", false);
+				_list[i].halo.SetActive(false);
 			}
 		}
 	}

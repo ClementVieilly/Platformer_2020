@@ -36,8 +36,11 @@ namespace Com.IsartDigital.Platformer.Screens
 		{
 			set
 			{
+                Debug.Log(_bigScore);
+                Debug.Log("value    "+value); 
 				_bigScore = (bool[])value.Clone();
 				UpdateBigScore();
+                
 			}
 		}
 

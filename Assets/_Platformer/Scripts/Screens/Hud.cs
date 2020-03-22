@@ -39,6 +39,7 @@ namespace Com.IsartDigital.Platformer.Screens
 		[SerializeField] private Image lifeImage = null;
 		[SerializeField] private Transform lifeCadre = null;
 		[SerializeField] private Transform lifeBorder = null;
+		[SerializeField] private Transform imgCadre = null;
 
 		[Header("sprite for life")]
 		[SerializeField] private Sprite lifeSprite1 = null;
@@ -83,11 +84,11 @@ namespace Com.IsartDigital.Platformer.Screens
 			}
 		}
 
-		private bool[] _bigScore = new bool[] { false, false, false, false };
+		//private bool[] _bigScore = new bool[] { false, false, false, false };
         private List<Transform> keyTab = new List<Transform>();
 		public bool[] BigScore
 		{
-			get => _bigScore;
+			//get => _bigScore;
 			set
 			{
                 if(isFirstTimeBg)
@@ -95,14 +96,13 @@ namespace Com.IsartDigital.Platformer.Screens
                     isFirstTimeBg = false;
                     return;
                 }
-				_bigScore = (bool[])value.Clone();
+			//	_bigScore = (bool[])value.Clone();
                 scoreObject.SetActive(true);
 				bigScoreObject.SetActive(true);
 				_timer = 0;
                 Tween.LocalPosition(bigScoreObject.transform.GetChild(SlotNumber).transform, new Vector2(slotsPos[SlotNumber].localPosition.x, slotsPos[SlotNumber].localPosition.y), 1, 0,bigScoreEnterAnim);
                 keyTab.Add(bigScoreObject.transform.GetChild(SlotNumber).transform); 
-				UpdateBigScore();
-                
+				//UpdateBigScore();
 			}
 		}
 
@@ -204,32 +204,21 @@ namespace Com.IsartDigital.Platformer.Screens
 			animator.SetBool("IsPlane", false);
 		}
 
-		private void Update()
-		{
-			//showHud();
-		}
-
-		private void showHud()
-		{
-			if (!bigScoreObject.activeSelf) return;
-
-			if (paused) return;
-
-			_timer += Time.deltaTime;
-			if (_timer > 4)
-			{
-				//bigScoreObject.SetActive(false);
-				_timer = 0;
-			}
-		}
-
 		private void UpdateText(Text changingText, float value)
 		{
 			changingText.text = value.ToString();
-          /*  Tween.LocalScale(lifeCadre, new Vector2(4f, 4f), 0.2f, 0, Tween.EaseIn); 
-            Tween.LocalScale(lifeCadre, new Vector2(1, 1), 0.2f, 0.2f, Tween.EaseIn); 
-            Tween.LocalScale(lifeBorder, new Vector2(4, 4), 0.2f, 0, Tween.EaseIn); 
-            Tween.LocalScale(lifeBorder, new Vector2(1, 1), 0.2f, 0.2f, Tween.EaseIn); */
+
+            if(changingText == lifeText)
+            {
+                Tween.LocalRotation(lifeImage.transform, Quaternion.AngleAxis(20f, Vector3.forward),0.2f, 0, Tween.EaseOut); 
+                Tween.LocalRotation(lifeImage.transform, Quaternion.AngleAxis(-20f, Vector3.forward), 0.2f, 0.2f, Tween.EaseOut); 
+                Tween.LocalRotation(lifeImage.transform, Quaternion.identity, 0.2f, .4f, Tween.EaseOut); 
+
+                Tween.LocalScale(lifeCadre, new Vector2(1.7f, 1.7f), 0.2f, .6f, Tween.EaseIn);
+                Tween.LocalScale(lifeCadre, new Vector2(1, 1), 0.2f, 0.8f, Tween.EaseIn);
+                Tween.LocalScale(lifeBorder, new Vector2(1.7f, 1.7f), 0.2f, .6f, Tween.EaseIn);
+                Tween.LocalScale(lifeBorder, new Vector2(1, 1), 0.2f, .8f, Tween.EaseIn);
+            }
 		}
 
         private void callBack()
@@ -237,25 +226,21 @@ namespace Com.IsartDigital.Platformer.Screens
             UpdateText(scoreText, _score);
         }
 
-		private void UpdateBigScore()
+		/*private void UpdateBigScore()
 		{
 			for (int i = _bigScore.Length - 1; i >= 0; i--)
 				bigScoreObject.transform.GetChild(i).gameObject.SetActive(_bigScore[i]);
-		}
+		}*/
 
 		private void Hud_OnButtonPauseClicked()
 		{
 			paused = true;
-			_timer = 0;
 
 			OnButtonPausePressed?.Invoke(this);
 		}
 
 		internal void UIManager_OnResume()
 		{
-			scoreObject.SetActive(true);
-			bigScoreObject.SetActive(true);
-
 			paused = false;
 		}
 

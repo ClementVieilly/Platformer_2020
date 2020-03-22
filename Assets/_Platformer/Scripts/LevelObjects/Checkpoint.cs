@@ -16,8 +16,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 		[SerializeField] private bool _isFinalCheckPoint = false;
 		public bool IsFinalCheckPoint => _isFinalCheckPoint;
 
-		[SerializeField] private Transform bird = null;
-
 		[SerializeField] private Animator animator = null;
 
 		protected override void EffectOnCollision()
@@ -26,7 +24,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			GetComponent<Collider2D>().enabled = false;
 
 			if (animator) animator.SetBool("IsOpen", true);
-			if (bird) bird.gameObject.SetActive(true);
 		}
 
 		public void Reset()
@@ -34,7 +31,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			GetComponent<Collider2D>().enabled = true;
 
 			if (animator) animator.SetBool("IsOpen", false);
-			if (bird) bird.gameObject.SetActive(false);
 		}
 	}
 }

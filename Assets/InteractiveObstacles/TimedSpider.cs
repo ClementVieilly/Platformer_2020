@@ -4,12 +4,13 @@
 ///-----------------------------------------------------------------
 
 using Com.IsartDigital.Platformer.LevelObjects;
+using Com.IsartDigital.Platformer.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Com.IsartDigital.InteractiveObstacles {
-	public class TimedSpider : MonoBehaviour {
+	public class TimedSpider : ALevelObject {
 
         private static List<TimedSpider> _list = new List<TimedSpider>();
 
@@ -61,6 +62,7 @@ namespace Com.IsartDigital.InteractiveObstacles {
                     yield return null;
                 }
                 animator.SetBool(attackParam, isOpening);
+                SoundManager.Instance.PlayRandom(new string[] {sounds.Env_Spider_01_Idle,sounds.Env_Spider_02_Idle },this);
 
                 transform.position = Vector3.MoveTowards(transform.position, endPos.position, openingSpeed * Time.deltaTime);
                 yield return null;

@@ -16372,6 +16372,7 @@ MonoBehaviour:
   mobilePlatformGameObject: {fileID: 701003421}
   mustResetOnDeath: 1
   animator: {fileID: 0}
+  halo: {fileID: 0}
 --- !u!58 &602135025
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -27251,6 +27252,11 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].y
       value: 1.9013584
       objectReference: {fileID: 0}
+    - target: {fileID: 3310609077201486987, guid: b52d0f17746bd4a4bac451182b417868,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3751621431771777933, guid: b52d0f17746bd4a4bac451182b417868,
         type: 3}
       propertyPath: m_Radius
@@ -27260,11 +27266,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Offset.y
       value: 0.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 3310609077201486987, guid: b52d0f17746bd4a4bac451182b417868,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b52d0f17746bd4a4bac451182b417868, type: 3}
@@ -28230,11 +28231,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1910671744}
-    - target: {fileID: 3927507622604754577, guid: e7fafe1c6e80e9447aae87b8befd1231,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3927507622604754576, guid: e7fafe1c6e80e9447aae87b8befd1231,
         type: 3}
       propertyPath: pathData._points.Array.data[3].x
@@ -28695,11 +28691,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 3.76
       objectReference: {fileID: 0}
-    - target: {fileID: 4879630108445024840, guid: e7fafe1c6e80e9447aae87b8befd1231,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6343332504367840261, guid: e7fafe1c6e80e9447aae87b8befd1231,
         type: 3}
       propertyPath: m_Mesh
@@ -28708,6 +28699,16 @@ PrefabInstance:
     - target: {fileID: 6596327775646833244, guid: e7fafe1c6e80e9447aae87b8befd1231,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3927507622604754577, guid: e7fafe1c6e80e9447aae87b8befd1231,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879630108445024840, guid: e7fafe1c6e80e9447aae87b8befd1231,
+        type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -32553,11 +32554,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 15.347869
       objectReference: {fileID: 0}
-    - target: {fileID: 2074140944545821746, guid: 4f96fcb8e8c0bb14e813a4c105451d14,
-        type: 3}
-      propertyPath: _isFinalCheckPoint
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2074140944545821745, guid: 4f96fcb8e8c0bb14e813a4c105451d14,
         type: 3}
       propertyPath: m_Offset.x
@@ -32577,6 +32573,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 0.4508639
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074140944545821746, guid: 4f96fcb8e8c0bb14e813a4c105451d14,
+        type: 3}
+      propertyPath: _isFinalCheckPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f96fcb8e8c0bb14e813a4c105451d14, type: 3}
@@ -37624,6 +37625,11 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].y
       value: 1.9013584
       objectReference: {fileID: 0}
+    - target: {fileID: 3310609077201486987, guid: b52d0f17746bd4a4bac451182b417868,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3751621431771777933, guid: b52d0f17746bd4a4bac451182b417868,
         type: 3}
       propertyPath: m_Radius
@@ -37633,11 +37639,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Offset.y
       value: 0.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 3310609077201486987, guid: b52d0f17746bd4a4bac451182b417868,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b52d0f17746bd4a4bac451182b417868, type: 3}
@@ -39392,17 +39393,17 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.40628
       objectReference: {fileID: 0}
+    - target: {fileID: 6492823855321061107, guid: 144a8de498deed042998f3636b112f06,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5731547045864940327, guid: 144a8de498deed042998f3636b112f06,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 5542145917331833488, guid: 1cdec1dce4acd9a47be73335edb42c78,
         type: 3}
-    - target: {fileID: 6492823855321061107, guid: 144a8de498deed042998f3636b112f06,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144a8de498deed042998f3636b112f06, type: 3}
 --- !u!4 &1383193701 stripped
@@ -56526,11 +56527,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1661347750}
-    - target: {fileID: 3927507622604754577, guid: e7fafe1c6e80e9447aae87b8befd1231,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3927507622604754576, guid: e7fafe1c6e80e9447aae87b8befd1231,
         type: 3}
       propertyPath: pathData._points.Array.data[3].x
@@ -56850,6 +56846,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3927507622604754577, guid: e7fafe1c6e80e9447aae87b8befd1231,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7fafe1c6e80e9447aae87b8befd1231, type: 3}

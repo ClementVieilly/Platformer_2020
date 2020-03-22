@@ -473,6 +473,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4795139704838691517}
     m_Modifications:
+    - target: {fileID: 4020629873673113895, guid: 416b67ccf8735cf48b8d14e3a26f80fa,
+        type: 3}
+      propertyPath: m_Name
+      value: Spider.fla.Spider
+      objectReference: {fileID: 0}
     - target: {fileID: 2703742813654194090, guid: 416b67ccf8735cf48b8d14e3a26f80fa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -528,11 +533,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4020629873673113895, guid: 416b67ccf8735cf48b8d14e3a26f80fa,
-        type: 3}
-      propertyPath: m_Name
-      value: Spider.fla.Spider
-      objectReference: {fileID: 0}
     - target: {fileID: 6546704634753050421, guid: 416b67ccf8735cf48b8d14e3a26f80fa,
         type: 3}
       propertyPath: m_Mesh
@@ -554,6 +554,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e4526ec7fb9357d408af38f7e3a4d718,
         type: 2}
+    - target: {fileID: 1195235259435911097, guid: 416b67ccf8735cf48b8d14e3a26f80fa,
+        type: 3}
+      propertyPath: openingSpeed
+      value: 2.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 416b67ccf8735cf48b8d14e3a26f80fa, type: 3}
 --- !u!4 &5324624691600713234 stripped

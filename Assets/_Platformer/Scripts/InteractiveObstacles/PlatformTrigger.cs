@@ -33,11 +33,6 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
 			animator.SetBool("IsActive", true);
 		}
 
-		private void ActiveHalo()
-		{
-			halo.SetActive(true);
-		}
-
 		private void OnDestroy()
         {
             _list.Remove(this);

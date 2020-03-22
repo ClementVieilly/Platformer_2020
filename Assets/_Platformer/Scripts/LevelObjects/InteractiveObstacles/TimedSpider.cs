@@ -8,7 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Com.IsartDigital.InteractiveObstacles {
+namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
 	public class TimedSpider : MonoBehaviour {
 
         private static List<TimedSpider> _list = new List<TimedSpider>();

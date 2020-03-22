@@ -3,6 +3,7 @@
 /// Date : 22/03/2020 06:04
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.InteractiveObstacles;
 using Com.IsartDigital.Platformer.InteractiveObstacles;
 using System.Collections.Generic;
 using UnityEngine;

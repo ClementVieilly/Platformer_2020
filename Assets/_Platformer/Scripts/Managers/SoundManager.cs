@@ -99,9 +99,9 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 
 
-			if (currentSound.Source.isPlaying && isForcePlay) 
+			if (currentSound.Source.isPlaying && !isForcePlay) 
 			{
-				//Debug.LogWarning("Sound: " + sound + " is already playing!");
+				Debug.LogWarning("Sound: " + sound + " is already playing!");
 				return;
 			}
 

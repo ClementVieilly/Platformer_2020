@@ -57,7 +57,14 @@ namespace Com.IsartDigital.Platformer.Screens {
 
                 buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked += TitleCard_OnMenuButtonClicked;
             }
+            if (SoundManager.Instance) SoundManager.Instance.Play(sounds.Music_Menu);
         }
+
+        private void Start()
+        {
+            if (SoundManager.Instance) SoundManager.Instance.Play(sounds.Music_Menu);
+        }
+
         private void TitleCard_OnMenuButtonClicked(Button sender)
         {
             if(sender.CompareTag(buttonLeaderBoardTag))

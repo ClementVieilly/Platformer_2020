@@ -3,7 +3,9 @@
 /// Date : 22/03/2020 16:48
 ///-----------------------------------------------------------------
 
+using Cinemachine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Cameras
@@ -12,6 +14,8 @@ namespace Com.IsartDigital.Platformer.Cameras
 	{
 		private static CameraShake instance;
 		public static CameraShake Instance { get => instance; }
+
+		[SerializeField] private List<CinemachineVirtualCamera> vCams = null;
 
 		private void Awake()
 		{
@@ -24,25 +28,28 @@ namespace Com.IsartDigital.Platformer.Cameras
 			instance = this;
 		}
 
-		public IEnumerator Shake(float duration, float magnitude)
+		public IEnumerator Shake(float duration, float amplitude)
 		{
-			Vector3 originalPos = transform.localPosition;
+			Debug.Log("Start " + vCams.Count);
+
+			Parallax.isShaking = true;
+
+			foreach (CinemachineVirtualCamera vCam in vCams)
+				vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = amplitude;
 
 			float elapsed = 0f;
 
 			while (elapsed < duration)
 			{
-				float x = Random.Range(-1f, 1f) * magnitude;
-				float y = Random.Range(-1f, 1f) * magnitude;
-
-				transform.localPosition = new Vector3(x, y, originalPos.z);
-
 				elapsed += Time.deltaTime;
-
 				yield return null;
 			}
 
-			transform.localPosition = originalPos;
+			foreach (CinemachineVirtualCamera vCam in vCams)
+				vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0f;
+
+			Parallax.isShaking = false;
+			Debug.Log("Done");
 		}
 
 		private void OnDestroy()

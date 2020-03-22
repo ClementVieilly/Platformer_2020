@@ -3,6 +3,7 @@
 /// Date : 22/03/2020 06:04
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.InteractiveObstacles;
 using UnityEngine;
 
 namespace Com.IsartDigital.InteractiveObstacles {

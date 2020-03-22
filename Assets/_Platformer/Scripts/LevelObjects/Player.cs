@@ -167,7 +167,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private CinemachineVirtualCamera vCam = null;
         public CinemachineVirtualCamera VCam => vCam;
         [SerializeField] private GameObject vCamIdle = null;
-        [SerializeField] private GameObject vCamForegroundIdle = null;
         private CinemachineFramingTransposer vCamBody = null;
         private float lastLookAheadTime = 0f;
         private float lastLookAheadSmoothing = 0f;
@@ -391,7 +390,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     SoundManager.Instance.Stop(sounds.Character_Idle, this);
                     SoundManager.Instance.Play(sounds.Character_IdleLong, this);
                     vCamIdle.SetActive(true);
-                    vCamForegroundIdle.SetActive(true);
                     isPlaying = true;
                 }
             }
@@ -399,7 +397,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
                 idleElapsedTime = 0;
                 vCamIdle.SetActive(false);
-                vCamForegroundIdle.SetActive(false);
             }
 
 			// Updating Animator

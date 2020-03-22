@@ -14,7 +14,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
 	public class LifeCollectible : ACollectible {
 
 		[SerializeField] private int WinLife = 1;
-        [SerializeField] private ParticleSystem collectedLifeParticleSystem;
+        [SerializeField] private ParticleSystem collectedLifeParticleSystem = null;
 
 		private static List<LifeCollectible> _list = new List<LifeCollectible>();
 		public static List<LifeCollectible> List => _list;

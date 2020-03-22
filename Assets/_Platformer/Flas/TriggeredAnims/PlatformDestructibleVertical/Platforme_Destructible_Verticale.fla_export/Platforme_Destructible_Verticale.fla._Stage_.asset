@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9fa30e000f3420796cfbd1e09a86d6, type: 3}
+  m_Name: Platforme_Destructible_Verticale.fla._Stage_
+  m_EditorClassIdentifier: 
+  Name: _Stage_
+  Sprite: {fileID: 21300000, guid: 7597f0e3de600e548a3a6e96855b7c41, type: 3}
+  FrameRate: 30
+  AssetGUID: 07e3ca3ca7841514bb83caeb8083c752
+  Sequences:
+  - Name: Default
+    Frames:
+    - Labels: []
+      MeshData:
+        SubMeshes:
+        - StartVertex: 0
+          IndexCount: 12
+        Vertices:
+        - {x: 0.84949994, y: -0.34900025}
+        - {x: 2.404699, y: -0.34900025}
+        - {x: 2.404699, y: -6.529859}
+        - {x: 0.84949994, y: -6.529859}
+        - {x: 1.3694999, y: -5.339}
+        - {x: 1.8863335, y: -5.339}
+        - {x: 1.8863335, y: -6.168283}
+        - {x: 1.3694999, y: -6.168283}
+        UVs: 000000005fa4bf527fa47f239fd0ff3e
+        AddColors: 00000000000000000000000000000000
+        MulColors: 00020002000200020002000200020002
+      Materials:
+      - {fileID: 2100000, guid: d58d9a5e482e8429f8d7d18a9538d94a, type: 2}

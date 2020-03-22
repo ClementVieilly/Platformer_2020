@@ -22,6 +22,8 @@ namespace Com.IsartDigital.Platformer.Cameras {
 
 		private bool firstUpdate = true;
 
+		public static bool isShaking = false;
+
 		private Vector2 refPos;
 		private Vector3 lastCamPos;
 		private Vector3 velocity;
@@ -56,6 +58,9 @@ namespace Com.IsartDigital.Platformer.Cameras {
 
 		private void LateUpdate()
 		{
+			Debug.Log(isShaking);
+			if (isShaking) return;
+
 			UpdatePos();
 			if (transform.position != startPos && firstUpdate)
 			{

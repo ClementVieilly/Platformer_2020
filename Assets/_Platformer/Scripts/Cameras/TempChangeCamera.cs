@@ -11,9 +11,9 @@ using UnityEngine;
 namespace Com.IsartDigital.Platformer.Cameras {
 	public class TempChangeCamera : MonoBehaviour
 	{
-		[SerializeField] private GameObject vCam;
+		[SerializeField] private GameObject vCam = null;
 		[SerializeField] private float camDuration = 1;
-		[SerializeField] private Player player;
+		[SerializeField] private Player player = null;
 		[SerializeField] private bool doItOnce = false;
 		
 		private bool triggered = false;

@@ -3,6 +3,7 @@
 /// Date : 21/01/2020 10:40
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.Managers;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
 
         [SerializeField] private float duration = 0f;
         [SerializeField] private GameObject triggeredCollider = null;
+        [SerializeField] private PlateformType matter;
+        private string soundToPlay;
         private float elapsedTime = 0f;
 
         private Action DoAction = null;
@@ -32,7 +35,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
             _list.Add(this);
             SetModeVoid();
             spriteOriginalPos = transform.position;
-            animator = GetComponent<Animator>(); 
+            animator = GetComponent<Animator>();
+
+            if (matter == PlateformType.GLASS) soundToPlay = sounds.Env_DestructiblePlatform_Glass;
+            else if (matter == PlateformType.WOOD) soundToPlay = sounds.Env_DestructiblePlatform_Wood;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -52,7 +58,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
         public void SetModeNormal()
         {
             DoAction = DoActionNormal;
-            animator.SetTrigger("Destruction"); 
+            animator.SetTrigger("Destruction");
+            SoundManager.Instance.Play(soundToPlay, this);
         }
         private void DoActionVoid()
         {
@@ -104,5 +111,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
                 List[i].DoAction = List[i].PreviousDoAction;
             }
         }
+    }
+
+    public enum PlateformType
+    {
+        WOOD,
+        GLASS
     }
 }

@@ -30,6 +30,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		[SerializeField] private GameObject confirmScreenPrefab = null;
 		[SerializeField] private GameObject preloadPrefab = null;
 
+
 		[Header("Level names")]
 		[SerializeField] private List<string> sceneNames = new List<string>();
 

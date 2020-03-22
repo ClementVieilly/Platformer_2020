@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 272990396753233230}
   - component: {fileID: 272990396753233229}
   m_Layer: 0
-  m_Name: Chekpoint
+  m_Name: Checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bab692cf210846429943680be4870dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: {fileID: 0}
+  sounds: {fileID: 11400000, guid: e4526ec7fb9357d408af38f7e3a4d718, type: 2}
   sfxList: []
   _isFinalCheckPoint: 0
   animator: {fileID: 272990397517369583}

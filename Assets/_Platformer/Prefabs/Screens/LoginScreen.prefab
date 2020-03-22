@@ -1513,6 +1513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7a66c1c5eafa524b867aeff8c9deec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds: {fileID: 11400000, guid: e4526ec7fb9357d408af38f7e3a4d718, type: 2}
   usernameField: {fileID: 4595519601275195605}
   passwordField: {fileID: 4595519600927419218}
   feedbackText: {fileID: 2142965367908413460}
@@ -1788,6 +1789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5de8f6123a6c7b409c4dac2b2fda472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds: {fileID: 0}
+  type: 0
 --- !u!222 &6242932159778453673
 CanvasRenderer:
   m_ObjectHideFlags: 0

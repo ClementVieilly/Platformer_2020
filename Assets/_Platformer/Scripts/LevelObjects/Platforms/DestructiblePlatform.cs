@@ -21,25 +21,24 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
         private Action PreviousDoAction = null;
 
         //Shake 
-        private Vector2 parentOriginalPos;
+        private Vector2 spriteOriginalPos;
         [SerializeField] private float shakeMagnitudeX = 0.2f;
         [SerializeField] private float shakeMagnitudeY = 0.2f;
-        
+        [SerializeField] private GameObject sprite = null ;
+
+        private Animator animator = null; 
         private void Start()
         {
             _list.Add(this);
             SetModeVoid();
-            parentOriginalPos = transform.parent.position; 
-
+            spriteOriginalPos = sprite.transform.position;
+            animator = GetComponent<Animator>(); 
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            
             SetModeNormal();
         }
-
-       
 
         private void Update()
         {
@@ -53,6 +52,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
         public void SetModeNormal()
         {
             DoAction = DoActionNormal;
+            animator.SetTrigger("Destruction"); 
         }
         private void DoActionVoid()
         {
@@ -70,7 +70,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
             {
                 float x = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitudeX;
                 float y = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitudeY;
-                transform.parent.position = new Vector2(x, y) + parentOriginalPos;
+                sprite.transform.position = new Vector2(x, y) + spriteOriginalPos;
             }
         }
 

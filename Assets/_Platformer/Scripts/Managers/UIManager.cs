@@ -79,10 +79,6 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 			else _instance = this;
 
-			// CreateTitleCard();
-			//Je lance PreLoad 
-
-
 			CreatePreload();
 			DontDestroyOnLoad(gameObject);
 		}
@@ -245,14 +241,14 @@ namespace Com.IsartDigital.Platformer.Managers
 			return Instantiate(loadingScreenPrefab);
 		}
 
-		public void CreateWinScreen()
+		public void CreateWinScreen(int level)
 		{
 			currentWinScreen = Instantiate(winScreenPrefab).GetComponent<WinScreen>();
 
 			currentWinScreen.OnMenuClicked += WinScreen_OnMenuClicked;
 			currentWinScreen.OnLevelSelectorClicked += WinScreen_OnLevelSelectorClicked;
 			currentWinScreen.OnLeaderboardClicked += WinScreen_OnLeaderboardClicked;
-
+            currentWinScreen.DisplayWinScreen(level); 
 			allScreens.Add(currentWinScreen);
 		}
 

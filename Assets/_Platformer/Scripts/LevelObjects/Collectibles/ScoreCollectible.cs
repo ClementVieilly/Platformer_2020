@@ -18,7 +18,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 
 		public event ScoreCollectibleEventHandler OnCollected;
 
-        [SerializeField] private ParticleSystem collectParticleSystem;
+        [SerializeField] private ParticleSystem collectParticleSystem = null;
 
         [SerializeField] private List<Sprite> allSprites = new List<Sprite>();
 

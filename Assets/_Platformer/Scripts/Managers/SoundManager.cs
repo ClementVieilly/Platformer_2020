@@ -23,9 +23,9 @@ namespace Com.IsartDigital.Platformer.Managers
 		private static SoundManager _instance;
 		public static SoundManager Instance => _instance;
 
-		[SerializeField] private AudioMixerGroup mainMixerGroupLvl1;
-		[SerializeField] private AudioMixerGroup mainMixerGroupLvl2;
-		[SerializeField] private AudioMixerGroup pauseMixerGroup;
+		[SerializeField] private AudioMixerGroup mainMixerGroupLvl1 = null;
+		[SerializeField] private AudioMixerGroup mainMixerGroupLvl2 = null;
+		[SerializeField] private AudioMixerGroup pauseMixerGroup = null;
 		
 		public Sound[] sounds;
 
@@ -68,7 +68,6 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 			if (currentSound.Source == null)
 			{
-				Debug.Log("set new source standard");
 				currentSound.SetNewSource(gameObject.AddComponent<AudioSource>());
 				currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl1;
 			}
@@ -92,7 +91,6 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 			else
 			{
-				Debug.Log("test default");
 				if (currentSound.Source.outputAudioMixerGroup != currentSound.MixerGroupLvl1)
 				{
 					currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl1;

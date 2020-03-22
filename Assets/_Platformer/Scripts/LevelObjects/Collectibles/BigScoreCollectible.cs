@@ -16,7 +16,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 		public static List<BigScoreCollectible> List => _list;
 
 		[SerializeField] private int slotNumber = 0;
-        [SerializeField] private ParticleSystem collectParticleSystem;
+        [SerializeField] private ParticleSystem collectParticleSystem = null;
 
         public event BigScoreCollectibleEventHandler OnCollected;
 
@@ -34,7 +34,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
         public static void ResetAll()
 		{
 			for (int i = List.Count - 1; i >= 0; i--)
-				List[i].gameObject.SetActive(true);
-		}
-	}
+            {
+                Debug.Log(List[i].gameObject);
+                List[i].gameObject.SetActive(true);
+            }
+        }
+
+
+        private void OnDestroy()
+        {
+            _list.Remove(this); 
+        }
+    }
 }

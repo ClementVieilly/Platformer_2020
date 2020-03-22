@@ -3,11 +3,10 @@
 /// Date : 21/01/2020 10:37
 ///-----------------------------------------------------------------
 
-using Cinemachine;
 using Com.IsartDigital.Platformer.Cameras;
+using Com.IsartDigital.Platformer.InteractiveObstacles;
 using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
-using Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles;
 using Com.IsartDigital.Platformer.LevelObjects.Platforms;
 using Com.IsartDigital.Platformer.Screens;
 using System.Collections;
@@ -21,9 +20,11 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private Player player = null;
         [SerializeField] private SoundsSettings sounds = null;
-        [SerializeField] private Level levelInfos;
-        private string currentLvlMusicName = "empty";
-		private TimeManager timeManager = null;
+        [SerializeField] private Level levelInfos = null;
+
+        private string currentLvlMusicName = "";
+        private string currentLvlAmbianceName = "";
+        private TimeManager timeManager = null;
 
 		private int _levelNumber = 0;
 		public int LevelNumber { get => _levelNumber; }
@@ -38,6 +39,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		public bool[] BigScoreCollectibles { get => _bigScoreCollectibles; }
 
 		public event LevelManagerEventHandler OnWin;
+		public event LevelManagerEventHandler OnLaunchHudAnim;
 
         private void Start()
         {
@@ -65,11 +67,24 @@ namespace Com.IsartDigital.Platformer.Managers
 		{
 			_levelNumber = level;
 
-            if (_levelNumber == 1) currentLvlMusicName = sounds.Ambiance_Level_One;
-            else if (_levelNumber == 2) currentLvlMusicName = sounds.Ambiance_Level_Two;
+            SoundManager.Instance.SetLevelNumber(level);
+
+            if (_levelNumber == 1)
+            {
+                currentLvlMusicName = sounds.Music_Level_1;
+                currentLvlAmbianceName = sounds.Ambiance_Level_1;
+            }
+            else if (_levelNumber == 2)
+            {
+                currentLvlMusicName = sounds.Music_Level_2;
+                currentLvlAmbianceName = sounds.Ambiance_Level_2;
+            }
 
 			if (SoundManager.Instance)
+            {
 				SoundManager.Instance.Play(currentLvlMusicName);
+				SoundManager.Instance.Play(currentLvlAmbianceName);
+            }
         }
 
         private IEnumerator InitHud()
@@ -90,16 +105,19 @@ namespace Com.IsartDigital.Platformer.Managers
             if(Hud.Instance != null) Hud.Instance.Score = _score;
 		}
 
-		private void BigScoreCollectible_OnCollected(uint slotNumber)
+		private void BigScoreCollectible_OnCollected(int slotNumber)
 		{
 			_bigScoreCollectibles[slotNumber] = true;
-			if (Hud.Instance != null) Hud.Instance.BigScore = _bigScoreCollectibles;
+            if(Hud.Instance != null)
+            {
+                Hud.Instance.SlotNumber = slotNumber;
+                Hud.Instance.BigScore = _bigScoreCollectibles;
+            }
 		}
 
 		private void KillZone_OnCollision()
         {
 			player.LooseLife();
-            DestructiblePlatform.ResetAll();
         }
 
         private void DeadZone_OnCollision()
@@ -117,12 +135,13 @@ namespace Com.IsartDigital.Platformer.Managers
 				else if (CheckpointManager.Instance)
 				{
 					player.SetPosition(CheckpointManager.Instance.LastCheckpointPos);
-					PlatformTrigger.ResetAll();
+					PlatformTrigger.ResetAllOnDeath();
 					MobilePlatform.ResetAll();
 					ChangeTravellingCamera.ResetAll();
+					DestructiblePlatform.ResetAll();
 				}
 
-                player.GetComponent<Collider2D>().enabled = true;
+				player.GetComponent<Collider2D>().enabled = true;
 				return;
 			}
 
@@ -142,27 +161,31 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void Win()
         {
-			_completionTime = timeManager.Timer;
+            Hud.Instance.OnFinalAnimFinished += Hud_OnFinalAnimFinished;
+            _completionTime = timeManager.Timer;
             timeManager.SetModeVoid();
+            OnLaunchHudAnim?.Invoke(this); 
+        }
 
-			OnWin?.Invoke(this);
-
+        private void Hud_OnFinalAnimFinished(Hud hud)
+        {
             UnsubscribeAllEvents();
-
-			if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen();
-            else Debug.LogError("Pas d'UImanager sur la scène");
-            player.gameObject.SetActive(false);
+            OnWin?.Invoke(this);
+            if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen(_levelNumber);
+             else Debug.LogError("Pas d'UImanager sur la scène");
+             player.gameObject.SetActive(false);
         }
 
         private void Retry()
         {
             player.Reset();
             _score = 0;
+            Hud.Instance.ResetKeyPos();
             UpdateHud();
 
             timeManager.SetModeVoid();
 
-            CheckpointManager.Instance.ResetColliders();
+            CheckpointManager.Instance.Reset();
 
             LifeCollectible.ResetAll();
             ScoreCollectible.ResetAll();
@@ -171,6 +194,7 @@ namespace Com.IsartDigital.Platformer.Managers
             PlatformTrigger.ResetAll();
             TimedDoor.ResetAll();
             ChangeTravellingCamera.ResetAll();
+			TempChangeCamera.ResetAll();
 
             timeManager.StartTimer();
 
@@ -188,8 +212,7 @@ namespace Com.IsartDigital.Platformer.Managers
             DestructiblePlatform.ResumeAll();
             MobilePlatform.ResumeAll();
             TimedDoor.ResumeAll();
-            //SoundManager.Instance.ResumeAll();
-            SoundManager.Instance.ResumeAllByMixerGroup();
+            SoundManager.Instance.ResumeAll();
             ChangeTravellingCamera.ResumeAll();
         }
 
@@ -200,8 +223,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			DestructiblePlatform.PauseAll();
 			MobilePlatform.PauseAll();
 			TimedDoor.PauseAll();
-			//SoundManager.Instance.PauseAll();
-			SoundManager.Instance.PauseAllByMixerGroup();
+			SoundManager.Instance.PauseAll();
 			ChangeTravellingCamera.PauseAll();
 
 			if (UIManager.Instance != null)

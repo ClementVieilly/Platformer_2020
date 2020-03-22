@@ -477,9 +477,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionSpawn()
         {
             SoundManager.Instance.Play(sounds.Character_Spawn, this);
-            rigidBody.velocity = Vector2.zero; 
+            rigidBody.velocity = Vector2.zero;
+            transform.localScale = scaleLeft; 
+
         }
 
+        public void AnimSpawnFinished(){
+            SetModeNormal();
+            transform.localScale = scaleRight;
+
+        }
         private void DoActionInAir()
         {
             CheckIsOnWall();

@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds: {fileID: 0}
   sfxList: []
-  spider: {fileID: 9004690252946667009}
+  spider: {fileID: 0}
   cocoonsList:
   - {fileID: 6003983274677098410}
   - {fileID: 3094419294382764971}
@@ -567,15 +567,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7809596010195186104}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9004690252946667009 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1195235259435911097, guid: 416b67ccf8735cf48b8d14e3a26f80fa,
-    type: 3}
-  m_PrefabInstance: {fileID: 7809596010195186104}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b209709854d7cf419f0bc005c1c4b48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

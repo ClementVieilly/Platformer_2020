@@ -24,14 +24,14 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
         private Vector2 spriteOriginalPos;
         [SerializeField] private float shakeMagnitudeX = 0.2f;
         [SerializeField] private float shakeMagnitudeY = 0.2f;
-        [SerializeField] private GameObject sprite = null ;
+       // [SerializeField] private GameObject sprite = null ;
 
         private Animator animator = null; 
         private void Start()
         {
             _list.Add(this);
             SetModeVoid();
-            spriteOriginalPos = sprite.transform.position;
+            spriteOriginalPos = transform.position;
             animator = GetComponent<Animator>(); 
         }
 
@@ -70,7 +70,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
             {
                 float x = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitudeX;
                 float y = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitudeY;
-                sprite.transform.position = new Vector2(x, y) + spriteOriginalPos;
+                transform.position = new Vector2(x, y) + spriteOriginalPos;
             }
         }
 

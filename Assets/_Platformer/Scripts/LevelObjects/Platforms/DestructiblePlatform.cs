@@ -3,6 +3,7 @@
 /// Date : 21/01/2020 10:40
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.Managers;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,31 +16,35 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
 
         [SerializeField] private float duration = 0f;
         [SerializeField] private GameObject triggeredCollider = null;
+        [SerializeField] private PlateformType matter;
+        private string soundToPlay;
         private float elapsedTime = 0f;
 
         private Action DoAction = null;
         private Action PreviousDoAction = null;
 
         //Shake 
-        private Vector2 parentOriginalPos;
+        private Vector2 spriteOriginalPos;
         [SerializeField] private float shakeMagnitudeX = 0.2f;
         [SerializeField] private float shakeMagnitudeY = 0.2f;
-        
+       // [SerializeField] private GameObject sprite = null ;
+
+        private Animator animator = null; 
         private void Start()
         {
             _list.Add(this);
             SetModeVoid();
-            parentOriginalPos = transform.parent.position; 
+            spriteOriginalPos = transform.position;
+            animator = GetComponent<Animator>();
 
+            if (matter == PlateformType.GLASS) soundToPlay = sounds.Env_DestructiblePlatform_Glass;
+            else if (matter == PlateformType.WOOD) soundToPlay = sounds.Env_DestructiblePlatform_Wood;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            
             SetModeNormal();
         }
-
-       
 
         private void Update()
         {
@@ -53,6 +58,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
         public void SetModeNormal()
         {
             DoAction = DoActionNormal;
+            animator.SetTrigger("Destruction");
+            SoundManager.Instance.Play(soundToPlay, this);
         }
         private void DoActionVoid()
         {
@@ -70,7 +77,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
             {
                 float x = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitudeX;
                 float y = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitudeY;
-                transform.parent.position = new Vector2(x, y) + parentOriginalPos;
+                transform.position = new Vector2(x, y) + spriteOriginalPos;
             }
         }
 
@@ -104,5 +111,11 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
                 List[i].DoAction = List[i].PreviousDoAction;
             }
         }
+    }
+
+    public enum PlateformType
+    {
+        WOOD,
+        GLASS
     }
 }

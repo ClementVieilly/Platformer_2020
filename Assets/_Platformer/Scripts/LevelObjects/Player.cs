@@ -167,7 +167,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private CinemachineVirtualCamera vCam = null;
         public CinemachineVirtualCamera VCam => vCam;
         [SerializeField] private GameObject vCamIdle = null;
-        [SerializeField] private GameObject vCamForegroundIdle = null;
         private CinemachineFramingTransposer vCamBody = null;
         private float lastLookAheadTime = 0f;
         private float lastLookAheadSmoothing = 0f;
@@ -272,7 +271,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void SetModeSpawn()
         {
             DoAction = DoActionSpawn;
-            animator.SetTrigger(settings.Spawn); 
+            animator.SetTrigger(settings.Spawn);
+            
         }
 
         private void SetModeAir()
@@ -391,7 +391,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     SoundManager.Instance.Stop(sounds.Character_Idle, this);
                     SoundManager.Instance.Play(sounds.Character_IdleLong, this);
                     vCamIdle.SetActive(true);
-                    vCamForegroundIdle.SetActive(true);
                     isPlaying = true;
                 }
             }
@@ -399,7 +398,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
                 idleElapsedTime = 0;
                 vCamIdle.SetActive(false);
-                vCamForegroundIdle.SetActive(false);
             }
 
 			// Updating Animator
@@ -467,7 +465,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                 if (SoundManager.Instance)
                 {
                     SoundManager.Instance.Stop(sounds.Character_Run, this);
-                    SoundManager.Instance.Play(sounds.Character_Idle, this);
                 }
             }
 
@@ -477,9 +474,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void DoActionSpawn()
         {
             SoundManager.Instance.Play(sounds.Character_Spawn, this);
-            rigidBody.velocity = Vector2.zero; 
+            rigidBody.velocity = Vector2.zero;
+            transform.localScale = scaleLeft; 
+
         }
 
+        public void AnimSpawnFinished(){
+            SetModeNormal();
+            transform.localScale = scaleRight;
+
+        }
         private void DoActionInAir()
         {
             CheckIsOnWall();
@@ -730,6 +734,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
             while (lockTimer <= duration)
             {
+                stopSounds();
+
                 lockTimer += Time.deltaTime;
 
                 rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
@@ -739,6 +745,15 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             }
             lockTimer = 0;
             isLocked = false;
+        }
+
+        private void stopSounds()
+        {
+            if (!SoundManager.Instance) return;
+            for (int i = sfxList.Count - 1; i >= 0; i--)
+            {
+                SoundManager.Instance.Stop(sfxList[i].Name, this);
+            }
         }
 
         private IEnumerator StartJumpParticule()
@@ -785,8 +800,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
 			animator.SetTrigger(settings.Die);
 
-            if (SoundManager.Instance)
-                SoundManager.Instance.Stop(sounds.Character_Planer, this);
+            stopSounds();
+            if (SoundManager.Instance) SoundManager.Instance.Play(sounds.Character_Death, this);
 
 			rigidBody.velocity = new Vector2(0f, 0f);
             rigidBody.gravityScale = 0f; 

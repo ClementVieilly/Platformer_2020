@@ -89,8 +89,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private Vector2 penteVelocity;
 
         //Corner
-        private bool isOnCorner = false;
-        private bool wasInCorner = false;
+        //private bool isOnCorner = false;
+        //private bool wasInCorner = false;
 
         private float elapsedTimerBeforeSetModeAir = 0f;
         private bool canJump = false;
@@ -167,6 +167,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         [SerializeField] private CinemachineVirtualCamera vCam = null;
         public CinemachineVirtualCamera VCam => vCam;
         [SerializeField] private GameObject vCamIdle = null;
+        [SerializeField] private GameObject vCamForegroundIdle = null;
         private CinemachineFramingTransposer vCamBody = null;
         private float lastLookAheadTime = 0f;
         private float lastLookAheadSmoothing = 0f;
@@ -271,6 +272,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         private void SetModeSpawn()
         {
             DoAction = DoActionSpawn;
+            animator.SetTrigger(settings.Spawn); 
         }
 
         private void SetModeAir()
@@ -389,6 +391,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
                     SoundManager.Instance.Stop(sounds.Character_Idle, this);
                     SoundManager.Instance.Play(sounds.Character_IdleLong, this);
                     vCamIdle.SetActive(true);
+                    vCamForegroundIdle.SetActive(true);
                     isPlaying = true;
                 }
             }
@@ -396,6 +399,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             {
                 idleElapsedTime = 0;
                 vCamIdle.SetActive(false);
+                vCamForegroundIdle.SetActive(false);
             }
 
 			// Updating Animator
@@ -472,9 +476,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         private void DoActionSpawn()
         {
-            //if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Player_Spawn"))
             SoundManager.Instance.Play(sounds.Character_Spawn, this);
-            SetModeNormal();
+            rigidBody.velocity = Vector2.zero; 
         }
 
         private void DoActionInAir()
@@ -785,8 +788,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
             if (SoundManager.Instance)
                 SoundManager.Instance.Stop(sounds.Character_Planer, this);
 
-			rigidBody.velocity = new Vector2(0f, rigidBody.velocity.y);
-
+			rigidBody.velocity = new Vector2(0f, 0f);
+            rigidBody.gravityScale = 0f; 
 			SetModeVoid();
 			Life -= LoseLife;
 
@@ -798,9 +801,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 
         public void Die()
         {
-            
             OnDie?.Invoke();
-			SetModeNormal();
+			SetModeSpawn();
         }
 
 		public void SetStartPosition(Vector2 position)

@@ -8,17 +8,17 @@ using UnityEngine;
 namespace Com.IsartDigital.Common.Curve {
 	public class CurveLine : MonoBehaviour {
         [Header("path")]
-        [SerializeField] private Vector3[] _pathPoints;
+        [SerializeField] private Vector3[] _pathPoints = null;
         [Space]
         [Header("ThingsToInstatiate")]
-        [SerializeField] private GameObject _objectToInstantiate;
-        [SerializeField] private Transform _objectToInstantiateParent;
+        [SerializeField] private GameObject _objectToInstantiate = null;
+        [SerializeField] private Transform _objectToInstantiateParent = null;
         [Space]
         [Header("settings")]
         [SerializeField] private float _spacing = 1;
         [SerializeField,Range(1,6)] private int _nLinesToSpawn = 1;
 
-        private GameObject[] _lastPathObject;
+        private GameObject[] _lastPathObject = null;
 
         public GameObject[] LastPath
         {

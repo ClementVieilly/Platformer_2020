@@ -6,6 +6,6 @@
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
-	public class Platform : MonoBehaviour {
+	public class Platform : ALevelObject {
 	}
 }

@@ -243,6 +243,16 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6614650816755969040, guid: 416b67ccf8735cf48b8d14e3a26f80fa,
+        type: 3}
+      propertyPath: _sequence
+      value: Attaque
+      objectReference: {fileID: 0}
+    - target: {fileID: 6614650816755969040, guid: 416b67ccf8735cf48b8d14e3a26f80fa,
+        type: 3}
+      propertyPath: _currentFrame
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 2441523674883269426, guid: 416b67ccf8735cf48b8d14e3a26f80fa,
         type: 3}
       propertyPath: startPos

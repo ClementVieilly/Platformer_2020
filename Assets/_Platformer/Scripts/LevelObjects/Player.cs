@@ -42,6 +42,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 		[SerializeField] private ParticleSystem onWallJumpPS = null;
         [SerializeField] private ParticleSystem planePS = null;
         [SerializeField] private ParticleSystem onWallPS = null;
+        [SerializeField] private ParticleSystem deathPS = null;
 
 		[Header("Debug")]
 		[SerializeField] private bool drawGroundLinecast = true;

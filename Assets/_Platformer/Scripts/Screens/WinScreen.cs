@@ -20,13 +20,14 @@ public class WinScreen : AScreen
     public event WinScreenEventHandler OnMenuClicked;
     public event WinScreenEventHandler OnLevelSelectorClicked;
     public event WinScreenEventHandler OnLeaderboardClicked;
+    private int currentLevel; 
 
     private string enterLastScreenParam = "EnterLastScreen"; 
 
 	private void Awake()
     {
         animator = GetComponent<Animator>();
-        menuBtn.OnMenuButtonClicked += WinScreen_OnMenuClicked;
+        //menuBtn.OnMenuButtonClicked += WinScreen_OnMenuClicked;
        
 		leaderboardBtn.OnMenuButtonClicked += WinScreen_OnLeaderboardClicked;
     }
@@ -34,24 +35,30 @@ public class WinScreen : AScreen
     public void DisplayWinScreen(int level)
     {
 
-
+        currentLevel = level; 
         if(level == 1)
         {
             animator.SetTrigger(enter);
             levelSelectorBtn.OnMenuButtonClicked += WinScreen_OnLevelSelectorClicked;
-            Debug.Log("alors t'as lseum");
+            menuBtn.OnMenuButtonClicked += WinScreen_OnMenuClicked;
         }
         else
         {
-            animator.SetTrigger(enterLastScreenParam); 
+            animator.SetTrigger(enterLastScreenParam);
             levelSelectorBtn.OnMenuButtonClicked += WinScreen_EndScreenClicked;
+            menuBtn.OnMenuButtonClicked += WinScreen_EndScreenClicked;
         }
 
+    }
+    private void AnimCallBackLastScreen()
+    {
+        OnMenuClicked?.Invoke(this);
     }
 
     private void WinScreen_EndScreenClicked(Button button)
     {
-        animator.SetTrigger(exit); 
+        animator.SetTrigger("ExitLastScreen"); 
+
     }
 
     private void WinScreen_OnMenuClicked(Button sender)

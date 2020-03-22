@@ -45,11 +45,18 @@ namespace Com.IsartDigital.Platformer
 		[SerializeField] private string _collectible_Score = null;
 
 		[Header("Birds")]
-		//[SerializeField] private string _birds = null;
+		[SerializeField] private string _birds_dove = null;
+		[SerializeField] private string _birds_owl = null;
+
+		[Header("Platforms")]
+		[SerializeField] private string _env_DestructiblePlatform_Glass = null ;
+		[SerializeField] private string _env_DestructiblePlatform_Wood = null;
 
 		[Header("Props")]
-		[SerializeField] private string _props_Flaque_Toxique = null;
-		[SerializeField] private string _props_DestructiblePlatform_Tuyaux_Verre = null;
+		[SerializeField] private string _env_Spider_01_Idle = null;
+		[SerializeField] private string _env_Spider_02_Idle = null;
+		[SerializeField] private string _env_Cooking_Pot = null;
+
 
 		public string Character_Spawn { get => _character_Spawn; }
 		public string Character_Idle { get => _character_Idle; }
@@ -68,10 +75,14 @@ namespace Com.IsartDigital.Platformer
 		public string Ui_Button { get => _ui_Button; }
 		public string Ui_Start { get => _ui_Start; }
 		public string Ui_Pause { get => _ui_Pause; }
-		//public string Birds { get => _birds; }
-		public string Props_Flaque_Toxique { get => _props_Flaque_Toxique; }
-		public string Props_DestructiblePlatform_Tuyaux_Verre { get => _props_DestructiblePlatform_Tuyaux_Verre; }
+		public string Env_DestructiblePlatform_Glass { get => _env_DestructiblePlatform_Glass; }
+		public string Env_DestructiblePlatform_Wood { get => _env_DestructiblePlatform_Wood; }
+		public string Env_Cooking_Pot { get => _env_Cooking_Pot; }
+		public string Env_Spider_01_Idle { get => _env_Spider_01_Idle; }
+		public string Env_Spider_02_Idle { get => _env_Spider_02_Idle; }
 		public string Collectible_Life { get => _collectible_Life; }
 		public string Collectible_Score { get => _collectible_Score; }
+		public string Birds_dove { get => _birds_dove; }
+		public string Birds_owl { get => _birds_owl; }
 	}
 }

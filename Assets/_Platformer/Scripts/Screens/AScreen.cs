@@ -9,7 +9,10 @@ namespace Com.IsartDigital.Platformer.Screens {
 	public abstract class AScreen : MonoBehaviour {
         protected Animator animator = null;
         protected string enter = "Enter";
-        protected string exit = "Exit"; 
-		abstract public void UnsubscribeEvents();
+        protected string exit = "Exit";
+
+        [SerializeField] protected SoundsSettings sounds = null;
+
+        abstract public void UnsubscribeEvents();
 	}
 }

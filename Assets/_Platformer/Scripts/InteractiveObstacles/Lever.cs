@@ -10,7 +10,10 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles
 {
 	public class Lever : MonoBehaviour
 	{
-		public void ShakeCamera(float duration, float magnitude)
+		[SerializeField] float duration = 1f;
+		[SerializeField] float magnitude = 1f;
+
+		public void ShakeCamera()
 		{
 			CameraShake.Instance.Shake(duration, magnitude);
 		}

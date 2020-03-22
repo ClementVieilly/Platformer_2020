@@ -13126,7 +13126,7 @@ PrefabInstance:
     - target: {fileID: 4795139704838691517, guid: 71568aa3b7742be4d9d7a21348669b89,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 127.86
+      value: 122.8
       objectReference: {fileID: 0}
     - target: {fileID: 4795139704838691517, guid: 71568aa3b7742be4d9d7a21348669b89,
         type: 3}
@@ -13207,6 +13207,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5270784448589634566, guid: 71568aa3b7742be4d9d7a21348669b89,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6206992783109113070, guid: 71568aa3b7742be4d9d7a21348669b89,
+        type: 3}
+      propertyPath: _sortingOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71568aa3b7742be4d9d7a21348669b89, type: 3}

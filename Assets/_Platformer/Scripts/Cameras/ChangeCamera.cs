@@ -34,6 +34,7 @@ namespace Com.IsartDigital.Platformer.Cameras {
 
 		virtual protected void OnTriggerEnter2D(Collider2D collision)
 		{
+			Debug.Log(vCam.name);
 			Launch();
 		}
 

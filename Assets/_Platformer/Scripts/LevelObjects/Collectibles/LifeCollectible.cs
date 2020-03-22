@@ -29,9 +29,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
         protected override void EffectOfTheCollectible()
         {
             OnCollected?.Invoke(WinLife);
-            Instantiate(collectedLifeParticleSystem,transform.position, Quaternion.identity);
-
-        }
+			Instantiate(collectedLifeParticleSystem, transform.position, Quaternion.identity);
+			SoundManager.Instance.Play(sounds.Collectible_Life, this);
+		}
 
         private void OnDestroy()
 		{
@@ -43,7 +43,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
 		{
 			for (int i = List.Count - 1; i >= 0; i--)
 			{
-				List[i].gameObject.SetActive(true);
+				List[i].ResetObject();
 			}
 		}
 	}

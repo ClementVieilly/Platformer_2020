@@ -34,7 +34,16 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
         public static void ResetAll()
 		{
 			for (int i = List.Count - 1; i >= 0; i--)
-				List[i].gameObject.SetActive(true);
-		}
-	}
+            {
+                Debug.Log(List[i].gameObject);
+                List[i].gameObject.SetActive(true);
+            }
+        }
+
+
+        private void OnDestroy()
+        {
+            _list.Remove(this); 
+        }
+    }
 }

@@ -20,6 +20,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		[SerializeField] private AnimatorParameter _jumpOnWallParam = null;
 		[SerializeField] private AnimatorParameter _idleLong = null;
 		[SerializeField] private AnimatorParameter _die = null;
+		[SerializeField] private AnimatorParameter _spawn = null;
 
 		public int IsGroundedParameter => _isGroundedParam.ParameterID;
 		public int HorizontalSpeedParam => _horizontalSpeedParam.ParameterID;
@@ -29,6 +30,7 @@ namespace Com.IsartDigital.Platformer.ScriptableObjects
 		public int JumpOnWall => _jumpOnWallParam.ParameterID;
 		public int IdleLong => _idleLong.ParameterID;
 		public int Die => _die.ParameterID;
+		public int Spawn => _spawn.ParameterID;
 
 		[Space, Header("Physics")]
 		[SerializeField] private float _runSpeed = 5f;

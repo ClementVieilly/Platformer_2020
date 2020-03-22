@@ -36,8 +36,11 @@ namespace Com.IsartDigital.Platformer.Screens
 		{
 			set
 			{
+                Debug.Log(_bigScore);
+                Debug.Log("value    "+value); 
 				_bigScore = (bool[])value.Clone();
 				UpdateBigScore();
+                
 			}
 		}
 
@@ -48,6 +51,8 @@ namespace Com.IsartDigital.Platformer.Screens
 
         private void Awake()
         {
+            animator = GetComponent<Animator>();
+            animator.SetTrigger(enter); 
             buttons = GetComponentsInChildren<Button>();//récupère tous les boutons du Menu Pause
 
             for (int i = 0; i < buttons.Length; i++)// Abonne le menu de pause aux boutons

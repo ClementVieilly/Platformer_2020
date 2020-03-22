@@ -17,7 +17,7 @@ namespace Com.IsartDigital.Platformer.Managers {
 
 		//Checkpoints positions
 		[SerializeField] private Level currentLevel = null;
-		private List<Checkpoints> checkpointList = new List<Checkpoints>();
+		private List<Checkpoint> checkpointList = new List<Checkpoint>();
 		private Vector2 _lastCheckpointPos = Vector2.zero;
 		public Vector2 LastCheckpointPos { get => _lastCheckpointPos; set => _lastCheckpointPos = value; }
 		private Vector2 _lastSuperCheckpointPos = Vector2.zero;
@@ -39,17 +39,17 @@ namespace Com.IsartDigital.Platformer.Managers {
                 checkpointList[i].OnCollision += SetCheckpoint; 
 		}
 
-        private void SetCheckpoint(Checkpoints triggredCheckpoint)
+        private void SetCheckpoint(Checkpoint triggredCheckpoint)
         { 
             _lastCheckpointPos = triggredCheckpoint.transform.position;
 			if (triggredCheckpoint.IsFinalCheckPoint)
                 OnFinalCheckPointTriggered?.Invoke();
         }
 
-		public void ResetColliders()
+		public void Reset()
 		{
 			for (int i = checkpointList.Count - 1; i >= 0; i--)
-				checkpointList[i].ResetCollider();
+				checkpointList[i].Reset();
 		}
 
 		private void OnDestroy()

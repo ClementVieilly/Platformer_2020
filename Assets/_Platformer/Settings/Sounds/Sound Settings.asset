@@ -12,13 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e9d90ba36e04fd488316648ab8745b9, type: 3}
   m_Name: Sound Settings
   m_EditorClassIdentifier: 
-  _character_Footsteps_Stone: Character_Footsteps_Stone
-  _character_Footsteps_Wood: Character_Footsteps_Wood
+  _character_Spawn: Poire_Spawn
+  _character_Idle: Poire_Idle
+  _character_IdleLong: Poire_Idle_Long
+  _character_Run: Poire_Run
   _character_Jump: Character_Jump
-  _character_WallJump: Character_WallJump
-  _character_Landing: Character_Landing
-  _character_Plane_Flap01: Character_Plane_Flap01
-  _character_Plane_Flap02: Character_Plane_Flap02
-  _character_Plane_Wind: Character_Plane_Wind
-  _ambiance_level_one: Ambiance_Level_One
-  _ambiance_level_two: Ambiance_Level_Two
+  _character_Planer: Poire_Planer
+  _character_Fall: Poire_Fall
+  _character_WallCatch: Poire_Wall_Catch
+  _character_Death: Poire_Death
+  _music_Menu: Music_Menu
+  _music_Level_1: Music_Level_1
+  _music_Level_2: Music_Level_2
+  _ambiance_Level_1: Ambience_Level_1
+  _ambiance_Level_2: Ambience_Level_2
+  _ui_Button: UI_Button
+  _ui_Start: UI_Pause
+  _ui_Pause: UI_Start
+  _collectible_Life: Collectible_Heart
+  _collectible_Score: Collectible_Score
+  _props_Flaque_Toxique: Props_Flaque_Toxique
+  _props_DestructiblePlatform_Tuyaux_Verre: Props_Platforme_Destructible_Tuyaux_Verre

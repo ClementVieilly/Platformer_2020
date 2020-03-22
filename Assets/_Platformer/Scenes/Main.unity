@@ -120,6 +120,49 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &235370450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 235370452}
+  - component: {fileID: 235370451}
+  m_Layer: 0
+  m_Name: '[SwfManager]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &235370451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235370450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f455e092ebcb64c3e94de2e2f2f7a614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &235370452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235370450}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &296403800
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -186,6 +229,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930779157554321086, guid: f90c43d4ef6755a4aa109899186b3a56,
+        type: 3}
+      propertyPath: sceneNames.Array.data[2]
+      value: Level 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f90c43d4ef6755a4aa109899186b3a56, type: 3}
@@ -254,6 +302,11 @@ PrefabInstance:
     - target: {fileID: 3507376738421427957, guid: 9454a9ac9bd7697439d675455e65e711,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967141502457860006, guid: 9454a9ac9bd7697439d675455e65e711,
+        type: 3}
+      propertyPath: distance
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -489,37 +542,54 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
         type: 3}
-      propertyPath: sounds.Array.data[8]._pitchVariance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
-        type: 3}
-      propertyPath: sounds.Array.data[8]._volumeVariance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
-        type: 3}
-      propertyPath: sounds.Array.data[8]._volume
+      propertyPath: sounds.Array.data[2].showInEditor
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
         type: 3}
-      propertyPath: mixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: 00ffeba9d90315d4d864a71c01738b23,
-        type: 2}
+      propertyPath: sounds.Array.data[8].showInEditor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
         type: 3}
-      propertyPath: mainMixerGroup
-      value: 
-      objectReference: {fileID: 4905135650992275559, guid: 00ffeba9d90315d4d864a71c01738b23,
-        type: 2}
+      propertyPath: sounds.Array.data[9].showInEditor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
         type: 3}
-      propertyPath: pauseMixerGroup
-      value: 
-      objectReference: {fileID: 5883487093876413735, guid: 00ffeba9d90315d4d864a71c01738b23,
-        type: 2}
+      propertyPath: sounds.Array.data[11].showInEditor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
+        type: 3}
+      propertyPath: sounds.Array.data[12].showInEditor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
+        type: 3}
+      propertyPath: sounds.Array.data[13].showInEditor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
+        type: 3}
+      propertyPath: sounds.Array.data[14].showInEditor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
+        type: 3}
+      propertyPath: sounds.Array.data[15].showInEditor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
+        type: 3}
+      propertyPath: sounds.Array.data[21].showInEditor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
+        type: 3}
+      propertyPath: sounds.Array.data[22].showInEditor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f32ce0eed9d4a574ba57ca6332634227, type: 3}
 --- !u!1001 &1694262167
@@ -606,17 +676,17 @@ PrefabInstance:
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.821182
+      value: 1028.6772
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.426183
+      value: 135.15762
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -19.999
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 2517164645187699095, guid: 391d519b87d81684e8124eb8e206598d,
         type: 3}

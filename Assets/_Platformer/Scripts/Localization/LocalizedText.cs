@@ -11,7 +11,7 @@ using UnityEngine.UI;
 namespace Com.IsartDigital.Platformer.Localization {
 	public class LocalizedText : MonoBehaviour {
 
-        [SerializeField]  private string key;
+        [SerializeField] private string key = null;
         private Text componentText; 
 		private void Start () {
             LocalizationManager.Instance.OnChangeLanguage += LocalizationManager_OnChangeLanguage; 

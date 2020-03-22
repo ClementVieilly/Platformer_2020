@@ -23,8 +23,9 @@ namespace Com.IsartDigital.Platformer.Managers
 		private static SoundManager _instance;
 		public static SoundManager Instance => _instance;
 
-		[SerializeField] private AudioMixerGroup mainMixerGroup;
-		[SerializeField] private AudioMixerGroup pauseMixerGroup;
+		[SerializeField] private AudioMixerGroup mainMixerGroupLvl1 = null;
+		[SerializeField] private AudioMixerGroup mainMixerGroupLvl2 = null;
+		[SerializeField] private AudioMixerGroup pauseMixerGroup = null;
 		
 		public Sound[] sounds;
 
@@ -32,7 +33,9 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private List<Sound> playedSounds = new List<Sound>();
 
-		private void Awake()
+		private int currentLvlNumber;
+
+		private void Start()
 		{
 			if (_instance != null && _instance != this)
 			{
@@ -46,22 +49,57 @@ namespace Com.IsartDigital.Platformer.Managers
 			for (int i = sounds.Length - 1; i > -1; i--)
 			{
 				Sound sound = sounds[i];
-				soundsList.Add(sounds[i]);
-				sound.SetNewSource(gameObject.AddComponent<AudioSource>());
-				if (sound.MixerGroup == null) sound.Source.outputAudioMixerGroup = mainMixerGroup;
+				soundsList.Add(sound);
 			}
 		}
 
-		public void Play(string sound)
+		/// <summary>
+		/// Play a sound whose name is the parameter sound 
+		/// </summary>
+		/// <param name="sound">name of the sound you want to play</param>
+		/// <param name="isForcePlay">want to restart the sound at the beginning if is already playing</param>
+		public void Play(string sound,bool isForcePlay = false)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
-
 			if (currentSound == null)
 			{
 				Debug.LogWarning("Sound: " + sound + " not found!");
 				return;
 			}
-			if (currentSound.Source.isPlaying) 
+			if (currentSound.Source == null)
+			{
+				currentSound.SetNewSource(gameObject.AddComponent<AudioSource>());
+				currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl1;
+			}
+
+			//TEMP
+			if (currentLvlNumber == 1)
+			{
+				if (currentSound.Source.outputAudioMixerGroup != currentSound.MixerGroupLvl1)
+				{
+					currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl1;
+					currentSound.CurrentMixerGroup = currentSound.Source.outputAudioMixerGroup;
+				}
+			}
+			else if (currentLvlNumber == 2)
+			{
+				if (currentSound.Source.outputAudioMixerGroup != currentSound.MixerGroupLvl2)
+				{
+					currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl2;
+					currentSound.CurrentMixerGroup = currentSound.Source.outputAudioMixerGroup;
+				}
+			}
+			else
+			{
+				if (currentSound.Source.outputAudioMixerGroup != currentSound.MixerGroupLvl1)
+				{
+					currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl1;
+					currentSound.CurrentMixerGroup = currentSound.Source.outputAudioMixerGroup;
+				}
+			}
+
+
+			if (currentSound.Source.isPlaying && isForcePlay) 
 			{
 				//Debug.LogWarning("Sound: " + sound + " is already playing!");
 				return;
@@ -78,7 +116,13 @@ namespace Com.IsartDigital.Platformer.Managers
 			currentSound.Source.Play();
 		}
 
-		public void Play(string sound, ALevelObject emitter)
+		/// <summary>
+		/// Play a sound whose name is the parameter sound on a specific gameObject
+		/// </summary>
+		/// <param name="sound">name of the sound you want to play</param>
+		/// <param name="emitter">object which call the Play method</param>
+		/// <param name="isForcePlay">want to restart the sound at the beginning if is already playing</param>
+		public void Play(string sound, ALevelObject emitter , bool isForcePlay = false)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
 
@@ -88,11 +132,15 @@ namespace Com.IsartDigital.Platformer.Managers
 				return;
 			}
 
-			if (currentSound.Type == SoundTypes.SFX)
+			if (currentSound.Type == SoundTypes.SFX_ClassicPause || currentSound.Type == SoundTypes.SFX_MixerPause)
 			{
 				Sound emitSound = emitter.sfxList.Find(x => x.Name == sound);
 
-				if (emitSound == null)
+				if (emitSound != null)
+				{
+					currentSound = emitSound;
+				}
+				else
 				{
 					emitter.sfxList.Add(new Sound());
 					emitSound = emitter.sfxList[emitter.sfxList.Count - 1];
@@ -101,18 +149,41 @@ namespace Com.IsartDigital.Platformer.Managers
 					currentSound = emitSound;
 					AudioSource source = emitter.gameObject.AddComponent<AudioSource>();
 					currentSound.SetNewSource(source);
+					currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl1;
 
 					soundsList.Add(currentSound);
 				}
-				else
+			}
+
+			//TEMP
+			if (currentLvlNumber == 1)
+			{
+				if (currentSound.Source.outputAudioMixerGroup != currentSound.MixerGroupLvl1)
 				{
-					currentSound = emitSound;
+					currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl1;
+					currentSound.CurrentMixerGroup = currentSound.Source.outputAudioMixerGroup;
+				}
+			}
+			else if (currentLvlNumber == 2)
+			{
+				if (currentSound.Source.outputAudioMixerGroup != currentSound.MixerGroupLvl2)
+				{
+					currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl2;
+					currentSound.CurrentMixerGroup = currentSound.Source.outputAudioMixerGroup;
+				}
+			}
+			else
+			{
+				if (currentSound.Source.outputAudioMixerGroup != currentSound.MixerGroupLvl1)
+				{
+					currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl1;
+					currentSound.CurrentMixerGroup = currentSound.Source.outputAudioMixerGroup;
 				}
 			}
 
-			if (currentSound.Source.isPlaying)
+			if (currentSound.Source.isPlaying && !isForcePlay)
 			{
-				//Debug.LogWarning("Sound: " + name + " is already playing!");
+				//Debug.LogWarning("Sound: " + sound + " is already playing!");
 				return;
 			}
 			currentSound.Source.volume = currentSound.Volume * (1 + UnityEngine.Random.Range(-currentSound.VolumeVariance / 2, currentSound.VolumeVariance / 2));
@@ -125,6 +196,10 @@ namespace Com.IsartDigital.Platformer.Managers
 			currentSound.Source.Play();
 		}
 
+		/// <summary>
+		/// Play a sound randomly chosen on a list of sound's names
+		/// </summary>
+		/// <param name="randomSounds">list of sound's name in which you want to choose randomly a sound</param>
 		public void PlayRandom(string[] randomSounds)
 		{
 			float random = UnityEngine.Random.Range(0, randomSounds.Length - 1);
@@ -133,6 +208,11 @@ namespace Com.IsartDigital.Platformer.Managers
 			Play(randomSounds[randomIndex]);
 		}
 
+		/// <summary>
+		/// Play a sound randomly chosen on a list of sound's names on a specific gameObject
+		/// </summary>
+		/// <param name="randomSounds">list of sound's name in which you want to choose randomly a sound</param>
+		/// <param name="emitter">object which call the PlayRandom method</param>
 		public void PlayRandom(string[] randomSounds, ALevelObject emitter)
 		{
 			float random = UnityEngine.Random.Range(0, randomSounds.Length - 1);
@@ -141,12 +221,16 @@ namespace Com.IsartDigital.Platformer.Managers
 			Play(randomSounds[randomIndex], emitter);
 		}
 
+		/// <summary>
+		/// Stop a sound whose name is the parameter sound
+		/// </summary>
+		/// <param name="sound">name of the sound you want to play</param>
 		public void Stop(string sound)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
 			if (currentSound == null)
 			{
-				Debug.LogWarning("Sound: " + name + " not found!");
+				Debug.LogWarning("Sound: " + sound + " not found!");
 				return;
 			}
 
@@ -157,23 +241,26 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 		}
 
+		/// <summary>
+		/// Stop a sound whose name is the parameter sound on a specific gameObject
+		/// </summary>
+		/// <param name="sound">name of the sound you want to play</param>
+		/// <param name="emitter">object which call the Play method</param>
 		public void Stop(string sound, ALevelObject emitter)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
 			if (currentSound == null)
 			{
-				Debug.LogWarning("Sound: " + name + " not found!");
+				Debug.LogWarning("Sound: " + sound + " not found!");
 				return;
 			}
 
-			if (currentSound.Type == SoundTypes.SFX)
+			if (currentSound.Type == SoundTypes.SFX_ClassicPause || currentSound.Type == SoundTypes.SFX_MixerPause)
 			{
 				Sound emitSound = emitter.sfxList.Find(x => x.Name == sound);
 
-				if (emitSound == null)
-					return;
-				else
-					currentSound = emitSound;
+				if (emitSound == null) return;
+				else currentSound = emitSound;
 			}
 
 			if (currentSound.Source)
@@ -183,7 +270,32 @@ namespace Com.IsartDigital.Platformer.Managers
 			}
 		}
 
+		/// <summary>
+		/// Pause a sound whose name is the parameter sound
+		/// </summary>
+		/// <param name="sound">name of the sound you want to pause</param>
 		public void Pause(string sound)
+		{
+			Sound currentSound = System.Array.Find(sounds, searchedSound => searchedSound.Name == sound);
+			if (currentSound == null)
+			{
+				Debug.LogWarning("Sound: " + sound + " not found!");
+				return;
+			}
+			Pause(currentSound);
+		}
+
+		/// <summary>
+		/// Pause a sound from Sound object
+		/// </summary>
+		/// <param name="sound">Sound object you want to pause</param>
+		private void Pause (Sound sound)
+		{
+			if (!sound.IsFadeOut) sound.Source.Pause();
+			else FadeOut(sound, sound.Source.Pause);
+		}
+
+		public void PauseByMixer(string sound)
 		{
 			Sound currentSound = System.Array.Find(sounds, searchedSound => searchedSound.Name == sound);
 			if (currentSound == null)
@@ -191,66 +303,116 @@ namespace Com.IsartDigital.Platformer.Managers
 				Debug.LogWarning("Sound: " + name + " not found!");
 				return;
 			}
-			// currentSound.Source.Pause();
-			if (!currentSound.IsFadeOut) currentSound.Source.Pause();
-			else FadeOut(currentSound, currentSound.Source.Pause);
+			PauseByMixer(currentSound);
+		}
+
+		private void PauseByMixer(Sound sound)
+		{
+			if (sound.PauseMixerGroup != null) sound.Source.outputAudioMixerGroup = sound.PauseMixerGroup;
+			else sound.Source.outputAudioMixerGroup = pauseMixerGroup;
 		}
 
 		public void PauseAll()
 		{
 			playedSounds.RemoveRange(0, playedSounds.Count);
+
 			for (int i = sounds.Length - 1; i >= 0; i--)
 			{
-				Sound testedSound = sounds[i];
-				if (testedSound.Source.isPlaying)
+				Sound sound = sounds[i];
+				
+				if (sound.Source != null && sound.Source.isPlaying)
 				{
-					playedSounds.Add(testedSound);
-					testedSound.Source.Pause();
+					if (sound.Type == SoundTypes.SFX_ClassicPause) Pause(sound);
+					else if (sound.Type == SoundTypes.SFX_MixerPause || sound.Type == SoundTypes.MUSIC) PauseByMixer(sound);
+
+					if (sound.Type != SoundTypes.UI) playedSounds.Add(sound);
 				}
 			}
 		}
 
-		public void PauseAllByMixerGroup()
+		//public void PauseAllByMixerGroup()
+		//{
+		//	playedSounds.RemoveRange(0, playedSounds.Count);
+		//	for (int i = sounds.Length - 1; i >= 0; i--)
+		//	{
+		//		Sound testedSound = sounds[i];
+		//		if (testedSound.Source.isPlaying)
+		//		{
+		//			playedSounds.Add(testedSound);
+		//			testedSound.Source.outputAudioMixerGroup = pauseMixerGroup;
+		//		}
+		//	}
+		//}
+
+		public void Resume(string sound)
 		{
-			playedSounds.RemoveRange(0, playedSounds.Count);
-			for (int i = sounds.Length - 1; i >= 0; i--)
+			Sound currentSound = System.Array.Find(sounds, searchedSound => searchedSound.Name == sound);
+			if (currentSound == null)
 			{
-				Sound testedSound = sounds[i];
-				if (testedSound.Source.isPlaying)
-				{
-					playedSounds.Add(testedSound);
-					testedSound.Source.outputAudioMixerGroup = pauseMixerGroup;
-				}
+				Debug.LogWarning("Sound: " + name + " not found!");
+				return;
 			}
+			Pause(currentSound);
+		}
+
+		private void Resume(Sound sound)
+		{
+			if (!sound.IsFadeIn) sound.Source.UnPause();
+			else FadeIn(sound, sound.Source.UnPause);
+		}
+
+		private void ResumeByMixer(Sound sound, int lvlNumber = 1)
+		{
+			sound.Source.outputAudioMixerGroup = sound.CurrentMixerGroup;
+
+			//if (lvlNumber == 1)
+			//{
+			//	if (sound.MixerGroupLvl1 != null) sound.Source.outputAudioMixerGroup = sound.MixerGroupLvl1;
+			//	else sound.Source.outputAudioMixerGroup = mainMixerGroupLvl1;
+			//}
+			//else if (lvlNumber == 2)
+			//{
+			//	if (sound.MixerGroupLvl2 != null) sound.Source.outputAudioMixerGroup = sound.MixerGroupLvl2;
+			//	else sound.Source.outputAudioMixerGroup = mainMixerGroupLvl2;
+			//}
 		}
 
 		public void ResumeAll()
 		{
+			Sound sound;
+
 			for (int i = playedSounds.Count - 1; i >= 0; i--)
 			{
-				playedSounds[i].Source.UnPause();
-				playedSounds.Remove(playedSounds[i]);
+				sound = playedSounds[i];
+
+				if (sound.Type == SoundTypes.SFX_ClassicPause) Resume(sound);
+				else if (sound.Type == SoundTypes.SFX_MixerPause || sound.Type == SoundTypes.MUSIC) ResumeByMixer(sound,1);
+
+				if (sound.Type != SoundTypes.UI) playedSounds.Remove(sound);
 			}
 		}
 
-		public void ResumeAllByMixerGroup()
+		//public void ResumeAllByMixerGroup()
+		//{
+		//	playedSounds.RemoveRange(0, playedSounds.Count);
+		//	for (int i = sounds.Length - 1; i >= 0; i--)
+		//	{
+		//		Sound testedSound = sounds[i];
+		//		if (testedSound.Source.isPlaying)
+		//		{
+		//			playedSounds.Add(testedSound);
+		//			if (testedSound.MixerGroupLvl1 == null) testedSound.Source.outputAudioMixerGroup = mainMixerGroupLvl1;
+		//			else testedSound.Source.outputAudioMixerGroup = testedSound.MixerGroupLvl1;
+		//		}
+		//	}
+		//}
+		public void SetLevelNumber(int currentLvlNb)
 		{
-			playedSounds.RemoveRange(0, playedSounds.Count);
-			for (int i = sounds.Length - 1; i >= 0; i--)
-			{
-				Sound testedSound = sounds[i];
-				if (testedSound.Source.isPlaying)
-				{
-					playedSounds.Add(testedSound);
-					if (testedSound.MixerGroup == null) testedSound.Source.outputAudioMixerGroup = mainMixerGroup;
-					else testedSound.Source.outputAudioMixerGroup = testedSound.MixerGroup;
-				}
-			}
+			currentLvlNumber = currentLvlNb;
 		}
-
-		private void FadeIn(Sound sound)
+		private void FadeIn(Sound sound, Action action = null)
 		{
-			StartCoroutine(Fade(sound, sound.FadeInCurve));
+			StartCoroutine(Fade(sound, sound.FadeInCurve, action,true));
 		}
 
 		private void FadeOut(Sound sound, Action action = null)
@@ -258,11 +420,12 @@ namespace Com.IsartDigital.Platformer.Managers
 			StartCoroutine(Fade(sound, sound.FadeOutCurve, action));
 		}
 
-		private IEnumerator Fade(Sound sound, AnimationCurve curve, Action action = null)
+		private IEnumerator Fade(Sound sound, AnimationCurve curve, Action action = null, bool isActionOnStart = false)
 		{
 			float elapsedTime = 0f;
 			float ratio = curve.Evaluate(0);
 
+			if (isActionOnStart) action();
 
 			while (ratio <= curve.Evaluate(1))
 			{
@@ -272,7 +435,8 @@ namespace Com.IsartDigital.Platformer.Managers
 				yield return null;
 			}
 			elapsedTime = 0f;
-			action();
+
+			if (!isActionOnStart) action();
 		}
 
 #if UNITY_EDITOR

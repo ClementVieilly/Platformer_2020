@@ -69,6 +69,7 @@ namespace Com.IsartDigital.Platformer.Managers
 			if (currentSound.Source == null)
 			{
 				currentSound.SetNewSource(gameObject.AddComponent<AudioSource>());
+				currentSound.Source.spatialBlend = 0;
 				currentSound.Source.outputAudioMixerGroup = currentSound.MixerGroupLvl1;
 			}
 

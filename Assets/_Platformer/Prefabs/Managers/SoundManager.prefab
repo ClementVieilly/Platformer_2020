@@ -1657,7 +1657,7 @@ MonoBehaviour:
   - _name: ENV_electric_arc
     _clip: {fileID: 8300000, guid: ea52efa851920a942b83e0ad109438b3, type: 3}
     _type: 2
-    _volume: 0.762
+    _volume: 0.157
     _volumeVariance: 0.162
     _pitch: 1
     _pitchVariance: 0.173
@@ -1673,7 +1673,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     _minDistance: 0
-    _maxDistance: 150
+    _maxDistance: 30
     _isFadeIn: 0
     _isFadeOut: 0
     _fadeInDuration: 1
@@ -1703,7 +1703,7 @@ MonoBehaviour:
   - _name: ENV_electric_sparks
     _clip: {fileID: 8300000, guid: ffd6117190aeee546a04c151cf8b67b7, type: 3}
     _type: 2
-    _volume: 0.762
+    _volume: 0.157
     _volumeVariance: 0.162
     _pitch: 1
     _pitchVariance: 0.157
@@ -1719,7 +1719,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     _minDistance: 0
-    _maxDistance: 150
+    _maxDistance: 30
     _isFadeIn: 0
     _isFadeOut: 0
     _fadeInDuration: 1
@@ -1847,7 +1847,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 0
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []

@@ -4,6 +4,7 @@
 ///-----------------------------------------------------------------
 
 using Com.IsartDigital.Platformer.LevelObjects;
+using Com.IsartDigital.Platformer.Managers;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.Sounds {
@@ -13,7 +14,7 @@ namespace Com.IsartDigital.Platformer.Sounds {
 
 		private string soundToPlay = null;
 
-	    void Start()
+	    private void Start()
 	    {
 			switch (emitParticle)
 			{
@@ -31,9 +32,9 @@ namespace Com.IsartDigital.Platformer.Sounds {
 			}
 		}
 	
-	    void Update()
+	    private void Update()
 	    {
-	        
+			SoundManager.Instance.Play(soundToPlay, this); 
 	    }
 	}
 

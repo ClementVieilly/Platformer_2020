@@ -145,7 +145,6 @@ namespace Com.IsartDigital.Platformer.Screens
 			}
 			else _instance = this;
             lvlManager = FindObjectOfType<LevelManager>();
-            lvlManager.OnLaunchHudAnim += LevelManager_Test;
             btnPause = GetComponentInChildren<Button>();
 			btnPause.onClick.AddListener(Hud_OnButtonPauseClicked);
             SaveKeyStartPos(); 
@@ -160,25 +159,6 @@ namespace Com.IsartDigital.Platformer.Screens
 			jumpButton.gameObject.SetActive(true);
 #endif
 		}
-
-        private void LevelManager_Test(LevelManager levelManager)
-        {
-            StartCoroutine(WinAnim()); 
-
-        }
-        private IEnumerator WinAnim()
-        {
-            lvlManager.OnLaunchHudAnim -= LevelManager_Test;
-           {
-                for(int i = 0; i < keyTab.Count; i++)
-                {
-                    Tween.LocalScale(keyTab[i], new Vector2(1, 1), 0.2f, 0.5f * i, bigScoreEnterAnimWin);
-                }
-
-                yield return new WaitForSeconds(0.5f*keyTab.Count);
-            }
-            OnFinalAnimFinished?.Invoke(this);
-        }
         public void RegisterSelfAnimator()
 		{
 			animator = GetComponent<Animator>();

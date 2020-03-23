@@ -1934,6 +1934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac242bd378ba244691525a1d7ca5b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds: {fileID: 0}
   scoreText: {fileID: 5489986838369371546}
   scoreObject: {fileID: 6960458740344200439}
   bigScoreObject: {fileID: 5881193315709737288}
@@ -2615,7 +2616,7 @@ PrefabInstance:
     - target: {fileID: 3251477474756671994, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -220
+      value: -149
       objectReference: {fileID: 0}
     - target: {fileID: 3251477474756671994, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}
@@ -2660,12 +2661,12 @@ PrefabInstance:
     - target: {fileID: 3251477474756671994, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.15
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 3251477474756671994, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.15
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 5034081582312717565, guid: a1aae5dde7ccb324f91c95ed77d0e55c,
         type: 3}

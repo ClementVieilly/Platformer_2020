@@ -1745,7 +1745,7 @@ MonoBehaviour:
     showInEditor: 1
   - _name: Collectible_Key_Level_One
     _clip: {fileID: 8300000, guid: ceebb9855743b764a99bc75e49282053, type: 3}
-    _type: 0
+    _type: 1
     _volume: 0.75
     _volumeVariance: 0
     _pitch: 1
@@ -1754,7 +1754,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 0
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -1790,7 +1790,7 @@ MonoBehaviour:
     showInEditor: 1
   - _name: Collectible_Key_Level_Two
     _clip: {fileID: 8300000, guid: fb7c1ddbcd6d43247a8fbbf72a9944ce, type: 3}
-    _type: 0
+    _type: 1
     _volume: 0.75
     _volumeVariance: 0
     _pitch: 1
@@ -1799,7 +1799,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 0
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []

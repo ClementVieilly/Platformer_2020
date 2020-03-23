@@ -118,7 +118,8 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		public void WebClient_OnLogged(WebClient webClient)
 		{
-            currentLoginScreen.Animator.SetTrigger("Exit"); 
+			currentLoginScreen.HideLoading();
+			currentLoginScreen.Animator.SetTrigger("Exit"); 
 		}
 
 		private void CreatePauseMenu() //Crée une instance de Menu Pause et écoute ses événements
@@ -159,7 +160,6 @@ namespace Com.IsartDigital.Platformer.Managers
 
 			currentTitleCard.OnCreditsClicked += TitleCard_OnCreditsClicked;
 			currentTitleCard.OnLeaderBoardClicked += TitleCard_OnLeaderBoardClicked;
-			currentTitleCard.OnLocalisationClicked += TitleCard_OnLocalisationClicked;
 			currentTitleCard.OnSoundTriggerClicked += TitleCard_OnSoundTriggerClicked;
 			currentTitleCard.OnGameStart += TitleCard_OnGameStart;
 			allScreens.Add(currentTitleCard);
@@ -356,11 +356,8 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void TitleCard_OnSoundTriggerClicked(TitleCard title)
 		{
 			Debug.Log("active/désactive le son + change image");
-		}
-
-		private void TitleCard_OnLocalisationClicked(TitleCard title)
-		{
-			Debug.Log("change la langue");
+			GameManager.isSoundOff = !GameManager.isSoundOff;
+			GameManager.SetSoundPlay(GameManager.isSoundOff);
 		}
 
 		private void TitleCard_OnLeaderBoardClicked(TitleCard title)

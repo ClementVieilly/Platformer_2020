@@ -289,6 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604610365cf0b3d419b5feaf870b6fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds: {fileID: 11400000, guid: e4526ec7fb9357d408af38f7e3a4d718, type: 2}
   retryBtn: {fileID: 4915196953105186819}
   levelSelectorBtn: {fileID: 125906303368049995}
 --- !u!1 &4801710050572413214
@@ -667,12 +668,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.6
       objectReference: {fileID: 0}
-    - target: {fileID: 5418131114095877747, guid: 2ec36942461b4e444a938f69b590b87f,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 4adda9dbf7234cb43afe550f608865a6,
-        type: 3}
     - target: {fileID: 5418131114095877741, guid: 2ec36942461b4e444a938f69b590b87f,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -693,6 +688,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5418131114095877747, guid: 2ec36942461b4e444a938f69b590b87f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4adda9dbf7234cb43afe550f608865a6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ec36942461b4e444a938f69b590b87f, type: 3}
 --- !u!224 &7601082297938866252 stripped
@@ -850,12 +851,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.6
       objectReference: {fileID: 0}
-    - target: {fileID: 5418131114095877747, guid: 2ec36942461b4e444a938f69b590b87f,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 36fa08921b1204f4d817056873556b88,
-        type: 3}
     - target: {fileID: 5418131114095877741, guid: 2ec36942461b4e444a938f69b590b87f,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -891,6 +886,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5418131114095877747, guid: 2ec36942461b4e444a938f69b590b87f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 36fa08921b1204f4d817056873556b88,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ec36942461b4e444a938f69b590b87f, type: 3}
 --- !u!224 &3239634698345972996 stripped

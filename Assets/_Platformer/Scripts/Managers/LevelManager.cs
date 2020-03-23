@@ -195,7 +195,7 @@ namespace Com.IsartDigital.Platformer.Managers
             TimedDoor.ResetAll();
             ChangeTravellingCamera.ResetAll();
 			TempChangeCamera.ResetAll();
-
+            BigScoreCollectible.ResetAll(); 
             timeManager.StartTimer();
 
 			if (SoundManager.Instance)
@@ -232,7 +232,8 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void UpdateHud()
         {
-			Hud hud = Hud.Instance;
+            _bigScoreCollectibles = new bool[] { false, false, false, false };
+            Hud hud = Hud.Instance;
 			hud.Score = _score;
 			hud.Life = player.Life;
 			hud.BigScore = _bigScoreCollectibles;

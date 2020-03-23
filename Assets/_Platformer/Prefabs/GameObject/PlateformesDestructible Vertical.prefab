@@ -31,7 +31,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 672189268196504054}
   - {fileID: 6067008206609859632}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -262,107 +261,6 @@ PolygonCollider2D:
       - {x: -4.43324, y: -0.8112599}
       - {x: -5.006424, y: -0.83673996}
       - {x: -4.7217407, y: -1.2807704}
---- !u!1 &672189268196504055
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 672189268196504054}
-  - component: {fileID: 672189268196504049}
-  - component: {fileID: 5649780679377057126}
-  - component: {fileID: 741604231564405095}
-  m_Layer: 0
-  m_Name: triggeringCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &672189268196504054
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 672189268196504055}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 672189266380621024}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &672189268196504049
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 672189268196504055}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -5.0695286, y: 6.18713}
-      - {x: -4.9427624, y: -1.1385236}
-      - {x: -0.5000572, y: -1.1599364}
-      - {x: 5.237465, y: -1.072207}
-      - {x: 4.9427605, y: 6.148017}
---- !u!114 &5649780679377057126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 672189268196504055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 920554508b8d0ee4c8e78023d61e0521, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds: {fileID: 0}
-  sfxList: []
-  duration: 2.1
-  triggeredCollider: {fileID: 672189266380621029}
-  matter: 0
-  shakeMagnitudeX: 0.2
-  shakeMagnitudeY: 0.2
---- !u!95 &741604231564405095
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 672189268196504055}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 545591ab04298844ea3ce6133f406e5d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &7133916134234785483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -370,6 +268,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 672189266380621024}
     m_Modifications:
+    - target: {fileID: 86416131549443820, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
+        type: 3}
+      propertyPath: m_Name
+      value: Platforme_Destructible_Verticale.fla.Platforme_Destruction_Verticale
+      objectReference: {fileID: 0}
     - target: {fileID: 3977405508035429115, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -408,7 +311,7 @@ PrefabInstance:
     - target: {fileID: 3977405508035429115, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3977405508035429115, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
         type: 3}
@@ -423,6 +326,42 @@ PrefabInstance:
     - target: {fileID: 3977405508035429115, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634388949163503945, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
+        type: 3}
+      propertyPath: shakeMagnitudeX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634388949163503945, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
+        type: 3}
+      propertyPath: duration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634388949163503945, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
+        type: 3}
+      propertyPath: triggeredCollider
+      value: 
+      objectReference: {fileID: 672189266380621029}
+    - target: {fileID: 7634388949163503945, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
+        type: 3}
+      propertyPath: matter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634388949163503945, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
+        type: 3}
+      propertyPath: sounds
+      value: 
+      objectReference: {fileID: 11400000, guid: e4526ec7fb9357d408af38f7e3a4d718,
+        type: 2}
+    - target: {fileID: 9147028246156329797, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d58d9a5e482e8429f8d7d18a9538d94a, type: 2}
+    - target: {fileID: 5780150834193321767, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
+        type: 3}
+      propertyPath: _currentFrame
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4331187294410683526, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
@@ -505,51 +444,10 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[6].y
       value: -0.73559594
       objectReference: {fileID: 0}
-    - target: {fileID: 7634388949163503945, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
-        type: 3}
-      propertyPath: shakeMagnitudeX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7634388949163503945, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
-        type: 3}
-      propertyPath: duration
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7634388949163503945, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
-        type: 3}
-      propertyPath: triggeredCollider
-      value: 
-      objectReference: {fileID: 672189266380621029}
-    - target: {fileID: 7634388949163503945, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
-        type: 3}
-      propertyPath: matter
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7634388949163503945, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
-        type: 3}
-      propertyPath: sounds
-      value: 
-      objectReference: {fileID: 11400000, guid: e4526ec7fb9357d408af38f7e3a4d718,
-        type: 2}
-    - target: {fileID: 86416131549443820, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
-        type: 3}
-      propertyPath: m_Name
-      value: Platforme_Destructible_Verticale.fla.Platforme_Destruction_Verticale
-      objectReference: {fileID: 0}
     - target: {fileID: 322423512177668457, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9147028246156329797, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: d58d9a5e482e8429f8d7d18a9538d94a, type: 2}
-    - target: {fileID: 5780150834193321767, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4,
-        type: 3}
-      propertyPath: _currentFrame
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5bf3558a3ec7d749aeb6f1c01d8b8a4, type: 3}

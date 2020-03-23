@@ -118,7 +118,8 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		public void WebClient_OnLogged(WebClient webClient)
 		{
-            currentLoginScreen.Animator.SetTrigger("Exit"); 
+			currentLoginScreen.HideLoading();
+			currentLoginScreen.Animator.SetTrigger("Exit"); 
 		}
 
 		private void CreatePauseMenu() //Crée une instance de Menu Pause et écoute ses événements

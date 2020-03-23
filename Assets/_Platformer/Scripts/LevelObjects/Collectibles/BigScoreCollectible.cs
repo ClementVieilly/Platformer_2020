@@ -28,14 +28,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 		{
 			_list.Add(this);
             SetCurrentLevel(currentLvlNumber);
-
         }
 
 		protected override void EffectOfTheCollectible()
 		{
 			OnCollected?.Invoke(slotNumber);
             Instantiate(collectParticleSystem, transform.position, Quaternion.identity);
-            SoundManager.Instance.Play(soundToPlay, this);
+            SoundManager.Instance.Play(soundToPlay,this,false,false);
         }
 
         private void SetCurrentLevel(int lvlNumber)
@@ -50,7 +49,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
             for(int i = List.Count - 1; i >= 0; i--)
                 List[i].ResetObject();
         }
-
 
         private void OnDestroy()
         {

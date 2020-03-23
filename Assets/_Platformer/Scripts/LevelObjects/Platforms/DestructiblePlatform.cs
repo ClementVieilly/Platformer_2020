@@ -59,7 +59,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
         {
             DoAction = DoActionNormal;
             animator.SetTrigger("Destruction");
-            SoundManager.Instance.Play(soundToPlay, this);
+            
         }
         private void DoActionVoid()
         {
@@ -75,6 +75,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Platforms {
             }
             else
             {
+                SoundManager.Instance.Play(soundToPlay, this);
                 float x = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitudeX;
                 float y = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitudeY;
                 transform.position = new Vector2(x, y) + spriteOriginalPos;

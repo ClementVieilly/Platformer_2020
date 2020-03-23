@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 492928087603726970}
   - component: {fileID: 3498804256425790679}
-  - component: {fileID: 1801985787}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -1242,7 +1241,7 @@ MonoBehaviour:
     CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
   - _name: ENV_Spider_01_Idle
-    _clip: {fileID: 8300000, guid: 287978b95b3fe3d4a938842bdfb65d77, type: 3}
+    _clip: {fileID: 8300000, guid: 323378cba7411294a91abca86629396a, type: 3}
     _type: 1
     _volume: 0.75
     _volumeVariance: 0.1
@@ -1834,17 +1833,187 @@ MonoBehaviour:
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
---- !u!114 &1801985787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5616720362773312266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b770b9a1a5390c4196ac8a423e09867, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: -10
-  targetToFollow: {fileID: 0}
+  - _name: ENV_Spider_Attack
+    _clip: {fileID: 8300000, guid: 323378cba7411294a91abca86629396a, type: 3}
+    _type: 1
+    _volume: 0.75
+    _volumeVariance: 0.1
+    _pitch: 1
+    _pitchVariance: 0.1
+    _isPitchedBetweenValues: 0
+    _minPitchValue: 0
+    _maxPitchValue: 0
+    _isLoop: 0
+    _rolloffMode: 0
+    _volumeSpatialization:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _minDistance: 0
+    _maxDistance: 500
+    _isFadeIn: 0
+    _isFadeOut: 0
+    _fadeInDuration: 1
+    _fadeInCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _fadeOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _fadeOutDuration: 1
+    _isStartAtRandomTime: 0
+    _mixerGroupLvl1: {fileID: 4905135650992275559, guid: 00ffeba9d90315d4d864a71c01738b23,
+      type: 2}
+    _mixerGroupLvl2: {fileID: 679081289325050984, guid: 00ffeba9d90315d4d864a71c01738b23,
+      type: 2}
+    _pauseMixerGroup: {fileID: 5883487093876413735, guid: 00ffeba9d90315d4d864a71c01738b23,
+      type: 2}
+    _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
+    showInEditor: 1
+  - _name: Character_Jump
+    _clip: {fileID: 8300000, guid: 780bfc4cdd5fcf643af1d560b9f7c955, type: 3}
+    _type: 1
+    _volume: 0.75
+    _volumeVariance: 0.1
+    _pitch: 1
+    _pitchVariance: 0.1
+    _isPitchedBetweenValues: 0
+    _minPitchValue: 0
+    _maxPitchValue: 0
+    _isLoop: 0
+    _rolloffMode: 1
+    _volumeSpatialization:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _minDistance: 0
+    _maxDistance: 500
+    _isFadeIn: 0
+    _isFadeOut: 0
+    _fadeInDuration: 1
+    _fadeInCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _fadeOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _fadeOutDuration: 1
+    _isStartAtRandomTime: 0
+    _mixerGroupLvl1: {fileID: 4905135650992275559, guid: 00ffeba9d90315d4d864a71c01738b23,
+      type: 2}
+    _mixerGroupLvl2: {fileID: 679081289325050984, guid: 00ffeba9d90315d4d864a71c01738b23,
+      type: 2}
+    _pauseMixerGroup: {fileID: 5883487093876413735, guid: 00ffeba9d90315d4d864a71c01738b23,
+      type: 2}
+    _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
+    showInEditor: 1
+  - _name: Music_Win
+    _clip: {fileID: 8300000, guid: d70b97a28a28df64682329da04ba21f0, type: 3}
+    _type: 0
+    _volume: 0.439
+    _volumeVariance: 0
+    _pitch: 1
+    _pitchVariance: 0
+    _isPitchedBetweenValues: 0
+    _minPitchValue: 0
+    _maxPitchValue: 0
+    _isLoop: 0
+    _rolloffMode: 1
+    _volumeSpatialization:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _minDistance: 0
+    _maxDistance: 500
+    _isFadeIn: 0
+    _isFadeOut: 0
+    _fadeInDuration: 1
+    _fadeInCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _fadeOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _fadeOutDuration: 1
+    _isStartAtRandomTime: 0
+    _mixerGroupLvl1: {fileID: 4905135650992275559, guid: 00ffeba9d90315d4d864a71c01738b23,
+      type: 2}
+    _mixerGroupLvl2: {fileID: 679081289325050984, guid: 00ffeba9d90315d4d864a71c01738b23,
+      type: 2}
+    _pauseMixerGroup: {fileID: 5883487093876413735, guid: 00ffeba9d90315d4d864a71c01738b23,
+      type: 2}
+    _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
+    showInEditor: 1
+  - _name: Music_Lose
+    _clip: {fileID: 8300000, guid: 9d021482c3cbc304a8221f9f059b367d, type: 3}
+    _type: 0
+    _volume: 0.431
+    _volumeVariance: 0
+    _pitch: 1
+    _pitchVariance: 0
+    _isPitchedBetweenValues: 0
+    _minPitchValue: 0
+    _maxPitchValue: 0
+    _isLoop: 0
+    _rolloffMode: 1
+    _volumeSpatialization:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _minDistance: 0
+    _maxDistance: 500
+    _isFadeIn: 0
+    _isFadeOut: 0
+    _fadeInDuration: 1
+    _fadeInCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _fadeOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _fadeOutDuration: 1
+    _isStartAtRandomTime: 0
+    _mixerGroupLvl1: {fileID: 4905135650992275559, guid: 00ffeba9d90315d4d864a71c01738b23,
+      type: 2}
+    _mixerGroupLvl2: {fileID: 679081289325050984, guid: 00ffeba9d90315d4d864a71c01738b23,
+      type: 2}
+    _pauseMixerGroup: {fileID: 5883487093876413735, guid: 00ffeba9d90315d4d864a71c01738b23,
+      type: 2}
+    _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
+    showInEditor: 1

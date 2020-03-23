@@ -9,6 +9,7 @@ using Com.IsartDigital.Platformer.LevelObjects;
 using Com.IsartDigital.Platformer.LevelObjects.Collectibles;
 using Com.IsartDigital.Platformer.LevelObjects.Platforms;
 using Com.IsartDigital.Platformer.Screens;
+using Com.IsartDigital.Platformer.Sounds;
 using System.Collections;
 using UnityEngine;
 
@@ -48,7 +49,7 @@ namespace Com.IsartDigital.Platformer.Managers
             timeManager = GetComponent<TimeManager>();
             timeManager.StartTimer();
             StartCoroutine(InitHud());
-		}
+        }
 
 		public void SetPlayer(Player player)
 		{
@@ -140,7 +141,6 @@ namespace Com.IsartDigital.Platformer.Managers
 					ChangeTravellingCamera.ResetAll();
 					DestructiblePlatform.ResetAll();
 				}
-
 				player.GetComponent<Collider2D>().enabled = true;
 				return;
 			}
@@ -151,6 +151,8 @@ namespace Com.IsartDigital.Platformer.Managers
 
 			if (UIManager.Instance)
 				UIManager.Instance.CreateLoseScreen();
+            SoundManager.Instance.PauseAll();
+            SoundManager.Instance.Play(sounds.Music_Lose);
         }
 
         private void CheckpointManager_OnFinalCheckPointTriggered()
@@ -180,6 +182,8 @@ namespace Com.IsartDigital.Platformer.Managers
                 SoundManager.Instance.Stop(sounds.Music_Level_2);
                 SoundManager.Instance.Stop(sounds.Ambiance_Level_2);
             }
+            SoundManager.Instance.PauseAll();
+            SoundManager.Instance.Play(sounds.Music_Win);
         }
 
         private void Retry()
@@ -224,7 +228,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private void PauseGame()
 		{
-			player.SetModePause();
+            player.SetModePause();
 			timeManager.SetModePause();
 			DestructiblePlatform.PauseAll();
 			MobilePlatform.PauseAll();
@@ -250,6 +254,9 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             UnsubscribeAllEvents();
             SoundManager.Instance.Stop(currentLvlMusicName);
+            SoundManager.Instance.Stop(currentLvlAmbianceName);
+            SoundManager.Instance.Stop(sounds.Music_Lose);
+            SoundManager.Instance.Stop(sounds.Music_Win);
         }
 
         #region Events subscribtions

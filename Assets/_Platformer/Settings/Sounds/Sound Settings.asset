@@ -24,6 +24,8 @@ MonoBehaviour:
   _music_Menu: Music_Menu
   _music_Level_1: Music_Level_1
   _music_Level_2: Music_Level_2
+  _music_Win: Music_Win
+  _music_Lose: Music_Lose
   _ambiance_Level_1: Ambience_Level_1
   _ambiance_Level_2: Ambience_Level_2
   _ui_Button: UI_Button
@@ -50,6 +52,7 @@ MonoBehaviour:
   _checkpoint_Closed: Checkpoint_Closed
   _env_Spider_01_Idle: ENV_Spider_01_Idle
   _env_Spider_02_Idle: ENV_Spider_02_Idle
+  _env_Spider_Attack: ENV_Spider_Attack
   _env_Cooking_Pot: ENV_Cooking_Pot
   _env_electric_sparks: ENV_electric_sparks
   _env_electric_arc: ENV_electric_arc

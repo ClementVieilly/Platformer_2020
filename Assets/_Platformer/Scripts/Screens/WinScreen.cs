@@ -4,6 +4,7 @@
 ///-----------------------------------------------------------------
 
 using System;
+using Com.IsartDigital.Platformer.Managers;
 using Com.IsartDigital.Platformer.Screens;
 using Com.IsartDigital.Platformer.Screens.Buttons;
 using UnityEngine;
@@ -41,12 +42,16 @@ public class WinScreen : AScreen
             animator.SetTrigger(enter);
             levelSelectorBtn.OnMenuButtonClicked += WinScreen_OnLevelSelectorClicked;
             menuBtn.OnMenuButtonClicked += WinScreen_OnMenuClicked;
+            SoundManager.Instance.Stop(sounds.Music_Level_1);
+            SoundManager.Instance.Stop(sounds.Ambiance_Level_1);
         }
         else
         {
             animator.SetTrigger(enterLastScreenParam);
             levelSelectorBtn.OnMenuButtonClicked += WinScreen_EndScreenClicked;
             menuBtn.OnMenuButtonClicked += WinScreen_EndScreenClicked;
+            SoundManager.Instance.Stop(sounds.Music_Level_2);
+            SoundManager.Instance.Stop(sounds.Ambiance_Level_2);
         }
 
     }

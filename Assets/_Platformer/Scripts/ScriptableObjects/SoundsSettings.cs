@@ -93,5 +93,9 @@ namespace Com.IsartDigital.Platformer
 		public string Birds_owl { get => _birds_owl; }
 		public string Env_Trigger_MobilePlatform { get => _env_Trigger_MobilePlatform; }
 		public string Env_Trigger_TimedDoor { get => _env_Trigger_TimedDoor; }
+		public string Env_Time_DoorClosed { get => _env_Time_DoorClosed; }
+		public string Env_Time_DoorClosing { get => _env_Time_DoorClosing; }
+		public string Env_Time_DoorOpen { get => _env_Time_DoorOpen; }
+		public string Env_Mobile_Platform { get => _env_Mobile_Platform; }
 	}
 }

@@ -174,6 +174,17 @@ namespace Com.IsartDigital.Platformer.Managers
             if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen(_levelNumber);
              else Debug.LogError("Pas d'UImanager sur la scène");
              player.gameObject.SetActive(false);
+
+            if (_levelNumber == 1)
+            {
+                SoundManager.Instance.Stop(sounds.Music_Level_1);
+                SoundManager.Instance.Stop(sounds.Ambiance_Level_1);
+            }
+            else if (_levelNumber == 2)
+            {
+                SoundManager.Instance.Stop(sounds.Music_Level_2);
+                SoundManager.Instance.Stop(sounds.Ambiance_Level_2);
+            }
         }
 
         private void Retry()

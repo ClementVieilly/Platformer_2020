@@ -51,6 +51,13 @@ namespace Com.IsartDigital.Platformer
 		[Header("Platforms")]
 		[SerializeField] private string _env_DestructiblePlatform_Glass = null ;
 		[SerializeField] private string _env_DestructiblePlatform_Wood = null;
+		[SerializeField] private string _env_Trigger_MobilePlatform= null;
+		[SerializeField] private string _env_Trigger_TimedDoor = null;
+		[SerializeField] private string _env_Time_DoorClosed = null;
+		[SerializeField] private string _env_Time_DoorClosing = null;
+		[SerializeField] private string _env_Time_DoorOpen = null;
+		[SerializeField] private string _env_Mobile_Platform = null;
+
 
 		[Header("Props")]
 		[SerializeField] private string _env_Spider_01_Idle = null;
@@ -84,5 +91,7 @@ namespace Com.IsartDigital.Platformer
 		public string Collectible_Score { get => _collectible_Score; }
 		public string Birds_dove { get => _birds_dove; }
 		public string Birds_owl { get => _birds_owl; }
+		public string Env_Trigger_MobilePlatform { get => _env_Trigger_MobilePlatform; }
+		public string Env_Trigger_TimedDoor { get => _env_Trigger_TimedDoor; }
 	}
 }

@@ -28,7 +28,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.FTUE
 					soundToPlay = sounds.Birds_owl;
 					break;
 				case InteractiveType.Gyapete:
-					soundToPlay = sounds.Birds_owl;
+					soundToPlay = sounds.Birds_gyapede;
 					break;
 				case InteractiveType.Flamme_Bougie:
 					soundToPlay = null;

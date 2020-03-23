@@ -140,10 +140,10 @@ namespace Com.IsartDigital.Platformer.Managers
 					ChangeTravellingCamera.ResetAll();
 					DestructiblePlatform.ResetAll();
 				}
-
 				player.GetComponent<Collider2D>().enabled = true;
 				return;
 			}
+
 
 			player.gameObject.SetActive(false);
             _completionTime = timeManager.Timer;
@@ -151,6 +151,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
 			if (UIManager.Instance)
 				UIManager.Instance.CreateLoseScreen();
+            SoundManager.Instance.Play(sounds.Music_Lose);
         }
 
         private void CheckpointManager_OnFinalCheckPointTriggered()
@@ -251,6 +252,9 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             UnsubscribeAllEvents();
             SoundManager.Instance.Stop(currentLvlMusicName);
+            SoundManager.Instance.Stop(currentLvlAmbianceName);
+            SoundManager.Instance.Stop(sounds.Music_Lose);
+            SoundManager.Instance.Stop(sounds.Music_Win);
         }
 
         #region Events subscribtions

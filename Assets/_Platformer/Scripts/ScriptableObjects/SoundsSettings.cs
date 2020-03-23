@@ -58,6 +58,9 @@ namespace Com.IsartDigital.Platformer
 		[SerializeField] private string _env_Time_DoorOpen = null;
 		[SerializeField] private string _env_Mobile_Platform = null;
 
+		[Header("Checkpoints")]
+		[SerializeField] private string _checkpoint_Open = null;
+		[SerializeField] private string _checkpoint_Closed = null;
 
 		[Header("Props")]
 		[SerializeField] private string _env_Spider_01_Idle = null;
@@ -97,5 +100,7 @@ namespace Com.IsartDigital.Platformer
 		public string Env_Time_DoorClosing { get => _env_Time_DoorClosing; }
 		public string Env_Time_DoorOpen { get => _env_Time_DoorOpen; }
 		public string Env_Mobile_Platform { get => _env_Mobile_Platform; }
+		public string Checkpoint_Open { get => _checkpoint_Open; }
+		public string Checkpoint_Closed { get => _checkpoint_Closed; }
 	}
 }

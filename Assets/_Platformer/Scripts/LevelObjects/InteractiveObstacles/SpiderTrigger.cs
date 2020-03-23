@@ -50,5 +50,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects.InteractiveObstacles {
                  cocoonsList[i].position = new Vector2(x, y) + startPos[i] ;  
             }
         }
+
+        private void OnDestroy()
+        {
+            cocoonsList.Clear(); 
+        }
     }
 }

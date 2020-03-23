@@ -43,10 +43,15 @@ namespace Com.IsartDigital.Platformer
 		[Header("Collectibles")]
 		[SerializeField] private string _collectible_Life = null;
 		[SerializeField] private string _collectible_Score = null;
+		[SerializeField] private string _collectible_BigScore_Lvl1 = null;
+		[SerializeField] private string _collectible_BigScore_Lvl2 = null;
 
 		[Header("Birds")]
 		[SerializeField] private string _birds_dove = null;
 		[SerializeField] private string _birds_owl = null;
+		[SerializeField] private string _birds_gyapede = null;
+		[SerializeField] private string _birds_Hibou_1 = null;
+		[SerializeField] private string _birds_Hibou_2 = null;
 
 		[Header("Platforms")]
 		[SerializeField] private string _env_DestructiblePlatform_Glass = null ;
@@ -66,6 +71,8 @@ namespace Com.IsartDigital.Platformer
 		[SerializeField] private string _env_Spider_01_Idle = null;
 		[SerializeField] private string _env_Spider_02_Idle = null;
 		[SerializeField] private string _env_Cooking_Pot = null;
+		[SerializeField] private string _env_electric_sparks = null;
+		[SerializeField] private string _env_electric_arc = null;
 
 
 		public string Character_Spawn { get => _character_Spawn; }
@@ -94,6 +101,9 @@ namespace Com.IsartDigital.Platformer
 		public string Collectible_Score { get => _collectible_Score; }
 		public string Birds_dove { get => _birds_dove; }
 		public string Birds_owl { get => _birds_owl; }
+		public string Birds_Hibou_1 { get => _birds_Hibou_1; }
+		public string Birds_Hibou_2 { get => _birds_Hibou_2; }
+		public string Birds_gyapede { get => _birds_gyapede; }
 		public string Env_Trigger_MobilePlatform { get => _env_Trigger_MobilePlatform; }
 		public string Env_Trigger_TimedDoor { get => _env_Trigger_TimedDoor; }
 		public string Env_Time_DoorClosed { get => _env_Time_DoorClosed; }
@@ -102,5 +112,9 @@ namespace Com.IsartDigital.Platformer
 		public string Env_Mobile_Platform { get => _env_Mobile_Platform; }
 		public string Checkpoint_Open { get => _checkpoint_Open; }
 		public string Checkpoint_Closed { get => _checkpoint_Closed; }
+		public string Collectible_BigScore_Lvl1 { get => _collectible_BigScore_Lvl1; }
+		public string Collectible_BigScore_Lvl2 { get => _collectible_BigScore_Lvl2; }
+		public string Env_electric_sparks { get => _env_electric_sparks; }
+		public string Env_electric_arc { get => _env_electric_arc; }
 	}
 }

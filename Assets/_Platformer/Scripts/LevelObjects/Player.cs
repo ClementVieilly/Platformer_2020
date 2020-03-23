@@ -273,7 +273,8 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         {
             DoAction = DoActionSpawn;
             animator.SetTrigger(settings.Spawn);
-            
+
+			wasOnWall = false;
         }
 
         private void SetModeAir()
@@ -728,9 +729,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         }
 
 
-		private void SetModeVoid()
+		public void SetModeVoid()
 		{
 			DoAction = DoActionVoid;
+            Debug.Log("SetModeVoid"); 
 		}
 
         private void DoActionVoid() {}

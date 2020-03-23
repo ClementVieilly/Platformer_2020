@@ -3,12 +3,14 @@
 /// Date : 27/01/2020 16:48
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.LevelObjects;
+using Com.IsartDigital.Platformer.Managers;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.InteractiveObstacles {
-	public class MobilePlatform : MonoBehaviour {
+	public class MobilePlatform : ALevelObject {
 
         [SerializeField] private Transform[] allPoints = null;
         private Vector2 startPos = Vector2.zero;
@@ -20,6 +22,9 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
         [SerializeField] private string playerTag = "Player"; 
         [SerializeField] private bool isWall = false; 
         [SerializeField] private bool _isStarted = false;
+        [SerializeField] private MobileType materialType;
+        private string soundToPlay = null;
+
         public bool IsStarted { get => _isStarted; set => _isStarted = value; }
         [SerializeField] private bool oneWay = false; 
 
@@ -37,6 +42,18 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
             _list.Add(this);
             SetStartPosition();
             startIndex = index;
+
+            switch (materialType)
+            {
+                case MobileType.LIBRARY:
+                    soundToPlay = sounds.Env_Mobile_Platform;
+                    break;
+                case MobileType.CAGE:
+                    soundToPlay = sounds.Env_Mobile_Platform;
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void SetModeWait() 
@@ -74,6 +91,7 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
 		private void DoActionNormal()
         {
             elapsedTime += Time.deltaTime;
+            SoundManager.Instance.Play(soundToPlay, this);
             Vector3 previousPos = transform.position;
             
             transform.position = Vector2.Lerp(index > 0 ? 
@@ -99,7 +117,7 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
 
         private void OnCollisionStay2D(Collision2D collision)
         {
-            if (!touchedObject && collision.collider.CompareTag(playerTag))
+            if (collision.collider.CompareTag(playerTag))
                 touchedObject = collision.transform;
         }
         private void OnCollisionEnter2D(Collision2D collision)
@@ -165,5 +183,12 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
 					_list[i].SetModeWait();
 			}
 		}
+    }
+
+    public enum MobileType
+    {
+        NONE,
+        LIBRARY,
+        CAGE
     }
 }

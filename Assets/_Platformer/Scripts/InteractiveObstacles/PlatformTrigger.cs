@@ -28,11 +28,12 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
 
         protected override void TriggerInteraction()
         {
+           
+            animator.SetBool("IsActive", true);
             mobilePlatform.SetModeNormal();
-			if (!mobilePlatform.IsStarted) SoundManager.Instance.Play(sounds.Env_Trigger_MobilePlatform, this);
-			mobilePlatform.IsStarted = true;
-
-			animator.SetBool("IsActive", true);
+            if(!mobilePlatform.IsStarted) SoundManager.Instance.Play(sounds.Env_Trigger_MobilePlatform, this);
+            mobilePlatform.IsStarted = true;
+           
 		}
 
 		private void OnDestroy()

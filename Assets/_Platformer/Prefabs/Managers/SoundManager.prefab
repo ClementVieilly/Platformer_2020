@@ -1926,12 +1926,12 @@ MonoBehaviour:
     CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
   - _name: Music_Win
-    _clip: {fileID: 0}
+    _clip: {fileID: 8300000, guid: d70b97a28a28df64682329da04ba21f0, type: 3}
     _type: 0
-    _volume: 0.75
-    _volumeVariance: 0.1
+    _volume: 0.439
+    _volumeVariance: 0
     _pitch: 1
-    _pitchVariance: 0.1
+    _pitchVariance: 0
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
@@ -1972,12 +1972,12 @@ MonoBehaviour:
     CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
   - _name: Music_Lose
-    _clip: {fileID: 0}
+    _clip: {fileID: 8300000, guid: 9d021482c3cbc304a8221f9f059b367d, type: 3}
     _type: 0
-    _volume: 0.75
-    _volumeVariance: 0.1
+    _volume: 0.431
+    _volumeVariance: 0
     _pitch: 1
-    _pitchVariance: 0.1
+    _pitchVariance: 0
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0

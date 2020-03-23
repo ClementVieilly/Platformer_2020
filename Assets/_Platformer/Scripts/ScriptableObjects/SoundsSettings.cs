@@ -68,6 +68,8 @@ namespace Com.IsartDigital.Platformer
 		[SerializeField] private string _env_Spider_01_Idle = null;
 		[SerializeField] private string _env_Spider_02_Idle = null;
 		[SerializeField] private string _env_Cooking_Pot = null;
+		[SerializeField] private string _env_electric_sparks = null;
+		[SerializeField] private string _env_electric_arc = null;
 
 
 		public string Character_Spawn { get => _character_Spawn; }
@@ -106,5 +108,7 @@ namespace Com.IsartDigital.Platformer
 		public string Checkpoint_Closed { get => _checkpoint_Closed; }
 		public string Collectible_BigScore_Lvl1 { get => _collectible_BigScore_Lvl1; }
 		public string Collectible_BigScore_Lvl2 { get => _collectible_BigScore_Lvl2; }
+		public string Env_electric_sparks { get => _env_electric_sparks; }
+		public string Env_electric_arc { get => _env_electric_arc; }
 	}
 }

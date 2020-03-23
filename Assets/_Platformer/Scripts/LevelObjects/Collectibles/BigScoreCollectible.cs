@@ -34,7 +34,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 		{
 			OnCollected?.Invoke(slotNumber);
             Instantiate(collectParticleSystem, transform.position, Quaternion.identity);
-            SoundManager.Instance.Play(soundToPlay);
+            SoundManager.Instance.Play(soundToPlay,this,false,false);
         }
 
         private void SetCurrentLevel(int lvlNumber)

@@ -123,7 +123,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		/// <param name="sound">name of the sound you want to play</param>
 		/// <param name="emitter">object which call the Play method</param>
 		/// <param name="isForcePlay">want to restart the sound at the beginning if is already playing</param>
-		public void Play(string sound, ALevelObject emitter , bool isForcePlay = false)
+		public void Play(string sound, ALevelObject emitter, bool isForcePlay = false, bool isSpatialized = true)
 		{
 			Sound currentSound = Array.Find(sounds, searchedSound => searchedSound.Name == sound);
 
@@ -192,6 +192,8 @@ namespace Com.IsartDigital.Platformer.Managers
 			currentSound.Source.pitch = currentSound.IsPitchedBetweenValues ?
 										UnityEngine.Random.Range(currentSound.MinPitchValue, currentSound.MaxPitchValue) :
 										currentSound.Source.pitch = currentSound.Pitch * (1 + UnityEngine.Random.Range(-currentSound.PitchVariance / 2, currentSound.PitchVariance / 2));
+
+			if (!isSpatialized) currentSound.Source.spatialBlend = 0;
 
 			if (currentSound.IsStartAtRandomTime) currentSound.Source.time = UnityEngine.Random.Range(0, currentSound.Source.clip.length);
 			currentSound.Source.Play();

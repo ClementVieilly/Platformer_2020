@@ -75,6 +75,7 @@ namespace Com.IsartDigital.Platformer.Cameras {
 
 		private void UpdatePos()
 		{
+            if (!cam) return;
 			velocity = cam.position - lastCamPos;
 			if (isLockedY) velocity.y = 0;
 			transform.position -= new Vector3(velocity.x * parallaxRatioX, velocity.y * parallaxRatioY);

@@ -28,7 +28,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 		{
 			_list.Add(this);
             SetCurrentLevel(currentLvlNumber);
-
         }
 
 		protected override void EffectOfTheCollectible()
@@ -50,7 +49,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
             for(int i = List.Count - 1; i >= 0; i--)
                 List[i].ResetObject();
         }
-
 
         private void OnDestroy()
         {

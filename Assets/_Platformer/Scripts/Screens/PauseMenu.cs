@@ -36,8 +36,6 @@ namespace Com.IsartDigital.Platformer.Screens
 		{
 			set
 			{
-                Debug.Log(_bigScore);
-                Debug.Log("value    "+value); 
 				_bigScore = (bool[])value.Clone();
 				UpdateBigScore();
                 
@@ -80,11 +78,14 @@ namespace Com.IsartDigital.Platformer.Screens
 				bigScoreObject.transform.GetChild(i).gameObject.SetActive(_bigScore[i]);
 		}
 
-		public override void UnsubscribeEvents()
+
+        public override void UnsubscribeEvents()
         {
             OnHomeClicked = null;
             OnResumeClicked = null;
             OnRetryClicked = null;
         }
+        
+        
     }
 }

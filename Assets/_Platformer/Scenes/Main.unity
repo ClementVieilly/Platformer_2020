@@ -542,52 +542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
         type: 3}
-      propertyPath: sounds.Array.data[2].showInEditor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
-        type: 3}
-      propertyPath: sounds.Array.data[8].showInEditor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
-        type: 3}
-      propertyPath: sounds.Array.data[9].showInEditor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
-        type: 3}
-      propertyPath: sounds.Array.data[11].showInEditor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
-        type: 3}
-      propertyPath: sounds.Array.data[12].showInEditor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
-        type: 3}
-      propertyPath: sounds.Array.data[13].showInEditor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
-        type: 3}
-      propertyPath: sounds.Array.data[14].showInEditor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
-        type: 3}
-      propertyPath: sounds.Array.data[15].showInEditor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
-        type: 3}
-      propertyPath: sounds.Array.data[21].showInEditor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498804256425790679, guid: f32ce0eed9d4a574ba57ca6332634227,
-        type: 3}
-      propertyPath: sounds.Array.data[22].showInEditor
+      propertyPath: sounds.Array.data[23]._isLoop
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

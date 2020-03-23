@@ -30,6 +30,8 @@ namespace Com.IsartDigital.Platformer
 		[SerializeField] private string _music_Menu = null;
 		[SerializeField] private string _music_Level_1 = null;
 		[SerializeField] private string _music_Level_2 = null;
+		[SerializeField] private string _music_Win = null;
+		[SerializeField] private string _music_Lose = null;
 
 		[Header("Ambiances")]
 		[SerializeField] private string _ambiance_Level_1 = null;
@@ -70,6 +72,7 @@ namespace Com.IsartDigital.Platformer
 		[Header("Props")]
 		[SerializeField] private string _env_Spider_01_Idle = null;
 		[SerializeField] private string _env_Spider_02_Idle = null;
+		[SerializeField] private string _env_Spider_Attack = null;
 		[SerializeField] private string _env_Cooking_Pot = null;
 		[SerializeField] private string _env_electric_sparks = null;
 		[SerializeField] private string _env_electric_arc = null;
@@ -116,5 +119,8 @@ namespace Com.IsartDigital.Platformer
 		public string Collectible_BigScore_Lvl2 { get => _collectible_BigScore_Lvl2; }
 		public string Env_electric_sparks { get => _env_electric_sparks; }
 		public string Env_electric_arc { get => _env_electric_arc; }
+		public string Env_Spider_Attack { get => _env_Spider_Attack; }
+		public string Music_Win { get => _music_Win; }
+		public string Music_Lose { get => _music_Lose; }
 	}
 }

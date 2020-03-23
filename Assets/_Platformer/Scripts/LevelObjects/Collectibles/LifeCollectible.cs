@@ -30,7 +30,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles {
         {
             OnCollected?.Invoke(WinLife);
 			Instantiate(collectedLifeParticleSystem, transform.position, Quaternion.identity);
-			SoundManager.Instance.Play(sounds.Collectible_Life);
+			SoundManager.Instance.Play(sounds.Collectible_Life,this,false,false);
 		}
 
         private void OnDestroy()

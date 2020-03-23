@@ -34,7 +34,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 		{
 			OnCollected?.Invoke(score);
             Instantiate(collectParticleSystem,transform.position, Quaternion.identity);
-			SoundManager.Instance.Play(sounds.Collectible_Score, this);
+			SoundManager.Instance.Play(sounds.Collectible_Score,this,false,false);
 		}
 
 		public static void ResetAll()

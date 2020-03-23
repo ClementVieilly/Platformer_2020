@@ -231,7 +231,7 @@ namespace Com.IsartDigital.Platformer.Screens
 
 		private void OnApplicationPause(bool pause)
 		{
-			if(pause) OnButtonPausePressed?.Invoke(this);
+			if(pause && !paused) OnButtonPausePressed?.Invoke(this);
 		}
 
 		private void OnDestroy()

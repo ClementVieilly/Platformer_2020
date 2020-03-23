@@ -21,6 +21,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects.FTUE
 		{
 			switch (animSound)
 			{
+				case InteractiveType.NONE:
+					soundToPlay = null;
+					break;
 				case InteractiveType.Chouette:
 					soundToPlay = sounds.Birds_owl;
 					break;
@@ -63,6 +66,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects.FTUE
 
 	public enum InteractiveType
 	{
+		NONE,
 		Chouette,
 		Flamme_Bougie,
 		Gyapete,

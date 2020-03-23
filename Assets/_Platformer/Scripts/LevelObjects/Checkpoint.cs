@@ -25,7 +25,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			GetComponent<Collider2D>().enabled = false;
 
 			if (animator) animator.SetBool("IsOpen", true);
-			SoundManager.Instance.Play(sounds.Birds_dove,this);
+			SoundManager.Instance.Play(sounds.Checkpoint_Open,this);
 		}
 
 		public void Reset()

@@ -27,7 +27,9 @@ namespace Com.IsartDigital.Platformer.LevelObjects.Collectibles
 		private void Awake()
 		{
 			_list.Add(this);
-		}
+            SetCurrentLevel(currentLvlNumber);
+
+        }
 
 		protected override void EffectOfTheCollectible()
 		{

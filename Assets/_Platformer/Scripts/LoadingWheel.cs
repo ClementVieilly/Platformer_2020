@@ -20,11 +20,18 @@ namespace Com.IsartDigital.Platformer
 
 		private void Start()
 		{
+			Init();
+		}
+
+		public void Init()
+		{
 			wheel = GetComponent<Image>();
 			wheel.type = Image.Type.Filled;
 			wheel.fillMethod = Image.FillMethod.Radial360;
 			wheel.fillClockwise = true;
 			wheel.fillAmount = 1f;
+
+			elapsedTime = 0f;
 		}
 
 		private void Update()

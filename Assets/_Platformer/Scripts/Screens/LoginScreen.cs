@@ -3,6 +3,7 @@
 /// Date : 18/02/2020 11:12
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer;
 using Com.IsartDigital.Platformer.Screens;
 using Com.IsartDigital.Platformer.Screens.Buttons;
 using UnityEngine;
@@ -26,6 +27,8 @@ public class LoginScreen : AScreen
 	public MenuButton ConnectButton { get => _connectButton; }
 	[SerializeField] private MenuButton skipButton = null;
 
+	[SerializeField] private GameObject loadingWheel = null;
+
     public Animator Animator { get => animator;  }
     private void Awake()
 	{
@@ -46,6 +49,19 @@ public class LoginScreen : AScreen
 		passwordField.interactable = false;
 
 		OnConnectClicked?.Invoke(this);
+
+		ShowLoading();
+	}
+
+	public void ShowLoading()
+	{
+		loadingWheel.GetComponent<LoadingWheel>().Init();
+		loadingWheel.SetActive(true);
+	}
+
+	public void HideLoading()
+	{
+		loadingWheel.SetActive(false);
 	}
 
 	private void LoginScreenSkip_Clicked(Button button)
@@ -69,6 +85,8 @@ public class LoginScreen : AScreen
 		}
 
 		feedbackText.text = message;
+
+		HideLoading();
 	}
 
 	public override void UnsubscribeEvents()

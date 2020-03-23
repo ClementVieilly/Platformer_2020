@@ -50,6 +50,8 @@ namespace Com.IsartDigital.Platformer
 		[SerializeField] private string _birds_dove = null;
 		[SerializeField] private string _birds_owl = null;
 		[SerializeField] private string _birds_gyapede = null;
+		[SerializeField] private string _birds_Hibou_1 = null;
+		[SerializeField] private string _birds_Hibou_2 = null;
 
 		[Header("Platforms")]
 		[SerializeField] private string _env_DestructiblePlatform_Glass = null ;
@@ -99,6 +101,8 @@ namespace Com.IsartDigital.Platformer
 		public string Collectible_Score { get => _collectible_Score; }
 		public string Birds_dove { get => _birds_dove; }
 		public string Birds_owl { get => _birds_owl; }
+		public string Birds_Hibou_1 { get => _birds_Hibou_1; }
+		public string Birds_Hibou_2 { get => _birds_Hibou_2; }
 		public string Birds_gyapede { get => _birds_gyapede; }
 		public string Env_Trigger_MobilePlatform { get => _env_Trigger_MobilePlatform; }
 		public string Env_Trigger_TimedDoor { get => _env_Trigger_TimedDoor; }

@@ -33,9 +33,6 @@ namespace Com.IsartDigital.Platformer.LevelObjects.FTUE
 				case InteractiveType.Flamme_Bougie:
 					soundToPlay = null;
 					break;
-				case InteractiveType.Hiboux:
-					soundToPlay = null;
-					break;
 				case InteractiveType.Marmite:
 					soundToPlay = sounds.Env_Cooking_Pot;
 					break;
@@ -43,6 +40,13 @@ namespace Com.IsartDigital.Platformer.LevelObjects.FTUE
 					soundToPlay = null;
 					break;
 				case InteractiveType.Table_Cage:
+					soundToPlay = null;
+					break;
+				case InteractiveType.Hibou_1:
+					soundToPlay = sounds.Birds_Hibou_1;
+					break;
+				case InteractiveType.Hibou_2:
+					soundToPlay = sounds.Birds_Hibou_2;
 					break;
 				default:
 					soundToPlay = null;
@@ -70,9 +74,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects.FTUE
 		Chouette,
 		Flamme_Bougie,
 		Gyapete,
-		Hiboux,
+		Hibou_1,
 		Marmite,
 		Porte,
-		Table_Cage
+		Table_Cage,
+		Hibou_2
 	}
 }

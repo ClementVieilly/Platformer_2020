@@ -53,8 +53,8 @@ MonoBehaviour:
   - _name: Poire_Run
     _clip: {fileID: 8300000, guid: 112ea2fc00139f944b27bbfa875d8476, type: 3}
     _type: 1
-    _volume: 0.182
-    _volumeVariance: 0.13
+    _volume: 0.009
+    _volumeVariance: 0.104
     _pitch: 1
     _pitchVariance: 0.348
     _isPitchedBetweenValues: 0
@@ -191,10 +191,10 @@ MonoBehaviour:
   - _name: Poire_Planer
     _clip: {fileID: 8300000, guid: da3158413aabe59448066805b3176533, type: 3}
     _type: 1
-    _volume: 0.75
-    _volumeVariance: 0.16
+    _volume: 0.081
+    _volumeVariance: 0.189
     _pitch: 1
-    _pitchVariance: 0.151
+    _pitchVariance: 0.254
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
@@ -237,7 +237,7 @@ MonoBehaviour:
   - _name: Poire_Idle
     _clip: {fileID: 8300000, guid: 1f3480ffb3ee83e40ada90dc503396c5, type: 3}
     _type: 1
-    _volume: 0.75
+    _volume: 0.426
     _volumeVariance: 0
     _pitch: 1
     _pitchVariance: 0.194
@@ -283,10 +283,10 @@ MonoBehaviour:
   - _name: Poire_Idle_Long
     _clip: {fileID: 8300000, guid: 3a190e2f5c5bf224881faccc7beca740, type: 3}
     _type: 1
-    _volume: 0.75
-    _volumeVariance: 0
+    _volume: 0.417
+    _volumeVariance: 0.059
     _pitch: 1
-    _pitchVariance: 0.175
+    _pitchVariance: 0.232
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
@@ -375,10 +375,10 @@ MonoBehaviour:
   - _name: Poire_Wall_Catch
     _clip: {fileID: 8300000, guid: b4aa2801ad2a3f74d8a9acfa0c1a41f1, type: 3}
     _type: 1
-    _volume: 0.75
-    _volumeVariance: 0.162
+    _volume: 1
+    _volumeVariance: 0.168
     _pitch: 1
-    _pitchVariance: 0.188
+    _pitchVariance: 0.238
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
@@ -467,7 +467,7 @@ MonoBehaviour:
   - _name: Music_Level_1
     _clip: {fileID: 8300000, guid: 4769a32b9ce6994419a2a7da84185886, type: 3}
     _type: 0
-    _volume: 0.223
+    _volume: 0.233
     _volumeVariance: 0
     _pitch: 1
     _pitchVariance: 0
@@ -513,7 +513,7 @@ MonoBehaviour:
   - _name: Music_Level_2
     _clip: {fileID: 8300000, guid: 0df2daf9dd46e2c43845d8534a31c50a, type: 3}
     _type: 0
-    _volume: 0.233
+    _volume: 0.087
     _volumeVariance: 0
     _pitch: 1
     _pitchVariance: 0
@@ -835,8 +835,8 @@ MonoBehaviour:
   - _name: Birds_Owl
     _clip: {fileID: 8300000, guid: 34f060dbc64079545b34bcf370aeb2ba, type: 3}
     _type: 1
-    _volume: 0.75
-    _volumeVariance: 0.188
+    _volume: 1
+    _volumeVariance: 0.193
     _pitch: 1
     _pitchVariance: 0.156
     _isPitchedBetweenValues: 0
@@ -881,8 +881,8 @@ MonoBehaviour:
   - _name: Birds_Hiboux_1
     _clip: {fileID: 8300000, guid: 3bfb0c1d6a82aa84a8880116680a55b8, type: 3}
     _type: 1
-    _volume: 0.75
-    _volumeVariance: 0.124
+    _volume: 1
+    _volumeVariance: 0.173
     _pitch: 1
     _pitchVariance: 0.295
     _isPitchedBetweenValues: 0
@@ -924,8 +924,8 @@ MonoBehaviour:
   - _name: Birds_Hiboux_2
     _clip: {fileID: 8300000, guid: 8e80421a3baa31043bedef40bf2d68fa, type: 3}
     _type: 1
-    _volume: 0.75
-    _volumeVariance: 0
+    _volume: 1
+    _volumeVariance: 0.13
     _pitch: 1
     _pitchVariance: 0.235
     _isPitchedBetweenValues: 0
@@ -1016,7 +1016,7 @@ MonoBehaviour:
   - _name: Collectible_Heart
     _clip: {fileID: 8300000, guid: f6856963e77af404c850ac8f510addd3, type: 3}
     _type: 1
-    _volume: 0.75
+    _volume: 0.621
     _volumeVariance: 0.1
     _pitch: 1
     _pitchVariance: 0
@@ -1062,7 +1062,7 @@ MonoBehaviour:
   - _name: Collectible_Plume
     _clip: {fileID: 8300000, guid: 1da9b860f2da0db4cb0d878d9d306d87, type: 3}
     _type: 1
-    _volume: 0.75
+    _volume: 0.677
     _volumeVariance: 0.1
     _pitch: 1
     _pitchVariance: 0.1
@@ -1108,7 +1108,7 @@ MonoBehaviour:
   - _name: ENV_Cooking_Pot
     _clip: {fileID: 8300000, guid: ecd85d85a2b05004b848f69cc51f9b5d, type: 3}
     _type: 1
-    _volume: 0.75
+    _volume: 0.723
     _volumeVariance: 0.1
     _pitch: 1
     _pitchVariance: 0.1
@@ -1154,10 +1154,10 @@ MonoBehaviour:
   - _name: ENV_Platform_Destrutible_Glass
     _clip: {fileID: 8300000, guid: c2c4c0a8f908a614381772196d203c7d, type: 3}
     _type: 1
-    _volume: 0.75
-    _volumeVariance: 0.1
+    _volume: 1
+    _volumeVariance: 0.173
     _pitch: 1
-    _pitchVariance: 0.1
+    _pitchVariance: 0.216
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
@@ -1200,10 +1200,10 @@ MonoBehaviour:
   - _name: ENV_Platform_Destrutible_Wood
     _clip: {fileID: 8300000, guid: c982e0494b605024fad5089d6d1e3c8c, type: 3}
     _type: 1
-    _volume: 0.75
-    _volumeVariance: 0.1
+    _volume: 0.889
+    _volumeVariance: 0
     _pitch: 1
-    _pitchVariance: 0.1
+    _pitchVariance: 0
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
@@ -1246,15 +1246,15 @@ MonoBehaviour:
   - _name: ENV_Spider_01_Idle
     _clip: {fileID: 8300000, guid: 323378cba7411294a91abca86629396a, type: 3}
     _type: 1
-    _volume: 0.75
-    _volumeVariance: 0.1
+    _volume: 0.864
+    _volumeVariance: 0.222
     _pitch: 1
-    _pitchVariance: 0.1
+    _pitchVariance: 0.303
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 0
-    _rolloffMode: 1
+    _rolloffMode: 0
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -1262,7 +1262,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     _minDistance: 0
-    _maxDistance: 500
+    _maxDistance: 200
     _isFadeIn: 0
     _isFadeOut: 0
     _fadeInDuration: 1
@@ -1336,9 +1336,9 @@ MonoBehaviour:
     _clip: {fileID: 8300000, guid: fe6fa104c7750e64a9507e1ad729347d, type: 3}
     _type: 1
     _volume: 0.75
-    _volumeVariance: 0.1
+    _volumeVariance: 0
     _pitch: 1
-    _pitchVariance: 0.1
+    _pitchVariance: 0
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
@@ -1381,10 +1381,10 @@ MonoBehaviour:
   - _name: ENV_Trigger_Timed_Door
     _clip: {fileID: 8300000, guid: 8f308b07bbee2fe449f69ef7f0a39428, type: 3}
     _type: 1
-    _volume: 0.75
-    _volumeVariance: 0.1
+    _volume: 1
+    _volumeVariance: 0
     _pitch: 1
-    _pitchVariance: 0.1
+    _pitchVariance: 0
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
@@ -1427,10 +1427,10 @@ MonoBehaviour:
   - _name: ENV_Time_Door_Closed
     _clip: {fileID: 8300000, guid: bb20469a7e97fbf458653bd02fd5d924, type: 3}
     _type: 1
-    _volume: 0.75
-    _volumeVariance: 0.1
+    _volume: 1
+    _volumeVariance: 0.122
     _pitch: 1
-    _pitchVariance: 0.1
+    _pitchVariance: 0.173
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
@@ -1473,10 +1473,10 @@ MonoBehaviour:
   - _name: ENV_Time_Door_Closing
     _clip: {fileID: 8300000, guid: 1fee4fdd9ecb2ee49a53f04bc8fc3c1b, type: 3}
     _type: 1
-    _volume: 0.75
-    _volumeVariance: 0.1
+    _volume: 1
+    _volumeVariance: 0.205
     _pitch: 1
-    _pitchVariance: 0.1
+    _pitchVariance: 0.195
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
@@ -1519,10 +1519,10 @@ MonoBehaviour:
   - _name: ENV_Time_Door_Open
     _clip: {fileID: 8300000, guid: 3fd11c85c18db7145a7c035db9ce3fbf, type: 3}
     _type: 1
-    _volume: 0.75
-    _volumeVariance: 0.1
+    _volume: 1
+    _volumeVariance: 0.211
     _pitch: 1
-    _pitchVariance: 0.1
+    _pitchVariance: 0.265
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
@@ -1611,7 +1611,7 @@ MonoBehaviour:
   - _name: Checkpoint_Open
     _clip: {fileID: 8300000, guid: e48d01e2ff79a9c488fcbf32b06dacd3, type: 3}
     _type: 1
-    _volume: 0.75
+    _volume: 0.434
     _volumeVariance: 0
     _pitch: 1
     _pitchVariance: 0
@@ -1657,7 +1657,7 @@ MonoBehaviour:
   - _name: ENV_electric_arc
     _clip: {fileID: 8300000, guid: ea52efa851920a942b83e0ad109438b3, type: 3}
     _type: 2
-    _volume: 0.333
+    _volume: 0.762
     _volumeVariance: 0.162
     _pitch: 1
     _pitchVariance: 0.173
@@ -1665,7 +1665,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 1
-    _rolloffMode: 1
+    _rolloffMode: 0
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -1673,7 +1673,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     _minDistance: 0
-    _maxDistance: 30
+    _maxDistance: 150
     _isFadeIn: 0
     _isFadeOut: 0
     _fadeInDuration: 1
@@ -1703,7 +1703,7 @@ MonoBehaviour:
   - _name: ENV_electric_sparks
     _clip: {fileID: 8300000, guid: ffd6117190aeee546a04c151cf8b67b7, type: 3}
     _type: 2
-    _volume: 0.333
+    _volume: 0.762
     _volumeVariance: 0.162
     _pitch: 1
     _pitchVariance: 0.157
@@ -1711,7 +1711,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 1
-    _rolloffMode: 1
+    _rolloffMode: 0
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -1719,7 +1719,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     _minDistance: 0
-    _maxDistance: 30
+    _maxDistance: 150
     _isFadeIn: 0
     _isFadeOut: 0
     _fadeInDuration: 1
@@ -1749,7 +1749,7 @@ MonoBehaviour:
   - _name: Collectible_Key_Level_One
     _clip: {fileID: 8300000, guid: ceebb9855743b764a99bc75e49282053, type: 3}
     _type: 1
-    _volume: 0.75
+    _volume: 0.626
     _volumeVariance: 0
     _pitch: 1
     _pitchVariance: 0
@@ -1794,7 +1794,7 @@ MonoBehaviour:
   - _name: Collectible_Key_Level_Two
     _clip: {fileID: 8300000, guid: fb7c1ddbcd6d43247a8fbbf72a9944ce, type: 3}
     _type: 1
-    _volume: 0.75
+    _volume: 0.655
     _volumeVariance: 0
     _pitch: 1
     _pitchVariance: 0
@@ -1839,10 +1839,10 @@ MonoBehaviour:
   - _name: ENV_Spider_Attack
     _clip: {fileID: 8300000, guid: 323378cba7411294a91abca86629396a, type: 3}
     _type: 1
-    _volume: 0.75
-    _volumeVariance: 0.1
+    _volume: 0.847
+    _volumeVariance: 0.178
     _pitch: 1
-    _pitchVariance: 0.1
+    _pitchVariance: 0.173
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
@@ -1855,7 +1855,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     _minDistance: 0
-    _maxDistance: 500
+    _maxDistance: 200
     _isFadeIn: 0
     _isFadeOut: 0
     _fadeInDuration: 1
@@ -1885,10 +1885,10 @@ MonoBehaviour:
   - _name: Character_Jump
     _clip: {fileID: 8300000, guid: 780bfc4cdd5fcf643af1d560b9f7c955, type: 3}
     _type: 1
-    _volume: 0.75
-    _volumeVariance: 0.1
+    _volume: 0.323
+    _volumeVariance: 0.173
     _pitch: 1
-    _pitchVariance: 0.1
+    _pitchVariance: 0.222
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
@@ -1931,7 +1931,7 @@ MonoBehaviour:
   - _name: Music_Win
     _clip: {fileID: 8300000, guid: d70b97a28a28df64682329da04ba21f0, type: 3}
     _type: 0
-    _volume: 0.439
+    _volume: 0.133
     _volumeVariance: 0
     _pitch: 1
     _pitchVariance: 0
@@ -1977,7 +1977,7 @@ MonoBehaviour:
   - _name: Music_Lose
     _clip: {fileID: 8300000, guid: 9d021482c3cbc304a8221f9f059b367d, type: 3}
     _type: 0
-    _volume: 0.431
+    _volume: 0.133
     _volumeVariance: 0
     _pitch: 1
     _pitchVariance: 0

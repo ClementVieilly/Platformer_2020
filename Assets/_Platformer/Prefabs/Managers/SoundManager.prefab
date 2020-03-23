@@ -95,7 +95,7 @@ MonoBehaviour:
       type: 2}
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
-    showInEditor: 0
+    showInEditor: 1
   - _name: Poire_Spawn
     _clip: {fileID: 8300000, guid: c5538253ee1de8746911fded54e6d925, type: 3}
     _type: 1
@@ -141,7 +141,7 @@ MonoBehaviour:
       type: 2}
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
-    showInEditor: 0
+    showInEditor: 1
   - _name: Poire_Death
     _clip: {fileID: 8300000, guid: aaeb5a60244ecb348b9e8c97ba79b537, type: 3}
     _type: 1
@@ -187,7 +187,7 @@ MonoBehaviour:
       type: 2}
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
-    showInEditor: 0
+    showInEditor: 1
   - _name: Poire_Planer
     _clip: {fileID: 8300000, guid: da3158413aabe59448066805b3176533, type: 3}
     _type: 1
@@ -233,7 +233,7 @@ MonoBehaviour:
       type: 2}
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
-    showInEditor: 0
+    showInEditor: 1
   - _name: Poire_Idle
     _clip: {fileID: 8300000, guid: 1f3480ffb3ee83e40ada90dc503396c5, type: 3}
     _type: 1
@@ -279,7 +279,7 @@ MonoBehaviour:
       type: 2}
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
-    showInEditor: 0
+    showInEditor: 1
   - _name: Poire_Idle_Long
     _clip: {fileID: 8300000, guid: 3a190e2f5c5bf224881faccc7beca740, type: 3}
     _type: 1
@@ -325,7 +325,7 @@ MonoBehaviour:
       type: 2}
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
-    showInEditor: 0
+    showInEditor: 1
   - _name: Poire_Fall
     _clip: {fileID: 8300000, guid: b4aa2801ad2a3f74d8a9acfa0c1a41f1, type: 3}
     _type: 1
@@ -371,7 +371,7 @@ MonoBehaviour:
       type: 2}
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
-    showInEditor: 0
+    showInEditor: 1
   - _name: Poire_Wall_Catch
     _clip: {fileID: 8300000, guid: b4aa2801ad2a3f74d8a9acfa0c1a41f1, type: 3}
     _type: 1
@@ -417,7 +417,7 @@ MonoBehaviour:
       type: 2}
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
-    showInEditor: 0
+    showInEditor: 1
   - _name: Music_Menu
     _clip: {fileID: 8300000, guid: 940803f9f0c662c49a14efbd6536f9f6, type: 3}
     _type: 0

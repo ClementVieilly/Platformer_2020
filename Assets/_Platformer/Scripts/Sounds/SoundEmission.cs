@@ -12,7 +12,6 @@ namespace Com.IsartDigital.Platformer.Sounds {
 	{
 		[SerializeField] ParticleType emitParticle;
 
-		public static bool isPause = false;
 		private string soundToPlay = null;
 
 	    private void Start()
@@ -35,7 +34,6 @@ namespace Com.IsartDigital.Platformer.Sounds {
 	
 	    private void Update()
 	    {
-			if (isPause) return;
 			SoundManager.Instance.Play(soundToPlay, this); 
 	    }
 	}

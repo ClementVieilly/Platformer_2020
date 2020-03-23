@@ -49,7 +49,6 @@ namespace Com.IsartDigital.Platformer.Managers
             timeManager = GetComponent<TimeManager>();
             timeManager.StartTimer();
             StartCoroutine(InitHud());
-            SoundEmission.isPause = true;
         }
 
 		public void SetPlayer(Player player)
@@ -152,7 +151,6 @@ namespace Com.IsartDigital.Platformer.Managers
 
 			if (UIManager.Instance)
 				UIManager.Instance.CreateLoseScreen();
-            SoundEmission.isPause = true;
             SoundManager.Instance.PauseAll();
             SoundManager.Instance.Play(sounds.Music_Lose);
         }
@@ -165,7 +163,6 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void Win()
         {
-            SoundEmission.isPause = true;
             _completionTime = timeManager.Timer;
             timeManager.SetModeVoid();
             OnWin?.Invoke(this);
@@ -191,7 +188,6 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void Retry()
         {
-            SoundEmission.isPause = false;
             player.Reset();
             _score = 0;
             Hud.Instance.ResetKeyPos();
@@ -221,7 +217,6 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void Resume()
         {
-            SoundEmission.isPause = false;
             player.SetModeResume();
             timeManager.SetModeTimer();
             DestructiblePlatform.ResumeAll();
@@ -233,7 +228,6 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private void PauseGame()
 		{
-            SoundEmission.isPause = true;
             player.SetModePause();
 			timeManager.SetModePause();
 			DestructiblePlatform.PauseAll();

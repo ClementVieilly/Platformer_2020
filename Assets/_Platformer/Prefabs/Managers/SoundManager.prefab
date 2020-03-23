@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 492928087603726970}
   - component: {fileID: 3498804256425790679}
+  - component: {fileID: 1801985787}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -429,7 +430,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 1
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -475,7 +476,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 1
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -521,7 +522,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 1
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -567,7 +568,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 0
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -613,7 +614,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 0
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -656,7 +657,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 0
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -702,7 +703,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 0
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -748,7 +749,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 0
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -886,7 +887,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 1
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -929,7 +930,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 1
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -975,7 +976,7 @@ MonoBehaviour:
     _minPitchValue: 0
     _maxPitchValue: 0
     _isLoop: 1
-    _rolloffMode: 0
+    _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
       m_Curve: []
@@ -1833,3 +1834,17 @@ MonoBehaviour:
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
+--- !u!114 &1801985787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616720362773312266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b770b9a1a5390c4196ac8a423e09867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: -10
+  targetToFollow: {fileID: 0}

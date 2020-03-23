@@ -117,7 +117,7 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
 
         private void OnCollisionStay2D(Collision2D collision)
         {
-            if (!touchedObject && collision.collider.CompareTag(playerTag))
+            if (collision.collider.CompareTag(playerTag))
                 touchedObject = collision.transform;
         }
         private void OnCollisionEnter2D(Collision2D collision)

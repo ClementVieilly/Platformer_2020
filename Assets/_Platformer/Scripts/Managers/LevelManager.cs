@@ -180,7 +180,6 @@ namespace Com.IsartDigital.Platformer.Managers
                 SoundManager.Instance.Stop(sounds.Music_Level_2);
                 SoundManager.Instance.Stop(sounds.Ambiance_Level_2);
             }
-
             SoundManager.Instance.Play(sounds.Music_Win);
         }
 

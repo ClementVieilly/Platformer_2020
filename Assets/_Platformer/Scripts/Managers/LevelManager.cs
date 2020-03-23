@@ -151,6 +151,7 @@ namespace Com.IsartDigital.Platformer.Managers
 
 			if (UIManager.Instance)
 				UIManager.Instance.CreateLoseScreen();
+            SoundManager.Instance.PauseAll();
             SoundManager.Instance.Play(sounds.Music_Lose);
         }
 

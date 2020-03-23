@@ -34,6 +34,8 @@ public class Leaderboard : AScreen
 	private static string levelLocalized = null;
 	[SerializeField] private GameObject scoreDisplayPrefab = null;
 
+	[SerializeField] private GameObject loadingWheel = null;
+
 	private void Awake()
 	{
 		homeButton.OnMenuButtonClicked += Leaderboard_OnMenuClicked;
@@ -72,6 +74,17 @@ public class Leaderboard : AScreen
 	private void Leaderboard_OnPreviousLevel(Button sender)
 	{
 		OnPreviousClicked?.Invoke(this);
+	}
+
+	public void ShowLoading()
+	{
+		loadingWheel.GetComponent<LoadingWheel>().Init();
+		loadingWheel.SetActive(true);
+	}
+
+	public void HideLoading()
+	{
+		loadingWheel.SetActive(false);
 	}
 
 	public void UpdateDisplay(ScoreObject[] scores, ScoreObject playerScore, bool isLogged, string username = "undefined")
@@ -130,13 +143,15 @@ public class Leaderboard : AScreen
 		return display;
 	}
 
-	private ScoreDisplay AddUndefinedScoreDisplay(string username)
+	public ScoreDisplay AddUndefinedScoreDisplay(string username)
 	{
 		ScoreDisplay display = Instantiate(scoreDisplayPrefab, infosZone.transform).GetComponent<ScoreDisplay>();
 		display.Username = username;
 		display.Time = "?";
 		display.Score = "?";
 		display.Lives = "?";
+
+		display.SetTextColor(Color.blue);
 
 		return display;
 	}

@@ -728,9 +728,10 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         }
 
 
-		private void SetModeVoid()
+		public void SetModeVoid()
 		{
 			DoAction = DoActionVoid;
+            Debug.Log("SetModeVoid"); 
 		}
 
         private void DoActionVoid() {}

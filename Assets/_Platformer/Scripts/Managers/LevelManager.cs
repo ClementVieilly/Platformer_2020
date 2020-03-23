@@ -39,7 +39,6 @@ namespace Com.IsartDigital.Platformer.Managers
 		public bool[] BigScoreCollectibles { get => _bigScoreCollectibles; }
 
 		public event LevelManagerEventHandler OnWin;
-		public event LevelManagerEventHandler OnLaunchHudAnim;
 
         private void Start()
         {
@@ -161,21 +160,16 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void Win()
         {
-            Hud.Instance.OnFinalAnimFinished += Hud_OnFinalAnimFinished;
             _completionTime = timeManager.Timer;
             timeManager.SetModeVoid();
-            OnLaunchHudAnim?.Invoke(this); 
-        }
-
-        private void Hud_OnFinalAnimFinished(Hud hud)
-        {
             UnsubscribeAllEvents();
             OnWin?.Invoke(this);
-            if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen(_levelNumber);
-             else Debug.LogError("Pas d'UImanager sur la scène");
-             player.gameObject.SetActive(false);
+            player.SetModeVoid();
+            if(UIManager.Instance != null) UIManager.Instance.CreateWinScreen(_levelNumber);
+            else Debug.LogError("Pas d'UImanager sur la scène");
+            player.gameObject.SetActive(false);
+            
         }
-
         private void Retry()
         {
             player.Reset();

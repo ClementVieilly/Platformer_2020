@@ -91,7 +91,6 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
 		private void DoActionNormal()
         {
             elapsedTime += Time.deltaTime;
-            SoundManager.Instance.Play(soundToPlay, this);
             Vector3 previousPos = transform.position;
             
             transform.position = Vector2.Lerp(index > 0 ? 

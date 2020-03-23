@@ -15,6 +15,7 @@ namespace Com.IsartDigital.Platformer.Managers
 	public class GameManager : MonoBehaviour
 	{
 		private static GameManager _instance;
+		public static bool isSoundOff = false;
 
 		private UIManager uiManager = null;
 		private WebClient webClient = null;
@@ -105,8 +106,8 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void UIManager_OnLeaderboardEvent(Leaderboard leaderboard)
 		{
 			StartCoroutine(GetScoresForLevelCoroutine(leaderboard));
-			//Display le chargement
-			//leaderboard.Wait();
+
+			leaderboard.ShowLoading();
 		}
 
 		private IEnumerator GetScoresForLevelCoroutine(Leaderboard leaderboard)
@@ -148,7 +149,14 @@ namespace Com.IsartDigital.Platformer.Managers
 			if (scores[level - 1] != null)
 				leaderboard.UpdateDisplay(scores[level - 1].ToArray(), playerScores[level - 1], webClient.IsLogged, webClient.Credentials != null ? webClient.Credentials.username : "undefined");
 			else
+			{
 				leaderboard.ClearDisplay();
+
+				if (webClient.IsLogged)
+					leaderboard.AddUndefinedScoreDisplay(webClient.Credentials.username);
+			}
+
+			leaderboard.HideLoading();
 		}
 
 		private void SortScores(int level)
@@ -170,9 +178,10 @@ namespace Com.IsartDigital.Platformer.Managers
 				playerScores.Add(null);
 		}
 
-		private void SetSoundPlay(bool isPlay)
+		public static void SetSoundPlay(bool isPlay)
 		{
 			AudioListener.pause = isPlay;
+			if (!isSoundOff) AudioListener.pause = false;
 		}
 
 		private void OnDestroy()

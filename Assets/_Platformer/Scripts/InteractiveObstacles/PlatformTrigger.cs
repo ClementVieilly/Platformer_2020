@@ -3,6 +3,7 @@
 /// Date : 05/02/2020 10:45
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.Managers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,6 +32,7 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
 			mobilePlatform.IsStarted = true;
 
 			animator.SetBool("IsActive", true);
+			SoundManager.Instance.Play(sounds.Env_Trigger_MobilePlatform, this);
 		}
 
 		private void OnDestroy()

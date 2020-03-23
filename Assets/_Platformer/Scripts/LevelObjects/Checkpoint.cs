@@ -3,6 +3,7 @@
 /// Date : 24/01/2020 11:35
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.Managers;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 			GetComponent<Collider2D>().enabled = false;
 
 			if (animator) animator.SetBool("IsOpen", true);
+			SoundManager.Instance.Play(sounds.Checkpoint_Open,this);
 		}
 
 		public void Reset()

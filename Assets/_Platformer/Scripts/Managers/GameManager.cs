@@ -15,6 +15,7 @@ namespace Com.IsartDigital.Platformer.Managers
 	public class GameManager : MonoBehaviour
 	{
 		private static GameManager _instance;
+		public static bool isSoundOff = false;
 
 		private UIManager uiManager = null;
 		private WebClient webClient = null;
@@ -177,9 +178,10 @@ namespace Com.IsartDigital.Platformer.Managers
 				playerScores.Add(null);
 		}
 
-		private void SetSoundPlay(bool isPlay)
+		public static void SetSoundPlay(bool isPlay)
 		{
 			AudioListener.pause = isPlay;
+			if (!isSoundOff) AudioListener.pause = false;
 		}
 
 		private void OnDestroy()

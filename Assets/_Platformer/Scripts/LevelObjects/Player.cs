@@ -104,6 +104,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
         //HorizontalMove
         private float horizontalAxis = 0f;
         private float previousDirection = 0f;
+		public float Direction { get => previousDirection; }
         private float horizontalMoveElapsedTime = 0f;
 
         // Vitesse au moment de commencer la décélération

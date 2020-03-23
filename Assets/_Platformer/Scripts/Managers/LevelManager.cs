@@ -161,10 +161,15 @@ namespace Com.IsartDigital.Platformer.Managers
 
         private void Win()
         {
-            Hud.Instance.OnFinalAnimFinished += Hud_OnFinalAnimFinished;
             _completionTime = timeManager.Timer;
             timeManager.SetModeVoid();
-            OnLaunchHudAnim?.Invoke(this); 
+            UnsubscribeAllEvents();
+            OnWin?.Invoke(this);
+            player.SetModeVoid();
+            if(UIManager.Instance != null) UIManager.Instance.CreateWinScreen(_levelNumber);
+            else Debug.LogError("Pas d'UImanager sur la scène");
+            player.gameObject.SetActive(false);
+            
         }
 
         private void Hud_OnFinalAnimFinished(Hud hud)

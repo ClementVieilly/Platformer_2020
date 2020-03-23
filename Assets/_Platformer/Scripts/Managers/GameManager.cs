@@ -106,8 +106,8 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void UIManager_OnLeaderboardEvent(Leaderboard leaderboard)
 		{
 			StartCoroutine(GetScoresForLevelCoroutine(leaderboard));
-			//Display le chargement
-			//leaderboard.Wait();
+
+			leaderboard.ShowLoading();
 		}
 
 		private IEnumerator GetScoresForLevelCoroutine(Leaderboard leaderboard)
@@ -149,7 +149,14 @@ namespace Com.IsartDigital.Platformer.Managers
 			if (scores[level - 1] != null)
 				leaderboard.UpdateDisplay(scores[level - 1].ToArray(), playerScores[level - 1], webClient.IsLogged, webClient.Credentials != null ? webClient.Credentials.username : "undefined");
 			else
+			{
 				leaderboard.ClearDisplay();
+
+				if (webClient.IsLogged)
+					leaderboard.AddUndefinedScoreDisplay(webClient.Credentials.username);
+			}
+
+			leaderboard.HideLoading();
 		}
 
 		private void SortScores(int level)

@@ -839,7 +839,7 @@ MonoBehaviour:
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
-    _isLoop: 0
+    _isLoop: 1
     _rolloffMode: 1
     _volumeSpatialization:
       serializedVersion: 2
@@ -875,17 +875,17 @@ MonoBehaviour:
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
-  - _name: Birds_2
-    _clip: {fileID: 0}
+  - _name: Birds_Hiboux_1
+    _clip: {fileID: 8300000, guid: 3bfb0c1d6a82aa84a8880116680a55b8, type: 3}
     _type: 1
     _volume: 0.75
-    _volumeVariance: 0.248
+    _volumeVariance: 0.124
     _pitch: 1
-    _pitchVariance: 0.252
+    _pitchVariance: 0.295
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
-    _isLoop: 0
+    _isLoop: 1
     _rolloffMode: 0
     _volumeSpatialization:
       serializedVersion: 2
@@ -917,18 +917,18 @@ MonoBehaviour:
     _pauseMixerGroup: {fileID: 0}
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
-    showInEditor: 0
-  - _name: Birds_3
-    _clip: {fileID: 0}
+    showInEditor: 1
+  - _name: Birds_Hiboux_2
+    _clip: {fileID: 8300000, guid: 8e80421a3baa31043bedef40bf2d68fa, type: 3}
     _type: 1
     _volume: 0.75
-    _volumeVariance: 0.188
+    _volumeVariance: 0
     _pitch: 1
     _pitchVariance: 0.235
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
-    _isLoop: 0
+    _isLoop: 1
     _rolloffMode: 0
     _volumeSpatialization:
       serializedVersion: 2
@@ -963,18 +963,18 @@ MonoBehaviour:
       type: 2}
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
-    showInEditor: 0
-  - _name: Birds_4
-    _clip: {fileID: 0}
+    showInEditor: 1
+  - _name: Birds_Bearded_Vulture
+    _clip: {fileID: 8300000, guid: f29e8feef1d7dc64a86983fd86ff032c, type: 3}
     _type: 1
     _volume: 0.75
-    _volumeVariance: 0.209
+    _volumeVariance: 0.128
     _pitch: 1
     _pitchVariance: 0.235
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
-    _isLoop: 0
+    _isLoop: 1
     _rolloffMode: 0
     _volumeSpatialization:
       serializedVersion: 2
@@ -1009,7 +1009,7 @@ MonoBehaviour:
       type: 2}
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
-    showInEditor: 0
+    showInEditor: 1
   - _name: Collectible_Heart
     _clip: {fileID: 8300000, guid: f6856963e77af404c850ac8f510addd3, type: 3}
     _type: 1
@@ -1056,7 +1056,7 @@ MonoBehaviour:
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
-  - _name: Collectible_Score
+  - _name: Collectible_Plume
     _clip: {fileID: 8300000, guid: 1da9b860f2da0db4cb0d878d9d306d87, type: 3}
     _type: 1
     _volume: 0.75
@@ -1609,9 +1609,9 @@ MonoBehaviour:
     _clip: {fileID: 8300000, guid: e48d01e2ff79a9c488fcbf32b06dacd3, type: 3}
     _type: 1
     _volume: 0.75
-    _volumeVariance: 0.1
+    _volumeVariance: 0
     _pitch: 1
-    _pitchVariance: 0.1
+    _pitchVariance: 0
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
@@ -1651,17 +1651,63 @@ MonoBehaviour:
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
     showInEditor: 1
-  - _name: Checkpoint_Closed
-    _clip: {fileID: 8300000, guid: b0f41f538d31f644d8173f7a3152ab76, type: 3}
-    _type: 1
+  - _name: ENV_electric_arc
+    _clip: {fileID: 8300000, guid: ea52efa851920a942b83e0ad109438b3, type: 3}
+    _type: 2
     _volume: 0.75
-    _volumeVariance: 0.1
+    _volumeVariance: 0.162
     _pitch: 1
-    _pitchVariance: 0.1
+    _pitchVariance: 0.173
     _isPitchedBetweenValues: 0
     _minPitchValue: 0
     _maxPitchValue: 0
-    _isLoop: 0
+    _isLoop: 1
+    _rolloffMode: 0
+    _volumeSpatialization:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _minDistance: 0
+    _maxDistance: 500
+    _isFadeIn: 0
+    _isFadeOut: 0
+    _fadeInDuration: 1
+    _fadeInCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _fadeOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _fadeOutDuration: 1
+    _isStartAtRandomTime: 0
+    _mixerGroupLvl1: {fileID: 4905135650992275559, guid: 00ffeba9d90315d4d864a71c01738b23,
+      type: 2}
+    _mixerGroupLvl2: {fileID: 679081289325050984, guid: 00ffeba9d90315d4d864a71c01738b23,
+      type: 2}
+    _pauseMixerGroup: {fileID: 5883487093876413735, guid: 00ffeba9d90315d4d864a71c01738b23,
+      type: 2}
+    _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
+    showInEditor: 1
+  - _name: ENV_electric_sparks
+    _clip: {fileID: 8300000, guid: ffd6117190aeee546a04c151cf8b67b7, type: 3}
+    _type: 2
+    _volume: 0.75
+    _volumeVariance: 0.162
+    _pitch: 1
+    _pitchVariance: 0.157
+    _isPitchedBetweenValues: 0
+    _minPitchValue: 0
+    _maxPitchValue: 0
+    _isLoop: 1
     _rolloffMode: 0
     _volumeSpatialization:
       serializedVersion: 2

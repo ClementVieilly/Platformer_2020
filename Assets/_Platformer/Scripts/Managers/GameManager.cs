@@ -105,9 +105,9 @@ namespace Com.IsartDigital.Platformer.Managers
 
 		private void UIManager_OnLeaderboardEvent(Leaderboard leaderboard)
 		{
-			StartCoroutine(GetScoresForLevelCoroutine(leaderboard));
-
 			leaderboard.ShowLoading();
+
+			StartCoroutine(GetScoresForLevelCoroutine(leaderboard));
 		}
 
 		private IEnumerator GetScoresForLevelCoroutine(Leaderboard leaderboard)

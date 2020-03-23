@@ -25,33 +25,31 @@ namespace Com.IsartDigital.Platformer.Screens {
 
         //variables contenant les r�f�rences aux bons boutons (lisibilit� du code)
         private Button leaderBoardButton;
-        private Button soundTriggerButton;
-        private Button localisationButton;
         private Button creditsButton;
         private Button playButton;
 
         [SerializeField] private string buttonLeaderBoardTag = "LeaderBoard";
-        [SerializeField] private string buttonSoundTriggerTag = "SoundTrigger";
-        [SerializeField] private string buttonLocalisationTag = "Localisation";
         [SerializeField] private string buttonCreditsTag = "Credits";
         [SerializeField] private string buttonPlayTag = "PlayButton";
 
         [SerializeField] private Toggle localizationToggle = null; 
-
-
+        [SerializeField] private Toggle soundToggle = null; 
 
         private void Awake()
         {
             animator = GetComponent<Animator>();
             animator.SetTrigger(enter); 
+
+            soundToggle.isOn = false;
+            soundToggle.onValueChanged.AddListener(delegate { OnSoundTriggerClicked?.Invoke(this); });
+
             localizationToggle.isOn = LocalizationManager.toggleBool; 
             localizationToggle.onValueChanged.AddListener(delegate { OnChangeLanguage?.Invoke(this); }); 
+
             buttons = GetComponentsInChildren<Button>();
             for (int i = 0; i < buttons.Length; i++)//Assigne les bonnes r�f�rences de chaque boutons gr�ce � leurs tags
             {
                 if (buttons[i].CompareTag(buttonLeaderBoardTag)) leaderBoardButton = buttons[i];
-                else if (buttons[i].CompareTag(buttonSoundTriggerTag)) soundTriggerButton = buttons[i];
-                else if (buttons[i].CompareTag(buttonLocalisationTag)) localisationButton = buttons[i];
                 else if (buttons[i].CompareTag(buttonPlayTag)) playButton = buttons[i];
                 else if (buttons[i].CompareTag(buttonCreditsTag)) creditsButton = buttons[i];
 
@@ -76,8 +74,6 @@ namespace Com.IsartDigital.Platformer.Screens {
                     //button.GetComponent<MenuButton>().OnMenuButtonClicked -= TitleCard_OnMenuButtonClicked;
                 }*/
             }
-            else if(sender.CompareTag(buttonSoundTriggerTag)) OnSoundTriggerClicked?.Invoke(this);
-            else if(sender.CompareTag(buttonLocalisationTag)) OnLocalisationClicked?.Invoke(this);
             else if(sender.CompareTag(buttonPlayTag)) animator.SetTrigger(exit);//OnGameStart?.Invoke(this);
             else
             {
@@ -97,6 +93,7 @@ namespace Com.IsartDigital.Platformer.Screens {
         public override void UnsubscribeEvents()
         {
             localizationToggle.onValueChanged.RemoveListener(delegate { OnChangeLanguage?.Invoke(this); });
+            soundToggle.onValueChanged.RemoveListener(delegate { OnSoundTriggerClicked?.Invoke(this); });
             LocalizationManager.toggleBool = localizationToggle.isOn; 
             LocalizationManager.currentFileName = LocalizationManager.Instance.FileName;
             OnCreditsClicked = null;

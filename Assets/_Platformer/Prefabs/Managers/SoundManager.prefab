@@ -463,11 +463,11 @@ MonoBehaviour:
       type: 2}
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
-    showInEditor: 0
+    showInEditor: 1
   - _name: Music_Level_1
     _clip: {fileID: 8300000, guid: 4769a32b9ce6994419a2a7da84185886, type: 3}
     _type: 0
-    _volume: 0.75
+    _volume: 0.601
     _volumeVariance: 0
     _pitch: 1
     _pitchVariance: 0
@@ -1329,3 +1329,46 @@ MonoBehaviour:
     _transitionMixerGroup: {fileID: 0}
     CurrentMixerGroup: {fileID: 0}
     showInEditor: 0
+  - _name: ENV_Trigger_Mobile_Platform
+    _clip: {fileID: 0}
+    _type: 0
+    _volume: 0.75
+    _volumeVariance: 0.1
+    _pitch: 1
+    _pitchVariance: 0.1
+    _isPitchedBetweenValues: 0
+    _minPitchValue: 0
+    _maxPitchValue: 0
+    _isLoop: 0
+    _rolloffMode: 0
+    _volumeSpatialization:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _minDistance: 0
+    _maxDistance: 500
+    _isFadeIn: 0
+    _isFadeOut: 0
+    _fadeInDuration: 1
+    _fadeInCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _fadeOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    _fadeOutDuration: 1
+    _isStartAtRandomTime: 0
+    _mixerGroupLvl1: {fileID: 0}
+    _mixerGroupLvl2: {fileID: 0}
+    _pauseMixerGroup: {fileID: 0}
+    _transitionMixerGroup: {fileID: 0}
+    CurrentMixerGroup: {fileID: 0}
+    showInEditor: 1

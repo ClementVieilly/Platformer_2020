@@ -187,7 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6af6ec211488fd42b4f9e0dabde89b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: {fileID: 0}
+  sounds: {fileID: 11400000, guid: e4526ec7fb9357d408af38f7e3a4d718, type: 2}
   sfxList: []
   animator: {fileID: 1473295594515282890}
   leftLifeTimeAfterUse: 0
+  animSound: 4

@@ -530,7 +530,7 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 					}
 
 					OnPlayerJump?.Invoke();
-
+                    
 					transform.localScale = facingRightWall < 0 ? scaleRight : scaleLeft;
 				}
 			}
@@ -653,18 +653,24 @@ namespace Com.IsartDigital.Platformer.LevelObjects
 				if (hitInfosLeft.collider.GetComponent<PlatformEffector2D>() &&
 					hitInfosLeft.collider.GetComponent<PlatformEffector2D>().useOneWay)
 					return;
-
-				IsOnWall = true;
+                IsOnWall = true;
                 facingRightWall = transform.localScale == scaleLeft ? -1 : 1;
+                
             }
             else if (hitInfosRight.collider != null)
             {
 				if (hitInfosRight.collider.GetComponent<PlatformEffector2D>() &&
 					hitInfosRight.collider.GetComponent<PlatformEffector2D>().useOneWay)
 					return;
+                if(facingRightWall != previousDirection)
+                {
+                    transform.localScale = facingRightWall == -1 ? scaleLeft : scaleRight;
+                }
 
-				IsOnWall = true;
+                IsOnWall = true;
+
                 facingRightWall = transform.localScale == scaleLeft ? 1 : -1;
+                
             }
             else IsOnWall = false;
 

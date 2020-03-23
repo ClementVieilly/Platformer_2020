@@ -163,10 +163,10 @@ namespace Com.IsartDigital.Platformer.Managers
         {
             _completionTime = timeManager.Timer;
             timeManager.SetModeVoid();
-            UnsubscribeAllEvents();
             OnWin?.Invoke(this);
+            UnsubscribeAllEvents();
             player.SetModeVoid();
-            if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen(_levelNumber);
+			if (UIManager.Instance != null) UIManager.Instance.CreateWinScreen(_levelNumber);
             else Debug.LogError("Pas d'UImanager sur la scène");
             player.gameObject.SetActive(false);
 
@@ -180,6 +180,7 @@ namespace Com.IsartDigital.Platformer.Managers
                 SoundManager.Instance.Stop(sounds.Music_Level_2);
                 SoundManager.Instance.Stop(sounds.Ambiance_Level_2);
             }
+            SoundManager.Instance.Play(sounds.Music_Win);
         }
 
         private void Retry()

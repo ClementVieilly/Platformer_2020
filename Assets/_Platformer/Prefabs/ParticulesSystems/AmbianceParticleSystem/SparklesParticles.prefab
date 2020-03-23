@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2462703779297718741}
   - component: {fileID: 2462703779297718731}
   - component: {fileID: 2462703779297718730}
+  - component: {fileID: 6875242008004051089}
   m_Layer: 0
   m_Name: SparklesParticles
   m_TagString: Untagged
@@ -865,7 +866,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 12
+      scalar: 7
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4810,3 +4811,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &6875242008004051089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2462703779297718740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 451f8c556ffbccd46a6b8ea05253ea59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds: {fileID: 11400000, guid: e4526ec7fb9357d408af38f7e3a4d718, type: 2}
+  sfxList: []
+  emitParticle: 1

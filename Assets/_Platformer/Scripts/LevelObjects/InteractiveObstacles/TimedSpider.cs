@@ -62,7 +62,7 @@ namespace Com.IsartDigital.InteractiveObstacles {
                     yield return null;
                 }
                 animator.SetBool(attackParam, isOpening);
-                SoundManager.Instance.PlayRandom(new string[] {sounds.Env_Spider_01_Idle,sounds.Env_Spider_02_Idle },this);
+                SoundManager.Instance.Play(sounds.Env_Spider_Attack,this);
 
                 transform.position = Vector3.MoveTowards(transform.position, endPos.position, openingSpeed * Time.deltaTime);
                 yield return null;

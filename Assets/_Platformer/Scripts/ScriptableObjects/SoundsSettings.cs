@@ -43,6 +43,8 @@ namespace Com.IsartDigital.Platformer
 		[Header("Collectibles")]
 		[SerializeField] private string _collectible_Life = null;
 		[SerializeField] private string _collectible_Score = null;
+		[SerializeField] private string _collectible_BigScore_Lvl1 = null;
+		[SerializeField] private string _collectible_BigScore_Lvl2 = null;
 
 		[Header("Birds")]
 		[SerializeField] private string _birds_dove = null;
@@ -102,5 +104,7 @@ namespace Com.IsartDigital.Platformer
 		public string Env_Mobile_Platform { get => _env_Mobile_Platform; }
 		public string Checkpoint_Open { get => _checkpoint_Open; }
 		public string Checkpoint_Closed { get => _checkpoint_Closed; }
+		public string Collectible_BigScore_Lvl1 { get => _collectible_BigScore_Lvl1; }
+		public string Collectible_BigScore_Lvl2 { get => _collectible_BigScore_Lvl2; }
 	}
 }

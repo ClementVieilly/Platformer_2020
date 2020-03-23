@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9fa30e000f3420796cfbd1e09a86d6, type: 3}
+  m_Name: Levier.fla._Stage_
+  m_EditorClassIdentifier: 
+  Name: _Stage_
+  Sprite: {fileID: 21300000, guid: c5c93b26a78a8114a9dcc9922d4204dc, type: 3}
+  FrameRate: 30
+  AssetGUID: 9b6677c718ef8674e99d945da644e63a
+  Sequences:
+  - Name: Default
+    Frames:
+    - Labels: []
+      MeshData:
+        SubMeshes:
+        - StartVertex: 0
+          IndexCount: 12
+        Vertices:
+        - {x: 5.129, y: -1.651}
+        - {x: 7.030671, y: -2.1597764}
+        - {x: 5.9283223, y: -6.280063}
+        - {x: 4.0266514, y: -5.771287}
+        - {x: 2.426, y: -4.5545}
+        - {x: 5.5960045, y: -4.5545}
+        - {x: 5.5960045, y: -5.9371614}
+        - {x: 2.426, y: -5.9371614}
+        UVs: 000000007fa2ff4a00001f4b3f339fc0
+        AddColors: 00000000000000000000000000000000
+        MulColors: 00020002000200020002000200020002
+      Materials:
+      - {fileID: 2100000, guid: d58d9a5e482e8429f8d7d18a9538d94a, type: 2}

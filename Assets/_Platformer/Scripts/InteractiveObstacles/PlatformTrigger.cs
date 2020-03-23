@@ -3,6 +3,7 @@
 /// Date : 05/02/2020 10:45
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.Managers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +17,9 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
         private MobilePlatform mobilePlatform = null;
 		[SerializeField] private bool mustResetOnDeath = true;
 
+		[SerializeField] private Animator animator = null;
+		[SerializeField] private GameObject halo = null;
+
 		private void Awake()
         {
             _list.Add(this);
@@ -26,6 +30,9 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
         {
             mobilePlatform.SetModeNormal();
 			mobilePlatform.IsStarted = true;
+
+			animator.SetBool("IsActive", true);
+			SoundManager.Instance.Play(sounds.Env_Trigger_MobilePlatform, this);
 		}
 
 		private void OnDestroy()
@@ -41,7 +48,11 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
 				trigger = _list[i];
 
 				if (trigger.mustResetOnDeath)
+				{
 					trigger.mobilePlatform.IsStarted = false;
+					trigger.animator.SetBool("IsActive", false);
+					trigger.halo.SetActive(false);
+				}
 			}
 		}
 
@@ -51,6 +62,8 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
 			{
 				_list[i].mobilePlatform.SetModeWait();
 				_list[i].mobilePlatform.IsStarted = false;
+				_list[i].animator.SetBool("IsActive", false);
+				_list[i].halo.SetActive(false);
 			}
 		}
 	}

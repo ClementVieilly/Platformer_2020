@@ -30,6 +30,7 @@ namespace Com.IsartDigital.Platformer.Managers
 		[SerializeField] private GameObject confirmScreenPrefab = null;
 		[SerializeField] private GameObject preloadPrefab = null;
 
+
 		[Header("Level names")]
 		[SerializeField] private List<string> sceneNames = new List<string>();
 
@@ -158,7 +159,6 @@ namespace Com.IsartDigital.Platformer.Managers
 
 			currentTitleCard.OnCreditsClicked += TitleCard_OnCreditsClicked;
 			currentTitleCard.OnLeaderBoardClicked += TitleCard_OnLeaderBoardClicked;
-			currentTitleCard.OnLocalisationClicked += TitleCard_OnLocalisationClicked;
 			currentTitleCard.OnSoundTriggerClicked += TitleCard_OnSoundTriggerClicked;
 			currentTitleCard.OnGameStart += TitleCard_OnGameStart;
 			allScreens.Add(currentTitleCard);
@@ -355,11 +355,8 @@ namespace Com.IsartDigital.Platformer.Managers
 		private void TitleCard_OnSoundTriggerClicked(TitleCard title)
 		{
 			Debug.Log("active/désactive le son + change image");
-		}
-
-		private void TitleCard_OnLocalisationClicked(TitleCard title)
-		{
-			Debug.Log("change la langue");
+			GameManager.isSoundOff = !GameManager.isSoundOff;
+			GameManager.SetSoundPlay(GameManager.isSoundOff);
 		}
 
 		private void TitleCard_OnLeaderBoardClicked(TitleCard title)

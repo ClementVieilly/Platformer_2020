@@ -3,6 +3,7 @@
 /// Date : 27/01/2020 15:41
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.Managers;
 using Com.IsartDigital.Platformer.Screens.Buttons;
 using UnityEngine;
 using UnityEngine.UI;
@@ -38,6 +39,12 @@ namespace Com.IsartDigital.Platformer.Screens
 
                 buttons[i].GetComponent<MenuButton>().OnMenuButtonClicked += LevelSelector_OnButtonClicked;
             }
+            if (SoundManager.Instance) SoundManager.Instance.Play(sounds.Music_Menu);
+        }
+
+        private void Start()
+        {
+            if (SoundManager.Instance) SoundManager.Instance.Play(sounds.Music_Menu);
         }
 
         private void LevelSelector_OnButtonClicked(Button sender)
@@ -61,6 +68,7 @@ namespace Com.IsartDigital.Platformer.Screens
         public void OnAnimEnd()
         {
             OnLevelClicked?.Invoke(this, level);
+            if (SoundManager.Instance) SoundManager.Instance.Stop(sounds.Music_Menu);
         }
 
         public override void UnsubscribeEvents()

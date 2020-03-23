@@ -3,6 +3,7 @@
 /// Date : 04/02/2020 14:45
 ///-----------------------------------------------------------------
 
+using Com.IsartDigital.Platformer.Managers;
 using UnityEngine;
 
 namespace Com.IsartDigital.Platformer.InteractiveObstacles {
@@ -10,6 +11,10 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
     {
         [SerializeField] private GameObject doorGameObject = null;
         private TimedDoor timedDoor = null;
+
+		[SerializeField] SpriteRenderer gfx = null;
+		[SerializeField] Sprite spriteIsOn = null;
+		[SerializeField] Sprite spriteIsOff = null;
 
         private void Awake()
         {
@@ -19,11 +24,14 @@ namespace Com.IsartDigital.Platformer.InteractiveObstacles {
         protected override void TriggerInteraction()
         {
             timedDoor.Open();
+            SoundManager.Instance.Play(sounds.Env_Trigger_TimedDoor, this);
+			gfx.sprite = spriteIsOn;
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
             timedDoor.Close();
-        }
-    }
+			gfx.sprite = spriteIsOff;
+		}
+	}
 }

@@ -4,6 +4,7 @@
 ///-----------------------------------------------------------------
 
 using System;
+using Com.IsartDigital.Platformer.Managers;
 using Com.IsartDigital.Platformer.Screens;
 using Com.IsartDigital.Platformer.Screens.Buttons;
 using UnityEngine;
@@ -20,13 +21,14 @@ public class WinScreen : AScreen
     public event WinScreenEventHandler OnMenuClicked;
     public event WinScreenEventHandler OnLevelSelectorClicked;
     public event WinScreenEventHandler OnLeaderboardClicked;
+    private int currentLevel; 
 
     private string enterLastScreenParam = "EnterLastScreen"; 
 
 	private void Awake()
     {
         animator = GetComponent<Animator>();
-        menuBtn.OnMenuButtonClicked += WinScreen_OnMenuClicked;
+        //menuBtn.OnMenuButtonClicked += WinScreen_OnMenuClicked;
        
 		leaderboardBtn.OnMenuButtonClicked += WinScreen_OnLeaderboardClicked;
     }
@@ -34,24 +36,34 @@ public class WinScreen : AScreen
     public void DisplayWinScreen(int level)
     {
 
-
+        currentLevel = level; 
         if(level == 1)
         {
             animator.SetTrigger(enter);
             levelSelectorBtn.OnMenuButtonClicked += WinScreen_OnLevelSelectorClicked;
-            Debug.Log("alors t'as lseum");
+            menuBtn.OnMenuButtonClicked += WinScreen_OnMenuClicked;
+            SoundManager.Instance.Stop(sounds.Music_Level_1);
+            SoundManager.Instance.Stop(sounds.Ambiance_Level_1);
         }
         else
         {
-            animator.SetTrigger(enterLastScreenParam); 
+            animator.SetTrigger(enterLastScreenParam);
             levelSelectorBtn.OnMenuButtonClicked += WinScreen_EndScreenClicked;
+            menuBtn.OnMenuButtonClicked += WinScreen_EndScreenClicked;
+            SoundManager.Instance.Stop(sounds.Music_Level_2);
+            SoundManager.Instance.Stop(sounds.Ambiance_Level_2);
         }
 
+    }
+    private void AnimCallBackLastScreen()
+    {
+        OnMenuClicked?.Invoke(this);
     }
 
     private void WinScreen_EndScreenClicked(Button button)
     {
-        animator.SetTrigger(exit); 
+        animator.SetTrigger("ExitLastScreen"); 
+
     }
 
     private void WinScreen_OnMenuClicked(Button sender)

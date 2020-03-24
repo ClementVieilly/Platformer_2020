@@ -16,7 +16,6 @@ namespace Com.IsartDigital.Platformer.Managers
 {
     public class LocalizationManager : MonoBehaviour
     {
-
         private static LocalizationManager _instance;
         public static string currentFileName = "localizedText_en.json"; 
         public static LocalizationManager Instance => _instance;
@@ -56,7 +55,10 @@ namespace Com.IsartDigital.Platformer.Managers
 
             _fileName = currentFileName;
             DontDestroyOnLoad(gameObject);
-            TitleCard.OnChangeLanguage += TitleCard_OnChangeLanguage;
+
+#if !UNITY_WEBGL
+			TitleCard.OnChangeLanguage += TitleCard_OnChangeLanguage;
+#endif
         }
 
         private void TitleCard_OnChangeLanguage(TitleCard title)
